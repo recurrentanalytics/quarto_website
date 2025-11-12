@@ -1,0 +1,13 @@
+---
+title: Contact / CV
+---
+
+- **Email:** hello@recurrentanalytics.com
+- **GitHub:** https://github.com/recurrentanalytics
+- **Location:** DE
+
+### Short CV
+- Climate / risk analytics, Hannover Re; consulting & public-sector work (GIZ).
+- Building *Re:current* — an open lab for climate modelling and decision tools.
+
+Download full CV (PDF): _add later_

@@ -1,0 +1,11 @@
+```markdown
+---
+title: Reading
+---
+
+Short summaries of papers, books, and references that inform the lab.
+
+- Add `.qmd` files here and they’ll appear in the listing below.
+
+```{=html}
+<!-- Listing can be added later if you prefer index pages per reading note -->

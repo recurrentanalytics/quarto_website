@@ -1,0 +1,8 @@
+---
+title: Hello, Lab
+date: 2025-11-12
+categories: [setup]
+---
+
+First check-in. The lab notebook is live.  
+Use this space for short, source-controlled notes.

@@ -1,0 +1,6 @@
+---
+title: Models & Tools
+---
+
+- **ERA5 rainfall demo** → [era5-demo.qmd](era5-demo.qmd)
+- Trigger prototypes, Monte Carlo, risk metrics — add here as notebooks.

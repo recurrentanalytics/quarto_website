@@ -1,0 +1,9 @@
+---
+title: Projects
+listing:
+  contents: .
+  sort: "date desc"
+  type: grid
+---
+
+Welcome to the project gallery. Add a `.qmd` per project here.

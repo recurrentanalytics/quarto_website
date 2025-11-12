@@ -1,0 +1,32 @@
+---
+title: ERA5 rainfall – quick look
+format:
+  html:
+    toc: true
+jupyter: python3
+---
+
+> Minimal example using `xarray` + `cfgrib` (local GRIB files).  
+> Replace `PATH_TO_GRIB` with your local file; this page won’t fetch data.
+
+```{python}
+# | echo: true
+import xarray as xr
+import matplotlib.pyplot as plt
+
+# Example: daily total precipitation (tp) GRIB you downloaded locally
+path = "PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib"
+# ds = xr.open_dataset(path, engine="cfgrib")
+
+# Placeholder plot (uncomment lines above and adapt when you have data)
+import numpy as np
+lat = np.linspace(-60,60,121)
+lon = np.linspace(-180,180,361)
+data = np.random.gamma(2, 1, (121, 361))
+
+plt.figure()
+plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin="lower")
+plt.title("ERA5 tp – mock plot (replace with ds.tp[0])")
+plt.xlabel("lon"); plt.ylabel("lat")
+plt.show()
+

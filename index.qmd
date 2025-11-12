@@ -1,3 +1,18 @@
-# re:current analytics
+---
+title: "re:current analytics"
+page-layout: article
+---
 
-Welcome.
+<div class="rac-hero">
+  <h1>re:current analytics</h1>
+  <p>Experimental climate modelling—notes, models, and tools.</p>
+  <div class="drift"></div>
+</div>
+
+### Start here
+
+- **Notes / Lab journal:** ongoing experiments → [notes/](notes/)
+- **Projects:** packaged work, demos, slides → [projects/](projects/)
+- **Models & Tools:** code and notebooks (ERA5, triggers, Monte Carlo) → [models/](models/)
+- **Tipping Points:** strategic card game on climate–politics → [tipping-points/](tipping-points/)
+- **About & Contact:** who/what/why → [about](about.qmd) · [contact / cv](contact_cv.qmd)
