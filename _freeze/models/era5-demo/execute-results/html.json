@@ -1,8 +1,8 @@
 {
-  "hash": "4f0235c69157e213b27d0115c115a9cb",
+  "hash": "7b3c5a096bc6d18150a970378f50096f",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: ERA5 rainfall – quick look\nformat:\n  html:\n    toc: true\njupyter: python3\nexecute:\n  echo: true\n---\n\n> Minimal example using `xarray` + `cfgrib` (local GRIB files).  \n> Replace `PATH_TO_GRIB` with your local file; this page won’t fetch data.\n\n<!-- Leave a blank line after the quote so the next fence is top-level -->\n\n#| fig-height: 5\n#| fig-width: 10\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n# import xarray as xr  # uncomment when you have local ERA5 files\n\n# --- ERA5 GRIB read (uncomment once you have files locally) ---\n# path = \"PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib\"\n# ds = xr.open_dataset(path, engine=\"cfgrib\")\n# data = ds['tp'][0]  # first timestep\n# lat = ds.latitude.values\n# lon = ds.longitude.values\n\n# --- synthetic fallback for demo / CI / website build ---\nlat = np.linspace(-60,60,121)\nlon = np.linspace(-180,180,361)\ndata = np.random.gamma(2, 1, (len(lat), len(lon)))\n\nplt.figure()\nplt.imshow(\n    data,\n    extent=[lon.min(), lon.max(), lat.min(), lat.max()],\n    origin=\"lower\"\n)\nplt.title(\"ERA5 total precipitation — mock plot (replace with ds['tp'][0])\")\nplt.xlabel(\"longitude\"); plt.ylabel(\"latitude\")\nplt.show()\n\n",
+    "markdown": "---\ntitle: \"ERA5 rainfall — minimal notebook\"\nformat:\n  html:\n    toc: false\njupyter: python3\nexecute:\n  echo: true\n  warning: true\n  error: true\n---\n\n~~~{python}\nprint(\"Hello from Python — if you don't see this line below, execution didn't run.\")\n~~~\n\n~~~{python}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nlat = np.linspace(-60, 60, 121)\nlon = np.linspace(-180, 180, 361)\ndata = np.random.gamma(2, 1, (len(lat), len(lon)))\n\nplt.figure()\nplt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=\"lower\")\nplt.title(\"Synthetic ERA5-like rainfall map\")\nplt.xlabel(\"Longitude\"); plt.ylabel(\"Latitude\")\nplt.show()\n~~~\n\n",
     "supporting": [
       "era5-demo_files"
     ],
