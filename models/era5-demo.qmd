@@ -10,9 +10,10 @@ jupyter: python3
 > Replace `PATH_TO_GRIB` with your local file; this page won’t fetch data.
 
 ```{python}
-# | echo: true
-# | fig-height: 5
-# | fig-width: 10
+#| echo: true
+#| fig-height: 5
+#| fig-width: 10
+
 import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
@@ -39,4 +40,5 @@ plt.title("ERA5 total precipitation — mock plot (replace with ds['tp'][0])")
 plt.xlabel("longitude")
 plt.ylabel("latitude")
 plt.show()
+
 

@@ -383,8 +383,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#echo-true" id="toc-echo-true" class="nav-link active" data-scroll-target="#echo-true">| echo: true</a></li>
-  <li><a href="#example-daily-total-precipitation-tp-grib-you-downloaded-locally" id="toc-example-daily-total-precipitation-tp-grib-you-downloaded-locally" class="nav-link" data-scroll-target="#example-daily-total-precipitation-tp-grib-you-downloaded-locally">Example: daily total precipitation (tp) GRIB you downloaded locally</a></li>
-  <li><a href="#placeholder-plot-uncomment-lines-above-and-adapt-when-you-have-data" id="toc-placeholder-plot-uncomment-lines-above-and-adapt-when-you-have-data" class="nav-link" data-scroll-target="#placeholder-plot-uncomment-lines-above-and-adapt-when-you-have-data">Placeholder plot (uncomment lines above and adapt when you have data)</a></li>
+  <li><a href="#fig-height-5" id="toc-fig-height-5" class="nav-link" data-scroll-target="#fig-height-5">| fig-height: 5</a></li>
+  <li><a href="#fig-width-10" id="toc-fig-width-10" class="nav-link" data-scroll-target="#fig-width-10">| fig-width: 10</a></li>
+  <li><a href="#era5-grib-read-uncomment-once-you-have-files-locally" id="toc-era5-grib-read-uncomment-once-you-have-files-locally" class="nav-link" data-scroll-target="#era5-grib-read-uncomment-once-you-have-files-locally">— ERA5 GRIB read (uncomment once you have files locally) —</a></li>
+  <li><a href="#path-path_to_gribera5_tp_daily_2020-01-01.grib" id="toc-path-path_to_gribera5_tp_daily_2020-01-01.grib" class="nav-link" data-scroll-target="#path-path_to_gribera5_tp_daily_2020-01-01.grib">path = “PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib”</a></li>
+  <li><a href="#ds-xr.open_datasetpath-enginecfgrib" id="toc-ds-xr.open_datasetpath-enginecfgrib" class="nav-link" data-scroll-target="#ds-xr.open_datasetpath-enginecfgrib">ds = xr.open_dataset(path, engine=“cfgrib”)</a></li>
+  <li><a href="#data-dstp0-first-timestep" id="toc-data-dstp0-first-timestep" class="nav-link" data-scroll-target="#data-dstp0-first-timestep">data = ds[‘tp’][0] # first timestep</a></li>
+  <li><a href="#lat-ds.latitude.values" id="toc-lat-ds.latitude.values" class="nav-link" data-scroll-target="#lat-ds.latitude.values">lat = ds.latitude.values</a></li>
+  <li><a href="#lon-ds.longitude.values" id="toc-lon-ds.longitude.values" class="nav-link" data-scroll-target="#lon-ds.longitude.values">lon = ds.longitude.values</a></li>
+  <li><a href="#synthetic-fallback-for-demo-ci-website-build" id="toc-synthetic-fallback-for-demo-ci-website-build" class="nav-link" data-scroll-target="#synthetic-fallback-for-demo-ci-website-build">— synthetic fallback for demo / CI / website build —</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/models/era5-demo.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -417,16 +424,36 @@ Replace <code>PATH_TO_GRIB</code> with your local file; this page won’t fetch 
 </blockquote>
 <section id="echo-true" class="level1">
 <h1>| echo: true</h1>
-<p>import xarray as xr import matplotlib.pyplot as plt</p>
 </section>
-<section id="example-daily-total-precipitation-tp-grib-you-downloaded-locally" class="level1">
-<h1>Example: daily total precipitation (tp) GRIB you downloaded locally</h1>
-<p>path = “PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib” # ds = xr.open_dataset(path, engine=“cfgrib”)</p>
+<section id="fig-height-5" class="level1">
+<h1>| fig-height: 5</h1>
 </section>
-<section id="placeholder-plot-uncomment-lines-above-and-adapt-when-you-have-data" class="level1">
-<h1>Placeholder plot (uncomment lines above and adapt when you have data)</h1>
-<p>import numpy as np lat = np.linspace(-60,60,121) lon = np.linspace(-180,180,361) data = np.random.gamma(2, 1, (121, 361))</p>
-<p>plt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“ERA5 tp – mock plot (replace with ds.tp[0])”) plt.xlabel(“lon”); plt.ylabel(“lat”) plt.show()</p>
+<section id="fig-width-10" class="level1">
+<h1>| fig-width: 10</h1>
+<p>import xarray as xr import matplotlib.pyplot as plt import numpy as np</p>
+</section>
+<section id="era5-grib-read-uncomment-once-you-have-files-locally" class="level1">
+<h1>— ERA5 GRIB read (uncomment once you have files locally) —</h1>
+</section>
+<section id="path-path_to_gribera5_tp_daily_2020-01-01.grib" class="level1">
+<h1>path = “PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib”</h1>
+</section>
+<section id="ds-xr.open_datasetpath-enginecfgrib" class="level1">
+<h1>ds = xr.open_dataset(path, engine=“cfgrib”)</h1>
+</section>
+<section id="data-dstp0-first-timestep" class="level1">
+<h1>data = ds[‘tp’][0] # first timestep</h1>
+</section>
+<section id="lat-ds.latitude.values" class="level1">
+<h1>lat = ds.latitude.values</h1>
+</section>
+<section id="lon-ds.longitude.values" class="level1">
+<h1>lon = ds.longitude.values</h1>
+</section>
+<section id="synthetic-fallback-for-demo-ci-website-build" class="level1">
+<h1>— synthetic fallback for demo / CI / website build —</h1>
+<p>lat = np.linspace(-60,60,121) lon = np.linspace(-180,180,361) data = np.random.gamma(2, 1, (len(lat), len(lon)))</p>
+<p>plt.figure() plt.imshow( data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower” ) plt.title(“ERA5 total precipitation — mock plot (replace with ds[‘tp’][0])”) plt.xlabel(“longitude”) plt.ylabel(“latitude”) plt.show()</p>
 
 
 <!-- -->
@@ -910,24 +937,34 @@ Replace <code>PATH_TO_GRIB</code> with your local file; this page won’t fetch 
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># | echo: true</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: daily total precipitation (tp) GRIB you downloaded locally</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib"</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ds = xr.open_dataset(path, engine="cfgrib")</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Placeholder plot (uncomment lines above and adapt when you have data)</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">60</span>,<span class="dv">60</span>,<span class="dv">121</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">180</span>,<span class="dv">180</span>,<span class="dv">361</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.gamma(<span class="dv">2</span>, <span class="dv">1</span>, (<span class="dv">121</span>, <span class="dv">361</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># | fig-height: 5</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># | fig-width: 10</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># --- ERA5 GRIB read (uncomment once you have files locally) ---</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># path = "PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ds = xr.open_dataset(path, engine="cfgrib")</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># data = ds['tp'][0]  # first timestep</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># lat = ds.latitude.values</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># lon = ds.longitude.values</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.imshow(data, extent<span class="op">=</span>[lon.<span class="bu">min</span>(), lon.<span class="bu">max</span>(), lat.<span class="bu">min</span>(), lat.<span class="bu">max</span>()], origin<span class="op">=</span><span class="st">"lower"</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"ERA5 tp – mock plot (replace with ds.tp[0])"</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"lon"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"lat"</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># --- synthetic fallback for demo / CI / website build ---</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">60</span>,<span class="dv">60</span>,<span class="dv">121</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">180</span>,<span class="dv">180</span>,<span class="dv">361</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.gamma(<span class="dv">2</span>, <span class="dv">1</span>, (<span class="bu">len</span>(lat), <span class="bu">len</span>(lon)))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.imshow(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    data,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    extent<span class="op">=</span>[lon.<span class="bu">min</span>(), lon.<span class="bu">max</span>(), lat.<span class="bu">min</span>(), lat.<span class="bu">max</span>()],</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    origin<span class="op">=</span><span class="st">"lower"</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"ERA5 total precipitation — mock plot (replace with ds['tp'][0])"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"longitude"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"latitude"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
