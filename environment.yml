@@ -1,0 +1,17 @@
+name: recurrent-analytics
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - ipykernel
+  - numpy
+  - pandas
+  - matplotlib
+  - xarray
+  - cfgrib
+  - eccodes
+  - netcdf4
+  - h5netcdf
+  # Optional, nice to have:
+  # - cartopy           # maps/projections (larger)
+  # - cftime            # robust time decoding
