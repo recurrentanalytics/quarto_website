@@ -6,12 +6,15 @@ website:
   title: "re:current analytics"
   site-url: https://recurrentanalytics.com
   description: "A lab-notebook for climate risk, models, and recurrent intelligence."
-  image: assets/social-card.png           # social preview card
+  favicon: assets/favicon.png
+
+  # Social cards
+  image: assets/social-card.png
   open-graph: true
   twitter-card:
-    creator: "@timmwalker"                # or leave empty
+    creator: "@timmwalker"
     image: assets/social-card.png
-  favicon: assets/favicon.png
+
   navbar:
     logo: assets/favicon.png
     left:
@@ -36,24 +39,14 @@ website:
         href: https://github.com/recurrentanalytics
       - icon: rss
         href: notes/index.xml
-  sidebar: false
+
   page-footer:
     left: "© Timm Walker"
     right: "A lab for recurrent climate intelligence."
+
   search: true
   repo-url: https://github.com/recurrentanalytics/recurrentanalytics
   repo-actions: [source]
-
-  # RSS for the lab journal
-  rss:
-    feed-title: "re:current – lab journal"
-    feed-description: "Notes on climate analytics, models, and experiments."
-    path: notes/index.xml
-
-  # Privacy-friendly analytics (Plausible)
-  analytics:
-    plausible:
-      domain: recurrentanalytics.com
 
 format:
   html:
@@ -67,26 +60,29 @@ format:
     anchor-sections: true
     include-in-header:
       text: |
+        <!-- Plausible analytics -->
+        <script defer data-domain="recurrentanalytics.com" src="https://plausible.io/js/script.js"></script>
+
+        <!-- Hero drift effect -->
         <style>
-        /* gentle “forced drift” header wave */
-        .rac-hero {
-          position: relative; padding: 5rem 0 4rem; text-align:center;
-          overflow: hidden;
-        }
-        .rac-hero h1 { font-weight: 800; letter-spacing: .5px; }
-        .rac-hero .drift {
-          position: absolute; left: -10%; right:-10%; bottom: -40px; height: 120px;
-          background: radial-gradient(100% 60% at 50% 40%, var(--bs-secondary-bg) 0%, transparent 70%);
-          animation: slowfloat 14s ease-in-out infinite alternate;
-          opacity:.7; filter: blur(10px);
-        }
-        @keyframes slowfloat { from { transform: translateY(0px);} to {transform: translateY(16px);} }
+          .rac-hero {
+            position: relative; padding: 5rem 0 4rem; text-align:center;
+            overflow: hidden;
+          }
+          .rac-hero h1 { font-weight: 800; letter-spacing: .5px; }
+          .rac-hero .drift {
+            position: absolute; left: -10%; right:-10%; bottom: -40px; height: 120px;
+            background: radial-gradient(100% 60% at 50% 40%, var(--bs-secondary-bg) 0%, transparent 70%);
+            animation: slowfloat 14s ease-in-out infinite alternate;
+            opacity:.7; filter: blur(10px);
+          }
+          @keyframes slowfloat { from { transform: translateY(0px);} to {transform: translateY(16px);} }
         </style>
 
 execute:
-  freeze: auto   # caches results for notebooks
+  freeze: auto
 
-# collections: make /notes a listing with RSS
+# Blog-style collection with feed (RSS at notes/index.xml)
 collections:
   notes:
     feed: true

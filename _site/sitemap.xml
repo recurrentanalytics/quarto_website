@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://recurrentanalytics.com/about.html</loc>
-    <lastmod>2025-11-12T14:32:32.714Z</lastmod>
+    <loc>https://recurrentanalytics.com/notes/2025-hello-world.html</loc>
+    <lastmod>2025-11-12T16:04:43.272Z</lastmod>
   </url>
   <url>
     <loc>https://recurrentanalytics.com/index.html</loc>
-    <lastmod>2025-11-12T14:32:32.714Z</lastmod>
+    <lastmod>2025-11-12T16:02:52.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/era5-demo.html</loc>
+    <lastmod>2025-11-12T16:06:35.506Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/projects/index.html</loc>
+    <lastmod>2025-11-12T16:05:08.995Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/reading/index.html</loc>
+    <lastmod>2025-11-12T16:08:12.114Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/contact_cv.html</loc>
+    <lastmod>2025-11-12T16:03:51.219Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/index.html</loc>
+    <lastmod>2025-11-12T16:05:28.192Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/about.html</loc>
+    <lastmod>2025-11-12T16:03:11.962Z</lastmod>
   </url>
 </urlset>

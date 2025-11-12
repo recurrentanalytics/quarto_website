@@ -1,16 +1,58 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "notes/2025-hello-world.html",
+    "href": "notes/2025-hello-world.html",
+    "title": "Hello, Lab",
     "section": "",
-    "text": "Short bio / mission."
+    "text": "First check-in. The lab notebook is live.\nUse this space for short, source-controlled notes."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "re:current analytics",
     "section": "",
-    "text": "re:current analytics\nWelcome."
+    "text": "re:current analytics\n\n\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
+  },
+  {
+    "objectID": "models/era5-demo.html",
+    "href": "models/era5-demo.html",
+    "title": "ERA5 rainfall – quick look",
+    "section": "",
+    "text": "Minimal example using xarray + cfgrib (local GRIB files).\nReplace PATH_TO_GRIB with your local file; this page won’t fetch data.\n\n\n| echo: true\nimport xarray as xr import matplotlib.pyplot as plt\n\n\nExample: daily total precipitation (tp) GRIB you downloaded locally\npath = “PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib” # ds = xr.open_dataset(path, engine=“cfgrib”)\n\n\nPlaceholder plot (uncomment lines above and adapt when you have data)\nimport numpy as np lat = np.linspace(-60,60,121) lon = np.linspace(-180,180,361) data = np.random.gamma(2, 1, (121, 361))\nplt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“ERA5 tp – mock plot (replace with ds.tp[0])”) plt.xlabel(“lon”); plt.ylabel(“lat”) plt.show()"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Welcome to the project gallery. Add a .qmd per project here.\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "reading/index.html",
+    "href": "reading/index.html",
+    "title": "Reading",
+    "section": "",
+    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n[Home]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6SG9tZQ==\"}\n[/index.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=\"}\n[About]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=\"}\n[/about.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0Lmh0bWw=\"}\n[Notes / Lab]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Tm90ZXMgLyBMYWI=\"}\n[/notes/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L25vdGVzLw==\"}\n[Projects]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6UHJvamVjdHM=\"}\n[/projects/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3Byb2plY3RzLw==\"}\n[Models & Tools]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6TW9kZWxzICYgVG9vbHM=\"}\n[/models/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L21vZGVscy8=\"}\n[Reading]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6UmVhZGluZw==\"}\n[/reading/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3JlYWRpbmcv\"}\n[Tipping Points]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6VGlwcGluZyBQb2ludHM=\"}\n[/tipping-points/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3RpcHBpbmctcG9pbnRzLw==\"}\n[Contact / CV]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Q29udGFjdCAvIENW\"}\n[/contact_cv.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2NvbnRhY3RfY3YuaHRtbA==\"}\n[https://github.com/recurrentanalytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6aHR0cHM6Ly9naXRodWIuY29tL3JlY3VycmVudGFuYWx5dGljcw==\"}\n[/notes/index.xml]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L25vdGVzL2luZGV4LnhtbA==\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nA lab for recurrent climate intelligence.\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+  },
+  {
+    "objectID": "contact_cv.html",
+    "href": "contact_cv.html",
+    "title": "Contact / CV",
+    "section": "",
+    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, Hannover Re; consulting & public-sector work (GIZ).\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
+  },
+  {
+    "objectID": "models/index.html",
+    "href": "models/index.html",
+    "title": "Models & Tools",
+    "section": "",
+    "text": "ERA5 rainfall demo → era5-demo.qmd\nTrigger prototypes, Monte Carlo, risk metrics — add here as notebooks."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m Timm Walker. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub · Twitter"
   }
 ]
