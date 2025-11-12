@@ -11,22 +11,32 @@ jupyter: python3
 
 ```{python}
 # | echo: true
+# | fig-height: 5
+# | fig-width: 10
 import xarray as xr
 import matplotlib.pyplot as plt
-
-# Example: daily total precipitation (tp) GRIB you downloaded locally
-path = "PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib"
-# ds = xr.open_dataset(path, engine="cfgrib")
-
-# Placeholder plot (uncomment lines above and adapt when you have data)
 import numpy as np
+
+# --- ERA5 GRIB read (uncomment once you have files locally) ---
+# path = "PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib"
+# ds = xr.open_dataset(path, engine="cfgrib")
+# data = ds['tp'][0]  # first timestep
+# lat = ds.latitude.values
+# lon = ds.longitude.values
+
+# --- synthetic fallback for demo / CI / website build ---
 lat = np.linspace(-60,60,121)
 lon = np.linspace(-180,180,361)
-data = np.random.gamma(2, 1, (121, 361))
+data = np.random.gamma(2, 1, (len(lat), len(lon)))
 
 plt.figure()
-plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin="lower")
-plt.title("ERA5 tp – mock plot (replace with ds.tp[0])")
-plt.xlabel("lon"); plt.ylabel("lat")
+plt.imshow(
+    data,
+    extent=[lon.min(), lon.max(), lat.min(), lat.max()],
+    origin="lower"
+)
+plt.title("ERA5 total precipitation — mock plot (replace with ds['tp'][0])")
+plt.xlabel("longitude")
+plt.ylabel("latitude")
 plt.show()
 
