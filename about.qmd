@@ -2,9 +2,9 @@
 title: About
 ---
 
-I’m Timm Walker. I work at the intersection of **climate risk**, **(re)insurance**, and **data-driven modelling**.  
+I’m Mmit Reklaw. I work at the intersection of **climate risk**, **(re)insurance**, and **data-driven modelling**.  
 This site is a **public lab notebook** for the *Re:current* project: small, composable models; clean notes; reproducible code.
 
 **Focus areas:** hazard analytics, parametric triggers, time-series, energy–water systems, serious games.
 
-**Elsewhere:** [GitHub](https://github.com/recurrentanalytics) · [Twitter](https://twitter.com/timmwalker)
+**Elsewhere:** [GitHub](https://github.com/recurrentanalytics) 
