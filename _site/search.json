@@ -39,7 +39,7 @@
     "href": "contact_cv.html",
     "title": "Contact / CV",
     "section": "",
-    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, Hannover Re; consulting & public-sector work (GIZ).\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
+    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
   },
   {
     "objectID": "models/index.html",
@@ -53,6 +53,6 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "I’m Timm Walker. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub · Twitter"
+    "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub"
   }
 ]

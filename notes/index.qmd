@@ -1,0 +1,16 @@
+---
+title: "Notes & Knowledge Base"
+listing:
+  contents: .
+  type: default
+  sort: "date desc"
+  categories: true
+  feed: true
+page-layout: article
+---
+
+# Notes & Knowledge Base
+
+A growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the *Re:current Analytics* lab notebook.
+
+> Powered by Quarto + Obsidian-style atomic notes.
