@@ -4,19 +4,22 @@ format:
   html:
     toc: true
 jupyter: python3
+execute:
+  echo: true
 ---
 
 > Minimal example using `xarray` + `cfgrib` (local GRIB files).  
 > Replace `PATH_TO_GRIB` with your local file; this page won’t fetch data.
 
+<!-- Leave a blank line after the quote so the next fence is top-level -->
+
 ```{python}
-#| echo: true
 #| fig-height: 5
 #| fig-width: 10
 
-import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
+# import xarray as xr  # uncomment when you have local ERA5 files
 
 # --- ERA5 GRIB read (uncomment once you have files locally) ---
 # path = "PATH_TO_GRIB/era5_tp_daily_2020-01-01.grib"
@@ -37,8 +40,5 @@ plt.imshow(
     origin="lower"
 )
 plt.title("ERA5 total precipitation — mock plot (replace with ds['tp'][0])")
-plt.xlabel("longitude")
-plt.ylabel("latitude")
+plt.xlabel("longitude"); plt.ylabel("latitude")
 plt.show()
-
-
