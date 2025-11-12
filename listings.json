@@ -1,5 +1,13 @@
 [
   {
+    "listing": "/notes/index.html",
+    "items": [
+      "/notes/2025-hello-world.html",
+      "/notes/climate/sal.html",
+      "/notes/climate/monte-carlo-basics.html"
+    ]
+  },
+  {
     "listing": "/projects/index.html",
     "items": []
   }
