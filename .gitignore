@@ -1,3 +1,14 @@
 /.quarto/
 **/*.quarto_ipynb
 _site/
+
+# Python / venv
+.venv/
+
+# Data artefacts
+data/raw/
+models/data/raw/
+
+# Optional local outputs
+data/processed/
+models/data/processed/
