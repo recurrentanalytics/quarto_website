@@ -22,10 +22,11 @@ quarto render
 ```
 
 ## Features
-- **Yin-Yang Manifesto**: Side-by-side collapsible toggles on homepage (index.qmd)
-  - Manifesto: What the site IS (opens in light mode)
-  - Anti-Manifesto: What the site ISN'T (opens in dark mode)
-  - Theme-aware: Automatically switches which is open based on light/dark theme
+- **Yin-Yang Manifesto**: Single box on homepage with toggle switch (index.qmd)
+  - One container with "Manifesto | Anti" toggle in header
+  - Click toggle to swap between Manifesto and Anti-Manifesto text
+  - Theme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto
+  - Content swaps in-place (not nested, not side-by-side)
 - **Dark/Light Theme**: Toggle via theme switcher in navbar
 - **RSS Feed**: Available at notes/index.xml
 
