@@ -9,8 +9,9 @@ page-layout: article
   <div class="drift"></div>
 </div>
 
-<details class="manifesto-toggle">
-<summary>Manifesto</summary>
+<div class="manifesto-container">
+  <details class="manifesto-toggle manifesto" id="manifesto">
+  <summary>Manifesto</summary>
 
 This site is a working notebook.
 
@@ -26,7 +27,61 @@ Clarity matters more than novelty. Reproducibility matters more than rhetoric.
 
 This site is incomplete by design.
 
-</details>
+  </details>
+
+  <details class="manifesto-toggle anti-manifesto" id="anti-manifesto">
+  <summary>Anti-Manifesto</summary>
+
+This site is not a portfolio.
+
+It does not claim to have answers. It does not promise insight, impact, or innovation.
+
+There is no thought leadership here. No frameworks. No "key takeaways."
+
+I am not trying to build an audience, secure funding, or demonstrate competence.
+
+The work here is not optimised for legibility. It is not designed to reassure.
+
+If something looks unfinished, it probably is. If something looks wrong, it might be.
+
+This site rejects polish as a proxy for rigour.
+
+  </details>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const manifesto = document.getElementById('manifesto');
+  const antiManifesto = document.getElementById('anti-manifesto');
+  
+  let lastTheme = document.documentElement.getAttribute('data-bs-theme');
+  
+  function setStateForTheme(isDark) {
+    if (isDark) {
+      manifesto.removeAttribute('open');
+      antiManifesto.setAttribute('open', '');
+    } else {
+      manifesto.setAttribute('open', '');
+      antiManifesto.removeAttribute('open');
+    }
+  }
+  
+  setStateForTheme(lastTheme === 'dark');
+  
+  const observer = new MutationObserver(function(mutations) {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    if (currentTheme !== lastTheme) {
+      lastTheme = currentTheme;
+      setStateForTheme(currentTheme === 'dark');
+    }
+  });
+  
+  observer.observe(document.documentElement, { 
+    attributes: true, 
+    attributeFilter: ['data-bs-theme'] 
+  });
+});
+</script>
 
 ### Start here
 
