@@ -3,126 +3,100 @@ title: "re:current analytics"
 page-layout: article
 ---
 
-<div class="rac-hero">
-  <h1>re:current analytics</h1>
-  <p>Experimental climate modelling—notes, models, and tools.</p>
-  <div class="drift"></div>
+::: {.rac-hero}
+# re:current analytics
+
+Experimental climate modelling—notes, models, and tools.
+
+::: {.drift}
+:::
+:::
+
+```{=html}
+<div class="manifesto-box" id="manifesto-box">
+  <div class="manifesto-header">
+    <span class="manifesto-title" id="manifesto-title">Manifesto</span>
+    <button class="manifesto-switch" id="manifesto-switch" aria-pressed="false">
+      <span class="switch-label" data-active="manifesto">Manifesto</span>
+      <span class="switch-divider">|</span>
+      <span class="switch-label" data-active="anti">Anti</span>
+    </button>
+  </div>
+  <div class="manifesto-body" id="manifesto-body">
+  </div>
 </div>
 
-<div class="manifesto-container" id="manifesto-container">
-  <details class="manifesto-toggle" id="manifesto" open>
-  <summary>Manifesto</summary>
+<template id="manifesto-text">
+<p>This site is a working notebook.</p>
+<p>I use it to think in public about climate risk, hazards, and systems under stress.</p>
+<p>The notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.</p>
+<p>I am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.</p>
+<p>I do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.</p>
+<p>Clarity matters more than novelty. Reproducibility matters more than rhetoric.</p>
+<p>This site is incomplete by design.</p>
+</template>
 
-<div class="manifesto-content">
+<template id="anti-manifesto-text">
+<p>This site is not a portfolio.</p>
+<p>It does not claim to have answers. It does not promise insight, impact, or innovation.</p>
+<p>There is no thought leadership here. No frameworks. No "key takeaways."</p>
+<p>I am not trying to build an audience, secure funding, or demonstrate competence.</p>
+<p>The work here is not optimised for legibility. It is not designed to reassure.</p>
+<p>If something looks unfinished, it probably is. If something looks wrong, it might be.</p>
+<p>This site rejects polish as a proxy for rigour.</p>
+</template>
 
-This site is a working notebook.
-
-I use it to think in public about climate risk, hazards, and systems under stress.
-
-The notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.
-
-I am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.
-
-I do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.
-
-Clarity matters more than novelty. Reproducibility matters more than rhetoric.
-
-This site is incomplete by design.
-
+<noscript>
+<div class="manifesto-fallback">
+<h4>Manifesto</h4>
+<p>This site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.</p>
+<h4>Anti-Manifesto</h4>
+<p>This site is not a portfolio. It does not claim to have answers.</p>
 </div>
-
-<details class="nested-toggle" id="nested-anti">
-<summary>Anti-Manifesto</summary>
-
-This site is not a portfolio.
-
-It does not claim to have answers. It does not promise insight, impact, or innovation.
-
-There is no thought leadership here. No frameworks. No "key takeaways."
-
-I am not trying to build an audience, secure funding, or demonstrate competence.
-
-The work here is not optimised for legibility. It is not designed to reassure.
-
-If something looks unfinished, it probably is. If something looks wrong, it might be.
-
-This site rejects polish as a proxy for rigour.
-
-</details>
-
-  </details>
-
-  <details class="manifesto-toggle anti" id="anti-manifesto">
-  <summary>Anti-Manifesto</summary>
-
-<div class="manifesto-content">
-
-This site is not a portfolio.
-
-It does not claim to have answers. It does not promise insight, impact, or innovation.
-
-There is no thought leadership here. No frameworks. No "key takeaways."
-
-I am not trying to build an audience, secure funding, or demonstrate competence.
-
-The work here is not optimised for legibility. It is not designed to reassure.
-
-If something looks unfinished, it probably is. If something looks wrong, it might be.
-
-This site rejects polish as a proxy for rigour.
-
-</div>
-
-<details class="nested-toggle" id="nested-manifesto">
-<summary>Manifesto</summary>
-
-This site is a working notebook.
-
-I use it to think in public about climate risk, hazards, and systems under stress.
-
-The notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.
-
-I am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.
-
-I do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.
-
-Clarity matters more than novelty. Reproducibility matters more than rhetoric.
-
-This site is incomplete by design.
-
-</details>
-
-  </details>
-</div>
+</noscript>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const manifesto = document.getElementById('manifesto');
-  const antiManifesto = document.getElementById('anti-manifesto');
+  const body = document.getElementById('manifesto-body');
+  const title = document.getElementById('manifesto-title');
+  const switchBtn = document.getElementById('manifesto-switch');
+  const manifestoTemplate = document.getElementById('manifesto-text');
+  const antiTemplate = document.getElementById('anti-manifesto-text');
   
+  let currentState = 'manifesto';
   let lastTheme = document.documentElement.getAttribute('data-bs-theme');
   
-  function setStateForTheme(isDark) {
-    if (isDark) {
-      manifesto.style.display = 'none';
-      manifesto.removeAttribute('open');
-      antiManifesto.style.display = 'block';
-      antiManifesto.setAttribute('open', '');
+  function setState(state) {
+    currentState = state;
+    if (state === 'manifesto') {
+      body.innerHTML = manifestoTemplate.innerHTML;
+      title.textContent = 'Manifesto';
+      switchBtn.setAttribute('aria-pressed', 'false');
+      switchBtn.classList.remove('anti-active');
     } else {
-      manifesto.style.display = 'block';
-      manifesto.setAttribute('open', '');
-      antiManifesto.style.display = 'none';
-      antiManifesto.removeAttribute('open');
+      body.innerHTML = antiTemplate.innerHTML;
+      title.textContent = 'Anti-Manifesto';
+      switchBtn.setAttribute('aria-pressed', 'true');
+      switchBtn.classList.add('anti-active');
     }
   }
   
-  setStateForTheme(lastTheme === 'dark');
+  function initFromTheme() {
+    const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+    setState(isDark ? 'anti' : 'manifesto');
+  }
   
-  const observer = new MutationObserver(function(mutations) {
+  initFromTheme();
+  
+  switchBtn.addEventListener('click', function() {
+    setState(currentState === 'manifesto' ? 'anti' : 'manifesto');
+  });
+  
+  const observer = new MutationObserver(function() {
     const currentTheme = document.documentElement.getAttribute('data-bs-theme');
     if (currentTheme !== lastTheme) {
       lastTheme = currentTheme;
-      setStateForTheme(currentTheme === 'dark');
+      initFromTheme();
     }
   });
   
@@ -132,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+```
 
 ### Start here
 
