@@ -6,6 +6,9 @@
   {
     "listing": "/notes/index.html",
     "items": [
+      "/notes/risk-series-1.html",
+      "/notes/risk-series-2.html",
+      "/notes/risk-series-3.html",
       "/notes/2025-hello-world.html",
       "/notes/climate/monte-carlo-basics.html",
       "/notes/climate/sal.html"

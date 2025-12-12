@@ -1,0 +1,77 @@
+---
+title: "Risk Modelling Part 3: Implementation"
+date: 2025-12-12
+categories: [risk, series, code]
+---
+
+::: {.series-nav}
+::: {.series-nav-header}
+Series: Introduction to Risk Modelling (Part 3 of 3)
+:::
+::: {.series-nav-links}
+::: {.series-nav-prev}
+[← Previous: Data](risk-series-2.qmd)
+:::
+::: {.series-nav-next}
+:::
+:::
+:::
+
+## Putting It Together
+
+Armed with the [theoretical foundations](risk-series-1.qmd) and [data sources](risk-series-2.qmd), we can now implement a basic risk model.
+
+## A Simple Loss Model
+
+```python
+import numpy as np
+
+def simulate_losses(n_scenarios=10000, 
+                    mean_hazard=0.1, 
+                    exposure=1000000,
+                    vulnerability=0.3):
+    """
+    Simple Monte Carlo loss simulation.
+    
+    See: /notes/climate/monte-carlo-basics.html
+    """
+    # Simulate hazard intensity (e.g., flood depth)
+    hazard = np.random.exponential(mean_hazard, n_scenarios)
+    
+    # Calculate damage ratio based on vulnerability
+    damage_ratio = np.minimum(hazard * vulnerability, 1.0)
+    
+    # Compute losses
+    losses = exposure * damage_ratio
+    
+    return losses
+
+# Run simulation
+losses = simulate_losses()
+
+# Key statistics
+print(f"Expected Loss: ${losses.mean():,.0f}")
+print(f"VaR 99%: ${np.percentile(losses, 99):,.0f}")
+print(f"Max Loss: ${losses.max():,.0f}")
+```
+
+## Key Implementation Decisions
+
+When building production risk models, consider:
+
+1. **Correlation structure** - How do risks aggregate?
+2. **Tail dependence** - Do extreme events cluster?
+3. **Computational efficiency** - Can you run enough scenarios?
+4. **Validation** - How do you test the model?
+
+## Further Reading
+
+This series provides a foundation. For deeper dives:
+
+- [Monte Carlo Basics](/notes/climate/monte-carlo-basics.html) - The sampling engine behind most risk models
+- [SAL Verification](/notes/climate/sal.html) - Validating spatial predictions
+
+::: {.backlinks}
+#### Linked from
+- [Risk Modelling Part 2: Data](risk-series-2.qmd)
+:::

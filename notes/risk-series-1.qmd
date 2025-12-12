@@ -1,0 +1,45 @@
+---
+title: "Risk Modelling Part 1: Foundations"
+date: 2025-12-12
+categories: [risk, series]
+---
+
+::: {.series-nav}
+::: {.series-nav-header}
+Series: Introduction to Risk Modelling (Part 1 of 3)
+:::
+::: {.series-nav-links}
+::: {.series-nav-prev}
+:::
+::: {.series-nav-next}
+[Next: Data →](risk-series-2.qmd)
+:::
+:::
+:::
+
+## What is Risk Modelling?
+
+Risk modelling is the practice of using mathematical frameworks to quantify uncertainty and potential losses. In climate contexts, this typically involves:
+
+1. **Hazard identification** - What can go wrong?
+2. **Exposure assessment** - What assets are at risk?
+3. **Vulnerability analysis** - How susceptible are those assets?
+4. **Loss estimation** - What are the potential consequences?
+
+## Core Concepts
+
+The foundation of risk modelling rests on probability theory. We often use [Monte Carlo methods](/notes/climate/monte-carlo-basics.html) to simulate thousands of scenarios and understand the distribution of possible outcomes.
+
+Key terms:
+- **Expected loss**: The average loss across all scenarios
+- **Value at Risk (VaR)**: The maximum loss at a given confidence level
+- **Tail risk**: The probability of extreme events
+
+## Why This Matters for Climate
+
+Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in [Part 2: Data](risk-series-2.qmd).
+
+::: {.backlinks}
+#### Linked from
+- [Monte Carlo Basics](/notes/climate/monte-carlo-basics.html)
+:::

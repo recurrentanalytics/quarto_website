@@ -10,7 +10,335 @@
 <atom:link href="https://recurrentanalytics.com/notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>A lab-notebook for climate risk, models, and recurrent intelligence.</description>
 <generator>quarto-1.7.30</generator>
-<lastBuildDate>Wed, 12 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 12 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Risk Modelling Part 1: Foundations</title>
+  <link>https://recurrentanalytics.com/notes/risk-series-1.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="series-nav">
+<div class="series-nav-header">
+<p>Series: Introduction to Risk Modelling (Part 1 of 3)</p>
+</div>
+<div class="series-nav-links">
+<div class="series-nav-prev">
+
+</div>
+<div class="series-nav-next">
+<p><a href="../notes/risk-series-2.html">Next: Data →</a></p>
+</div>
+</div>
+</div>
+<section id="what-is-risk-modelling" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-risk-modelling">What is Risk Modelling?</h2>
+<p>Risk modelling is the practice of using mathematical frameworks to quantify uncertainty and potential losses. In climate contexts, this typically involves:</p>
+<ol type="1">
+<li><strong>Hazard identification</strong> - What can go wrong?</li>
+<li><strong>Exposure assessment</strong> - What assets are at risk?</li>
+<li><strong>Vulnerability analysis</strong> - How susceptible are those assets?</li>
+<li><strong>Loss estimation</strong> - What are the potential consequences?</li>
+</ol>
+</section>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<p>The foundation of risk modelling rests on probability theory. We often use <a href="../notes/climate/monte-carlo-basics.html">Monte Carlo methods</a> to simulate thousands of scenarios and understand the distribution of possible outcomes.</p>
+<p>Key terms: - <strong>Expected loss</strong>: The average loss across all scenarios - <strong>Value at Risk (VaR)</strong>: The maximum loss at a given confidence level - <strong>Tail risk</strong>: The probability of extreme events</p>
+</section>
+<section id="why-this-matters-for-climate" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-for-climate">Why This Matters for Climate</h2>
+<p>Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in <a href="../notes/risk-series-2.html">Part 2: Data</a>.</p>
+<section id="linked-from" class="level4 backlinks">
+<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<ul>
+<li><a href="../notes/climate/monte-carlo-basics.html">Monte Carlo Basics</a></li>
+</ul>
+</section>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>risk</category>
+  <category>series</category>
+  <guid>https://recurrentanalytics.com/notes/risk-series-1.html</guid>
+  <pubDate>Fri, 12 Dec 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Risk Modelling Part 2: Data</title>
+  <link>https://recurrentanalytics.com/notes/risk-series-2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="series-nav">
+<div class="series-nav-header">
+<p>Series: Introduction to Risk Modelling (Part 2 of 3)</p>
+</div>
+<div class="series-nav-links">
+<div class="series-nav-prev">
+<p><a href="../notes/risk-series-1.html">← Previous: Foundations</a></p>
+</div>
+<div class="series-nav-next">
+<p><a href="../notes/risk-series-3.html">Next: Implementation →</a></p>
+</div>
+</div>
+</div>
+<section id="data-sources-for-climate-risk" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources-for-climate-risk">Data Sources for Climate Risk</h2>
+<p>Building on the <a href="../notes/risk-series-1.html">foundations from Part 1</a>, this note covers the data landscape for climate risk modelling.</p>
+<section id="observational-data" class="level3">
+<h3 class="anchored" data-anchor-id="observational-data">Observational Data</h3>
+<ul>
+<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset (see <a href="../models/era5-demo.html">ERA5 Demo</a>)</li>
+<li><strong>GHCN</strong> - Global Historical Climatology Network</li>
+<li><strong>Station data</strong> - Local weather observations</li>
+</ul>
+</section>
+<section id="modelled-data" class="level3">
+<h3 class="anchored" data-anchor-id="modelled-data">Modelled Data</h3>
+<ul>
+<li><strong>CMIP6</strong> - Climate model ensembles for projections</li>
+<li><strong>Downscaled projections</strong> - Regional climate scenarios</li>
+<li><strong>Catastrophe model outputs</strong> - Vendor-specific hazard layers</li>
+</ul>
+</section>
+</section>
+<section id="data-quality-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-considerations">Data Quality Considerations</h2>
+<p>When working with climate data, always consider:</p>
+<ol type="1">
+<li><strong>Spatial resolution</strong> - Is the data granular enough for your use case?</li>
+<li><strong>Temporal coverage</strong> - Do you have enough historical data?</li>
+<li><strong>Bias</strong> - Are there systematic errors in the observations?</li>
+<li><strong>Uncertainty</strong> - What are the confidence intervals?</li>
+</ol>
+<p>The <a href="../notes/climate/sal.html">SAL framework</a> provides one approach to validating spatial data quality.</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p>With data in hand, we move to <a href="../notes/risk-series-3.html">Part 3: Implementation</a> where we build actual models.</p>
+<section id="linked-from" class="level4 backlinks">
+<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<ul>
+<li><a href="../notes/risk-series-1.html">Risk Modelling Part 1: Foundations</a></li>
+<li><a href="../notes/risk-series-3.html">Risk Modelling Part 3: Implementation</a></li>
+</ul>
+</section>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>risk</category>
+  <category>series</category>
+  <category>data</category>
+  <guid>https://recurrentanalytics.com/notes/risk-series-2.html</guid>
+  <pubDate>Fri, 12 Dec 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Risk Modelling Part 3: Implementation</title>
+  <link>https://recurrentanalytics.com/notes/risk-series-3.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="series-nav">
+<div class="series-nav-header">
+<p>Series: Introduction to Risk Modelling (Part 3 of 3)</p>
+</div>
+<div class="series-nav-links">
+<div class="series-nav-prev">
+<p><a href="../notes/risk-series-2.html">← Previous: Data</a></p>
+</div>
+<div class="series-nav-next">
+
+</div>
+</div>
+</div>
+<section id="putting-it-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-together">Putting It Together</h2>
+<p>Armed with the <a href="../notes/risk-series-1.html">theoretical foundations</a> and <a href="../notes/risk-series-2.html">data sources</a>, we can now implement a basic risk model.</p>
+</section>
+<section id="a-simple-loss-model" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> simulate_losses(n_scenarios<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span>, </span>
+<span id="cb1-4">                    mean_hazard<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>, </span>
+<span id="cb1-5">                    exposure<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000000</span>,</span>
+<span id="cb1-6">                    vulnerability<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>):</span>
+<span id="cb1-7">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Simple Monte Carlo loss simulation.</span></span>
+<span id="cb1-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    </span></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    See: /notes/climate/monte-carlo-basics.html</span></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    """</span></span>
+<span id="cb1-12">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Simulate hazard intensity (e.g., flood depth)</span></span>
+<span id="cb1-13">    hazard <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.random.exponential(mean_hazard, n_scenarios)</span>
+<span id="cb1-14">    </span>
+<span id="cb1-15">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate damage ratio based on vulnerability</span></span>
+<span id="cb1-16">    damage_ratio <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.minimum(hazard <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> vulnerability, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb1-17">    </span>
+<span id="cb1-18">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Compute losses</span></span>
+<span id="cb1-19">    losses <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> exposure <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> damage_ratio</span>
+<span id="cb1-20">    </span>
+<span id="cb1-21">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> losses</span>
+<span id="cb1-22"></span>
+<span id="cb1-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Run simulation</span></span>
+<span id="cb1-24">losses <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> simulate_losses()</span>
+<span id="cb1-25"></span>
+<span id="cb1-26"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Key statistics</span></span>
+<span id="cb1-27"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Expected Loss: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>losses<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>mean()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb1-28"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"VaR 99%: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>np<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>percentile(losses, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">99</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb1-29"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Max Loss: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>losses<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">max</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+</section>
+<section id="key-implementation-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
+<p>When building production risk models, consider:</p>
+<ol type="1">
+<li><strong>Correlation structure</strong> - How do risks aggregate?</li>
+<li><strong>Tail dependence</strong> - Do extreme events cluster?</li>
+<li><strong>Computational efficiency</strong> - Can you run enough scenarios?</li>
+<li><strong>Validation</strong> - How do you test the model?</li>
+</ol>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>This series provides a foundation. For deeper dives:</p>
+<ul>
+<li><a href="../notes/climate/monte-carlo-basics.html">Monte Carlo Basics</a> - The sampling engine behind most risk models</li>
+<li><a href="../notes/climate/sal.html">SAL Verification</a> - Validating spatial predictions</li>
+</ul>
+<section id="linked-from" class="level4 backlinks">
+<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<ul>
+<li><a href="../notes/risk-series-2.html">Risk Modelling Part 2: Data</a></li>
+</ul>
+</section>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>risk</category>
+  <category>series</category>
+  <category>code</category>
+  <guid>https://recurrentanalytics.com/notes/risk-series-3.html</guid>
+  <pubDate>Fri, 12 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Hello, Lab</title>
   <link>https://recurrentanalytics.com/notes/2025-hello-world.html</link>

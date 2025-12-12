@@ -1,0 +1,56 @@
+---
+title: "Risk Modelling Part 2: Data"
+date: 2025-12-12
+categories: [risk, series, data]
+---
+
+::: {.series-nav}
+::: {.series-nav-header}
+Series: Introduction to Risk Modelling (Part 2 of 3)
+:::
+::: {.series-nav-links}
+::: {.series-nav-prev}
+[← Previous: Foundations](risk-series-1.qmd)
+:::
+::: {.series-nav-next}
+[Next: Implementation →](risk-series-3.qmd)
+:::
+:::
+:::
+
+## Data Sources for Climate Risk
+
+Building on the [foundations from Part 1](risk-series-1.qmd), this note covers the data landscape for climate risk modelling.
+
+### Observational Data
+
+- **ERA5** - ECMWF's reanalysis dataset (see [ERA5 Demo](/models/era5-demo.html))
+- **GHCN** - Global Historical Climatology Network
+- **Station data** - Local weather observations
+
+### Modelled Data
+
+- **CMIP6** - Climate model ensembles for projections
+- **Downscaled projections** - Regional climate scenarios
+- **Catastrophe model outputs** - Vendor-specific hazard layers
+
+## Data Quality Considerations
+
+When working with climate data, always consider:
+
+1. **Spatial resolution** - Is the data granular enough for your use case?
+2. **Temporal coverage** - Do you have enough historical data?
+3. **Bias** - Are there systematic errors in the observations?
+4. **Uncertainty** - What are the confidence intervals?
+
+The [SAL framework](/notes/climate/sal.html) provides one approach to validating spatial data quality.
+
+## Next Steps
+
+With data in hand, we move to [Part 3: Implementation](risk-series-3.qmd) where we build actual models.
+
+::: {.backlinks}
+#### Linked from
+- [Risk Modelling Part 1: Foundations](risk-series-1.qmd)
+- [Risk Modelling Part 3: Implementation](risk-series-3.qmd)
+:::
