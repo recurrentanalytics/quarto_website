@@ -1,5 +1,26 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "re:current analytics",
+    "section": "",
+    "text": "re:current analytics\n\n\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n\n\nManifesto\n\nThis site is a working notebook.\nI use it to think in public about climate risk, hazards, and systems under stress.\nThe notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.\nI am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.\nI do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.\nClarity matters more than novelty. Reproducibility matters more than rhetoric.\nThis site is incomplete by design.\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
+  },
+  {
+    "objectID": "reading/index.html",
+    "href": "reading/index.html",
+    "title": "Reading",
+    "section": "",
+    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n[Home]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6SG9tZQ==\"}\n[/index.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=\"}\n[About]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=\"}\n[/about.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0Lmh0bWw=\"}\n[Notes / Lab]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Tm90ZXMgLyBMYWI=\"}\n[/notes/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L25vdGVzLw==\"}\n[Projects]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6UHJvamVjdHM=\"}\n[/projects/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3Byb2plY3RzLw==\"}\n[Models & Tools]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6TW9kZWxzICYgVG9vbHM=\"}\n[/models/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L21vZGVscy8=\"}\n[Reading]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6UmVhZGluZw==\"}\n[/reading/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3JlYWRpbmcv\"}\n[Tipping Points]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6VGlwcGluZyBQb2ludHM=\"}\n[/tipping-points/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3RpcHBpbmctcG9pbnRzLw==\"}\n[Contact / CV]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Q29udGFjdCAvIENW\"}\n[/contact_cv.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2NvbnRhY3RfY3YuaHRtbA==\"}\n[https://github.com/recurrentanalytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6aHR0cHM6Ly9naXRodWIuY29tL3JlY3VycmVudGFuYWx5dGljcw==\"}\n[/notes/index.xml]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L25vdGVzL2luZGV4LnhtbA==\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nA lab for recurrent climate intelligence.\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+  },
+  {
+    "objectID": "notes/index.html",
+    "href": "notes/index.html",
+    "title": "Notes & Knowledge Base",
+    "section": "",
+    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "notes/climate/monte-carlo-basics.html",
     "href": "notes/climate/monte-carlo-basics.html",
     "title": "Monte Carlo Simulation Basics",
@@ -21,11 +42,18 @@
     "text": "Example Pseudocode"
   },
   {
-    "objectID": "notes/index.html",
-    "href": "notes/index.html",
-    "title": "Notes & Knowledge Base",
+    "objectID": "models/index.html",
+    "href": "models/index.html",
+    "title": "Models & Tools",
     "section": "",
-    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
+    "text": "ERA5 rainfall demo → era5-demo.qmd\nTrigger prototypes, Monte Carlo, risk metrics — add here as notebooks."
+  },
+  {
+    "objectID": "contact_cv.html",
+    "href": "contact_cv.html",
+    "title": "Contact / CV",
+    "section": "",
+    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
   },
   {
     "objectID": "about.html",
@@ -35,25 +63,11 @@
     "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub"
   },
   {
-    "objectID": "models/index.html",
-    "href": "models/index.html",
-    "title": "Models & Tools",
-    "section": "",
-    "text": "ERA5 rainfall demo → era5-demo.qmd\nTrigger prototypes, Monte Carlo, risk metrics — add here as notebooks."
-  },
-  {
     "objectID": "models/era5-demo.html",
     "href": "models/era5-demo.html",
     "title": "ERA5 rainfall — minimal notebook",
     "section": "",
     "text": "~{python} print(“Hello from Python — if you don’t see this line below, execution didn’t run.”)~\n~~~{python} import numpy as np import matplotlib.pyplot as plt\nlat = np.linspace(-60, 60, 121) lon = np.linspace(-180, 180, 361) data = np.random.gamma(2, 1, (len(lat), len(lon)))\nplt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“Synthetic ERA5-like rainfall map”) plt.xlabel(“Longitude”); plt.ylabel(“Latitude”) plt.show() ~~~"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "re:current analytics",
-    "section": "",
-    "text": "re:current analytics\n\n\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
   },
   {
     "objectID": "notes/2025-hello-world.html",
@@ -91,17 +105,52 @@
     "text": "Links\n\n[[MJO]]\n[[African Easterly Waves]]"
   },
   {
-    "objectID": "reading/index.html",
-    "href": "reading/index.html",
-    "title": "Reading",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
     "section": "",
-    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n[Home]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6SG9tZQ==\"}\n[/index.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=\"}\n[About]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=\"}\n[/about.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0Lmh0bWw=\"}\n[Notes / Lab]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Tm90ZXMgLyBMYWI=\"}\n[/notes/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L25vdGVzLw==\"}\n[Projects]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6UHJvamVjdHM=\"}\n[/projects/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3Byb2plY3RzLw==\"}\n[Models & Tools]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6TW9kZWxzICYgVG9vbHM=\"}\n[/models/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L21vZGVscy8=\"}\n[Reading]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6UmVhZGluZw==\"}\n[/reading/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3JlYWRpbmcv\"}\n[Tipping Points]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6VGlwcGluZyBQb2ludHM=\"}\n[/tipping-points/]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3RpcHBpbmctcG9pbnRzLw==\"}\n[Contact / CV]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Q29udGFjdCAvIENW\"}\n[/contact_cv.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2NvbnRhY3RfY3YuaHRtbA==\"}\n[https://github.com/recurrentanalytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6aHR0cHM6Ly9naXRodWIuY29tL3JlY3VycmVudGFuYWx5dGljcw==\"}\n[/notes/index.xml]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L25vdGVzL2luZGV4LnhtbA==\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nA lab for recurrent climate intelligence.\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+    "text": "Welcome to the project gallery. Add a .qmd per project here.\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "contact_cv.html",
-    "href": "contact_cv.html",
-    "title": "Contact / CV",
+    "objectID": "replit.html",
+    "href": "replit.html",
+    "title": "",
     "section": "",
-    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
+    "text": "Code"
+  },
+  {
+    "objectID": "replit.html#overview",
+    "href": "replit.html#overview",
+    "title": "",
+    "section": "Overview",
+    "text": "Overview\nA Quarto-based static website for climate risk, models, and analytics. The site serves as a lab notebook with notes, projects, models, and reading materials."
+  },
+  {
+    "objectID": "replit.html#project-structure",
+    "href": "replit.html#project-structure",
+    "title": "",
+    "section": "Project Structure",
+    "text": "Project Structure\n\n_site/ - Pre-built static HTML output (served in production)\n*.qmd - Quarto markdown source files\nnotes/, models/, projects/, reading/ - Content sections\n_quarto.yml - Quarto configuration\nenvironment.yml - Conda environment for local development (Python dependencies for notebooks)\nserver.py - Simple Python HTTP server for serving static files"
+  },
+  {
+    "objectID": "replit.html#running-the-site",
+    "href": "replit.html#running-the-site",
+    "title": "",
+    "section": "Running the Site",
+    "text": "Running the Site\nThe workflow “Serve Website” runs python server.py which serves the _site directory on port 5000."
+  },
+  {
+    "objectID": "replit.html#development-notes",
+    "href": "replit.html#development-notes",
+    "title": "",
+    "section": "Development Notes",
+    "text": "Development Notes\n\nThe site uses Quarto for static site generation\nPre-built content is in _site/ - no build step required for deployment\nTo rebuild content locally, you would need Quarto installed and run quarto render"
+  },
+  {
+    "objectID": "replit.html#deployment",
+    "href": "replit.html#deployment",
+    "title": "",
+    "section": "Deployment",
+    "text": "Deployment\nConfigured for static deployment serving the _site directory."
   }
 ]

@@ -1,0 +1,119 @@
+Good question — let’s be explicit and intentional here, because this is not a gimmick. It’s a **structural design choice** for your site.
+
+---
+
+## 1. What the *Manifesto Toggle* idea is
+
+The manifesto toggle is a **deliberately optional, collapsible statement of intent** that:
+
+* exists on the site
+* is visible, but not forced
+* signals *how* to read the site before it signals *what* is on it
+
+Conceptually, it sits between:
+
+* an *academic abstract* (too formal, too narrow), and
+* a *personal bio* (too narrative, too soft)
+
+It communicates **epistemic stance**, not credentials.
+
+### Why a toggle?
+
+Because:
+
+* people who want orientation will click it
+* people who want content won’t be interrupted
+* it avoids performative “About Me” verbosity
+* it fits your *lab notebook / working archive* positioning
+
+In short:
+
+> *The manifesto is there for those who care how knowledge is produced.*
+
+---
+
+## 2. What it should communicate (for *you* specifically)
+
+Given your trajectory (applied climate risk → modelling → research-grade work), the manifesto should:
+
+* make clear this is **not a portfolio of finished answers**
+* foreground **process, uncertainty, and iteration**
+* bridge policy, modelling, and systems thinking
+* signal seriousness without institutional cosplay
+* quietly distance you from buzzword consultancies
+
+It should *not*:
+
+* read like LinkedIn
+* oversell “impact”
+* explain your CV
+* sound motivational
+
+---
+
+## 3. Suggested manifesto text (tight, non-cringey)
+
+Here is a **first-pass canonical version** that matches your tone and positioning. This is text you can actually stand behind.
+
+### Manifesto (toggle content)
+
+> This site is a working notebook.
+>
+> I use it to think in public about climate risk, hazards, and systems under stress.
+>
+> The notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.
+>
+> I am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.
+>
+> I do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.
+>
+> Clarity matters more than novelty. Reproducibility matters more than rhetoric.
+>
+> This site is incomplete by design.
+
+If you want a **slightly more technical / research-facing variant**, here’s an alternative ending:
+
+> Many entries will be provisional, unvalidated, or deliberately narrow.
+> They are published to be inspected, revised, or discarded.
+
+---
+
+## 4. Where it belongs
+
+Best placements (in order):
+
+1. **Home page**, near the top, collapsed by default
+2. **About page**, expanded by default
+3. Dedicated `manifesto.qmd`, linked from the footer
+
+For now, I recommend **Home page + toggle**, collapsed.
+
+---
+
+## 5. Why this works for your transition
+
+This manifesto quietly:
+
+* signals *research maturity* without claiming authority
+* gives evaluators (PhD committees, research groups) a way to read your site
+* reassures technical readers that rough edges are intentional
+* distances you from “finished-product consulting aesthetics”
+
+It frames the entire site as **process-first, result-later**.
+
+---
+
+## 6. Next refinement (optional)
+
+We can:
+
+* tune the language for a **more academic** or **more poetic** register
+* create a **short version** (3 lines only)
+* align it explicitly with *Recurrent Analytics* as a concept
+* localize variants (EN / DE)
+
+If you want, say:
+
+> “Refine the manifesto for **[audience]**”
+
+and I’ll do a careful second pass.

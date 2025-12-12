@@ -9,6 +9,25 @@ page-layout: article
   <div class="drift"></div>
 </div>
 
+<details class="manifesto-toggle">
+<summary>Manifesto</summary>
+
+This site is a working notebook.
+
+I use it to think in public about climate risk, hazards, and systems under stress.
+
+The notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.
+
+I am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.
+
+I do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.
+
+Clarity matters more than novelty. Reproducibility matters more than rhetoric.
+
+This site is incomplete by design.
+
+</details>
+
 ### Start here
 
 - **Notes / Lab journal:** ongoing experiments → [notes/](notes/)

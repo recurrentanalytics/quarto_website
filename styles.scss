@@ -1,0 +1,54 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif: system-ui, Inter, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "DejaVu Sans", sans-serif;
+$headings-font-weight: 800;
+$headings-color: #1b1f24;
+$code-font-size: .95rem;
+
+/*-- scss:rules --*/
+
+pre code { line-height: 1.35; }
+
+/* Links */
+a { text-underline-offset: 3px; }
+
+/* Cards (projects/models listing) */
+.card-title { font-weight: 700; }
+
+/* Make TOC slim */
+#TOC { font-size: .95rem; }
+
+/* Light tweak to section spacing */
+.quarto-title h1 { letter-spacing: .4px; }
+
+/* Manifesto toggle */
+.manifesto-toggle {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background: var(--bs-tertiary-bg);
+}
+
+.manifesto-toggle summary {
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--bs-emphasis-color);
+}
+
+.manifesto-toggle summary:hover {
+  color: var(--bs-primary);
+}
+
+.manifesto-toggle[open] summary {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  padding-bottom: 0.75rem;
+}
+
+.manifesto-toggle p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+  color: var(--bs-body-color);
+}
