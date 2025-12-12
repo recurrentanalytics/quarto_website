@@ -43,5 +43,11 @@ quarto render
 ## Sample Content
 - `notes/risk-series-1.qmd` through `risk-series-3.qmd` - 3-part series demonstrating series navigation and backlinks
 
+## Network Graph
+- **Sidebar Widget**: Always-visible mini network graph in right sidebar showing page connections
+- **D3-Force Layout**: Uses D3.js v7 for force-directed graph positioning
+- **Click to Expand**: Opens full modal with labels and click-to-navigate
+- **Press 'g'**: Keyboard shortcut to open graph modal
+
 ## Deployment
 Configured for static deployment serving the `_site` directory.
