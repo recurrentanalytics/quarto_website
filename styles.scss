@@ -510,9 +510,43 @@ template {
   stroke-width: 2px;
 }
 
+/* Mobile floating graph button */
+.mobile-graph-btn {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.mobile-graph-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 991px) {
+  .sidebar-graph {
+    display: none !important;
+  }
+  .mobile-graph-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* Hide graph in print */
 @media print {
-  .sidebar-graph, .graph-modal-overlay {
+  .sidebar-graph, .graph-modal-overlay, .mobile-graph-btn {
     display: none !important;
   }
 }

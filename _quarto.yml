@@ -425,6 +425,15 @@ format:
           
           renderMiniGraph();
 
+          // Mobile floating graph button
+          const mobileGraphBtn = document.createElement('button');
+          mobileGraphBtn.className = 'mobile-graph-btn';
+          mobileGraphBtn.innerHTML = '&#x1F578;'; // spider web emoji as graph icon
+          mobileGraphBtn.title = 'View connections';
+          mobileGraphBtn.setAttribute('aria-label', 'Open connection graph');
+          mobileGraphBtn.addEventListener('click', openGraph);
+          document.body.appendChild(mobileGraphBtn);
+
           let graphInitialized = false;
           function initGraph() {
             if (graphInitialized || typeof d3 === 'undefined') return;
