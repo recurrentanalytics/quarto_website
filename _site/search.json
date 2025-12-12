@@ -130,7 +130,7 @@
     "href": "replit.html#project-structure",
     "title": "",
     "section": "Project Structure",
-    "text": "Project Structure\n\n_site/ - Pre-built static HTML output (served in production)\n*.qmd - Quarto markdown source files\nnotes/, models/, projects/, reading/ - Content sections\n_quarto.yml - Quarto configuration\nenvironment.yml - Conda environment for local development (Python dependencies for notebooks)\nserver.py - Simple Python HTTP server for serving static files"
+    "text": "Project Structure\n\n_site/ - Built static HTML output (served in production)\n*.qmd - Quarto markdown source files\nnotes/, models/, projects/, reading/ - Content sections\n_quarto.yml - Quarto configuration\nstyles.scss - Custom styling with Quarto SCSS layer syntax\nenvironment.yml - Conda environment for local development (Python dependencies for notebooks)\nserver.py - Simple Python HTTP server for serving static files"
   },
   {
     "objectID": "replit.html#running-the-site",
@@ -140,11 +140,18 @@
     "text": "Running the Site\nThe workflow “Serve Website” runs python server.py which serves the _site directory on port 5000."
   },
   {
-    "objectID": "replit.html#development-notes",
-    "href": "replit.html#development-notes",
+    "objectID": "replit.html#building-the-site",
+    "href": "replit.html#building-the-site",
     "title": "",
-    "section": "Development Notes",
-    "text": "Development Notes\n\nThe site uses Quarto for static site generation\nPre-built content is in _site/ - no build step required for deployment\nTo rebuild content locally, you would need Quarto installed and run quarto render"
+    "section": "Building the Site",
+    "text": "Building the Site\nTo rebuild after making changes to .qmd files:\nquarto render"
+  },
+  {
+    "objectID": "replit.html#features",
+    "href": "replit.html#features",
+    "title": "",
+    "section": "Features",
+    "text": "Features\n\nYin-Yang Manifesto: Single box on homepage with toggle switch (index.qmd)\n\nOne container with “Manifesto | Anti” toggle in header\nClick toggle to swap between Manifesto and Anti-Manifesto text\nTheme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto\nContent swaps in-place (not nested, not side-by-side)\n\nDark/Light Theme: Toggle via theme switcher in navbar\nRSS Feed: Available at notes/index.xml"
   },
   {
     "objectID": "replit.html#deployment",

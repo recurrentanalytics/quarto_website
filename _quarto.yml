@@ -6,17 +6,17 @@ website:
   title: "re:current analytics"
   site-url: https://recurrentanalytics.com
   description: "A lab-notebook for climate risk, models, and recurrent intelligence."
-  favicon: assets/favicon.png
+  favicon: assets/favicon.svg
 
-  # Social cards
-  image: assets/social-card.png
+  # Social cards (disabled until image exists)
+  # image: assets/social-card.png
   open-graph: true
   twitter-card:
     creator: "@timmwalker"
-    image: assets/social-card.png
+    # image: assets/social-card.png
 
   navbar:
-    logo: assets/favicon.png
+    logo: assets/favicon.svg
     left:
       - text: Home
         href: index.qmd

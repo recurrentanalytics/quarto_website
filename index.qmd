@@ -61,6 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const manifestoTemplate = document.getElementById('manifesto-text');
   const antiTemplate = document.getElementById('anti-manifesto-text');
   
+  if (!body || !title || !switchBtn || !manifestoTemplate || !antiTemplate) {
+    return;
+  }
+  
   let currentState = 'manifesto';
   
   function getTheme() {
