@@ -229,7 +229,9 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'SAL', path: '/notes/climate/sal.html' },
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
-    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' }
+    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
+    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
+    { title: 'ERA5 Demo', path: '/models/era5-demo.html' }
   ];
 
   const overlay = document.createElement('div');
@@ -367,6 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html' },
       { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html' },
       { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html' },
+      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html' },
       { id: 'projects', label: 'Projects', path: '/projects/' },
       { id: 'models', label: 'Models', path: '/models/' },
       { id: 'reading', label: 'Reading', path: '/reading/' },
@@ -391,7 +394,9 @@ document.addEventListener('DOMContentLoaded', function() {
       { source: 'risk-3', target: 'risk-2' },
       { source: 'risk-3', target: 'monte-carlo' },
       { source: 'risk-3', target: 'sal' },
-      { source: 'models', target: 'era5' }
+      { source: 'models', target: 'era5' },
+      { source: 'models', target: 'heatwave' },
+      { source: 'heatwave', target: 'era5' }
     ]
   };
 
