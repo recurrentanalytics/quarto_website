@@ -33,8 +33,15 @@ quarto render
 - **Reading Time**: "X min read" displayed on article pages
 - **Last Modified Dates**: Notes show when they were last updated
 - **Custom 404 Page**: Minimal "Lost in the noise" error page
-- **Keyboard Shortcuts**: / (search), j/k (navigate), ? (show hints)
+- **Keyboard Shortcuts**: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)
 - **Random Note Link**: Footer link to discover random notes
+- **Command Palette**: Press Cmd+K (or Ctrl+K) for quick-jump to any page
+- **Print Stylesheet**: Clean formatting when printing (hides nav, shows URLs)
+- **Series Navigation**: Multi-part notes show "Part X of Y" with prev/next links
+- **Backlinks**: Notes can show which other notes link to them
+
+## Sample Content
+- `notes/risk-series-1.qmd` through `risk-series-3.qmd` - 3-part series demonstrating series navigation and backlinks
 
 ## Deployment
 Configured for static deployment serving the `_site` directory.
