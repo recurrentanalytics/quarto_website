@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "re:current analytics"
+  title: "re:current_analytics"
   site-url: https://recurrentanalytics.com
   description: "A lab-notebook for climate risk, models, and recurrent intelligence."
   favicon: assets/favicon.svg
@@ -17,32 +17,13 @@ website:
 
   navbar:
     logo: assets/favicon.svg
-    left:
-      - text: Home
-        href: index.qmd
-      - text: About
-        href: about.qmd
-      - text: Notes / Lab
-        href: notes/
-      - text: Projects
-        href: projects/
-      - text: Models & Tools
-        href: models/
-      - text: Reading
-        href: reading/
-      - text: Tipping Points
-        href: tipping-points/
-      - text: Contact / CV
-        href: contact_cv.qmd
-    right:
-      - icon: github
-        href: https://github.com/recurrentanalytics
-      - icon: rss
-        href: notes/index.xml
+    title: "re:current_analytics"
+    search: true
 
   page-footer:
     left: "© Timm Walker"
-    right: "A lab for recurrent climate intelligence."
+    center: "Press ⌘K to navigate"
+    right: "re:current_analytics"
 
   search: true
   repo-url: https://github.com/recurrentanalytics/recurrentanalytics

@@ -5,7 +5,7 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>re:current analytics</title>
+<title>re:current_analytics</title>
 <link>https://recurrentanalytics.com/notes/</link>
 <atom:link href="https://recurrentanalytics.com/notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>A lab-notebook for climate risk, models, and recurrent intelligence.</description>

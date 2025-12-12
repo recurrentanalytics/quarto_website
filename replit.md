@@ -1,4 +1,4 @@
-# re:current analytics
+# re:current_analytics
 
 ## Overview
 A Quarto-based static website for climate risk, models, and analytics. The site serves as a lab notebook with notes, projects, models, and reading materials.

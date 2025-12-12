@@ -1,10 +1,10 @@
 ---
-title: "re:current analytics"
+title: "re:current_analytics"
 page-layout: article
 ---
 
 ::: {.rac-hero}
-# re:current analytics
+# re:current_analytics
 
 Experimental climate modelling—notes, models, and tools.
 
