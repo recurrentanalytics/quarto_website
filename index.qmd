@@ -9,9 +9,11 @@ page-layout: article
   <div class="drift"></div>
 </div>
 
-<div class="manifesto-container">
-  <details class="manifesto-toggle manifesto" id="manifesto">
+<div class="manifesto-container" id="manifesto-container">
+  <details class="manifesto-toggle" id="manifesto" open>
   <summary>Manifesto</summary>
+
+<div class="manifesto-content">
 
 This site is a working notebook.
 
@@ -27,10 +29,10 @@ Clarity matters more than novelty. Reproducibility matters more than rhetoric.
 
 This site is incomplete by design.
 
-  </details>
+</div>
 
-  <details class="manifesto-toggle anti-manifesto" id="anti-manifesto">
-  <summary>Anti-Manifesto</summary>
+<details class="nested-toggle" id="nested-anti">
+<summary>Anti-Manifesto</summary>
 
 This site is not a portfolio.
 
@@ -46,6 +48,50 @@ If something looks unfinished, it probably is. If something looks wrong, it migh
 
 This site rejects polish as a proxy for rigour.
 
+</details>
+
+  </details>
+
+  <details class="manifesto-toggle anti" id="anti-manifesto">
+  <summary>Anti-Manifesto</summary>
+
+<div class="manifesto-content">
+
+This site is not a portfolio.
+
+It does not claim to have answers. It does not promise insight, impact, or innovation.
+
+There is no thought leadership here. No frameworks. No "key takeaways."
+
+I am not trying to build an audience, secure funding, or demonstrate competence.
+
+The work here is not optimised for legibility. It is not designed to reassure.
+
+If something looks unfinished, it probably is. If something looks wrong, it might be.
+
+This site rejects polish as a proxy for rigour.
+
+</div>
+
+<details class="nested-toggle" id="nested-manifesto">
+<summary>Manifesto</summary>
+
+This site is a working notebook.
+
+I use it to think in public about climate risk, hazards, and systems under stress.
+
+The notes here are not polished conclusions. They are intermediate objects: models, sketches, assumptions, failures, and partial results.
+
+I am interested in where quantitative methods meet institutional reality — especially where uncertainty, incentives, and governance interact.
+
+I do not treat models as neutral. I treat them as situated tools that encode choices, values, and blind spots.
+
+Clarity matters more than novelty. Reproducibility matters more than rhetoric.
+
+This site is incomplete by design.
+
+</details>
+
   </details>
 </div>
 
@@ -58,10 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function setStateForTheme(isDark) {
     if (isDark) {
+      manifesto.style.display = 'none';
       manifesto.removeAttribute('open');
+      antiManifesto.style.display = 'block';
       antiManifesto.setAttribute('open', '');
     } else {
+      manifesto.style.display = 'block';
       manifesto.setAttribute('open', '');
+      antiManifesto.style.display = 'none';
       antiManifesto.removeAttribute('open');
     }
   }
