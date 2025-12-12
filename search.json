@@ -49,6 +49,55 @@
     "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
   },
   {
+    "objectID": "replit.html",
+    "href": "replit.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "replit.html#overview",
+    "href": "replit.html#overview",
+    "title": "",
+    "section": "Overview",
+    "text": "Overview\nA Quarto-based static website for climate risk, models, and analytics. The site serves as a lab notebook with notes, projects, models, and reading materials."
+  },
+  {
+    "objectID": "replit.html#project-structure",
+    "href": "replit.html#project-structure",
+    "title": "",
+    "section": "Project Structure",
+    "text": "Project Structure\n\n_site/ - Built static HTML output (served in production)\n*.qmd - Quarto markdown source files\nnotes/, models/, projects/, reading/ - Content sections\n_quarto.yml - Quarto configuration\nstyles.scss - Custom styling with Quarto SCSS layer syntax\nenvironment.yml - Conda environment for local development (Python dependencies for notebooks)\nserver.py - Simple Python HTTP server for serving static files"
+  },
+  {
+    "objectID": "replit.html#running-the-site",
+    "href": "replit.html#running-the-site",
+    "title": "",
+    "section": "Running the Site",
+    "text": "Running the Site\nThe workflow “Serve Website” runs python server.py which serves the _site directory on port 5000."
+  },
+  {
+    "objectID": "replit.html#building-the-site",
+    "href": "replit.html#building-the-site",
+    "title": "",
+    "section": "Building the Site",
+    "text": "Building the Site\nTo rebuild after making changes to .qmd files:\nquarto render"
+  },
+  {
+    "objectID": "replit.html#features",
+    "href": "replit.html#features",
+    "title": "",
+    "section": "Features",
+    "text": "Features\n\nYin-Yang Manifesto: Single box on homepage with toggle switch (index.qmd)\n\nOne container with “Manifesto | Anti” toggle in header\nClick toggle to swap between Manifesto and Anti-Manifesto text\nTheme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto\nContent swaps in-place (not nested, not side-by-side)\n\nDark/Light Theme: Toggle via theme switcher in navbar\nRSS Feed: Available at notes/index.xml"
+  },
+  {
+    "objectID": "replit.html#deployment",
+    "href": "replit.html#deployment",
+    "title": "",
+    "section": "Deployment",
+    "text": "Deployment\nConfigured for static deployment serving the _site directory."
+  },
+  {
     "objectID": "reading/index.html",
     "href": "reading/index.html",
     "title": "Reading",
@@ -74,7 +123,7 @@
     "href": "index.html",
     "title": "re:current analytics",
     "section": "",
-    "text": "re:current analytics\n\n\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
+    "text": "re:current analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
   },
   {
     "objectID": "notes/2025-hello-world.html",
