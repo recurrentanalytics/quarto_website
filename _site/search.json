@@ -200,7 +200,7 @@
     "href": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Limitations and extensions",
-    "text": "Limitations and extensions\nThis note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.\nNatural extensions include:\n\nalternative heatwave definitions (percentiles, regionalised thresholds)\nadding load and renewable generation as covariates\nmulti-year comparisons focusing on the stability of patterns across summers"
+    "text": "Limitations and extensions\nThis note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.\nNatural extensions include:\n\nalternative heatwave definitions (percentiles, regionalised thresholds)\nadding load and renewable generation as covariates\nmulti-year comparisons focusing on the stability of patterns across summers\n\n\nRelated\n\nRisk Modelling Part 2: Data - Data sources for climate risk\nERA5 Demo - Working with reanalysis data\nSAL Verification - Validating spatial predictions"
   },
   {
     "objectID": "models/era5-demo.html",
@@ -333,7 +333,21 @@
     "href": "reading/index.html",
     "title": "Reading",
     "section": "",
-    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWNlbnRlcg==\"}\nPress ⌘K to navigate\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nre:current_analytics\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+    "text": "Short summaries of papers, books, and references that inform the lab.\nComing soon: curated reading recommendations on climate risk, energy systems, and quantitative methods."
+  },
+  {
+    "objectID": "reading/index.html#suggested-starting-points",
+    "href": "reading/index.html#suggested-starting-points",
+    "title": "Reading",
+    "section": "Suggested Starting Points",
+    "text": "Suggested Starting Points\n\n\n\n\n\n\nGetting Started with Climate Risk\n\n\n\n\nIPCC AR6 Reports - Essential background on climate science\nIEA World Energy Outlook - Annual energy sector analysis\nAcademic journals: Nature Climate Change, Energy Policy, Climatic Change"
+  },
+  {
+    "objectID": "reading/index.html#categories",
+    "href": "reading/index.html#categories",
+    "title": "Reading",
+    "section": "Categories",
+    "text": "Categories\nAs reading notes are added, they’ll be organized by topic:\n\nClimate Science - Physical climate modeling, projections, uncertainty\nEnergy Systems - Grid operations, renewables integration, storage\nRisk & Finance - Climate risk pricing, stress testing, disclosure\nMethods - Monte Carlo, time series, machine learning applications"
   },
   {
     "objectID": "index.html",

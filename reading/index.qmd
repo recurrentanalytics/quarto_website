@@ -1,11 +1,26 @@
-```markdown
 ---
 title: Reading
 ---
 
 Short summaries of papers, books, and references that inform the lab.
 
-- Add `.qmd` files here and they’ll appear in the listing below.
+*Coming soon: curated reading recommendations on climate risk, energy systems, and quantitative methods.*
 
-```{=html}
-<!-- Listing can be added later if you prefer index pages per reading note -->
+## Suggested Starting Points
+
+::: {.callout-tip}
+## Getting Started with Climate Risk
+
+- **IPCC AR6 Reports** - Essential background on climate science
+- **IEA World Energy Outlook** - Annual energy sector analysis
+- **Academic journals**: *Nature Climate Change*, *Energy Policy*, *Climatic Change*
+:::
+
+## Categories
+
+As reading notes are added, they'll be organized by topic:
+
+- **Climate Science** - Physical climate modeling, projections, uncertainty
+- **Energy Systems** - Grid operations, renewables integration, storage
+- **Risk & Finance** - Climate risk pricing, stress testing, disclosure
+- **Methods** - Monte Carlo, time series, machine learning applications

@@ -156,3 +156,10 @@ Natural extensions include:
 * alternative heatwave definitions (percentiles, regionalised thresholds)
 * adding load and renewable generation as covariates
 * multi-year comparisons focusing on the stability of patterns across summers
+
+::: {.backlinks}
+#### Related
+- [Risk Modelling Part 2: Data](/notes/risk-series-2.html) - Data sources for climate risk
+- [ERA5 Demo](/models/era5-demo.html) - Working with reanalysis data
+- [SAL Verification](/notes/climate/sal.html) - Validating spatial predictions
+:::
