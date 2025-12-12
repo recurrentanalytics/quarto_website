@@ -62,7 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const antiTemplate = document.getElementById('anti-manifesto-text');
   
   let currentState = 'manifesto';
-  let lastTheme = document.documentElement.getAttribute('data-bs-theme');
+  
+  function getTheme() {
+    const bsTheme = document.documentElement.getAttribute('data-bs-theme');
+    if (bsTheme) return bsTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  
+  let lastTheme = getTheme();
   
   function setState(state) {
     currentState = state;
@@ -78,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function initFromTheme() {
-    const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
-    setState(isDark ? 'anti' : 'manifesto');
+    const theme = getTheme();
+    setState(theme === 'dark' ? 'anti' : 'manifesto');
   }
   
   initFromTheme();
@@ -91,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   const observer = new MutationObserver(function() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const currentTheme = getTheme();
     if (currentTheme !== lastTheme) {
       lastTheme = currentTheme;
       initFromTheme();
@@ -101,6 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
   observer.observe(document.documentElement, { 
     attributes: true, 
     attributeFilter: ['data-bs-theme'] 
+  });
+  
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    const currentTheme = getTheme();
+    if (currentTheme !== lastTheme) {
+      lastTheme = currentTheme;
+      initFromTheme();
+    }
   });
 });
 </script>
