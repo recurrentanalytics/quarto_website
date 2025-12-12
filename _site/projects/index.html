@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ab2065da19e5b96cdae10ac424bdf14f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-dd0cef1bc93217361404bab7b334016e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-ab2065da19e5b96cdae10ac424bdf14f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-618cf6fad8153ba25aeaec735f237119.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-6b488dca165174d4845bf1b0baa32439.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-618cf6fad8153ba25aeaec735f237119.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -157,6 +157,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
   @keyframes slowfloat { from { transform: translateY(0px);} to {transform: translateY(16px);} }
 </style>
+
+<!-- Reading progress bar, keyboard shortcuts, random note -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Reading progress bar
+  const progressBar = document.createElement('div');
+  progressBar.className = 'reading-progress';
+  document.body.appendChild(progressBar);
+  
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  });
+
+  // Keyboard shortcuts
+  const noteLinks = Array.from(document.querySelectorAll('.quarto-listing-default a, .sidebar-item a'));
+  let currentIndex = -1;
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    
+    // / to focus search
+    if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      const searchInput = document.querySelector('#quarto-search input, .aa-Input');
+      if (searchInput) searchInput.focus();
+    }
+    
+    // j/k to navigate notes (on listing pages)
+    if (noteLinks.length > 0) {
+      if (e.key === 'j') {
+        currentIndex = Math.min(currentIndex + 1, noteLinks.length - 1);
+        noteLinks[currentIndex]?.focus();
+      }
+      if (e.key === 'k') {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        noteLinks[currentIndex]?.focus();
+      }
+    }
+    
+    // ? to show keyboard hints
+    if (e.key === '?') {
+      const hint = document.querySelector('.keyboard-hint');
+      if (hint) hint.classList.toggle('visible');
+    }
+  });
+
+  // Add keyboard hint element
+  const hint = document.createElement('div');
+  hint.className = 'keyboard-hint';
+  hint.innerHTML = '/ search · j/k navigate · ? toggle hints';
+  document.body.appendChild(hint);
+
+  // Reading time - add to article pages
+  const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
+  const contentArea = document.querySelector('#quarto-document-content, .content, main');
+  if (articleBody && contentArea) {
+    const text = contentArea.innerText || '';
+    const wordCount = text.trim().split(/\s+/).length;
+    const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'reading-time';
+    timeSpan.textContent = readingTime + ' min read';
+    const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
+    if (titleMeta) {
+      titleMeta.appendChild(document.createTextNode(' · '));
+      titleMeta.appendChild(timeSpan);
+    }
+  }
+
+  // Random note link - add to footer if on notes section
+  const notesData = [
+    '/notes/2025-hello-world.html',
+    '/notes/climate/monte-carlo-basics.html',
+    '/notes/climate/sal.html'
+  ];
+  
+  const footer = document.querySelector('.nav-footer-center, .nav-footer-right');
+  if (footer && notesData.length > 0) {
+    const randomLink = document.createElement('a');
+    randomLink.href = '#';
+    randomLink.className = 'random-note-link';
+    randomLink.textContent = '↻ Random note';
+    randomLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const randomNote = notesData[Math.floor(Math.random() * notesData.length)];
+      window.location.href = randomNote;
+    });
+    footer.appendChild(document.createTextNode(' · '));
+    footer.appendChild(randomLink);
+  }
+});
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>

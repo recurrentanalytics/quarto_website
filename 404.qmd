@@ -1,0 +1,14 @@
+---
+title: "Lost in the noise"
+pagetitle: "404 - Page Not Found"
+---
+
+::: {.not-found-page}
+
+# 404
+
+The signal you're looking for isn't here.
+
+[Back to the index →](index.qmd)
+
+:::

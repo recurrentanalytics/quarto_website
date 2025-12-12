@@ -197,3 +197,67 @@ template {
   margin-top: 1rem;
   font-weight: 600;
 }
+
+/* Reading Progress Bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--bs-primary);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* Reading time badge */
+.reading-time {
+  font-size: 0.85rem;
+  color: var(--bs-secondary);
+  font-weight: 400;
+}
+
+/* Random note link in footer */
+.random-note-link {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.random-note-link:hover {
+  opacity: 1;
+}
+
+/* Keyboard hint (subtle) */
+.keyboard-hint {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: var(--bs-secondary);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.keyboard-hint.visible {
+  opacity: 0.6;
+}
+
+/* 404 page styling */
+.not-found-page {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.not-found-page h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.not-found-page p {
+  font-size: 1.1rem;
+  color: var(--bs-secondary);
+  margin-bottom: 2rem;
+}

@@ -1,14 +1,14 @@
 [
   {
+    "listing": "/projects/index.html",
+    "items": []
+  },
+  {
     "listing": "/notes/index.html",
     "items": [
       "/notes/2025-hello-world.html",
       "/notes/climate/monte-carlo-basics.html",
       "/notes/climate/sal.html"
     ]
-  },
-  {
-    "listing": "/projects/index.html",
-    "items": []
   }
 ]
