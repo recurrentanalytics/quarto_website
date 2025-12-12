@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Models &amp; Tools – re:current analytics</title>
+<title>Models &amp; Tools – re:current_analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../assets/favicon.png" rel="icon" type="image/png">
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-562361df42f96f9230744894520ee066.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d17945ee8b9745e4f278b09b952379c9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-562361df42f96f9230744894520ee066.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-654e6a5a15928fa78c27db594084cec0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c7e9638b6852b762277a0f39f78f2c49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-654e6a5a15928fa78c27db594084cec0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,6 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- Plausible analytics -->
 <script defer="" data-domain="recurrentanalytics.com" src="https://plausible.io/js/script.js"></script>
 
+<!-- D3.js for network graph -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
 <!-- Hero drift effect -->
 <style>
   .rac-hero {
@@ -128,14 +131,445 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   @keyframes slowfloat { from { transform: translateY(0px);} to {transform: translateY(16px);} }
 </style>
 
+<!-- Reading progress bar, keyboard shortcuts, random note -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Reading progress bar
+  const progressBar = document.createElement('div');
+  progressBar.className = 'reading-progress';
+  document.body.appendChild(progressBar);
+  
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  });
 
-<meta property="og:title" content="Models &amp; Tools – re:current analytics">
-<meta property="og:image" content="https://recurrentanalytics.com/models/assets/social-card.png">
-<meta property="og:site_name" content="re:current analytics">
-<meta name="twitter:title" content="Models &amp; Tools – re:current analytics">
-<meta name="twitter:image" content="https://recurrentanalytics.com/models/assets/social-card.png">
+  // Keyboard shortcuts
+  const noteLinks = Array.from(document.querySelectorAll('.quarto-listing-default a, .sidebar-item a'));
+  let currentIndex = -1;
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    
+    // / to focus search
+    if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      const searchInput = document.querySelector('#quarto-search input, .aa-Input');
+      if (searchInput) searchInput.focus();
+    }
+    
+    // j/k to navigate notes (on listing pages)
+    if (noteLinks.length > 0) {
+      if (e.key === 'j') {
+        currentIndex = Math.min(currentIndex + 1, noteLinks.length - 1);
+        noteLinks[currentIndex]?.focus();
+      }
+      if (e.key === 'k') {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        noteLinks[currentIndex]?.focus();
+      }
+    }
+    
+    // ? to show keyboard hints
+    if (e.key === '?') {
+      const hint = document.querySelector('.keyboard-hint');
+      if (hint) hint.classList.toggle('visible');
+    }
+  });
+
+  // Add keyboard hint element
+  const hint = document.createElement('div');
+  hint.className = 'keyboard-hint';
+  hint.innerHTML = '⌘K palette · / search · j/k navigate · ? hints';
+  document.body.appendChild(hint);
+
+  // Command Palette (Cmd+K / Ctrl+K)
+  const pages = [
+    { title: 'Home', path: '/' },
+    { title: 'About', path: '/about.html' },
+    { title: 'Notes & Knowledge Base', path: '/notes/' },
+    { title: 'Projects', path: '/projects/' },
+    { title: 'Models & Tools', path: '/models/' },
+    { title: 'Reading', path: '/reading/' },
+    { title: 'Contact / CV', path: '/contact_cv.html' },
+    { title: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
+    { title: 'Monte Carlo Basics', path: '/notes/climate/monte-carlo-basics.html' },
+    { title: 'SAL', path: '/notes/climate/sal.html' },
+    { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
+    { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
+    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' }
+  ];
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cmd-palette-overlay';
+  overlay.innerHTML = `
+    <div class="cmd-palette">
+      <input type="text" class="cmd-palette-input" placeholder="Jump to page...">
+      <div class="cmd-palette-results"></div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const input = overlay.querySelector('.cmd-palette-input');
+  const results = overlay.querySelector('.cmd-palette-results');
+  let selectedIndex = 0;
+
+  function renderResults(filter = '') {
+    const filtered = pages.filter(p => 
+      p.title.toLowerCase().includes(filter.toLowerCase())
+    );
+    results.innerHTML = filtered.map((p, i) => `
+      <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+        <div class="cmd-palette-item-title">${p.title}</div>
+        <div class="cmd-palette-item-path">${p.path}</div>
+      </a>
+    `).join('');
+    return filtered;
+  }
+
+  function openPalette() {
+    overlay.classList.add('active');
+    input.value = '';
+    selectedIndex = 0;
+    renderResults();
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function closePalette() {
+    overlay.classList.remove('active');
+  }
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closePalette();
+  });
+
+  input.addEventListener('input', () => {
+    selectedIndex = 0;
+    renderResults(input.value);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    const items = results.querySelectorAll('.cmd-palette-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+      renderResults(input.value);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderResults(input.value);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (items[selectedIndex]) items[selectedIndex].click();
+    } else if (e.key === 'Escape') {
+      closePalette();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (overlay.classList.contains('active')) {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    }
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closePalette();
+    }
+  });
+
+  // Reading time - add to article pages
+  const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
+  const contentArea = document.querySelector('#quarto-document-content, .content, main');
+  if (articleBody && contentArea) {
+    const text = contentArea.innerText || '';
+    const wordCount = text.trim().split(/\s+/).length;
+    const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'reading-time';
+    timeSpan.textContent = readingTime + ' min read';
+    const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
+    if (titleMeta) {
+      titleMeta.appendChild(document.createTextNode(' · '));
+      titleMeta.appendChild(timeSpan);
+    }
+  }
+
+  // Random note link - add to footer if on notes section
+  const notesData = [
+    '/notes/2025-hello-world.html',
+    '/notes/climate/monte-carlo-basics.html',
+    '/notes/climate/sal.html',
+    '/notes/risk-series-1.html',
+    '/notes/risk-series-2.html',
+    '/notes/risk-series-3.html'
+  ];
+  
+  const footer = document.querySelector('.nav-footer-center, .nav-footer-right');
+  if (footer && notesData.length > 0) {
+    const randomLink = document.createElement('a');
+    randomLink.href = '#';
+    randomLink.className = 'random-note-link';
+    randomLink.textContent = '↻ Random note';
+    randomLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const randomNote = notesData[Math.floor(Math.random() * notesData.length)];
+      window.location.href = randomNote;
+    });
+    footer.appendChild(document.createTextNode(' · '));
+    footer.appendChild(randomLink);
+  }
+
+  // Network Graph - Obsidian-style visualization
+  const graphData = {
+    nodes: [
+      { id: 'home', label: 'Home', path: '/' },
+      { id: 'about', label: 'About', path: '/about.html' },
+      { id: 'notes', label: 'Notes', path: '/notes/' },
+      { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
+      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html' },
+      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html' },
+      { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html' },
+      { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html' },
+      { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html' },
+      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html' },
+      { id: 'projects', label: 'Projects', path: '/projects/' },
+      { id: 'models', label: 'Models', path: '/models/' },
+      { id: 'reading', label: 'Reading', path: '/reading/' },
+      { id: 'contact', label: 'Contact', path: '/contact_cv.html' }
+    ],
+    links: [
+      { source: 'home', target: 'notes' },
+      { source: 'home', target: 'projects' },
+      { source: 'home', target: 'models' },
+      { source: 'home', target: 'about' },
+      { source: 'notes', target: 'hello' },
+      { source: 'notes', target: 'monte-carlo' },
+      { source: 'notes', target: 'sal' },
+      { source: 'notes', target: 'risk-1' },
+      { source: 'risk-1', target: 'monte-carlo' },
+      { source: 'risk-1', target: 'risk-2' },
+      { source: 'risk-2', target: 'risk-1' },
+      { source: 'risk-2', target: 'risk-3' },
+      { source: 'risk-2', target: 'sal' },
+      { source: 'risk-2', target: 'era5' },
+      { source: 'risk-3', target: 'risk-1' },
+      { source: 'risk-3', target: 'risk-2' },
+      { source: 'risk-3', target: 'monte-carlo' },
+      { source: 'risk-3', target: 'sal' },
+      { source: 'models', target: 'era5' }
+    ]
+  };
+
+  // Create sidebar mini-graph widget
+  const sidebar = document.querySelector('#quarto-margin-sidebar, .sidebar, #TOC');
+  const sidebarGraph = document.createElement('div');
+  sidebarGraph.className = 'sidebar-graph';
+  sidebarGraph.title = 'Click to expand';
+  sidebarGraph.innerHTML = `
+    <div class="sidebar-graph-header">
+      <span class="sidebar-graph-title">Connections</span>
+      <span class="sidebar-graph-expand">expand</span>
+    </div>
+    <div class="sidebar-graph-container" id="mini-graph-container"></div>
+  `;
+  if (sidebar) {
+    sidebar.appendChild(sidebarGraph);
+  } else {
+    document.body.appendChild(sidebarGraph);
+    sidebarGraph.style.position = 'fixed';
+    sidebarGraph.style.bottom = '1rem';
+    sidebarGraph.style.right = '1rem';
+    sidebarGraph.style.width = '200px';
+    sidebarGraph.style.zIndex = '100';
+  }
+
+  // Create modal
+  const graphModal = document.createElement('div');
+  graphModal.className = 'graph-modal-overlay';
+  graphModal.innerHTML = `
+    <div class="graph-modal">
+      <div class="graph-modal-header">
+        <span class="graph-modal-title">Note Connections</span>
+        <button class="graph-modal-close">&times;</button>
+      </div>
+      <div class="graph-container" id="graph-container"></div>
+    </div>
+  `;
+  document.body.appendChild(graphModal);
+
+  function getCurrentPageId() {
+    const path = window.location.pathname;
+    const node = graphData.nodes.find(n => path.endsWith(n.path) || path === n.path || 
+      (n.path === '/' && (path === '/' || path === '/index.html' || path.endsWith('/index.html'))));
+    return node ? node.id : null;
+  }
+
+  function openGraph() {
+    graphModal.classList.add('active');
+    initGraph();
+  }
+
+  function closeGraph() {
+    graphModal.classList.remove('active');
+  }
+
+  sidebarGraph.addEventListener('click', openGraph);
+  graphModal.querySelector('.graph-modal-close').addEventListener('click', closeGraph);
+  graphModal.addEventListener('click', (e) => {
+    if (e.target === graphModal) closeGraph();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && graphModal.classList.contains('active')) closeGraph();
+    if (e.key === 'g' && !e.ctrlKey && !e.metaKey && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      openGraph();
+    }
+  });
+
+  // Render mini-graph in sidebar immediately using D3-force
+  function renderMiniGraph() {
+    const container = document.getElementById('mini-graph-container');
+    if (!container || typeof d3 === 'undefined') return;
+    
+    const width = container.clientWidth || 180;
+    const height = container.clientHeight || 150;
+    const currentId = getCurrentPageId();
+
+    const svg = d3.select(container).append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`);
+
+    const nodes = graphData.nodes.map(d => ({...d}));
+    const links = graphData.links.map(d => ({source: d.source, target: d.target}));
+
+    const connectedNodes = new Set();
+    graphData.links.forEach(l => {
+      if (l.source === currentId || l.target === currentId) {
+        connectedNodes.add(l.source);
+        connectedNodes.add(l.target);
+      }
+    });
+
+    // D3 force simulation for mini graph
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(30))
+      .force('charge', d3.forceManyBody().strength(-60))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(10))
+      .stop();
+
+    // Run simulation synchronously for static layout
+    for (let i = 0; i < 100; i++) simulation.tick();
+
+    // Clamp positions
+    nodes.forEach(n => {
+      n.x = Math.max(15, Math.min(width - 15, n.x));
+      n.y = Math.max(15, Math.min(height - 15, n.y));
+    });
+
+    // Draw links
+    svg.selectAll('line')
+      .data(links)
+      .join('line')
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y)
+      .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
+
+    // Draw nodes (no labels for compact view)
+    svg.selectAll('circle')
+      .data(nodes)
+      .join('circle')
+      .attr('cx', d => d.x)
+      .attr('cy', d => d.y)
+      .attr('r', d => d.id === currentId ? 6 : (connectedNodes.has(d.id) ? 4 : 3))
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'))
+      .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''));
+  }
+  
+  renderMiniGraph();
+
+  let graphInitialized = false;
+  function initGraph() {
+    if (graphInitialized || typeof d3 === 'undefined') return;
+    graphInitialized = true;
+
+    const container = document.getElementById('graph-container');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const currentId = getCurrentPageId();
+
+    const svg = d3.select(container).append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`);
+
+    const nodes = graphData.nodes.map(d => ({...d}));
+    const links = graphData.links.map(d => ({source: d.source, target: d.target}));
+
+    const connectedNodes = new Set();
+    graphData.links.forEach(l => {
+      if (l.source === currentId || l.target === currentId) {
+        connectedNodes.add(l.source);
+        connectedNodes.add(l.target);
+      }
+    });
+
+    // D3 force simulation for full graph
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+      .force('charge', d3.forceManyBody().strength(-200))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(25))
+      .stop();
+
+    // Run simulation synchronously
+    for (let i = 0; i < 150; i++) simulation.tick();
+
+    // Clamp positions
+    nodes.forEach(n => {
+      n.x = Math.max(50, Math.min(width - 50, n.x));
+      n.y = Math.max(50, Math.min(height - 50, n.y));
+    });
+
+    // Draw links
+    svg.selectAll('line')
+      .data(links)
+      .join('line')
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y)
+      .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
+
+    // Draw nodes with labels
+    const nodeGroups = svg.selectAll('g.graph-node')
+      .data(nodes)
+      .join('g')
+      .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''))
+      .attr('transform', d => `translate(${d.x},${d.y})`)
+      .style('cursor', 'pointer')
+      .on('click', (event, d) => { window.location.href = d.path; });
+
+    nodeGroups.append('circle')
+      .attr('r', d => d.id === currentId ? 10 : (connectedNodes.has(d.id) ? 8 : 6))
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'));
+
+    nodeGroups.append('text')
+      .attr('y', 20)
+      .text(d => d.label);
+  }
+});
+</script>
+
+
+<meta property="og:title" content="Models &amp; Tools – re:current_analytics">
+<meta property="og:site_name" content="re:current_analytics">
+<meta name="twitter:title" content="Models &amp; Tools – re:current_analytics">
 <meta name="twitter:creator" content="@timmwalker">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -308,68 +742,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../assets/favicon.png" alt="" class="navbar-logo light-content">
-    <img src="../assets/favicon.png" alt="" class="navbar-logo dark-content">
+    <img src="../assets/favicon.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/favicon.svg" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">re:current analytics</span>
+    <span class="navbar-title">re:current_analytics</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../notes/"> 
-<span class="menu-text">Notes / Lab</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../projects/"> 
-<span class="menu-text">Projects</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../models/"> 
-<span class="menu-text">Models &amp; Tools</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../reading/"> 
-<span class="menu-text">Reading</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../tipping-points/"> 
-<span class="menu-text">Tipping Points</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../contact_cv.html"> 
-<span class="menu-text">Contact / CV</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/recurrentanalytics"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="../notes/index.xml"> <i class="bi bi-rss" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+        <div class="quarto-navbar-tools tools-end">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
+          <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -891,10 +1274,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>© Timm Walker</p>
 </div>   
     <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/models/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+<p>Press ⌘K to navigate</p>
+<div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/models/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>A lab for recurrent climate intelligence.</p>
+<p>re:current_analytics</p>
 </div>
   </div>
 </footer>
