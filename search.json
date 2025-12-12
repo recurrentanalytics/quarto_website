@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "reading/index.html",
+    "href": "reading/index.html",
+    "title": "Reading",
+    "section": "",
+    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWNlbnRlcg==\"}\nPress ⌘K to navigate\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nre:current_analytics\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+  },
+  {
+    "objectID": "models/era5-demo.html",
+    "href": "models/era5-demo.html",
+    "title": "ERA5 rainfall — minimal notebook",
+    "section": "",
+    "text": "~{python} print(“Hello from Python — if you don’t see this line below, execution didn’t run.”)~\n~~~{python} import numpy as np import matplotlib.pyplot as plt\nlat = np.linspace(-60, 60, 121) lon = np.linspace(-180, 180, 361) data = np.random.gamma(2, 1, (len(lat), len(lon)))\nplt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“Synthetic ERA5-like rainfall map”) plt.xlabel(“Longitude”); plt.ylabel(“Latitude”) plt.show() ~~~"
+  },
+  {
     "objectID": "notes/risk-series-1.html",
     "href": "notes/risk-series-1.html",
     "title": "Risk Modelling Part 1: Foundations",
@@ -28,69 +42,6 @@
     "text": "Why This Matters for Climate\nClimate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in Part 2: Data.\n\nLinked from\n\nMonte Carlo Basics"
   },
   {
-    "objectID": "notes/risk-series-3.html",
-    "href": "notes/risk-series-3.html",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 3 of 3)\n\n\n\n← Previous: Data"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#putting-it-together",
-    "href": "notes/risk-series-3.html#putting-it-together",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Putting It Together",
-    "text": "Putting It Together\nArmed with the theoretical foundations and data sources, we can now implement a basic risk model."
-  },
-  {
-    "objectID": "notes/risk-series-3.html#a-simple-loss-model",
-    "href": "notes/risk-series-3.html#a-simple-loss-model",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "A Simple Loss Model",
-    "text": "A Simple Loss Model\nimport numpy as np\n\ndef simulate_losses(n_scenarios=10000, \n                    mean_hazard=0.1, \n                    exposure=1000000,\n                    vulnerability=0.3):\n    \"\"\"\n    Simple Monte Carlo loss simulation.\n    \n    See: /notes/climate/monte-carlo-basics.html\n    \"\"\"\n    # Simulate hazard intensity (e.g., flood depth)\n    hazard = np.random.exponential(mean_hazard, n_scenarios)\n    \n    # Calculate damage ratio based on vulnerability\n    damage_ratio = np.minimum(hazard * vulnerability, 1.0)\n    \n    # Compute losses\n    losses = exposure * damage_ratio\n    \n    return losses\n\n# Run simulation\nlosses = simulate_losses()\n\n# Key statistics\nprint(f\"Expected Loss: ${losses.mean():,.0f}\")\nprint(f\"VaR 99%: ${np.percentile(losses, 99):,.0f}\")\nprint(f\"Max Loss: ${losses.max():,.0f}\")"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#key-implementation-decisions",
-    "href": "notes/risk-series-3.html#key-implementation-decisions",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Key Implementation Decisions",
-    "text": "Key Implementation Decisions\nWhen building production risk models, consider:\n\nCorrelation structure - How do risks aggregate?\nTail dependence - Do extreme events cluster?\nComputational efficiency - Can you run enough scenarios?\nValidation - How do you test the model?"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#further-reading",
-    "href": "notes/risk-series-3.html#further-reading",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Further Reading",
-    "text": "Further Reading\nThis series provides a foundation. For deeper dives:\n\nMonte Carlo Basics - The sampling engine behind most risk models\nSAL Verification - Validating spatial predictions\n\n\nLinked from\n\nRisk Modelling Part 2: Data"
-  },
-  {
-    "objectID": "notes/climate/sal.html",
-    "href": "notes/climate/sal.html",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "",
-    "text": "Key Insight:\nA hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere."
-  },
-  {
-    "objectID": "notes/climate/sal.html#core-effects",
-    "href": "notes/climate/sal.html#core-effects",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Core Effects",
-    "text": "Core Effects\n\nDry air entrainment → disrupts convection\nIncreased shear → weakens cyclone organization\nDust aerosols → affect radiation balance & SST"
-  },
-  {
-    "objectID": "notes/climate/sal.html#visual-mental-model",
-    "href": "notes/climate/sal.html#visual-mental-model",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Visual Mental Model",
-    "text": "Visual Mental Model\nSAL = “giant desiccating lid” over the Atlantic basin"
-  },
-  {
-    "objectID": "notes/climate/sal.html#links",
-    "href": "notes/climate/sal.html#links",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Links",
-    "text": "Links\n\n[[MJO]]\n[[African Easterly Waves]]"
-  },
-  {
     "objectID": "notes/2025-hello-world.html",
     "href": "notes/2025-hello-world.html",
     "title": "Hello, Lab",
@@ -98,32 +49,67 @@
     "text": "First check-in. The lab notebook is live.\nUse this space for short, source-controlled notes."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "re:current_analytics",
+    "objectID": "notes/climate/monte-carlo-basics.html",
+    "href": "notes/climate/monte-carlo-basics.html",
+    "title": "Monte Carlo Simulation Basics",
     "section": "",
-    "text": "re:current_analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
+    "text": "Key Idea:\nUse repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible."
   },
   {
-    "objectID": "models/era5-demo.html",
-    "href": "models/era5-demo.html",
-    "title": "ERA5 rainfall — minimal notebook",
-    "section": "",
-    "text": "~{python} print(“Hello from Python — if you don’t see this line below, execution didn’t run.”)~\n~~~{python} import numpy as np import matplotlib.pyplot as plt\nlat = np.linspace(-60, 60, 121) lon = np.linspace(-180, 180, 361) data = np.random.gamma(2, 1, (len(lat), len(lon)))\nplt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“Synthetic ERA5-like rainfall map”) plt.xlabel(“Longitude”); plt.ylabel(“Latitude”) plt.show() ~~~"
+    "objectID": "notes/climate/monte-carlo-basics.html#key-concepts",
+    "href": "notes/climate/monte-carlo-basics.html#key-concepts",
+    "title": "Monte Carlo Simulation Basics",
+    "section": "Key Concepts",
+    "text": "Key Concepts\n\nRandom draws\nProbability distributions\nLaw of large numbers\nConvergence behaviour"
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Welcome to the project gallery. Add a .qmd per project here.\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "objectID": "notes/climate/monte-carlo-basics.html#example-pseudocode",
+    "href": "notes/climate/monte-carlo-basics.html#example-pseudocode",
+    "title": "Monte Carlo Simulation Basics",
+    "section": "Example Pseudocode",
+    "text": "Example Pseudocode"
   },
   {
-    "objectID": "reading/index.html",
-    "href": "reading/index.html",
-    "title": "Reading",
+    "objectID": "notes/risk-series-2.html",
+    "href": "notes/risk-series-2.html",
+    "title": "Risk Modelling Part 2: Data",
     "section": "",
-    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWNlbnRlcg==\"}\nPress ⌘K to navigate\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nre:current_analytics\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+    "text": "Series: Introduction to Risk Modelling (Part 2 of 3)\n\n\n\n← Previous: Foundations\n\n\nNext: Implementation →"
+  },
+  {
+    "objectID": "notes/risk-series-2.html#data-sources-for-climate-risk",
+    "href": "notes/risk-series-2.html#data-sources-for-climate-risk",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Data Sources for Climate Risk",
+    "text": "Data Sources for Climate Risk\nBuilding on the foundations from Part 1, this note covers the data landscape for climate risk modelling.\n\nObservational Data\n\nERA5 - ECMWF’s reanalysis dataset (see ERA5 Demo)\nGHCN - Global Historical Climatology Network\nStation data - Local weather observations\n\n\n\nModelled Data\n\nCMIP6 - Climate model ensembles for projections\nDownscaled projections - Regional climate scenarios\nCatastrophe model outputs - Vendor-specific hazard layers"
+  },
+  {
+    "objectID": "notes/risk-series-2.html#data-quality-considerations",
+    "href": "notes/risk-series-2.html#data-quality-considerations",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Data Quality Considerations",
+    "text": "Data Quality Considerations\nWhen working with climate data, always consider:\n\nSpatial resolution - Is the data granular enough for your use case?\nTemporal coverage - Do you have enough historical data?\nBias - Are there systematic errors in the observations?\nUncertainty - What are the confidence intervals?\n\nThe SAL framework provides one approach to validating spatial data quality."
+  },
+  {
+    "objectID": "notes/risk-series-2.html#next-steps",
+    "href": "notes/risk-series-2.html#next-steps",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Next Steps",
+    "text": "Next Steps\nWith data in hand, we move to Part 3: Implementation where we build actual models.\n\nLinked from\n\nRisk Modelling Part 1: Foundations\nRisk Modelling Part 3: Implementation"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub"
+  },
+  {
+    "objectID": "contact_cv.html",
+    "href": "contact_cv.html",
+    "title": "Contact / CV",
+    "section": "",
+    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
   },
   {
     "objectID": "replit.html",
@@ -189,11 +175,81 @@
     "text": "Deployment\nConfigured for static deployment serving the _site directory."
   },
   {
-    "objectID": "contact_cv.html",
-    "href": "contact_cv.html",
-    "title": "Contact / CV",
+    "objectID": "notes/climate/sal.html",
+    "href": "notes/climate/sal.html",
+    "title": "Saharan Air Layer (SAL)",
     "section": "",
-    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
+    "text": "Key Insight:\nA hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere."
+  },
+  {
+    "objectID": "notes/climate/sal.html#core-effects",
+    "href": "notes/climate/sal.html#core-effects",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "Core Effects",
+    "text": "Core Effects\n\nDry air entrainment → disrupts convection\nIncreased shear → weakens cyclone organization\nDust aerosols → affect radiation balance & SST"
+  },
+  {
+    "objectID": "notes/climate/sal.html#visual-mental-model",
+    "href": "notes/climate/sal.html#visual-mental-model",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "Visual Mental Model",
+    "text": "Visual Mental Model\nSAL = “giant desiccating lid” over the Atlantic basin"
+  },
+  {
+    "objectID": "notes/climate/sal.html#links",
+    "href": "notes/climate/sal.html#links",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "Links",
+    "text": "Links\n\n[[MJO]]\n[[African Easterly Waves]]"
+  },
+  {
+    "objectID": "notes/risk-series-3.html",
+    "href": "notes/risk-series-3.html",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "",
+    "text": "Series: Introduction to Risk Modelling (Part 3 of 3)\n\n\n\n← Previous: Data"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#putting-it-together",
+    "href": "notes/risk-series-3.html#putting-it-together",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Putting It Together",
+    "text": "Putting It Together\nArmed with the theoretical foundations and data sources, we can now implement a basic risk model."
+  },
+  {
+    "objectID": "notes/risk-series-3.html#a-simple-loss-model",
+    "href": "notes/risk-series-3.html#a-simple-loss-model",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "A Simple Loss Model",
+    "text": "A Simple Loss Model\nimport numpy as np\n\ndef simulate_losses(n_scenarios=10000, \n                    mean_hazard=0.1, \n                    exposure=1000000,\n                    vulnerability=0.3):\n    \"\"\"\n    Simple Monte Carlo loss simulation.\n    \n    See: /notes/climate/monte-carlo-basics.html\n    \"\"\"\n    # Simulate hazard intensity (e.g., flood depth)\n    hazard = np.random.exponential(mean_hazard, n_scenarios)\n    \n    # Calculate damage ratio based on vulnerability\n    damage_ratio = np.minimum(hazard * vulnerability, 1.0)\n    \n    # Compute losses\n    losses = exposure * damage_ratio\n    \n    return losses\n\n# Run simulation\nlosses = simulate_losses()\n\n# Key statistics\nprint(f\"Expected Loss: ${losses.mean():,.0f}\")\nprint(f\"VaR 99%: ${np.percentile(losses, 99):,.0f}\")\nprint(f\"Max Loss: ${losses.max():,.0f}\")"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#key-implementation-decisions",
+    "href": "notes/risk-series-3.html#key-implementation-decisions",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Key Implementation Decisions",
+    "text": "Key Implementation Decisions\nWhen building production risk models, consider:\n\nCorrelation structure - How do risks aggregate?\nTail dependence - Do extreme events cluster?\nComputational efficiency - Can you run enough scenarios?\nValidation - How do you test the model?"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#further-reading",
+    "href": "notes/risk-series-3.html#further-reading",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Further Reading",
+    "text": "Further Reading\nThis series provides a foundation. For deeper dives:\n\nMonte Carlo Basics - The sampling engine behind most risk models\nSAL Verification - Validating spatial predictions\n\n\nLinked from\n\nRisk Modelling Part 2: Data"
+  },
+  {
+    "objectID": "notes/index.html",
+    "href": "notes/index.html",
+    "title": "Notes & Knowledge Base",
+    "section": "",
+    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 2: Data\n\n\n\nrisk\n\nseries\n\ndata\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 3: Implementation\n\n\n\nrisk\n\nseries\n\ncode\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 1: Foundations\n\n\n\nrisk\n\nseries\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "re:current_analytics",
+    "section": "",
+    "text": "re:current_analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
   },
   {
     "objectID": "models/index.html",
@@ -203,66 +259,10 @@
     "text": "ERA5 rainfall demo → era5-demo.qmd\nTrigger prototypes, Monte Carlo, risk metrics — add here as notebooks."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
     "section": "",
-    "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub"
-  },
-  {
-    "objectID": "notes/index.html",
-    "href": "notes/index.html",
-    "title": "Notes & Knowledge Base",
-    "section": "",
-    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 3: Implementation\n\n\n\nrisk\n\nseries\n\ncode\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 2: Data\n\n\n\nrisk\n\nseries\n\ndata\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 1: Foundations\n\n\n\nrisk\n\nseries\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notes/climate/monte-carlo-basics.html",
-    "href": "notes/climate/monte-carlo-basics.html",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "",
-    "text": "Key Idea:\nUse repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible."
-  },
-  {
-    "objectID": "notes/climate/monte-carlo-basics.html#key-concepts",
-    "href": "notes/climate/monte-carlo-basics.html#key-concepts",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "Key Concepts",
-    "text": "Key Concepts\n\nRandom draws\nProbability distributions\nLaw of large numbers\nConvergence behaviour"
-  },
-  {
-    "objectID": "notes/climate/monte-carlo-basics.html#example-pseudocode",
-    "href": "notes/climate/monte-carlo-basics.html#example-pseudocode",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "Example Pseudocode",
-    "text": "Example Pseudocode"
-  },
-  {
-    "objectID": "notes/risk-series-2.html",
-    "href": "notes/risk-series-2.html",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 2 of 3)\n\n\n\n← Previous: Foundations\n\n\nNext: Implementation →"
-  },
-  {
-    "objectID": "notes/risk-series-2.html#data-sources-for-climate-risk",
-    "href": "notes/risk-series-2.html#data-sources-for-climate-risk",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Data Sources for Climate Risk",
-    "text": "Data Sources for Climate Risk\nBuilding on the foundations from Part 1, this note covers the data landscape for climate risk modelling.\n\nObservational Data\n\nERA5 - ECMWF’s reanalysis dataset (see ERA5 Demo)\nGHCN - Global Historical Climatology Network\nStation data - Local weather observations\n\n\n\nModelled Data\n\nCMIP6 - Climate model ensembles for projections\nDownscaled projections - Regional climate scenarios\nCatastrophe model outputs - Vendor-specific hazard layers"
-  },
-  {
-    "objectID": "notes/risk-series-2.html#data-quality-considerations",
-    "href": "notes/risk-series-2.html#data-quality-considerations",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Data Quality Considerations",
-    "text": "Data Quality Considerations\nWhen working with climate data, always consider:\n\nSpatial resolution - Is the data granular enough for your use case?\nTemporal coverage - Do you have enough historical data?\nBias - Are there systematic errors in the observations?\nUncertainty - What are the confidence intervals?\n\nThe SAL framework provides one approach to validating spatial data quality."
-  },
-  {
-    "objectID": "notes/risk-series-2.html#next-steps",
-    "href": "notes/risk-series-2.html#next-steps",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Next Steps",
-    "text": "Next Steps\nWith data in hand, we move to Part 3: Implementation where we build actual models.\n\nLinked from\n\nRisk Modelling Part 1: Foundations\nRisk Modelling Part 3: Implementation"
+    "text": "Welcome to the project gallery. Add a .qmd per project here.\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

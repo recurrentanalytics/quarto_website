@@ -9,8 +9,84 @@
 <link>https://recurrentanalytics.com/notes/</link>
 <atom:link href="https://recurrentanalytics.com/notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>A lab-notebook for climate risk, models, and recurrent intelligence.</description>
-<generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 12 Dec 2025 08:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.26</generator>
+<lastBuildDate>Thu, 11 Dec 2025 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Risk Modelling Part 2: Data</title>
+  <link>https://recurrentanalytics.com/notes/risk-series-2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="series-nav">
+<div class="series-nav-header">
+<p>Series: Introduction to Risk Modelling (Part 2 of 3)</p>
+</div>
+<div class="series-nav-links">
+<div class="series-nav-prev">
+<p><a href="../notes/risk-series-1.html">← Previous: Foundations</a></p>
+</div>
+<div class="series-nav-next">
+<p><a href="../notes/risk-series-3.html">Next: Implementation →</a></p>
+</div>
+</div>
+</div>
+<section id="data-sources-for-climate-risk" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources-for-climate-risk">Data Sources for Climate Risk</h2>
+<p>Building on the <a href="../notes/risk-series-1.html">foundations from Part 1</a>, this note covers the data landscape for climate risk modelling.</p>
+<section id="observational-data" class="level3">
+<h3 class="anchored" data-anchor-id="observational-data">Observational Data</h3>
+<ul>
+<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset (see <a href="../models/era5-demo.html">ERA5 Demo</a>)</li>
+<li><strong>GHCN</strong> - Global Historical Climatology Network</li>
+<li><strong>Station data</strong> - Local weather observations</li>
+</ul>
+</section>
+<section id="modelled-data" class="level3">
+<h3 class="anchored" data-anchor-id="modelled-data">Modelled Data</h3>
+<ul>
+<li><strong>CMIP6</strong> - Climate model ensembles for projections</li>
+<li><strong>Downscaled projections</strong> - Regional climate scenarios</li>
+<li><strong>Catastrophe model outputs</strong> - Vendor-specific hazard layers</li>
+</ul>
+</section>
+</section>
+<section id="data-quality-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-considerations">Data Quality Considerations</h2>
+<p>When working with climate data, always consider:</p>
+<ol type="1">
+<li><strong>Spatial resolution</strong> - Is the data granular enough for your use case?</li>
+<li><strong>Temporal coverage</strong> - Do you have enough historical data?</li>
+<li><strong>Bias</strong> - Are there systematic errors in the observations?</li>
+<li><strong>Uncertainty</strong> - What are the confidence intervals?</li>
+</ol>
+<p>The <a href="../notes/climate/sal.html">SAL framework</a> provides one approach to validating spatial data quality.</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p>With data in hand, we move to <a href="../notes/risk-series-3.html">Part 3: Implementation</a> where we build actual models.</p>
+<section id="linked-from" class="level4 backlinks">
+<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<ul>
+<li><a href="../notes/risk-series-1.html">Risk Modelling Part 1: Foundations</a></li>
+<li><a href="../notes/risk-series-3.html">Risk Modelling Part 3: Implementation</a></li>
+</ul>
+</section>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>risk</category>
+  <category>series</category>
+  <category>data</category>
+  <guid>https://recurrentanalytics.com/notes/risk-series-2.html</guid>
+  <pubDate>Thu, 11 Dec 2025 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Risk Modelling Part 3: Implementation</title>
   <link>https://recurrentanalytics.com/notes/risk-series-3.html</link>
@@ -203,83 +279,7 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
   <category>series</category>
   <category>code</category>
   <guid>https://recurrentanalytics.com/notes/risk-series-3.html</guid>
-  <pubDate>Fri, 12 Dec 2025 08:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Risk Modelling Part 2: Data</title>
-  <link>https://recurrentanalytics.com/notes/risk-series-2.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<div class="series-nav">
-<div class="series-nav-header">
-<p>Series: Introduction to Risk Modelling (Part 2 of 3)</p>
-</div>
-<div class="series-nav-links">
-<div class="series-nav-prev">
-<p><a href="../notes/risk-series-1.html">← Previous: Foundations</a></p>
-</div>
-<div class="series-nav-next">
-<p><a href="../notes/risk-series-3.html">Next: Implementation →</a></p>
-</div>
-</div>
-</div>
-<section id="data-sources-for-climate-risk" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources-for-climate-risk">Data Sources for Climate Risk</h2>
-<p>Building on the <a href="../notes/risk-series-1.html">foundations from Part 1</a>, this note covers the data landscape for climate risk modelling.</p>
-<section id="observational-data" class="level3">
-<h3 class="anchored" data-anchor-id="observational-data">Observational Data</h3>
-<ul>
-<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset (see <a href="../models/era5-demo.html">ERA5 Demo</a>)</li>
-<li><strong>GHCN</strong> - Global Historical Climatology Network</li>
-<li><strong>Station data</strong> - Local weather observations</li>
-</ul>
-</section>
-<section id="modelled-data" class="level3">
-<h3 class="anchored" data-anchor-id="modelled-data">Modelled Data</h3>
-<ul>
-<li><strong>CMIP6</strong> - Climate model ensembles for projections</li>
-<li><strong>Downscaled projections</strong> - Regional climate scenarios</li>
-<li><strong>Catastrophe model outputs</strong> - Vendor-specific hazard layers</li>
-</ul>
-</section>
-</section>
-<section id="data-quality-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="data-quality-considerations">Data Quality Considerations</h2>
-<p>When working with climate data, always consider:</p>
-<ol type="1">
-<li><strong>Spatial resolution</strong> - Is the data granular enough for your use case?</li>
-<li><strong>Temporal coverage</strong> - Do you have enough historical data?</li>
-<li><strong>Bias</strong> - Are there systematic errors in the observations?</li>
-<li><strong>Uncertainty</strong> - What are the confidence intervals?</li>
-</ol>
-<p>The <a href="../notes/climate/sal.html">SAL framework</a> provides one approach to validating spatial data quality.</p>
-</section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
-<p>With data in hand, we move to <a href="../notes/risk-series-3.html">Part 3: Implementation</a> where we build actual models.</p>
-<section id="linked-from" class="level4 backlinks">
-<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
-<ul>
-<li><a href="../notes/risk-series-1.html">Risk Modelling Part 1: Foundations</a></li>
-<li><a href="../notes/risk-series-3.html">Risk Modelling Part 3: Implementation</a></li>
-</ul>
-</section>
-
-
-<!-- -->
-
-</section>
-
- ]]></description>
-  <category>risk</category>
-  <category>series</category>
-  <category>data</category>
-  <guid>https://recurrentanalytics.com/notes/risk-series-2.html</guid>
-  <pubDate>Fri, 12 Dec 2025 08:00:00 GMT</pubDate>
+  <pubDate>Thu, 11 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Risk Modelling Part 1: Foundations</title>
@@ -337,28 +337,7 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
   <category>risk</category>
   <category>series</category>
   <guid>https://recurrentanalytics.com/notes/risk-series-1.html</guid>
-  <pubDate>Fri, 12 Dec 2025 08:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Hello, Lab</title>
-  <link>https://recurrentanalytics.com/notes/2025-hello-world.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>First check-in. The lab notebook is live.<br>
-Use this space for short, source-controlled notes.</p>
-
-
-<!-- -->
-
-
- ]]></description>
-  <category>setup</category>
-  <guid>https://recurrentanalytics.com/notes/2025-hello-world.html</guid>
-  <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
+  <pubDate>Thu, 11 Dec 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Saharan Air Layer (SAL)</title>
@@ -399,7 +378,7 @@ A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlant
   <category>Climate</category>
   <category>Tropical Cyclones</category>
   <guid>https://recurrentanalytics.com/notes/climate/sal.html</guid>
-  <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
+  <pubDate>Tue, 11 Nov 2025 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Monte Carlo Simulation Basics</title>
@@ -433,7 +412,28 @@ Use repeated random sampling to approximate distributions, uncertainty, or expec
   <category>Modelling</category>
   <category>Simulation</category>
   <guid>https://recurrentanalytics.com/notes/climate/monte-carlo-basics.html</guid>
-  <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
+  <pubDate>Tue, 11 Nov 2025 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Hello, Lab</title>
+  <link>https://recurrentanalytics.com/notes/2025-hello-world.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>First check-in. The lab notebook is live.<br>
+Use this space for short, source-controlled notes.</p>
+
+
+<!-- -->
+
+
+ ]]></description>
+  <category>setup</category>
+  <guid>https://recurrentanalytics.com/notes/2025-hello-world.html</guid>
+  <pubDate>Tue, 11 Nov 2025 23:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

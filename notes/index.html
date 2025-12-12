@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -75,14 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-654e6a5a15928fa78c27db594084cec0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c7e9638b6852b762277a0f39f78f2c49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-654e6a5a15928fa78c27db594084cec0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-20f7ef8c8d7e189c869903d222d46e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e1fe4655d9dfc9c388e0554fb3451f43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-20f7ef8c8d7e189c869903d222d46e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -524,6 +524,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   renderMiniGraph();
 
+  // Mobile floating graph button
+  const mobileGraphBtn = document.createElement('button');
+  mobileGraphBtn.className = 'mobile-graph-btn';
+  mobileGraphBtn.innerHTML = '&#x1F578;'; // spider web emoji as graph icon
+  mobileGraphBtn.title = 'View connections';
+  mobileGraphBtn.setAttribute('aria-label', 'Open connection graph');
+  mobileGraphBtn.addEventListener('click', openGraph);
+  document.body.appendChild(mobileGraphBtn);
+
   let graphInitialized = false;
   function initGraph() {
     if (graphInitialized || typeof d3 === 'undefined') return;
@@ -849,7 +858,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 12, 2025</p>
+      <p class="date-modified">November 14, 2025</p>
     </div>
   </div>
     
@@ -875,38 +884,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cmlzayUyQ3NlcmllcyUyQ2NvZGU=" data-listing-date-sort="1765526400000" data-listing-file-modified-sort="1765575812180" data-listing-date-modified-sort="1765575812000" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
-<div class="thumbnail"><a href="../notes/risk-series-3.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../notes/risk-series-3.html" class="no-external">Risk Modelling Part 3: Implementation</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cmlzaw=='); return false;">risk</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2VyaWVz'); return false;">series</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-</div>
-<div class="delink listing-description"><a href="../notes/risk-series-3.html" class="no-external">
-Series: Introduction to Risk Modelling (Part 3 of 3)
-</a></div>
-</div>
-<div class="metadata">
-<a href="../notes/risk-series-3.html" class="no-external">
-<div class="listing-date">
-Dec 12, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="cmlzayUyQ3NlcmllcyUyQ2RhdGE=" data-listing-date-sort="1765526400000" data-listing-file-modified-sort="1765575812180" data-listing-date-modified-sort="1765575812000" data-listing-reading-time-sort="1" data-listing-word-count-sort="163">
+<div class="quarto-post image-right" data-index="0" data-categories="cmlzayUyQ3NlcmllcyUyQ2RhdGE=" data-listing-date-sort="1765494000000" data-listing-file-modified-sort="1765577095387" data-listing-date-modified-sort="1765577095000" data-listing-reading-time-sort="1" data-listing-word-count-sort="163">
 <div class="thumbnail"><a href="../notes/risk-series-2.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -937,7 +915,38 @@ Dec 12, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="cmlzayUyQ3Nlcmllcw==" data-listing-date-sort="1765526400000" data-listing-file-modified-sort="1765575812179" data-listing-date-modified-sort="1765575812000" data-listing-reading-time-sort="1" data-listing-word-count-sort="159">
+<div class="quarto-post image-right" data-index="1" data-categories="cmlzayUyQ3NlcmllcyUyQ2NvZGU=" data-listing-date-sort="1765494000000" data-listing-file-modified-sort="1765577095387" data-listing-date-modified-sort="1765577095000" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
+<div class="thumbnail"><a href="../notes/risk-series-3.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../notes/risk-series-3.html" class="no-external">Risk Modelling Part 3: Implementation</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('cmlzaw=='); return false;">risk</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2VyaWVz'); return false;">series</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
+
+</div>
+<div class="delink listing-description"><a href="../notes/risk-series-3.html" class="no-external">
+Series: Introduction to Risk Modelling (Part 3 of 3)
+</a></div>
+</div>
+<div class="metadata">
+<a href="../notes/risk-series-3.html" class="no-external">
+<div class="listing-date">
+Dec 12, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="cmlzayUyQ3Nlcmllcw==" data-listing-date-sort="1765494000000" data-listing-file-modified-sort="1765577095387" data-listing-date-modified-sort="1765577095000" data-listing-reading-time-sort="1" data-listing-word-count-sort="159">
 <div class="thumbnail"><a href="../notes/risk-series-1.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -966,35 +975,7 @@ Dec 12, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="c2V0dXA=" data-listing-date-sort="1762934400000" data-listing-file-modified-sort="1762963483272" data-listing-date-modified-sort="1762963483000" data-listing-reading-time-sort="1" data-listing-word-count-sort="15">
-<div class="thumbnail"><a href="../notes/2025-hello-world.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../notes/2025-hello-world.html" class="no-external">Hello, Lab</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2V0dXA='); return false;">setup</div>
-
-</div>
-<div class="delink listing-description"><a href="../notes/2025-hello-world.html" class="no-external">
-First check-in. The lab notebook is live.<br>
-Use this space for short, source-controlled notes.
-</a></div>
-</div>
-<div class="metadata">
-<a href="../notes/2025-hello-world.html" class="no-external">
-<div class="listing-date">
-Nov 12, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Q2xpbWF0ZSUyQ1Ryb3BpY2FsJTIwQ3ljbG9uZXM=" data-listing-date-sort="1762934400000" data-listing-file-modified-sort="1762965047816" data-listing-date-modified-sort="1762965047000" data-listing-reading-time-sort="1" data-listing-word-count-sort="64">
+<div class="quarto-post image-right" data-index="3" data-categories="Q2xpbWF0ZSUyQ1Ryb3BpY2FsJTIwQ3ljbG9uZXM=" data-listing-date-sort="1762902000000" data-listing-file-modified-sort="1763157080291" data-listing-date-modified-sort="1763157080000" data-listing-reading-time-sort="1" data-listing-word-count-sort="64">
 <div class="thumbnail"><a href="../notes/climate/sal.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -1024,7 +1005,7 @@ Nov 12, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="TW9kZWxsaW5nJTJDU2ltdWxhdGlvbg==" data-listing-date-sort="1762934400000" data-listing-file-modified-sort="1762965063695" data-listing-date-modified-sort="1762965063000" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
+<div class="quarto-post image-right" data-index="4" data-categories="TW9kZWxsaW5nJTJDU2ltdWxhdGlvbg==" data-listing-date-sort="1762902000000" data-listing-file-modified-sort="1763157080291" data-listing-date-modified-sort="1763157080000" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
 <div class="thumbnail"><a href="../notes/climate/monte-carlo-basics.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -1048,6 +1029,34 @@ Use repeated random sampling to approximate distributions, uncertainty, or expec
 </div>
 <div class="metadata">
 <a href="../notes/climate/monte-carlo-basics.html" class="no-external">
+<div class="listing-date">
+Nov 12, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="c2V0dXA=" data-listing-date-sort="1762902000000" data-listing-file-modified-sort="1763157080290" data-listing-date-modified-sort="1763157080000" data-listing-reading-time-sort="1" data-listing-word-count-sort="15">
+<div class="thumbnail"><a href="../notes/2025-hello-world.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../notes/2025-hello-world.html" class="no-external">Hello, Lab</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2V0dXA='); return false;">setup</div>
+
+</div>
+<div class="delink listing-description"><a href="../notes/2025-hello-world.html" class="no-external">
+First check-in. The lab notebook is live.<br>
+Use this space for short, source-controlled notes.
+</a></div>
+</div>
+<div class="metadata">
+<a href="../notes/2025-hello-world.html" class="no-external">
 <div class="listing-date">
 Nov 12, 2025
 </div>
