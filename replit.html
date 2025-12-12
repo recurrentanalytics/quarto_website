@@ -783,6 +783,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
   <li><a href="#sample-content" id="toc-sample-content" class="nav-link" data-scroll-target="#sample-content">Sample Content</a></li>
   <li><a href="#network-graph" id="toc-network-graph" class="nav-link" data-scroll-target="#network-graph">Network Graph</a></li>
+  <li><a href="#heatwave-analysis-page" id="toc-heatwave-analysis-page" class="nav-link" data-scroll-target="#heatwave-analysis-page">Heatwave Analysis Page</a></li>
   <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
   </ul></li>
   </ul>
@@ -807,6 +808,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><code>_site/</code> - Built static HTML output (served in production)</li>
 <li><code>*.qmd</code> - Quarto markdown source files</li>
 <li><code>notes/</code>, <code>models/</code>, <code>projects/</code>, <code>reading/</code> - Content sections</li>
+<li><code>src/</code> - Python modules for data processing
+<ul>
+<li><code>data_download.py</code> - OPSD data loading utilities</li>
+<li><code>heatwave_defs.py</code> - Heatwave flagging functions</li>
+</ul></li>
+<li><code>data/raw/</code> - Raw data files (OPSD CSVs go here)</li>
+<li><code>data/processed/</code> - Processed parquet files</li>
 <li><code>_quarto.yml</code> - Quarto configuration</li>
 <li><code>styles.scss</code> - Custom styling with Quarto SCSS layer syntax</li>
 <li><code>assets/</code> - Favicon and other static assets</li>
@@ -856,9 +864,22 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 class="anchored" data-anchor-id="network-graph">Network Graph</h2>
 <ul>
 <li><strong>Sidebar Widget</strong>: Always-visible mini network graph in right sidebar showing page connections</li>
+<li><strong>Mobile Button</strong>: Floating button on mobile (bottom-right) since sidebar is hidden</li>
 <li><strong>D3-Force Layout</strong>: Uses D3.js v7 for force-directed graph positioning</li>
 <li><strong>Click to Expand</strong>: Opens full modal with labels and click-to-navigate</li>
 <li><strong>Press ‘g’</strong>: Keyboard shortcut to open graph modal</li>
+</ul>
+</section>
+<section id="heatwave-analysis-page" class="level2">
+<h2 class="anchored" data-anchor-id="heatwave-analysis-page">Heatwave Analysis Page</h2>
+<ul>
+<li><code>models/heatwave-prices-de-lu.qmd</code> - DE-LU electricity prices during heatwaves</li>
+<li>Requires OPSD CSV files in <code>data/raw/</code>:
+<ul>
+<li><code>time_series_60min_singleindex.csv</code> from <a href="https://data.open-power-system-data.org/time_series/">OPSD Time Series</a></li>
+<li><code>weather_data.csv</code> from <a href="https://data.open-power-system-data.org/weather_data/">OPSD Weather</a></li>
+</ul></li>
+<li>Run the pipeline locally to generate <code>data/processed/*.parquet</code> files</li>
 </ul>
 </section>
 <section id="deployment" class="level2">
@@ -1345,50 +1366,63 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`_site/`</span> - Built static HTML output (served in production)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`*.qmd`</span> - Quarto markdown source files</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`notes/`</span>, <span class="in">`models/`</span>, <span class="in">`projects/`</span>, <span class="in">`reading/`</span> - Content sections</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`_quarto.yml`</span> - Quarto configuration</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`styles.scss`</span> - Custom styling with Quarto SCSS layer syntax</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`assets/`</span> - Favicon and other static assets</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`404.qmd`</span> - Custom 404 error page</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`environment.yml`</span> - Conda environment for local development</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`server.py`</span> - Simple Python HTTP server for serving static files</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Running the Site</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>The workflow "Serve Website" runs <span class="in">`python server.py`</span> which serves the <span class="in">`_site`</span> directory on port 5000.</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Building the Site</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>To rebuild after making changes to .qmd files:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Features</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Yin-Yang Manifesto**: Collapsible box on homepage with ☯ toggle</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Dark box in light mode, light box in dark mode (yin-yang aesthetic)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Theme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dark/Light Theme**: Toggle via theme switcher in navbar</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RSS Feed**: Available at notes/index.xml</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Reading Progress Bar**: Thin line at top showing scroll position</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Reading Time**: "X min read" displayed on article pages</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Last Modified Dates**: Notes show when they were last updated</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Custom 404 Page**: Minimal "Lost in the noise" error page</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Keyboard Shortcuts**: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Random Note Link**: Footer link to discover random notes</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Command Palette**: Press Cmd+K (or Ctrl+K) for quick-jump to any page</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Print Stylesheet**: Clean formatting when printing (hides nav, shows URLs)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Series Navigation**: Multi-part notes show "Part X of Y" with prev/next links</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Backlinks**: Notes can show which other notes link to them</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample Content</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`notes/risk-series-1.qmd`</span> through <span class="in">`risk-series-3.qmd`</span> - 3-part series demonstrating series navigation and backlinks</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Network Graph</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Sidebar Widget**: Always-visible mini network graph in right sidebar showing page connections</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**D3-Force Layout**: Uses D3.js v7 for force-directed graph positioning</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Click to Expand**: Opens full modal with labels and click-to-navigate</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Press 'g'**: Keyboard shortcut to open graph modal</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deployment</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>Configured for static deployment serving the <span class="in">`_site`</span> directory.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`src/`</span> - Python modules for data processing</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`data_download.py`</span> - OPSD data loading utilities</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`heatwave_defs.py`</span> - Heatwave flagging functions</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/raw/`</span> - Raw data files (OPSD CSVs go here)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/processed/`</span> - Processed parquet files</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`_quarto.yml`</span> - Quarto configuration</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`styles.scss`</span> - Custom styling with Quarto SCSS layer syntax</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`assets/`</span> - Favicon and other static assets</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`404.qmd`</span> - Custom 404 error page</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`environment.yml`</span> - Conda environment for local development</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`server.py`</span> - Simple Python HTTP server for serving static files</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Running the Site</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>The workflow "Serve Website" runs <span class="in">`python server.py`</span> which serves the <span class="in">`_site`</span> directory on port 5000.</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Building the Site</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>To rebuild after making changes to .qmd files:</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Features</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Yin-Yang Manifesto**: Collapsible box on homepage with ☯ toggle</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Dark box in light mode, light box in dark mode (yin-yang aesthetic)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Theme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dark/Light Theme**: Toggle via theme switcher in navbar</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RSS Feed**: Available at notes/index.xml</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Reading Progress Bar**: Thin line at top showing scroll position</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Reading Time**: "X min read" displayed on article pages</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Last Modified Dates**: Notes show when they were last updated</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Custom 404 Page**: Minimal "Lost in the noise" error page</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Keyboard Shortcuts**: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Random Note Link**: Footer link to discover random notes</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Command Palette**: Press Cmd+K (or Ctrl+K) for quick-jump to any page</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Print Stylesheet**: Clean formatting when printing (hides nav, shows URLs)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Series Navigation**: Multi-part notes show "Part X of Y" with prev/next links</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Backlinks**: Notes can show which other notes link to them</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample Content</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`notes/risk-series-1.qmd`</span> through <span class="in">`risk-series-3.qmd`</span> - 3-part series demonstrating series navigation and backlinks</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Network Graph</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Sidebar Widget**: Always-visible mini network graph in right sidebar showing page connections</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Mobile Button**: Floating button on mobile (bottom-right) since sidebar is hidden</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**D3-Force Layout**: Uses D3.js v7 for force-directed graph positioning</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Click to Expand**: Opens full modal with labels and click-to-navigate</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Press 'g'**: Keyboard shortcut to open graph modal</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heatwave Analysis Page</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`models/heatwave-prices-de-lu.qmd`</span> - DE-LU electricity prices during heatwaves</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Requires OPSD CSV files in <span class="in">`data/raw/`</span>:</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`time_series_60min_singleindex.csv`</span> from <span class="co">[</span><span class="ot">OPSD Time Series</span><span class="co">](https://data.open-power-system-data.org/time_series/)</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`weather_data.csv`</span> from <span class="co">[</span><span class="ot">OPSD Weather</span><span class="co">](https://data.open-power-system-data.org/weather_data/)</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run the pipeline locally to generate <span class="in">`data/processed/*.parquet`</span> files</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deployment</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>Configured for static deployment serving the <span class="in">`_site`</span> directory.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
