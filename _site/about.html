@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3408bf2b094a1fa4072950395515ffa3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-83e00d42bf9833cb196c00d45a1225fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-3408bf2b094a1fa4072950395515ffa3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4e4912d0ba529df3e9d3cfd039c7760f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ecec11ed6777c0e19c05bf63a78fe4d2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-4e4912d0ba529df3e9d3cfd039c7760f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -318,6 +318,226 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     footer.appendChild(document.createTextNode(' · '));
     footer.appendChild(randomLink);
+  }
+
+  // Network Graph - Obsidian-style visualization
+  const graphData = {
+    nodes: [
+      { id: 'home', label: 'Home', path: '/' },
+      { id: 'about', label: 'About', path: '/about.html' },
+      { id: 'notes', label: 'Notes', path: '/notes/' },
+      { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
+      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html' },
+      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html' },
+      { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html' },
+      { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html' },
+      { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html' },
+      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html' },
+      { id: 'projects', label: 'Projects', path: '/projects/' },
+      { id: 'models', label: 'Models', path: '/models/' },
+      { id: 'reading', label: 'Reading', path: '/reading/' },
+      { id: 'contact', label: 'Contact', path: '/contact_cv.html' }
+    ],
+    links: [
+      { source: 'home', target: 'notes' },
+      { source: 'home', target: 'projects' },
+      { source: 'home', target: 'models' },
+      { source: 'home', target: 'about' },
+      { source: 'notes', target: 'hello' },
+      { source: 'notes', target: 'monte-carlo' },
+      { source: 'notes', target: 'sal' },
+      { source: 'notes', target: 'risk-1' },
+      { source: 'risk-1', target: 'monte-carlo' },
+      { source: 'risk-1', target: 'risk-2' },
+      { source: 'risk-2', target: 'risk-1' },
+      { source: 'risk-2', target: 'risk-3' },
+      { source: 'risk-2', target: 'sal' },
+      { source: 'risk-2', target: 'era5' },
+      { source: 'risk-3', target: 'risk-1' },
+      { source: 'risk-3', target: 'risk-2' },
+      { source: 'risk-3', target: 'monte-carlo' },
+      { source: 'risk-3', target: 'sal' },
+      { source: 'models', target: 'era5' }
+    ]
+  };
+
+  // Create graph button
+  const graphBtn = document.createElement('button');
+  graphBtn.className = 'graph-btn';
+  graphBtn.title = 'View note connections';
+  graphBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="19" cy="8" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="7" y1="6" x2="10" y2="5"/><line x1="14" y1="5" x2="17" y2="7"/><line x1="6" y1="8" x2="6" y2="16"/><line x1="18" y1="10" x2="18" y2="16"/><line x1="8" y1="17" x2="16" y2="17"/></svg>';
+  document.body.appendChild(graphBtn);
+
+  // Create modal
+  const graphModal = document.createElement('div');
+  graphModal.className = 'graph-modal-overlay';
+  graphModal.innerHTML = `
+    <div class="graph-modal">
+      <div class="graph-modal-header">
+        <span class="graph-modal-title">Note Connections</span>
+        <button class="graph-modal-close">&times;</button>
+      </div>
+      <div class="graph-container" id="graph-container"></div>
+    </div>
+  `;
+  document.body.appendChild(graphModal);
+
+  function getCurrentPageId() {
+    const path = window.location.pathname;
+    const node = graphData.nodes.find(n => path.endsWith(n.path) || path === n.path || 
+      (n.path === '/' && (path === '/' || path === '/index.html' || path.endsWith('/index.html'))));
+    return node ? node.id : null;
+  }
+
+  function openGraph() {
+    graphModal.classList.add('active');
+    initGraph();
+  }
+
+  function closeGraph() {
+    graphModal.classList.remove('active');
+  }
+
+  graphBtn.addEventListener('click', openGraph);
+  graphModal.querySelector('.graph-modal-close').addEventListener('click', closeGraph);
+  graphModal.addEventListener('click', (e) => {
+    if (e.target === graphModal) closeGraph();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && graphModal.classList.contains('active')) closeGraph();
+    if (e.key === 'g' && !e.ctrlKey && !e.metaKey && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      openGraph();
+    }
+  });
+
+  let graphInitialized = false;
+  function initGraph() {
+    if (graphInitialized) return;
+    graphInitialized = true;
+
+    const container = document.getElementById('graph-container');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const currentId = getCurrentPageId();
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    container.appendChild(svg);
+
+    const nodes = graphData.nodes.map(d => ({...d}));
+    const links = graphData.links.map(d => ({...d}));
+
+    const connectedNodes = new Set();
+    links.forEach(l => {
+      if (l.source === currentId || l.target === currentId) {
+        connectedNodes.add(l.source);
+        connectedNodes.add(l.target);
+      }
+    });
+
+    // Simple force simulation without D3
+    nodes.forEach((n, i) => {
+      const angle = (i / nodes.length) * 2 * Math.PI;
+      const radius = 150;
+      n.x = width / 2 + radius * Math.cos(angle);
+      n.y = height / 2 + radius * Math.sin(angle);
+      n.vx = 0;
+      n.vy = 0;
+    });
+
+    const nodeMap = {};
+    nodes.forEach(n => nodeMap[n.id] = n);
+
+    function simulate() {
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      nodes.forEach(n => {
+        n.vx += (centerX - n.x) * 0.003;
+        n.vy += (centerY - n.y) * 0.003;
+      });
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[j].x - nodes[i].x;
+          const dy = nodes[j].y - nodes[i].y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const force = 800 / (dist * dist);
+          const fx = (dx / dist) * force;
+          const fy = (dy / dist) * force;
+          nodes[i].vx -= fx;
+          nodes[i].vy -= fy;
+          nodes[j].vx += fx;
+          nodes[j].vy += fy;
+        }
+      }
+
+      links.forEach(l => {
+        const source = nodeMap[l.source] || nodeMap[l.source.id];
+        const target = nodeMap[l.target] || nodeMap[l.target.id];
+        if (!source || !target) return;
+        const dx = target.x - source.x;
+        const dy = target.y - source.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const force = (dist - 100) * 0.02;
+        const fx = (dx / dist) * force;
+        const fy = (dy / dist) * force;
+        source.vx += fx;
+        source.vy += fy;
+        target.vx -= fx;
+        target.vy -= fy;
+      });
+
+      nodes.forEach(n => {
+        n.vx *= 0.85;
+        n.vy *= 0.85;
+        n.x += n.vx;
+        n.y += n.vy;
+        n.x = Math.max(40, Math.min(width - 40, n.x));
+        n.y = Math.max(40, Math.min(height - 40, n.y));
+      });
+    }
+
+    for (let i = 0; i < 100; i++) simulate();
+
+    // Draw links
+    links.forEach(l => {
+      const source = nodeMap[l.source] || nodeMap[l.source.id];
+      const target = nodeMap[l.target] || nodeMap[l.target.id];
+      if (!source || !target) return;
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', source.x);
+      line.setAttribute('y1', source.y);
+      line.setAttribute('x2', target.x);
+      line.setAttribute('y2', target.y);
+      line.setAttribute('class', 'graph-link' + (connectedNodes.has(l.source) && connectedNodes.has(l.target) ? ' connected' : ''));
+      svg.appendChild(line);
+    });
+
+    // Draw nodes
+    nodes.forEach(n => {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'graph-node' + (n.id === currentId ? ' current' : ''));
+      g.setAttribute('transform', `translate(${n.x},${n.y})`);
+
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      const isConnected = connectedNodes.has(n.id);
+      circle.setAttribute('r', n.id === currentId ? 10 : (isConnected ? 8 : 6));
+      circle.setAttribute('fill', n.id === currentId ? 'var(--bs-primary)' : (isConnected ? 'var(--bs-info)' : 'var(--bs-secondary)'));
+      g.appendChild(circle);
+
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('y', 20);
+      text.textContent = n.label;
+      g.appendChild(text);
+
+      g.style.cursor = 'pointer';
+      g.addEventListener('click', () => {
+        window.location.href = n.path;
+      });
+
+      svg.appendChild(g);
+    });
   }
 });
 </script>

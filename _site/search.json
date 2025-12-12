@@ -39,7 +39,14 @@
     "href": "replit.html#features",
     "title": "",
     "section": "Features",
-    "text": "Features\n\nYin-Yang Manifesto: Collapsible box on homepage with ☯ toggle\n\nDark box in light mode, light box in dark mode (yin-yang aesthetic)\nTheme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto\n\nDark/Light Theme: Toggle via theme switcher in navbar\nRSS Feed: Available at notes/index.xml\nReading Progress Bar: Thin line at top showing scroll position\nReading Time: “X min read” displayed on article pages\nLast Modified Dates: Notes show when they were last updated\nCustom 404 Page: Minimal “Lost in the noise” error page\nKeyboard Shortcuts: / (search), j/k (navigate), ? (show hints)\nRandom Note Link: Footer link to discover random notes"
+    "text": "Features\n\nYin-Yang Manifesto: Collapsible box on homepage with ☯ toggle\n\nDark box in light mode, light box in dark mode (yin-yang aesthetic)\nTheme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto\n\nDark/Light Theme: Toggle via theme switcher in navbar\nRSS Feed: Available at notes/index.xml\nReading Progress Bar: Thin line at top showing scroll position\nReading Time: “X min read” displayed on article pages\nLast Modified Dates: Notes show when they were last updated\nCustom 404 Page: Minimal “Lost in the noise” error page\nKeyboard Shortcuts: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)\nRandom Note Link: Footer link to discover random notes\nCommand Palette: Press Cmd+K (or Ctrl+K) for quick-jump to any page\nPrint Stylesheet: Clean formatting when printing (hides nav, shows URLs)\nSeries Navigation: Multi-part notes show “Part X of Y” with prev/next links\nBacklinks: Notes can show which other notes link to them"
+  },
+  {
+    "objectID": "replit.html#sample-content",
+    "href": "replit.html#sample-content",
+    "title": "",
+    "section": "Sample Content",
+    "text": "Sample Content\n\nnotes/risk-series-1.qmd through risk-series-3.qmd - 3-part series demonstrating series navigation and backlinks"
   },
   {
     "objectID": "replit.html#deployment",
