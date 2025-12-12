@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="/site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="/site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="/site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="/site_libs/bootstrap/bootstrap-4e4912d0ba529df3e9d3cfd039c7760f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="/site_libs/bootstrap/bootstrap-dark-ecec11ed6777c0e19c05bf63a78fe4d2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="/site_libs/bootstrap/bootstrap-4e4912d0ba529df3e9d3cfd039c7760f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="/site_libs/bootstrap/bootstrap-229af0592e2c064a79e5d6a2db36cb97.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="/site_libs/bootstrap/bootstrap-dark-eb04375eedfe43db848a7e280c6ceeca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="/site_libs/bootstrap/bootstrap-229af0592e2c064a79e5d6a2db36cb97.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,6 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 <!-- Plausible analytics -->
 <script defer="" data-domain="recurrentanalytics.com" src="https://plausible.io/js/script.js"></script>
+
+<!-- D3.js for network graph -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
 
 <!-- Hero drift effect -->
 <style>
@@ -361,12 +364,28 @@ document.addEventListener('DOMContentLoaded', function() {
     ]
   };
 
-  // Create graph button
-  const graphBtn = document.createElement('button');
-  graphBtn.className = 'graph-btn';
-  graphBtn.title = 'View note connections';
-  graphBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="19" cy="8" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="7" y1="6" x2="10" y2="5"/><line x1="14" y1="5" x2="17" y2="7"/><line x1="6" y1="8" x2="6" y2="16"/><line x1="18" y1="10" x2="18" y2="16"/><line x1="8" y1="17" x2="16" y2="17"/></svg>';
-  document.body.appendChild(graphBtn);
+  // Create sidebar mini-graph widget
+  const sidebar = document.querySelector('#quarto-margin-sidebar, .sidebar, #TOC');
+  const sidebarGraph = document.createElement('div');
+  sidebarGraph.className = 'sidebar-graph';
+  sidebarGraph.title = 'Click to expand';
+  sidebarGraph.innerHTML = `
+    <div class="sidebar-graph-header">
+      <span class="sidebar-graph-title">Connections</span>
+      <span class="sidebar-graph-expand">expand</span>
+    </div>
+    <div class="sidebar-graph-container" id="mini-graph-container"></div>
+  `;
+  if (sidebar) {
+    sidebar.appendChild(sidebarGraph);
+  } else {
+    document.body.appendChild(sidebarGraph);
+    sidebarGraph.style.position = 'fixed';
+    sidebarGraph.style.bottom = '1rem';
+    sidebarGraph.style.right = '1rem';
+    sidebarGraph.style.width = '200px';
+    sidebarGraph.style.zIndex = '100';
+  }
 
   // Create modal
   const graphModal = document.createElement('div');
@@ -398,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
     graphModal.classList.remove('active');
   }
 
-  graphBtn.addEventListener('click', openGraph);
+  sidebarGraph.addEventListener('click', openGraph);
   graphModal.querySelector('.graph-modal-close').addEventListener('click', closeGraph);
   graphModal.addEventListener('click', (e) => {
     if (e.target === graphModal) closeGraph();
@@ -410,9 +429,72 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Render mini-graph in sidebar immediately using D3-force
+  function renderMiniGraph() {
+    const container = document.getElementById('mini-graph-container');
+    if (!container || typeof d3 === 'undefined') return;
+    
+    const width = container.clientWidth || 180;
+    const height = container.clientHeight || 150;
+    const currentId = getCurrentPageId();
+
+    const svg = d3.select(container).append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`);
+
+    const nodes = graphData.nodes.map(d => ({...d}));
+    const links = graphData.links.map(d => ({source: d.source, target: d.target}));
+
+    const connectedNodes = new Set();
+    graphData.links.forEach(l => {
+      if (l.source === currentId || l.target === currentId) {
+        connectedNodes.add(l.source);
+        connectedNodes.add(l.target);
+      }
+    });
+
+    // D3 force simulation for mini graph
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(30))
+      .force('charge', d3.forceManyBody().strength(-60))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(10))
+      .stop();
+
+    // Run simulation synchronously for static layout
+    for (let i = 0; i < 100; i++) simulation.tick();
+
+    // Clamp positions
+    nodes.forEach(n => {
+      n.x = Math.max(15, Math.min(width - 15, n.x));
+      n.y = Math.max(15, Math.min(height - 15, n.y));
+    });
+
+    // Draw links
+    svg.selectAll('line')
+      .data(links)
+      .join('line')
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y)
+      .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
+
+    // Draw nodes (no labels for compact view)
+    svg.selectAll('circle')
+      .data(nodes)
+      .join('circle')
+      .attr('cx', d => d.x)
+      .attr('cy', d => d.y)
+      .attr('r', d => d.id === currentId ? 6 : (connectedNodes.has(d.id) ? 4 : 3))
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'))
+      .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''));
+  }
+  
+  renderMiniGraph();
+
   let graphInitialized = false;
   function initGraph() {
-    if (graphInitialized) return;
+    if (graphInitialized || typeof d3 === 'undefined') return;
     graphInitialized = true;
 
     const container = document.getElementById('graph-container');
@@ -420,124 +502,63 @@ document.addEventListener('DOMContentLoaded', function() {
     const height = container.clientHeight;
     const currentId = getCurrentPageId();
 
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    container.appendChild(svg);
+    const svg = d3.select(container).append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`);
 
     const nodes = graphData.nodes.map(d => ({...d}));
-    const links = graphData.links.map(d => ({...d}));
+    const links = graphData.links.map(d => ({source: d.source, target: d.target}));
 
     const connectedNodes = new Set();
-    links.forEach(l => {
+    graphData.links.forEach(l => {
       if (l.source === currentId || l.target === currentId) {
         connectedNodes.add(l.source);
         connectedNodes.add(l.target);
       }
     });
 
-    // Simple force simulation without D3
-    nodes.forEach((n, i) => {
-      const angle = (i / nodes.length) * 2 * Math.PI;
-      const radius = 150;
-      n.x = width / 2 + radius * Math.cos(angle);
-      n.y = height / 2 + radius * Math.sin(angle);
-      n.vx = 0;
-      n.vy = 0;
+    // D3 force simulation for full graph
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+      .force('charge', d3.forceManyBody().strength(-200))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(25))
+      .stop();
+
+    // Run simulation synchronously
+    for (let i = 0; i < 150; i++) simulation.tick();
+
+    // Clamp positions
+    nodes.forEach(n => {
+      n.x = Math.max(50, Math.min(width - 50, n.x));
+      n.y = Math.max(50, Math.min(height - 50, n.y));
     });
-
-    const nodeMap = {};
-    nodes.forEach(n => nodeMap[n.id] = n);
-
-    function simulate() {
-      const centerX = width / 2;
-      const centerY = height / 2;
-
-      nodes.forEach(n => {
-        n.vx += (centerX - n.x) * 0.003;
-        n.vy += (centerY - n.y) * 0.003;
-      });
-
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[j].x - nodes[i].x;
-          const dy = nodes[j].y - nodes[i].y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = 800 / (dist * dist);
-          const fx = (dx / dist) * force;
-          const fy = (dy / dist) * force;
-          nodes[i].vx -= fx;
-          nodes[i].vy -= fy;
-          nodes[j].vx += fx;
-          nodes[j].vy += fy;
-        }
-      }
-
-      links.forEach(l => {
-        const source = nodeMap[l.source] || nodeMap[l.source.id];
-        const target = nodeMap[l.target] || nodeMap[l.target.id];
-        if (!source || !target) return;
-        const dx = target.x - source.x;
-        const dy = target.y - source.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const force = (dist - 100) * 0.02;
-        const fx = (dx / dist) * force;
-        const fy = (dy / dist) * force;
-        source.vx += fx;
-        source.vy += fy;
-        target.vx -= fx;
-        target.vy -= fy;
-      });
-
-      nodes.forEach(n => {
-        n.vx *= 0.85;
-        n.vy *= 0.85;
-        n.x += n.vx;
-        n.y += n.vy;
-        n.x = Math.max(40, Math.min(width - 40, n.x));
-        n.y = Math.max(40, Math.min(height - 40, n.y));
-      });
-    }
-
-    for (let i = 0; i < 100; i++) simulate();
 
     // Draw links
-    links.forEach(l => {
-      const source = nodeMap[l.source] || nodeMap[l.source.id];
-      const target = nodeMap[l.target] || nodeMap[l.target.id];
-      if (!source || !target) return;
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', source.x);
-      line.setAttribute('y1', source.y);
-      line.setAttribute('x2', target.x);
-      line.setAttribute('y2', target.y);
-      line.setAttribute('class', 'graph-link' + (connectedNodes.has(l.source) && connectedNodes.has(l.target) ? ' connected' : ''));
-      svg.appendChild(line);
-    });
+    svg.selectAll('line')
+      .data(links)
+      .join('line')
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y)
+      .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
 
-    // Draw nodes
-    nodes.forEach(n => {
-      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      g.setAttribute('class', 'graph-node' + (n.id === currentId ? ' current' : ''));
-      g.setAttribute('transform', `translate(${n.x},${n.y})`);
+    // Draw nodes with labels
+    const nodeGroups = svg.selectAll('g.graph-node')
+      .data(nodes)
+      .join('g')
+      .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''))
+      .attr('transform', d => `translate(${d.x},${d.y})`)
+      .style('cursor', 'pointer')
+      .on('click', (event, d) => { window.location.href = d.path; });
 
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      const isConnected = connectedNodes.has(n.id);
-      circle.setAttribute('r', n.id === currentId ? 10 : (isConnected ? 8 : 6));
-      circle.setAttribute('fill', n.id === currentId ? 'var(--bs-primary)' : (isConnected ? 'var(--bs-info)' : 'var(--bs-secondary)'));
-      g.appendChild(circle);
+    nodeGroups.append('circle')
+      .attr('r', d => d.id === currentId ? 10 : (connectedNodes.has(d.id) ? 8 : 6))
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'));
 
-      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('y', 20);
-      text.textContent = n.label;
-      g.appendChild(text);
-
-      g.style.cursor = 'pointer';
-      g.addEventListener('click', () => {
-        window.location.href = n.path;
-      });
-
-      svg.appendChild(g);
-    });
+    nodeGroups.append('text')
+      .attr('y', 20)
+      .text(d => d.label);
   }
 });
 </script>
