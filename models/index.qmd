@@ -2,5 +2,6 @@
 title: Models & Tools
 ---
 
+- **Heatwaves and Day-Ahead Prices** → [heatwave-prices-de-lu.qmd](heatwave-prices-de-lu.qmd)
 - **ERA5 rainfall demo** → [era5-demo.qmd](era5-demo.qmd)
 - Trigger prototypes, Monte Carlo, risk metrics — add here as notebooks.
