@@ -18,7 +18,7 @@
     "href": "replit.html#project-structure",
     "title": "",
     "section": "Project Structure",
-    "text": "Project Structure\n\n_site/ - Built static HTML output (served in production)\n*.qmd - Quarto markdown source files\nnotes/, models/, projects/, reading/ - Content sections\n_quarto.yml - Quarto configuration\nstyles.scss - Custom styling with Quarto SCSS layer syntax\nassets/ - Favicon and other static assets\n404.qmd - Custom 404 error page\nenvironment.yml - Conda environment for local development\nserver.py - Simple Python HTTP server for serving static files"
+    "text": "Project Structure\n\n_site/ - Built static HTML output (served in production)\n*.qmd - Quarto markdown source files\nnotes/, models/, projects/, reading/ - Content sections\nsrc/ - Python modules for data processing\n\ndata_download.py - OPSD data loading utilities\nheatwave_defs.py - Heatwave flagging functions\n\ndata/raw/ - Raw data files (OPSD CSVs go here)\ndata/processed/ - Processed parquet files\n_quarto.yml - Quarto configuration\nstyles.scss - Custom styling with Quarto SCSS layer syntax\nassets/ - Favicon and other static assets\n404.qmd - Custom 404 error page\nenvironment.yml - Conda environment for local development\nserver.py - Simple Python HTTP server for serving static files"
   },
   {
     "objectID": "replit.html#running-the-site",
@@ -53,7 +53,14 @@
     "href": "replit.html#network-graph",
     "title": "",
     "section": "Network Graph",
-    "text": "Network Graph\n\nSidebar Widget: Always-visible mini network graph in right sidebar showing page connections\nD3-Force Layout: Uses D3.js v7 for force-directed graph positioning\nClick to Expand: Opens full modal with labels and click-to-navigate\nPress ‘g’: Keyboard shortcut to open graph modal"
+    "text": "Network Graph\n\nSidebar Widget: Always-visible mini network graph in right sidebar showing page connections\nMobile Button: Floating button on mobile (bottom-right) since sidebar is hidden\nD3-Force Layout: Uses D3.js v7 for force-directed graph positioning\nClick to Expand: Opens full modal with labels and click-to-navigate\nPress ‘g’: Keyboard shortcut to open graph modal"
+  },
+  {
+    "objectID": "replit.html#heatwave-analysis-page",
+    "href": "replit.html#heatwave-analysis-page",
+    "title": "",
+    "section": "Heatwave Analysis Page",
+    "text": "Heatwave Analysis Page\n\nmodels/heatwave-prices-de-lu.qmd - DE-LU electricity prices during heatwaves\nRequires OPSD CSV files in data/raw/:\n\ntime_series_60min_singleindex.csv from OPSD Time Series\nweather_data.csv from OPSD Weather\n\nRun the pipeline locally to generate data/processed/*.parquet files"
   },
   {
     "objectID": "replit.html#deployment",

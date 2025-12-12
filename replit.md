@@ -7,6 +7,11 @@ A Quarto-based static website for climate risk, models, and analytics. The site 
 - `_site/` - Built static HTML output (served in production)
 - `*.qmd` - Quarto markdown source files
 - `notes/`, `models/`, `projects/`, `reading/` - Content sections
+- `src/` - Python modules for data processing
+  - `data_download.py` - OPSD data loading utilities
+  - `heatwave_defs.py` - Heatwave flagging functions
+- `data/raw/` - Raw data files (OPSD CSVs go here)
+- `data/processed/` - Processed parquet files
 - `_quarto.yml` - Quarto configuration
 - `styles.scss` - Custom styling with Quarto SCSS layer syntax
 - `assets/` - Favicon and other static assets
@@ -45,9 +50,17 @@ quarto render
 
 ## Network Graph
 - **Sidebar Widget**: Always-visible mini network graph in right sidebar showing page connections
+- **Mobile Button**: Floating button on mobile (bottom-right) since sidebar is hidden
 - **D3-Force Layout**: Uses D3.js v7 for force-directed graph positioning
 - **Click to Expand**: Opens full modal with labels and click-to-navigate
 - **Press 'g'**: Keyboard shortcut to open graph modal
+
+## Heatwave Analysis Page
+- `models/heatwave-prices-de-lu.qmd` - DE-LU electricity prices during heatwaves
+- Requires OPSD CSV files in `data/raw/`:
+  - `time_series_60min_singleindex.csv` from [OPSD Time Series](https://data.open-power-system-data.org/time_series/)
+  - `weather_data.csv` from [OPSD Weather](https://data.open-power-system-data.org/weather_data/)
+- Run the pipeline locally to generate `data/processed/*.parquet` files
 
 ## Deployment
 Configured for static deployment serving the `_site` directory.
