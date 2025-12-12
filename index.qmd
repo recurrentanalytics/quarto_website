@@ -13,18 +13,16 @@ Experimental climate modelling—notes, models, and tools.
 :::
 
 ```{=html}
-<div class="manifesto-box" id="manifesto-box">
-  <div class="manifesto-header">
+<details class="manifesto-box" id="manifesto-box">
+  <summary class="manifesto-header">
     <span class="manifesto-title" id="manifesto-title">Manifesto</span>
-    <button class="manifesto-switch" id="manifesto-switch" aria-pressed="false">
-      <span class="switch-label" data-active="manifesto">Manifesto</span>
-      <span class="switch-divider">|</span>
-      <span class="switch-label" data-active="anti">Anti</span>
+    <button class="manifesto-switch" id="manifesto-switch" aria-label="Toggle between Manifesto and Anti-Manifesto" type="button" onclick="event.stopPropagation()">
+      <span class="yinyang">☯</span>
     </button>
-  </div>
+  </summary>
   <div class="manifesto-body" id="manifesto-body">
   </div>
-</div>
+</details>
 
 <template id="manifesto-text">
 <p>This site is a working notebook.</p>
@@ -71,12 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (state === 'manifesto') {
       body.innerHTML = manifestoTemplate.innerHTML;
       title.textContent = 'Manifesto';
-      switchBtn.setAttribute('aria-pressed', 'false');
       switchBtn.classList.remove('anti-active');
     } else {
       body.innerHTML = antiTemplate.innerHTML;
       title.textContent = 'Anti-Manifesto';
-      switchBtn.setAttribute('aria-pressed', 'true');
       switchBtn.classList.add('anti-active');
     }
   }
@@ -88,7 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   initFromTheme();
   
-  switchBtn.addEventListener('click', function() {
+  switchBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     setState(currentState === 'manifesto' ? 'anti' : 'manifesto');
   });
   
