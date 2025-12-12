@@ -1,0 +1,138 @@
+# src/data_download.py
+
+import os
+import pandas as pd
+
+
+def load_opsd_prices_de_lu(
+    path: str = "data/raw/time_series_60min_singleindex.csv",
+    start: str | None = None,
+    end: str | None = None,
+) -> pd.DataFrame:
+    """
+    Load DE-LU day-ahead prices from OPSD, return:
+    datetime_utc (tz-aware)
+    price_eur_mwh
+    """
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"File not found at {path}. Download from:"
+            " https://data.open-power-system-data.org/time_series/latest/"
+        )
+
+    usecols = ["utc_timestamp", "DE_LU_price_day_ahead"]
+    df = pd.read_csv(path, usecols=usecols)
+
+    # parse timestamps
+    df["datetime_utc"] = pd.to_datetime(df["utc_timestamp"], utc=True)
+    df = df.rename(columns={"DE_LU_price_day_ahead": "price_eur_mwh"})
+    df = df[["datetime_utc", "price_eur_mwh"]].sort_values("datetime_utc")
+
+    # optional time windowing
+    if start:
+        df = df[df["datetime_utc"] >= pd.Timestamp(start, tz="UTC")]
+    if end:
+        df = df[df["datetime_utc"] < pd.Timestamp(end,   tz="UTC")]
+
+    df = df.reset_index(drop=True)
+    return df
+
+
+def save_prices_from_opsd(
+    start: str = "2015-01-01",
+    end:   str = "2020-07-01",
+    raw_path:   str = "data/raw/prices_de_lu_from_opsd.parquet",
+    clean_path: str = "data/processed/prices_de_lu_clean.parquet",
+) -> None:
+
+    os.makedirs(os.path.dirname(raw_path), exist_ok=True)
+    os.makedirs(os.path.dirname(clean_path), exist_ok=True)
+
+    df = load_opsd_prices_de_lu(start=start, end=end)
+
+    # save raw
+    df.to_parquet(raw_path, index=False)
+
+    # enforce regular hourly UTC index for clean output
+    df_clean = df.set_index("datetime_utc").sort_index()
+    full_index = pd.date_range(
+        start=df_clean.index.min(),
+        end=df_clean.index.max(),
+        freq="H",
+        tz="UTC",
+    )
+    df_clean = df_clean.reindex(full_index)
+    df_clean.index.name = "datetime_utc"
+    df_clean.reset_index().to_parquet(clean_path, index=False)
+
+import pandas as pd
+import os
+
+def load_opsd_weather_de(
+    path: str = "data/raw/weather_data.csv",
+    start: str | None = None,
+    end: str | None = None,
+) -> pd.DataFrame:
+    """
+    Load DE temperature from OPSD weather_data.csv.
+
+    Returns a DataFrame with:
+        datetime_utc (tz-aware)
+        t2m_mean_c   (°C, country-aggregated)
+    """
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"Weather file not found at {path}. Download from:\n"
+            "https://data.open-power-system-data.org/weather_data/2020-09-16/"
+        )
+
+    usecols = ["utc_timestamp", "DE_temperature"]
+    df = pd.read_csv(path, usecols=usecols)
+
+    # Parse timestamp (already UTC in the file)
+    df["datetime_utc"] = pd.to_datetime(df["utc_timestamp"], utc=True)
+
+    df = df.rename(columns={"DE_temperature": "t2m_mean_c"})
+    df = df[["datetime_utc", "t2m_mean_c"]].sort_values("datetime_utc")
+
+    # Optional time window
+    if start is not None:
+        df = df[df["datetime_utc"] >= pd.Timestamp(start, tz="UTC")]
+    if end is not None:
+        df = df[df["datetime_utc"] < pd.Timestamp(end, tz="UTC")]
+
+    df = df.reset_index(drop=True)
+    return df
+
+
+def save_weather_de_from_opsd(
+    start: str = "2015-01-01",
+    end:   str = "2020-01-01",  # weather_data goes up to 2019
+    raw_path:   str = "data/raw/weather_de_from_opsd.parquet",
+    clean_path: str = "data/processed/weather_de_agg.parquet",
+) -> None:
+    """
+    Load DE weather from OPSD, clip period, and save raw + clean versions.
+    """
+    os.makedirs(os.path.dirname(raw_path), exist_ok=True)
+    os.makedirs(os.path.dirname(clean_path), exist_ok=True)
+
+    df = load_opsd_weather_de(start=start, end=end)
+
+    # Raw dump
+    df.to_parquet(raw_path, index=False)
+
+    # Enforce regular hourly UTC index
+    df_clean = df.set_index("datetime_utc").sort_index()
+    full_index = pd.date_range(
+        start=df_clean.index.min(),
+        end=df_clean.index.max(),
+        freq="H",
+        tz="UTC",
+    )
+    df_clean = df_clean.reindex(full_index)
+    df_clean.index.name = "datetime_utc"
+    df_clean = df_clean.reset_index()
+
+    df_clean.to_parquet(clean_path, index=False)
+

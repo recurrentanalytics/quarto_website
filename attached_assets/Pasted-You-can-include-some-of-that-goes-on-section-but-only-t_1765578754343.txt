@@ -1,0 +1,239 @@
+You *can* include **some** of that “goes on” section — but only the parts that advance the story you already framed. For the Models page, the publishable cut is:
+
+* **(1) build heatwave flag + merge** (your `heatwave_defs.py` does this cleanly)
+* **(2) Summer 2019 overlay with shaded heatwave days** (interpretability)
+* **(3) peak-hours distribution comparison: heatwave vs non-heatwave** (a descriptive contrast)
+
+Everything else (multiple regressions, seaborn grids, lowess, repeated model specs) is best kept in a private notebook.
+
+Below is a **site-ready Quarto page** that uses *your* functions, removes `sys.path.append`, stays Pattern-A compliant, and keeps the analysis bounded.
+
+I also include an optional “download raw OPSD CSVs if missing” helper (so Replit and a clean clone work), using the OPSD download pages as the canonical source. ([Open Power System Data][1])
+
+---
+
+## `models/heatwave-prices-de-lu.qmd` (publish cut)
+
+````markdown
+---
+title: "Heatwaves and Day-Ahead Prices: A Minimal Flagging Pipeline (DE-LU, Summer 2019)"
+date: 2025-12-12
+categories: [energy, extremes, time-series]
+execute:
+  echo: true
+  warning: false
+  message: false
+freeze: true
+---
+
+## Why this note exists
+
+This is a deliberately small empirical note. It documents one operational definition of a heatwave and traces how that definition propagates through a data pipeline, culminating in descriptive comparisons of day-ahead electricity prices during heatwave versus non-heatwave periods.
+
+This is not a causal analysis. No identification strategy is claimed, and the pipeline is meant to be inspectable rather than “correct” in any final sense.
+
+## Data
+
+Public datasets from Open Power System Data (OPSD):
+
+- DE-LU day-ahead prices from `time_series_60min_singleindex.csv` :contentReference[oaicite:1]{index=1}  
+- German temperature from `weather_data.csv` :contentReference[oaicite:2]{index=2}  
+
+The code below expects those CSVs in `data/raw/`. (A small helper is included to download them if you prefer.)
+
+## (Optional) Download raw CSVs if missing
+
+```{python}
+from pathlib import Path
+import os
+
+raw_dir = Path("data/raw")
+raw_dir.mkdir(parents=True, exist_ok=True)
+
+TIME_SERIES_CSV = raw_dir / "time_series_60min_singleindex.csv"
+WEATHER_CSV     = raw_dir / "weather_data.csv"
+
+def ensure_file(path: Path, url: str) -> None:
+    if path.exists():
+        return
+    import requests
+    r = requests.get(url, stream=True, timeout=120)
+    r.raise_for_status()
+    with open(path, "wb") as f:
+        for chunk in r.iter_content(chunk_size=1024 * 1024):
+            if chunk:
+                f.write(chunk)
+
+# Replace the URLs below with the direct file links you use.
+# The OPSD download pages list the current files and formats:
+# time_series: https://data.open-power-system-data.org/time_series/  :contentReference[oaicite:3]{index=3}
+# weather_data: https://data.open-power-system-data.org/weather_data/ :contentReference[oaicite:4]{index=4}
+#
+# If you don't want network calls during rendering, keep freeze:true and run once locally.
+
+# ensure_file(TIME_SERIES_CSV, "PASTE_DIRECT_OPSD_TIME_SERIES_FILE_URL_HERE")
+# ensure_file(WEATHER_CSV,     "PASTE_DIRECT_OPSD_WEATHER_FILE_URL_HERE")
+````
+
+## Build processed inputs (hourly parquet)
+
+import pandas as pd
+
+from src.data_download import save_prices_from_opsd, save_weather_de_from_opsd
+
+START = "2015-01-01"
+END_PRICES  = "2020-07-01"
+END_WEATHER = "2020-01-01"
+
+save_prices_from_opsd(start=START, end=END_PRICES)
+save_weather_de_from_opsd(start=START, end=END_WEATHER)
+
+prices  = pd.read_parquet("data/processed/prices_de_lu_clean.parquet")
+weather = pd.read_parquet("data/processed/weather_de_agg.parquet")
+
+prices.head(), weather.head()
+
+## Heatwave definition
+
+Operational definition used here (chosen for clarity, not optimality):
+
+* daily maximum temperature ≥ 30°C
+* at least 3 consecutive days
+
+This is one modelling choice among many. The point is to make it explicit and inspect its implications.
+
+## Flag heatwaves and merge with prices
+
+import matplotlib.pyplot as plt
+
+from src.heatwave_defs import (
+restrict_common_period,
+compute_daily_max_temp,
+flag_heatwaves,
+expand_heatwave_flag_to_hourly,
+merge_price_and_weather,
+)
+
+prices_c, weather_c = restrict_common_period(prices, weather)
+
+daily_temp  = compute_daily_max_temp(weather_c)
+daily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)
+
+# Attach daily flag back to hourly weather and merge with hourly prices
+
+weather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)
+merged = merge_price_and_weather(prices_c, weather_hw)
+
+merged.head()
+
+## Temperature with heatwave days highlighted (Summer 2019)
+
+hw_2019 = daily_flags["2019-06-01":"2019-08-31"]
+
+fig, ax = plt.subplots(figsize=(12, 4))
+ax.plot(hw_2019.index, hw_2019["t2m_daily_max_c"], label="Daily max temp")
+ax.scatter(
+hw_2019.index[hw_2019["is_heatwave_day"]],
+hw_2019["t2m_daily_max_c"][hw_2019["is_heatwave_day"]],
+s=35,
+label="Heatwave days",
+)
+ax.set_ylabel("°C")
+ax.set_title("Daily max temperature with heatwave days highlighted (Summer 2019)")
+ax.legend()
+plt.show()
+
+## Summer 2019: prices and temperature (heatwave days shaded)
+
+summer = merged.set_index("datetime_utc")["2019-06-01":"2019-08-31"]
+
+fig, ax1 = plt.subplots(figsize=(12, 5))
+ax2 = ax1.twinx()
+
+ax1.plot(summer.index, summer["price_eur_mwh"], label="Price (EUR/MWh)")
+ax2.plot(summer.index, summer["t2m_mean_c"], alpha=0.7, linestyle="--", label="Temperature (°C)")
+
+# Shade heatwave days
+
+for day in summer.index.normalize().unique():
+day_mask = (summer.index.normalize() == day)
+if summer.loc[day_mask, "is_heatwave_day"].any():
+ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)
+
+ax1.set_ylabel("Price [EUR/MWh]")
+ax2.set_ylabel("Temperature [°C]")
+ax1.set_title("Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)")
+fig.tight_layout()
+plt.show()
+
+## Peak hours: price distributions on heatwave vs non-heatwave days (descriptive)
+
+peak = merged[(merged["hour"] >= 8) & (merged["hour"] <= 20)].copy()
+
+hw = peak[peak["is_heatwave_day"]]
+normal = peak[~peak["is_heatwave_day"]]
+
+summary = pd.DataFrame({
+"normal_peak_hours": normal["price_eur_mwh"].describe(),
+"heatwave_peak_hours": hw["price_eur_mwh"].describe(),
+})
+summary
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+ax.hist(normal["price_eur_mwh"], bins=60, alpha=0.6, density=True, label="Normal days (peak hours)")
+ax.hist(hw["price_eur_mwh"],     bins=60, alpha=0.6, density=True, label="Heatwave days (peak hours)")
+
+ax.set_xlabel("Day-ahead price (EUR/MWh)")
+ax.set_ylabel("Density")
+ax.set_title("DE-LU prices: heatwave vs normal days (2015–2019, peak hours)")
+ax.legend()
+plt.show()
+
+## Limitations and extensions
+
+This note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.
+
+Natural extensions include:
+
+* alternative heatwave definitions (percentiles, regionalised thresholds)
+* adding load and renewable generation as covariates
+* multi-year comparisons focusing on the stability of patterns across summers
+
+```
+
+---
+
+## Repo changes to make this work without hacks
+
+1) **Remove** all `sys.path.append("/home/...")` usage.  
+2) Keep your existing modules as real files in the repo (you already have them):
+   - `src/data_download.py`
+   - `src/heatwave_defs.py`
+3) Ensure your Quarto execution environment can import `src.*` (two options):
+   - simplest: add an empty `src/__init__.py` so Python treats it as a package  
+   - or move helpers under `models/_lib/` and import from there
+
+If you want the most robust site build, I recommend:
+
+- add `src/__init__.py` (empty file)
+- keep `freeze: true` and run the page once locally before publishing
+
+---
+
+## Replit push (what to upload)
+
+To use your remaining Replit credit efficiently, push a minimal bundle:
+
+- `src/data_download.py`
+- `src/heatwave_defs.py`
+- `models/heatwave-prices-de-lu.qmd` **or** a notebook equivalent
+- `requirements.txt` (pandas, pyarrow, matplotlib, requests)
+
+Then you can run it once, export the results, and freeze for Quarto.
+
+If you paste your current `models/index.qmd` listing block, I’ll tell you exactly how this page will appear (card text, ordering, categories) and what to tweak so it lands cleanly.
+::contentReference[oaicite:5]{index=5}
+```
+
+[1]: https://data.open-power-system-data.org/time_series/?utm_source=chatgpt.com "Time series Data Package"
