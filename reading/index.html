@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-20f7ef8c8d7e189c869903d222d46e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e1fe4655d9dfc9c388e0554fb3451f43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-20f7ef8c8d7e189c869903d222d46e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0519ec449e1786ecd7625ff2982c73f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-125d8b142cf60674047e69dd42a6ab04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0519ec449e1786ecd7625ff2982c73f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -199,7 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'SAL', path: '/notes/climate/sal.html' },
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
-    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' }
+    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
+    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
+    { title: 'ERA5 Demo', path: '/models/era5-demo.html' }
   ];
 
   const overlay = document.createElement('div');
@@ -327,20 +329,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // Network Graph - Obsidian-style visualization
   const graphData = {
     nodes: [
-      { id: 'home', label: 'Home', path: '/' },
-      { id: 'about', label: 'About', path: '/about.html' },
-      { id: 'notes', label: 'Notes', path: '/notes/' },
-      { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
-      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html' },
-      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html' },
-      { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html' },
-      { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html' },
-      { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html' },
-      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html' },
-      { id: 'projects', label: 'Projects', path: '/projects/' },
-      { id: 'models', label: 'Models', path: '/models/' },
-      { id: 'reading', label: 'Reading', path: '/reading/' },
-      { id: 'contact', label: 'Contact', path: '/contact_cv.html' }
+      { id: 'home', label: 'Home', path: '/', cat: 'nav' },
+      { id: 'about', label: 'About', path: '/about.html', cat: 'nav' },
+      { id: 'notes', label: 'Notes', path: '/notes/', cat: 'nav' },
+      { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html', cat: 'notes' },
+      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html', cat: 'notes' },
+      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html', cat: 'notes' },
+      { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
+      { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
+      { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
+      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html', cat: 'models' },
+      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
+      { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
+      { id: 'models', label: 'Models', path: '/models/', cat: 'nav' },
+      { id: 'reading', label: 'Reading', path: '/reading/', cat: 'nav' },
+      { id: 'contact', label: 'Contact', path: '/contact_cv.html', cat: 'nav' }
     ],
     links: [
       { source: 'home', target: 'notes' },
@@ -357,12 +360,26 @@ document.addEventListener('DOMContentLoaded', function() {
       { source: 'risk-2', target: 'risk-3' },
       { source: 'risk-2', target: 'sal' },
       { source: 'risk-2', target: 'era5' },
+      { source: 'risk-2', target: 'heatwave' },
       { source: 'risk-3', target: 'risk-1' },
       { source: 'risk-3', target: 'risk-2' },
       { source: 'risk-3', target: 'monte-carlo' },
       { source: 'risk-3', target: 'sal' },
-      { source: 'models', target: 'era5' }
+      { source: 'models', target: 'era5' },
+      { source: 'models', target: 'heatwave' },
+      { source: 'heatwave', target: 'era5' },
+      { source: 'heatwave', target: 'sal' },
+      { source: 'heatwave', target: 'risk-2' },
+      { source: 'sal', target: 'heatwave' },
+      { source: 'monte-carlo', target: 'risk-3' }
     ]
+  };
+  
+  // Category colors for graph nodes
+  const catColors = {
+    nav: 'var(--bs-secondary)',
+    notes: 'var(--bs-info)',
+    models: 'var(--bs-success)'
   };
 
   // Create sidebar mini-graph widget
@@ -480,15 +497,31 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('y2', d => d.target.y)
       .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
 
-    // Draw nodes (no labels for compact view)
-    svg.selectAll('circle')
+    // Draw nodes with hover tooltip
+    const nodeGroups = svg.selectAll('g.mini-node')
       .data(nodes)
-      .join('circle')
-      .attr('cx', d => d.x)
-      .attr('cy', d => d.y)
+      .join('g')
+      .attr('class', 'mini-node')
+      .attr('transform', d => `translate(${d.x},${d.y})`);
+
+    nodeGroups.append('circle')
       .attr('r', d => d.id === currentId ? 6 : (connectedNodes.has(d.id) ? 4 : 3))
-      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'))
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (catColors[d.cat] || 'var(--bs-secondary)'))
       .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''));
+
+    // Tooltip on hover
+    const tooltip = d3.select(container).append('div')
+      .attr('class', 'mini-graph-tooltip')
+      .style('opacity', 0);
+
+    nodeGroups
+      .on('mouseenter', (event, d) => {
+        tooltip.text(d.label)
+          .style('left', (d.x + 10) + 'px')
+          .style('top', (d.y - 5) + 'px')
+          .style('opacity', 1);
+      })
+      .on('mouseleave', () => tooltip.style('opacity', 0));
   }
   
   renderMiniGraph();
@@ -564,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nodeGroups.append('circle')
       .attr('r', d => d.id === currentId ? 10 : (connectedNodes.has(d.id) ? 8 : 6))
-      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'));
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (catColors[d.cat] || 'var(--bs-secondary)'));
 
     nodeGroups.append('text')
       .attr('y', 20)
@@ -575,10 +608,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <meta property="og:title" content="Reading – re:current_analytics">
-<meta property="og:description" content=":::">
+<meta property="og:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
 <meta property="og:site_name" content="re:current_analytics">
 <meta name="twitter:title" content="Reading – re:current_analytics">
-<meta name="twitter:description" content=":::">
+<meta name="twitter:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
 <meta name="twitter:creator" content="@timmwalker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -771,8 +804,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#suggested-starting-points" id="toc-suggested-starting-points" class="nav-link active" data-scroll-target="#suggested-starting-points">Suggested Starting Points</a></li>
+  <li><a href="#categories" id="toc-categories" class="nav-link" data-scroll-target="#categories">Categories</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/reading/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -797,69 +837,42 @@ document.addEventListener('DOMContentLoaded', function() {
 </header>
 
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Reading</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Short summaries of papers, books, and references that inform the lab.</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add <span class="in">`.qmd`</span> files here and they’ll appear in the listing below.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">:::{#quarto-navigation-envelope .hidden}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl"}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU="}</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">:::{.hidden .quarto-markdown-envelope-contents render-id="Zm9vdGVyLWxlZnQ="}</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">© Timm Walker</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">:::</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">:::{.hidden .quarto-markdown-envelope-contents render-id="Zm9vdGVyLWNlbnRlcg=="}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">Press ⌘K to navigate</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">:::</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">:::{.hidden .quarto-markdown-envelope-contents render-id="Zm9vdGVyLXJpZ2h0"}</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">re:current_analytics</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">:::</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">:::</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">:::{#quarto-meta-markdown .hidden}</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLW1ldGF0aXRsZQ=="}</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU="}</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLW9nY2FyZHRpdGxl"}</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ=="}</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw=="}</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLW9nY2FyZGRkZXNj"}</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">:::</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!-- --&gt;</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">::: {.quarto-embedded-source-code}</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">```````````````````{.markdown shortcodes="false"}</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">title: Reading</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="in">Short summaries of papers, books, and references that inform the lab.</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">- Add `.qmd` files here and they’ll appear in the listing below.</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>:::</p>
+<p>Short summaries of papers, books, and references that inform the lab.</p>
+<p><em>Coming soon: curated reading recommendations on climate risk, energy systems, and quantitative methods.</em></p>
+<section id="suggested-starting-points" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-starting-points">Suggested Starting Points</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Getting Started with Climate Risk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>IPCC AR6 Reports</strong> - Essential background on climate science</li>
+<li><strong>IEA World Energy Outlook</strong> - Annual energy sector analysis</li>
+<li><strong>Academic journals</strong>: <em>Nature Climate Change</em>, <em>Energy Policy</em>, <em>Climatic Change</em></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="categories" class="level2">
+<h2 class="anchored" data-anchor-id="categories">Categories</h2>
+<p>As reading notes are added, they’ll be organized by topic:</p>
+<ul>
+<li><strong>Climate Science</strong> - Physical climate modeling, projections, uncertainty</li>
+<li><strong>Energy Systems</strong> - Grid operations, renewables integration, storage</li>
+<li><strong>Risk &amp; Finance</strong> - Climate risk pricing, stress testing, disclosure</li>
+<li><strong>Methods</strong> - Monte Carlo, time series, machine learning applications</li>
+</ul>
+
+
+<!-- -->
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1325,19 +1338,46 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Reading</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Short summaries of papers, books, and references that inform the lab.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>*Coming soon: curated reading recommendations on climate risk, energy systems, and quantitative methods.*</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Suggested Starting Points</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Started with Climate Risk</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IPCC AR6 Reports** - Essential background on climate science</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IEA World Energy Outlook** - Annual energy sector analysis</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Academic journals**: *Nature Climate Change*, *Energy Policy*, *Climatic Change*</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Categories</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>As reading notes are added, they'll be organized by topic:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Climate Science** - Physical climate modeling, projections, uncertainty</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Energy Systems** - Grid operations, renewables integration, storage</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Risk &amp; Finance** - Climate risk pricing, stress testing, disclosure</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Methods** - Monte Carlo, time series, machine learning applications</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      <div class="footer-contents">© Timm Walker</div>  
-    </div>   
+<p>© Timm Walker</p>
+</div>   
     <div class="nav-footer-center">
-      <div class="footer-contents">Press ⌘K to navigate</div>  
-    <div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/reading/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+<p>Press ⌘K to navigate</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/reading/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
-      <div class="footer-contents">re:current_analytics</div>  
-    </div>
+<p>re:current_analytics</p>
+</div>
   </div>
 </footer>
 

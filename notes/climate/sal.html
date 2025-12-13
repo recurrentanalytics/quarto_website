@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-20f7ef8c8d7e189c869903d222d46e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-e1fe4655d9dfc9c388e0554fb3451f43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-20f7ef8c8d7e189c869903d222d46e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0519ec449e1786ecd7625ff2982c73f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-125d8b142cf60674047e69dd42a6ab04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0519ec449e1786ecd7625ff2982c73f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -200,7 +200,9 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'SAL', path: '/notes/climate/sal.html' },
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
-    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' }
+    { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
+    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
+    { title: 'ERA5 Demo', path: '/models/era5-demo.html' }
   ];
 
   const overlay = document.createElement('div');
@@ -328,20 +330,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // Network Graph - Obsidian-style visualization
   const graphData = {
     nodes: [
-      { id: 'home', label: 'Home', path: '/' },
-      { id: 'about', label: 'About', path: '/about.html' },
-      { id: 'notes', label: 'Notes', path: '/notes/' },
-      { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
-      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html' },
-      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html' },
-      { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html' },
-      { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html' },
-      { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html' },
-      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html' },
-      { id: 'projects', label: 'Projects', path: '/projects/' },
-      { id: 'models', label: 'Models', path: '/models/' },
-      { id: 'reading', label: 'Reading', path: '/reading/' },
-      { id: 'contact', label: 'Contact', path: '/contact_cv.html' }
+      { id: 'home', label: 'Home', path: '/', cat: 'nav' },
+      { id: 'about', label: 'About', path: '/about.html', cat: 'nav' },
+      { id: 'notes', label: 'Notes', path: '/notes/', cat: 'nav' },
+      { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html', cat: 'notes' },
+      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html', cat: 'notes' },
+      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html', cat: 'notes' },
+      { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
+      { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
+      { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
+      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html', cat: 'models' },
+      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
+      { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
+      { id: 'models', label: 'Models', path: '/models/', cat: 'nav' },
+      { id: 'reading', label: 'Reading', path: '/reading/', cat: 'nav' },
+      { id: 'contact', label: 'Contact', path: '/contact_cv.html', cat: 'nav' }
     ],
     links: [
       { source: 'home', target: 'notes' },
@@ -358,12 +361,26 @@ document.addEventListener('DOMContentLoaded', function() {
       { source: 'risk-2', target: 'risk-3' },
       { source: 'risk-2', target: 'sal' },
       { source: 'risk-2', target: 'era5' },
+      { source: 'risk-2', target: 'heatwave' },
       { source: 'risk-3', target: 'risk-1' },
       { source: 'risk-3', target: 'risk-2' },
       { source: 'risk-3', target: 'monte-carlo' },
       { source: 'risk-3', target: 'sal' },
-      { source: 'models', target: 'era5' }
+      { source: 'models', target: 'era5' },
+      { source: 'models', target: 'heatwave' },
+      { source: 'heatwave', target: 'era5' },
+      { source: 'heatwave', target: 'sal' },
+      { source: 'heatwave', target: 'risk-2' },
+      { source: 'sal', target: 'heatwave' },
+      { source: 'monte-carlo', target: 'risk-3' }
     ]
+  };
+  
+  // Category colors for graph nodes
+  const catColors = {
+    nav: 'var(--bs-secondary)',
+    notes: 'var(--bs-info)',
+    models: 'var(--bs-success)'
   };
 
   // Create sidebar mini-graph widget
@@ -481,15 +498,31 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('y2', d => d.target.y)
       .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
 
-    // Draw nodes (no labels for compact view)
-    svg.selectAll('circle')
+    // Draw nodes with hover tooltip
+    const nodeGroups = svg.selectAll('g.mini-node')
       .data(nodes)
-      .join('circle')
-      .attr('cx', d => d.x)
-      .attr('cy', d => d.y)
+      .join('g')
+      .attr('class', 'mini-node')
+      .attr('transform', d => `translate(${d.x},${d.y})`);
+
+    nodeGroups.append('circle')
       .attr('r', d => d.id === currentId ? 6 : (connectedNodes.has(d.id) ? 4 : 3))
-      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'))
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (catColors[d.cat] || 'var(--bs-secondary)'))
       .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''));
+
+    // Tooltip on hover
+    const tooltip = d3.select(container).append('div')
+      .attr('class', 'mini-graph-tooltip')
+      .style('opacity', 0);
+
+    nodeGroups
+      .on('mouseenter', (event, d) => {
+        tooltip.text(d.label)
+          .style('left', (d.x + 10) + 'px')
+          .style('top', (d.y - 5) + 'px')
+          .style('opacity', 1);
+      })
+      .on('mouseleave', () => tooltip.style('opacity', 0));
   }
   
   renderMiniGraph();
@@ -565,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nodeGroups.append('circle')
       .attr('r', d => d.id === currentId ? 10 : (connectedNodes.has(d.id) ? 8 : 6))
-      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (connectedNodes.has(d.id) ? 'var(--bs-info)' : 'var(--bs-secondary)'));
+      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (catColors[d.cat] || 'var(--bs-secondary)'));
 
     nodeGroups.append('text')
       .attr('y', 20)

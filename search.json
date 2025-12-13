@@ -4,7 +4,21 @@
     "href": "reading/index.html",
     "title": "Reading",
     "section": "",
-    "text": "---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWxlZnQ=\"}\n© Timm Walker\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLWNlbnRlcg==\"}\nPress ⌘K to navigate\n:::\n\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"Zm9vdGVyLXJpZ2h0\"}\nre:current_analytics\n:::\n\n:::\n\n\n\n:::{#quarto-meta-markdown .hidden}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGF0aXRsZQ==\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=\"}\n[Reading – re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZHRpdGxl\"}\n[re:current_analytics]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW1ldGFzaXRlbmFtZQ==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==\"}\n[A lab-notebook for climate risk, models, and recurrent intelligence.]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLW9nY2FyZGRkZXNj\"}\n:::\n\n\n\n\n&lt;!-- --&gt;\n\n::: {.quarto-embedded-source-code}\n```````````````````{.markdown shortcodes=\"false\"}\n```markdown\n---\ntitle: Reading\n---\n\nShort summaries of papers, books, and references that inform the lab.\n\n- Add `.qmd` files here and they’ll appear in the listing below.\n\n```{=html}\n&lt;!-- Listing can be added later if you prefer index pages per reading note --&gt;\n:::"
+    "text": "Short summaries of papers, books, and references that inform the lab.\nComing soon: curated reading recommendations on climate risk, energy systems, and quantitative methods."
+  },
+  {
+    "objectID": "reading/index.html#suggested-starting-points",
+    "href": "reading/index.html#suggested-starting-points",
+    "title": "Reading",
+    "section": "Suggested Starting Points",
+    "text": "Suggested Starting Points\n\n\n\n\n\n\nTipGetting Started with Climate Risk\n\n\n\n\nIPCC AR6 Reports - Essential background on climate science\nIEA World Energy Outlook - Annual energy sector analysis\nAcademic journals: Nature Climate Change, Energy Policy, Climatic Change"
+  },
+  {
+    "objectID": "reading/index.html#categories",
+    "href": "reading/index.html#categories",
+    "title": "Reading",
+    "section": "Categories",
+    "text": "Categories\nAs reading notes are added, they’ll be organized by topic:\n\nClimate Science - Physical climate modeling, projections, uncertainty\nEnergy Systems - Grid operations, renewables integration, storage\nRisk & Finance - Climate risk pricing, stress testing, disclosure\nMethods - Monte Carlo, time series, machine learning applications"
   },
   {
     "objectID": "models/era5-demo.html",
@@ -39,7 +53,7 @@
     "href": "models/heatwave-prices-de-lu.html#build-processed-inputs-hourly-parquet",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Build processed inputs (hourly parquet)",
-    "text": "Build processed inputs (hourly parquet)\n\nimport pandas as pd\n\nfrom src.data_download import save_prices_from_opsd, save_weather_de_from_opsd\n\nSTART = \"2015-01-01\"\nEND_PRICES  = \"2020-07-01\"\nEND_WEATHER = \"2020-01-01\"\n\nsave_prices_from_opsd(start=START, end=END_PRICES)\nsave_weather_de_from_opsd(start=START, end=END_WEATHER)\n\nprices  = pd.read_parquet(\"data/processed/prices_de_lu_clean.parquet\")\nweather = pd.read_parquet(\"data/processed/weather_de_agg.parquet\")\n\nprices.head(), weather.head()\n\n(               datetime_utc  price_eur_mwh\n 0 2015-01-01 00:00:00+00:00            NaN\n 1 2015-01-01 01:00:00+00:00            NaN\n 2 2015-01-01 02:00:00+00:00            NaN\n 3 2015-01-01 03:00:00+00:00            NaN\n 4 2015-01-01 04:00:00+00:00            NaN,\n                datetime_utc  t2m_mean_c\n 0 2015-01-01 00:00:00+00:00      -0.981\n 1 2015-01-01 01:00:00+00:00      -1.035\n 2 2015-01-01 02:00:00+00:00      -1.109\n 3 2015-01-01 03:00:00+00:00      -1.166\n 4 2015-01-01 04:00:00+00:00      -1.226)"
+    "text": "Build processed inputs (hourly parquet)\nimport pandas as pd\n\nfrom src.data_download import save_prices_from_opsd, save_weather_de_from_opsd\n\nSTART = \"2015-01-01\"\nEND_PRICES  = \"2020-07-01\"\nEND_WEATHER = \"2020-01-01\"\n\nsave_prices_from_opsd(start=START, end=END_PRICES)\nsave_weather_de_from_opsd(start=START, end=END_WEATHER)\n\nprices  = pd.read_parquet(\"data/processed/prices_de_lu_clean.parquet\")\nweather = pd.read_parquet(\"data/processed/weather_de_agg.parquet\")\n\nprices.head(), weather.head()"
   },
   {
     "objectID": "models/heatwave-prices-de-lu.html#heatwave-definition",
@@ -53,35 +67,35 @@
     "href": "models/heatwave-prices-de-lu.html#flag-heatwaves-and-merge-with-prices",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Flag heatwaves and merge with prices",
-    "text": "Flag heatwaves and merge with prices\n\nimport matplotlib.pyplot as plt\n\nfrom src.heatwave_defs import (\n    restrict_common_period,\n    compute_daily_max_temp,\n    flag_heatwaves,\n    expand_heatwave_flag_to_hourly,\n    merge_price_and_weather,\n)\n\nprices_c, weather_c = restrict_common_period(prices, weather)\n\ndaily_temp  = compute_daily_max_temp(weather_c)\ndaily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)\n\n# Attach daily flag back to hourly weather and merge with hourly prices\nweather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)\nmerged = merge_price_and_weather(prices_c, weather_hw)\n\nmerged.head()\n\n\n\n\n\n\n\n\ndatetime_utc\nprice_eur_mwh\nt2m_mean_c\nis_heatwave_day\nhour\ndow\nmonth\n\n\n\n\n0\n2015-01-01 00:00:00+00:00\nNaN\n-0.981\nFalse\n0\n3\n1\n\n\n1\n2015-01-01 01:00:00+00:00\nNaN\n-1.035\nFalse\n1\n3\n1\n\n\n2\n2015-01-01 02:00:00+00:00\nNaN\n-1.109\nFalse\n2\n3\n1\n\n\n3\n2015-01-01 03:00:00+00:00\nNaN\n-1.166\nFalse\n3\n3\n1\n\n\n4\n2015-01-01 04:00:00+00:00\nNaN\n-1.226\nFalse\n4\n3\n1"
+    "text": "Flag heatwaves and merge with prices\nimport matplotlib.pyplot as plt\n\nfrom src.heatwave_defs import (\n    restrict_common_period,\n    compute_daily_max_temp,\n    flag_heatwaves,\n    expand_heatwave_flag_to_hourly,\n    merge_price_and_weather,\n)\n\nprices_c, weather_c = restrict_common_period(prices, weather)\n\ndaily_temp  = compute_daily_max_temp(weather_c)\ndaily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)\n\n# Attach daily flag back to hourly weather and merge with hourly prices\nweather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)\nmerged = merge_price_and_weather(prices_c, weather_hw)\n\nmerged.head()"
   },
   {
     "objectID": "models/heatwave-prices-de-lu.html#temperature-with-heatwave-days-highlighted-summer-2019",
     "href": "models/heatwave-prices-de-lu.html#temperature-with-heatwave-days-highlighted-summer-2019",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Temperature with heatwave days highlighted (Summer 2019)",
-    "text": "Temperature with heatwave days highlighted (Summer 2019)\n\nhw_2019 = daily_flags[\"2019-06-01\":\"2019-08-31\"]\n\nfig, ax = plt.subplots(figsize=(12, 4))\nax.plot(hw_2019.index, hw_2019[\"t2m_daily_max_c\"], label=\"Daily max temp\")\nax.scatter(\n    hw_2019.index[hw_2019[\"is_heatwave_day\"]],\n    hw_2019[\"t2m_daily_max_c\"][hw_2019[\"is_heatwave_day\"]],\n    s=35,\n    label=\"Heatwave days\",\n)\nax.set_ylabel(\"°C\")\nax.set_title(\"Daily max temperature with heatwave days highlighted (Summer 2019)\")\nax.legend()\nplt.show()"
+    "text": "Temperature with heatwave days highlighted (Summer 2019)\nhw_2019 = daily_flags[\"2019-06-01\":\"2019-08-31\"]\n\nfig, ax = plt.subplots(figsize=(12, 4))\nax.plot(hw_2019.index, hw_2019[\"t2m_daily_max_c\"], label=\"Daily max temp\")\nax.scatter(\n    hw_2019.index[hw_2019[\"is_heatwave_day\"]],\n    hw_2019[\"t2m_daily_max_c\"][hw_2019[\"is_heatwave_day\"]],\n    s=35,\n    label=\"Heatwave days\",\n)\nax.set_ylabel(\"°C\")\nax.set_title(\"Daily max temperature with heatwave days highlighted (Summer 2019)\")\nax.legend()\nplt.show()"
   },
   {
     "objectID": "models/heatwave-prices-de-lu.html#summer-2019-prices-and-temperature-heatwave-days-shaded",
     "href": "models/heatwave-prices-de-lu.html#summer-2019-prices-and-temperature-heatwave-days-shaded",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Summer 2019: prices and temperature (heatwave days shaded)",
-    "text": "Summer 2019: prices and temperature (heatwave days shaded)\n\nsummer = merged.set_index(\"datetime_utc\")[\"2019-06-01\":\"2019-08-31\"]\n\nfig, ax1 = plt.subplots(figsize=(12, 5))\nax2 = ax1.twinx()\n\nax1.plot(summer.index, summer[\"price_eur_mwh\"], label=\"Price (EUR/MWh)\")\nax2.plot(summer.index, summer[\"t2m_mean_c\"], alpha=0.7, linestyle=\"--\", label=\"Temperature (°C)\")\n\n# Shade heatwave days\nfor day in summer.index.normalize().unique():\n    day_mask = (summer.index.normalize() == day)\n    if summer.loc[day_mask, \"is_heatwave_day\"].any():\n        ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)\n\nax1.set_ylabel(\"Price [EUR/MWh]\")\nax2.set_ylabel(\"Temperature [°C]\")\nax1.set_title(\"Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)\")\nfig.tight_layout()\nplt.show()"
+    "text": "Summer 2019: prices and temperature (heatwave days shaded)\nsummer = merged.set_index(\"datetime_utc\")[\"2019-06-01\":\"2019-08-31\"]\n\nfig, ax1 = plt.subplots(figsize=(12, 5))\nax2 = ax1.twinx()\n\nax1.plot(summer.index, summer[\"price_eur_mwh\"], label=\"Price (EUR/MWh)\")\nax2.plot(summer.index, summer[\"t2m_mean_c\"], alpha=0.7, linestyle=\"--\", label=\"Temperature (°C)\")\n\n# Shade heatwave days\nfor day in summer.index.normalize().unique():\n    day_mask = (summer.index.normalize() == day)\n    if summer.loc[day_mask, \"is_heatwave_day\"].any():\n        ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)\n\nax1.set_ylabel(\"Price [EUR/MWh]\")\nax2.set_ylabel(\"Temperature [°C]\")\nax1.set_title(\"Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)\")\nfig.tight_layout()\nplt.show()"
   },
   {
     "objectID": "models/heatwave-prices-de-lu.html#peak-hours-price-distributions-on-heatwave-vs-non-heatwave-days",
     "href": "models/heatwave-prices-de-lu.html#peak-hours-price-distributions-on-heatwave-vs-non-heatwave-days",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Peak hours: price distributions on heatwave vs non-heatwave days",
-    "text": "Peak hours: price distributions on heatwave vs non-heatwave days\n\npeak = merged[(merged[\"hour\"] &gt;= 8) & (merged[\"hour\"] &lt;= 20)].copy()\n\nhw = peak[peak[\"is_heatwave_day\"]]\nnormal = peak[~peak[\"is_heatwave_day\"]]\n\nsummary = pd.DataFrame({\n    \"normal_peak_hours\": normal[\"price_eur_mwh\"].describe(),\n    \"heatwave_peak_hours\": hw[\"price_eur_mwh\"].describe(),\n})\nsummary\n\n\n\n\n\n\n\n\nnormal_peak_hours\nheatwave_peak_hours\n\n\n\n\ncount\n5850.000000\n91.000000\n\n\nmean\n44.095545\n51.337473\n\n\nstd\n17.431926\n8.960433\n\n\nmin\n-90.010000\n38.250000\n\n\n25%\n35.640000\n45.115000\n\n\n50%\n43.880000\n50.150000\n\n\n75%\n52.295000\n56.400000\n\n\nmax\n128.260000\n80.010000\n\n\n\n\n\n\n\n\nfig, ax = plt.subplots(figsize=(8, 5))\n\nax.hist(normal[\"price_eur_mwh\"], bins=60, alpha=0.6, density=True, label=\"Normal days (peak hours)\")\nax.hist(hw[\"price_eur_mwh\"],     bins=60, alpha=0.6, density=True, label=\"Heatwave days (peak hours)\")\n\nax.set_xlabel(\"Day-ahead price (EUR/MWh)\")\nax.set_ylabel(\"Density\")\nax.set_title(\"DE-LU prices: heatwave vs normal days (2015–2019, peak hours)\")\nax.legend()\nplt.show()"
+    "text": "Peak hours: price distributions on heatwave vs non-heatwave days\npeak = merged[(merged[\"hour\"] &gt;= 8) & (merged[\"hour\"] &lt;= 20)].copy()\n\nhw = peak[peak[\"is_heatwave_day\"]]\nnormal = peak[~peak[\"is_heatwave_day\"]]\n\nsummary = pd.DataFrame({\n    \"normal_peak_hours\": normal[\"price_eur_mwh\"].describe(),\n    \"heatwave_peak_hours\": hw[\"price_eur_mwh\"].describe(),\n})\nsummary\nfig, ax = plt.subplots(figsize=(8, 5))\n\nax.hist(normal[\"price_eur_mwh\"], bins=60, alpha=0.6, density=True, label=\"Normal days (peak hours)\")\nax.hist(hw[\"price_eur_mwh\"],     bins=60, alpha=0.6, density=True, label=\"Heatwave days (peak hours)\")\n\nax.set_xlabel(\"Day-ahead price (EUR/MWh)\")\nax.set_ylabel(\"Density\")\nax.set_title(\"DE-LU prices: heatwave vs normal days (2015–2019, peak hours)\")\nax.legend()\nplt.show()"
   },
   {
     "objectID": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
     "href": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
     "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
     "section": "Limitations and extensions",
-    "text": "Limitations and extensions\nThis note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.\nNatural extensions include:\n\nalternative heatwave definitions (percentiles, regionalised thresholds)\nadding load and renewable generation as covariates\nmulti-year comparisons focusing on the stability of patterns across summers"
+    "text": "Limitations and extensions\nThis note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.\nNatural extensions include:\n\nalternative heatwave definitions (percentiles, regionalised thresholds)\nadding load and renewable generation as covariates\nmulti-year comparisons focusing on the stability of patterns across summers\n\n\nRelated\n\nRisk Modelling Part 2: Data - Data sources for climate risk\nERA5 Demo - Working with reanalysis data\nSAL Verification - Validating spatial predictions"
   },
   {
     "objectID": "index.html",
@@ -340,6 +354,6 @@
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "Welcome to the project gallery. Add a .qmd per project here.\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Welcome to the project gallery. Projects will be added here as they’re developed.\nComing soon: packaged work, demos, and interactive tools."
   }
 ]
