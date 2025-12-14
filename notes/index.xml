@@ -19,7 +19,6 @@
 
 
 
-
 <div class="series-nav">
 <div class="series-nav-header">
 <p>Series: Introduction to Risk Modelling (Part 2 of 3)</p>
@@ -39,7 +38,7 @@
 <section id="observational-data" class="level3">
 <h3 class="anchored" data-anchor-id="observational-data">Observational Data</h3>
 <ul>
-<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset (see <a href="../models/era5-demo.html">ERA5 Demo</a>)</li>
+<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset</li>
 <li><strong>GHCN</strong> - Global Historical Climatology Network</li>
 <li><strong>Station data</strong> - Local weather observations</li>
 </ul>
@@ -95,7 +94,6 @@
 
 
 
-
 <div class="series-nav">
 <div class="series-nav-header">
 <p>Series: Introduction to Risk Modelling (Part 3 of 3)</p>
@@ -115,7 +113,8 @@
 </section>
 <section id="a-simple-loss-model" class="level2">
 <h2 class="anchored" data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+<div id="51b62c61" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
@@ -244,6 +243,12 @@ background-color: null;
 font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Expected Loss: $29,856
+VaR 99%: $136,005
+Max Loss: $326,459</code></pre>
+</div>
+</div>
 </section>
 <section id="key-implementation-decisions" class="level2">
 <h2 class="anchored" data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
@@ -285,7 +290,6 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
   <title>Risk Modelling Part 1: Foundations</title>
   <link>https://recurrentanalytics.com/notes/risk-series-1.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -347,7 +351,6 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
 
 
 
-
 <p><strong>Key Insight:</strong><br>
 A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere.</p>
 <section id="core-effects" class="level2">
@@ -388,7 +391,6 @@ A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlant
 
 
 
-
 <p><strong>Key Idea:</strong><br>
 Use repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible.</p>
 <section id="key-concepts" class="level2">
@@ -418,7 +420,6 @@ Use repeated random sampling to approximate distributions, uncertainty, or expec
   <title>Hello, Lab</title>
   <link>https://recurrentanalytics.com/notes/2025-hello-world.html</link>
   <description><![CDATA[ 
-
 
 
 

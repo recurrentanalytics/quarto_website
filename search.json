@@ -21,158 +21,102 @@
     "text": "Categories\nAs reading notes are added, they’ll be organized by topic:\n\nClimate Science - Physical climate modeling, projections, uncertainty\nEnergy Systems - Grid operations, renewables integration, storage\nRisk & Finance - Climate risk pricing, stress testing, disclosure\nMethods - Monte Carlo, time series, machine learning applications"
   },
   {
-    "objectID": "models/era5-demo.html",
-    "href": "models/era5-demo.html",
-    "title": "ERA5 rainfall — minimal notebook",
+    "objectID": "work/index.html",
+    "href": "work/index.html",
+    "title": "Work",
     "section": "",
-    "text": "~{python} print(“Hello from Python — if you don’t see this line below, execution didn’t run.”)~\n~~~{python} import numpy as np import matplotlib.pyplot as plt\nlat = np.linspace(-60, 60, 121) lon = np.linspace(-180, 180, 361) data = np.random.gamma(2, 1, (len(lat), len(lon)))\nplt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“Synthetic ERA5-like rainfall map”) plt.xlabel(“Longitude”); plt.ylabel(“Latitude”) plt.show() ~~~"
+    "text": "Finished, shareable outputs: demos, tools, notebooks, presentations.\nThis section contains completed work that is ready to be shared. In contrast, Notes contains work-in-progress thinking, experiments, and intermediate objects."
   },
   {
-    "objectID": "models/heatwave-prices-de-lu.html",
-    "href": "models/heatwave-prices-de-lu.html",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "objectID": "work/index.html#current-work",
+    "href": "work/index.html#current-work",
+    "title": "Work",
+    "section": "Current Work",
+    "text": "Current Work\n\nExtreme Rainfall Attribution Pipeline → flood-attribution-pipeline.qmd\nHeatwaves and Day-Ahead Prices → heatwave-prices-de-lu.qmd\n\n\nTrigger prototypes, Monte Carlo implementations, risk metrics, and other finished tools will be added here."
+  },
+  {
+    "objectID": "notes/risk-series-1.html",
+    "href": "notes/risk-series-1.html",
+    "title": "Risk Modelling Part 1: Foundations",
     "section": "",
-    "text": "This is a deliberately small empirical note. It documents one operational definition of a heatwave and traces how that definition propagates through a data pipeline, culminating in descriptive comparisons of day-ahead electricity prices during heatwave versus non-heatwave periods.\nThis is not a causal analysis. No identification strategy is claimed, and the pipeline is meant to be inspectable rather than “correct” in any final sense."
+    "text": "Series: Introduction to Risk Modelling (Part 1 of 3)\n\n\n\n\n\n\nNext: Data →"
   },
   {
-    "objectID": "models/heatwave-prices-de-lu.html#why-this-note-exists",
-    "href": "models/heatwave-prices-de-lu.html#why-this-note-exists",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "objectID": "notes/risk-series-1.html#what-is-risk-modelling",
+    "href": "notes/risk-series-1.html#what-is-risk-modelling",
+    "title": "Risk Modelling Part 1: Foundations",
+    "section": "What is Risk Modelling?",
+    "text": "What is Risk Modelling?\nRisk modelling is the practice of using mathematical frameworks to quantify uncertainty and potential losses. In climate contexts, this typically involves:\n\nHazard identification - What can go wrong?\nExposure assessment - What assets are at risk?\nVulnerability analysis - How susceptible are those assets?\nLoss estimation - What are the potential consequences?"
+  },
+  {
+    "objectID": "notes/risk-series-1.html#core-concepts",
+    "href": "notes/risk-series-1.html#core-concepts",
+    "title": "Risk Modelling Part 1: Foundations",
+    "section": "Core Concepts",
+    "text": "Core Concepts\nThe foundation of risk modelling rests on probability theory. We often use Monte Carlo methods to simulate thousands of scenarios and understand the distribution of possible outcomes.\nKey terms: - Expected loss: The average loss across all scenarios - Value at Risk (VaR): The maximum loss at a given confidence level - Tail risk: The probability of extreme events"
+  },
+  {
+    "objectID": "notes/risk-series-1.html#why-this-matters-for-climate",
+    "href": "notes/risk-series-1.html#why-this-matters-for-climate",
+    "title": "Risk Modelling Part 1: Foundations",
+    "section": "Why This Matters for Climate",
+    "text": "Why This Matters for Climate\nClimate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in Part 2: Data.\n\nLinked from\n\nMonte Carlo Basics"
+  },
+  {
+    "objectID": "notes/2025-hello-world.html",
+    "href": "notes/2025-hello-world.html",
+    "title": "Hello, Lab",
     "section": "",
-    "text": "This is a deliberately small empirical note. It documents one operational definition of a heatwave and traces how that definition propagates through a data pipeline, culminating in descriptive comparisons of day-ahead electricity prices during heatwave versus non-heatwave periods.\nThis is not a causal analysis. No identification strategy is claimed, and the pipeline is meant to be inspectable rather than “correct” in any final sense."
+    "text": "First check-in. The lab notebook is live.\nUse this space for short, source-controlled notes."
   },
   {
-    "objectID": "models/heatwave-prices-de-lu.html#data",
-    "href": "models/heatwave-prices-de-lu.html#data",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Data",
-    "text": "Data\nPublic datasets from Open Power System Data (OPSD):\n\nDE-LU day-ahead prices from time_series_60min_singleindex.csv\nGerman temperature from weather_data.csv\n\nThe code below expects those CSVs in data/raw/. Download from:\n\nTime series\nWeather data"
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#build-processed-inputs-hourly-parquet",
-    "href": "models/heatwave-prices-de-lu.html#build-processed-inputs-hourly-parquet",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Build processed inputs (hourly parquet)",
-    "text": "Build processed inputs (hourly parquet)\nimport pandas as pd\n\nfrom src.data_download import save_prices_from_opsd, save_weather_de_from_opsd\n\nSTART = \"2015-01-01\"\nEND_PRICES  = \"2020-07-01\"\nEND_WEATHER = \"2020-01-01\"\n\nsave_prices_from_opsd(start=START, end=END_PRICES)\nsave_weather_de_from_opsd(start=START, end=END_WEATHER)\n\nprices  = pd.read_parquet(\"data/processed/prices_de_lu_clean.parquet\")\nweather = pd.read_parquet(\"data/processed/weather_de_agg.parquet\")\n\nprices.head(), weather.head()"
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#heatwave-definition",
-    "href": "models/heatwave-prices-de-lu.html#heatwave-definition",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Heatwave definition",
-    "text": "Heatwave definition\nOperational definition used here (chosen for clarity, not optimality):\n\ndaily maximum temperature ≥ 30°C\nat least 3 consecutive days\n\nThis is one modelling choice among many. The point is to make it explicit and inspect its implications."
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#flag-heatwaves-and-merge-with-prices",
-    "href": "models/heatwave-prices-de-lu.html#flag-heatwaves-and-merge-with-prices",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Flag heatwaves and merge with prices",
-    "text": "Flag heatwaves and merge with prices\nimport matplotlib.pyplot as plt\n\nfrom src.heatwave_defs import (\n    restrict_common_period,\n    compute_daily_max_temp,\n    flag_heatwaves,\n    expand_heatwave_flag_to_hourly,\n    merge_price_and_weather,\n)\n\nprices_c, weather_c = restrict_common_period(prices, weather)\n\ndaily_temp  = compute_daily_max_temp(weather_c)\ndaily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)\n\n# Attach daily flag back to hourly weather and merge with hourly prices\nweather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)\nmerged = merge_price_and_weather(prices_c, weather_hw)\n\nmerged.head()"
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#temperature-with-heatwave-days-highlighted-summer-2019",
-    "href": "models/heatwave-prices-de-lu.html#temperature-with-heatwave-days-highlighted-summer-2019",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Temperature with heatwave days highlighted (Summer 2019)",
-    "text": "Temperature with heatwave days highlighted (Summer 2019)\nhw_2019 = daily_flags[\"2019-06-01\":\"2019-08-31\"]\n\nfig, ax = plt.subplots(figsize=(12, 4))\nax.plot(hw_2019.index, hw_2019[\"t2m_daily_max_c\"], label=\"Daily max temp\")\nax.scatter(\n    hw_2019.index[hw_2019[\"is_heatwave_day\"]],\n    hw_2019[\"t2m_daily_max_c\"][hw_2019[\"is_heatwave_day\"]],\n    s=35,\n    label=\"Heatwave days\",\n)\nax.set_ylabel(\"°C\")\nax.set_title(\"Daily max temperature with heatwave days highlighted (Summer 2019)\")\nax.legend()\nplt.show()"
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#summer-2019-prices-and-temperature-heatwave-days-shaded",
-    "href": "models/heatwave-prices-de-lu.html#summer-2019-prices-and-temperature-heatwave-days-shaded",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Summer 2019: prices and temperature (heatwave days shaded)",
-    "text": "Summer 2019: prices and temperature (heatwave days shaded)\nsummer = merged.set_index(\"datetime_utc\")[\"2019-06-01\":\"2019-08-31\"]\n\nfig, ax1 = plt.subplots(figsize=(12, 5))\nax2 = ax1.twinx()\n\nax1.plot(summer.index, summer[\"price_eur_mwh\"], label=\"Price (EUR/MWh)\")\nax2.plot(summer.index, summer[\"t2m_mean_c\"], alpha=0.7, linestyle=\"--\", label=\"Temperature (°C)\")\n\n# Shade heatwave days\nfor day in summer.index.normalize().unique():\n    day_mask = (summer.index.normalize() == day)\n    if summer.loc[day_mask, \"is_heatwave_day\"].any():\n        ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)\n\nax1.set_ylabel(\"Price [EUR/MWh]\")\nax2.set_ylabel(\"Temperature [°C]\")\nax1.set_title(\"Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)\")\nfig.tight_layout()\nplt.show()"
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#peak-hours-price-distributions-on-heatwave-vs-non-heatwave-days",
-    "href": "models/heatwave-prices-de-lu.html#peak-hours-price-distributions-on-heatwave-vs-non-heatwave-days",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Peak hours: price distributions on heatwave vs non-heatwave days",
-    "text": "Peak hours: price distributions on heatwave vs non-heatwave days\npeak = merged[(merged[\"hour\"] &gt;= 8) & (merged[\"hour\"] &lt;= 20)].copy()\n\nhw = peak[peak[\"is_heatwave_day\"]]\nnormal = peak[~peak[\"is_heatwave_day\"]]\n\nsummary = pd.DataFrame({\n    \"normal_peak_hours\": normal[\"price_eur_mwh\"].describe(),\n    \"heatwave_peak_hours\": hw[\"price_eur_mwh\"].describe(),\n})\nsummary\nfig, ax = plt.subplots(figsize=(8, 5))\n\nax.hist(normal[\"price_eur_mwh\"], bins=60, alpha=0.6, density=True, label=\"Normal days (peak hours)\")\nax.hist(hw[\"price_eur_mwh\"],     bins=60, alpha=0.6, density=True, label=\"Heatwave days (peak hours)\")\n\nax.set_xlabel(\"Day-ahead price (EUR/MWh)\")\nax.set_ylabel(\"Density\")\nax.set_title(\"DE-LU prices: heatwave vs normal days (2015–2019, peak hours)\")\nax.legend()\nplt.show()"
-  },
-  {
-    "objectID": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
-    "href": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
-    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
-    "section": "Limitations and extensions",
-    "text": "Limitations and extensions\nThis note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.\nNatural extensions include:\n\nalternative heatwave definitions (percentiles, regionalised thresholds)\nadding load and renewable generation as covariates\nmulti-year comparisons focusing on the stability of patterns across summers\n\n\nRelated\n\nRisk Modelling Part 2: Data - Data sources for climate risk\nERA5 Demo - Working with reanalysis data\nSAL Verification - Validating spatial predictions"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "re:current_analytics",
+    "objectID": "notes/climate/monte-carlo-basics.html",
+    "href": "notes/climate/monte-carlo-basics.html",
+    "title": "Monte Carlo Simulation Basics",
     "section": "",
-    "text": "re:current_analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: packaged work, demos, slides → projects/\nModels & Tools: code and notebooks (ERA5, triggers, Monte Carlo) → models/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about · contact / cv"
+    "text": "Key Idea:\nUse repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible."
   },
   {
-    "objectID": "notes/index.html",
-    "href": "notes/index.html",
-    "title": "Notes & Knowledge Base",
+    "objectID": "notes/climate/monte-carlo-basics.html#key-concepts",
+    "href": "notes/climate/monte-carlo-basics.html#key-concepts",
+    "title": "Monte Carlo Simulation Basics",
+    "section": "Key Concepts",
+    "text": "Key Concepts\n\nRandom draws\nProbability distributions\nLaw of large numbers\nConvergence behaviour"
+  },
+  {
+    "objectID": "notes/climate/monte-carlo-basics.html#example-pseudocode",
+    "href": "notes/climate/monte-carlo-basics.html#example-pseudocode",
+    "title": "Monte Carlo Simulation Basics",
+    "section": "Example Pseudocode",
+    "text": "Example Pseudocode"
+  },
+  {
+    "objectID": "notes/risk-series-2.html",
+    "href": "notes/risk-series-2.html",
+    "title": "Risk Modelling Part 2: Data",
     "section": "",
-    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 2: Data\n\n\n\nrisk\n\nseries\n\ndata\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 3: Implementation\n\n\n\nrisk\n\nseries\n\ncode\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 1: Foundations\n\n\n\nrisk\n\nseries\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Series: Introduction to Risk Modelling (Part 2 of 3)\n\n\n\n← Previous: Foundations\n\n\nNext: Implementation →"
   },
   {
-    "objectID": "notes/risk-series-3.html",
-    "href": "notes/risk-series-3.html",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 3 of 3)\n\n\n\n← Previous: Data"
+    "objectID": "notes/risk-series-2.html#data-sources-for-climate-risk",
+    "href": "notes/risk-series-2.html#data-sources-for-climate-risk",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Data Sources for Climate Risk",
+    "text": "Data Sources for Climate Risk\nBuilding on the foundations from Part 1, this note covers the data landscape for climate risk modelling.\n\nObservational Data\n\nERA5 - ECMWF’s reanalysis dataset\nGHCN - Global Historical Climatology Network\nStation data - Local weather observations\n\n\n\nModelled Data\n\nCMIP6 - Climate model ensembles for projections\nDownscaled projections - Regional climate scenarios\nCatastrophe model outputs - Vendor-specific hazard layers"
   },
   {
-    "objectID": "notes/risk-series-3.html#putting-it-together",
-    "href": "notes/risk-series-3.html#putting-it-together",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Putting It Together",
-    "text": "Putting It Together\nArmed with the theoretical foundations and data sources, we can now implement a basic risk model."
+    "objectID": "notes/risk-series-2.html#data-quality-considerations",
+    "href": "notes/risk-series-2.html#data-quality-considerations",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Data Quality Considerations",
+    "text": "Data Quality Considerations\nWhen working with climate data, always consider:\n\nSpatial resolution - Is the data granular enough for your use case?\nTemporal coverage - Do you have enough historical data?\nBias - Are there systematic errors in the observations?\nUncertainty - What are the confidence intervals?\n\nThe SAL framework provides one approach to validating spatial data quality."
   },
   {
-    "objectID": "notes/risk-series-3.html#a-simple-loss-model",
-    "href": "notes/risk-series-3.html#a-simple-loss-model",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "A Simple Loss Model",
-    "text": "A Simple Loss Model\nimport numpy as np\n\ndef simulate_losses(n_scenarios=10000, \n                    mean_hazard=0.1, \n                    exposure=1000000,\n                    vulnerability=0.3):\n    \"\"\"\n    Simple Monte Carlo loss simulation.\n    \n    See: /notes/climate/monte-carlo-basics.html\n    \"\"\"\n    # Simulate hazard intensity (e.g., flood depth)\n    hazard = np.random.exponential(mean_hazard, n_scenarios)\n    \n    # Calculate damage ratio based on vulnerability\n    damage_ratio = np.minimum(hazard * vulnerability, 1.0)\n    \n    # Compute losses\n    losses = exposure * damage_ratio\n    \n    return losses\n\n# Run simulation\nlosses = simulate_losses()\n\n# Key statistics\nprint(f\"Expected Loss: ${losses.mean():,.0f}\")\nprint(f\"VaR 99%: ${np.percentile(losses, 99):,.0f}\")\nprint(f\"Max Loss: ${losses.max():,.0f}\")"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#key-implementation-decisions",
-    "href": "notes/risk-series-3.html#key-implementation-decisions",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Key Implementation Decisions",
-    "text": "Key Implementation Decisions\nWhen building production risk models, consider:\n\nCorrelation structure - How do risks aggregate?\nTail dependence - Do extreme events cluster?\nComputational efficiency - Can you run enough scenarios?\nValidation - How do you test the model?"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#further-reading",
-    "href": "notes/risk-series-3.html#further-reading",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Further Reading",
-    "text": "Further Reading\nThis series provides a foundation. For deeper dives:\n\nMonte Carlo Basics - The sampling engine behind most risk models\nSAL Verification - Validating spatial predictions\n\n\nLinked from\n\nRisk Modelling Part 2: Data"
-  },
-  {
-    "objectID": "notes/climate/sal.html",
-    "href": "notes/climate/sal.html",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "",
-    "text": "Key Insight:\nA hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere."
-  },
-  {
-    "objectID": "notes/climate/sal.html#core-effects",
-    "href": "notes/climate/sal.html#core-effects",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Core Effects",
-    "text": "Core Effects\n\nDry air entrainment → disrupts convection\nIncreased shear → weakens cyclone organization\nDust aerosols → affect radiation balance & SST"
-  },
-  {
-    "objectID": "notes/climate/sal.html#visual-mental-model",
-    "href": "notes/climate/sal.html#visual-mental-model",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Visual Mental Model",
-    "text": "Visual Mental Model\nSAL = “giant desiccating lid” over the Atlantic basin"
-  },
-  {
-    "objectID": "notes/climate/sal.html#links",
-    "href": "notes/climate/sal.html#links",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Links",
-    "text": "Links\n\n[[MJO]]\n[[African Easterly Waves]]"
+    "objectID": "notes/risk-series-2.html#next-steps",
+    "href": "notes/risk-series-2.html#next-steps",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Next Steps",
+    "text": "Next Steps\nWith data in hand, we move to Part 3: Implementation where we build actual models.\n\nLinked from\n\nRisk Modelling Part 1: Foundations\nRisk Modelling Part 3: Implementation"
   },
   {
     "objectID": "replit.html",
@@ -259,101 +203,185 @@
     "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub"
   },
   {
-    "objectID": "notes/risk-series-2.html",
-    "href": "notes/risk-series-2.html",
-    "title": "Risk Modelling Part 2: Data",
+    "objectID": "logo-preview.html",
+    "href": "logo-preview.html",
+    "title": "Logo Preview",
     "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 2 of 3)\n\n\n\n← Previous: Foundations\n\n\nNext: Implementation →"
+    "text": "A looping path with data points along the cycle, emphasizing recurrence and analytics.\n\n\n\n\n\n\nExpanding ripples with balanced top/bottom halves.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA letterform “r” with a recurrent loop attached, representing the “re:” prefix.\n\n\n\n\n\n\nA wave pattern that loops back, connecting to climate/data themes and recurrence.\n\n\n\n\n\n\n\n\n&lt;strong&gt;Concept 1&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo.svg\" alt=\"Logo Concept 1\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 2&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-2.svg\" alt=\"Logo Concept 2\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 3&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-3.svg\" alt=\"Logo Concept 3\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 4&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-4.svg\" alt=\"Logo Concept 4\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;"
   },
   {
-    "objectID": "notes/risk-series-2.html#data-sources-for-climate-risk",
-    "href": "notes/risk-series-2.html#data-sources-for-climate-risk",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Data Sources for Climate Risk",
-    "text": "Data Sources for Climate Risk\nBuilding on the foundations from Part 1, this note covers the data landscape for climate risk modelling.\n\nObservational Data\n\nERA5 - ECMWF’s reanalysis dataset (see ERA5 Demo)\nGHCN - Global Historical Climatology Network\nStation data - Local weather observations\n\n\n\nModelled Data\n\nCMIP6 - Climate model ensembles for projections\nDownscaled projections - Regional climate scenarios\nCatastrophe model outputs - Vendor-specific hazard layers"
-  },
-  {
-    "objectID": "notes/risk-series-2.html#data-quality-considerations",
-    "href": "notes/risk-series-2.html#data-quality-considerations",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Data Quality Considerations",
-    "text": "Data Quality Considerations\nWhen working with climate data, always consider:\n\nSpatial resolution - Is the data granular enough for your use case?\nTemporal coverage - Do you have enough historical data?\nBias - Are there systematic errors in the observations?\nUncertainty - What are the confidence intervals?\n\nThe SAL framework provides one approach to validating spatial data quality."
-  },
-  {
-    "objectID": "notes/risk-series-2.html#next-steps",
-    "href": "notes/risk-series-2.html#next-steps",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Next Steps",
-    "text": "Next Steps\nWith data in hand, we move to Part 3: Implementation where we build actual models.\n\nLinked from\n\nRisk Modelling Part 1: Foundations\nRisk Modelling Part 3: Implementation"
-  },
-  {
-    "objectID": "notes/climate/monte-carlo-basics.html",
-    "href": "notes/climate/monte-carlo-basics.html",
-    "title": "Monte Carlo Simulation Basics",
+    "objectID": "logo-preview.html#concept-1-recurrent-loop-with-data-points",
+    "href": "logo-preview.html#concept-1-recurrent-loop-with-data-points",
+    "title": "Logo Preview",
     "section": "",
-    "text": "Key Idea:\nUse repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible."
+    "text": "A looping path with data points along the cycle, emphasizing recurrence and analytics."
   },
   {
-    "objectID": "notes/climate/monte-carlo-basics.html#key-concepts",
-    "href": "notes/climate/monte-carlo-basics.html#key-concepts",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "Key Concepts",
-    "text": "Key Concepts\n\nRandom draws\nProbability distributions\nLaw of large numbers\nConvergence behaviour"
-  },
-  {
-    "objectID": "notes/climate/monte-carlo-basics.html#example-pseudocode",
-    "href": "notes/climate/monte-carlo-basics.html#example-pseudocode",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "Example Pseudocode",
-    "text": "Example Pseudocode"
-  },
-  {
-    "objectID": "notes/2025-hello-world.html",
-    "href": "notes/2025-hello-world.html",
-    "title": "Hello, Lab",
+    "objectID": "logo-preview.html#concept-2-yin-yang-style-ripples-updated",
+    "href": "logo-preview.html#concept-2-yin-yang-style-ripples-updated",
+    "title": "Logo Preview",
     "section": "",
-    "text": "First check-in. The lab notebook is live.\nUse this space for short, source-controlled notes."
+    "text": "Expanding ripples with balanced top/bottom halves."
   },
   {
-    "objectID": "notes/risk-series-1.html",
-    "href": "notes/risk-series-1.html",
-    "title": "Risk Modelling Part 1: Foundations",
+    "objectID": "logo-preview.html#concept-3-stylized-r",
+    "href": "logo-preview.html#concept-3-stylized-r",
+    "title": "Logo Preview",
     "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 1 of 3)\n\n\n\n\n\n\nNext: Data →"
+    "text": "A letterform “r” with a recurrent loop attached, representing the “re:” prefix."
   },
   {
-    "objectID": "notes/risk-series-1.html#what-is-risk-modelling",
-    "href": "notes/risk-series-1.html#what-is-risk-modelling",
-    "title": "Risk Modelling Part 1: Foundations",
-    "section": "What is Risk Modelling?",
-    "text": "What is Risk Modelling?\nRisk modelling is the practice of using mathematical frameworks to quantify uncertainty and potential losses. In climate contexts, this typically involves:\n\nHazard identification - What can go wrong?\nExposure assessment - What assets are at risk?\nVulnerability analysis - How susceptible are those assets?\nLoss estimation - What are the potential consequences?"
-  },
-  {
-    "objectID": "notes/risk-series-1.html#core-concepts",
-    "href": "notes/risk-series-1.html#core-concepts",
-    "title": "Risk Modelling Part 1: Foundations",
-    "section": "Core Concepts",
-    "text": "Core Concepts\nThe foundation of risk modelling rests on probability theory. We often use Monte Carlo methods to simulate thousands of scenarios and understand the distribution of possible outcomes.\nKey terms: - Expected loss: The average loss across all scenarios - Value at Risk (VaR): The maximum loss at a given confidence level - Tail risk: The probability of extreme events"
-  },
-  {
-    "objectID": "notes/risk-series-1.html#why-this-matters-for-climate",
-    "href": "notes/risk-series-1.html#why-this-matters-for-climate",
-    "title": "Risk Modelling Part 1: Foundations",
-    "section": "Why This Matters for Climate",
-    "text": "Why This Matters for Climate\nClimate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in Part 2: Data.\n\nLinked from\n\nMonte Carlo Basics"
-  },
-  {
-    "objectID": "models/index.html",
-    "href": "models/index.html",
-    "title": "Models & Tools",
+    "objectID": "logo-preview.html#concept-4-wave-loop",
+    "href": "logo-preview.html#concept-4-wave-loop",
+    "title": "Logo Preview",
     "section": "",
-    "text": "Heatwaves and Day-Ahead Prices → heatwave-prices-de-lu.qmd\nERA5 rainfall demo → era5-demo.qmd\nTrigger prototypes, Monte Carlo, risk metrics — add here as notebooks."
+    "text": "A wave pattern that loops back, connecting to climate/data themes and recurrence."
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Projects",
+    "objectID": "logo-preview.html#as-favicon-size-32x32",
+    "href": "logo-preview.html#as-favicon-size-32x32",
+    "title": "Logo Preview",
     "section": "",
-    "text": "Welcome to the project gallery. Projects will be added here as they’re developed.\nComing soon: packaged work, demos, and interactive tools."
+    "text": "&lt;strong&gt;Concept 1&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo.svg\" alt=\"Logo Concept 1\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 2&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-2.svg\" alt=\"Logo Concept 2\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 3&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-3.svg\" alt=\"Logo Concept 3\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 4&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-4.svg\" alt=\"Logo Concept 4\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;"
+  },
+  {
+    "objectID": "notes/climate/sal.html",
+    "href": "notes/climate/sal.html",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "",
+    "text": "Key Insight:\nA hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere."
+  },
+  {
+    "objectID": "notes/climate/sal.html#core-effects",
+    "href": "notes/climate/sal.html#core-effects",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "Core Effects",
+    "text": "Core Effects\n\nDry air entrainment → disrupts convection\nIncreased shear → weakens cyclone organization\nDust aerosols → affect radiation balance & SST"
+  },
+  {
+    "objectID": "notes/climate/sal.html#visual-mental-model",
+    "href": "notes/climate/sal.html#visual-mental-model",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "Visual Mental Model",
+    "text": "Visual Mental Model\nSAL = “giant desiccating lid” over the Atlantic basin"
+  },
+  {
+    "objectID": "notes/climate/sal.html#links",
+    "href": "notes/climate/sal.html#links",
+    "title": "Saharan Air Layer (SAL)",
+    "section": "Links",
+    "text": "Links\n\n[[MJO]]\n[[African Easterly Waves]]"
+  },
+  {
+    "objectID": "notes/risk-series-3.html",
+    "href": "notes/risk-series-3.html",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "",
+    "text": "Series: Introduction to Risk Modelling (Part 3 of 3)\n\n\n\n← Previous: Data"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#putting-it-together",
+    "href": "notes/risk-series-3.html#putting-it-together",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Putting It Together",
+    "text": "Putting It Together\nArmed with the theoretical foundations and data sources, we can now implement a basic risk model."
+  },
+  {
+    "objectID": "notes/risk-series-3.html#a-simple-loss-model",
+    "href": "notes/risk-series-3.html#a-simple-loss-model",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "A Simple Loss Model",
+    "text": "A Simple Loss Model\n\nimport numpy as np\n\ndef simulate_losses(n_scenarios=10000, \n                    mean_hazard=0.1, \n                    exposure=1000000,\n                    vulnerability=0.3):\n    \"\"\"\n    Simple Monte Carlo loss simulation.\n    \n    See: /notes/climate/monte-carlo-basics.html\n    \"\"\"\n    # Simulate hazard intensity (e.g., flood depth)\n    hazard = np.random.exponential(mean_hazard, n_scenarios)\n    \n    # Calculate damage ratio based on vulnerability\n    damage_ratio = np.minimum(hazard * vulnerability, 1.0)\n    \n    # Compute losses\n    losses = exposure * damage_ratio\n    \n    return losses\n\n# Run simulation\nlosses = simulate_losses()\n\n# Key statistics\nprint(f\"Expected Loss: ${losses.mean():,.0f}\")\nprint(f\"VaR 99%: ${np.percentile(losses, 99):,.0f}\")\nprint(f\"Max Loss: ${losses.max():,.0f}\")\n\nExpected Loss: $29,856\nVaR 99%: $136,005\nMax Loss: $326,459"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#key-implementation-decisions",
+    "href": "notes/risk-series-3.html#key-implementation-decisions",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Key Implementation Decisions",
+    "text": "Key Implementation Decisions\nWhen building production risk models, consider:\n\nCorrelation structure - How do risks aggregate?\nTail dependence - Do extreme events cluster?\nComputational efficiency - Can you run enough scenarios?\nValidation - How do you test the model?"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#further-reading",
+    "href": "notes/risk-series-3.html#further-reading",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Further Reading",
+    "text": "Further Reading\nThis series provides a foundation. For deeper dives:\n\nMonte Carlo Basics - The sampling engine behind most risk models\nSAL Verification - Validating spatial predictions\n\n\nLinked from\n\nRisk Modelling Part 2: Data"
+  },
+  {
+    "objectID": "notes/index.html",
+    "href": "notes/index.html",
+    "title": "Notes & Knowledge Base",
+    "section": "",
+    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 2: Data\n\n\n\nrisk\n\nseries\n\ndata\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 3: Implementation\n\n\n\nrisk\n\nseries\n\ncode\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 1: Foundations\n\n\n\nrisk\n\nseries\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "re:current_analytics",
+    "section": "",
+    "text": "re:current_analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes: work-in-progress thinking, experiments, intermediate objects → notes/\nWork: finished, shareable outputs — demos, tools, notebooks, presentations → work/\nReading: external references and summaries → reading/\nAbout & Contact: who/what/why → about · contact / cv"
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html",
+    "href": "work/flood-attribution-pipeline.html",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "",
+    "text": "This pipeline quantifies how climate change altered the probability and intensity of extreme rainfall events. It implements standard attribution methods (Fraction of Attributable Risk and Probability Ratio) using ERA5 reanalysis data.\nCode Execution: All code cells are executed when the page is rendered. The code and its output are shown together, making it easy to see what each step does.\nWhat this does: - Analyzes precipitation extremes (not flood impacts directly) - Calculates attribution metrics with uncertainty quantification - Works for any region, date range, and event definition - Reproducible and inspectable\nWhat this doesn’t do: - Model actual flood impacts (runoff, infrastructure vulnerability) - Provide causal attribution (this is statistical attribution) - Account for all regional/local factors\nThis is an intermediate object: a working tool that makes explicit choices and limitations."
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#why-this-pipeline-exists",
+    "href": "work/flood-attribution-pipeline.html#why-this-pipeline-exists",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "",
+    "text": "This pipeline quantifies how climate change altered the probability and intensity of extreme rainfall events. It implements standard attribution methods (Fraction of Attributable Risk and Probability Ratio) using ERA5 reanalysis data.\nCode Execution: All code cells are executed when the page is rendered. The code and its output are shown together, making it easy to see what each step does.\nWhat this does: - Analyzes precipitation extremes (not flood impacts directly) - Calculates attribution metrics with uncertainty quantification - Works for any region, date range, and event definition - Reproducible and inspectable\nWhat this doesn’t do: - Model actual flood impacts (runoff, infrastructure vulnerability) - Provide causal attribution (this is statistical attribution) - Account for all regional/local factors\nThis is an intermediate object: a working tool that makes explicit choices and limitations."
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#introduction-extreme-event-attribution",
+    "href": "work/flood-attribution-pipeline.html#introduction-extreme-event-attribution",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Introduction: Extreme Event Attribution",
+    "text": "Introduction: Extreme Event Attribution\nExtreme event attribution asks: “How did climate change alter the probability or intensity of this specific event?”\nTwo common metrics:\n\nFraction of Attributable Risk (FAR): The fraction of risk that can be attributed to climate change\n\nFAR = 1 - (P_historical / P_recent)\nRange: -∞ to 1 (1 = fully attributable, 0 = no change, negative = less likely)\n\nProbability Ratio (PR): How many times more likely the event became\n\nPR = P_recent / P_historical\nRange: 0 to ∞ (1 = no change, &gt;1 = more likely, &lt;1 = less likely)\n\n\nBoth metrics compare probabilities of exceeding a threshold in a historical baseline period versus a recent period."
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#data-requirements",
+    "href": "work/flood-attribution-pipeline.html#data-requirements",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Data Requirements",
+    "text": "Data Requirements\nThis pipeline uses ERA5 reanalysis precipitation data. ERA5 provides: - Global coverage from 1950 to present - Hourly or daily temporal resolution - ~31km spatial resolution - Variable: total_precipitation (accumulated over hour, in meters)\nTo use this pipeline, you need: 1. ERA5 data downloaded (via CDS API or pre-downloaded files) 2. Or modify the data loading functions to use your own data source\nData download: - CDS API (requires registration) - Variable: total_precipitation - Product: reanalysis-era5-single-levels"
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#example-1-2021-western-europe-floods",
+    "href": "work/flood-attribution-pipeline.html#example-1-2021-western-europe-floods",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Example 1: 2021 Western Europe Floods",
+    "text": "Example 1: 2021 Western Europe Floods\nThe July 2021 floods in Germany, Belgium, and Netherlands were caused by extreme rainfall. Let’s analyze the attribution of this event.\n\nDefine the event\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.event_definitions import define_rainfall_event\n\n# Event definition: July 12-15, 2021, Western Europe\n# Cumulative rainfall &gt;150mm over 2-3 days\nevent_2021 = define_rainfall_event(\n    region={'lat': (48.0, 52.0), 'lon': (4.0, 9.0)},  # Germany/Belgium region\n    date_range=('2021-07-12', '2021-07-15'),\n    threshold=150.0,  # mm\n    metric='cumulative',\n    duration=3,  # days\n)\n\nprint(f\"Event: {event_2021.date_range[0]} to {event_2021.date_range[1]}\")\nprint(f\"Region: {event_2021.region}\")\nprint(f\"Threshold: {event_2021.threshold} mm over {event_2021.duration} days\")\n\nEvent: 2021-07-12 to 2021-07-15\nRegion: {'lat': (48.0, 52.0), 'lon': (4.0, 9.0)}\nThreshold: 150.0 mm over 3 days\n\n\n\n\nLoad ERA5 data\nNote: This example assumes you have ERA5 data available. In practice, you would:\n\nDownload ERA5 data via CDS API, or\nUse pre-downloaded NetCDF files, or\nUse a data service that provides ERA5 access\n\nFor demonstration, we’ll show the structure with synthetic data:\n\nimport pandas as pd\nimport numpy as np\nfrom datetime import datetime, timedelta\n\n# Generate synthetic ERA5-like data for demonstration\n# In practice, use: load_era5_precipitation() from src.attribution.data_loading\n\nnp.random.seed(42)\n\n# Create date ranges\nbaseline_dates = pd.date_range('1950-01-01', '1980-12-31', freq='D')\nrecent_dates = pd.date_range('1990-01-01', '2023-12-31', freq='D')\nevent_dates = pd.date_range('2021-07-12', '2021-07-15', freq='D')\n\n# Synthetic precipitation (gamma distribution, realistic for Europe)\n# Baseline: lower mean, recent: higher mean (climate change signal)\nbaseline_precip = np.random.gamma(shape=2, scale=5, size=len(baseline_dates))\nrecent_precip = np.random.gamma(shape=2, scale=6, size=len(recent_dates))\n\n# Add extreme event in 2021\nevent_precip = np.array([45, 85, 70, 30])  # mm per day, totals 230mm over 3 days\n\n# Combine into DataFrames\nbaseline_data = pd.DataFrame({\n    'date': baseline_dates,\n    'precipitation_mm': baseline_precip\n})\n\nrecent_data = pd.DataFrame({\n    'date': recent_dates,\n    'precipitation_mm': recent_precip\n})\n\n# Insert event into recent data\nevent_mask = recent_data['date'].isin(event_dates)\nrecent_data.loc[event_mask, 'precipitation_mm'] = event_precip\n\nprint(\"Data loaded:\")\nprint(f\"Baseline period: {len(baseline_data)} days\")\nprint(f\"Recent period: {len(recent_data)} days\")\nprint(f\"\\nBaseline stats:\")\nprint(baseline_data['precipitation_mm'].describe())\nprint(f\"\\nRecent stats:\")\nprint(recent_data['precipitation_mm'].describe())\n\nData loaded:\nBaseline period: 11323 days\nRecent period: 12418 days\n\nBaseline stats:\ncount    11323.000000\nmean        10.071010\nstd          7.066802\nmin          0.067730\n25%          4.904667\n50%          8.450174\n75%         13.563262\nmax         68.473294\nName: precipitation_mm, dtype: float64\n\nRecent stats:\ncount    12418.000000\nmean        11.965798\nstd          8.540110\nmin          0.033139\n25%          5.618902\n50%          9.981399\n75%         16.175604\nmax         85.000000\nName: precipitation_mm, dtype: float64\n\n\n\n\nDetect the event\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.event_definitions import detect_rainfall_events, extract_event_data\n\n# Detect all events matching criteria in recent period\nrecent_with_events = detect_rainfall_events(\n    recent_data,\n    threshold=150.0,\n    min_duration=3,\n    metric='cumulative',\n    duration=3,\n)\n\n# Extract the specific 2021 event\nevent_data = extract_event_data(recent_data, event_2021)\n\nprint(\"2021 Event details:\")\nprint(event_data[['date', 'precipitation_mm']])\nprint(f\"\\nCumulative rainfall: {event_data['precipitation_mm'].sum():.1f} mm\")\nprint(f\"Event threshold: {event_2021.threshold} mm\")\nprint(f\"Event exceeded threshold: {event_data['precipitation_mm'].sum() &gt;= event_2021.threshold}\")\n\n2021 Event details:\n            date  precipitation_mm\n11515 2021-07-12              45.0\n11516 2021-07-13              85.0\n11517 2021-07-14              70.0\n11518 2021-07-15              30.0\n\nCumulative rainfall: 230.0 mm\nEvent threshold: 150.0 mm\nEvent exceeded threshold: True\n\n\n\n\nCalculate attribution\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.attribution_methods import bootstrap_attribution\n\n# Calculate attribution with bootstrap confidence intervals\nattribution_results = bootstrap_attribution(\n    historical_data=baseline_data['precipitation_mm'],\n    recent_data=recent_data['precipitation_mm'],\n    event_threshold=150.0,  # 150mm cumulative over 3 days\n    n_bootstrap=1000,\n    distribution_type='gamma',\n    random_seed=42,\n)\n\nprint(\"Attribution Results:\")\nprint(f\"Fraction of Attributable Risk (FAR): {attribution_results['far']:.3f}\")\nprint(f\"  95% CI: [{attribution_results['far_ci_lower']:.3f}, {attribution_results['far_ci_upper']:.3f}]\")\nprint(f\"\\nProbability Ratio (PR): {attribution_results['pr']:.3f}\")\nprint(f\"  95% CI: [{attribution_results['pr_ci_lower']:.3f}, {attribution_results['pr_ci_upper']:.3f}]\")\nprint(f\"\\nHistorical probability: {attribution_results['p_historical']:.6f}\")\nprint(f\"Recent probability: {attribution_results['p_recent']:.6f}\")\n\nAttribution Results:\nFraction of Attributable Risk (FAR): 0.994\n  95% CI: [0.986, 0.997]\n\nProbability Ratio (PR): 169.764\n  95% CI: [70.263, 381.230]\n\nHistorical probability: 0.000000\nRecent probability: 0.000000\n\n\n\n\nVisualize results\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nimport matplotlib.pyplot as plt\nfrom src.attribution.visualization import (\n    plot_precipitation_timeseries,\n    plot_distribution_comparison,\n    plot_attribution_results,\n    plot_cumulative_rainfall,\n)\n\n# Combine data for time series plot\nall_data = pd.concat([\n    baseline_data.assign(period='baseline'),\n    recent_data.assign(period='recent')\n], ignore_index=True)\n\n# Time series with event highlighted\nfig, axes = plt.subplots(2, 2, figsize=(16, 12))\n\n# 1. Time series\nax1 = axes[0, 0]\nplot_precipitation_timeseries(\n    all_data,\n    event_2021,\n    baseline_period=('1950-01-01', '1980-12-31'),\n    recent_period=('1990-01-01', '2023-12-31'),\n    ax=ax1,\n)\n\n# 2. Distribution comparison\nax2 = axes[0, 1]\nplot_distribution_comparison(\n    baseline_data['precipitation_mm'],\n    recent_data['precipitation_mm'],\n    event_threshold=150.0,\n    ax=ax2,\n)\n\n# 3. Attribution results\nax3 = axes[1, 0]\nplot_attribution_results(\n    attribution_results['far'],\n    attribution_results['pr'],\n    confidence_intervals={\n        'far_ci_lower': attribution_results['far_ci_lower'],\n        'far_ci_upper': attribution_results['far_ci_upper'],\n        'pr_ci_lower': attribution_results['pr_ci_lower'],\n        'pr_ci_upper': attribution_results['pr_ci_upper'],\n    },\n    ax=ax3,\n)\n\n# 4. Cumulative rainfall for event\nax4 = axes[1, 1]\nplot_cumulative_rainfall(event_data, event_2021, ax=ax4)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nInterpretation\n\n# Display interpretation\nfar_pct = attribution_results['far'] * 100\npr_rounded = round(attribution_results['pr'])\n\nprint(f\"Based on the attribution analysis:\")\nprint(f\"\\nFAR = {attribution_results['far']:.3f}\")\nprint(f\"This means approximately {far_pct:.1f}% of the risk of this event\")\nprint(f\"can be attributed to climate change.\")\nprint(f\"\\nPR = {attribution_results['pr']:.3f}\")\nprint(f\"The event is approximately {pr_rounded}x more likely in the recent period\")\nprint(f\"compared to the historical baseline.\")\n\nBased on the attribution analysis:\n\nFAR = 0.994\nThis means approximately 99.4% of the risk of this event\ncan be attributed to climate change.\n\nPR = 169.764\nThe event is approximately 170x more likely in the recent period\ncompared to the historical baseline.\n\n\nNote: These are synthetic results for demonstration. Real attribution requires: - Actual ERA5 data - Careful selection of baseline and recent periods - Consideration of seasonal patterns - Validation against observational data"
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#example-2-user-defined-event",
+    "href": "work/flood-attribution-pipeline.html#example-2-user-defined-event",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Example 2: User-Defined Event",
+    "text": "Example 2: User-Defined Event\nThe pipeline is generalizable. Here’s how to analyze any rainfall event:\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.event_definitions import define_rainfall_event\nfrom src.attribution.data_loading import get_historical_baseline, get_recent_period\nfrom src.attribution.attribution_methods import bootstrap_attribution\n\n# Define your event\nmy_event = define_rainfall_event(\n    region={'lat': (40.0, 50.0), 'lon': (-10.0, 5.0)},  # Your region\n    date_range=('2023-06-01', '2023-06-05'),  # Your dates\n    threshold=100.0,  # Your threshold (mm)\n    metric='cumulative',  # or 'intensity', 'duration'\n    duration=5,  # days\n)\n\n# Load data (replace with actual data loading)\n# baseline = get_historical_baseline(my_event.region, '1950-01-01', '1980-12-31')\n# recent = get_recent_period(my_event.region, '1990-01-01', '2023-12-31')\n\n# Calculate attribution\n# results = bootstrap_attribution(\n#     baseline['precipitation_mm'],\n#     recent['precipitation_mm'],\n#     my_event.threshold,\n#     n_bootstrap=1000,\n# )\n\nprint(\"Event defined. Next steps:\")\nprint(\"1. Load ERA5 data for your region\")\nprint(\"2. Run attribution analysis\")\nprint(\"3. Visualize results\")\n\nEvent defined. Next steps:\n1. Load ERA5 data for your region\n2. Run attribution analysis\n3. Visualize results"
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#methodology-details",
+    "href": "work/flood-attribution-pipeline.html#methodology-details",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Methodology Details",
+    "text": "Methodology Details\n\nStatistical Approach\nDistribution Fitting: - Precipitation data is typically right-skewed with many zero values - We fit gamma distributions (common for precipitation) - Alternative: log-normal or GEV (for extremes)\nBootstrap Confidence Intervals: - Resample data with replacement (1000 iterations) - Calculate FAR and PR for each bootstrap sample - 95% CI from percentiles (2.5th, 97.5th)\nSeasonality: - Precipitation has strong seasonal patterns - For robust attribution, compare same seasons across periods - This pipeline can be extended to handle seasonality\n\n\nLimitations\n\nPrecipitation vs Floods: This analyzes rainfall extremes, not actual flood impacts. Floods depend on:\n\nRunoff and drainage\nSoil moisture and saturation\nInfrastructure and land use\nRiver discharge and capacity\n\nReanalysis Data: ERA5 is a model-based reanalysis, not pure observations. It may have biases, especially for:\n\nExtreme events\nMountainous regions\nCoastal areas\n\nNon-Stationarity: Assumes distributions are stationary within each period. Climate change may introduce trends even within “recent” period.\nRegional Specificity: Results are for the defined region. Local factors (urbanization, land use changes) are not accounted for."
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#extensions-and-future-work",
+    "href": "work/flood-attribution-pipeline.html#extensions-and-future-work",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Extensions and Future Work",
+    "text": "Extensions and Future Work\nPossible extensions:\n\nAdd observational data: Compare ERA5 with station observations\nCMIP6 integration: Use climate model ensembles for counterfactual analysis\nCompound events: Include antecedent soil moisture, temperature\nSpatial analysis: Map attribution results across regions\nSeasonal attribution: Separate analysis by season\nFlood impact modeling: Connect precipitation to actual flood risk\n\nReferences:\n\nStott et al. (2016). “Attribution of extreme weather and climate-related events.” WIREs Climate Change\nNational Academies (2016). Attribution of Extreme Weather Events in the Context of Climate Change\nWorld Weather Attribution: worldweatherattribution.org"
+  },
+  {
+    "objectID": "work/flood-attribution-pipeline.html#integration-with-other-content",
+    "href": "work/flood-attribution-pipeline.html#integration-with-other-content",
+    "title": "Extreme Rainfall Attribution Pipeline",
+    "section": "Integration with Other Content",
+    "text": "Integration with Other Content\nThis pipeline connects to:\n\nRisk Series Part 2 - Data sources for climate risk\nMonte Carlo Basics - Bootstrap methods used here\nHeatwave Analysis - Similar event definition patterns\n\n\nRelated\n\nRisk Modelling Series - Foundations of risk modeling\nMonte Carlo Basics - Statistical methods"
   }
 ]
