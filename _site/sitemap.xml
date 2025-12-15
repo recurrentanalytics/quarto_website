@@ -1,67 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://recurrentanalytics.com/replit.html</loc>
-    <lastmod>2025-12-12T22:38:49.218Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/projects/index.html</loc>
-    <lastmod>2025-12-12T23:42:14.871Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/risk-series-2.html</loc>
-    <lastmod>2025-12-12T21:40:20.004Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/index.html</loc>
-    <lastmod>2025-12-12T20:10:05.588Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/climate/monte-carlo-basics.html</loc>
-    <lastmod>2025-12-12T20:10:05.588Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/models/heatwave-prices-de-lu.html</loc>
-    <lastmod>2025-12-12T23:46:05.480Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/models/era5-demo.html</loc>
-    <lastmod>2025-12-12T20:10:05.586Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/about.html</loc>
-    <lastmod>2025-12-12T20:10:05.586Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/contact_cv.html</loc>
-    <lastmod>2025-12-12T20:10:05.586Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/models/index.html</loc>
-    <lastmod>2025-12-12T22:35:57.011Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/2025-hello-world.html</loc>
-    <lastmod>2025-12-12T20:10:05.588Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/climate/sal.html</loc>
-    <lastmod>2025-12-12T20:10:05.588Z</lastmod>
-  </url>
-  <url>
     <loc>https://recurrentanalytics.com/notes/risk-series-1.html</loc>
-    <lastmod>2025-12-12T21:40:20.003Z</lastmod>
+    <lastmod>2025-12-15T16:01:46.502Z</lastmod>
   </url>
   <url>
     <loc>https://recurrentanalytics.com/notes/risk-series-3.html</loc>
-    <lastmod>2025-12-12T21:40:20.004Z</lastmod>
+    <lastmod>2025-12-15T16:01:46.502Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/reading/index.html</loc>
-    <lastmod>2025-12-12T23:45:41.509Z</lastmod>
+    <loc>https://recurrentanalytics.com/notes/climate/sal.html</loc>
+    <lastmod>2025-12-15T16:01:46.502Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/2025-hello-world.html</loc>
+    <lastmod>2025-12-15T16:01:46.501Z</lastmod>
   </url>
   <url>
     <loc>https://recurrentanalytics.com/index.html</loc>
-    <lastmod>2025-12-12T21:40:20.165Z</lastmod>
+    <lastmod>2025-12-15T16:47:57.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/era5-demo.html</loc>
+    <lastmod>2025-12-15T16:01:46.501Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/replit.html</loc>
+    <lastmod>2025-12-15T16:15:56.788Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/tipping-points/index.html</loc>
+    <lastmod>2025-12-15T16:14:15.440Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/reading/index.html</loc>
+    <lastmod>2025-12-15T16:14:15.440Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/projects/index.html</loc>
+    <lastmod>2025-12-15T16:27:53.006Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/heatwave-prices-de-lu.html</loc>
+    <lastmod>2025-12-15T16:01:46.501Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/about.html</loc>
+    <lastmod>2025-12-15T16:39:55.720Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/index.html</loc>
+    <lastmod>2025-12-15T16:14:15.440Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/climate/monte-carlo-basics.html</loc>
+    <lastmod>2025-12-15T16:01:46.501Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/risk-series-2.html</loc>
+    <lastmod>2025-12-15T16:01:46.502Z</lastmod>
   </url>
 </urlset>

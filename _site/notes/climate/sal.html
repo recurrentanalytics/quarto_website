@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,18 +69,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2b3e328b71be8d25427581baeb23079b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8c34d208622ad85e8609dd67eb80f967.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-07da5610f78b9f168fb42a9d65628225.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8c34d208622ad85e8609dd67eb80f967.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c0f42b244fbb475f07d00c64535a4922.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3f360d817b29020caadb3df5e9a8413d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c0f42b244fbb475f07d00c64535a4922.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -131,9 +132,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   @keyframes slowfloat { from { transform: translateY(0px);} to {transform: translateY(16px);} }
 </style>
 
-<!-- Reading progress bar, keyboard shortcuts, random note -->
+<!-- Reading progress bar, keyboard shortcuts -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Hide page title and reading time on index page
+  const path = window.location.pathname;
+  const isHomePage = path === '/' || path === '/index.html' || path.endsWith('/index.html');
+  
+  if (isHomePage) {
+    document.body.classList.add('index-page');
+    // Hide page title block
+    const titleBlock = document.querySelector('.quarto-title-block');
+    if (titleBlock) {
+      titleBlock.style.display = 'none';
+    }
+    // Remove any reading time that might have been added
+    const readingTime = document.querySelector('.reading-time');
+    if (readingTime) {
+      readingTime.remove();
+    }
+  }
+  
+  // Ensure navbar logo is visible and links to home
+  const navbarBrand = document.querySelector('.navbar-brand');
+  if (navbarBrand) {
+    // Ensure it links to home
+    if (!navbarBrand.href || navbarBrand.href.endsWith('#')) {
+      navbarBrand.href = '/';
+    }
+    
+    // Remove any text nodes that aren't the logo
+    Array.from(navbarBrand.childNodes).forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.remove();
+      }
+    });
+    
+    // Hide text elements but keep logo
+    const textElements = navbarBrand.querySelectorAll('span, .navbar-brand-text, .quarto-title');
+    textElements.forEach(el => {
+      if (!el.querySelector('img, svg')) {
+        el.style.display = 'none';
+      }
+    });
+    
+    // Ensure logo image/svg is visible
+    const logo = navbarBrand.querySelector('img, svg');
+    if (logo) {
+      logo.style.display = 'block';
+      logo.style.height = '2rem';
+      logo.style.width = 'auto';
+    }
+  }
+  
+  // Breadcrumb navigation
+  function createBreadcrumbs() {
+    const path = window.location.pathname;
+    if (path === '/' || path === '/index.html') return;
+    
+    const pathParts = path.split('/').filter(p => p && p !== 'index.html');
+    const breadcrumbContainer = document.createElement('nav');
+    breadcrumbContainer.className = 'breadcrumb-nav';
+    breadcrumbContainer.setAttribute('aria-label', 'Breadcrumb');
+    
+    let breadcrumbHTML = '<ol class="breadcrumb-list">';
+    breadcrumbHTML += '<li class="breadcrumb-item"><a href="/">Home</a></li>';
+    
+    let currentPath = '';
+    pathParts.forEach((part, index) => {
+      currentPath += '/' + part;
+      const isLast = index === pathParts.length - 1;
+      const label = part.replace(/\.html$/, '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      
+      if (isLast) {
+        breadcrumbHTML += `<li class="breadcrumb-item active" aria-current="page">${label}</li>`;
+      } else {
+        breadcrumbHTML += `<li class="breadcrumb-item"><a href="${currentPath}/">${label}</a></li>`;
+      }
+    });
+    
+    breadcrumbHTML += '</ol>';
+    breadcrumbContainer.innerHTML = breadcrumbHTML;
+    
+    const contentArea = document.querySelector('#quarto-document-content, .content, main, article');
+    if (contentArea) {
+      contentArea.insertBefore(breadcrumbContainer, contentArea.firstChild);
+    }
+  }
+  
+  createBreadcrumbs();
+  
   // Reading progress bar
   const progressBar = document.createElement('div');
   progressBar.className = 'reading-progress';
@@ -146,12 +234,40 @@ document.addEventListener('DOMContentLoaded', function() {
     progressBar.style.width = progress + '%';
   });
 
+  // Focus mode for distraction-free reading
+  let focusMode = false;
+  function toggleFocusMode() {
+    focusMode = !focusMode;
+    document.body.classList.toggle('focus-mode', focusMode);
+    
+    // Hide/show elements
+    const elementsToHide = document.querySelectorAll('.navbar, .nav-footer, .sidebar, #TOC, #quarto-margin-sidebar, .quarto-back-to-top-link, .mobile-graph-btn, .sidebar-graph');
+    elementsToHide.forEach(el => {
+      if (el) el.style.display = focusMode ? 'none' : '';
+    });
+    
+    // Update hint
+    const hint = document.querySelector('.keyboard-hint');
+    if (hint) {
+      hint.innerHTML = focusMode 
+        ? 'Press f to exit focus mode · Escape to close'
+        : '⌘K palette · / search · j/k navigate · f focus · ? hints';
+    }
+  }
+  
   // Keyboard shortcuts
   const noteLinks = Array.from(document.querySelectorAll('.quarto-listing-default a, .sidebar-item a'));
   let currentIndex = -1;
 
   document.addEventListener('keydown', function(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    
+    // f to toggle focus mode
+    if (e.key === 'f' && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      toggleFocusMode();
+      return;
+    }
     
     // / to focus search
     if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
@@ -182,18 +298,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add keyboard hint element
   const hint = document.createElement('div');
   hint.className = 'keyboard-hint';
-  hint.innerHTML = '⌘K palette · / search · j/k navigate · ? hints';
+  hint.innerHTML = '⌘K palette · / search · j/k navigate · f focus · ? hints';
   document.body.appendChild(hint);
 
   // Command Palette (Cmd+K / Ctrl+K)
   const pages = [
     { title: 'Home', path: '/' },
-    { title: 'About', path: '/about.html' },
+    { title: 'About & Contact', path: '/about.html' },
     { title: 'Notes & Knowledge Base', path: '/notes/' },
     { title: 'Projects', path: '/projects/' },
-    { title: 'Models & Tools', path: '/models/' },
     { title: 'Reading', path: '/reading/' },
-    { title: 'Contact / CV', path: '/contact_cv.html' },
+    { title: 'Tipping Points', path: '/tipping-points/' },
     { title: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
     { title: 'Monte Carlo Basics', path: '/notes/climate/monte-carlo-basics.html' },
     { title: 'SAL', path: '/notes/climate/sal.html' },
@@ -218,17 +333,70 @@ document.addEventListener('DOMContentLoaded', function() {
   const results = overlay.querySelector('.cmd-palette-results');
   let selectedIndex = 0;
 
+  // Simple fuzzy search function
+  function fuzzyMatch(pattern, text) {
+    pattern = pattern.toLowerCase();
+    text = text.toLowerCase();
+    
+    // Exact match gets highest score
+    if (text.includes(pattern)) return 100;
+    
+    // Check if all pattern characters appear in order
+    let patternIdx = 0;
+    let score = 0;
+    for (let i = 0; i < text.length && patternIdx < pattern.length; i++) {
+      if (text[i] === pattern[patternIdx]) {
+        patternIdx++;
+        score += 10;
+      }
+    }
+    
+    if (patternIdx === pattern.length) {
+      return score;
+    }
+    
+    // Check individual word matches
+    const words = text.split(/\s+/);
+    let wordMatches = 0;
+    pattern.split(/\s+/).forEach(pWord => {
+      if (words.some(w => w.startsWith(pWord) || w.includes(pWord))) {
+        wordMatches++;
+      }
+    });
+    
+    return wordMatches * 5;
+  }
+  
   function renderResults(filter = '') {
-    const filtered = pages.filter(p => 
-      p.title.toLowerCase().includes(filter.toLowerCase())
-    );
-    results.innerHTML = filtered.map((p, i) => `
-      <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
-        <div class="cmd-palette-item-title">${p.title}</div>
-        <div class="cmd-palette-item-path">${p.path}</div>
+    if (!filter.trim()) {
+      const filtered = pages.slice(0, 10);
+      results.innerHTML = filtered.map((p, i) => `
+        <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+          <div class="cmd-palette-item-title">${p.title}</div>
+          <div class="cmd-palette-item-path">${p.path}</div>
+        </a>
+      `).join('');
+      return filtered;
+    }
+    
+    // Score and sort by relevance
+    const scored = pages.map(p => ({
+      page: p,
+      score: Math.max(
+        fuzzyMatch(filter, p.title),
+        fuzzyMatch(filter, p.path)
+      )
+    })).filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
+    
+    results.innerHTML = scored.map((item, i) => `
+      <a href="${item.page.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+        <div class="cmd-palette-item-title">${item.page.title}</div>
+        <div class="cmd-palette-item-path">${item.page.path}</div>
       </a>
     `).join('');
-    return filtered;
+    return scored.map(item => item.page);
   }
 
   function openPalette() {
@@ -284,53 +452,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Reading time - add to article pages
-  const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
-  const contentArea = document.querySelector('#quarto-document-content, .content, main');
-  if (articleBody && contentArea) {
-    const text = contentArea.innerText || '';
-    const wordCount = text.trim().split(/\s+/).length;
-    const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-    const timeSpan = document.createElement('span');
-    timeSpan.className = 'reading-time';
-    timeSpan.textContent = readingTime + ' min read';
-    const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
-    if (titleMeta) {
-      titleMeta.appendChild(document.createTextNode(' · '));
-      titleMeta.appendChild(timeSpan);
+  // Reading time - add to article pages (but not on index/home page)
+  // Reuse path from earlier in the scope
+  const isHomePageForReading = path === '/' || path === '/index.html' || path.endsWith('/index.html');
+  
+  if (!isHomePageForReading) {
+    const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
+    const contentArea = document.querySelector('#quarto-document-content, .content, main');
+    if (articleBody && contentArea) {
+      const text = contentArea.innerText || '';
+      const wordCount = text.trim().split(/\s+/).length;
+      const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+      const timeSpan = document.createElement('span');
+      timeSpan.className = 'reading-time';
+      timeSpan.textContent = readingTime + ' min read';
+      const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
+      if (titleMeta) {
+        titleMeta.appendChild(document.createTextNode(' · '));
+        titleMeta.appendChild(timeSpan);
+      }
     }
   }
 
-  // Random note link - add to footer if on notes section
-  const notesData = [
-    '/notes/2025-hello-world.html',
-    '/notes/climate/monte-carlo-basics.html',
-    '/notes/climate/sal.html',
-    '/notes/risk-series-1.html',
-    '/notes/risk-series-2.html',
-    '/notes/risk-series-3.html'
-  ];
-  
-  const footer = document.querySelector('.nav-footer-center, .nav-footer-right');
-  if (footer && notesData.length > 0) {
-    const randomLink = document.createElement('a');
-    randomLink.href = '#';
-    randomLink.className = 'random-note-link';
-    randomLink.textContent = '↻ Random note';
-    randomLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      const randomNote = notesData[Math.floor(Math.random() * notesData.length)];
-      window.location.href = randomNote;
-    });
-    footer.appendChild(document.createTextNode(' · '));
-    footer.appendChild(randomLink);
-  }
 
   // Network Graph - Obsidian-style visualization
+  console.log('Starting graph navigation setup...');
   const graphData = {
     nodes: [
       { id: 'home', label: 'Home', path: '/', cat: 'nav' },
-      { id: 'about', label: 'About', path: '/about.html', cat: 'nav' },
+      { id: 'about', label: 'About & Contact', path: '/about.html', cat: 'nav' },
       { id: 'notes', label: 'Notes', path: '/notes/', cat: 'nav' },
       { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html', cat: 'notes' },
       { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html', cat: 'notes' },
@@ -341,14 +491,13 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html', cat: 'models' },
       { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
       { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
-      { id: 'models', label: 'Models', path: '/models/', cat: 'nav' },
       { id: 'reading', label: 'Reading', path: '/reading/', cat: 'nav' },
-      { id: 'contact', label: 'Contact', path: '/contact_cv.html', cat: 'nav' }
+      { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
     ],
     links: [
       { source: 'home', target: 'notes' },
       { source: 'home', target: 'projects' },
-      { source: 'home', target: 'models' },
+      { source: 'home', target: 'tipping-points' },
       { source: 'home', target: 'about' },
       { source: 'notes', target: 'hello' },
       { source: 'notes', target: 'monte-carlo' },
@@ -365,8 +514,8 @@ document.addEventListener('DOMContentLoaded', function() {
       { source: 'risk-3', target: 'risk-2' },
       { source: 'risk-3', target: 'monte-carlo' },
       { source: 'risk-3', target: 'sal' },
-      { source: 'models', target: 'era5' },
-      { source: 'models', target: 'heatwave' },
+      { source: 'projects', target: 'era5' },
+      { source: 'projects', target: 'heatwave' },
       { source: 'heatwave', target: 'era5' },
       { source: 'heatwave', target: 'sal' },
       { source: 'heatwave', target: 'risk-2' },
@@ -382,8 +531,7 @@ document.addEventListener('DOMContentLoaded', function() {
     models: 'var(--bs-success)'
   };
 
-  // Create sidebar mini-graph widget
-  const sidebar = document.querySelector('#quarto-margin-sidebar, .sidebar, #TOC');
+  // Create sidebar mini-graph widget - always add to body to ensure it's on all pages
   const sidebarGraph = document.createElement('div');
   sidebarGraph.className = 'sidebar-graph';
   sidebarGraph.title = 'Click to expand';
@@ -394,9 +542,16 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="sidebar-graph-container" id="mini-graph-container"></div>
   `;
+  
+  // Try to add to sidebar first, but always ensure it's in the DOM
+  console.log('Appending sidebar graph to DOM...');
+  const sidebar = document.querySelector('#quarto-margin-sidebar, .sidebar, #TOC');
   if (sidebar) {
+    console.log('Sidebar found, appending to sidebar');
     sidebar.appendChild(sidebarGraph);
   } else {
+    // If no sidebar, add as fixed element to body
+    console.log('No sidebar found, appending to body as fixed element');
     document.body.appendChild(sidebarGraph);
     sidebarGraph.style.position = 'fixed';
     sidebarGraph.style.bottom = '1rem';
@@ -404,8 +559,22 @@ document.addEventListener('DOMContentLoaded', function() {
     sidebarGraph.style.width = '200px';
     sidebarGraph.style.zIndex = '100';
   }
+  console.log('Sidebar graph in DOM:', document.body.contains(sidebarGraph) || (sidebar && sidebar.contains(sidebarGraph)));
+  
+  // Ensure sidebar graph is always accessible even if sidebar is hidden
+  // Add a fallback fixed position version if sidebar doesn't exist
+  if (!sidebar) {
+    sidebarGraph.style.display = 'block';
+    sidebarGraph.style.visibility = 'visible';
+  }
+  
+  // Force visibility
+  sidebarGraph.style.display = 'block';
+  sidebarGraph.style.visibility = 'visible';
+  sidebarGraph.style.opacity = '1';
 
-  // Create modal
+  // Create modal FIRST - before any D3 checks
+  console.log('Creating graph modal element...');
   const graphModal = document.createElement('div');
   graphModal.className = 'graph-modal-overlay';
   graphModal.innerHTML = `
@@ -413,6 +582,21 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="graph-modal-header">
         <span class="graph-modal-title">Note Connections</span>
         <button class="graph-modal-close">&times;</button>
+      </div>
+      <div class="graph-modal-controls">
+        <input type="text" class="graph-search-input" placeholder="Search nodes..." id="graph-search">
+        <div class="graph-category-filters">
+          <button class="graph-filter-btn active" data-cat="all">All</button>
+          <button class="graph-filter-btn" data-cat="nav">Nav</button>
+          <button class="graph-filter-btn" data-cat="notes">Notes</button>
+          <button class="graph-filter-btn" data-cat="models">Models</button>
+          <button class="graph-filter-btn" data-cat="projects">Projects</button>
+        </div>
+        <div class="graph-zoom-controls">
+          <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
+          <button class="graph-zoom-btn" id="zoom-out" title="Zoom out">−</button>
+          <button class="graph-zoom-btn" id="zoom-reset" title="Reset zoom">⌂</button>
+        </div>
       </div>
       <div class="graph-container" id="graph-container"></div>
     </div>
@@ -425,27 +609,108 @@ document.addEventListener('DOMContentLoaded', function() {
       (n.path === '/' && (path === '/' || path === '/index.html' || path.endsWith('/index.html'))));
     return node ? node.id : null;
   }
+  
+  // Make getCurrentPageId and graphData available globally
+  window.getCurrentPageId = getCurrentPageId;
+  window.graphData = graphData;
 
   function openGraph() {
+    console.log('openGraph called', { graphModal: !!graphModal, inDOM: graphModal && document.body.contains(graphModal) });
+    
+    // Ensure graph modal exists
+    if (!graphModal) {
+      console.error('Graph modal not found!');
+      return;
+    }
+    
+    if (!document.body.contains(graphModal)) {
+      console.warn('Graph modal not in DOM, appending...');
+      document.body.appendChild(graphModal);
+    }
+    
+    // Ensure modal is visible
+    graphModal.style.display = 'flex';
+    graphModal.style.visibility = 'visible';
     graphModal.classList.add('active');
-    initGraph();
+    
+    // Initialize graph if not already done
+    if (typeof initGraph === 'function') {
+      initGraph();
+    } else {
+      console.error('initGraph function not found');
+    }
+    
+    // Focus trap - prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
   }
 
   function closeGraph() {
-    graphModal.classList.remove('active');
+    if (graphModal) {
+      graphModal.classList.remove('active');
+      // Restore body scroll
+      document.body.style.overflow = '';
+    }
   }
+  
+  // Make openGraph globally available so it can be called from anywhere
+  window.openGraphNavigation = openGraph;
 
-  sidebarGraph.addEventListener('click', openGraph);
-  graphModal.querySelector('.graph-modal-close').addEventListener('click', closeGraph);
-  graphModal.addEventListener('click', (e) => {
-    if (e.target === graphModal) closeGraph();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && graphModal.classList.contains('active')) closeGraph();
-    if (e.key === 'g' && !e.ctrlKey && !e.metaKey && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+  // Ensure event listeners are attached after elements are created
+  if (sidebarGraph) {
+    sidebarGraph.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       openGraph();
+    });
+  }
+  
+  const closeBtn = graphModal.querySelector('.graph-modal-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeGraph();
+    });
+  }
+  
+  graphModal.addEventListener('click', function(e) {
+    if (e.target === graphModal) {
+      closeGraph();
     }
   });
+  
+  // Global keyboard shortcut - attach to document, not just inside DOMContentLoaded
+  function handleGraphKeyboard(e) {
+    // Escape to close graph modal
+    if (e.key === 'Escape' && graphModal && graphModal.classList.contains('active')) {
+      closeGraph();
+      return;
+    }
+    // 'g' key to open graph - works everywhere except in input fields
+    if ((e.key === 'g' || e.key === 'G') && 
+        e.target.tagName !== 'INPUT' && 
+        e.target.tagName !== 'TEXTAREA' && 
+        !e.ctrlKey && 
+        !e.metaKey && 
+        !e.altKey &&
+        !e.shiftKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      openGraph();
+    }
+  }
+  
+  console.log('Attaching keyboard handler...');
+  document.addEventListener('keydown', handleGraphKeyboard);
+  console.log('Keyboard handler attached to document');
+  
+  // Also attach to window for extra reliability
+  window.addEventListener('keydown', handleGraphKeyboard);
+  console.log('Keyboard handler attached to window');
+  
+  // Test: Try calling openGraph directly to verify it works
+  console.log('openGraph function available:', typeof openGraph);
+  console.log('window.openGraphNavigation available:', typeof window.openGraphNavigation);
 
   // Render mini-graph in sidebar immediately using D3-force
   function renderMiniGraph() {
@@ -470,22 +735,41 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
+    // Find current node and center it
+    const currentNode = nodes.find(n => n.id === currentId);
+    const centerX = width / 2;
+    const centerY = height / 2;
+    
+    if (currentNode) {
+      // Set current node to center
+      currentNode.fx = centerX;
+      currentNode.fy = centerY;
+    }
+    
     // D3 force simulation for mini graph
     const simulation = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(d => d.id).distance(30))
       .force('charge', d3.forceManyBody().strength(-60))
-      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('center', d3.forceCenter(centerX, centerY))
       .force('collision', d3.forceCollide().radius(10))
       .stop();
 
     // Run simulation synchronously for static layout
     for (let i = 0; i < 100; i++) simulation.tick();
 
-    // Clamp positions
+    // Clamp positions (except current node which stays fixed)
     nodes.forEach(n => {
-      n.x = Math.max(15, Math.min(width - 15, n.x));
-      n.y = Math.max(15, Math.min(height - 15, n.y));
+      if (n.id !== currentId) {
+        n.x = Math.max(15, Math.min(width - 15, n.x));
+        n.y = Math.max(15, Math.min(height - 15, n.y));
+      }
     });
+    
+    // Release fixed position after simulation
+    if (currentNode) {
+      currentNode.fx = null;
+      currentNode.fy = null;
+    }
 
     // Draw links
     svg.selectAll('line')
@@ -524,84 +808,376 @@ document.addEventListener('DOMContentLoaded', function() {
       .on('mouseleave', () => tooltip.style('opacity', 0));
   }
   
-  renderMiniGraph();
+  // Render mini graph - ensure it runs
+  function tryRenderMiniGraph() {
+    const container = document.getElementById('mini-graph-container');
+    if (!container) {
+      console.warn('Mini graph container not found');
+      return false;
+    }
+    if (typeof d3 === 'undefined') {
+      console.warn('D3.js not loaded yet');
+      return false;
+    }
+    if (!graphData) {
+      console.warn('Graph data not available');
+      return false;
+    }
+    try {
+      renderMiniGraph();
+      console.log('Mini graph rendered successfully');
+      return true;
+    } catch (error) {
+      console.error('Error rendering mini graph:', error);
+      return false;
+    }
+  }
+  
+  // Try immediately
+  if (!tryRenderMiniGraph()) {
+    // Wait for D3 to load
+    let attempts = 0;
+    const checkD3 = setInterval(() => {
+      attempts++;
+      if (tryRenderMiniGraph() || attempts > 50) {
+        clearInterval(checkD3);
+      }
+    }, 100);
+  }
 
-  // Mobile floating graph button
+  // Mobile floating graph button - always available as fallback
   const mobileGraphBtn = document.createElement('button');
   mobileGraphBtn.className = 'mobile-graph-btn';
   mobileGraphBtn.innerHTML = '&#x1F578;'; // spider web emoji as graph icon
-  mobileGraphBtn.title = 'View connections';
+  mobileGraphBtn.title = 'View connections (or press g)';
   mobileGraphBtn.setAttribute('aria-label', 'Open connection graph');
-  mobileGraphBtn.addEventListener('click', openGraph);
+  mobileGraphBtn.type = 'button'; // Prevent form submission
+  mobileGraphBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGraph();
+  });
   document.body.appendChild(mobileGraphBtn);
+  
+  // Ensure mobile button is always in DOM and accessible
+  mobileGraphBtn.style.display = 'none'; // Hidden by default, shown via CSS on mobile
+  
+  // Debug: Log that graph navigation is initialized
+  console.log('Graph navigation initialized:', {
+    sidebarGraph: !!sidebarGraph,
+    graphModal: !!graphModal,
+    mobileGraphBtn: !!mobileGraphBtn,
+    openGraph: typeof openGraph,
+    graphData: !!graphData,
+    d3Loaded: typeof d3 !== 'undefined',
+    sidebarGraphElement: document.querySelector('.sidebar-graph'),
+    miniGraphContainer: document.getElementById('mini-graph-container')
+  });
+  
+  // Ensure sidebar graph is visible
+  if (sidebarGraph) {
+    console.log('Sidebar graph element created:', sidebarGraph);
+    sidebarGraph.style.display = 'block';
+    sidebarGraph.style.visibility = 'visible';
+    sidebarGraph.style.opacity = '1';
+  }
+  
+  // Test: Make sure openGraph is callable
+  console.log('Testing openGraph function:', typeof openGraph);
+  if (typeof openGraph === 'function') {
+    console.log('openGraph is a function - good!');
+  } else {
+    console.error('openGraph is not a function!', openGraph);
+  }
+  
+  // Test: Make sure keyboard handler is attached
+  console.log('Keyboard handler attached:', typeof handleGraphKeyboard);
+  
+  // Test: Try to manually trigger openGraph after a short delay to verify it works
+  setTimeout(() => {
+    console.log('Testing graph system after 1 second...');
+    const testModal = document.querySelector('.graph-modal-overlay');
+    const testSidebar = document.querySelector('.sidebar-graph');
+    const testBtn = document.querySelector('.mobile-graph-btn');
+    console.log('Elements found:', {
+      modal: !!testModal,
+      sidebar: !!testSidebar,
+      button: !!testBtn
+    });
+  }, 1000);
 
   let graphInitialized = false;
+  let currentGraphState = { nodes: [], links: [], svg: null, simulation: null };
+  let activeCategory = 'all';
+  let searchFilter = '';
+  
+  let zoomBehavior = null;
+  let currentTransform = d3.zoomIdentity;
+  
   function initGraph() {
-    if (graphInitialized || typeof d3 === 'undefined') return;
+    console.log('initGraph called', { graphInitialized, d3Loaded: typeof d3 !== 'undefined' });
+    if (graphInitialized || typeof d3 === 'undefined') {
+      console.warn('initGraph skipped:', { graphInitialized, d3Loaded: typeof d3 !== 'undefined' });
+      return;
+    }
     graphInitialized = true;
-
+    console.log('Rendering full graph...');
+    renderGraph();
+    
+    // Setup search and filters
+    const searchInput = document.getElementById('graph-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchFilter = e.target.value.toLowerCase();
+        renderGraph();
+      });
+    }
+    
+    const filterBtns = document.querySelectorAll('.graph-filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        renderGraph();
+      });
+    });
+    
+    // Setup zoom controls
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const zoomResetBtn = document.getElementById('zoom-reset');
+    
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', () => {
+        const container = document.getElementById('graph-container');
+        const svg = d3.select(container).select('svg');
+        if (svg && zoomBehavior) {
+          svg.transition().call(zoomBehavior.scaleBy, 1.5);
+        }
+      });
+    }
+    
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', () => {
+        const container = document.getElementById('graph-container');
+        const svg = d3.select(container).select('svg');
+        if (svg && zoomBehavior) {
+          svg.transition().call(zoomBehavior.scaleBy, 1 / 1.5);
+        }
+      });
+    }
+    
+    if (zoomResetBtn) {
+      zoomResetBtn.addEventListener('click', () => {
+        const container = document.getElementById('graph-container');
+        const svg = d3.select(container).select('svg');
+        if (svg && zoomBehavior) {
+          svg.transition().call(zoomBehavior.transform, d3.zoomIdentity);
+        }
+      });
+    }
+  }
+  
+  function renderGraph() {
     const container = document.getElementById('graph-container');
+    if (!container) return;
+    
+    // Clear existing graph
+    d3.select(container).selectAll('*').remove();
+    
     const width = container.clientWidth;
     const height = container.clientHeight;
     const currentId = getCurrentPageId();
 
     const svg = d3.select(container).append('svg')
-      .attr('viewBox', `0 0 ${width} ${height}`);
+      .attr('width', width)
+      .attr('height', height);
 
-    const nodes = graphData.nodes.map(d => ({...d}));
-    const links = graphData.links.map(d => ({source: d.source, target: d.target}));
+    // Create a group for all graph elements (for zoom/pan)
+    const g = svg.append('g');
+    
+    // Create zoom behavior
+    zoomBehavior = d3.zoom()
+      .scaleExtent([0.3, 3])
+      .on('zoom', function(event) {
+        currentTransform = event.transform;
+        g.attr('transform', event.transform);
+      });
 
+    // Apply zoom to svg
+    svg.call(zoomBehavior);
+
+    // Filter nodes by category and search
+    let filteredNodes = graphData.nodes.map(d => ({...d}));
+    if (activeCategory !== 'all') {
+      filteredNodes = filteredNodes.filter(n => n.cat === activeCategory);
+    }
+    if (searchFilter) {
+      filteredNodes = filteredNodes.filter(n => 
+        n.label.toLowerCase().includes(searchFilter) || 
+        n.path.toLowerCase().includes(searchFilter)
+      );
+    }
+    
+    const nodeIds = new Set(filteredNodes.map(n => n.id));
+    
+    // Filter links to only include filtered nodes
+    const filteredLinks = graphData.links
+      .map(l => ({source: l.source, target: l.target}))
+      .filter(l => {
+        const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+        const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+        return nodeIds.has(sourceId) && nodeIds.has(targetId);
+      });
+
+    // Find connected nodes and paths
     const connectedNodes = new Set();
+    const paths = new Map();
+    
     graphData.links.forEach(l => {
-      if (l.source === currentId || l.target === currentId) {
-        connectedNodes.add(l.source);
-        connectedNodes.add(l.target);
+      const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+      const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+      
+      if (sourceId === currentId || targetId === currentId) {
+        connectedNodes.add(sourceId);
+        connectedNodes.add(targetId);
       }
+      
+      // Build path map for highlighting
+      if (!paths.has(sourceId)) paths.set(sourceId, new Set());
+      paths.get(sourceId).add(targetId);
+      if (!paths.has(targetId)) paths.set(targetId, new Set());
+      paths.get(targetId).add(sourceId);
     });
+    
+    // Find all nodes in paths from current
+    function findPathNodes(startId, visited = new Set()) {
+      if (visited.has(startId)) return visited;
+      visited.add(startId);
+      const neighbors = paths.get(startId) || new Set();
+      neighbors.forEach(neighbor => {
+        if (nodeIds.has(neighbor)) {
+          findPathNodes(neighbor, visited);
+        }
+      });
+      return visited;
+    }
+    
+    const pathNodes = currentId ? findPathNodes(currentId) : new Set();
 
-    // D3 force simulation for full graph
-    const simulation = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+    // Find current node and center it
+    const currentNode = filteredNodes.find(n => n.id === currentId);
+    const centerX = width / 2;
+    const centerY = height / 2;
+    
+    if (currentNode) {
+      // Set current node to center and fix it there
+      currentNode.fx = centerX;
+      currentNode.fy = centerY;
+    }
+    
+    // D3 force simulation for full graph - centered on current node
+    const simulation = d3.forceSimulation(filteredNodes)
+      .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(80))
       .force('charge', d3.forceManyBody().strength(-200))
-      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('center', d3.forceCenter(centerX, centerY))
       .force('collision', d3.forceCollide().radius(25))
       .stop();
 
     // Run simulation synchronously
     for (let i = 0; i < 150; i++) simulation.tick();
 
-    // Clamp positions
-    nodes.forEach(n => {
-      n.x = Math.max(50, Math.min(width - 50, n.x));
-      n.y = Math.max(50, Math.min(height - 50, n.y));
+    // Clamp positions (except current node which stays fixed at center)
+    filteredNodes.forEach(n => {
+      if (n.id !== currentId) {
+        n.x = Math.max(50, Math.min(width - 50, n.x));
+        n.y = Math.max(50, Math.min(height - 50, n.y));
+      }
     });
+    
+    // Keep current node at center (don't release fixed position)
+    // This ensures it stays centered even if simulation continues
+    if (currentNode) {
+      currentNode.fx = centerX;
+      currentNode.fy = centerY;
+    }
 
-    // Draw links
-    svg.selectAll('line')
-      .data(links)
+    // Draw links with path highlighting (inside the g group for zoom/pan)
+    g.selectAll('line.graph-link')
+      .data(filteredLinks)
       .join('line')
-      .attr('x1', d => d.source.x)
-      .attr('y1', d => d.source.y)
-      .attr('x2', d => d.target.x)
-      .attr('y2', d => d.target.y)
-      .attr('class', d => 'graph-link' + (connectedNodes.has(d.source.id) && connectedNodes.has(d.target.id) ? ' connected' : ''));
+      .attr('class', 'graph-link')
+      .attr('x1', d => {
+        const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
+        const sourceNode = filteredNodes.find(n => n.id === sourceId);
+        return sourceNode ? sourceNode.x : 0;
+      })
+      .attr('y1', d => {
+        const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
+        const sourceNode = filteredNodes.find(n => n.id === sourceId);
+        return sourceNode ? sourceNode.y : 0;
+      })
+      .attr('x2', d => {
+        const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+        const targetNode = filteredNodes.find(n => n.id === targetId);
+        return targetNode ? targetNode.x : 0;
+      })
+      .attr('y2', d => {
+        const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+        const targetNode = filteredNodes.find(n => n.id === targetId);
+        return targetNode ? targetNode.y : 0;
+      })
+      .attr('class', d => {
+        const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
+        const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+        const bothConnected = connectedNodes.has(sourceId) && connectedNodes.has(targetId);
+        const bothInPath = pathNodes.has(sourceId) && pathNodes.has(targetId);
+        return 'graph-link' + (bothConnected ? ' connected' : '') + (bothInPath ? ' path' : '');
+      });
 
-    // Draw nodes with labels
-    const nodeGroups = svg.selectAll('g.graph-node')
-      .data(nodes)
+    // Draw nodes with labels (inside the g group for zoom/pan)
+    const nodeGroups = g.selectAll('g.graph-node')
+      .data(filteredNodes)
       .join('g')
-      .attr('class', d => 'graph-node' + (d.id === currentId ? ' current' : ''))
+      .attr('class', d => {
+        const isCurrent = d.id === currentId;
+        const isConnected = connectedNodes.has(d.id);
+        const isInPath = pathNodes.has(d.id);
+        return 'graph-node' + 
+          (isCurrent ? ' current' : '') + 
+          (isConnected ? ' connected' : '') +
+          (isInPath ? ' path' : '');
+      })
       .attr('transform', d => `translate(${d.x},${d.y})`)
       .style('cursor', 'pointer')
       .on('click', (event, d) => { window.location.href = d.path; });
 
     nodeGroups.append('circle')
-      .attr('r', d => d.id === currentId ? 10 : (connectedNodes.has(d.id) ? 8 : 6))
-      .attr('fill', d => d.id === currentId ? 'var(--bs-primary)' : (catColors[d.cat] || 'var(--bs-secondary)'));
+      .attr('r', d => {
+        if (d.id === currentId) return 10;
+        if (connectedNodes.has(d.id)) return 8;
+        if (pathNodes.has(d.id)) return 7;
+        return 6;
+      })
+      .attr('fill', d => {
+        if (d.id === currentId) return 'var(--bs-primary)';
+        if (connectedNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
+        if (pathNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
+        return catColors[d.cat] || 'var(--bs-secondary)';
+      })
+      .attr('opacity', d => {
+        if (d.id === currentId) return 1;
+        if (connectedNodes.has(d.id)) return 1;
+        if (pathNodes.has(d.id)) return 0.8;
+        return 0.5;
+      });
 
     nodeGroups.append('text')
       .attr('y', 20)
       .text(d => d.label);
+    
+    currentGraphState = { nodes: filteredNodes, links: filteredLinks, svg, simulation };
   }
 });
 </script>
@@ -786,7 +1362,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../assets/favicon.svg" alt="" class="navbar-logo">
+    <img src="../../assets/favicon.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/favicon.svg" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">re:current_analytics</span>
@@ -842,7 +1419,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 12, 2025</p>
+      <p class="date-modified">December 15, 2025</p>
     </div>
   </div>
     
@@ -944,13 +1521,14 @@ A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlant
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1343,7 +1921,7 @@ A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlant
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Saharan Air Layer (SAL)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-11-12</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Climate, Tropical Cyclones]</span></span>
@@ -1362,7 +1940,7 @@ A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlant
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Links</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>[<span class="co">[</span><span class="ot">MJO</span><span class="co">]</span>]</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>[<span class="co">[</span><span class="ot">African Easterly Waves</span><span class="co">]</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>[<span class="co">[</span><span class="ot">African Easterly Waves</span><span class="co">]</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -1371,11 +1949,11 @@ A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlant
 <p>© Timm Walker</p>
 </div>   
     <div class="nav-footer-center">
-<p>Press ⌘K to navigate</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/notes/climate/sal.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/notes/climate/sal.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>re:current_analytics</p>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 

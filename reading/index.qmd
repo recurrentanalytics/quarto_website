@@ -1,10 +1,53 @@
 ---
 title: Reading
+page-layout: article
 ---
+
+# Reading
 
 Short summaries of papers, books, and references that inform the lab.
 
-*Coming soon: curated reading recommendations on climate risk, energy systems, and quantitative methods.*
+## Reading Note Template
+
+When adding reading notes, use this structure:
+
+```markdown
+---
+title: "Paper/Book Title"
+author: "Author Name"
+year: YYYY
+category: "Climate Science" | "Energy Systems" | "Risk & Finance" | "Methods"
+tags: ["tag1", "tag2"]
+status: "read" | "reading" | "to-read"
+---
+
+## Summary
+
+Brief summary of key points and findings.
+
+## Key Takeaways
+
+- Point 1
+- Point 2
+- Point 3
+
+## Connections
+
+Links to related notes, models, or projects.
+
+## Notes
+
+Detailed notes, quotes, and reflections.
+```
+
+## Categories
+
+Reading notes are organized by topic:
+
+- **Climate Science** - Physical climate modeling, projections, uncertainty
+- **Energy Systems** - Grid operations, renewables integration, storage
+- **Risk & Finance** - Climate risk pricing, stress testing, disclosure
+- **Methods** - Monte Carlo, time series, machine learning applications
 
 ## Suggested Starting Points
 
@@ -16,11 +59,6 @@ Short summaries of papers, books, and references that inform the lab.
 - **Academic journals**: *Nature Climate Change*, *Energy Policy*, *Climatic Change*
 :::
 
-## Categories
+## Reading Status
 
-As reading notes are added, they'll be organized by topic:
-
-- **Climate Science** - Physical climate modeling, projections, uncertainty
-- **Energy Systems** - Grid operations, renewables integration, storage
-- **Risk & Finance** - Climate risk pricing, stress testing, disclosure
-- **Methods** - Monte Carlo, time series, machine learning applications
+*Reading notes will appear here as they're added. Filter by category or status using the tags above.*

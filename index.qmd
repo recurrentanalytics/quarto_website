@@ -1,5 +1,5 @@
 ---
-title: "re:current_analytics"
+title: ""
 page-layout: article
 ---
 
@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
 ### Start here
 
 - **Notes / Lab journal:** ongoing experiments → [notes/](notes/)
-- **Projects:** packaged work, demos, slides → [projects/](projects/)
-- **Models & Tools:** code and notebooks (ERA5, triggers, Monte Carlo) → [models/](models/)
+- **Projects:** models, tools, demos, and packaged work → [projects/](projects/)
 - **Tipping Points:** strategic card game on climate–politics → [tipping-points/](tipping-points/)
-- **About & Contact:** who/what/why → [about](about.qmd) · [contact / cv](contact_cv.qmd)
+- **About & Contact:** who/what/why → [about](about.qmd)

@@ -1,0 +1,57 @@
+---
+title: Tipping Points
+page-layout: article
+---
+
+# Tipping Points
+
+A strategic card game exploring the intersection of climate science and political systems.
+
+## Overview
+
+*Tipping Points* is a card-based game that models how climate events interact with political and social systems. Players navigate cascading effects, feedback loops, and the challenge of building resilience in the face of uncertainty.
+
+## Game Components
+
+::: {.card}
+### Climate Cards
+Represent physical climate events: heatwaves, floods, droughts, sea-level rise, and extreme weather patterns.
+:::
+
+::: {.card}
+### System Cards
+Model political, economic, and social systems: governance structures, markets, infrastructure, and communities.
+:::
+
+::: {.card}
+### Tipping Point Cards
+Trigger cascading effects when certain conditions are met, creating feedback loops and system transformations.
+:::
+
+## How to Play
+
+1. **Setup**: Each player receives a hand of system cards representing different sectors (energy, agriculture, governance, etc.)
+2. **Climate Events**: Draw climate cards that trigger impacts on systems
+3. **Response**: Play system cards to build resilience or adapt
+4. **Tipping Points**: When thresholds are crossed, tipping point cards activate, changing the game state
+5. **Victory Conditions**: Win by maintaining system stability or by successfully transforming systems to be more resilient
+
+## Design Philosophy
+
+The game is designed to:
+- Make abstract climate–politics interactions tangible
+- Show how small changes can trigger large-scale transformations
+- Explore trade-offs between short-term stability and long-term adaptation
+- Model uncertainty and incomplete information
+
+## Status
+
+*Currently in development. Rules, cards, and mechanics are being refined through playtesting.*
+
+## Resources
+
+- Game design notes and iterations
+- Card templates and artwork
+- Playtesting results and feedback
+- Theoretical foundations (complexity theory, climate science, political economy)
+

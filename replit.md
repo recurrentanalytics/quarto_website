@@ -39,7 +39,6 @@ quarto render
 - **Last Modified Dates**: Notes show when they were last updated
 - **Custom 404 Page**: Minimal "Lost in the noise" error page
 - **Keyboard Shortcuts**: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)
-- **Random Note Link**: Footer link to discover random notes
 - **Command Palette**: Press Cmd+K (or Ctrl+K) for quick-jump to any page
 - **Print Stylesheet**: Clean formatting when printing (hides nav, shows URLs)
 - **Series Navigation**: Multi-part notes show "Part X of Y" with prev/next links
@@ -47,13 +46,6 @@ quarto render
 
 ## Sample Content
 - `notes/risk-series-1.qmd` through `risk-series-3.qmd` - 3-part series demonstrating series navigation and backlinks
-
-## Network Graph
-- **Sidebar Widget**: Always-visible mini network graph in right sidebar showing page connections
-- **Mobile Button**: Floating button on mobile (bottom-right) since sidebar is hidden
-- **D3-Force Layout**: Uses D3.js v7 for force-directed graph positioning
-- **Click to Expand**: Opens full modal with labels and click-to-navigate
-- **Press 'g'**: Keyboard shortcut to open graph modal
 
 ## Heatwave Analysis Page
 - `models/heatwave-prices-de-lu.qmd` - DE-LU electricity prices during heatwaves
