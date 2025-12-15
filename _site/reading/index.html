@@ -71,16 +71,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fed43467a49d1196e48e893c129ec633.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-74141a487ca470e5e766e5f6e84378c3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fed43467a49d1196e48e893c129ec633.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-432fe542f0e7438722e3797493e6cc83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f3428b617d84566c749cb5fa437c21d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-432fe542f0e7438722e3797493e6cc83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -109,6 +108,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<!-- IBM Plex Sans Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+
+<!-- IBM Plex Mono Font for code blocks -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+
 <!-- Plausible analytics -->
 <script defer="" data-domain="recurrentanalytics.com" src="https://plausible.io/js/script.js"></script>
 
@@ -182,8 +189,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentPath = '';
     pathParts.forEach((part, index) => {
-      currentPath += '/' + part;
       const isLast = index === pathParts.length - 1;
+      
+      // Special handling for "models" - link to projects page instead
+      if (part === 'models' && !isLast) {
+        breadcrumbHTML += '<li class="breadcrumb-item"><a href="/projects/">Projects</a></li>';
+        return; // Skip adding to currentPath
+      }
+      
+      // Skip "models" in breadcrumb if it's not the last part
+      if (part === 'models') {
+        return;
+      }
+      
+      currentPath += '/' + part;
       const label = part.replace(/\.html$/, '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
       
       if (isLast) {
@@ -236,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
         : '⌘K palette · / search · j/k navigate · f focus · ? hints';
     }
   }
-  
+
   // Keyboard shortcuts
   const noteLinks = Array.from(document.querySelectorAll('.quarto-listing-default a, .sidebar-item a'));
   let currentIndex = -1;
@@ -295,8 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
     { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
-    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
-    { title: 'ERA5 Demo', path: '/models/era5-demo.html' }
+    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' }
   ];
 
   const overlay = document.createElement('div');
@@ -346,17 +364,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     return wordMatches * 5;
   }
-  
+
   function renderResults(filter = '') {
     if (!filter.trim()) {
       const filtered = pages.slice(0, 10);
-      results.innerHTML = filtered.map((p, i) => `
-        <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
-          <div class="cmd-palette-item-title">${p.title}</div>
-          <div class="cmd-palette-item-path">${p.path}</div>
-        </a>
-      `).join('');
-      return filtered;
+    results.innerHTML = filtered.map((p, i) => `
+      <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+        <div class="cmd-palette-item-title">${p.title}</div>
+        <div class="cmd-palette-item-path">${p.path}</div>
+      </a>
+    `).join('');
+    return filtered;
     }
     
     // Score and sort by relevance
@@ -439,21 +457,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const isAboutPage = path === '/about.html' || path.endsWith('/about.html');
   
   if (!isHomePageForReading && !isNotesIndex && !isAboutPage) {
-    const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
-    const contentArea = document.querySelector('#quarto-document-content, .content, main');
-    if (articleBody && contentArea) {
-      const text = contentArea.innerText || '';
-      const wordCount = text.trim().split(/\s+/).length;
-      const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-      const timeSpan = document.createElement('span');
-      timeSpan.className = 'reading-time';
-      timeSpan.textContent = readingTime + ' min read';
-      const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
-      if (titleMeta) {
-        titleMeta.appendChild(document.createTextNode(' · '));
-        titleMeta.appendChild(timeSpan);
-      }
+  const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
+  const contentArea = document.querySelector('#quarto-document-content, .content, main');
+  if (articleBody && contentArea) {
+    const text = contentArea.innerText || '';
+    const wordCount = text.trim().split(/\s+/).length;
+    const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'reading-time';
+    timeSpan.textContent = readingTime + ' min read';
+    const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
+    if (titleMeta) {
+      titleMeta.appendChild(document.createTextNode(' · '));
+      titleMeta.appendChild(timeSpan);
     }
+  }
   }
 
 
@@ -468,10 +486,9 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
       { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
       { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
-      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html', cat: 'models' },
       { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
+      { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'models' },
       { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
-      { id: 'reading', label: 'Reading', path: '/reading/', cat: 'nav' },
       { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
     ],
     links: [
@@ -484,14 +501,13 @@ document.addEventListener('DOMContentLoaded', function() {
       { source: 'risk-1', target: 'risk-2' },
       { source: 'risk-2', target: 'risk-1' },
       { source: 'risk-2', target: 'risk-3' },
-      { source: 'risk-2', target: 'era5' },
       { source: 'risk-2', target: 'heatwave' },
       { source: 'risk-3', target: 'risk-1' },
       { source: 'risk-3', target: 'risk-2' },
-      { source: 'projects', target: 'era5' },
       { source: 'projects', target: 'heatwave' },
-      { source: 'heatwave', target: 'era5' },
+      { source: 'projects', target: 'climate-extremes' },
       { source: 'heatwave', target: 'risk-2' },
+      { source: 'climate-extremes', target: 'risk-2' },
     ]
   };
   
@@ -543,6 +559,21 @@ document.addEventListener('DOMContentLoaded', function() {
   sidebarGraph.style.display = 'block';
   sidebarGraph.style.visibility = 'visible';
   sidebarGraph.style.opacity = '1';
+  
+  // Ensure sidebarGraph is clickable - attach handler after it's in DOM
+  setTimeout(function() {
+    const graphEl = document.querySelector('.sidebar-graph');
+    if (graphEl && !graphEl.hasAttribute('data-click-handler-attached')) {
+      graphEl.setAttribute('data-click-handler-attached', 'true');
+      graphEl.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.openGraphNavigation === 'function') {
+          window.openGraphNavigation();
+        }
+      });
+    }
+  }, 100);
 
   // Create modal FIRST - before any D3 checks
   console.log('Creating graph modal element...');
@@ -561,7 +592,6 @@ document.addEventListener('DOMContentLoaded', function() {
           <button class="graph-filter-btn" data-cat="nav">Nav</button>
           <button class="graph-filter-btn" data-cat="notes">Notes</button>
           <button class="graph-filter-btn" data-cat="models">Models</button>
-          <button class="graph-filter-btn" data-cat="projects">Projects</button>
         </div>
         <div class="graph-zoom-controls">
           <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
@@ -606,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize graph if not already done
     if (typeof initGraph === 'function') {
-      initGraph();
+    initGraph();
     } else {
       console.error('initGraph function not found');
     }
@@ -617,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function closeGraph() {
     if (graphModal) {
-      graphModal.classList.remove('active');
+    graphModal.classList.remove('active');
       // Restore body scroll
       document.body.style.overflow = '';
     }
@@ -627,12 +657,31 @@ document.addEventListener('DOMContentLoaded', function() {
   window.openGraphNavigation = openGraph;
 
   // Ensure event listeners are attached after elements are created
-  if (sidebarGraph) {
+  // Use event delegation to handle clicks on sidebar graph
+  if (sidebarGraph && sidebarGraph.parentNode) {
     sidebarGraph.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
+      if (typeof openGraph === 'function') {
       openGraph();
-    });
+      } else if (typeof window.openGraphNavigation === 'function') {
+        window.openGraphNavigation();
+    }
+  });
+  } else {
+    // If sidebarGraph isn't in DOM yet, wait and retry
+    setTimeout(function() {
+      const graph = document.querySelector('.sidebar-graph');
+      if (graph) {
+        graph.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (typeof window.openGraphNavigation === 'function') {
+            window.openGraphNavigation();
+          }
+        });
+      }
+    }, 500);
   }
   
   const closeBtn = graphModal.querySelector('.graph-modal-close');
@@ -716,7 +765,7 @@ document.addEventListener('DOMContentLoaded', function() {
       currentNode.fx = centerX;
       currentNode.fy = centerY;
     }
-    
+
     // D3 force simulation for mini graph
     const simulation = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(d => d.id).distance(30))
@@ -731,8 +780,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clamp positions (except current node which stays fixed)
     nodes.forEach(n => {
       if (n.id !== currentId) {
-        n.x = Math.max(15, Math.min(width - 15, n.x));
-        n.y = Math.max(15, Math.min(height - 15, n.y));
+      n.x = Math.max(15, Math.min(width - 15, n.x));
+      n.y = Math.max(15, Math.min(height - 15, n.y));
       }
     });
     
@@ -795,7 +844,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     }
     try {
-      renderMiniGraph();
+  renderMiniGraph();
       console.log('Mini graph rendered successfully');
       return true;
     } catch (error) {
@@ -921,7 +970,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (zoomInBtn) {
       zoomInBtn.addEventListener('click', () => {
-        const container = document.getElementById('graph-container');
+    const container = document.getElementById('graph-container');
         const svg = d3.select(container).select('svg');
         if (svg && zoomBehavior) {
           svg.transition().call(zoomBehavior.scaleBy, 1.5);
@@ -1030,8 +1079,8 @@ document.addEventListener('DOMContentLoaded', function() {
       neighbors.forEach(neighbor => {
         if (nodeIds.has(neighbor)) {
           findPathNodes(neighbor, visited);
-        }
-      });
+      }
+    });
       return visited;
     }
     
@@ -1047,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', function() {
       currentNode.fx = centerX;
       currentNode.fy = centerY;
     }
-    
+
     // D3 force simulation for full graph - centered on current node
     const simulation = d3.forceSimulation(filteredNodes)
       .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(80))
@@ -1062,8 +1111,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clamp positions (except current node which stays fixed at center)
     filteredNodes.forEach(n => {
       if (n.id !== currentId) {
-        n.x = Math.max(50, Math.min(width - 50, n.x));
-        n.y = Math.max(50, Math.min(height - 50, n.y));
+      n.x = Math.max(50, Math.min(width - 50, n.x));
+      n.y = Math.max(50, Math.min(height - 50, n.y));
       }
     });
     
@@ -1132,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return 6;
       })
       .attr('fill', d => {
-        if (d.id === currentId) return 'var(--bs-primary)';
+        if (d.id === currentId) return '#20B2AA';  /* True Teal */
         if (connectedNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
         if (pathNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
         return catColors[d.cat] || 'var(--bs-secondary)';
@@ -1151,6 +1200,693 @@ document.addEventListener('DOMContentLoaded', function() {
     currentGraphState = { nodes: filteredNodes, links: filteredLinks, svg, simulation };
   }
 });
+</script>
+
+<!-- Image Lightbox/Modal for clickable enlargements -->
+<style>
+/* Lightbox overlay */
+.image-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-lightbox.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.image-lightbox-content {
+  max-width: 95%;
+  max-height: 95%;
+  margin: auto;
+  display: block;
+  object-fit: contain;
+  cursor: default;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.image-lightbox-close:hover,
+.image-lightbox-close:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Make figures and images clickable */
+.quarto-figure,
+figure,
+.cell-output-display img,
+.cell-output-display svg,
+.quarto-plot img,
+img[src*=".png"],
+img[src*=".jpg"],
+img[src*=".jpeg"],
+img[src*=".svg"] {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.quarto-figure:hover,
+figure:hover,
+.cell-output-display img:hover,
+.cell-output-display svg:hover,
+.quarto-plot img:hover,
+img[src*=".png"]:hover,
+img[src*=".jpg"]:hover,
+img[src*=".jpeg"]:hover,
+img[src*=".svg"]:hover {
+  opacity: 0.9;
+}
+
+/* Exclude icons and small images */
+.navbar img,
+.nav-footer img,
+img[width][width<100],
+img[height][height<100] {
+  cursor: default;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Create lightbox element
+  const lightbox = document.createElement('div');
+  lightbox.className = 'image-lightbox';
+  lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img class="image-lightbox-content" src="" alt="">';
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxClose = lightbox.querySelector('.image-lightbox-close');
+
+  // Function to open lightbox
+  function openLightbox(imgSrc, imgAlt) {
+    lightboxImg.src = imgSrc;
+    lightboxImg.alt = imgAlt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Function to close lightbox
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close on X click
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  // Close on overlay click
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+
+  // Make all figures and images clickable
+  const selectors = [
+    '.quarto-figure img',
+    'figure img',
+    '.cell-output-display img',
+    '.cell-output-display svg',
+    '.quarto-plot img',
+    '.quarto-figure svg',
+    'figure svg'
+  ];
+
+  selectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(img => {
+      // Skip small images (likely icons)
+      if (img.width && img.width < 100) return;
+      if (img.height && img.height < 100) return;
+      
+      // Skip navbar/footer images
+      if (img.closest('.navbar') || img.closest('.nav-footer')) return;
+
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const src = this.src || this.getAttribute('data-src') || this.href;
+        if (src) {
+          openLightbox(src, this.alt || '');
+        }
+      });
+    });
+  });
+
+  // Also handle figure containers
+  document.querySelectorAll('.quarto-figure, figure').forEach(figure => {
+    const img = figure.querySelector('img, svg');
+    if (img && !img.closest('.navbar') && !img.closest('.nav-footer')) {
+      figure.style.cursor = 'pointer';
+      figure.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'IMG' && e.target.tagName !== 'SVG') {
+          const img = this.querySelector('img, svg');
+          if (img) {
+            e.preventDefault();
+            e.stopPropagation();
+            const src = img.src || img.getAttribute('data-src') || img.href;
+            if (src) {
+              openLightbox(src, img.alt || '');
+            }
+          }
+        }
+      });
+    }
+  });
+
+  // Back to top button
+  (function() {
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top-btn';
+    backToTopBtn.innerHTML = '↑';
+    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.setAttribute('title', 'Back to top');
+    backToTopBtn.type = 'button';
+    
+    if (document.body) {
+      document.body.appendChild(backToTopBtn);
+    } else {
+      // Wait for body if not ready
+      setTimeout(function() {
+        document.body.appendChild(backToTopBtn);
+      }, 100);
+    }
+
+    function updateBackToTopVisibility() {
+      if (!backToTopBtn.parentNode) return;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+      if (scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+
+    // Use both scroll events for better compatibility
+    window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+    document.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+    updateBackToTopVisibility(); // Check on load
+
+    backToTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Try multiple scroll methods for compatibility
+      if (window.scrollTo) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else if (document.documentElement.scrollTo) {
+        document.documentElement.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        // Fallback
+        window.scrollTo(0, 0);
+      }
+    });
+  })();
+
+
+  // Related Notes Section
+  function addRelatedNotes() {
+    // Only on note pages (not index, not projects, etc.)
+    const path = window.location.pathname;
+    const isNotePage = path.startsWith('/notes/') && 
+                      !path.endsWith('/notes/') && 
+                      !path.endsWith('/notes/index.html') &&
+                      path.includes('.html');
+    
+    if (!isNotePage) return;
+
+    // Get current page categories from meta tags or page data
+    const currentCategories = [];
+    const currentTags = [];
+    
+    // Try to get from meta tags
+    const categoryMeta = document.querySelector('meta[name="categories"], meta[property="article:tag"]');
+    if (categoryMeta) {
+      const cats = categoryMeta.content.split(',').map(c => c.trim());
+      currentCategories.push(...cats);
+    }
+    
+    // Try to get from page data attributes
+    const pageData = document.querySelector('[data-categories]');
+    if (pageData) {
+      const cats = pageData.getAttribute('data-categories').split(',').map(c => c.trim());
+      currentCategories.push(...cats);
+    }
+
+    // Get all notes from search.json or listings
+    fetch('/search.json')
+      .then(response => response.json())
+      .then(data => {
+        // Extract unique note pages
+        const notePages = new Map();
+        data.forEach(item => {
+          if (item.href && item.href.startsWith('/notes/') && 
+              !item.href.endsWith('/notes/index.html') &&
+              item.href.includes('.html') &&
+              !item.section) { // Only main pages, not sections
+            if (!notePages.has(item.href) || !notePages.get(item.href).title) {
+              notePages.set(item.href, {
+                href: item.href,
+                title: item.title || 'Untitled',
+                text: item.text || ''
+              });
+            }
+          }
+        });
+
+        // Find related notes (simple: same title words or series)
+        const currentTitle = document.querySelector('h1, .quarto-title h1')?.textContent || '';
+        const currentText = document.body.innerText || '';
+        const currentTitleWords = currentTitle.toLowerCase().split(/\s+/);
+        
+        const related = Array.from(notePages.values())
+          .filter(note => {
+            // Don't include current page
+            if (note.href === path || note.href === path.replace('.html', '')) return false;
+            
+            // Check for shared words in title
+            const noteTitleWords = note.title.toLowerCase().split(/\s+/);
+            const sharedWords = currentTitleWords.filter(w => 
+              w.length > 3 && noteTitleWords.includes(w)
+            );
+            
+            // Check for series (e.g., "Part 1", "Part 2")
+            const isSeries = /part\s+\d+/i.test(currentTitle) && /part\s+\d+/i.test(note.title);
+            
+            return sharedWords.length > 0 || isSeries || 
+                   (currentText.includes('risk') && note.text.toLowerCase().includes('risk')) ||
+                   (currentText.includes('climate') && note.text.toLowerCase().includes('climate'));
+          })
+          .slice(0, 5); // Limit to 5 related notes
+
+        if (related.length > 0) {
+          // Create related notes section
+          const relatedSection = document.createElement('div');
+          relatedSection.className = 'related-notes-section';
+          relatedSection.innerHTML = `
+            <h2 class="related-notes-heading">Related Notes</h2>
+            <ul class="related-notes-list">
+              ${related.map(note => `
+                <li>
+                  <a href="${note.href}">${note.title}</a>
+                </li>
+              `).join('')}
+            </ul>
+          `;
+
+          // Insert before footer or at end of content
+          const content = document.querySelector('#quarto-document-content, .content, main, article');
+          if (content) {
+            content.appendChild(relatedSection);
+          }
+        }
+      })
+      .catch(err => console.log('Could not load related notes:', err));
+  }
+
+  // Run after page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addRelatedNotes);
+  } else {
+    addRelatedNotes();
+  }
+});
+</script>
+
+<style>
+/* Related Notes Section */
+.related-notes-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.related-notes-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--bs-body-color);
+}
+
+.related-notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related-notes-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.related-notes-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--bs-secondary);
+}
+
+.related-notes-list a {
+  color: #1a1a1a !important;  /* Subtle, matches body text */
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.related-notes-list a:hover {
+  color: #20B2AA !important;  /* Teal on hover for interactivity */
+  text-decoration: underline;
+}
+</style>
+
+<style>
+/* Back to top button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background: var(--bs-primary);
+  color: var(--bs-body-bg);
+  border-color: var(--bs-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Hide in print */
+@media print {
+  .back-to-top-btn {
+    display: none !important;
+  }
+}
+</style>
+
+<style>
+/* Collapsible Code Blocks - Global */
+.code-block-wrapper {
+  margin: 1.5rem 0;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background: #f8f8f8;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  border-bottom: 1px solid var(--bs-border-color);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.code-block-header:hover {
+  background: #e8e8e8;
+}
+
+.code-block-title {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.code-block-toggle {
+  font-size: 0.75rem;
+  color: #666;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.code-block-wrapper.expanded .code-block-toggle {
+  transform: rotate(180deg);
+}
+
+.code-block-content {
+  display: none;
+  overflow: hidden;
+}
+
+.code-block-wrapper.expanded .code-block-content {
+  display: block;
+}
+
+.code-block-wrapper pre,
+.code-block-wrapper code {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Ensure outputs are always visible - never collapse them */
+.cell-output,
+.cell-output-stdout,
+.cell-output-stderr,
+.cell-output-display,
+.cell-output pre,
+.cell-output code {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure unwrapped code blocks are visible until JavaScript wraps them */
+pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
+.cell-code:not(.code-block-wrapper .cell-code) {
+  display: block !important;
+}
+</style>
+
+<script>
+(function() {
+  // Function to wrap code blocks in collapsible structure
+  // ONLY wrap input code blocks, NOT outputs
+  function makeCodeBlocksCollapsible() {
+    try {
+    // Find only INPUT code blocks - exclude outputs
+    // Target pre.sourceCode (standalone code blocks) and .cell-code (input code in cells)
+    // Exclude ones already wrapped and exclude any inside .cell-output
+    const codeBlocks = document.querySelectorAll('pre.sourceCode:not(.code-block-wrapper pre.sourceCode):not(.cell-output pre), .cell-code:not(.code-block-wrapper .cell-code):not(.cell-output .cell-code)');
+    
+    if (codeBlocks.length === 0) return;
+    
+    codeBlocks.forEach(function(block) {
+      // Skip if already wrapped
+      if (block.closest('.code-block-wrapper')) {
+        return;
+      }
+
+      // Skip if inside output container
+      if (block.closest('.cell-output, .cell-output-stdout, .cell-output-stderr, .cell-output-display')) {
+        return;
+      }
+
+      // Skip inline code
+      if (block.tagName === 'CODE' && block.parentElement && block.parentElement.tagName !== 'PRE') {
+        return;
+      }
+
+      // Get language from class or parent
+      let language = 'code';
+      const classList = block.className || '';
+      if (classList.includes('sourceCode')) {
+        const match = classList.match(/sourceCode-(\w+)/);
+        if (match) language = match[1];
+      } else if (block.querySelector('code')) {
+        const codeEl = block.querySelector('code');
+        if (codeEl && codeEl.className) {
+          const match = codeEl.className.match(/language-(\w+)|sourceCode-(\w+)/);
+          if (match) language = match[1] || match[2];
+        }
+      }
+
+      // Create wrapper
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+
+      // Create header
+      const header = document.createElement('div');
+      header.className = 'code-block-header';
+      header.innerHTML = `
+        <span class="code-block-title">
+          <span class="code-block-toggle">▼</span>
+          <span>${language}</span>
+        </span>
+      `;
+
+      // Create content container
+      const content = document.createElement('div');
+      content.className = 'code-block-content';
+      
+      // Store parent and next sibling BEFORE moving block
+      const parent = block.parentNode;
+      const nextSibling = block.nextSibling;
+      
+      // Move the block into content (don't clone, move it)
+      // This removes block from parent, so we need parent/nextSibling before this
+      content.appendChild(block);
+
+      // Assemble
+      wrapper.appendChild(header);
+      wrapper.appendChild(content);
+      
+      // Insert wrapper where block was
+      // Note: block is now inside content, so we insert wrapper at block's old position
+      if (parent) {
+        // If there's a next sibling, insert before it (block was before nextSibling)
+        // Otherwise append to end
+        if (nextSibling && nextSibling.parentNode === parent) {
+          parent.insertBefore(wrapper, nextSibling);
+        } else {
+          // If nextSibling is null or invalid, append to parent
+          parent.appendChild(wrapper);
+        }
+      }
+
+      // Add click handler
+      header.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.toggle('expanded');
+      });
+    });
+    } catch (error) {
+      console.error('Error in makeCodeBlocksCollapsible:', error);
+      // Don't break the page if code block wrapping fails
+    }
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', makeCodeBlocksCollapsible);
+  } else {
+    // DOM already loaded
+    makeCodeBlocksCollapsible();
+  }
+
+  // Also run after delays to catch dynamically loaded content
+  setTimeout(makeCodeBlocksCollapsible, 100);
+  setTimeout(makeCodeBlocksCollapsible, 500);
+  setTimeout(makeCodeBlocksCollapsible, 1000);
+
+  // Use MutationObserver to catch dynamically added code blocks
+  const observer = new MutationObserver(function(mutations) {
+    let shouldRun = false;
+    mutations.forEach(function(mutation) {
+      if (mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) { // Element node
+            // Only trigger if it's an input code block, not an output
+            if (node.matches && (
+              (node.matches('pre.sourceCode') && !node.closest('.cell-output')) ||
+              (node.matches('.cell-code') && !node.closest('.cell-output')) ||
+              (node.querySelector && node.querySelector('pre.sourceCode:not(.cell-output pre), .cell-code:not(.cell-output .cell-code)'))
+            )) {
+              shouldRun = true;
+            }
+          }
+        });
+      }
+    });
+    if (shouldRun) {
+      setTimeout(makeCodeBlocksCollapsible, 100);
+    }
+  });
+
+  // Start observing
+  if (document.body) {
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  }
+})();
 </script>
 
 
@@ -1354,12 +2090,13 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reading" id="toc-reading" class="nav-link active" data-scroll-target="#reading">Reading</a>
+  <li><a href="#reading-notes-guide" id="toc-reading-notes-guide" class="nav-link active" data-scroll-target="#reading-notes-guide">Reading Notes Guide</a>
   <ul class="collapse">
+  <li><a href="#how-to-add-reading-notes" id="toc-how-to-add-reading-notes" class="nav-link" data-scroll-target="#how-to-add-reading-notes">How to Add Reading Notes</a></li>
   <li><a href="#reading-note-template" id="toc-reading-note-template" class="nav-link" data-scroll-target="#reading-note-template">Reading Note Template</a></li>
-  <li><a href="#categories" id="toc-categories" class="nav-link" data-scroll-target="#categories">Categories</a></li>
+  <li><a href="#categories-and-tags" id="toc-categories-and-tags" class="nav-link" data-scroll-target="#categories-and-tags">Categories and Tags</a></li>
   <li><a href="#suggested-starting-points" id="toc-suggested-starting-points" class="nav-link" data-scroll-target="#suggested-starting-points">Suggested Starting Points</a></li>
-  <li><a href="#reading-status" id="toc-reading-status" class="nav-link" data-scroll-target="#reading-status">Reading Status</a></li>
+  <li><a href="#viewing-reading-notes" id="toc-viewing-reading-notes" class="nav-link" data-scroll-target="#viewing-reading-notes">Viewing Reading Notes</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/reading/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
@@ -1371,19 +2108,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<section id="reading" class="level1">
-<h1>Reading</h1>
-<p>Short summaries of papers, books, and references that inform the lab.</p>
+<section id="reading-notes-guide" class="level1">
+<h1>Reading Notes Guide</h1>
+<p>Reading notes are part of the <a href="../notes/">Notes &amp; Knowledge Base</a> collection. They appear alongside other notes in the main listing and can be filtered by category or tags.</p>
+<section id="how-to-add-reading-notes" class="level2">
+<h2 data-anchor-id="how-to-add-reading-notes">How to Add Reading Notes</h2>
+<p>Create reading notes directly in the <code>notes/</code> directory, just like any other note. They will automatically appear in the Notes listing.</p>
+</section>
 <section id="reading-note-template" class="level2">
-<h2 class="anchored" data-anchor-id="reading-note-template">Reading Note Template</h2>
+<h2 data-anchor-id="reading-note-template">Reading Note Template</h2>
 <p>When adding reading notes, use this structure:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Paper/Book Title"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Author Name"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">year:</span><span class="co"> YYYY</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">category:</span><span class="co"> "Climate Science" | "Energy Systems" | "Risk &amp; Finance" | "Methods"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> ["tag1", "tag2"]</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">status:</span><span class="co"> "read" | "reading" | "to-read"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> ["reading"]  # Optional: use to group reading notes</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> ["climate-science", "risk-modelling"]</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> YYYY-MM-DD</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
@@ -1404,18 +2145,17 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Detailed notes, quotes, and reflections.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="categories" class="level2">
-<h2 class="anchored" data-anchor-id="categories">Categories</h2>
-<p>Reading notes are organized by topic:</p>
+<section id="categories-and-tags" class="level2">
+<h2 data-anchor-id="categories-and-tags">Categories and Tags</h2>
+<p>Reading notes can be organized using categories and tags:</p>
 <ul>
-<li><strong>Climate Science</strong> - Physical climate modeling, projections, uncertainty</li>
-<li><strong>Energy Systems</strong> - Grid operations, renewables integration, storage</li>
-<li><strong>Risk &amp; Finance</strong> - Climate risk pricing, stress testing, disclosure</li>
-<li><strong>Methods</strong> - Time series, machine learning applications</li>
+<li><strong>Categories</strong>: Use <code>categories: ["reading"]</code> to group reading notes</li>
+<li><strong>Tags</strong>: Add topic tags like <code>climate-science</code>, <code>energy-systems</code>, <code>risk-finance</code>, <code>methods</code></li>
+<li><strong>Additional tags</strong>: Consider <code>read</code>, <code>reading</code>, <code>to-read</code> for status tracking</li>
 </ul>
 </section>
 <section id="suggested-starting-points" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-starting-points">Suggested Starting Points</h2>
+<h2 data-anchor-id="suggested-starting-points">Suggested Starting Points</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1434,9 +2174,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 </section>
-<section id="reading-status" class="level2">
-<h2 class="anchored" data-anchor-id="reading-status">Reading Status</h2>
-<p><em>Reading notes will appear here as they’re added. Filter by category or status using the tags above.</em></p>
+<section id="viewing-reading-notes" class="level2">
+<h2 data-anchor-id="viewing-reading-notes">Viewing Reading Notes</h2>
+<p>All reading notes appear in the <a href="../notes/">Notes &amp; Knowledge Base</a> listing. Use the category filter or search to find specific reading notes.</p>
 
 
 <!-- -->
@@ -1460,13 +2200,6 @@ document.addEventListener('DOMContentLoaded', function() {
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -1914,65 +2647,68 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reading</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reading Notes Guide</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Short summaries of papers, books, and references that inform the lab.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Reading notes are part of the <span class="co">[</span><span class="ot">Notes &amp; Knowledge Base</span><span class="co">](/notes/)</span> collection. They appear alongside other notes in the main listing and can be filtered by category or tags.</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading Note Template</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to Add Reading Notes</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>When adding reading notes, use this structure:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>Create reading notes directly in the <span class="in">`notes/`</span> directory, just like any other note. They will automatically appear in the Notes listing.</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>title: "Paper/Book Title"</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>author: "Author Name"</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>year: YYYY</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>category: "Climate Science" | "Energy Systems" | "Risk &amp; Finance" | "Methods"</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>tags: <span class="co">[</span><span class="ot">"tag1", "tag2"</span><span class="co">]</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>status: "read" | "reading" | "to-read"</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>Brief summary of key points and findings.</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading Note Template</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>When adding reading notes, use this structure:</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>title: "Paper/Book Title"</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>author: "Author Name"</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>year: YYYY</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>categories: <span class="co">[</span><span class="ot">"reading"</span><span class="co">]</span>  # Optional: use to group reading notes</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>tags: <span class="co">[</span><span class="ot">"climate-science", "risk-modelling"</span><span class="co">]</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>date: YYYY-MM-DD</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Takeaways</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point 1</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point 2</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point 3</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>Brief summary of key points and findings.</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Takeaways</span></span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Connections</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>Links to related notes, models, or projects.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point 1</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point 2</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point 3</span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notes</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Connections</span></span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>Detailed notes, quotes, and reflections.</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Categories</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>Reading notes are organized by topic:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>Links to related notes, models, or projects.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notes</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>Detailed notes, quotes, and reflections.</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Climate Science** - Physical climate modeling, projections, uncertainty</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Energy Systems** - Grid operations, renewables integration, storage</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Risk &amp; Finance** - Climate risk pricing, stress testing, disclosure</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Methods** - Time series, machine learning applications</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Suggested Starting Points</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Started with Climate Risk</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Categories and Tags</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>Reading notes can be organized using categories and tags:</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Categories**: Use <span class="in">`categories: ["reading"]`</span> to group reading notes</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Tags**: Add topic tags like <span class="in">`climate-science`</span>, <span class="in">`energy-systems`</span>, <span class="in">`risk-finance`</span>, <span class="in">`methods`</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Additional tags**: Consider <span class="in">`read`</span>, <span class="in">`reading`</span>, <span class="in">`to-read`</span> for status tracking</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Suggested Starting Points</span></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IPCC AR6 Reports** - Essential background on climate science</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IEA World Energy Outlook** - Annual energy sector analysis</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Academic journals**: *Nature Climate Change*, *Energy Policy*, *Climatic Change*</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading Status</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>*Reading notes will appear here as they're added. Filter by category or status using the tags above.*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Started with Climate Risk</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IPCC AR6 Reports** - Essential background on climate science</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IEA World Energy Outlook** - Annual energy sector analysis</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Academic journals**: *Nature Climate Change*, *Energy Policy*, *Climatic Change*</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Viewing Reading Notes</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>All reading notes appear in the <span class="co">[</span><span class="ot">Notes &amp; Knowledge Base</span><span class="co">](/notes/)</span> listing. Use the category filter or search to find specific reading notes.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
