@@ -24,7 +24,11 @@ The code below expects those CSVs in `data/raw/`. Download from:
 
 ## Build processed inputs (hourly parquet)
 
-```python
+```{python}
+import sys
+import os
+sys.path.insert(0, os.path.abspath('.'))
+
 import pandas as pd
 
 from src.data_download import save_prices_from_opsd, save_weather_de_from_opsd
@@ -33,13 +37,26 @@ START = "2015-01-01"
 END_PRICES  = "2020-07-01"
 END_WEATHER = "2020-01-01"
 
-save_prices_from_opsd(start=START, end=END_PRICES)
-save_weather_de_from_opsd(start=START, end=END_WEATHER)
-
-prices  = pd.read_parquet("data/processed/prices_de_lu_clean.parquet")
-weather = pd.read_parquet("data/processed/weather_de_agg.parquet")
-
-prices.head(), weather.head()
+# Try to load data, but handle missing files gracefully
+try:
+    save_prices_from_opsd(start=START, end=END_PRICES)
+    save_weather_de_from_opsd(start=START, end=END_WEATHER)
+    
+    prices  = pd.read_parquet("data/processed/prices_de_lu_clean.parquet")
+    weather = pd.read_parquet("data/processed/weather_de_agg.parquet")
+    
+    print("Data loaded successfully:")
+    print(prices.head())
+    print(weather.head())
+except FileNotFoundError as e:
+    print(f"Data files not found: {e}")
+    print("\nTo run this analysis, download the required data files:")
+    print("- Time series: https://data.open-power-system-data.org/time_series/")
+    print("- Weather data: https://data.open-power-system-data.org/weather_data/")
+    print("\nPlace the CSV files in data/raw/ and re-run this notebook.")
+    # Create empty dataframes so subsequent code doesn't fail
+    prices = pd.DataFrame()
+    weather = pd.DataFrame()
 ```
 
 ## Heatwave definition
@@ -53,7 +70,7 @@ This is one modelling choice among many. The point is to make it explicit and in
 
 ## Flag heatwaves and merge with prices
 
-```python
+```{python}
 import matplotlib.pyplot as plt
 
 from src.heatwave_defs import (
@@ -64,87 +81,114 @@ from src.heatwave_defs import (
     merge_price_and_weather,
 )
 
-prices_c, weather_c = restrict_common_period(prices, weather)
-
-daily_temp  = compute_daily_max_temp(weather_c)
-daily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)
-
-# Attach daily flag back to hourly weather and merge with hourly prices
-weather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)
-merged = merge_price_and_weather(prices_c, weather_hw)
-
-merged.head()
+# Check if data is available
+if prices.empty or weather.empty:
+    print("Skipping analysis: data files not available.")
+    print("Please download the required data files to run this analysis.")
+    prices_c = pd.DataFrame()
+    weather_c = pd.DataFrame()
+    daily_flags = pd.DataFrame()
+    merged = pd.DataFrame()
+else:
+    prices_c, weather_c = restrict_common_period(prices, weather)
+    
+    daily_temp  = compute_daily_max_temp(weather_c)
+    daily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)
+    
+    # Attach daily flag back to hourly weather and merge with hourly prices
+    weather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)
+    merged = merge_price_and_weather(prices_c, weather_hw)
+    
+    print("Heatwave analysis completed:")
+    print(merged.head())
 ```
 
 ## Temperature with heatwave days highlighted (Summer 2019)
 
-```python
-hw_2019 = daily_flags["2019-06-01":"2019-08-31"]
-
-fig, ax = plt.subplots(figsize=(12, 4))
-ax.plot(hw_2019.index, hw_2019["t2m_daily_max_c"], label="Daily max temp")
-ax.scatter(
-    hw_2019.index[hw_2019["is_heatwave_day"]],
-    hw_2019["t2m_daily_max_c"][hw_2019["is_heatwave_day"]],
-    s=35,
-    label="Heatwave days",
-)
-ax.set_ylabel("°C")
-ax.set_title("Daily max temperature with heatwave days highlighted (Summer 2019)")
-ax.legend()
-plt.show()
+```{python}
+if daily_flags.empty:
+    print("No data available for visualization.")
+else:
+    hw_2019 = daily_flags["2019-06-01":"2019-08-31"]
+    
+    fig, ax = plt.subplots(figsize=(12, 4))
+    ax.plot(hw_2019.index, hw_2019["t2m_daily_max_c"], label="Daily max temp")
+    ax.scatter(
+        hw_2019.index[hw_2019["is_heatwave_day"]],
+        hw_2019["t2m_daily_max_c"][hw_2019["is_heatwave_day"]],
+        s=35,
+        label="Heatwave days",
+    )
+    ax.set_ylabel("°C")
+    ax.set_title("Daily max temperature with heatwave days highlighted (Summer 2019)")
+    ax.legend()
+    plt.show()
 ```
 
 ## Summer 2019: prices and temperature (heatwave days shaded)
 
-```python
-summer = merged.set_index("datetime_utc")["2019-06-01":"2019-08-31"]
-
-fig, ax1 = plt.subplots(figsize=(12, 5))
-ax2 = ax1.twinx()
-
-ax1.plot(summer.index, summer["price_eur_mwh"], label="Price (EUR/MWh)")
-ax2.plot(summer.index, summer["t2m_mean_c"], alpha=0.7, linestyle="--", label="Temperature (°C)")
-
-# Shade heatwave days
-for day in summer.index.normalize().unique():
-    day_mask = (summer.index.normalize() == day)
-    if summer.loc[day_mask, "is_heatwave_day"].any():
-        ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)
-
-ax1.set_ylabel("Price [EUR/MWh]")
-ax2.set_ylabel("Temperature [°C]")
-ax1.set_title("Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)")
-fig.tight_layout()
-plt.show()
+```{python}
+if merged.empty:
+    print("No data available for visualization.")
+else:
+    summer = merged.set_index("datetime_utc")["2019-06-01":"2019-08-31"]
+    
+    fig, ax1 = plt.subplots(figsize=(12, 5))
+    ax2 = ax1.twinx()
+    
+    ax1.plot(summer.index, summer["price_eur_mwh"], label="Price (EUR/MWh)")
+    ax2.plot(summer.index, summer["t2m_mean_c"], alpha=0.7, linestyle="--", label="Temperature (°C)")
+    
+    # Shade heatwave days
+    for day in summer.index.normalize().unique():
+        day_mask = (summer.index.normalize() == day)
+        if summer.loc[day_mask, "is_heatwave_day"].any():
+            ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)
+    
+    ax1.set_ylabel("Price [EUR/MWh]")
+    ax2.set_ylabel("Temperature [°C]")
+    ax1.set_title("Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)")
+    fig.tight_layout()
+    plt.show()
 ```
 
 ## Peak hours: price distributions on heatwave vs non-heatwave days
 
-```python
-peak = merged[(merged["hour"] >= 8) & (merged["hour"] <= 20)].copy()
-
-hw = peak[peak["is_heatwave_day"]]
-normal = peak[~peak["is_heatwave_day"]]
-
-summary = pd.DataFrame({
-    "normal_peak_hours": normal["price_eur_mwh"].describe(),
-    "heatwave_peak_hours": hw["price_eur_mwh"].describe(),
-})
-summary
+```{python}
+if merged.empty:
+    print("No data available for analysis.")
+    summary = pd.DataFrame()
+else:
+    peak = merged[(merged["hour"] >= 8) & (merged["hour"] <= 20)].copy()
+    
+    hw = peak[peak["is_heatwave_day"]]
+    normal = peak[~peak["is_heatwave_day"]]
+    
+    summary = pd.DataFrame({
+        "normal_peak_hours": normal["price_eur_mwh"].describe(),
+        "heatwave_peak_hours": hw["price_eur_mwh"].describe(),
+    })
+    print(summary)
 ```
 
-```python
-fig, ax = plt.subplots(figsize=(8, 5))
-
-ax.hist(normal["price_eur_mwh"], bins=60, alpha=0.6, density=True, label="Normal days (peak hours)")
-ax.hist(hw["price_eur_mwh"],     bins=60, alpha=0.6, density=True, label="Heatwave days (peak hours)")
-
-ax.set_xlabel("Day-ahead price (EUR/MWh)")
-ax.set_ylabel("Density")
-ax.set_title("DE-LU prices: heatwave vs normal days (2015–2019, peak hours)")
-ax.legend()
-plt.show()
+```{python}
+if merged.empty:
+    print("No data available for visualization.")
+else:
+    peak = merged[(merged["hour"] >= 8) & (merged["hour"] <= 20)].copy()
+    hw = peak[peak["is_heatwave_day"]]
+    normal = peak[~peak["is_heatwave_day"]]
+    
+    fig, ax = plt.subplots(figsize=(8, 5))
+    
+    ax.hist(normal["price_eur_mwh"], bins=60, alpha=0.6, density=True, label="Normal days (peak hours)")
+    ax.hist(hw["price_eur_mwh"],     bins=60, alpha=0.6, density=True, label="Heatwave days (peak hours)")
+    
+    ax.set_xlabel("Day-ahead price (EUR/MWh)")
+    ax.set_ylabel("Density")
+    ax.set_title("DE-LU prices: heatwave vs normal days (2015–2019, peak hours)")
+    ax.legend()
+    plt.show()
 ```
 
 ## Limitations and extensions
@@ -161,5 +205,4 @@ Natural extensions include:
 #### Related
 - [Risk Modelling Part 2: Data](/notes/risk-series-2.html) - Data sources for climate risk
 - [ERA5 Demo](/models/era5-demo.html) - Working with reanalysis data
-- [SAL Verification](/notes/climate/sal.html) - Validating spatial predictions
 :::

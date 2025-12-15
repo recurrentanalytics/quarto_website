@@ -39,7 +39,8 @@
 </section>
 <section id="a-simple-loss-model" class="level2">
 <h2 class="anchored" data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+<div id="2d43bef4" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
@@ -79,53 +80,50 @@ background-color: null;
 font-style: inherit;">    </span></span>
 <span id="cb1-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">    See: /notes/climate/monte-carlo-basics.html</span></span>
-<span id="cb1-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
 font-style: inherit;">    """</span></span>
-<span id="cb1-12">    <span class="co" style="color: #5E5E5E;
+<span id="cb1-11">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Simulate hazard intensity (e.g., flood depth)</span></span>
-<span id="cb1-13">    hazard <span class="op" style="color: #5E5E5E;
+<span id="cb1-12">    hazard <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.random.exponential(mean_hazard, n_scenarios)</span>
-<span id="cb1-14">    </span>
-<span id="cb1-15">    <span class="co" style="color: #5E5E5E;
+<span id="cb1-13">    </span>
+<span id="cb1-14">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Calculate damage ratio based on vulnerability</span></span>
-<span id="cb1-16">    damage_ratio <span class="op" style="color: #5E5E5E;
+<span id="cb1-15">    damage_ratio <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.minimum(hazard <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> vulnerability, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.0</span>)</span>
-<span id="cb1-17">    </span>
-<span id="cb1-18">    <span class="co" style="color: #5E5E5E;
+<span id="cb1-16">    </span>
+<span id="cb1-17">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Compute losses</span></span>
-<span id="cb1-19">    losses <span class="op" style="color: #5E5E5E;
+<span id="cb1-18">    losses <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> exposure <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> damage_ratio</span>
-<span id="cb1-20">    </span>
-<span id="cb1-21">    <span class="cf" style="color: #003B4F;
+<span id="cb1-19">    </span>
+<span id="cb1-20">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> losses</span>
-<span id="cb1-22"></span>
-<span id="cb1-23"><span class="co" style="color: #5E5E5E;
+<span id="cb1-21"></span>
+<span id="cb1-22"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Run simulation</span></span>
-<span id="cb1-24">losses <span class="op" style="color: #5E5E5E;
+<span id="cb1-23">losses <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> simulate_losses()</span>
-<span id="cb1-25"></span>
-<span id="cb1-26"><span class="co" style="color: #5E5E5E;
+<span id="cb1-24"></span>
+<span id="cb1-25"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Key statistics</span></span>
-<span id="cb1-27"><span class="bu" style="color: null;
+<span id="cb1-26"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
 background-color: null;
@@ -138,7 +136,7 @@ background-color: null;
 font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>)</span>
-<span id="cb1-28"><span class="bu" style="color: null;
+<span id="cb1-27"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
 background-color: null;
@@ -153,7 +151,7 @@ background-color: null;
 font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>)</span>
-<span id="cb1-29"><span class="bu" style="color: null;
+<span id="cb1-28"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
 background-color: null;
@@ -168,6 +166,12 @@ background-color: null;
 font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Expected Loss: $30,053
+VaR 99%: $137,228
+Max Loss: $260,886</code></pre>
+</div>
+</div>
 </section>
 <section id="key-implementation-decisions" class="level2">
 <h2 class="anchored" data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
@@ -182,10 +186,6 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
 <p>This series provides a foundation. For deeper dives:</p>
-<ul>
-<li><a href="../notes/climate/monte-carlo-basics.html">Monte Carlo Basics</a> - The sampling engine behind most risk models</li>
-<li><a href="../notes/climate/sal.html">SAL Verification</a> - Validating spatial predictions</li>
-</ul>
 <section id="linked-from" class="level4 backlinks">
 <h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
 <ul>
@@ -256,7 +256,7 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
 <li><strong>Bias</strong> - Are there systematic errors in the observations?</li>
 <li><strong>Uncertainty</strong> - What are the confidence intervals?</li>
 </ol>
-<p>The <a href="../notes/climate/sal.html">SAL framework</a> provides one approach to validating spatial data quality.</p>
+<p>Various frameworks provide approaches to validating spatial data quality.</p>
 </section>
 <section id="next-steps" class="level2">
 <h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
@@ -315,18 +315,15 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
 </section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<p>The foundation of risk modelling rests on probability theory. We often use <a href="../notes/climate/monte-carlo-basics.html">Monte Carlo methods</a> to simulate thousands of scenarios and understand the distribution of possible outcomes.</p>
+<p>The foundation of risk modelling rests on probability theory. We often use Monte Carlo methods to simulate thousands of scenarios and understand the distribution of possible outcomes.</p>
 <p>Key terms: - <strong>Expected loss</strong>: The average loss across all scenarios - <strong>Value at Risk (VaR)</strong>: The maximum loss at a given confidence level - <strong>Tail risk</strong>: The probability of extreme events</p>
 </section>
 <section id="why-this-matters-for-climate" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-matters-for-climate">Why This Matters for Climate</h2>
 <p>Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in <a href="../notes/risk-series-2.html">Part 2: Data</a>.</p>
-<section id="linked-from" class="level4 backlinks">
-<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
-<ul>
-<li><a href="../notes/climate/monte-carlo-basics.html">Monte Carlo Basics</a></li>
-</ul>
-</section>
+<div class="backlinks">
+
+</div>
 
 
 <!-- -->
@@ -358,81 +355,6 @@ Use this space for short, source-controlled notes.</p>
  ]]></description>
   <category>setup</category>
   <guid>https://recurrentanalytics.com/notes/2025-hello-world.html</guid>
-  <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Saharan Air Layer (SAL)</title>
-  <link>https://recurrentanalytics.com/notes/climate/sal.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><strong>Key Insight:</strong><br>
-A hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere.</p>
-<section id="core-effects" class="level2">
-<h2 class="anchored" data-anchor-id="core-effects">Core Effects</h2>
-<ul>
-<li>Dry air entrainment → disrupts convection</li>
-<li>Increased shear → weakens cyclone organization</li>
-<li>Dust aerosols → affect radiation balance &amp; SST</li>
-</ul>
-</section>
-<section id="visual-mental-model" class="level2">
-<h2 class="anchored" data-anchor-id="visual-mental-model">Visual Mental Model</h2>
-<p>SAL = “giant desiccating lid” over the Atlantic basin</p>
-</section>
-<section id="links" class="level2">
-<h2 class="anchored" data-anchor-id="links">Links</h2>
-<ul>
-<li>[[MJO]]</li>
-<li>[[African Easterly Waves]]</li>
-</ul>
-
-
-<!-- -->
-
-</section>
-
- ]]></description>
-  <category>Climate</category>
-  <category>Tropical Cyclones</category>
-  <guid>https://recurrentanalytics.com/notes/climate/sal.html</guid>
-  <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Monte Carlo Simulation Basics</title>
-  <link>https://recurrentanalytics.com/notes/climate/monte-carlo-basics.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><strong>Key Idea:</strong><br>
-Use repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible.</p>
-<section id="key-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts">Key Concepts</h2>
-<ul>
-<li>Random draws</li>
-<li>Probability distributions</li>
-<li>Law of large numbers</li>
-<li>Convergence behaviour</li>
-</ul>
-</section>
-<section id="example-pseudocode" class="level2">
-<h2 class="anchored" data-anchor-id="example-pseudocode">Example Pseudocode</h2>
-
-
-<!-- -->
-
-</section>
-
- ]]></description>
-  <category>Modelling</category>
-  <category>Simulation</category>
-  <guid>https://recurrentanalytics.com/notes/climate/monte-carlo-basics.html</guid>
   <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
 </item>
 </channel>

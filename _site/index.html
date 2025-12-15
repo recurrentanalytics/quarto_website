@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c0f42b244fbb475f07d00c64535a4922.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3f360d817b29020caadb3df5e9a8413d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-c0f42b244fbb475f07d00c64535a4922.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fed43467a49d1196e48e893c129ec633.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-74141a487ca470e5e766e5f6e84378c3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fed43467a49d1196e48e893c129ec633.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -152,35 +152,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Ensure navbar logo is visible and links to home
-  const navbarBrand = document.querySelector('.navbar-brand');
-  if (navbarBrand) {
-    // Ensure it links to home
-    if (!navbarBrand.href || navbarBrand.href.endsWith('#')) {
-      navbarBrand.href = '/';
+  // Hide title block on section index pages (projects, notes, reading, tipping-points)
+  // These pages have empty titles in YAML and use headings in content instead
+  const isSectionIndex = path.match(/\/(projects|notes|reading|tipping-points)\/?$/);
+  if (isSectionIndex) {
+    const titleBlock = document.querySelector('.quarto-title-block');
+    if (titleBlock) {
+      titleBlock.style.display = 'none';
     }
-    
-    // Remove any text nodes that aren't the logo
-    Array.from(navbarBrand.childNodes).forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.remove();
-      }
-    });
-    
-    // Hide text elements but keep logo
-    const textElements = navbarBrand.querySelectorAll('span, .navbar-brand-text, .quarto-title');
-    textElements.forEach(el => {
-      if (!el.querySelector('img, svg')) {
-        el.style.display = 'none';
-      }
-    });
-    
-    // Ensure logo image/svg is visible
-    const logo = navbarBrand.querySelector('img, svg');
-    if (logo) {
-      logo.style.display = 'block';
-      logo.style.height = '2rem';
-      logo.style.width = 'auto';
+    // Also remove reading time on section pages
+    const readingTime = document.querySelector('.reading-time');
+    if (readingTime) {
+      readingTime.remove();
     }
   }
   
@@ -309,8 +292,6 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'Reading', path: '/reading/' },
     { title: 'Tipping Points', path: '/tipping-points/' },
     { title: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
-    { title: 'Monte Carlo Basics', path: '/notes/climate/monte-carlo-basics.html' },
-    { title: 'SAL', path: '/notes/climate/sal.html' },
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
     { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
@@ -451,11 +432,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Reading time - add to article pages (but not on index/home page)
+  // Reading time - add to article pages (but not on index/home page, notes index, or about page)
   // Reuse path from earlier in the scope
   const isHomePageForReading = path === '/' || path === '/index.html' || path.endsWith('/index.html');
+  const isNotesIndex = path === '/notes/' || path === '/notes/index.html' || path.endsWith('/notes/index.html');
+  const isAboutPage = path === '/about.html' || path.endsWith('/about.html');
   
-  if (!isHomePageForReading) {
+  if (!isHomePageForReading && !isNotesIndex && !isAboutPage) {
     const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
     const contentArea = document.querySelector('#quarto-document-content, .content, main');
     if (articleBody && contentArea) {
@@ -474,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 
-  // Network Graph - Obsidian-style visualization
+  // Network Graph visualization
   console.log('Starting graph navigation setup...');
   const graphData = {
     nodes: [
@@ -482,8 +465,6 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'about', label: 'About & Contact', path: '/about.html', cat: 'nav' },
       { id: 'notes', label: 'Notes', path: '/notes/', cat: 'nav' },
       { id: 'hello', label: 'Hello, Lab', path: '/notes/2025-hello-world.html', cat: 'notes' },
-      { id: 'monte-carlo', label: 'Monte Carlo', path: '/notes/climate/monte-carlo-basics.html', cat: 'notes' },
-      { id: 'sal', label: 'SAL', path: '/notes/climate/sal.html', cat: 'notes' },
       { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
       { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
       { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
@@ -499,27 +480,18 @@ document.addEventListener('DOMContentLoaded', function() {
       { source: 'home', target: 'tipping-points' },
       { source: 'home', target: 'about' },
       { source: 'notes', target: 'hello' },
-      { source: 'notes', target: 'monte-carlo' },
-      { source: 'notes', target: 'sal' },
       { source: 'notes', target: 'risk-1' },
-      { source: 'risk-1', target: 'monte-carlo' },
       { source: 'risk-1', target: 'risk-2' },
       { source: 'risk-2', target: 'risk-1' },
       { source: 'risk-2', target: 'risk-3' },
-      { source: 'risk-2', target: 'sal' },
       { source: 'risk-2', target: 'era5' },
       { source: 'risk-2', target: 'heatwave' },
       { source: 'risk-3', target: 'risk-1' },
       { source: 'risk-3', target: 'risk-2' },
-      { source: 'risk-3', target: 'monte-carlo' },
-      { source: 'risk-3', target: 'sal' },
       { source: 'projects', target: 'era5' },
       { source: 'projects', target: 'heatwave' },
       { source: 'heatwave', target: 'era5' },
-      { source: 'heatwave', target: 'sal' },
       { source: 'heatwave', target: 'risk-2' },
-      { source: 'sal', target: 'heatwave' },
-      { source: 'monte-carlo', target: 'risk-3' }
     ]
   };
   
@@ -1361,8 +1333,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/favicon.svg" alt="" class="navbar-logo light-content">
-    <img src="./assets/favicon.svg" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">re:current_analytics</span>

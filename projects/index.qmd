@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: ""
 page-layout: article
 ---
 
@@ -43,6 +43,20 @@ Interactive demonstration of ERA5 reanalysis data for rainfall analysis. Shows d
 - [View Demo →](../models/era5-demo.qmd)
 
 **Technologies:** Python, ERA5 Data, Climate Analysis
+:::
+
+::: {.project-card data-category="tool"}
+## Climate Extremes Explorer
+
+**Status:** Active  
+**Category:** Tool / Analysis
+
+Comprehensive interactive analysis of climate extremes using synthetic climate data. Demonstrates methods for identifying, analyzing, and visualizing extreme climate events including heatwaves, cold snaps, and extreme precipitation. Features return period analysis, event clustering, and multi-variable correlation analysis.
+
+**Links:**
+- [View Analysis →](../models/climate-extremes-explorer.qmd)
+
+**Technologies:** Python, SciPy, Scikit-learn, Matplotlib, Seaborn
 :::
 
 ::: {.project-card data-category="project"}

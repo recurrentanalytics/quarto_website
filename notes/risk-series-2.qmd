@@ -43,7 +43,7 @@ When working with climate data, always consider:
 3. **Bias** - Are there systematic errors in the observations?
 4. **Uncertainty** - What are the confidence intervals?
 
-The [SAL framework](/notes/climate/sal.html) provides one approach to validating spatial data quality.
+Various frameworks provide approaches to validating spatial data quality.
 
 ## Next Steps
 

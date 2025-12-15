@@ -7,6 +7,9 @@ dependencies:
   - numpy
   - pandas
   - matplotlib
+  - scipy
+  - scikit-learn
+  - seaborn
   - xarray
   - cfgrib
   - eccodes

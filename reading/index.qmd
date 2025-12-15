@@ -1,5 +1,5 @@
 ---
-title: Reading
+title: ""
 page-layout: article
 ---
 
@@ -47,7 +47,7 @@ Reading notes are organized by topic:
 - **Climate Science** - Physical climate modeling, projections, uncertainty
 - **Energy Systems** - Grid operations, renewables integration, storage
 - **Risk & Finance** - Climate risk pricing, stress testing, disclosure
-- **Methods** - Monte Carlo, time series, machine learning applications
+- **Methods** - Time series, machine learning applications
 
 ## Suggested Starting Points
 

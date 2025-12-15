@@ -28,7 +28,7 @@ Risk modelling is the practice of using mathematical frameworks to quantify unce
 
 ## Core Concepts
 
-The foundation of risk modelling rests on probability theory. We often use [Monte Carlo methods](/notes/climate/monte-carlo-basics.html) to simulate thousands of scenarios and understand the distribution of possible outcomes.
+The foundation of risk modelling rests on probability theory. We often use Monte Carlo methods to simulate thousands of scenarios and understand the distribution of possible outcomes.
 
 Key terms:
 - **Expected loss**: The average loss across all scenarios
@@ -40,6 +40,4 @@ Key terms:
 Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in [Part 2: Data](risk-series-2.qmd).
 
 ::: {.backlinks}
-#### Linked from
-- [Monte Carlo Basics](/notes/climate/monte-carlo-basics.html)
 :::

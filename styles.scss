@@ -7,6 +7,160 @@ $code-font-size: .95rem;
 
 /*-- scss:rules --*/
 
+/* Force white backgrounds in light mode - no gradients or fancy colors */
+[data-bs-theme="light"] {
+  body, 
+  .navbar,
+  .nav-footer,
+  .quarto-container,
+  .quarto-content,
+  #quarto-content,
+  .quarto-title-block,
+  .quarto-title-meta,
+  .card,
+  .callout,
+  .sidebar,
+  #TOC,
+  #quarto-margin-sidebar,
+  .quarto-listing,
+  .quarto-listing-default,
+  .page-columns,
+  main,
+  article,
+  .content,
+  #quarto-document-content {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Remove any gradients */
+  * {
+    background-image: none !important;
+  }
+  
+  /* Cards and callouts - white with simple borders */
+  .card {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+  
+  .callout {
+    background: #ffffff !important;
+    border-left: 4px solid #333 !important;
+  }
+  
+  /* Sidebar white */
+  .sidebar,
+  #TOC,
+  #quarto-margin-sidebar {
+    background: #ffffff !important;
+  }
+  
+  /* Navbar white */
+  .navbar {
+    background: #ffffff !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+  }
+  
+  /* Footer white */
+  .nav-footer {
+    background: #ffffff !important;
+    border-top: 1px solid #e0e0e0 !important;
+  }
+  
+  /* Code blocks - simple white background */
+  pre,
+  code,
+  .sourceCode {
+    background: #f8f8f8 !important;
+  }
+  
+  /* Remove any box shadows or fancy effects */
+  .card,
+  .callout,
+  .navbar,
+  .nav-footer {
+    box-shadow: none !important;
+  }
+  
+  /* All cards white */
+  .card,
+  .card-body,
+  .card-header {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Listing items white */
+  .quarto-listing-item,
+  .quarto-listing-default-item {
+    background: #ffffff !important;
+  }
+  
+  /* Breadcrumbs white */
+  .breadcrumb-nav,
+  .breadcrumb-list {
+    background: #ffffff !important;
+  }
+  
+  /* Graph elements - white background */
+  .sidebar-graph,
+  .graph-modal-overlay {
+    background: #ffffff !important;
+  }
+  
+  /* Command palette - white */
+  .cmd-palette-overlay,
+  .cmd-palette {
+    background: #ffffff !important;
+  }
+  
+  /* Manifesto box - white */
+  .manifesto-box,
+  .manifesto-body {
+    background: #ffffff !important;
+  }
+  
+  /* Hero section - white */
+  .rac-hero {
+    background: #ffffff !important;
+  }
+  
+  /* Any other containers */
+  .container,
+  .container-fluid,
+  .quarto-container {
+    background: #ffffff !important;
+  }
+  
+  /* Override all Bootstrap background variables in light mode */
+  --bs-body-bg: #ffffff;
+  --bs-tertiary-bg: #ffffff;
+  --bs-secondary-bg: #ffffff;
+  
+  /* Tables white */
+  table,
+  thead,
+  tbody,
+  tr,
+  td,
+  th {
+    background: #ffffff !important;
+  }
+  
+  /* Blockquotes white */
+  blockquote {
+    background: #ffffff !important;
+  }
+  
+  /* Remove any textarea/input backgrounds that aren't white */
+  textarea,
+  input[type="text"],
+  input[type="search"] {
+    background: #ffffff !important;
+  }
+}
+
 /* Typography improvements */
 body {
   line-height: 1.7;
@@ -54,9 +208,11 @@ a:hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+[data-bs-theme="light"] {
+  .card:hover {
+    transform: none;
+    box-shadow: none !important;
+  }
 }
 
 /* Make TOC slim */
@@ -87,6 +243,183 @@ article {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
+}
+
+/* Prevent content from running into sidebar - global setting */
+/* Ensure page layout respects sidebar boundaries */
+.page-columns,
+.page-layout-article,
+.quarto-layout-row {
+  overflow-x: hidden;
+}
+
+/* Main content column - must respect sidebar */
+.column-body,
+.column-body-content,
+.quarto-body,
+#quarto-document-content,
+.quarto-content {
+  max-width: 100% !important;
+  overflow-x: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* Code blocks - GLOBAL SETTING: prevent overflow into sidebar but allow horizontal scroll within */
+/* Apply to ALL code blocks everywhere */
+pre,
+code,
+pre code,
+code pre,
+.sourceCode,
+.sourceCode pre,
+.sourceCode code,
+.cell,
+.cell-code,
+.cell-output,
+.cell-output-display,
+.cell-output-stdout,
+.cell-output-stderr,
+.cell-output pre,
+.cell-output code,
+.quarto-layout-cell pre,
+.quarto-layout-cell code,
+#quarto-document-content pre,
+#quarto-document-content code,
+.quarto-content pre,
+.quarto-content code,
+main pre,
+main code,
+article pre,
+article code,
+.content pre,
+.content code,
+* pre,
+* code {
+  max-width: 100% !important;
+  overflow-x: auto !important;  /* Allow horizontal scroll within code block */
+  overflow-wrap: normal !important;
+  word-wrap: normal !important;
+  white-space: pre !important;  /* Preserve formatting */
+  word-break: normal !important;
+  box-sizing: border-box !important;
+}
+
+/* Code blocks specifically - preserve formatting globally */
+pre,
+pre code,
+pre *,
+.sourceCode pre,
+.sourceCode pre code,
+.cell pre,
+.cell pre code {
+  white-space: pre !important;
+  overflow-x: auto !important;  /* Scroll, don't wrap */
+  word-break: normal !important;
+}
+
+/* Code chunk containers */
+.cell,
+.cell-code,
+.cell-output,
+.quarto-layout-cell {
+  max-width: 100% !important;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* Ensure cell outputs are visible */
+.cell-output,
+.cell-output-stdout,
+.cell-output-stderr,
+.cell-output-display {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f8f8f8 !important;
+  border-left: 3px solid #333;
+  border-radius: 0.25rem;
+}
+
+.cell-output pre,
+.cell-output-stdout pre,
+.cell-output-stderr pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: none;
+}
+
+/* Visualizations and graphs - contain within content area */
+.cell-output-display,
+.quarto-figure,
+figure,
+img,
+svg,
+canvas,
+iframe,
+.plotly,
+.html-widget,
+.leaflet-container,
+.quarto-plot {
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  overflow-x: auto !important;
+  box-sizing: border-box;
+}
+
+/* Tables - prevent overflow */
+table {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  display: block;
+  box-sizing: border-box;
+}
+
+thead,
+tbody,
+tr,
+td,
+th {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Any wide content elements */
+.wide-content,
+.full-width,
+[class*="wide"],
+[class*="full"] {
+  max-width: 100% !important;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* Ensure text doesn't overflow */
+p,
+li,
+td,
+th,
+.text-content,
+.quarto-title,
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* Blockquotes and callouts */
+blockquote,
+.callout {
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 
 /* Better table styling */
@@ -174,6 +507,13 @@ pre code {
   box-shadow: none;
 }
 
+[data-bs-theme="light"] {
+  .manifesto-box {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+}
+
 .manifesto-header {
   display: flex;
   justify-content: space-between;
@@ -236,6 +576,12 @@ pre code {
 /* Manifesto body content */
 .manifesto-body {
   padding: 0 1.5rem 1.5rem;
+}
+
+[data-bs-theme="light"] {
+  .manifesto-body {
+    background: #ffffff !important;
+  }
 }
 
 .manifesto-box[open] .manifesto-header {
@@ -353,19 +699,39 @@ button:hover,
   border-left: 4px solid;
 }
 
-.callout-tip {
-  border-left-color: var(--bs-info);
-  background: rgba(var(--bs-info-rgb), 0.1);
+[data-bs-theme="light"] {
+  .callout-tip {
+    border-left-color: #333;
+    background: #ffffff !important;
+  }
+
+  .callout-note {
+    border-left-color: #333;
+    background: #ffffff !important;
+  }
+
+  .callout-warning {
+    border-left-color: #333;
+    background: #ffffff !important;
+  }
 }
 
-.callout-note {
-  border-left-color: var(--bs-primary);
-  background: rgba(var(--bs-primary-rgb), 0.1);
-}
+/* Dark mode callouts keep original styling */
+[data-bs-theme="dark"] {
+  .callout-tip {
+    border-left-color: var(--bs-info);
+    background: rgba(var(--bs-info-rgb), 0.1);
+  }
 
-.callout-warning {
-  border-left-color: var(--bs-warning);
-  background: rgba(var(--bs-warning-rgb), 0.1);
+  .callout-note {
+    border-left-color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.1);
+  }
+
+  .callout-warning {
+    border-left-color: var(--bs-warning);
+    background: rgba(var(--bs-warning-rgb), 0.1);
+  }
 }
 
 /* Better list spacing */
@@ -402,35 +768,6 @@ img {
   padding: 0.75rem 1rem;
 }
 
-/* Hide navbar title text - show logo only */
-.navbar-brand-text,
-.navbar-title,
-.navbar .quarto-title {
-  display: none !important;
-}
-
-/* Ensure logo is visible and clickable */
-.navbar-brand {
-  display: flex !important;
-  align-items: center;
-}
-
-.navbar-brand img,
-.navbar-brand svg {
-  display: block !important;
-  height: 2rem;
-  width: auto;
-  max-height: 2rem;
-}
-
-/* Ensure navbar brand links to home */
-.navbar-brand {
-  text-decoration: none;
-}
-
-.navbar-brand:hover {
-  opacity: 0.8;
-}
 
 /* Better footer spacing */
 .nav-footer {
@@ -519,6 +856,13 @@ img {
   border-radius: 0.5rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+}
+
+[data-bs-theme="light"] {
+  .cmd-palette {
+    background: #ffffff !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+  }
 }
 
 .cmd-palette-input {
