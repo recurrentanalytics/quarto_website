@@ -1,0 +1,65 @@
+{
+  "reading/index.qmd": {
+    "index.html": "3b998c16"
+  },
+  "404.qmd": {
+    "404.html": "d4bbc408"
+  },
+  "replit.md": {
+    "replit.html": "04e685ec"
+  },
+  "projects/index.qmd": {
+    "index.html": "f5539e68"
+  },
+  "contact_cv.qmd": {
+    "contact_cv.html": "d89ce480"
+  },
+  "models/era5-demo.qmd": {
+    "era5-demo.html": "e2c16607"
+  },
+  "models/index.qmd": {
+    "index.html": "11b322fa"
+  },
+  "models/heatwave-prices-de-lu.qmd": {
+    "heatwave-prices-de-lu.html": "8ad64885"
+  },
+  "index.qmd": {
+    "index.html": "344406e1"
+  },
+  "about.qmd": {
+    "about.html": "ba61c559"
+  },
+  "notes/2025-hello-world.qmd": {
+    "2025-hello-world.html": "e99c7a78"
+  },
+  "notes/index.qmd": {
+    "index.html": "9740d694"
+  },
+  "notes/climate/sal.md": {
+    "sal.html": "0e851763"
+  },
+  "notes/climate/monte-carlo-basics.md": {
+    "monte-carlo-basics.html": "3c1e3142"
+  },
+  "notes/risk-series-3.qmd": {
+    "risk-series-3.html": "0b1bda23"
+  },
+  "notes/risk-series-2.qmd": {
+    "risk-series-2.html": "a84b721d"
+  },
+  "notes/risk-series-1.qmd": {
+    "risk-series-1.html": "af63561b"
+  },
+  "models/extreme-precipitation-attribution.qmd": {
+    "extreme-precipitation-attribution.html": "954c5dba"
+  },
+  "tipping-points/index.qmd": {
+    "index.html": "37d29b50"
+  },
+  "test-execute.qmd": {
+    "test-execute.html": "9369b57c"
+  },
+  "models/climate-extremes-explorer.qmd": {
+    "climate-extremes-explorer.html": "a61c5fb1"
+  }
+}

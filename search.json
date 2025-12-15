@@ -1,40 +1,5 @@
 [
   {
-    "objectID": "reading/index.html",
-    "href": "reading/index.html",
-    "title": "Reading",
-    "section": "",
-    "text": "Short summaries of papers, books, and references that inform the lab.\nComing soon: curated reading recommendations on climate risk, energy systems, and quantitative methods."
-  },
-  {
-    "objectID": "reading/index.html#suggested-starting-points",
-    "href": "reading/index.html#suggested-starting-points",
-    "title": "Reading",
-    "section": "Suggested Starting Points",
-    "text": "Suggested Starting Points\n\n\n\n\n\n\nTipGetting Started with Climate Risk\n\n\n\n\nIPCC AR6 Reports - Essential background on climate science\nIEA World Energy Outlook - Annual energy sector analysis\nAcademic journals: Nature Climate Change, Energy Policy, Climatic Change"
-  },
-  {
-    "objectID": "reading/index.html#categories",
-    "href": "reading/index.html#categories",
-    "title": "Reading",
-    "section": "Categories",
-    "text": "Categories\nAs reading notes are added, they’ll be organized by topic:\n\nClimate Science - Physical climate modeling, projections, uncertainty\nEnergy Systems - Grid operations, renewables integration, storage\nRisk & Finance - Climate risk pricing, stress testing, disclosure\nMethods - Monte Carlo, time series, machine learning applications"
-  },
-  {
-    "objectID": "work/index.html",
-    "href": "work/index.html",
-    "title": "Work",
-    "section": "",
-    "text": "Finished, shareable outputs: demos, tools, notebooks, presentations.\nThis section contains completed work that is ready to be shared. In contrast, Notes contains work-in-progress thinking, experiments, and intermediate objects."
-  },
-  {
-    "objectID": "work/index.html#current-work",
-    "href": "work/index.html#current-work",
-    "title": "Work",
-    "section": "Current Work",
-    "text": "Current Work\n\nExtreme Rainfall Attribution Pipeline → flood-attribution-pipeline.qmd\nHeatwaves and Day-Ahead Prices → heatwave-prices-de-lu.qmd\n\n\nTrigger prototypes, Monte Carlo implementations, risk metrics, and other finished tools will be added here."
-  },
-  {
     "objectID": "notes/risk-series-1.html",
     "href": "notes/risk-series-1.html",
     "title": "Risk Modelling Part 1: Foundations",
@@ -60,7 +25,42 @@
     "href": "notes/risk-series-1.html#why-this-matters-for-climate",
     "title": "Risk Modelling Part 1: Foundations",
     "section": "Why This Matters for Climate",
-    "text": "Why This Matters for Climate\nClimate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in Part 2: Data.\n\nLinked from\n\nMonte Carlo Basics"
+    "text": "Why This Matters for Climate\nClimate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in Part 2: Data."
+  },
+  {
+    "objectID": "notes/risk-series-3.html",
+    "href": "notes/risk-series-3.html",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "",
+    "text": "Series: Introduction to Risk Modelling (Part 3 of 3)\n\n\n\n← Previous: Data"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#putting-it-together",
+    "href": "notes/risk-series-3.html#putting-it-together",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Putting It Together",
+    "text": "Putting It Together\nArmed with the theoretical foundations and data sources, we can now implement a basic risk model."
+  },
+  {
+    "objectID": "notes/risk-series-3.html#a-simple-loss-model",
+    "href": "notes/risk-series-3.html#a-simple-loss-model",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "A Simple Loss Model",
+    "text": "A Simple Loss Model\n\nimport numpy as np\n\ndef simulate_losses(n_scenarios=10000, \n                    mean_hazard=0.1, \n                    exposure=1000000,\n                    vulnerability=0.3):\n    \"\"\"\n    Simple Monte Carlo loss simulation.\n    \n    \"\"\"\n    # Simulate hazard intensity (e.g., flood depth)\n    hazard = np.random.exponential(mean_hazard, n_scenarios)\n    \n    # Calculate damage ratio based on vulnerability\n    damage_ratio = np.minimum(hazard * vulnerability, 1.0)\n    \n    # Compute losses\n    losses = exposure * damage_ratio\n    \n    return losses\n\n# Run simulation\nlosses = simulate_losses()\n\n# Key statistics\nprint(f\"Expected Loss: ${losses.mean():,.0f}\")\nprint(f\"VaR 99%: ${np.percentile(losses, 99):,.0f}\")\nprint(f\"Max Loss: ${losses.max():,.0f}\")\n\nExpected Loss: $30,053\nVaR 99%: $137,228\nMax Loss: $260,886"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#key-implementation-decisions",
+    "href": "notes/risk-series-3.html#key-implementation-decisions",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Key Implementation Decisions",
+    "text": "Key Implementation Decisions\nWhen building production risk models, consider:\n\nCorrelation structure - How do risks aggregate?\nTail dependence - Do extreme events cluster?\nComputational efficiency - Can you run enough scenarios?\nValidation - How do you test the model?"
+  },
+  {
+    "objectID": "notes/risk-series-3.html#further-reading",
+    "href": "notes/risk-series-3.html#further-reading",
+    "title": "Risk Modelling Part 3: Implementation",
+    "section": "Further Reading",
+    "text": "Further Reading\nThis series provides a foundation. For deeper dives:\n\nLinked from\n\nRisk Modelling Part 2: Data"
   },
   {
     "objectID": "notes/2025-hello-world.html",
@@ -70,53 +70,151 @@
     "text": "First check-in. The lab notebook is live.\nUse this space for short, source-controlled notes."
   },
   {
-    "objectID": "notes/climate/monte-carlo-basics.html",
-    "href": "notes/climate/monte-carlo-basics.html",
-    "title": "Monte Carlo Simulation Basics",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
     "section": "",
-    "text": "Key Idea:\nUse repeated random sampling to approximate distributions, uncertainty, or expected value where analytic solutions are hard or impossible."
+    "text": "Code\n\n\n\n\n\n\nre:current_analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes / Lab journal: ongoing experiments → notes/\nProjects: models, tools, demos, and packaged work → projects/\nTipping Points: strategic card game on climate–politics → tipping-points/\nAbout & Contact: who/what/why → about"
   },
   {
-    "objectID": "notes/climate/monte-carlo-basics.html#key-concepts",
-    "href": "notes/climate/monte-carlo-basics.html#key-concepts",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "Key Concepts",
-    "text": "Key Concepts\n\nRandom draws\nProbability distributions\nLaw of large numbers\nConvergence behaviour"
-  },
-  {
-    "objectID": "notes/climate/monte-carlo-basics.html#example-pseudocode",
-    "href": "notes/climate/monte-carlo-basics.html#example-pseudocode",
-    "title": "Monte Carlo Simulation Basics",
-    "section": "Example Pseudocode",
-    "text": "Example Pseudocode"
-  },
-  {
-    "objectID": "notes/risk-series-2.html",
-    "href": "notes/risk-series-2.html",
-    "title": "Risk Modelling Part 2: Data",
+    "objectID": "models/climate-extremes-explorer.html",
+    "href": "models/climate-extremes-explorer.html",
+    "title": "Climate Extremes Explorer",
     "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 2 of 3)\n\n\n\n← Previous: Foundations\n\n\nNext: Implementation →"
+    "text": "Interactive analysis of climate extremes using synthetic climate data. This demonstration showcases methods for identifying, analyzing, and visualizing extreme climate events including heatwaves, cold snaps, and extreme precipitation.\nThe framework demonstrates:\n\nExtreme Event Identification - Multiple methods (percentile, absolute, anomaly)\nReturn Period Analysis - Extreme value theory (Block Maxima, Peaks Over Threshold)\nMulti-Variable Correlation - Relationships between climate variables\nEvent Clustering - Hierarchical clustering of extreme events\nStatistical Analysis - Comprehensive extreme event statistics\n\n\n\n\nimport sys\nimport os\nsys.path.insert(0, os.path.abspath('.'))\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\ntry:\n    import seaborn as sns\n    HAS_SEABORN = True\nexcept ImportError:\n    HAS_SEABORN = False\n    print(\"Note: seaborn not available, using matplotlib for heatmap\")\nfrom scipy import stats\n\nfrom src.climate_extremes import (\n    generate_synthetic_climate_data,\n    identify_extremes,\n    compute_return_periods,\n    analyze_correlations,\n    cluster_extreme_events,\n    compute_extreme_statistics,\n)\n\n# Generate synthetic climate data (2000-2023, daily)\nprint(\"Generating synthetic climate data...\")\nclimate_data = generate_synthetic_climate_data(\n    start_date=\"2000-01-01\",\n    end_date=\"2023-12-31\",\n    freq=\"D\",\n    seed=42\n)\n\nprint(f\"\\nData shape: {climate_data.shape}\")\nprint(f\"Date range: {climate_data['datetime_utc'].min()} to {climate_data['datetime_utc'].max()}\")\nprint(\"\\nFirst few rows:\")\nprint(climate_data.head())\nprint(\"\\nSummary statistics:\")\nprint(climate_data[['temperature_c', 'precipitation_mm', 'pressure_hpa']].describe())\n\nGenerating synthetic climate data...\n\nData shape: (8766, 4)\nDate range: 2000-01-01 00:00:00+00:00 to 2023-12-31 00:00:00+00:00\n\nFirst few rows:\n               datetime_utc  temperature_c  precipitation_mm  pressure_hpa\n0 2000-01-01 00:00:00+00:00      16.490142          1.987423   1016.294377\n1 2000-01-02 00:00:00+00:00      14.757278          3.775058   1017.524657\n2 2000-01-03 00:00:00+00:00      17.287156          3.904062   1009.176811\n3 2000-01-04 00:00:00+00:00      20.085098          6.355532    999.046500\n4 2000-01-05 00:00:00+00:00      14.985313          0.236418   1014.740259\n\nSummary statistics:\n       temperature_c  precipitation_mm  pressure_hpa\ncount    8766.000000       8766.000000   8766.000000\nmean       15.773961          4.322842   1013.243240\nstd         8.838041          6.592951      6.677491\nmin       -19.483457          0.026432    985.935802\n25%         8.700376          1.648959   1008.784265\n50%        15.748301          3.060113   1013.282316\n75%        22.461284          5.356232   1017.790731\nmax        56.866253        316.088010   1039.191900\n\n\n\n\n\n\n# Identify extreme temperature events (95th percentile, minimum 3 consecutive days)\nclimate_data = identify_extremes(\n    climate_data,\n    variable='temperature_c',\n    method='percentile',\n    threshold=95.0,\n    min_duration=3\n)\n\n# Also identify extreme precipitation events\nclimate_data = identify_extremes(\n    climate_data,\n    variable='precipitation_mm',\n    method='percentile',\n    threshold=95.0,\n    min_duration=1\n)\n\n# Compute statistics\ntemp_stats = compute_extreme_statistics(climate_data, 'temperature_c')\nprecip_stats = compute_extreme_statistics(climate_data, 'precipitation_mm')\n\nprint(\"Temperature Extreme Events:\")\nprint(f\"  Number of events: {temp_stats['n_events']}\")\nprint(f\"  Total extreme days: {temp_stats['total_days']}\")\nprint(f\"  Mean intensity: {temp_stats['mean_intensity']:.2f}°C above threshold\")\nprint(f\"  Maximum intensity: {temp_stats['max_intensity']:.2f}°C above threshold\")\nprint(f\"  Mean duration: {temp_stats['mean_duration']:.1f} days\")\n\nprint(\"\\nPrecipitation Extreme Events:\")\nprint(f\"  Number of events: {precip_stats['n_events']}\")\nprint(f\"  Total extreme days: {precip_stats['total_days']}\")\nprint(f\"  Mean intensity: {precip_stats['mean_intensity']:.2f} mm above threshold\")\nprint(f\"  Maximum intensity: {precip_stats['max_intensity']:.2f} mm above threshold\")\n\nTemperature Extreme Events:\n  Number of events: 399\n  Total extreme days: 439\n  Mean intensity: 8.34°C above threshold\n  Maximum intensity: 304.83°C above threshold\n  Mean duration: 1.1 days\n\nPrecipitation Extreme Events:\n  Number of events: 399\n  Total extreme days: 439\n  Mean intensity: 8.34 mm above threshold\n  Maximum intensity: 304.83 mm above threshold\n\n\n\n\n\n\n# Create timeline visualization with extreme events highlighted\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)\n\n# Temperature with extreme events\nax1 = axes[0]\nax1.plot(climate_data['datetime_utc'], climate_data['temperature_c'], \n         color='#2c3e50', alpha=0.6, linewidth=0.8, label='Temperature')\nax1.scatter(climate_data[climate_data['is_extreme']]['datetime_utc'],\n           climate_data[climate_data['is_extreme']]['temperature_c'],\n           c='#e74c3c', s=30, alpha=0.7, label='Extreme Events', zorder=5)\nax1.axhline(y=np.percentile(climate_data['temperature_c'], 95), \n           color='#c0392b', linestyle='--', alpha=0.7, label='95th Percentile')\nax1.set_ylabel('Temperature (°C)', fontsize=11, fontweight='bold')\nax1.set_title('Temperature Time Series with Extreme Events Highlighted', \n              fontsize=13, fontweight='bold', pad=10)\nax1.legend(loc='upper left', fontsize=9)\nax1.grid(True, alpha=0.3)\n\n# Precipitation with extreme events\nax2 = axes[1]\nax2.plot(climate_data['datetime_utc'], climate_data['precipitation_mm'], \n         color='#3498db', alpha=0.6, linewidth=0.8, label='Precipitation')\nprecip_extremes = climate_data[climate_data['precipitation_mm'] &gt;= \n                               np.percentile(climate_data['precipitation_mm'], 95)]\nax2.scatter(precip_extremes['datetime_utc'], precip_extremes['precipitation_mm'],\n           c='#2980b9', s=30, alpha=0.7, label='Extreme Events', zorder=5)\nax2.axhline(y=np.percentile(climate_data['precipitation_mm'], 95), \n           color='#21618c', linestyle='--', alpha=0.7, label='95th Percentile')\nax2.set_ylabel('Precipitation (mm)', fontsize=11, fontweight='bold')\nax2.set_title('Precipitation Time Series with Extreme Events Highlighted', \n              fontsize=13, fontweight='bold', pad=10)\nax2.legend(loc='upper left', fontsize=9)\nax2.grid(True, alpha=0.3)\n\n# Pressure\nax3 = axes[2]\nax3.plot(climate_data['datetime_utc'], climate_data['pressure_hpa'], \n         color='#7f8c8d', alpha=0.6, linewidth=0.8)\nax3.set_ylabel('Pressure (hPa)', fontsize=11, fontweight='bold')\nax3.set_xlabel('Date', fontsize=11, fontweight='bold')\nax3.set_title('Atmospheric Pressure Time Series', \n              fontsize=13, fontweight='bold', pad=10)\nax3.grid(True, alpha=0.3)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n# Compute return periods for temperature extremes\nreturn_periods_temp = compute_return_periods(\n    climate_data,\n    variable='temperature_c',\n    method='block_maxima',\n    block_size='1Y'\n)\n\nreturn_periods_precip = compute_return_periods(\n    climate_data,\n    variable='precipitation_mm',\n    method='peaks_over_threshold',\n)\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Temperature return periods\nax1 = axes[0]\nax1.plot(return_periods_temp['return_period_years'], \n        return_periods_temp['return_value'], \n        marker='o', linewidth=2, markersize=8, color='#e74c3c')\nax1.set_xlabel('Return Period (years)', fontsize=11, fontweight='bold')\nax1.set_ylabel('Return Value (°C)', fontsize=11, fontweight='bold')\nax1.set_title('Temperature: Return Period Analysis\\n(Annual Maxima Method)', \n              fontsize=12, fontweight='bold')\nax1.grid(True, alpha=0.3)\nax1.set_xscale('log')\n\n# Precipitation return periods\nax2 = axes[1]\nax2.plot(return_periods_precip['return_period_years'], \n        return_periods_precip['return_value'], \n        marker='o', linewidth=2, markersize=8, color='#3498db')\nax2.set_xlabel('Return Period (years)', fontsize=11, fontweight='bold')\nax2.set_ylabel('Return Value (mm)', fontsize=11, fontweight='bold')\nax2.set_title('Precipitation: Return Period Analysis\\n(Peaks Over Threshold Method)', \n              fontsize=12, fontweight='bold')\nax2.grid(True, alpha=0.3)\nax2.set_xscale('log')\n\nplt.tight_layout()\nplt.show()\n\nprint(\"Return Period Analysis Results:\")\nprint(\"\\nTemperature (Annual Maxima):\")\nprint(return_periods_temp.to_string(index=False))\nprint(\"\\nPrecipitation (Peaks Over Threshold):\")\nprint(return_periods_precip.to_string(index=False))\n\n\n\n\n\n\n\n\nReturn Period Analysis Results:\n\nTemperature (Annual Maxima):\n return_period_years  return_value      variable\n                   2     42.794460 temperature_c\n                   5     47.875623 temperature_c\n                  10     50.035892 temperature_c\n                  20     51.623194 temperature_c\n                  50     53.232872 temperature_c\n                 100     54.216806 temperature_c\n                 200     55.062521 temperature_c\n                 500     56.024671 temperature_c\n\nPrecipitation (Peaks Over Threshold):\n return_period_years  return_value         variable\n                   2           NaN precipitation_mm\n                   5           NaN precipitation_mm\n                  10           NaN precipitation_mm\n                  20     11.267369 precipitation_mm\n                  50     15.124830 precipitation_mm\n                 100     20.049680 precipitation_mm\n                 200     27.822761 precipitation_mm\n                 500     45.390184 precipitation_mm\n\n\n\n\n\n\n# Compute correlation matrix\ncorr_matrix = analyze_correlations(\n    climate_data,\n    variables=['temperature_c', 'precipitation_mm', 'pressure_hpa']\n)\n\n# Create heatmap\nfig, ax = plt.subplots(figsize=(8, 6))\nif HAS_SEABORN:\n    sns.heatmap(corr_matrix, annot=True, fmt='.3f', cmap='RdBu_r', center=0,\n               square=True, linewidths=1, cbar_kws={\"shrink\": 0.8},\n               vmin=-1, vmax=1, ax=ax)\nelse:\n    im = ax.imshow(corr_matrix.values, cmap='RdBu_r', vmin=-1, vmax=1, aspect='auto')\n    ax.set_xticks(range(len(corr_matrix.columns)))\n    ax.set_yticks(range(len(corr_matrix.index)))\n    ax.set_xticklabels(corr_matrix.columns)\n    ax.set_yticklabels(corr_matrix.index)\n    for i in range(len(corr_matrix.index)):\n        for j in range(len(corr_matrix.columns)):\n            ax.text(j, i, f'{corr_matrix.iloc[i, j]:.3f}', \n                   ha='center', va='center', color='black' if abs(corr_matrix.iloc[i, j]) &lt; 0.5 else 'white')\n    plt.colorbar(im, ax=ax, shrink=0.8)\nax.set_title('Climate Variables Correlation Matrix', \n             fontsize=13, fontweight='bold', pad=15)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nCorrelation Matrix:\")\nprint(corr_matrix)\n\n\n\n\n\n\n\n\n\nCorrelation Matrix:\n                  temperature_c  precipitation_mm  pressure_hpa\ntemperature_c          1.000000         -0.196128     -0.661777\nprecipitation_mm      -0.196128          1.000000      0.139706\npressure_hpa          -0.661777          0.139706      1.000000\n\n\n\n\n\n\n# Cluster extreme temperature events\nclimate_data = cluster_extreme_events(\n    climate_data,\n    n_clusters=5,\n    variables=['temperature_c', 'precipitation_mm', 'pressure_hpa']\n)\n\n# Visualize clustered extreme events\nfig, axes = plt.subplots(2, 1, figsize=(14, 10), sharex=True)\n\n# Temperature with cluster colors\nax1 = axes[0]\nscatter = ax1.scatter(climate_data['datetime_utc'], climate_data['temperature_c'],\n                     c=climate_data['extreme_cluster'], cmap='Set1', \n                     s=20, alpha=0.6, edgecolors='black', linewidth=0.5)\nextreme_mask = climate_data['is_extreme']\nax1.scatter(climate_data[extreme_mask]['datetime_utc'],\n           climate_data[extreme_mask]['temperature_c'],\n           c=climate_data[extreme_mask]['extreme_cluster'], cmap='Set1',\n           s=100, alpha=0.9, edgecolors='black', linewidth=1.5, \n           marker='*', zorder=5, label='Extreme Events')\nax1.set_ylabel('Temperature (°C)', fontsize=11, fontweight='bold')\nax1.set_title('Temperature Time Series with Clustered Extreme Events', \n              fontsize=13, fontweight='bold', pad=10)\ncbar = plt.colorbar(scatter, ax=ax1)\ncbar.set_label('Cluster ID', fontsize=10)\nax1.legend(loc='upper left', fontsize=9)\nax1.grid(True, alpha=0.3)\n\n# Cluster characteristics\nax2 = axes[1]\ncluster_stats = climate_data[climate_data['extreme_cluster'] &gt; 0].groupby('extreme_cluster').agg({\n    'temperature_c': 'mean',\n    'precipitation_mm': 'mean',\n    'pressure_hpa': 'mean',\n    'extreme_intensity': 'mean',\n}).reset_index()\n\nx_pos = np.arange(len(cluster_stats))\nwidth = 0.35\nax2.bar(x_pos - width/2, cluster_stats['temperature_c'], width, \n       label='Temperature', color='#e74c3c', alpha=0.7)\nax2_twin = ax2.twinx()\nax2_twin.bar(x_pos + width/2, cluster_stats['precipitation_mm'], width,\n            label='Precipitation', color='#3498db', alpha=0.7)\nax2.set_xlabel('Cluster ID', fontsize=11, fontweight='bold')\nax2.set_ylabel('Temperature (°C)', fontsize=11, fontweight='bold', color='#e74c3c')\nax2_twin.set_ylabel('Precipitation (mm)', fontsize=11, fontweight='bold', color='#3498db')\nax2.set_title('Cluster Characteristics: Mean Values by Cluster', \n              fontsize=13, fontweight='bold', pad=10)\nax2.set_xticks(x_pos)\nax2.set_xticklabels(cluster_stats['extreme_cluster'])\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nCluster Statistics:\")\nprint(cluster_stats.to_string(index=False))\n\n\n\n\n\n\n\n\n\nCluster Statistics:\n extreme_cluster  temperature_c  precipitation_mm  pressure_hpa  extreme_intensity\n               1       5.499854         14.701148   1020.549791           3.438765\n               2       5.956776        200.997156   1021.397432         189.734773\n               3      26.091330         16.614513   1006.965570           5.352129\n               4      12.662559         63.720836   1017.063492          52.458453\n               5      12.641321         16.681648   1011.837337           5.419265\n\n\n\n\n\n\n# Analyze distribution of extreme event intensities\nextreme_events = climate_data[climate_data['is_extreme']].copy()\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Histogram of extreme intensities\nax1 = axes[0]\nax1.hist(extreme_events['extreme_intensity'], bins=30, color='#e74c3c', \n        alpha=0.7, edgecolor='black', linewidth=1.2)\nax1.axvline(extreme_events['extreme_intensity'].mean(), \n           color='#c0392b', linestyle='--', linewidth=2, \n           label=f\"Mean: {extreme_events['extreme_intensity'].mean():.2f}°C\")\nax1.axvline(extreme_events['extreme_intensity'].median(), \n           color='#8e44ad', linestyle='--', linewidth=2,\n           label=f\"Median: {extreme_events['extreme_intensity'].median():.2f}°C\")\nax1.set_xlabel('Extreme Intensity (°C above threshold)', fontsize=11, fontweight='bold')\nax1.set_ylabel('Frequency', fontsize=11, fontweight='bold')\nax1.set_title('Distribution of Extreme Event Intensities', \n              fontsize=12, fontweight='bold')\nax1.legend(fontsize=9)\nax1.grid(True, alpha=0.3, axis='y')\n\n# Box plot by cluster\nax2 = axes[1]\n# Get unique cluster IDs (excluding 0) and filter out empty clusters\nunique_clusters = sorted([i for i in extreme_events['extreme_cluster'].unique() if i &gt; 0])\ncluster_data = []\ncluster_labels = []\nfor i in unique_clusters:\n    data = extreme_events[extreme_events['extreme_cluster'] == i]['extreme_intensity'].values\n    if len(data) &gt; 0:  # Only include clusters with data\n        cluster_data.append(data)\n        cluster_labels.append(str(i))\n\n# Only plot if we have data\nif len(cluster_data) &gt; 0:\n    bp = ax2.boxplot(cluster_data, labels=cluster_labels,\n                    patch_artist=True, showmeans=True)\n    for patch in bp['boxes']:\n        patch.set_facecolor('#e74c3c')\n        patch.set_alpha(0.7)\nelse:\n    ax2.text(0.5, 0.5, 'No cluster data available', \n            ha='center', va='center', transform=ax2.transAxes)\nax2.set_xlabel('Cluster ID', fontsize=11, fontweight='bold')\nax2.set_ylabel('Extreme Intensity (°C above threshold)', fontsize=11, fontweight='bold')\nax2.set_title('Extreme Intensity Distribution by Cluster', \n              fontsize=12, fontweight='bold')\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nExtreme Event Intensity Statistics:\")\nprint(extreme_events['extreme_intensity'].describe())\n\n\n\n\n\n\n\n\n\nExtreme Event Intensity Statistics:\ncount    439.000000\nmean       8.338522\nstd       22.503147\nmin        0.000094\n25%        1.083130\n50%        2.890158\n75%        5.935226\nmax      304.825627\nName: extreme_intensity, dtype: float64\n\n\n\n\n\n\n# Generate comprehensive summary\nprint(\"=\" * 70)\nprint(\"CLIMATE EXTREMES ANALYSIS SUMMARY\")\nprint(\"=\" * 70)\n\nprint(f\"\\n📊 Dataset Overview:\")\nprint(f\"   Period: {climate_data['datetime_utc'].min().date()} to {climate_data['datetime_utc'].max().date()}\")\nprint(f\"   Total days: {len(climate_data):,}\")\nprint(f\"   Variables: Temperature, Precipitation, Pressure\")\n\nprint(f\"\\n🌡️  Temperature Extremes:\")\nprint(f\"   Total extreme events: {temp_stats['n_events']}\")\nprint(f\"   Extreme days: {temp_stats['total_days']} ({100*temp_stats['total_days']/len(climate_data):.2f}% of period)\")\nprint(f\"   Mean intensity: {temp_stats['mean_intensity']:.2f}°C above 95th percentile\")\nprint(f\"   Maximum intensity: {temp_stats['max_intensity']:.2f}°C above threshold\")\nprint(f\"   Mean duration: {temp_stats['mean_duration']:.1f} days per event\")\n\nprint(f\"\\n🌧️  Precipitation Extremes:\")\nprint(f\"   Total extreme events: {precip_stats['n_events']}\")\nprint(f\"   Extreme days: {precip_stats['total_days']} ({100*precip_stats['total_days']/len(climate_data):.2f}% of period)\")\nprint(f\"   Mean intensity: {precip_stats['mean_intensity']:.2f} mm above 95th percentile\")\nprint(f\"   Maximum intensity: {precip_stats['max_intensity']:.2f} mm above threshold\")\n\nprint(f\"\\n📈 Return Period Analysis:\")\nprint(f\"   100-year return temperature: {return_periods_temp[return_periods_temp['return_period_years']==100]['return_value'].values[0]:.2f}°C\")\nprint(f\"   100-year return precipitation: {return_periods_precip[return_periods_precip['return_period_years']==100]['return_value'].values[0]:.2f} mm\")\n\nprint(f\"\\n🔗 Variable Correlations:\")\nprint(f\"   Temperature-Precipitation: {corr_matrix.loc['temperature_c', 'precipitation_mm']:.3f}\")\nprint(f\"   Temperature-Pressure: {corr_matrix.loc['temperature_c', 'pressure_hpa']:.3f}\")\nprint(f\"   Precipitation-Pressure: {corr_matrix.loc['precipitation_mm', 'pressure_hpa']:.3f}\")\n\nprint(f\"\\n🎯 Extreme Event Clusters:\")\nprint(f\"   Number of clusters: {climate_data['extreme_cluster'].max()}\")\nfor cluster_id in sorted(cluster_stats['extreme_cluster']):\n    cluster_data = climate_data[climate_data['extreme_cluster'] == cluster_id]\n    print(f\"   Cluster {cluster_id}: {len(cluster_data)} events, \"\n          f\"mean temp {cluster_stats[cluster_stats['extreme_cluster']==cluster_id]['temperature_c'].values[0]:.1f}°C\")\n\nprint(\"\\n\" + \"=\" * 70)\n\n======================================================================\nCLIMATE EXTREMES ANALYSIS SUMMARY\n======================================================================\n\n📊 Dataset Overview:\n   Period: 2000-01-01 to 2023-12-31\n   Total days: 8,766\n   Variables: Temperature, Precipitation, Pressure\n\n🌡️  Temperature Extremes:\n   Total extreme events: 399\n   Extreme days: 439 (5.01% of period)\n   Mean intensity: 8.34°C above 95th percentile\n   Maximum intensity: 304.83°C above threshold\n   Mean duration: 1.1 days per event\n\n🌧️  Precipitation Extremes:\n   Total extreme events: 399\n   Extreme days: 439 (5.01% of period)\n   Mean intensity: 8.34 mm above 95th percentile\n   Maximum intensity: 304.83 mm above threshold\n\n📈 Return Period Analysis:\n   100-year return temperature: 54.22°C\n   100-year return precipitation: 20.05 mm\n\n🔗 Variable Correlations:\n   Temperature-Precipitation: -0.196\n   Temperature-Pressure: -0.662\n   Precipitation-Pressure: 0.140\n\n🎯 Extreme Event Clusters:\n   Number of clusters: 5\n   Cluster 1: 223 events, mean temp 5.5°C\n   Cluster 2: 4 events, mean temp 6.0°C\n   Cluster 3: 28 events, mean temp 26.1°C\n   Cluster 4: 21 events, mean temp 12.7°C\n   Cluster 5: 163 events, mean temp 12.6°C\n\n======================================================================"
   },
   {
-    "objectID": "notes/risk-series-2.html#data-sources-for-climate-risk",
-    "href": "notes/risk-series-2.html#data-sources-for-climate-risk",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Data Sources for Climate Risk",
-    "text": "Data Sources for Climate Risk\nBuilding on the foundations from Part 1, this note covers the data landscape for climate risk modelling.\n\nObservational Data\n\nERA5 - ECMWF’s reanalysis dataset\nGHCN - Global Historical Climatology Network\nStation data - Local weather observations\n\n\n\nModelled Data\n\nCMIP6 - Climate model ensembles for projections\nDownscaled projections - Regional climate scenarios\nCatastrophe model outputs - Vendor-specific hazard layers"
+    "objectID": "models/climate-extremes-explorer.html#overview",
+    "href": "models/climate-extremes-explorer.html#overview",
+    "title": "Climate Extremes Explorer",
+    "section": "",
+    "text": "Interactive analysis of climate extremes using synthetic climate data. This demonstration showcases methods for identifying, analyzing, and visualizing extreme climate events including heatwaves, cold snaps, and extreme precipitation.\nThe framework demonstrates:\n\nExtreme Event Identification - Multiple methods (percentile, absolute, anomaly)\nReturn Period Analysis - Extreme value theory (Block Maxima, Peaks Over Threshold)\nMulti-Variable Correlation - Relationships between climate variables\nEvent Clustering - Hierarchical clustering of extreme events\nStatistical Analysis - Comprehensive extreme event statistics\n\n\n\n\nimport sys\nimport os\nsys.path.insert(0, os.path.abspath('.'))\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\ntry:\n    import seaborn as sns\n    HAS_SEABORN = True\nexcept ImportError:\n    HAS_SEABORN = False\n    print(\"Note: seaborn not available, using matplotlib for heatmap\")\nfrom scipy import stats\n\nfrom src.climate_extremes import (\n    generate_synthetic_climate_data,\n    identify_extremes,\n    compute_return_periods,\n    analyze_correlations,\n    cluster_extreme_events,\n    compute_extreme_statistics,\n)\n\n# Generate synthetic climate data (2000-2023, daily)\nprint(\"Generating synthetic climate data...\")\nclimate_data = generate_synthetic_climate_data(\n    start_date=\"2000-01-01\",\n    end_date=\"2023-12-31\",\n    freq=\"D\",\n    seed=42\n)\n\nprint(f\"\\nData shape: {climate_data.shape}\")\nprint(f\"Date range: {climate_data['datetime_utc'].min()} to {climate_data['datetime_utc'].max()}\")\nprint(\"\\nFirst few rows:\")\nprint(climate_data.head())\nprint(\"\\nSummary statistics:\")\nprint(climate_data[['temperature_c', 'precipitation_mm', 'pressure_hpa']].describe())\n\nGenerating synthetic climate data...\n\nData shape: (8766, 4)\nDate range: 2000-01-01 00:00:00+00:00 to 2023-12-31 00:00:00+00:00\n\nFirst few rows:\n               datetime_utc  temperature_c  precipitation_mm  pressure_hpa\n0 2000-01-01 00:00:00+00:00      16.490142          1.987423   1016.294377\n1 2000-01-02 00:00:00+00:00      14.757278          3.775058   1017.524657\n2 2000-01-03 00:00:00+00:00      17.287156          3.904062   1009.176811\n3 2000-01-04 00:00:00+00:00      20.085098          6.355532    999.046500\n4 2000-01-05 00:00:00+00:00      14.985313          0.236418   1014.740259\n\nSummary statistics:\n       temperature_c  precipitation_mm  pressure_hpa\ncount    8766.000000       8766.000000   8766.000000\nmean       15.773961          4.322842   1013.243240\nstd         8.838041          6.592951      6.677491\nmin       -19.483457          0.026432    985.935802\n25%         8.700376          1.648959   1008.784265\n50%        15.748301          3.060113   1013.282316\n75%        22.461284          5.356232   1017.790731\nmax        56.866253        316.088010   1039.191900\n\n\n\n\n\n\n# Identify extreme temperature events (95th percentile, minimum 3 consecutive days)\nclimate_data = identify_extremes(\n    climate_data,\n    variable='temperature_c',\n    method='percentile',\n    threshold=95.0,\n    min_duration=3\n)\n\n# Also identify extreme precipitation events\nclimate_data = identify_extremes(\n    climate_data,\n    variable='precipitation_mm',\n    method='percentile',\n    threshold=95.0,\n    min_duration=1\n)\n\n# Compute statistics\ntemp_stats = compute_extreme_statistics(climate_data, 'temperature_c')\nprecip_stats = compute_extreme_statistics(climate_data, 'precipitation_mm')\n\nprint(\"Temperature Extreme Events:\")\nprint(f\"  Number of events: {temp_stats['n_events']}\")\nprint(f\"  Total extreme days: {temp_stats['total_days']}\")\nprint(f\"  Mean intensity: {temp_stats['mean_intensity']:.2f}°C above threshold\")\nprint(f\"  Maximum intensity: {temp_stats['max_intensity']:.2f}°C above threshold\")\nprint(f\"  Mean duration: {temp_stats['mean_duration']:.1f} days\")\n\nprint(\"\\nPrecipitation Extreme Events:\")\nprint(f\"  Number of events: {precip_stats['n_events']}\")\nprint(f\"  Total extreme days: {precip_stats['total_days']}\")\nprint(f\"  Mean intensity: {precip_stats['mean_intensity']:.2f} mm above threshold\")\nprint(f\"  Maximum intensity: {precip_stats['max_intensity']:.2f} mm above threshold\")\n\nTemperature Extreme Events:\n  Number of events: 399\n  Total extreme days: 439\n  Mean intensity: 8.34°C above threshold\n  Maximum intensity: 304.83°C above threshold\n  Mean duration: 1.1 days\n\nPrecipitation Extreme Events:\n  Number of events: 399\n  Total extreme days: 439\n  Mean intensity: 8.34 mm above threshold\n  Maximum intensity: 304.83 mm above threshold\n\n\n\n\n\n\n# Create timeline visualization with extreme events highlighted\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)\n\n# Temperature with extreme events\nax1 = axes[0]\nax1.plot(climate_data['datetime_utc'], climate_data['temperature_c'], \n         color='#2c3e50', alpha=0.6, linewidth=0.8, label='Temperature')\nax1.scatter(climate_data[climate_data['is_extreme']]['datetime_utc'],\n           climate_data[climate_data['is_extreme']]['temperature_c'],\n           c='#e74c3c', s=30, alpha=0.7, label='Extreme Events', zorder=5)\nax1.axhline(y=np.percentile(climate_data['temperature_c'], 95), \n           color='#c0392b', linestyle='--', alpha=0.7, label='95th Percentile')\nax1.set_ylabel('Temperature (°C)', fontsize=11, fontweight='bold')\nax1.set_title('Temperature Time Series with Extreme Events Highlighted', \n              fontsize=13, fontweight='bold', pad=10)\nax1.legend(loc='upper left', fontsize=9)\nax1.grid(True, alpha=0.3)\n\n# Precipitation with extreme events\nax2 = axes[1]\nax2.plot(climate_data['datetime_utc'], climate_data['precipitation_mm'], \n         color='#3498db', alpha=0.6, linewidth=0.8, label='Precipitation')\nprecip_extremes = climate_data[climate_data['precipitation_mm'] &gt;= \n                               np.percentile(climate_data['precipitation_mm'], 95)]\nax2.scatter(precip_extremes['datetime_utc'], precip_extremes['precipitation_mm'],\n           c='#2980b9', s=30, alpha=0.7, label='Extreme Events', zorder=5)\nax2.axhline(y=np.percentile(climate_data['precipitation_mm'], 95), \n           color='#21618c', linestyle='--', alpha=0.7, label='95th Percentile')\nax2.set_ylabel('Precipitation (mm)', fontsize=11, fontweight='bold')\nax2.set_title('Precipitation Time Series with Extreme Events Highlighted', \n              fontsize=13, fontweight='bold', pad=10)\nax2.legend(loc='upper left', fontsize=9)\nax2.grid(True, alpha=0.3)\n\n# Pressure\nax3 = axes[2]\nax3.plot(climate_data['datetime_utc'], climate_data['pressure_hpa'], \n         color='#7f8c8d', alpha=0.6, linewidth=0.8)\nax3.set_ylabel('Pressure (hPa)', fontsize=11, fontweight='bold')\nax3.set_xlabel('Date', fontsize=11, fontweight='bold')\nax3.set_title('Atmospheric Pressure Time Series', \n              fontsize=13, fontweight='bold', pad=10)\nax3.grid(True, alpha=0.3)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n# Compute return periods for temperature extremes\nreturn_periods_temp = compute_return_periods(\n    climate_data,\n    variable='temperature_c',\n    method='block_maxima',\n    block_size='1Y'\n)\n\nreturn_periods_precip = compute_return_periods(\n    climate_data,\n    variable='precipitation_mm',\n    method='peaks_over_threshold',\n)\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Temperature return periods\nax1 = axes[0]\nax1.plot(return_periods_temp['return_period_years'], \n        return_periods_temp['return_value'], \n        marker='o', linewidth=2, markersize=8, color='#e74c3c')\nax1.set_xlabel('Return Period (years)', fontsize=11, fontweight='bold')\nax1.set_ylabel('Return Value (°C)', fontsize=11, fontweight='bold')\nax1.set_title('Temperature: Return Period Analysis\\n(Annual Maxima Method)', \n              fontsize=12, fontweight='bold')\nax1.grid(True, alpha=0.3)\nax1.set_xscale('log')\n\n# Precipitation return periods\nax2 = axes[1]\nax2.plot(return_periods_precip['return_period_years'], \n        return_periods_precip['return_value'], \n        marker='o', linewidth=2, markersize=8, color='#3498db')\nax2.set_xlabel('Return Period (years)', fontsize=11, fontweight='bold')\nax2.set_ylabel('Return Value (mm)', fontsize=11, fontweight='bold')\nax2.set_title('Precipitation: Return Period Analysis\\n(Peaks Over Threshold Method)', \n              fontsize=12, fontweight='bold')\nax2.grid(True, alpha=0.3)\nax2.set_xscale('log')\n\nplt.tight_layout()\nplt.show()\n\nprint(\"Return Period Analysis Results:\")\nprint(\"\\nTemperature (Annual Maxima):\")\nprint(return_periods_temp.to_string(index=False))\nprint(\"\\nPrecipitation (Peaks Over Threshold):\")\nprint(return_periods_precip.to_string(index=False))\n\n\n\n\n\n\n\n\nReturn Period Analysis Results:\n\nTemperature (Annual Maxima):\n return_period_years  return_value      variable\n                   2     42.794460 temperature_c\n                   5     47.875623 temperature_c\n                  10     50.035892 temperature_c\n                  20     51.623194 temperature_c\n                  50     53.232872 temperature_c\n                 100     54.216806 temperature_c\n                 200     55.062521 temperature_c\n                 500     56.024671 temperature_c\n\nPrecipitation (Peaks Over Threshold):\n return_period_years  return_value         variable\n                   2           NaN precipitation_mm\n                   5           NaN precipitation_mm\n                  10           NaN precipitation_mm\n                  20     11.267369 precipitation_mm\n                  50     15.124830 precipitation_mm\n                 100     20.049680 precipitation_mm\n                 200     27.822761 precipitation_mm\n                 500     45.390184 precipitation_mm\n\n\n\n\n\n\n# Compute correlation matrix\ncorr_matrix = analyze_correlations(\n    climate_data,\n    variables=['temperature_c', 'precipitation_mm', 'pressure_hpa']\n)\n\n# Create heatmap\nfig, ax = plt.subplots(figsize=(8, 6))\nif HAS_SEABORN:\n    sns.heatmap(corr_matrix, annot=True, fmt='.3f', cmap='RdBu_r', center=0,\n               square=True, linewidths=1, cbar_kws={\"shrink\": 0.8},\n               vmin=-1, vmax=1, ax=ax)\nelse:\n    im = ax.imshow(corr_matrix.values, cmap='RdBu_r', vmin=-1, vmax=1, aspect='auto')\n    ax.set_xticks(range(len(corr_matrix.columns)))\n    ax.set_yticks(range(len(corr_matrix.index)))\n    ax.set_xticklabels(corr_matrix.columns)\n    ax.set_yticklabels(corr_matrix.index)\n    for i in range(len(corr_matrix.index)):\n        for j in range(len(corr_matrix.columns)):\n            ax.text(j, i, f'{corr_matrix.iloc[i, j]:.3f}', \n                   ha='center', va='center', color='black' if abs(corr_matrix.iloc[i, j]) &lt; 0.5 else 'white')\n    plt.colorbar(im, ax=ax, shrink=0.8)\nax.set_title('Climate Variables Correlation Matrix', \n             fontsize=13, fontweight='bold', pad=15)\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nCorrelation Matrix:\")\nprint(corr_matrix)\n\n\n\n\n\n\n\n\n\nCorrelation Matrix:\n                  temperature_c  precipitation_mm  pressure_hpa\ntemperature_c          1.000000         -0.196128     -0.661777\nprecipitation_mm      -0.196128          1.000000      0.139706\npressure_hpa          -0.661777          0.139706      1.000000\n\n\n\n\n\n\n# Cluster extreme temperature events\nclimate_data = cluster_extreme_events(\n    climate_data,\n    n_clusters=5,\n    variables=['temperature_c', 'precipitation_mm', 'pressure_hpa']\n)\n\n# Visualize clustered extreme events\nfig, axes = plt.subplots(2, 1, figsize=(14, 10), sharex=True)\n\n# Temperature with cluster colors\nax1 = axes[0]\nscatter = ax1.scatter(climate_data['datetime_utc'], climate_data['temperature_c'],\n                     c=climate_data['extreme_cluster'], cmap='Set1', \n                     s=20, alpha=0.6, edgecolors='black', linewidth=0.5)\nextreme_mask = climate_data['is_extreme']\nax1.scatter(climate_data[extreme_mask]['datetime_utc'],\n           climate_data[extreme_mask]['temperature_c'],\n           c=climate_data[extreme_mask]['extreme_cluster'], cmap='Set1',\n           s=100, alpha=0.9, edgecolors='black', linewidth=1.5, \n           marker='*', zorder=5, label='Extreme Events')\nax1.set_ylabel('Temperature (°C)', fontsize=11, fontweight='bold')\nax1.set_title('Temperature Time Series with Clustered Extreme Events', \n              fontsize=13, fontweight='bold', pad=10)\ncbar = plt.colorbar(scatter, ax=ax1)\ncbar.set_label('Cluster ID', fontsize=10)\nax1.legend(loc='upper left', fontsize=9)\nax1.grid(True, alpha=0.3)\n\n# Cluster characteristics\nax2 = axes[1]\ncluster_stats = climate_data[climate_data['extreme_cluster'] &gt; 0].groupby('extreme_cluster').agg({\n    'temperature_c': 'mean',\n    'precipitation_mm': 'mean',\n    'pressure_hpa': 'mean',\n    'extreme_intensity': 'mean',\n}).reset_index()\n\nx_pos = np.arange(len(cluster_stats))\nwidth = 0.35\nax2.bar(x_pos - width/2, cluster_stats['temperature_c'], width, \n       label='Temperature', color='#e74c3c', alpha=0.7)\nax2_twin = ax2.twinx()\nax2_twin.bar(x_pos + width/2, cluster_stats['precipitation_mm'], width,\n            label='Precipitation', color='#3498db', alpha=0.7)\nax2.set_xlabel('Cluster ID', fontsize=11, fontweight='bold')\nax2.set_ylabel('Temperature (°C)', fontsize=11, fontweight='bold', color='#e74c3c')\nax2_twin.set_ylabel('Precipitation (mm)', fontsize=11, fontweight='bold', color='#3498db')\nax2.set_title('Cluster Characteristics: Mean Values by Cluster', \n              fontsize=13, fontweight='bold', pad=10)\nax2.set_xticks(x_pos)\nax2.set_xticklabels(cluster_stats['extreme_cluster'])\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nCluster Statistics:\")\nprint(cluster_stats.to_string(index=False))\n\n\n\n\n\n\n\n\n\nCluster Statistics:\n extreme_cluster  temperature_c  precipitation_mm  pressure_hpa  extreme_intensity\n               1       5.499854         14.701148   1020.549791           3.438765\n               2       5.956776        200.997156   1021.397432         189.734773\n               3      26.091330         16.614513   1006.965570           5.352129\n               4      12.662559         63.720836   1017.063492          52.458453\n               5      12.641321         16.681648   1011.837337           5.419265\n\n\n\n\n\n\n# Analyze distribution of extreme event intensities\nextreme_events = climate_data[climate_data['is_extreme']].copy()\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Histogram of extreme intensities\nax1 = axes[0]\nax1.hist(extreme_events['extreme_intensity'], bins=30, color='#e74c3c', \n        alpha=0.7, edgecolor='black', linewidth=1.2)\nax1.axvline(extreme_events['extreme_intensity'].mean(), \n           color='#c0392b', linestyle='--', linewidth=2, \n           label=f\"Mean: {extreme_events['extreme_intensity'].mean():.2f}°C\")\nax1.axvline(extreme_events['extreme_intensity'].median(), \n           color='#8e44ad', linestyle='--', linewidth=2,\n           label=f\"Median: {extreme_events['extreme_intensity'].median():.2f}°C\")\nax1.set_xlabel('Extreme Intensity (°C above threshold)', fontsize=11, fontweight='bold')\nax1.set_ylabel('Frequency', fontsize=11, fontweight='bold')\nax1.set_title('Distribution of Extreme Event Intensities', \n              fontsize=12, fontweight='bold')\nax1.legend(fontsize=9)\nax1.grid(True, alpha=0.3, axis='y')\n\n# Box plot by cluster\nax2 = axes[1]\n# Get unique cluster IDs (excluding 0) and filter out empty clusters\nunique_clusters = sorted([i for i in extreme_events['extreme_cluster'].unique() if i &gt; 0])\ncluster_data = []\ncluster_labels = []\nfor i in unique_clusters:\n    data = extreme_events[extreme_events['extreme_cluster'] == i]['extreme_intensity'].values\n    if len(data) &gt; 0:  # Only include clusters with data\n        cluster_data.append(data)\n        cluster_labels.append(str(i))\n\n# Only plot if we have data\nif len(cluster_data) &gt; 0:\n    bp = ax2.boxplot(cluster_data, labels=cluster_labels,\n                    patch_artist=True, showmeans=True)\n    for patch in bp['boxes']:\n        patch.set_facecolor('#e74c3c')\n        patch.set_alpha(0.7)\nelse:\n    ax2.text(0.5, 0.5, 'No cluster data available', \n            ha='center', va='center', transform=ax2.transAxes)\nax2.set_xlabel('Cluster ID', fontsize=11, fontweight='bold')\nax2.set_ylabel('Extreme Intensity (°C above threshold)', fontsize=11, fontweight='bold')\nax2.set_title('Extreme Intensity Distribution by Cluster', \n              fontsize=12, fontweight='bold')\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.show()\n\nprint(\"\\nExtreme Event Intensity Statistics:\")\nprint(extreme_events['extreme_intensity'].describe())\n\n\n\n\n\n\n\n\n\nExtreme Event Intensity Statistics:\ncount    439.000000\nmean       8.338522\nstd       22.503147\nmin        0.000094\n25%        1.083130\n50%        2.890158\n75%        5.935226\nmax      304.825627\nName: extreme_intensity, dtype: float64\n\n\n\n\n\n\n# Generate comprehensive summary\nprint(\"=\" * 70)\nprint(\"CLIMATE EXTREMES ANALYSIS SUMMARY\")\nprint(\"=\" * 70)\n\nprint(f\"\\n📊 Dataset Overview:\")\nprint(f\"   Period: {climate_data['datetime_utc'].min().date()} to {climate_data['datetime_utc'].max().date()}\")\nprint(f\"   Total days: {len(climate_data):,}\")\nprint(f\"   Variables: Temperature, Precipitation, Pressure\")\n\nprint(f\"\\n🌡️  Temperature Extremes:\")\nprint(f\"   Total extreme events: {temp_stats['n_events']}\")\nprint(f\"   Extreme days: {temp_stats['total_days']} ({100*temp_stats['total_days']/len(climate_data):.2f}% of period)\")\nprint(f\"   Mean intensity: {temp_stats['mean_intensity']:.2f}°C above 95th percentile\")\nprint(f\"   Maximum intensity: {temp_stats['max_intensity']:.2f}°C above threshold\")\nprint(f\"   Mean duration: {temp_stats['mean_duration']:.1f} days per event\")\n\nprint(f\"\\n🌧️  Precipitation Extremes:\")\nprint(f\"   Total extreme events: {precip_stats['n_events']}\")\nprint(f\"   Extreme days: {precip_stats['total_days']} ({100*precip_stats['total_days']/len(climate_data):.2f}% of period)\")\nprint(f\"   Mean intensity: {precip_stats['mean_intensity']:.2f} mm above 95th percentile\")\nprint(f\"   Maximum intensity: {precip_stats['max_intensity']:.2f} mm above threshold\")\n\nprint(f\"\\n📈 Return Period Analysis:\")\nprint(f\"   100-year return temperature: {return_periods_temp[return_periods_temp['return_period_years']==100]['return_value'].values[0]:.2f}°C\")\nprint(f\"   100-year return precipitation: {return_periods_precip[return_periods_precip['return_period_years']==100]['return_value'].values[0]:.2f} mm\")\n\nprint(f\"\\n🔗 Variable Correlations:\")\nprint(f\"   Temperature-Precipitation: {corr_matrix.loc['temperature_c', 'precipitation_mm']:.3f}\")\nprint(f\"   Temperature-Pressure: {corr_matrix.loc['temperature_c', 'pressure_hpa']:.3f}\")\nprint(f\"   Precipitation-Pressure: {corr_matrix.loc['precipitation_mm', 'pressure_hpa']:.3f}\")\n\nprint(f\"\\n🎯 Extreme Event Clusters:\")\nprint(f\"   Number of clusters: {climate_data['extreme_cluster'].max()}\")\nfor cluster_id in sorted(cluster_stats['extreme_cluster']):\n    cluster_data = climate_data[climate_data['extreme_cluster'] == cluster_id]\n    print(f\"   Cluster {cluster_id}: {len(cluster_data)} events, \"\n          f\"mean temp {cluster_stats[cluster_stats['extreme_cluster']==cluster_id]['temperature_c'].values[0]:.1f}°C\")\n\nprint(\"\\n\" + \"=\" * 70)\n\n======================================================================\nCLIMATE EXTREMES ANALYSIS SUMMARY\n======================================================================\n\n📊 Dataset Overview:\n   Period: 2000-01-01 to 2023-12-31\n   Total days: 8,766\n   Variables: Temperature, Precipitation, Pressure\n\n🌡️  Temperature Extremes:\n   Total extreme events: 399\n   Extreme days: 439 (5.01% of period)\n   Mean intensity: 8.34°C above 95th percentile\n   Maximum intensity: 304.83°C above threshold\n   Mean duration: 1.1 days per event\n\n🌧️  Precipitation Extremes:\n   Total extreme events: 399\n   Extreme days: 439 (5.01% of period)\n   Mean intensity: 8.34 mm above 95th percentile\n   Maximum intensity: 304.83 mm above threshold\n\n📈 Return Period Analysis:\n   100-year return temperature: 54.22°C\n   100-year return precipitation: 20.05 mm\n\n🔗 Variable Correlations:\n   Temperature-Precipitation: -0.196\n   Temperature-Pressure: -0.662\n   Precipitation-Pressure: 0.140\n\n🎯 Extreme Event Clusters:\n   Number of clusters: 5\n   Cluster 1: 223 events, mean temp 5.5°C\n   Cluster 2: 4 events, mean temp 6.0°C\n   Cluster 3: 28 events, mean temp 26.1°C\n   Cluster 4: 21 events, mean temp 12.7°C\n   Cluster 5: 163 events, mean temp 12.6°C\n\n======================================================================"
   },
   {
-    "objectID": "notes/risk-series-2.html#data-quality-considerations",
-    "href": "notes/risk-series-2.html#data-quality-considerations",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Data Quality Considerations",
-    "text": "Data Quality Considerations\nWhen working with climate data, always consider:\n\nSpatial resolution - Is the data granular enough for your use case?\nTemporal coverage - Do you have enough historical data?\nBias - Are there systematic errors in the observations?\nUncertainty - What are the confidence intervals?\n\nThe SAL framework provides one approach to validating spatial data quality."
+    "objectID": "models/climate-extremes-explorer.html#note",
+    "href": "models/climate-extremes-explorer.html#note",
+    "title": "Climate Extremes Explorer",
+    "section": "Note",
+    "text": "Note\nThis analysis uses synthetic climate data for demonstration. In production, this framework can be applied to real ERA5 reanalysis data or observational climate datasets. The methods shown here—extreme value theory, return period analysis, and event clustering—are standard approaches in climate risk assessment."
   },
   {
-    "objectID": "notes/risk-series-2.html#next-steps",
-    "href": "notes/risk-series-2.html#next-steps",
-    "title": "Risk Modelling Part 2: Data",
-    "section": "Next Steps",
-    "text": "Next Steps\nWith data in hand, we move to Part 3: Implementation where we build actual models.\n\nLinked from\n\nRisk Modelling Part 1: Foundations\nRisk Modelling Part 3: Implementation"
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "projects/index.html#heatwaves-and-day-ahead-prices",
+    "href": "projects/index.html#heatwaves-and-day-ahead-prices",
+    "title": "",
+    "section": "Heatwaves and Day-Ahead Prices",
+    "text": "Heatwaves and Day-Ahead Prices\nStatus: Active\nCategory: Model / Analysis\nAnalysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics.\nLinks: - View Analysis →\nTechnologies: Python, Pandas, OPSD Data"
+  },
+  {
+    "objectID": "projects/index.html#era5-rainfall-demo",
+    "href": "projects/index.html#era5-rainfall-demo",
+    "title": "",
+    "section": "ERA5 Rainfall Demo",
+    "text": "ERA5 Rainfall Demo\nStatus: Active\nCategory: Demo / Tool\nInteractive demonstration of ERA5 reanalysis data for rainfall analysis. Shows data loading, processing, and visualization workflows.\nLinks: - View Demo →\nTechnologies: Python, ERA5 Data, Climate Analysis"
+  },
+  {
+    "objectID": "projects/index.html#climate-extremes-explorer",
+    "href": "projects/index.html#climate-extremes-explorer",
+    "title": "",
+    "section": "Climate Extremes Explorer",
+    "text": "Climate Extremes Explorer\nStatus: Active\nCategory: Tool / Analysis\nComprehensive interactive analysis of climate extremes using synthetic climate data. Demonstrates methods for identifying, analyzing, and visualizing extreme climate events including heatwaves, cold snaps, and extreme precipitation. Features return period analysis, event clustering, and multi-variable correlation analysis.\nLinks: - View Analysis →\nTechnologies: Python, SciPy, Scikit-learn, Matplotlib, Seaborn"
+  },
+  {
+    "objectID": "projects/index.html#project-template",
+    "href": "projects/index.html#project-template",
+    "title": "",
+    "section": "Project Template",
+    "text": "Project Template\nStatus: Coming soon\nCategory: Project\nBrief description of the project, its goals, and key features.\nLinks: - Demo (if available) - Code (if available) - Documentation (if available)\nTechnologies: Python, R, JavaScript, etc."
+  },
+  {
+    "objectID": "reading/index.html",
+    "href": "reading/index.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "reading/index.html#reading-note-template",
+    "href": "reading/index.html#reading-note-template",
+    "title": "",
+    "section": "Reading Note Template",
+    "text": "Reading Note Template\nWhen adding reading notes, use this structure:\n---\ntitle: \"Paper/Book Title\"\nauthor: \"Author Name\"\nyear: YYYY\ncategory: \"Climate Science\" | \"Energy Systems\" | \"Risk & Finance\" | \"Methods\"\ntags: [\"tag1\", \"tag2\"]\nstatus: \"read\" | \"reading\" | \"to-read\"\n---\n\n## Summary\n\nBrief summary of key points and findings.\n\n## Key Takeaways\n\n- Point 1\n- Point 2\n- Point 3\n\n## Connections\n\nLinks to related notes, models, or projects.\n\n## Notes\n\nDetailed notes, quotes, and reflections."
+  },
+  {
+    "objectID": "reading/index.html#categories",
+    "href": "reading/index.html#categories",
+    "title": "",
+    "section": "Categories",
+    "text": "Categories\nReading notes are organized by topic:\n\nClimate Science - Physical climate modeling, projections, uncertainty\nEnergy Systems - Grid operations, renewables integration, storage\nRisk & Finance - Climate risk pricing, stress testing, disclosure\nMethods - Time series, machine learning applications"
+  },
+  {
+    "objectID": "reading/index.html#suggested-starting-points",
+    "href": "reading/index.html#suggested-starting-points",
+    "title": "",
+    "section": "Suggested Starting Points",
+    "text": "Suggested Starting Points\n\n\n\n\n\n\nTipGetting Started with Climate Risk\n\n\n\n\nIPCC AR6 Reports - Essential background on climate science\nIEA World Energy Outlook - Annual energy sector analysis\nAcademic journals: Nature Climate Change, Energy Policy, Climatic Change"
+  },
+  {
+    "objectID": "reading/index.html#reading-status",
+    "href": "reading/index.html#reading-status",
+    "title": "",
+    "section": "Reading Status",
+    "text": "Reading Status\nReading notes will appear here as they’re added. Filter by category or status using the tags above."
+  },
+  {
+    "objectID": "tipping-points/index.html",
+    "href": "tipping-points/index.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "tipping-points/index.html#overview",
+    "href": "tipping-points/index.html#overview",
+    "title": "",
+    "section": "Overview",
+    "text": "Overview\nTipping Points is a card-based game that models how climate events interact with political and social systems. Players navigate cascading effects, feedback loops, and the challenge of building resilience in the face of uncertainty."
+  },
+  {
+    "objectID": "tipping-points/index.html#game-components",
+    "href": "tipping-points/index.html#game-components",
+    "title": "",
+    "section": "Game Components",
+    "text": "Game Components\n\nClimate Cards\nRepresent physical climate events: heatwaves, floods, droughts, sea-level rise, and extreme weather patterns.\n\n\nSystem Cards\nModel political, economic, and social systems: governance structures, markets, infrastructure, and communities.\n\n\nTipping Point Cards\nTrigger cascading effects when certain conditions are met, creating feedback loops and system transformations."
+  },
+  {
+    "objectID": "tipping-points/index.html#how-to-play",
+    "href": "tipping-points/index.html#how-to-play",
+    "title": "",
+    "section": "How to Play",
+    "text": "How to Play\n\nSetup: Each player receives a hand of system cards representing different sectors (energy, agriculture, governance, etc.)\nClimate Events: Draw climate cards that trigger impacts on systems\nResponse: Play system cards to build resilience or adapt\nTipping Points: When thresholds are crossed, tipping point cards activate, changing the game state\nVictory Conditions: Win by maintaining system stability or by successfully transforming systems to be more resilient"
+  },
+  {
+    "objectID": "tipping-points/index.html#design-philosophy",
+    "href": "tipping-points/index.html#design-philosophy",
+    "title": "",
+    "section": "Design Philosophy",
+    "text": "Design Philosophy\nThe game is designed to: - Make abstract climate–politics interactions tangible - Show how small changes can trigger large-scale transformations - Explore trade-offs between short-term stability and long-term adaptation - Model uncertainty and incomplete information"
+  },
+  {
+    "objectID": "tipping-points/index.html#status",
+    "href": "tipping-points/index.html#status",
+    "title": "",
+    "section": "Status",
+    "text": "Status\nCurrently in development. Rules, cards, and mechanics are being refined through playtesting."
+  },
+  {
+    "objectID": "tipping-points/index.html#resources",
+    "href": "tipping-points/index.html#resources",
+    "title": "",
+    "section": "Resources",
+    "text": "Resources\n\nGame design notes and iterations\nCard templates and artwork\nPlaytesting results and feedback\nTheoretical foundations (complexity theory, climate science, political economy)"
   },
   {
     "objectID": "replit.html",
@@ -158,7 +256,7 @@
     "href": "replit.html#features",
     "title": "",
     "section": "Features",
-    "text": "Features\n\nYin-Yang Manifesto: Collapsible box on homepage with ☯ toggle\n\nDark box in light mode, light box in dark mode (yin-yang aesthetic)\nTheme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto\n\nDark/Light Theme: Toggle via theme switcher in navbar\nRSS Feed: Available at notes/index.xml\nReading Progress Bar: Thin line at top showing scroll position\nReading Time: “X min read” displayed on article pages\nLast Modified Dates: Notes show when they were last updated\nCustom 404 Page: Minimal “Lost in the noise” error page\nKeyboard Shortcuts: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)\nRandom Note Link: Footer link to discover random notes\nCommand Palette: Press Cmd+K (or Ctrl+K) for quick-jump to any page\nPrint Stylesheet: Clean formatting when printing (hides nav, shows URLs)\nSeries Navigation: Multi-part notes show “Part X of Y” with prev/next links\nBacklinks: Notes can show which other notes link to them"
+    "text": "Features\n\nYin-Yang Manifesto: Collapsible box on homepage with ☯ toggle\n\nDark box in light mode, light box in dark mode (yin-yang aesthetic)\nTheme-aware: Light mode defaults to Manifesto, dark mode to Anti-Manifesto\n\nDark/Light Theme: Toggle via theme switcher in navbar\nRSS Feed: Available at notes/index.xml\nReading Progress Bar: Thin line at top showing scroll position\nReading Time: “X min read” displayed on article pages\nLast Modified Dates: Notes show when they were last updated\nCustom 404 Page: Minimal “Lost in the noise” error page\nKeyboard Shortcuts: / (search), j/k (navigate), ? (show hints), Cmd+K (palette)\nCommand Palette: Press Cmd+K (or Ctrl+K) for quick-jump to any page\nPrint Stylesheet: Clean formatting when printing (hides nav, shows URLs)\nSeries Navigation: Multi-part notes show “Part X of Y” with prev/next links\nBacklinks: Notes can show which other notes link to them"
   },
   {
     "objectID": "replit.html#sample-content",
@@ -166,13 +264,6 @@
     "title": "",
     "section": "Sample Content",
     "text": "Sample Content\n\nnotes/risk-series-1.qmd through risk-series-3.qmd - 3-part series demonstrating series navigation and backlinks"
-  },
-  {
-    "objectID": "replit.html#network-graph",
-    "href": "replit.html#network-graph",
-    "title": "",
-    "section": "Network Graph",
-    "text": "Network Graph\n\nSidebar Widget: Always-visible mini network graph in right sidebar showing page connections\nMobile Button: Floating button on mobile (bottom-right) since sidebar is hidden\nD3-Force Layout: Uses D3.js v7 for force-directed graph positioning\nClick to Expand: Opens full modal with labels and click-to-navigate\nPress ‘g’: Keyboard shortcut to open graph modal"
   },
   {
     "objectID": "replit.html#heatwave-analysis-page",
@@ -189,199 +280,136 @@
     "text": "Deployment\nConfigured for static deployment serving the _site directory."
   },
   {
-    "objectID": "contact_cv.html",
-    "href": "contact_cv.html",
-    "title": "Contact / CV",
+    "objectID": "models/era5-demo.html",
+    "href": "models/era5-demo.html",
+    "title": "ERA5 rainfall — minimal notebook",
     "section": "",
-    "text": "Email: hello@recurrentanalytics.com\nGitHub: https://github.com/recurrentanalytics\nLocation: DE\n\n\nShort CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
+    "text": "~{python} print(“Hello from Python — if you don’t see this line below, execution didn’t run.”)~\n~~~{python} import numpy as np import matplotlib.pyplot as plt\nlat = np.linspace(-60, 60, 121) lon = np.linspace(-180, 180, 361) data = np.random.gamma(2, 1, (len(lat), len(lon)))\nplt.figure() plt.imshow(data, extent=[lon.min(), lon.max(), lat.min(), lat.max()], origin=“lower”) plt.title(“Synthetic ERA5-like rainfall map”) plt.xlabel(“Longitude”); plt.ylabel(“Latitude”) plt.show() ~~~"
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html",
+    "href": "models/heatwave-prices-de-lu.html",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "",
+    "text": "This is a deliberately small empirical note. It documents one operational definition of a heatwave and traces how that definition propagates through a data pipeline, culminating in descriptive comparisons of day-ahead electricity prices during heatwave versus non-heatwave periods.\nThis is not a causal analysis. No identification strategy is claimed, and the pipeline is meant to be inspectable rather than “correct” in any final sense."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#why-this-note-exists",
+    "href": "models/heatwave-prices-de-lu.html#why-this-note-exists",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "",
+    "text": "This is a deliberately small empirical note. It documents one operational definition of a heatwave and traces how that definition propagates through a data pipeline, culminating in descriptive comparisons of day-ahead electricity prices during heatwave versus non-heatwave periods.\nThis is not a causal analysis. No identification strategy is claimed, and the pipeline is meant to be inspectable rather than “correct” in any final sense."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#data",
+    "href": "models/heatwave-prices-de-lu.html#data",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Data",
+    "text": "Data\nPublic datasets from Open Power System Data (OPSD):\n\nDE-LU day-ahead prices from time_series_60min_singleindex.csv\nGerman temperature from weather_data.csv\n\nThe code below expects those CSVs in data/raw/. Download from:\n\nTime series\nWeather data"
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#build-processed-inputs-hourly-parquet",
+    "href": "models/heatwave-prices-de-lu.html#build-processed-inputs-hourly-parquet",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Build processed inputs (hourly parquet)",
+    "text": "Build processed inputs (hourly parquet)\n\nimport sys\nimport os\nsys.path.insert(0, os.path.abspath('.'))\n\nimport pandas as pd\n\nfrom src.data_download import save_prices_from_opsd, save_weather_de_from_opsd\n\nSTART = \"2015-01-01\"\nEND_PRICES  = \"2020-07-01\"\nEND_WEATHER = \"2020-01-01\"\n\n# Try to load data, but handle missing files gracefully\ntry:\n    save_prices_from_opsd(start=START, end=END_PRICES)\n    save_weather_de_from_opsd(start=START, end=END_WEATHER)\n    \n    prices  = pd.read_parquet(\"data/processed/prices_de_lu_clean.parquet\")\n    weather = pd.read_parquet(\"data/processed/weather_de_agg.parquet\")\n    \n    print(\"Data loaded successfully:\")\n    print(prices.head())\n    print(weather.head())\nexcept FileNotFoundError as e:\n    print(f\"Data files not found: {e}\")\n    print(\"\\nTo run this analysis, download the required data files:\")\n    print(\"- Time series: https://data.open-power-system-data.org/time_series/\")\n    print(\"- Weather data: https://data.open-power-system-data.org/weather_data/\")\n    print(\"\\nPlace the CSV files in data/raw/ and re-run this notebook.\")\n    # Create empty dataframes so subsequent code doesn't fail\n    prices = pd.DataFrame()\n    weather = pd.DataFrame()\n\nData files not found: File not found at data/raw/time_series_60min_singleindex.csv. Download from: https://data.open-power-system-data.org/time_series/latest/\n\nTo run this analysis, download the required data files:\n- Time series: https://data.open-power-system-data.org/time_series/\n- Weather data: https://data.open-power-system-data.org/weather_data/\n\nPlace the CSV files in data/raw/ and re-run this notebook."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#heatwave-definition",
+    "href": "models/heatwave-prices-de-lu.html#heatwave-definition",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Heatwave definition",
+    "text": "Heatwave definition\nOperational definition used here (chosen for clarity, not optimality):\n\ndaily maximum temperature ≥ 30°C\nat least 3 consecutive days\n\nThis is one modelling choice among many. The point is to make it explicit and inspect its implications."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#flag-heatwaves-and-merge-with-prices",
+    "href": "models/heatwave-prices-de-lu.html#flag-heatwaves-and-merge-with-prices",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Flag heatwaves and merge with prices",
+    "text": "Flag heatwaves and merge with prices\n\nimport matplotlib.pyplot as plt\n\nfrom src.heatwave_defs import (\n    restrict_common_period,\n    compute_daily_max_temp,\n    flag_heatwaves,\n    expand_heatwave_flag_to_hourly,\n    merge_price_and_weather,\n)\n\n# Check if data is available\nif prices.empty or weather.empty:\n    print(\"Skipping analysis: data files not available.\")\n    print(\"Please download the required data files to run this analysis.\")\n    prices_c = pd.DataFrame()\n    weather_c = pd.DataFrame()\n    daily_flags = pd.DataFrame()\n    merged = pd.DataFrame()\nelse:\n    prices_c, weather_c = restrict_common_period(prices, weather)\n    \n    daily_temp  = compute_daily_max_temp(weather_c)\n    daily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)\n    \n    # Attach daily flag back to hourly weather and merge with hourly prices\n    weather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)\n    merged = merge_price_and_weather(prices_c, weather_hw)\n    \n    print(\"Heatwave analysis completed:\")\n    print(merged.head())\n\nSkipping analysis: data files not available.\nPlease download the required data files to run this analysis."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#temperature-with-heatwave-days-highlighted-summer-2019",
+    "href": "models/heatwave-prices-de-lu.html#temperature-with-heatwave-days-highlighted-summer-2019",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Temperature with heatwave days highlighted (Summer 2019)",
+    "text": "Temperature with heatwave days highlighted (Summer 2019)\n\nif daily_flags.empty:\n    print(\"No data available for visualization.\")\nelse:\n    hw_2019 = daily_flags[\"2019-06-01\":\"2019-08-31\"]\n    \n    fig, ax = plt.subplots(figsize=(12, 4))\n    ax.plot(hw_2019.index, hw_2019[\"t2m_daily_max_c\"], label=\"Daily max temp\")\n    ax.scatter(\n        hw_2019.index[hw_2019[\"is_heatwave_day\"]],\n        hw_2019[\"t2m_daily_max_c\"][hw_2019[\"is_heatwave_day\"]],\n        s=35,\n        label=\"Heatwave days\",\n    )\n    ax.set_ylabel(\"°C\")\n    ax.set_title(\"Daily max temperature with heatwave days highlighted (Summer 2019)\")\n    ax.legend()\n    plt.show()\n\nNo data available for visualization."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#summer-2019-prices-and-temperature-heatwave-days-shaded",
+    "href": "models/heatwave-prices-de-lu.html#summer-2019-prices-and-temperature-heatwave-days-shaded",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Summer 2019: prices and temperature (heatwave days shaded)",
+    "text": "Summer 2019: prices and temperature (heatwave days shaded)\n\nif merged.empty:\n    print(\"No data available for visualization.\")\nelse:\n    summer = merged.set_index(\"datetime_utc\")[\"2019-06-01\":\"2019-08-31\"]\n    \n    fig, ax1 = plt.subplots(figsize=(12, 5))\n    ax2 = ax1.twinx()\n    \n    ax1.plot(summer.index, summer[\"price_eur_mwh\"], label=\"Price (EUR/MWh)\")\n    ax2.plot(summer.index, summer[\"t2m_mean_c\"], alpha=0.7, linestyle=\"--\", label=\"Temperature (°C)\")\n    \n    # Shade heatwave days\n    for day in summer.index.normalize().unique():\n        day_mask = (summer.index.normalize() == day)\n        if summer.loc[day_mask, \"is_heatwave_day\"].any():\n            ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)\n    \n    ax1.set_ylabel(\"Price [EUR/MWh]\")\n    ax2.set_ylabel(\"Temperature [°C]\")\n    ax1.set_title(\"Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)\")\n    fig.tight_layout()\n    plt.show()\n\nNo data available for visualization."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#peak-hours-price-distributions-on-heatwave-vs-non-heatwave-days",
+    "href": "models/heatwave-prices-de-lu.html#peak-hours-price-distributions-on-heatwave-vs-non-heatwave-days",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Peak hours: price distributions on heatwave vs non-heatwave days",
+    "text": "Peak hours: price distributions on heatwave vs non-heatwave days\n\nif merged.empty:\n    print(\"No data available for analysis.\")\n    summary = pd.DataFrame()\nelse:\n    peak = merged[(merged[\"hour\"] &gt;= 8) & (merged[\"hour\"] &lt;= 20)].copy()\n    \n    hw = peak[peak[\"is_heatwave_day\"]]\n    normal = peak[~peak[\"is_heatwave_day\"]]\n    \n    summary = pd.DataFrame({\n        \"normal_peak_hours\": normal[\"price_eur_mwh\"].describe(),\n        \"heatwave_peak_hours\": hw[\"price_eur_mwh\"].describe(),\n    })\n    print(summary)\n\nNo data available for analysis.\n\n\n\nif merged.empty:\n    print(\"No data available for visualization.\")\nelse:\n    peak = merged[(merged[\"hour\"] &gt;= 8) & (merged[\"hour\"] &lt;= 20)].copy()\n    hw = peak[peak[\"is_heatwave_day\"]]\n    normal = peak[~peak[\"is_heatwave_day\"]]\n    \n    fig, ax = plt.subplots(figsize=(8, 5))\n    \n    ax.hist(normal[\"price_eur_mwh\"], bins=60, alpha=0.6, density=True, label=\"Normal days (peak hours)\")\n    ax.hist(hw[\"price_eur_mwh\"],     bins=60, alpha=0.6, density=True, label=\"Heatwave days (peak hours)\")\n    \n    ax.set_xlabel(\"Day-ahead price (EUR/MWh)\")\n    ax.set_ylabel(\"Density\")\n    ax.set_title(\"DE-LU prices: heatwave vs normal days (2015–2019, peak hours)\")\n    ax.legend()\n    plt.show()\n\nNo data available for visualization."
+  },
+  {
+    "objectID": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
+    "href": "models/heatwave-prices-de-lu.html#limitations-and-extensions",
+    "title": "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019",
+    "section": "Limitations and extensions",
+    "text": "Limitations and extensions\nThis note is intentionally descriptive. It does not claim causality and does not control for drivers such as load, renewables, outages, fuels, or cross-border flows.\nNatural extensions include:\n\nalternative heatwave definitions (percentiles, regionalised thresholds)\nadding load and renewable generation as covariates\nmulti-year comparisons focusing on the stability of patterns across summers\n\n\nRelated\n\nRisk Modelling Part 2: Data - Data sources for climate risk\nERA5 Demo - Working with reanalysis data"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About & Contact",
     "section": "",
-    "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games.\nElsewhere: GitHub"
+    "text": "I’m Mmit Reklaw. I work at the intersection of climate risk, (re)insurance, and data-driven modelling.\nThis site is a public lab notebook for the Re:current project: small, composable models; clean notes; reproducible code.\nFocus areas: hazard analytics, parametric triggers, time-series, energy–water systems, serious games."
   },
   {
-    "objectID": "logo-preview.html",
-    "href": "logo-preview.html",
-    "title": "Logo Preview",
-    "section": "",
-    "text": "A looping path with data points along the cycle, emphasizing recurrence and analytics.\n\n\n\n\n\n\nExpanding ripples with balanced top/bottom halves.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA letterform “r” with a recurrent loop attached, representing the “re:” prefix.\n\n\n\n\n\n\nA wave pattern that loops back, connecting to climate/data themes and recurrence.\n\n\n\n\n\n\n\n\n&lt;strong&gt;Concept 1&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo.svg\" alt=\"Logo Concept 1\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 2&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-2.svg\" alt=\"Logo Concept 2\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 3&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-3.svg\" alt=\"Logo Concept 3\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 4&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-4.svg\" alt=\"Logo Concept 4\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;"
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About & Contact",
+    "section": "Contact",
+    "text": "Contact\n\nEmail: hello@recurrentanalytics.com\nGitHub: recurrentanalytics\nLocation: DE"
   },
   {
-    "objectID": "logo-preview.html#concept-1-recurrent-loop-with-data-points",
-    "href": "logo-preview.html#concept-1-recurrent-loop-with-data-points",
-    "title": "Logo Preview",
-    "section": "",
-    "text": "A looping path with data points along the cycle, emphasizing recurrence and analytics."
-  },
-  {
-    "objectID": "logo-preview.html#concept-2-yin-yang-style-ripples-updated",
-    "href": "logo-preview.html#concept-2-yin-yang-style-ripples-updated",
-    "title": "Logo Preview",
-    "section": "",
-    "text": "Expanding ripples with balanced top/bottom halves."
-  },
-  {
-    "objectID": "logo-preview.html#concept-3-stylized-r",
-    "href": "logo-preview.html#concept-3-stylized-r",
-    "title": "Logo Preview",
-    "section": "",
-    "text": "A letterform “r” with a recurrent loop attached, representing the “re:” prefix."
-  },
-  {
-    "objectID": "logo-preview.html#concept-4-wave-loop",
-    "href": "logo-preview.html#concept-4-wave-loop",
-    "title": "Logo Preview",
-    "section": "",
-    "text": "A wave pattern that loops back, connecting to climate/data themes and recurrence."
-  },
-  {
-    "objectID": "logo-preview.html#as-favicon-size-32x32",
-    "href": "logo-preview.html#as-favicon-size-32x32",
-    "title": "Logo Preview",
-    "section": "",
-    "text": "&lt;strong&gt;Concept 1&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo.svg\" alt=\"Logo Concept 1\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 2&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-2.svg\" alt=\"Logo Concept 2\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 3&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-3.svg\" alt=\"Logo Concept 3\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;\n\n\n&lt;strong&gt;Concept 4&lt;/strong&gt;&lt;br&gt;\n&lt;img src=\"assets/logo-concept-4.svg\" alt=\"Logo Concept 4\" style=\"width: 32px; height: 32px; border: 1px solid var(--bs-border-color);\"&gt;"
-  },
-  {
-    "objectID": "notes/climate/sal.html",
-    "href": "notes/climate/sal.html",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "",
-    "text": "Key Insight:\nA hot, dry, dust-laden air mass moving off North Africa that can suppress Atlantic hurricane formation by increasing vertical wind shear and stabilizing the atmosphere."
-  },
-  {
-    "objectID": "notes/climate/sal.html#core-effects",
-    "href": "notes/climate/sal.html#core-effects",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Core Effects",
-    "text": "Core Effects\n\nDry air entrainment → disrupts convection\nIncreased shear → weakens cyclone organization\nDust aerosols → affect radiation balance & SST"
-  },
-  {
-    "objectID": "notes/climate/sal.html#visual-mental-model",
-    "href": "notes/climate/sal.html#visual-mental-model",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Visual Mental Model",
-    "text": "Visual Mental Model\nSAL = “giant desiccating lid” over the Atlantic basin"
-  },
-  {
-    "objectID": "notes/climate/sal.html#links",
-    "href": "notes/climate/sal.html#links",
-    "title": "Saharan Air Layer (SAL)",
-    "section": "Links",
-    "text": "Links\n\n[[MJO]]\n[[African Easterly Waves]]"
-  },
-  {
-    "objectID": "notes/risk-series-3.html",
-    "href": "notes/risk-series-3.html",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "",
-    "text": "Series: Introduction to Risk Modelling (Part 3 of 3)\n\n\n\n← Previous: Data"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#putting-it-together",
-    "href": "notes/risk-series-3.html#putting-it-together",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Putting It Together",
-    "text": "Putting It Together\nArmed with the theoretical foundations and data sources, we can now implement a basic risk model."
-  },
-  {
-    "objectID": "notes/risk-series-3.html#a-simple-loss-model",
-    "href": "notes/risk-series-3.html#a-simple-loss-model",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "A Simple Loss Model",
-    "text": "A Simple Loss Model\n\nimport numpy as np\n\ndef simulate_losses(n_scenarios=10000, \n                    mean_hazard=0.1, \n                    exposure=1000000,\n                    vulnerability=0.3):\n    \"\"\"\n    Simple Monte Carlo loss simulation.\n    \n    See: /notes/climate/monte-carlo-basics.html\n    \"\"\"\n    # Simulate hazard intensity (e.g., flood depth)\n    hazard = np.random.exponential(mean_hazard, n_scenarios)\n    \n    # Calculate damage ratio based on vulnerability\n    damage_ratio = np.minimum(hazard * vulnerability, 1.0)\n    \n    # Compute losses\n    losses = exposure * damage_ratio\n    \n    return losses\n\n# Run simulation\nlosses = simulate_losses()\n\n# Key statistics\nprint(f\"Expected Loss: ${losses.mean():,.0f}\")\nprint(f\"VaR 99%: ${np.percentile(losses, 99):,.0f}\")\nprint(f\"Max Loss: ${losses.max():,.0f}\")\n\nExpected Loss: $29,856\nVaR 99%: $136,005\nMax Loss: $326,459"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#key-implementation-decisions",
-    "href": "notes/risk-series-3.html#key-implementation-decisions",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Key Implementation Decisions",
-    "text": "Key Implementation Decisions\nWhen building production risk models, consider:\n\nCorrelation structure - How do risks aggregate?\nTail dependence - Do extreme events cluster?\nComputational efficiency - Can you run enough scenarios?\nValidation - How do you test the model?"
-  },
-  {
-    "objectID": "notes/risk-series-3.html#further-reading",
-    "href": "notes/risk-series-3.html#further-reading",
-    "title": "Risk Modelling Part 3: Implementation",
-    "section": "Further Reading",
-    "text": "Further Reading\nThis series provides a foundation. For deeper dives:\n\nMonte Carlo Basics - The sampling engine behind most risk models\nSAL Verification - Validating spatial predictions\n\n\nLinked from\n\nRisk Modelling Part 2: Data"
+    "objectID": "about.html#short-cv",
+    "href": "about.html#short-cv",
+    "title": "About & Contact",
+    "section": "Short CV",
+    "text": "Short CV\n\nClimate / risk analytics, consulting & public-sector work.\nBuilding Re:current — an open lab for climate modelling and decision tools.\n\nDownload full CV (PDF): add later"
   },
   {
     "objectID": "notes/index.html",
     "href": "notes/index.html",
-    "title": "Notes & Knowledge Base",
+    "title": "",
     "section": "",
-    "text": "Notes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\nPowered by Quarto + Obsidian-style atomic notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 2: Data\n\n\n\nrisk\n\nseries\n\ndata\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 3: Implementation\n\n\n\nrisk\n\nseries\n\ncode\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 1: Foundations\n\n\n\nrisk\n\nseries\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSaharan Air Layer (SAL)\n\n\n\nClimate\n\nTropical Cyclones\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMonte Carlo Simulation Basics\n\n\n\nModelling\n\nSimulation\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Code\n\n\n\n\n\n\nNotes & Knowledge Base\nA growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the Re:current Analytics lab notebook.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 3: Implementation\n\n\n\nrisk\n\nseries\n\ncode\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 2: Data\n\n\n\nrisk\n\nseries\n\ndata\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRisk Modelling Part 1: Foundations\n\n\n\nrisk\n\nseries\n\n\n\n\n\n\n\n\n\nDec 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHello, Lab\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nNov 12, 2025\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "re:current_analytics",
+    "objectID": "notes/risk-series-2.html",
+    "href": "notes/risk-series-2.html",
+    "title": "Risk Modelling Part 2: Data",
     "section": "",
-    "text": "re:current_analytics\nExperimental climate modelling—notes, models, and tools.\n\n\n\n\n\n  \n    Manifesto\n    \n      ☯\n    \n  \n  \n  \n\n\n\n\n\n\n\n\nManifesto\nThis site is a working notebook. I use it to think in public about climate risk, hazards, and systems under stress.\nAnti-Manifesto\nThis site is not a portfolio. It does not claim to have answers.\n\n\n\n\n\nStart here\n\nNotes: work-in-progress thinking, experiments, intermediate objects → notes/\nWork: finished, shareable outputs — demos, tools, notebooks, presentations → work/\nReading: external references and summaries → reading/\nAbout & Contact: who/what/why → about · contact / cv"
+    "text": "Series: Introduction to Risk Modelling (Part 2 of 3)\n\n\n\n← Previous: Foundations\n\n\nNext: Implementation →"
   },
   {
-    "objectID": "work/flood-attribution-pipeline.html",
-    "href": "work/flood-attribution-pipeline.html",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "",
-    "text": "This pipeline quantifies how climate change altered the probability and intensity of extreme rainfall events. It implements standard attribution methods (Fraction of Attributable Risk and Probability Ratio) using ERA5 reanalysis data.\nCode Execution: All code cells are executed when the page is rendered. The code and its output are shown together, making it easy to see what each step does.\nWhat this does: - Analyzes precipitation extremes (not flood impacts directly) - Calculates attribution metrics with uncertainty quantification - Works for any region, date range, and event definition - Reproducible and inspectable\nWhat this doesn’t do: - Model actual flood impacts (runoff, infrastructure vulnerability) - Provide causal attribution (this is statistical attribution) - Account for all regional/local factors\nThis is an intermediate object: a working tool that makes explicit choices and limitations."
+    "objectID": "notes/risk-series-2.html#data-sources-for-climate-risk",
+    "href": "notes/risk-series-2.html#data-sources-for-climate-risk",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Data Sources for Climate Risk",
+    "text": "Data Sources for Climate Risk\nBuilding on the foundations from Part 1, this note covers the data landscape for climate risk modelling.\n\nObservational Data\n\nERA5 - ECMWF’s reanalysis dataset (see ERA5 Demo)\nGHCN - Global Historical Climatology Network\nStation data - Local weather observations\n\n\n\nModelled Data\n\nCMIP6 - Climate model ensembles for projections\nDownscaled projections - Regional climate scenarios\nCatastrophe model outputs - Vendor-specific hazard layers"
   },
   {
-    "objectID": "work/flood-attribution-pipeline.html#why-this-pipeline-exists",
-    "href": "work/flood-attribution-pipeline.html#why-this-pipeline-exists",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "",
-    "text": "This pipeline quantifies how climate change altered the probability and intensity of extreme rainfall events. It implements standard attribution methods (Fraction of Attributable Risk and Probability Ratio) using ERA5 reanalysis data.\nCode Execution: All code cells are executed when the page is rendered. The code and its output are shown together, making it easy to see what each step does.\nWhat this does: - Analyzes precipitation extremes (not flood impacts directly) - Calculates attribution metrics with uncertainty quantification - Works for any region, date range, and event definition - Reproducible and inspectable\nWhat this doesn’t do: - Model actual flood impacts (runoff, infrastructure vulnerability) - Provide causal attribution (this is statistical attribution) - Account for all regional/local factors\nThis is an intermediate object: a working tool that makes explicit choices and limitations."
+    "objectID": "notes/risk-series-2.html#data-quality-considerations",
+    "href": "notes/risk-series-2.html#data-quality-considerations",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Data Quality Considerations",
+    "text": "Data Quality Considerations\nWhen working with climate data, always consider:\n\nSpatial resolution - Is the data granular enough for your use case?\nTemporal coverage - Do you have enough historical data?\nBias - Are there systematic errors in the observations?\nUncertainty - What are the confidence intervals?\n\nVarious frameworks provide approaches to validating spatial data quality."
   },
   {
-    "objectID": "work/flood-attribution-pipeline.html#introduction-extreme-event-attribution",
-    "href": "work/flood-attribution-pipeline.html#introduction-extreme-event-attribution",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Introduction: Extreme Event Attribution",
-    "text": "Introduction: Extreme Event Attribution\nExtreme event attribution asks: “How did climate change alter the probability or intensity of this specific event?”\nTwo common metrics:\n\nFraction of Attributable Risk (FAR): The fraction of risk that can be attributed to climate change\n\nFAR = 1 - (P_historical / P_recent)\nRange: -∞ to 1 (1 = fully attributable, 0 = no change, negative = less likely)\n\nProbability Ratio (PR): How many times more likely the event became\n\nPR = P_recent / P_historical\nRange: 0 to ∞ (1 = no change, &gt;1 = more likely, &lt;1 = less likely)\n\n\nBoth metrics compare probabilities of exceeding a threshold in a historical baseline period versus a recent period."
-  },
-  {
-    "objectID": "work/flood-attribution-pipeline.html#data-requirements",
-    "href": "work/flood-attribution-pipeline.html#data-requirements",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Data Requirements",
-    "text": "Data Requirements\nThis pipeline uses ERA5 reanalysis precipitation data. ERA5 provides: - Global coverage from 1950 to present - Hourly or daily temporal resolution - ~31km spatial resolution - Variable: total_precipitation (accumulated over hour, in meters)\nTo use this pipeline, you need: 1. ERA5 data downloaded (via CDS API or pre-downloaded files) 2. Or modify the data loading functions to use your own data source\nData download: - CDS API (requires registration) - Variable: total_precipitation - Product: reanalysis-era5-single-levels"
-  },
-  {
-    "objectID": "work/flood-attribution-pipeline.html#example-1-2021-western-europe-floods",
-    "href": "work/flood-attribution-pipeline.html#example-1-2021-western-europe-floods",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Example 1: 2021 Western Europe Floods",
-    "text": "Example 1: 2021 Western Europe Floods\nThe July 2021 floods in Germany, Belgium, and Netherlands were caused by extreme rainfall. Let’s analyze the attribution of this event.\n\nDefine the event\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.event_definitions import define_rainfall_event\n\n# Event definition: July 12-15, 2021, Western Europe\n# Cumulative rainfall &gt;150mm over 2-3 days\nevent_2021 = define_rainfall_event(\n    region={'lat': (48.0, 52.0), 'lon': (4.0, 9.0)},  # Germany/Belgium region\n    date_range=('2021-07-12', '2021-07-15'),\n    threshold=150.0,  # mm\n    metric='cumulative',\n    duration=3,  # days\n)\n\nprint(f\"Event: {event_2021.date_range[0]} to {event_2021.date_range[1]}\")\nprint(f\"Region: {event_2021.region}\")\nprint(f\"Threshold: {event_2021.threshold} mm over {event_2021.duration} days\")\n\nEvent: 2021-07-12 to 2021-07-15\nRegion: {'lat': (48.0, 52.0), 'lon': (4.0, 9.0)}\nThreshold: 150.0 mm over 3 days\n\n\n\n\nLoad ERA5 data\nNote: This example assumes you have ERA5 data available. In practice, you would:\n\nDownload ERA5 data via CDS API, or\nUse pre-downloaded NetCDF files, or\nUse a data service that provides ERA5 access\n\nFor demonstration, we’ll show the structure with synthetic data:\n\nimport pandas as pd\nimport numpy as np\nfrom datetime import datetime, timedelta\n\n# Generate synthetic ERA5-like data for demonstration\n# In practice, use: load_era5_precipitation() from src.attribution.data_loading\n\nnp.random.seed(42)\n\n# Create date ranges\nbaseline_dates = pd.date_range('1950-01-01', '1980-12-31', freq='D')\nrecent_dates = pd.date_range('1990-01-01', '2023-12-31', freq='D')\nevent_dates = pd.date_range('2021-07-12', '2021-07-15', freq='D')\n\n# Synthetic precipitation (gamma distribution, realistic for Europe)\n# Baseline: lower mean, recent: higher mean (climate change signal)\nbaseline_precip = np.random.gamma(shape=2, scale=5, size=len(baseline_dates))\nrecent_precip = np.random.gamma(shape=2, scale=6, size=len(recent_dates))\n\n# Add extreme event in 2021\nevent_precip = np.array([45, 85, 70, 30])  # mm per day, totals 230mm over 3 days\n\n# Combine into DataFrames\nbaseline_data = pd.DataFrame({\n    'date': baseline_dates,\n    'precipitation_mm': baseline_precip\n})\n\nrecent_data = pd.DataFrame({\n    'date': recent_dates,\n    'precipitation_mm': recent_precip\n})\n\n# Insert event into recent data\nevent_mask = recent_data['date'].isin(event_dates)\nrecent_data.loc[event_mask, 'precipitation_mm'] = event_precip\n\nprint(\"Data loaded:\")\nprint(f\"Baseline period: {len(baseline_data)} days\")\nprint(f\"Recent period: {len(recent_data)} days\")\nprint(f\"\\nBaseline stats:\")\nprint(baseline_data['precipitation_mm'].describe())\nprint(f\"\\nRecent stats:\")\nprint(recent_data['precipitation_mm'].describe())\n\nData loaded:\nBaseline period: 11323 days\nRecent period: 12418 days\n\nBaseline stats:\ncount    11323.000000\nmean        10.071010\nstd          7.066802\nmin          0.067730\n25%          4.904667\n50%          8.450174\n75%         13.563262\nmax         68.473294\nName: precipitation_mm, dtype: float64\n\nRecent stats:\ncount    12418.000000\nmean        11.965798\nstd          8.540110\nmin          0.033139\n25%          5.618902\n50%          9.981399\n75%         16.175604\nmax         85.000000\nName: precipitation_mm, dtype: float64\n\n\n\n\nDetect the event\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.event_definitions import detect_rainfall_events, extract_event_data\n\n# Detect all events matching criteria in recent period\nrecent_with_events = detect_rainfall_events(\n    recent_data,\n    threshold=150.0,\n    min_duration=3,\n    metric='cumulative',\n    duration=3,\n)\n\n# Extract the specific 2021 event\nevent_data = extract_event_data(recent_data, event_2021)\n\nprint(\"2021 Event details:\")\nprint(event_data[['date', 'precipitation_mm']])\nprint(f\"\\nCumulative rainfall: {event_data['precipitation_mm'].sum():.1f} mm\")\nprint(f\"Event threshold: {event_2021.threshold} mm\")\nprint(f\"Event exceeded threshold: {event_data['precipitation_mm'].sum() &gt;= event_2021.threshold}\")\n\n2021 Event details:\n            date  precipitation_mm\n11515 2021-07-12              45.0\n11516 2021-07-13              85.0\n11517 2021-07-14              70.0\n11518 2021-07-15              30.0\n\nCumulative rainfall: 230.0 mm\nEvent threshold: 150.0 mm\nEvent exceeded threshold: True\n\n\n\n\nCalculate attribution\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.attribution_methods import bootstrap_attribution\n\n# Calculate attribution with bootstrap confidence intervals\nattribution_results = bootstrap_attribution(\n    historical_data=baseline_data['precipitation_mm'],\n    recent_data=recent_data['precipitation_mm'],\n    event_threshold=150.0,  # 150mm cumulative over 3 days\n    n_bootstrap=1000,\n    distribution_type='gamma',\n    random_seed=42,\n)\n\nprint(\"Attribution Results:\")\nprint(f\"Fraction of Attributable Risk (FAR): {attribution_results['far']:.3f}\")\nprint(f\"  95% CI: [{attribution_results['far_ci_lower']:.3f}, {attribution_results['far_ci_upper']:.3f}]\")\nprint(f\"\\nProbability Ratio (PR): {attribution_results['pr']:.3f}\")\nprint(f\"  95% CI: [{attribution_results['pr_ci_lower']:.3f}, {attribution_results['pr_ci_upper']:.3f}]\")\nprint(f\"\\nHistorical probability: {attribution_results['p_historical']:.6f}\")\nprint(f\"Recent probability: {attribution_results['p_recent']:.6f}\")\n\nAttribution Results:\nFraction of Attributable Risk (FAR): 0.994\n  95% CI: [0.986, 0.997]\n\nProbability Ratio (PR): 169.764\n  95% CI: [70.263, 381.230]\n\nHistorical probability: 0.000000\nRecent probability: 0.000000\n\n\n\n\nVisualize results\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nimport matplotlib.pyplot as plt\nfrom src.attribution.visualization import (\n    plot_precipitation_timeseries,\n    plot_distribution_comparison,\n    plot_attribution_results,\n    plot_cumulative_rainfall,\n)\n\n# Combine data for time series plot\nall_data = pd.concat([\n    baseline_data.assign(period='baseline'),\n    recent_data.assign(period='recent')\n], ignore_index=True)\n\n# Time series with event highlighted\nfig, axes = plt.subplots(2, 2, figsize=(16, 12))\n\n# 1. Time series\nax1 = axes[0, 0]\nplot_precipitation_timeseries(\n    all_data,\n    event_2021,\n    baseline_period=('1950-01-01', '1980-12-31'),\n    recent_period=('1990-01-01', '2023-12-31'),\n    ax=ax1,\n)\n\n# 2. Distribution comparison\nax2 = axes[0, 1]\nplot_distribution_comparison(\n    baseline_data['precipitation_mm'],\n    recent_data['precipitation_mm'],\n    event_threshold=150.0,\n    ax=ax2,\n)\n\n# 3. Attribution results\nax3 = axes[1, 0]\nplot_attribution_results(\n    attribution_results['far'],\n    attribution_results['pr'],\n    confidence_intervals={\n        'far_ci_lower': attribution_results['far_ci_lower'],\n        'far_ci_upper': attribution_results['far_ci_upper'],\n        'pr_ci_lower': attribution_results['pr_ci_lower'],\n        'pr_ci_upper': attribution_results['pr_ci_upper'],\n    },\n    ax=ax3,\n)\n\n# 4. Cumulative rainfall for event\nax4 = axes[1, 1]\nplot_cumulative_rainfall(event_data, event_2021, ax=ax4)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nInterpretation\n\n# Display interpretation\nfar_pct = attribution_results['far'] * 100\npr_rounded = round(attribution_results['pr'])\n\nprint(f\"Based on the attribution analysis:\")\nprint(f\"\\nFAR = {attribution_results['far']:.3f}\")\nprint(f\"This means approximately {far_pct:.1f}% of the risk of this event\")\nprint(f\"can be attributed to climate change.\")\nprint(f\"\\nPR = {attribution_results['pr']:.3f}\")\nprint(f\"The event is approximately {pr_rounded}x more likely in the recent period\")\nprint(f\"compared to the historical baseline.\")\n\nBased on the attribution analysis:\n\nFAR = 0.994\nThis means approximately 99.4% of the risk of this event\ncan be attributed to climate change.\n\nPR = 169.764\nThe event is approximately 170x more likely in the recent period\ncompared to the historical baseline.\n\n\nNote: These are synthetic results for demonstration. Real attribution requires: - Actual ERA5 data - Careful selection of baseline and recent periods - Consideration of seasonal patterns - Validation against observational data"
-  },
-  {
-    "objectID": "work/flood-attribution-pipeline.html#example-2-user-defined-event",
-    "href": "work/flood-attribution-pipeline.html#example-2-user-defined-event",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Example 2: User-Defined Event",
-    "text": "Example 2: User-Defined Event\nThe pipeline is generalizable. Here’s how to analyze any rainfall event:\n\nimport sys\nfrom pathlib import Path\n# Add project root to Python path  \nproject_root = Path.cwd() if Path('src').exists() else Path.cwd().parent\nsys.path.insert(0, str(project_root))\n\nfrom src.attribution.event_definitions import define_rainfall_event\nfrom src.attribution.data_loading import get_historical_baseline, get_recent_period\nfrom src.attribution.attribution_methods import bootstrap_attribution\n\n# Define your event\nmy_event = define_rainfall_event(\n    region={'lat': (40.0, 50.0), 'lon': (-10.0, 5.0)},  # Your region\n    date_range=('2023-06-01', '2023-06-05'),  # Your dates\n    threshold=100.0,  # Your threshold (mm)\n    metric='cumulative',  # or 'intensity', 'duration'\n    duration=5,  # days\n)\n\n# Load data (replace with actual data loading)\n# baseline = get_historical_baseline(my_event.region, '1950-01-01', '1980-12-31')\n# recent = get_recent_period(my_event.region, '1990-01-01', '2023-12-31')\n\n# Calculate attribution\n# results = bootstrap_attribution(\n#     baseline['precipitation_mm'],\n#     recent['precipitation_mm'],\n#     my_event.threshold,\n#     n_bootstrap=1000,\n# )\n\nprint(\"Event defined. Next steps:\")\nprint(\"1. Load ERA5 data for your region\")\nprint(\"2. Run attribution analysis\")\nprint(\"3. Visualize results\")\n\nEvent defined. Next steps:\n1. Load ERA5 data for your region\n2. Run attribution analysis\n3. Visualize results"
-  },
-  {
-    "objectID": "work/flood-attribution-pipeline.html#methodology-details",
-    "href": "work/flood-attribution-pipeline.html#methodology-details",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Methodology Details",
-    "text": "Methodology Details\n\nStatistical Approach\nDistribution Fitting: - Precipitation data is typically right-skewed with many zero values - We fit gamma distributions (common for precipitation) - Alternative: log-normal or GEV (for extremes)\nBootstrap Confidence Intervals: - Resample data with replacement (1000 iterations) - Calculate FAR and PR for each bootstrap sample - 95% CI from percentiles (2.5th, 97.5th)\nSeasonality: - Precipitation has strong seasonal patterns - For robust attribution, compare same seasons across periods - This pipeline can be extended to handle seasonality\n\n\nLimitations\n\nPrecipitation vs Floods: This analyzes rainfall extremes, not actual flood impacts. Floods depend on:\n\nRunoff and drainage\nSoil moisture and saturation\nInfrastructure and land use\nRiver discharge and capacity\n\nReanalysis Data: ERA5 is a model-based reanalysis, not pure observations. It may have biases, especially for:\n\nExtreme events\nMountainous regions\nCoastal areas\n\nNon-Stationarity: Assumes distributions are stationary within each period. Climate change may introduce trends even within “recent” period.\nRegional Specificity: Results are for the defined region. Local factors (urbanization, land use changes) are not accounted for."
-  },
-  {
-    "objectID": "work/flood-attribution-pipeline.html#extensions-and-future-work",
-    "href": "work/flood-attribution-pipeline.html#extensions-and-future-work",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Extensions and Future Work",
-    "text": "Extensions and Future Work\nPossible extensions:\n\nAdd observational data: Compare ERA5 with station observations\nCMIP6 integration: Use climate model ensembles for counterfactual analysis\nCompound events: Include antecedent soil moisture, temperature\nSpatial analysis: Map attribution results across regions\nSeasonal attribution: Separate analysis by season\nFlood impact modeling: Connect precipitation to actual flood risk\n\nReferences:\n\nStott et al. (2016). “Attribution of extreme weather and climate-related events.” WIREs Climate Change\nNational Academies (2016). Attribution of Extreme Weather Events in the Context of Climate Change\nWorld Weather Attribution: worldweatherattribution.org"
-  },
-  {
-    "objectID": "work/flood-attribution-pipeline.html#integration-with-other-content",
-    "href": "work/flood-attribution-pipeline.html#integration-with-other-content",
-    "title": "Extreme Rainfall Attribution Pipeline",
-    "section": "Integration with Other Content",
-    "text": "Integration with Other Content\nThis pipeline connects to:\n\nRisk Series Part 2 - Data sources for climate risk\nMonte Carlo Basics - Bootstrap methods used here\nHeatwave Analysis - Similar event definition patterns\n\n\nRelated\n\nRisk Modelling Series - Foundations of risk modeling\nMonte Carlo Basics - Statistical methods"
+    "objectID": "notes/risk-series-2.html#next-steps",
+    "href": "notes/risk-series-2.html#next-steps",
+    "title": "Risk Modelling Part 2: Data",
+    "section": "Next Steps",
+    "text": "Next Steps\nWith data in hand, we move to Part 3: Implementation where we build actual models.\n\nLinked from\n\nRisk Modelling Part 1: Foundations\nRisk Modelling Part 3: Implementation"
   }
 ]

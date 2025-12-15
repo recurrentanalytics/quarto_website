@@ -1,67 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://recurrentanalytics.com/reading/index.html</loc>
-    <lastmod>2025-12-12T23:52:45.791Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/work/index.html</loc>
-    <lastmod>2025-12-13T22:50:47.197Z</lastmod>
-  </url>
-  <url>
     <loc>https://recurrentanalytics.com/notes/risk-series-1.html</loc>
-    <lastmod>2025-12-12T22:04:55.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/2025-hello-world.html</loc>
-    <lastmod>2025-11-14T21:51:20.290Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/climate/monte-carlo-basics.html</loc>
-    <lastmod>2025-11-14T21:51:20.291Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/risk-series-2.html</loc>
-    <lastmod>2025-12-13T22:50:47.199Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/replit.html</loc>
-    <lastmod>2025-12-12T22:41:09.161Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/contact_cv.html</loc>
-    <lastmod>2025-11-14T21:51:20.290Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/about.html</loc>
-    <lastmod>2025-11-14T21:51:20.290Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/logo-preview.html</loc>
-    <lastmod>2025-12-13T22:37:42.332Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/climate/sal.html</loc>
-    <lastmod>2025-11-14T21:51:20.291Z</lastmod>
+    <lastmod>2025-12-15T19:43:39.045Z</lastmod>
   </url>
   <url>
     <loc>https://recurrentanalytics.com/notes/risk-series-3.html</loc>
-    <lastmod>2025-12-13T22:52:42.520Z</lastmod>
+    <lastmod>2025-12-15T19:58:36.867Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/notes/index.html</loc>
-    <lastmod>2025-11-14T21:51:20.291Z</lastmod>
+    <loc>https://recurrentanalytics.com/notes/2025-hello-world.html</loc>
+    <lastmod>2025-12-15T16:01:46.501Z</lastmod>
   </url>
   <url>
     <loc>https://recurrentanalytics.com/index.html</loc>
-    <lastmod>2025-12-13T22:44:37.063Z</lastmod>
+    <lastmod>2025-12-15T16:47:57.653Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/work/heatwave-prices-de-lu.html</loc>
-    <lastmod>2025-12-14T00:57:03.875Z</lastmod>
+    <loc>https://recurrentanalytics.com/models/climate-extremes-explorer.html</loc>
+    <lastmod>2025-12-15T20:48:06.882Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/work/flood-attribution-pipeline.html</loc>
-    <lastmod>2025-12-14T00:17:49.467Z</lastmod>
+    <loc>https://recurrentanalytics.com/projects/index.html</loc>
+    <lastmod>2025-12-15T20:34:15.748Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/reading/index.html</loc>
+    <lastmod>2025-12-15T19:43:39.045Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/tipping-points/index.html</loc>
+    <lastmod>2025-12-15T19:37:58.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/replit.html</loc>
+    <lastmod>2025-12-15T16:15:56.788Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/era5-demo.html</loc>
+    <lastmod>2025-12-15T16:01:46.501Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/heatwave-prices-de-lu.html</loc>
+    <lastmod>2025-12-15T20:13:29.033Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/about.html</loc>
+    <lastmod>2025-12-15T16:39:55.720Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/index.html</loc>
+    <lastmod>2025-12-15T19:41:43.723Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/risk-series-2.html</loc>
+    <lastmod>2025-12-15T19:44:26.825Z</lastmod>
   </url>
 </urlset>
