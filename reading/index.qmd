@@ -3,9 +3,13 @@ title: ""
 page-layout: article
 ---
 
-# Reading
+# Reading Notes Guide
 
-Short summaries of papers, books, and references that inform the lab.
+Reading notes are part of the [Notes & Knowledge Base](/notes/) collection. They appear alongside other notes in the main listing and can be filtered by category or tags.
+
+## How to Add Reading Notes
+
+Create reading notes directly in the `notes/` directory, just like any other note. They will automatically appear in the Notes listing.
 
 ## Reading Note Template
 
@@ -16,9 +20,9 @@ When adding reading notes, use this structure:
 title: "Paper/Book Title"
 author: "Author Name"
 year: YYYY
-category: "Climate Science" | "Energy Systems" | "Risk & Finance" | "Methods"
-tags: ["tag1", "tag2"]
-status: "read" | "reading" | "to-read"
+categories: ["reading"]  # Optional: use to group reading notes
+tags: ["climate-science", "risk-modelling"]
+date: YYYY-MM-DD
 ---
 
 ## Summary
@@ -40,14 +44,13 @@ Links to related notes, models, or projects.
 Detailed notes, quotes, and reflections.
 ```
 
-## Categories
+## Categories and Tags
 
-Reading notes are organized by topic:
+Reading notes can be organized using categories and tags:
 
-- **Climate Science** - Physical climate modeling, projections, uncertainty
-- **Energy Systems** - Grid operations, renewables integration, storage
-- **Risk & Finance** - Climate risk pricing, stress testing, disclosure
-- **Methods** - Time series, machine learning applications
+- **Categories**: Use `categories: ["reading"]` to group reading notes
+- **Tags**: Add topic tags like `climate-science`, `energy-systems`, `risk-finance`, `methods`
+- **Additional tags**: Consider `read`, `reading`, `to-read` for status tracking
 
 ## Suggested Starting Points
 
@@ -59,6 +62,6 @@ Reading notes are organized by topic:
 - **Academic journals**: *Nature Climate Change*, *Energy Policy*, *Climatic Change*
 :::
 
-## Reading Status
+## Viewing Reading Notes
 
-*Reading notes will appear here as they're added. Filter by category or status using the tags above.*
+All reading notes appear in the [Notes & Knowledge Base](/notes/) listing. Use the category filter or search to find specific reading notes.

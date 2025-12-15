@@ -10,21 +10,21 @@ Series: Introduction to Risk Modelling (Part 2 of 3)
 :::
 ::: {.series-nav-links}
 ::: {.series-nav-prev}
-[← Previous: Foundations](risk-series-1.qmd)
+[← Previous: Foundations](risk-series-1.html)
 :::
 ::: {.series-nav-next}
-[Next: Implementation →](risk-series-3.qmd)
+[Next: Implementation →](risk-series-3.html)
 :::
 :::
 :::
 
 ## Data Sources for Climate Risk
 
-Building on the [foundations from Part 1](risk-series-1.qmd), this note covers the data landscape for climate risk modelling.
+Building on the [foundations from Part 1](risk-series-1.html), this note covers the data landscape for climate risk modelling.
 
 ### Observational Data
 
-- **ERA5** - ECMWF's reanalysis dataset (see [ERA5 Demo](/models/era5-demo.html))
+- **ERA5** - ECMWF's reanalysis dataset
 - **GHCN** - Global Historical Climatology Network
 - **Station data** - Local weather observations
 
@@ -47,10 +47,10 @@ Various frameworks provide approaches to validating spatial data quality.
 
 ## Next Steps
 
-With data in hand, we move to [Part 3: Implementation](risk-series-3.qmd) where we build actual models.
+With data in hand, we move to [Part 3: Implementation](risk-series-3.html) where we build actual models.
 
 ::: {.backlinks}
 #### Linked from
-- [Risk Modelling Part 1: Foundations](risk-series-1.qmd)
-- [Risk Modelling Part 3: Implementation](risk-series-3.qmd)
+- [Risk Modelling Part 1: Foundations](risk-series-1.html)
+- [Risk Modelling Part 3: Implementation](risk-series-3.html)
 :::

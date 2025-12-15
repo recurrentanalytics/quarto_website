@@ -35,9 +35,17 @@ format:
     code-tools: true
     code-copy: true
     smooth-scroll: true
-    anchor-sections: true
+    anchor-sections: false
     include-in-header:
       text: |
+        <!-- IBM Plex Sans Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+        
+        <!-- IBM Plex Mono Font for code blocks -->
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+        
         <!-- Plausible analytics -->
         <script defer data-domain="recurrentanalytics.com" src="https://plausible.io/js/script.js"></script>
         
@@ -111,8 +119,20 @@ format:
             
             let currentPath = '';
             pathParts.forEach((part, index) => {
-              currentPath += '/' + part;
               const isLast = index === pathParts.length - 1;
+              
+              // Special handling for "models" - link to projects page instead
+              if (part === 'models' && !isLast) {
+                breadcrumbHTML += '<li class="breadcrumb-item"><a href="/projects/">Projects</a></li>';
+                return; // Skip adding to currentPath
+              }
+              
+              // Skip "models" in breadcrumb if it's not the last part
+              if (part === 'models') {
+                return;
+              }
+              
+              currentPath += '/' + part;
               const label = part.replace(/\.html$/, '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
               
               if (isLast) {
@@ -165,7 +185,7 @@ format:
                 : '⌘K palette · / search · j/k navigate · f focus · ? hints';
             }
           }
-          
+
           // Keyboard shortcuts
           const noteLinks = Array.from(document.querySelectorAll('.quarto-listing-default a, .sidebar-item a'));
           let currentIndex = -1;
@@ -224,8 +244,7 @@ format:
             { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
             { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
             { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
-            { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
-            { title: 'ERA5 Demo', path: '/models/era5-demo.html' }
+            { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' }
           ];
 
           const overlay = document.createElement('div');
@@ -275,17 +294,17 @@ format:
             
             return wordMatches * 5;
           }
-          
+
           function renderResults(filter = '') {
             if (!filter.trim()) {
               const filtered = pages.slice(0, 10);
-              results.innerHTML = filtered.map((p, i) => `
-                <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
-                  <div class="cmd-palette-item-title">${p.title}</div>
-                  <div class="cmd-palette-item-path">${p.path}</div>
-                </a>
-              `).join('');
-              return filtered;
+            results.innerHTML = filtered.map((p, i) => `
+              <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+                <div class="cmd-palette-item-title">${p.title}</div>
+                <div class="cmd-palette-item-path">${p.path}</div>
+              </a>
+            `).join('');
+            return filtered;
             }
             
             // Score and sort by relevance
@@ -368,21 +387,21 @@ format:
           const isAboutPage = path === '/about.html' || path.endsWith('/about.html');
           
           if (!isHomePageForReading && !isNotesIndex && !isAboutPage) {
-            const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
-            const contentArea = document.querySelector('#quarto-document-content, .content, main');
-            if (articleBody && contentArea) {
-              const text = contentArea.innerText || '';
-              const wordCount = text.trim().split(/\s+/).length;
-              const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-              const timeSpan = document.createElement('span');
-              timeSpan.className = 'reading-time';
-              timeSpan.textContent = readingTime + ' min read';
-              const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
-              if (titleMeta) {
-                titleMeta.appendChild(document.createTextNode(' · '));
-                titleMeta.appendChild(timeSpan);
-              }
+          const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
+          const contentArea = document.querySelector('#quarto-document-content, .content, main');
+          if (articleBody && contentArea) {
+            const text = contentArea.innerText || '';
+            const wordCount = text.trim().split(/\s+/).length;
+            const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'reading-time';
+            timeSpan.textContent = readingTime + ' min read';
+            const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
+            if (titleMeta) {
+              titleMeta.appendChild(document.createTextNode(' · '));
+              titleMeta.appendChild(timeSpan);
             }
+          }
           }
 
 
@@ -397,10 +416,9 @@ format:
               { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
               { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
               { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
-              { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html', cat: 'models' },
               { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
+              { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'models' },
               { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
-              { id: 'reading', label: 'Reading', path: '/reading/', cat: 'nav' },
               { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
             ],
             links: [
@@ -413,14 +431,13 @@ format:
               { source: 'risk-1', target: 'risk-2' },
               { source: 'risk-2', target: 'risk-1' },
               { source: 'risk-2', target: 'risk-3' },
-              { source: 'risk-2', target: 'era5' },
               { source: 'risk-2', target: 'heatwave' },
               { source: 'risk-3', target: 'risk-1' },
               { source: 'risk-3', target: 'risk-2' },
-              { source: 'projects', target: 'era5' },
               { source: 'projects', target: 'heatwave' },
-              { source: 'heatwave', target: 'era5' },
+              { source: 'projects', target: 'climate-extremes' },
               { source: 'heatwave', target: 'risk-2' },
+              { source: 'climate-extremes', target: 'risk-2' },
             ]
           };
           
@@ -472,6 +489,21 @@ format:
           sidebarGraph.style.display = 'block';
           sidebarGraph.style.visibility = 'visible';
           sidebarGraph.style.opacity = '1';
+          
+          // Ensure sidebarGraph is clickable - attach handler after it's in DOM
+          setTimeout(function() {
+            const graphEl = document.querySelector('.sidebar-graph');
+            if (graphEl && !graphEl.hasAttribute('data-click-handler-attached')) {
+              graphEl.setAttribute('data-click-handler-attached', 'true');
+              graphEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (typeof window.openGraphNavigation === 'function') {
+                  window.openGraphNavigation();
+                }
+              });
+            }
+          }, 100);
 
           // Create modal FIRST - before any D3 checks
           console.log('Creating graph modal element...');
@@ -490,7 +522,6 @@ format:
                   <button class="graph-filter-btn" data-cat="nav">Nav</button>
                   <button class="graph-filter-btn" data-cat="notes">Notes</button>
                   <button class="graph-filter-btn" data-cat="models">Models</button>
-                  <button class="graph-filter-btn" data-cat="projects">Projects</button>
                 </div>
                 <div class="graph-zoom-controls">
                   <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
@@ -535,7 +566,7 @@ format:
             
             // Initialize graph if not already done
             if (typeof initGraph === 'function') {
-              initGraph();
+            initGraph();
             } else {
               console.error('initGraph function not found');
             }
@@ -546,7 +577,7 @@ format:
 
           function closeGraph() {
             if (graphModal) {
-              graphModal.classList.remove('active');
+            graphModal.classList.remove('active');
               // Restore body scroll
               document.body.style.overflow = '';
             }
@@ -556,12 +587,31 @@ format:
           window.openGraphNavigation = openGraph;
 
           // Ensure event listeners are attached after elements are created
-          if (sidebarGraph) {
+          // Use event delegation to handle clicks on sidebar graph
+          if (sidebarGraph && sidebarGraph.parentNode) {
             sidebarGraph.addEventListener('click', function(e) {
               e.preventDefault();
               e.stopPropagation();
+              if (typeof openGraph === 'function') {
               openGraph();
-            });
+              } else if (typeof window.openGraphNavigation === 'function') {
+                window.openGraphNavigation();
+            }
+          });
+          } else {
+            // If sidebarGraph isn't in DOM yet, wait and retry
+            setTimeout(function() {
+              const graph = document.querySelector('.sidebar-graph');
+              if (graph) {
+                graph.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (typeof window.openGraphNavigation === 'function') {
+                    window.openGraphNavigation();
+                  }
+                });
+              }
+            }, 500);
           }
           
           const closeBtn = graphModal.querySelector('.graph-modal-close');
@@ -645,7 +695,7 @@ format:
               currentNode.fx = centerX;
               currentNode.fy = centerY;
             }
-            
+
             // D3 force simulation for mini graph
             const simulation = d3.forceSimulation(nodes)
               .force('link', d3.forceLink(links).id(d => d.id).distance(30))
@@ -660,8 +710,8 @@ format:
             // Clamp positions (except current node which stays fixed)
             nodes.forEach(n => {
               if (n.id !== currentId) {
-                n.x = Math.max(15, Math.min(width - 15, n.x));
-                n.y = Math.max(15, Math.min(height - 15, n.y));
+              n.x = Math.max(15, Math.min(width - 15, n.x));
+              n.y = Math.max(15, Math.min(height - 15, n.y));
               }
             });
             
@@ -724,7 +774,7 @@ format:
               return false;
             }
             try {
-              renderMiniGraph();
+          renderMiniGraph();
               console.log('Mini graph rendered successfully');
               return true;
             } catch (error) {
@@ -850,7 +900,7 @@ format:
             
             if (zoomInBtn) {
               zoomInBtn.addEventListener('click', () => {
-                const container = document.getElementById('graph-container');
+            const container = document.getElementById('graph-container');
                 const svg = d3.select(container).select('svg');
                 if (svg && zoomBehavior) {
                   svg.transition().call(zoomBehavior.scaleBy, 1.5);
@@ -959,8 +1009,8 @@ format:
               neighbors.forEach(neighbor => {
                 if (nodeIds.has(neighbor)) {
                   findPathNodes(neighbor, visited);
-                }
-              });
+              }
+            });
               return visited;
             }
             
@@ -976,7 +1026,7 @@ format:
               currentNode.fx = centerX;
               currentNode.fy = centerY;
             }
-            
+
             // D3 force simulation for full graph - centered on current node
             const simulation = d3.forceSimulation(filteredNodes)
               .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(80))
@@ -991,8 +1041,8 @@ format:
             // Clamp positions (except current node which stays fixed at center)
             filteredNodes.forEach(n => {
               if (n.id !== currentId) {
-                n.x = Math.max(50, Math.min(width - 50, n.x));
-                n.y = Math.max(50, Math.min(height - 50, n.y));
+              n.x = Math.max(50, Math.min(width - 50, n.x));
+              n.y = Math.max(50, Math.min(height - 50, n.y));
               }
             });
             
@@ -1061,7 +1111,7 @@ format:
                 return 6;
               })
               .attr('fill', d => {
-                if (d.id === currentId) return 'var(--bs-primary)';
+                if (d.id === currentId) return '#20B2AA';  /* True Teal */
                 if (connectedNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
                 if (pathNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
                 return catColors[d.cat] || 'var(--bs-secondary)';
@@ -1263,7 +1313,510 @@ format:
               });
             }
           });
+
+          // Back to top button
+          (function() {
+            const backToTopBtn = document.createElement('button');
+            backToTopBtn.className = 'back-to-top-btn';
+            backToTopBtn.innerHTML = '↑';
+            backToTopBtn.setAttribute('aria-label', 'Back to top');
+            backToTopBtn.setAttribute('title', 'Back to top');
+            backToTopBtn.type = 'button';
+            
+            if (document.body) {
+              document.body.appendChild(backToTopBtn);
+            } else {
+              // Wait for body if not ready
+              setTimeout(function() {
+                document.body.appendChild(backToTopBtn);
+              }, 100);
+            }
+
+            function updateBackToTopVisibility() {
+              if (!backToTopBtn.parentNode) return;
+              const scrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+              if (scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+              } else {
+                backToTopBtn.classList.remove('visible');
+              }
+            }
+
+            // Use both scroll events for better compatibility
+            window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+            document.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+            updateBackToTopVisibility(); // Check on load
+
+            backToTopBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              // Try multiple scroll methods for compatibility
+              if (window.scrollTo) {
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              } else if (document.documentElement.scrollTo) {
+                document.documentElement.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              } else {
+                // Fallback
+                window.scrollTo(0, 0);
+              }
+            });
+          })();
+
+
+          // Related Notes Section
+          function addRelatedNotes() {
+            // Only on note pages (not index, not projects, etc.)
+            const path = window.location.pathname;
+            const isNotePage = path.startsWith('/notes/') && 
+                              !path.endsWith('/notes/') && 
+                              !path.endsWith('/notes/index.html') &&
+                              path.includes('.html');
+            
+            if (!isNotePage) return;
+
+            // Get current page categories from meta tags or page data
+            const currentCategories = [];
+            const currentTags = [];
+            
+            // Try to get from meta tags
+            const categoryMeta = document.querySelector('meta[name="categories"], meta[property="article:tag"]');
+            if (categoryMeta) {
+              const cats = categoryMeta.content.split(',').map(c => c.trim());
+              currentCategories.push(...cats);
+            }
+            
+            // Try to get from page data attributes
+            const pageData = document.querySelector('[data-categories]');
+            if (pageData) {
+              const cats = pageData.getAttribute('data-categories').split(',').map(c => c.trim());
+              currentCategories.push(...cats);
+            }
+
+            // Get all notes from search.json or listings
+            fetch('/search.json')
+              .then(response => response.json())
+              .then(data => {
+                // Extract unique note pages
+                const notePages = new Map();
+                data.forEach(item => {
+                  if (item.href && item.href.startsWith('/notes/') && 
+                      !item.href.endsWith('/notes/index.html') &&
+                      item.href.includes('.html') &&
+                      !item.section) { // Only main pages, not sections
+                    if (!notePages.has(item.href) || !notePages.get(item.href).title) {
+                      notePages.set(item.href, {
+                        href: item.href,
+                        title: item.title || 'Untitled',
+                        text: item.text || ''
+                      });
+                    }
+                  }
+                });
+
+                // Find related notes (simple: same title words or series)
+                const currentTitle = document.querySelector('h1, .quarto-title h1')?.textContent || '';
+                const currentText = document.body.innerText || '';
+                const currentTitleWords = currentTitle.toLowerCase().split(/\s+/);
+                
+                const related = Array.from(notePages.values())
+                  .filter(note => {
+                    // Don't include current page
+                    if (note.href === path || note.href === path.replace('.html', '')) return false;
+                    
+                    // Check for shared words in title
+                    const noteTitleWords = note.title.toLowerCase().split(/\s+/);
+                    const sharedWords = currentTitleWords.filter(w => 
+                      w.length > 3 && noteTitleWords.includes(w)
+                    );
+                    
+                    // Check for series (e.g., "Part 1", "Part 2")
+                    const isSeries = /part\s+\d+/i.test(currentTitle) && /part\s+\d+/i.test(note.title);
+                    
+                    return sharedWords.length > 0 || isSeries || 
+                           (currentText.includes('risk') && note.text.toLowerCase().includes('risk')) ||
+                           (currentText.includes('climate') && note.text.toLowerCase().includes('climate'));
+                  })
+                  .slice(0, 5); // Limit to 5 related notes
+
+                if (related.length > 0) {
+                  // Create related notes section
+                  const relatedSection = document.createElement('div');
+                  relatedSection.className = 'related-notes-section';
+                  relatedSection.innerHTML = `
+                    <h2 class="related-notes-heading">Related Notes</h2>
+                    <ul class="related-notes-list">
+                      ${related.map(note => `
+                        <li>
+                          <a href="${note.href}">${note.title}</a>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  `;
+
+                  // Insert before footer or at end of content
+                  const content = document.querySelector('#quarto-document-content, .content, main, article');
+                  if (content) {
+                    content.appendChild(relatedSection);
+                  }
+                }
+              })
+              .catch(err => console.log('Could not load related notes:', err));
+          }
+
+          // Run after page load
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', addRelatedNotes);
+          } else {
+            addRelatedNotes();
+          }
         });
+        </script>
+
+        <style>
+        /* Related Notes Section */
+        .related-notes-section {
+          margin-top: 3rem;
+          padding-top: 2rem;
+          border-top: 1px solid var(--bs-border-color);
+        }
+
+        .related-notes-heading {
+          font-size: 1.25rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: var(--bs-body-color);
+        }
+
+        .related-notes-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .related-notes-list li {
+          margin-bottom: 0.75rem;
+          padding-left: 1.5rem;
+          position: relative;
+        }
+
+        .related-notes-list li::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: var(--bs-secondary);
+        }
+
+        .related-notes-list a {
+          color: #1a1a1a !important;  /* Subtle, matches body text */
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .related-notes-list a:hover {
+          color: #20B2AA !important;  /* Teal on hover for interactivity */
+          text-decoration: underline;
+        }
+        </style>
+
+        <style>
+        /* Back to top button */
+        .back-to-top-btn {
+          position: fixed;
+          bottom: 2rem;
+          right: 2rem;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: var(--bs-body-bg);
+          border: 1px solid var(--bs-border-color);
+          color: var(--bs-body-color);
+          font-size: 1.2rem;
+          cursor: pointer;
+          z-index: 999;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(20px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .back-to-top-btn.visible {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .back-to-top-btn:hover {
+          background: var(--bs-primary);
+          color: var(--bs-body-bg);
+          border-color: var(--bs-primary);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-to-top-btn:active {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+          .back-to-top-btn {
+            bottom: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            font-size: 1.1rem;
+          }
+        }
+
+        /* Hide in print */
+        @media print {
+          .back-to-top-btn {
+            display: none !important;
+          }
+        }
+        </style>
+
+        <style>
+        /* Collapsible Code Blocks - Global */
+        .code-block-wrapper {
+          margin: 1.5rem 0;
+          border: 1px solid var(--bs-border-color);
+          border-radius: 0.5rem;
+          background: #f8f8f8;
+          overflow: hidden;
+        }
+
+        .code-block-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          background: #f0f0f0;
+          border-bottom: 1px solid var(--bs-border-color);
+          cursor: pointer;
+          user-select: none;
+          transition: background 0.2s ease;
+        }
+
+        .code-block-header:hover {
+          background: #e8e8e8;
+        }
+
+        .code-block-title {
+          font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: #666;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .code-block-toggle {
+          font-size: 0.75rem;
+          color: #666;
+          transition: transform 0.2s ease;
+          display: inline-block;
+        }
+
+        .code-block-wrapper.expanded .code-block-toggle {
+          transform: rotate(180deg);
+        }
+
+        .code-block-content {
+          display: none;
+          overflow: hidden;
+        }
+
+        .code-block-wrapper.expanded .code-block-content {
+          display: block;
+        }
+
+        .code-block-wrapper pre,
+        .code-block-wrapper code {
+          margin: 0;
+          border-radius: 0;
+        }
+
+        /* Ensure outputs are always visible - never collapse them */
+        .cell-output,
+        .cell-output-stdout,
+        .cell-output-stderr,
+        .cell-output-display,
+        .cell-output pre,
+        .cell-output code {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        /* Ensure unwrapped code blocks are visible until JavaScript wraps them */
+        pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
+        .cell-code:not(.code-block-wrapper .cell-code) {
+          display: block !important;
+        }
+        </style>
+
+        <script>
+        (function() {
+          // Function to wrap code blocks in collapsible structure
+          // ONLY wrap input code blocks, NOT outputs
+          function makeCodeBlocksCollapsible() {
+            try {
+            // Find only INPUT code blocks - exclude outputs
+            // Target pre.sourceCode (standalone code blocks) and .cell-code (input code in cells)
+            // Exclude ones already wrapped and exclude any inside .cell-output
+            const codeBlocks = document.querySelectorAll('pre.sourceCode:not(.code-block-wrapper pre.sourceCode):not(.cell-output pre), .cell-code:not(.code-block-wrapper .cell-code):not(.cell-output .cell-code)');
+            
+            if (codeBlocks.length === 0) return;
+            
+            codeBlocks.forEach(function(block) {
+              // Skip if already wrapped
+              if (block.closest('.code-block-wrapper')) {
+                return;
+              }
+
+              // Skip if inside output container
+              if (block.closest('.cell-output, .cell-output-stdout, .cell-output-stderr, .cell-output-display')) {
+                return;
+              }
+
+              // Skip inline code
+              if (block.tagName === 'CODE' && block.parentElement && block.parentElement.tagName !== 'PRE') {
+                return;
+              }
+
+              // Get language from class or parent
+              let language = 'code';
+              const classList = block.className || '';
+              if (classList.includes('sourceCode')) {
+                const match = classList.match(/sourceCode-(\w+)/);
+                if (match) language = match[1];
+              } else if (block.querySelector('code')) {
+                const codeEl = block.querySelector('code');
+                if (codeEl && codeEl.className) {
+                  const match = codeEl.className.match(/language-(\w+)|sourceCode-(\w+)/);
+                  if (match) language = match[1] || match[2];
+                }
+              }
+
+              // Create wrapper
+              const wrapper = document.createElement('div');
+              wrapper.className = 'code-block-wrapper';
+
+              // Create header
+              const header = document.createElement('div');
+              header.className = 'code-block-header';
+              header.innerHTML = `
+                <span class="code-block-title">
+                  <span class="code-block-toggle">▼</span>
+                  <span>${language}</span>
+                </span>
+              `;
+
+              // Create content container
+              const content = document.createElement('div');
+              content.className = 'code-block-content';
+              
+              // Store parent and next sibling BEFORE moving block
+              const parent = block.parentNode;
+              const nextSibling = block.nextSibling;
+              
+              // Move the block into content (don't clone, move it)
+              // This removes block from parent, so we need parent/nextSibling before this
+              content.appendChild(block);
+
+              // Assemble
+              wrapper.appendChild(header);
+              wrapper.appendChild(content);
+              
+              // Insert wrapper where block was
+              // Note: block is now inside content, so we insert wrapper at block's old position
+              if (parent) {
+                // If there's a next sibling, insert before it (block was before nextSibling)
+                // Otherwise append to end
+                if (nextSibling && nextSibling.parentNode === parent) {
+                  parent.insertBefore(wrapper, nextSibling);
+                } else {
+                  // If nextSibling is null or invalid, append to parent
+                  parent.appendChild(wrapper);
+                }
+              }
+
+              // Add click handler
+              header.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                wrapper.classList.toggle('expanded');
+              });
+            });
+            } catch (error) {
+              console.error('Error in makeCodeBlocksCollapsible:', error);
+              // Don't break the page if code block wrapping fails
+            }
+          }
+
+          // Run when DOM is ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', makeCodeBlocksCollapsible);
+          } else {
+            // DOM already loaded
+            makeCodeBlocksCollapsible();
+          }
+
+          // Also run after delays to catch dynamically loaded content
+          setTimeout(makeCodeBlocksCollapsible, 100);
+          setTimeout(makeCodeBlocksCollapsible, 500);
+          setTimeout(makeCodeBlocksCollapsible, 1000);
+
+          // Use MutationObserver to catch dynamically added code blocks
+          const observer = new MutationObserver(function(mutations) {
+            let shouldRun = false;
+            mutations.forEach(function(mutation) {
+              if (mutation.addedNodes.length > 0) {
+                mutation.addedNodes.forEach(function(node) {
+                  if (node.nodeType === 1) { // Element node
+                    // Only trigger if it's an input code block, not an output
+                    if (node.matches && (
+                      (node.matches('pre.sourceCode') && !node.closest('.cell-output')) ||
+                      (node.matches('.cell-code') && !node.closest('.cell-output')) ||
+                      (node.querySelector && node.querySelector('pre.sourceCode:not(.cell-output pre), .cell-code:not(.cell-output .cell-code)'))
+                    )) {
+                      shouldRun = true;
+                    }
+                  }
+                });
+              }
+            });
+            if (shouldRun) {
+              setTimeout(makeCodeBlocksCollapsible, 100);
+            }
+          });
+
+          // Start observing
+          if (document.body) {
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true
+            });
+          } else {
+            document.addEventListener('DOMContentLoaded', function() {
+              observer.observe(document.body, {
+                childList: true,
+                subtree: true
+              });
+            });
+          }
+        })();
         </script>
 
 execute:
@@ -1291,3 +1844,11 @@ collections:
       type: default
       sort: "date desc"
       contents: "notes/*"
+  projects:
+    feed: false
+    categories: true
+    sort: "date desc"
+    listing:
+      type: default
+      sort: "date desc"
+      contents: "models/*"

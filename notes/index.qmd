@@ -11,4 +11,4 @@ page-layout: article
 
 # Notes & Knowledge Base
 
-A growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the *Re:current Analytics* lab notebook.
+A growing set of structured notes on climate science, risk modelling, data workflows, and systems thinking — part of the *re:current_analytics* lab notebook.

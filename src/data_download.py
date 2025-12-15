@@ -2,6 +2,7 @@
 
 import os
 import pandas as pd
+import numpy as np
 
 
 def load_opsd_prices_de_lu(
@@ -133,3 +134,145 @@ def save_weather_de_from_opsd(
     df_clean = df_clean.reset_index()
 
     df_clean.to_parquet(clean_path, index=False)
+
+
+def generate_synthetic_prices(
+    start: str = "2015-01-01",
+    end: str = "2020-07-01",
+    seed: int = 42,
+) -> pd.DataFrame:
+    """
+    Generate synthetic DE-LU day-ahead electricity prices.
+    
+    Creates realistic hourly price patterns with:
+    - Daily cycles (higher during day)
+    - Weekly patterns (lower on weekends)
+    - Seasonal variation
+    - Some volatility
+    
+    Returns DataFrame with columns: datetime_utc, price_eur_mwh
+    """
+    np.random.seed(seed)
+    
+    # Create hourly UTC index
+    date_range = pd.date_range(
+        start=pd.Timestamp(start, tz="UTC"),
+        end=pd.Timestamp(end, tz="UTC"),
+        freq="H",
+        tz="UTC",
+    )
+    
+    n = len(date_range)
+    
+    # Base price level (EUR/MWh)
+    base_price = 40.0
+    
+    # Daily cycle: higher during day (8-20h), lower at night
+    hour_of_day = date_range.hour
+    daily_cycle = np.where(
+        (hour_of_day >= 8) & (hour_of_day <= 20),
+        1.3,  # 30% higher during day
+        0.85  # 15% lower at night
+    )
+    
+    # Weekly pattern: lower on weekends
+    day_of_week = date_range.dayofweek
+    weekly_pattern = np.where(
+        (day_of_week == 5) | (day_of_week == 6),  # Sat, Sun
+        0.9,  # 10% lower
+        1.0
+    )
+    
+    # Seasonal pattern: higher in winter (heating demand)
+    month = date_range.month
+    seasonal = np.where(
+        (month >= 11) | (month <= 2),  # Nov-Feb
+        1.15,  # 15% higher in winter
+        np.where(
+            (month >= 6) & (month <= 8),  # Jun-Aug (summer)
+            1.05,  # 5% higher in summer (cooling)
+            1.0
+        )
+    )
+    
+    # Random volatility
+    volatility = np.random.normal(0, 0.15, n)
+    
+    # Combine all effects
+    prices = base_price * daily_cycle * weekly_pattern * seasonal * (1 + volatility)
+    
+    # Ensure prices are positive and reasonable (20-120 EUR/MWh)
+    prices = np.clip(prices, 20, 120)
+    
+    # Add some spikes (extreme events)
+    spike_prob = 0.01  # 1% chance per hour
+    spikes = np.random.binomial(1, spike_prob, n)
+    prices = np.where(spikes, prices * np.random.uniform(1.5, 3.0, n), prices)
+    prices = np.clip(prices, 20, 200)
+    
+    df = pd.DataFrame({
+        "datetime_utc": date_range,
+        "price_eur_mwh": prices,
+    })
+    
+    return df
+
+
+def generate_synthetic_weather(
+    start: str = "2015-01-01",
+    end: str = "2020-01-01",
+    seed: int = 42,
+) -> pd.DataFrame:
+    """
+    Generate synthetic German temperature data.
+    
+    Creates realistic hourly temperature patterns with:
+    - Seasonal cycles (warm summer, cold winter)
+    - Daily cycles (warmer during day)
+    - Some heatwaves in summer
+    - Realistic variability
+    
+    Returns DataFrame with columns: datetime_utc, t2m_mean_c
+    """
+    np.random.seed(seed)
+    
+    # Create hourly UTC index
+    date_range = pd.date_range(
+        start=pd.Timestamp(start, tz="UTC"),
+        end=pd.Timestamp(end, tz="UTC"),
+        freq="H",
+        tz="UTC",
+    )
+    
+    n = len(date_range)
+    
+    # Day of year for seasonal cycle
+    day_of_year = date_range.dayofyear
+    seasonal_base = 10.0 + 10.0 * np.sin(2 * np.pi * (day_of_year - 80) / 365.25)
+    
+    # Daily cycle: warmer during day (peak around 2-3 PM)
+    hour_of_day = date_range.hour
+    daily_cycle = 5.0 * np.sin(2 * np.pi * (hour_of_day - 6) / 24)
+    
+    # Random weather variability
+    weather_noise = np.random.normal(0, 3.0, n)
+    
+    # Add some heatwaves in summer (June-August)
+    month = date_range.month
+    is_summer = (month >= 6) & (month <= 8)
+    heatwave_prob = np.where(is_summer, 0.02, 0.0)  # 2% chance in summer
+    heatwaves = np.random.binomial(1, heatwave_prob, n)
+    heatwave_boost = np.where(heatwaves, np.random.uniform(5, 15, n), 0)
+    
+    # Combine all effects
+    temperature = seasonal_base + daily_cycle + weather_noise + heatwave_boost
+    
+    # Ensure realistic range (-10 to 40°C)
+    temperature = np.clip(temperature, -10, 40)
+    
+    df = pd.DataFrame({
+        "datetime_utc": date_range,
+        "t2m_mean_c": temperature,
+    })
+    
+    return df

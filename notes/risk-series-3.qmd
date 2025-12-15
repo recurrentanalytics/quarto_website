@@ -10,7 +10,7 @@ Series: Introduction to Risk Modelling (Part 3 of 3)
 :::
 ::: {.series-nav-links}
 ::: {.series-nav-prev}
-[← Previous: Data](risk-series-2.qmd)
+[← Previous: Data](risk-series-2.html)
 :::
 ::: {.series-nav-next}
 :::
@@ -19,7 +19,7 @@ Series: Introduction to Risk Modelling (Part 3 of 3)
 
 ## Putting It Together
 
-Armed with the [theoretical foundations](risk-series-1.qmd) and [data sources](risk-series-2.qmd), we can now implement a basic risk model.
+Armed with the [theoretical foundations](risk-series-1.html) and [data sources](risk-series-2.html), we can now implement a basic risk model.
 
 ## A Simple Loss Model
 
@@ -70,5 +70,5 @@ This series provides a foundation. For deeper dives:
 
 ::: {.backlinks}
 #### Linked from
-- [Risk Modelling Part 2: Data](risk-series-2.qmd)
+- [Risk Modelling Part 2: Data](risk-series-2.html)
 :::

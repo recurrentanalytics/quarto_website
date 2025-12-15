@@ -1,9 +1,13 @@
 /*-- scss:defaults --*/
 
-$font-family-sans-serif: system-ui, Inter, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "DejaVu Sans", sans-serif;
-$headings-font-weight: 800;
-$headings-color: #1b1f24;
-$code-font-size: .95rem;
+/* Global Typography System - IBM Plex Sans for serious, professional appearance */
+$font-family-sans-serif: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+$headings-font-weight: 600;
+$headings-color: #1a1a1a;
+$code-font-size: .9rem;
+
+/* Global Color System - True Teal for laser-sharp research aesthetic */
+$primary-color: #20B2AA;  /* Light Sea Green / True Teal: vibrant, modern, sharp, research-oriented */
 
 /*-- scss:rules --*/
 
@@ -138,6 +142,10 @@ $code-font-size: .95rem;
   --bs-tertiary-bg: #ffffff;
   --bs-secondary-bg: #ffffff;
   
+  /* Global Link Color - True Teal for laser-sharp research aesthetic */
+  --bs-primary: #20B2AA;
+  --bs-primary-rgb: 32, 178, 170;
+  
   /* Tables white */
   table,
   thead,
@@ -183,25 +191,89 @@ p {
   margin-bottom: 1.25rem;
 }
 
-pre code { 
-  line-height: 1.5; 
-  font-size: 0.9rem;
-}
+/* This is now handled by the global code font rule above */
 
-/* Links */
-a { 
+/* Links - Subtle by default, teal in prominent spaces */
+/* Regular body text links: subtle, understated */
+a,
+a:link,
+a:visited { 
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 400;
   text-underline-offset: 3px; 
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+  color: #1a1a1a !important;  /* Dark, subtle - matches body text */
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 26, 26, 0.2);
 }
 
-a:hover {
-  color: var(--bs-primary);
+a:hover,
+a:focus,
+a:active {
+  color: #20B2AA !important;  /* Teal on hover for interactivity */
+  font-weight: 500;
+  text-decoration-color: #20B2AA;
+}
+
+/* Prominent spaces: teal links for emphasis */
+.navbar a,
+.navbar a:link,
+.navbar a:visited,
+.navbar-brand,
+.navbar-brand:link,
+.navbar-brand:visited,
+.breadcrumb-item a,
+.breadcrumb-item a:link,
+.breadcrumb-item a:visited,
+.featured-content-link,
+.featured-content-link:link,
+.featured-content-link:visited,
+.project-card a,
+.project-card a:link,
+.project-card a:visited,
+.card-title a,
+.card-title a:link,
+.card-title a:visited,
+.quarto-listing-item-title a,
+.quarto-listing-item-title a:link,
+.quarto-listing-item-title a:visited,
+h1 a, h1 a:link, h1 a:visited,
+h2 a, h2 a:link, h2 a:visited,
+h3 a, h3 a:link, h3 a:visited,
+h4 a, h4 a:link, h4 a:visited,
+.callout-title a,
+.callout-title a:link,
+.callout-title a:visited,
+.related-notes-heading a,
+.related-notes-heading a:link,
+.related-notes-heading a:visited {
+  color: #20B2AA !important;  /* Teal in prominent spaces */
+  text-decoration-color: rgba(32, 178, 170, 0.3);
+}
+
+.navbar a:hover,
+.navbar a:focus,
+.navbar-brand:hover,
+.breadcrumb-item a:hover,
+.featured-content-link:hover,
+.project-card a:hover,
+.card-title a:hover,
+.quarto-listing-item-title a:hover,
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover,
+.callout-title a:hover,
+.related-notes-heading a:hover {
+  color: #178B85 !important;  /* Darker teal on hover */
+  text-decoration-color: #20B2AA;
 }
 
 /* Cards (projects/models listing) */
 .card-title { 
-  font-weight: 700; 
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.25rem;
   margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+  color: #1a1a1a;
 }
 
 .card {
@@ -219,6 +291,75 @@ a:hover {
 #TOC { 
   font-size: .95rem; 
   line-height: 1.6;
+}
+
+/* Sticky TOC */
+/* Ensure parent containers don't break sticky positioning */
+.page-columns-content {
+  overflow: visible !important;
+}
+
+/* Ensure the sidebar container supports sticky */
+#quarto-margin-sidebar {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 2rem !important;
+  align-self: flex-start !important;
+  max-height: calc(100vh - 4rem) !important;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+}
+
+/* TOC inside the sidebar */
+#quarto-margin-sidebar #TOC,
+#TOC {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 2rem !important;
+  max-height: calc(100vh - 4rem) !important;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+  align-self: flex-start !important;
+}
+
+/* Ensure parent containers support sticky */
+.page-columns .page-columns-content {
+  display: flex !important;
+  align-items: flex-start !important;
+  overflow: visible !important;
+}
+
+/* TOC scrollbar styling */
+#TOC::-webkit-scrollbar,
+#quarto-margin-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#TOC::-webkit-scrollbar-track,
+#quarto-margin-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#TOC::-webkit-scrollbar-thumb,
+#quarto-margin-sidebar::-webkit-scrollbar-thumb {
+  background: var(--bs-border-color);
+  border-radius: 3px;
+}
+
+#TOC::-webkit-scrollbar-thumb:hover,
+#quarto-margin-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-secondary);
+}
+
+/* Mobile TOC - keep it simple, no collapsible */
+@media (max-width: 991px) {
+  #TOC,
+  #quarto-margin-sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+    margin-bottom: 1rem;
+  }
 }
 
 /* Light tweak to section spacing */
@@ -247,10 +388,16 @@ article {
 
 /* Prevent content from running into sidebar - global setting */
 /* Ensure page layout respects sidebar boundaries */
-.page-columns,
-.page-layout-article,
-.quarto-layout-row {
+/* Note: Don't set overflow on page-columns as it breaks sticky positioning */
+.page-layout-article {
   overflow-x: hidden;
+}
+
+/* Allow overflow visible on page-columns for sticky to work */
+.page-columns,
+.quarto-layout-row {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
 }
 
 /* Main content column - must respect sidebar */
@@ -268,6 +415,7 @@ article {
 
 /* Code blocks - GLOBAL SETTING: prevent overflow into sidebar but allow horizontal scroll within */
 /* Apply to ALL code blocks everywhere */
+/* Also apply distinct monospace font and consistent font size */
 pre,
 code,
 pre code,
@@ -277,6 +425,8 @@ code pre,
 .sourceCode code,
 .cell,
 .cell-code,
+.cell-code pre,
+.cell-code code,
 .cell-output,
 .cell-output-display,
 .cell-output-stdout,
@@ -287,16 +437,29 @@ code pre,
 .quarto-layout-cell code,
 #quarto-document-content pre,
 #quarto-document-content code,
+#quarto-document-content pre code,
 .quarto-content pre,
 .quarto-content code,
+.quarto-content pre code,
 main pre,
 main code,
+main pre code,
 article pre,
 article code,
+article pre code,
 .content pre,
 .content code,
+.content pre code,
 * pre,
 * code {
+  /* Distinct monospace font for all code */
+  font-family: "IBM Plex Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !important;
+  font-weight: 400;
+  letter-spacing: 0;
+  /* Consistent font size for code blocks and outputs */
+  font-size: 0.9rem !important;
+  line-height: 1.6;
+  /* Layout and overflow */
   max-width: 100% !important;
   overflow-x: auto !important;  /* Allow horizontal scroll within code block */
   overflow-wrap: normal !important;
@@ -352,6 +515,10 @@ pre *,
   padding: 0;
   background: transparent !important;
   border: none;
+  /* Ensure output code uses same font and size as input code */
+  font-family: "IBM Plex Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6;
 }
 
 /* Visualizations and graphs - contain within content area */
@@ -451,7 +618,8 @@ pre {
 code {
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
-  font-size: 0.9em;
+  font-size: 0.9rem !important;  /* Match code block size - consistent with outputs */
+  font-family: "IBM Plex Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !important;
 }
 
 pre code {
@@ -533,9 +701,11 @@ pre code {
 }
 
 .manifesto-title {
-  font-weight: 600;
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 600 !important;
   font-size: 1.1rem;
-  color: var(--bs-body-color);
+  letter-spacing: -0.015em;
+  color: #1a1a1a;
 }
 
 /* Yin-yang toggle button */
@@ -575,7 +745,21 @@ pre code {
 
 /* Manifesto body content */
 .manifesto-body {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: -0.011em;
   padding: 0 1.5rem 1.5rem;
+  color: #1a1a1a;
+}
+
+.manifesto-body p {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.011em;
+  margin-bottom: 1.25rem;
 }
 
 [data-bs-theme="light"] {
@@ -765,15 +949,31 @@ img {
 
 /* Improved navbar spacing */
 .navbar {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 500;
+  font-size: 0.95rem;
   padding: 0.75rem 1rem;
+  letter-spacing: -0.01em;
+}
+
+.navbar-brand,
+.navbar-nav a {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 
 /* Better footer spacing */
 .nav-footer {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 400;
+  font-size: 0.9rem;
   margin-top: 3rem;
   padding: 2rem 1rem;
   border-top: 1px solid var(--bs-border-color);
+  letter-spacing: -0.01em;
+  color: #1a1a1a;
 }
 
 /* 404 page styling */
@@ -798,7 +998,7 @@ img {
 @media print {
   .navbar, .nav-footer, #quarto-search, .sidebar, 
   .keyboard-hint, .reading-progress, .quarto-back-to-top-link,
-  .code-tools-button, .anchor-section-link, #TOC {
+  .code-tools-button, #TOC {
     display: none !important;
   }
   
@@ -887,12 +1087,14 @@ img {
   text-decoration: none;
   color: var(--bs-body-color);
   border-bottom: 1px solid var(--bs-border-color);
-  transition: background 0.1s;
+  transition: background 0.1s, color 0.1s;
 }
 
 .cmd-palette-item:last-child { border-bottom: none; }
-.cmd-palette-item:hover, .cmd-palette-item.selected {
+.cmd-palette-item:hover, 
+.cmd-palette-item.selected {
   background: var(--bs-tertiary-bg);
+  color: #20B2AA !important;  /* Teal on hover (prominent interaction) */
 }
 
 .cmd-palette-item-title { font-weight: 500; }
@@ -985,13 +1187,132 @@ img {
 }
 
 .breadcrumb-item a {
-  color: var(--bs-secondary);
+  color: #20B2AA !important;  /* True Teal */
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .breadcrumb-item a:hover {
-  color: var(--bs-primary);
+  color: #178B85 !important;  /* Darker teal on hover */
+}
+
+/* Apply IBM Plex Sans globally to all text elements - Global Typography Grammar */
+.quarto-title-block,
+.quarto-title,
+.quarto-title h1,
+.quarto-title h2,
+.quarto-title-meta,
+.quarto-listing-item,
+.quarto-listing-item-title,
+.quarto-listing-item-description,
+.breadcrumb-nav,
+.breadcrumb-list,
+.breadcrumb-item,
+.breadcrumb-item a,
+.sidebar,
+.sidebar-item,
+.sidebar-item-text,
+#TOC,
+#TOC a,
+#TOC li,
+button,
+.btn,
+input,
+textarea,
+select,
+label,
+.cmd-palette,
+.cmd-palette-item,
+.cmd-palette-item-title,
+.project-card,
+.project-card-content,
+.project-card h2,
+.project-card h3,
+.featured-content-card,
+.featured-content-title,
+.featured-content-description,
+.featured-content-link,
+.related-notes-section,
+.related-notes-heading,
+.related-notes-list,
+.related-notes-list a,
+.callout,
+.callout-title,
+blockquote,
+table,
+th,
+td,
+li,
+ul,
+ol,
+dl,
+dt,
+dd,
+span,
+div,
+small,
+sub,
+sup {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+}
+
+/* Prominent link areas: teal for emphasis */
+/* Navigation and structural elements */
+.navbar a,
+.navbar-brand,
+.breadcrumb-item a,
+#TOC a,
+.sidebar a,
+.cmd-palette-item a,
+.cmd-palette-item:hover {
+  color: #20B2AA !important;  /* Teal in navigation/structural areas */
+}
+
+.navbar a:hover,
+.navbar-brand:hover,
+.breadcrumb-item a:hover,
+#TOC a:hover,
+.sidebar a:hover {
+  color: #178B85 !important;  /* Darker teal on hover */
+}
+
+/* Content listing and cards - teal for prominence */
+.quarto-listing-item-title a,
+.featured-content-link,
+.project-card a,
+.card-title a {
+  color: #20B2AA !important;  /* Teal in prominent content areas */
+}
+
+.quarto-listing-item-title a:hover,
+.featured-content-link:hover,
+.project-card a:hover,
+.card-title a:hover {
+  color: #178B85 !important;  /* Darker teal on hover */
+}
+
+/* Regular body text links - subtle, not teal */
+.quarto-listing-item a:not(.quarto-listing-item-title a),
+.related-notes-list a,
+.callout a,
+blockquote a,
+table a,
+p a,
+li a,
+td a {
+  color: #1a1a1a !important;  /* Subtle, matches body text */
+  text-decoration-color: rgba(26, 26, 26, 0.2);
+}
+
+.quarto-listing-item a:hover:not(.quarto-listing-item-title a),
+.related-notes-list a:hover,
+.callout a:hover,
+blockquote a:hover,
+table a:hover,
+p a:hover,
+li a:hover,
+td a:hover {
+  color: #20B2AA !important;  /* Teal on hover for interactivity */
 }
 
 .breadcrumb-item.active {
@@ -1176,9 +1497,9 @@ img {
 }
 
 .graph-filter-btn.active {
-  background: var(--bs-primary);
-  color: var(--bs-body-bg);
-  border-color: var(--bs-primary);
+  background: #20B2AA !important;  /* True Teal */
+  color: #ffffff !important;
+  border-color: #0088CC !important;
 }
 
 .graph-zoom-btn {
@@ -1200,8 +1521,8 @@ img {
 
 .graph-zoom-btn:hover {
   background: var(--bs-tertiary-bg);
-  border-color: var(--bs-primary);
-  color: var(--bs-primary);
+  border-color: #20B2AA !important;  /* True Teal */
+  color: #0088CC !important;
 }
 
 .graph-zoom-btn:active {
@@ -1286,7 +1607,7 @@ img {
 }
 
 .graph-link.connected {
-  stroke: var(--bs-primary);
+  stroke: #20B2AA !important;  /* True Teal */
   stroke-opacity: 0.7;
   stroke-width: 2px;
 }
@@ -1358,6 +1679,28 @@ img {
   .sidebar-graph[style*="position: fixed"] {
     display: block !important;
   }
+}
+
+
+/* Force remove blue borders on hover for all cards */
+.featured-content-card:hover,
+.project-card:hover,
+.card:hover {
+  border-color: var(--bs-border-color) !important;
+  outline: none !important;
+}
+
+/* Hide anchor links globally - they're disabled in config but hide any that slip through */
+.anchorjs-link,
+.anchor-section-link,
+a.anchorjs-link {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Hide graph in print */

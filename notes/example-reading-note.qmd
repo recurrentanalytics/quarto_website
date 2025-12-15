@@ -1,0 +1,24 @@
+---
+title: "Example Reading Note"
+author: "Author Name"
+year: 2025
+categories: [reading]
+tags: [climate-science, example]
+date: 2025-12-15
+---
+
+## Summary
+
+This is an example reading note to demonstrate how reading notes appear in the Notes listing. Reading notes are treated just like other notes and will appear alongside regular notes in the collection.
+
+## Key Takeaways
+
+- Reading notes go directly in the `notes/` directory
+- They automatically appear in the Notes listing
+- Use `categories: [reading]` to group them (optional)
+- Add tags for topic filtering
+
+## Notes
+
+This is a placeholder example. Delete this file when adding your first real reading note.
+

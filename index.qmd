@@ -125,9 +125,365 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 ```
 
-### Start here
-
 - **Notes / Lab journal:** ongoing experiments → [notes/](notes/)
 - **Projects:** models, tools, demos, and packaged work → [projects/](projects/)
 - **Tipping Points:** strategic card game on climate–politics → [tipping-points/](tipping-points/)
-- **About & Contact:** who/what/why → [about](about.qmd)
+- **About & Contact:** who/what/why → [about](about.html)
+
+<div id="featured-content-container">
+  <div class="featured-content-loading">Loading featured content...</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Featured content configuration
+  // Manually specify featured items by path
+  const featuredItems = [
+    { href: '/notes/risk-series-1.html', title: 'Risk Modelling Part 1: Foundations', description: 'Introduction to risk modelling concepts and frameworks for climate contexts.', type: 'note' },
+    { href: '/models/climate-extremes-explorer.html', title: 'Climate Extremes Explorer', description: 'Interactive analysis of climate extremes using synthetic data. Demonstrates methods for identifying and analyzing extreme events.', type: 'model' },
+    { href: '/notes/risk-series-2.html', title: 'Risk Modelling Part 2: Data', description: 'Data sources and considerations for climate risk modelling.', type: 'note' },
+    { href: '/models/heatwave-prices-de-lu.html', title: 'Heatwaves and Day-Ahead Prices', description: 'Analysis of electricity prices during heatwave events in Germany-Luxembourg.', type: 'model' }
+  ];
+
+  const container = document.getElementById('featured-content-container');
+  if (!container) return;
+
+  let currentIndex = 0;
+
+  // Create carousel structure
+  const carousel = document.createElement('div');
+  carousel.className = 'featured-content-carousel';
+
+  // Create cards container
+  const cardsContainer = document.createElement('div');
+  cardsContainer.className = 'featured-content-cards';
+
+  featuredItems.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = `featured-content-card featured-${item.type} ${index === 0 ? 'active' : ''}`;
+    
+    const typeLabel = item.type === 'note' ? 'Note' : item.type === 'model' ? 'Model' : 'Project';
+    
+    card.innerHTML = `
+      <div class="featured-content-type">${typeLabel}</div>
+      <h3 class="featured-content-title">
+        <a href="${item.href}">${item.title}</a>
+      </h3>
+      <p class="featured-content-description">${item.description}</p>
+      <a href="${item.href}" class="featured-content-link">Read more →</a>
+    `;
+    
+    cardsContainer.appendChild(card);
+  });
+
+  // Create navigation arrows
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'featured-content-nav featured-content-prev';
+  prevBtn.innerHTML = '←';
+  prevBtn.setAttribute('aria-label', 'Previous');
+  prevBtn.type = 'button';
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'featured-content-nav featured-content-next';
+  nextBtn.innerHTML = '→';
+  nextBtn.setAttribute('aria-label', 'Next');
+  nextBtn.type = 'button';
+
+  // Create dots navigation
+  const dotsContainer = document.createElement('div');
+  dotsContainer.className = 'featured-content-dots';
+
+  featuredItems.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = `featured-content-dot ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    dot.type = 'button';
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  // Navigation functions
+  function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % featuredItems.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + featuredItems.length) % featuredItems.length;
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    const cards = cardsContainer.querySelectorAll('.featured-content-card');
+    const dots = dotsContainer.querySelectorAll('.featured-content-dot');
+
+    cards.forEach((card, index) => {
+      if (index === currentIndex) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  // Event listeners
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  // Auto-advance (optional - can be disabled)
+  let autoAdvanceInterval;
+  function startAutoAdvance() {
+    autoAdvanceInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+  }
+  function stopAutoAdvance() {
+    if (autoAdvanceInterval) {
+      clearInterval(autoAdvanceInterval);
+    }
+  }
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', stopAutoAdvance);
+  carousel.addEventListener('mouseleave', startAutoAdvance);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (container.contains(document.activeElement) || carousel.contains(document.activeElement)) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextSlide();
+      }
+    }
+  });
+
+  // Assemble carousel
+  carousel.appendChild(prevBtn);
+  carousel.appendChild(cardsContainer);
+  carousel.appendChild(nextBtn);
+  carousel.appendChild(dotsContainer);
+
+  container.innerHTML = '';
+  container.appendChild(carousel);
+
+  // Start auto-advance
+  startAutoAdvance();
+});
+</script>
+
+<style>
+/* Featured Content Carousel */
+#featured-content-container {
+  margin: 3rem 0;
+}
+
+.featured-content-loading {
+  text-align: center;
+  color: var(--bs-secondary);
+  padding: 2rem;
+}
+
+.featured-content-carousel {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.featured-content-cards {
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.featured-content-card {
+  padding: 2rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background: var(--bs-body-bg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.featured-content-card:hover {
+  border-color: var(--bs-border-color) !important;
+  outline: none !important;
+}
+
+.featured-content-card.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+
+.featured-content-type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--bs-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.featured-note .featured-content-type {
+  color: var(--bs-info);
+}
+
+.featured-model .featured-content-type {
+  color: var(--bs-success);
+}
+
+.featured-content-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.featured-content-title a {
+  color: var(--bs-body-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.featured-content-title a:hover {
+  color: var(--bs-primary);
+}
+
+.featured-content-description {
+  color: var(--bs-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.featured-content-link {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.featured-content-link:hover {
+  color: var(--bs-primary);
+  text-decoration: underline;
+}
+
+/* Navigation arrows */
+.featured-content-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--bs-body-color);
+  transition: all 0.2s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.featured-content-nav:hover {
+  background: var(--bs-primary);
+  color: var(--bs-body-bg);
+  border-color: var(--bs-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.featured-content-prev {
+  left: -20px;
+}
+
+.featured-content-next {
+  right: -20px;
+}
+
+/* Dots navigation */
+.featured-content-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.featured-content-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bs-border-color);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.featured-content-dot:hover {
+  background: var(--bs-secondary);
+  transform: scale(1.2);
+}
+
+.featured-content-dot.active {
+  background: var(--bs-primary);
+  width: 24px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .featured-content-carousel {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .featured-content-card {
+    padding: 1.5rem;
+  }
+
+  .featured-content-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .featured-content-prev {
+    left: -10px;
+  }
+
+  .featured-content-next {
+    right: -10px;
+  }
+
+  .featured-content-title {
+    font-size: 1.25rem;
+  }
+}
+</style>

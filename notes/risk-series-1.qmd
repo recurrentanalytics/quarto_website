@@ -12,7 +12,7 @@ Series: Introduction to Risk Modelling (Part 1 of 3)
 ::: {.series-nav-prev}
 :::
 ::: {.series-nav-next}
-[Next: Data →](risk-series-2.qmd)
+[Next: Data →](risk-series-2.html)
 :::
 :::
 :::
@@ -37,7 +37,7 @@ Key terms:
 
 ## Why This Matters for Climate
 
-Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in [Part 2: Data](risk-series-2.qmd).
+Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in [Part 2: Data](risk-series-2.html).
 
 ::: {.backlinks}
 :::

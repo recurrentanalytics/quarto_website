@@ -9,6 +9,6 @@ pagetitle: "404 - Page Not Found"
 
 The signal you're looking for isn't here.
 
-[Back to the index →](index.qmd)
+[Back to the index →](index.html)
 
 :::
