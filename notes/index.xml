@@ -10,7 +10,44 @@
 <atom:link href="https://recurrentanalytics.com/notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>A lab-notebook for climate risk, models, and recurrent intelligence.</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 12 Dec 2025 08:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 15 Dec 2025 08:00:00 GMT</lastBuildDate>
+<item>
+  <title>Example Reading Note</title>
+  <dc:creator>Author Name</dc:creator>
+  <link>https://recurrentanalytics.com/notes/example-reading-note.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="summary" class="level2">
+<h2 data-anchor-id="summary">Summary</h2>
+<p>This is an example reading note to demonstrate how reading notes appear in the Notes listing. Reading notes are treated just like other notes and will appear alongside regular notes in the collection.</p>
+</section>
+<section id="key-takeaways" class="level2">
+<h2 data-anchor-id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Reading notes go directly in the <code>notes/</code> directory</li>
+<li>They automatically appear in the Notes listing</li>
+<li>Use <code>categories: [reading]</code> to group them (optional)</li>
+<li>Add tags for topic filtering</li>
+</ul>
+</section>
+<section id="notes" class="level2">
+<h2 data-anchor-id="notes">Notes</h2>
+<p>This is a placeholder example. Delete this file when adding your first real reading note.</p>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>reading</category>
+  <guid>https://recurrentanalytics.com/notes/example-reading-note.html</guid>
+  <pubDate>Mon, 15 Dec 2025 08:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Risk Modelling Part 3: Implementation</title>
   <link>https://recurrentanalytics.com/notes/risk-series-3.html</link>
@@ -26,7 +63,7 @@
 </div>
 <div class="series-nav-links">
 <div class="series-nav-prev">
-<p><a href="../notes/risk-series-2.html">← Previous: Data</a></p>
+<p><a href="risk-series-2.html">← Previous: Data</a></p>
 </div>
 <div class="series-nav-next">
 
@@ -34,12 +71,12 @@
 </div>
 </div>
 <section id="putting-it-together" class="level2">
-<h2 class="anchored" data-anchor-id="putting-it-together">Putting It Together</h2>
-<p>Armed with the <a href="../notes/risk-series-1.html">theoretical foundations</a> and <a href="../notes/risk-series-2.html">data sources</a>, we can now implement a basic risk model.</p>
+<h2 data-anchor-id="putting-it-together">Putting It Together</h2>
+<p>Armed with the <a href="risk-series-1.html">theoretical foundations</a> and <a href="risk-series-2.html">data sources</a>, we can now implement a basic risk model.</p>
 </section>
 <section id="a-simple-loss-model" class="level2">
-<h2 class="anchored" data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
-<div id="2d43bef4" class="cell" data-execution_count="1">
+<h2 data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
+<div id="c7bcd99b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
@@ -167,14 +204,14 @@ font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Expected Loss: $30,053
-VaR 99%: $137,228
-Max Loss: $260,886</code></pre>
+<pre><code>Expected Loss: $29,955
+VaR 99%: $138,687
+Max Loss: $250,859</code></pre>
 </div>
 </div>
 </section>
 <section id="key-implementation-decisions" class="level2">
-<h2 class="anchored" data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
+<h2 data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
 <p>When building production risk models, consider:</p>
 <ol type="1">
 <li><strong>Correlation structure</strong> - How do risks aggregate?</li>
@@ -184,12 +221,12 @@ Max Loss: $260,886</code></pre>
 </ol>
 </section>
 <section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<h2 data-anchor-id="further-reading">Further Reading</h2>
 <p>This series provides a foundation. For deeper dives:</p>
 <section id="linked-from" class="level4 backlinks">
-<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<h4 data-anchor-id="linked-from">Linked from</h4>
 <ul>
-<li><a href="../notes/risk-series-2.html">Risk Modelling Part 2: Data</a></li>
+<li><a href="risk-series-2.html">Risk Modelling Part 2: Data</a></li>
 </ul>
 </section>
 
@@ -220,26 +257,26 @@ Max Loss: $260,886</code></pre>
 </div>
 <div class="series-nav-links">
 <div class="series-nav-prev">
-<p><a href="../notes/risk-series-1.html">← Previous: Foundations</a></p>
+<p><a href="risk-series-1.html">← Previous: Foundations</a></p>
 </div>
 <div class="series-nav-next">
-<p><a href="../notes/risk-series-3.html">Next: Implementation →</a></p>
+<p><a href="risk-series-3.html">Next: Implementation →</a></p>
 </div>
 </div>
 </div>
 <section id="data-sources-for-climate-risk" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources-for-climate-risk">Data Sources for Climate Risk</h2>
-<p>Building on the <a href="../notes/risk-series-1.html">foundations from Part 1</a>, this note covers the data landscape for climate risk modelling.</p>
+<h2 data-anchor-id="data-sources-for-climate-risk">Data Sources for Climate Risk</h2>
+<p>Building on the <a href="risk-series-1.html">foundations from Part 1</a>, this note covers the data landscape for climate risk modelling.</p>
 <section id="observational-data" class="level3">
-<h3 class="anchored" data-anchor-id="observational-data">Observational Data</h3>
+<h3 data-anchor-id="observational-data">Observational Data</h3>
 <ul>
-<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset (see <a href="../models/era5-demo.html">ERA5 Demo</a>)</li>
+<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset</li>
 <li><strong>GHCN</strong> - Global Historical Climatology Network</li>
 <li><strong>Station data</strong> - Local weather observations</li>
 </ul>
 </section>
 <section id="modelled-data" class="level3">
-<h3 class="anchored" data-anchor-id="modelled-data">Modelled Data</h3>
+<h3 data-anchor-id="modelled-data">Modelled Data</h3>
 <ul>
 <li><strong>CMIP6</strong> - Climate model ensembles for projections</li>
 <li><strong>Downscaled projections</strong> - Regional climate scenarios</li>
@@ -248,7 +285,7 @@ Max Loss: $260,886</code></pre>
 </section>
 </section>
 <section id="data-quality-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="data-quality-considerations">Data Quality Considerations</h2>
+<h2 data-anchor-id="data-quality-considerations">Data Quality Considerations</h2>
 <p>When working with climate data, always consider:</p>
 <ol type="1">
 <li><strong>Spatial resolution</strong> - Is the data granular enough for your use case?</li>
@@ -259,13 +296,13 @@ Max Loss: $260,886</code></pre>
 <p>Various frameworks provide approaches to validating spatial data quality.</p>
 </section>
 <section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
-<p>With data in hand, we move to <a href="../notes/risk-series-3.html">Part 3: Implementation</a> where we build actual models.</p>
+<h2 data-anchor-id="next-steps">Next Steps</h2>
+<p>With data in hand, we move to <a href="risk-series-3.html">Part 3: Implementation</a> where we build actual models.</p>
 <section id="linked-from" class="level4 backlinks">
-<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<h4 data-anchor-id="linked-from">Linked from</h4>
 <ul>
-<li><a href="../notes/risk-series-1.html">Risk Modelling Part 1: Foundations</a></li>
-<li><a href="../notes/risk-series-3.html">Risk Modelling Part 3: Implementation</a></li>
+<li><a href="risk-series-1.html">Risk Modelling Part 1: Foundations</a></li>
+<li><a href="risk-series-3.html">Risk Modelling Part 3: Implementation</a></li>
 </ul>
 </section>
 
@@ -299,12 +336,12 @@ Max Loss: $260,886</code></pre>
 
 </div>
 <div class="series-nav-next">
-<p><a href="../notes/risk-series-2.html">Next: Data →</a></p>
+<p><a href="risk-series-2.html">Next: Data →</a></p>
 </div>
 </div>
 </div>
 <section id="what-is-risk-modelling" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-risk-modelling">What is Risk Modelling?</h2>
+<h2 data-anchor-id="what-is-risk-modelling">What is Risk Modelling?</h2>
 <p>Risk modelling is the practice of using mathematical frameworks to quantify uncertainty and potential losses. In climate contexts, this typically involves:</p>
 <ol type="1">
 <li><strong>Hazard identification</strong> - What can go wrong?</li>
@@ -314,13 +351,13 @@ Max Loss: $260,886</code></pre>
 </ol>
 </section>
 <section id="core-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<h2 data-anchor-id="core-concepts">Core Concepts</h2>
 <p>The foundation of risk modelling rests on probability theory. We often use Monte Carlo methods to simulate thousands of scenarios and understand the distribution of possible outcomes.</p>
 <p>Key terms: - <strong>Expected loss</strong>: The average loss across all scenarios - <strong>Value at Risk (VaR)</strong>: The maximum loss at a given confidence level - <strong>Tail risk</strong>: The probability of extreme events</p>
 </section>
 <section id="why-this-matters-for-climate" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-matters-for-climate">Why This Matters for Climate</h2>
-<p>Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in <a href="../notes/risk-series-2.html">Part 2: Data</a>.</p>
+<h2 data-anchor-id="why-this-matters-for-climate">Why This Matters for Climate</h2>
+<p>Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in <a href="risk-series-2.html">Part 2: Data</a>.</p>
 <div class="backlinks">
 
 </div>

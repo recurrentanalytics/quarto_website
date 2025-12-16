@@ -72,16 +72,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fed43467a49d1196e48e893c129ec633.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-74141a487ca470e5e766e5f6e84378c3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fed43467a49d1196e48e893c129ec633.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ec8d78f0ebbe7cd36fa017e241e46b34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,6 +109,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<!-- IBM Plex Sans Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+
+<!-- IBM Plex Mono Font for code blocks -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+
 <!-- Plausible analytics -->
 <script defer="" data-domain="recurrentanalytics.com" src="https://plausible.io/js/script.js"></script>
 
@@ -183,8 +190,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentPath = '';
     pathParts.forEach((part, index) => {
-      currentPath += '/' + part;
       const isLast = index === pathParts.length - 1;
+      
+      // Special handling for "models" - link to projects page instead
+      if (part === 'models' && !isLast) {
+        breadcrumbHTML += '<li class="breadcrumb-item"><a href="/projects/">Projects</a></li>';
+        return; // Skip adding to currentPath
+      }
+      
+      // Skip "models" in breadcrumb if it's not the last part
+      if (part === 'models') {
+        return;
+      }
+      
+      currentPath += '/' + part;
       const label = part.replace(/\.html$/, '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
       
       if (isLast) {
@@ -237,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
         : '⌘K palette · / search · j/k navigate · f focus · ? hints';
     }
   }
-  
+
   // Keyboard shortcuts
   const noteLinks = Array.from(document.querySelectorAll('.quarto-listing-default a, .sidebar-item a'));
   let currentIndex = -1;
@@ -292,12 +311,12 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'Projects', path: '/projects/' },
     { title: 'Reading', path: '/reading/' },
     { title: 'Tipping Points', path: '/tipping-points/' },
+    { title: 'Design Notes', path: '/tipping-points/design-notes/' },
     { title: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
     { title: 'Risk Modelling Part 3: Implementation', path: '/notes/risk-series-3.html' },
-    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
-    { title: 'ERA5 Demo', path: '/models/era5-demo.html' }
+    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' }
   ];
 
   const overlay = document.createElement('div');
@@ -347,17 +366,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     return wordMatches * 5;
   }
-  
+
   function renderResults(filter = '') {
     if (!filter.trim()) {
       const filtered = pages.slice(0, 10);
-      results.innerHTML = filtered.map((p, i) => `
-        <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
-          <div class="cmd-palette-item-title">${p.title}</div>
-          <div class="cmd-palette-item-path">${p.path}</div>
-        </a>
-      `).join('');
-      return filtered;
+    results.innerHTML = filtered.map((p, i) => `
+      <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+        <div class="cmd-palette-item-title">${p.title}</div>
+        <div class="cmd-palette-item-path">${p.path}</div>
+      </a>
+    `).join('');
+    return filtered;
     }
     
     // Score and sort by relevance
@@ -440,21 +459,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const isAboutPage = path === '/about.html' || path.endsWith('/about.html');
   
   if (!isHomePageForReading && !isNotesIndex && !isAboutPage) {
-    const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
-    const contentArea = document.querySelector('#quarto-document-content, .content, main');
-    if (articleBody && contentArea) {
-      const text = contentArea.innerText || '';
-      const wordCount = text.trim().split(/\s+/).length;
-      const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-      const timeSpan = document.createElement('span');
-      timeSpan.className = 'reading-time';
-      timeSpan.textContent = readingTime + ' min read';
-      const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
-      if (titleMeta) {
-        titleMeta.appendChild(document.createTextNode(' · '));
-        titleMeta.appendChild(timeSpan);
-      }
+  const articleBody = document.querySelector('.quarto-title-block, #quarto-document-content');
+  const contentArea = document.querySelector('#quarto-document-content, .content, main');
+  if (articleBody && contentArea) {
+    const text = contentArea.innerText || '';
+    const wordCount = text.trim().split(/\s+/).length;
+    const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'reading-time';
+    timeSpan.textContent = readingTime + ' min read';
+    const titleMeta = document.querySelector('.quarto-title-meta, .quarto-title');
+    if (titleMeta) {
+      titleMeta.appendChild(document.createTextNode(' · '));
+      titleMeta.appendChild(timeSpan);
     }
+  }
   }
 
 
@@ -469,30 +488,39 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
       { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
       { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
-      { id: 'era5', label: 'ERA5 Demo', path: '/models/era5-demo.html', cat: 'models' },
-      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
+      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'projects' },
+      { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'projects' },
       { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
-      { id: 'reading', label: 'Reading', path: '/reading/', cat: 'nav' },
-      { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
+      { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' },
+      { id: 'design-notes', label: 'Design Notes', path: '/tipping-points/design-notes/', cat: 'tipping-points' },
+      { id: 'playtest-1', label: 'Playtest Session 1', path: '/tipping-points/design-notes/2025-01-15-playtest-session-1.html', cat: 'tipping-points' },
+      { id: 'mechanics-2', label: 'Mechanics Iteration 2', path: '/tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html', cat: 'tipping-points' },
+      { id: 'heatwave-card', label: 'Card Design: Heatwave', path: '/tipping-points/design-notes/2025-01-05-card-design-heatwave.html', cat: 'tipping-points' }
     ],
     links: [
       { source: 'home', target: 'notes' },
       { source: 'home', target: 'projects' },
       { source: 'home', target: 'tipping-points' },
       { source: 'home', target: 'about' },
+      { source: 'tipping-points', target: 'design-notes' },
+      { source: 'design-notes', target: 'playtest-1' },
+      { source: 'design-notes', target: 'mechanics-2' },
+      { source: 'design-notes', target: 'heatwave-card' },
+      { source: 'playtest-1', target: 'mechanics-2' },
+      { source: 'mechanics-2', target: 'playtest-1' },
+      { source: 'heatwave-card', target: 'design-notes' },
       { source: 'notes', target: 'hello' },
       { source: 'notes', target: 'risk-1' },
       { source: 'risk-1', target: 'risk-2' },
       { source: 'risk-2', target: 'risk-1' },
       { source: 'risk-2', target: 'risk-3' },
-      { source: 'risk-2', target: 'era5' },
       { source: 'risk-2', target: 'heatwave' },
       { source: 'risk-3', target: 'risk-1' },
       { source: 'risk-3', target: 'risk-2' },
-      { source: 'projects', target: 'era5' },
       { source: 'projects', target: 'heatwave' },
-      { source: 'heatwave', target: 'era5' },
+      { source: 'projects', target: 'climate-extremes' },
       { source: 'heatwave', target: 'risk-2' },
+      { source: 'climate-extremes', target: 'risk-2' },
     ]
   };
   
@@ -500,7 +528,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const catColors = {
     nav: 'var(--bs-secondary)',
     notes: 'var(--bs-info)',
-    models: 'var(--bs-success)'
+    projects: 'var(--bs-success)',
+    'tipping-points': '#9b59b6'  // Purple for game design content
   };
 
   // Create sidebar mini-graph widget - always add to body to ensure it's on all pages
@@ -544,6 +573,21 @@ document.addEventListener('DOMContentLoaded', function() {
   sidebarGraph.style.display = 'block';
   sidebarGraph.style.visibility = 'visible';
   sidebarGraph.style.opacity = '1';
+  
+  // Ensure sidebarGraph is clickable - attach handler after it's in DOM
+  setTimeout(function() {
+    const graphEl = document.querySelector('.sidebar-graph');
+    if (graphEl && !graphEl.hasAttribute('data-click-handler-attached')) {
+      graphEl.setAttribute('data-click-handler-attached', 'true');
+      graphEl.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.openGraphNavigation === 'function') {
+          window.openGraphNavigation();
+        }
+      });
+    }
+  }, 100);
 
   // Create modal FIRST - before any D3 checks
   console.log('Creating graph modal element...');
@@ -561,8 +605,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <button class="graph-filter-btn active" data-cat="all">All</button>
           <button class="graph-filter-btn" data-cat="nav">Nav</button>
           <button class="graph-filter-btn" data-cat="notes">Notes</button>
-          <button class="graph-filter-btn" data-cat="models">Models</button>
           <button class="graph-filter-btn" data-cat="projects">Projects</button>
+          <button class="graph-filter-btn" data-cat="tipping-points">Tipping Points</button>
         </div>
         <div class="graph-zoom-controls">
           <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
@@ -607,7 +651,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize graph if not already done
     if (typeof initGraph === 'function') {
-      initGraph();
+    initGraph();
     } else {
       console.error('initGraph function not found');
     }
@@ -618,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function closeGraph() {
     if (graphModal) {
-      graphModal.classList.remove('active');
+    graphModal.classList.remove('active');
       // Restore body scroll
       document.body.style.overflow = '';
     }
@@ -628,12 +672,31 @@ document.addEventListener('DOMContentLoaded', function() {
   window.openGraphNavigation = openGraph;
 
   // Ensure event listeners are attached after elements are created
-  if (sidebarGraph) {
+  // Use event delegation to handle clicks on sidebar graph
+  if (sidebarGraph && sidebarGraph.parentNode) {
     sidebarGraph.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
+      if (typeof openGraph === 'function') {
       openGraph();
-    });
+      } else if (typeof window.openGraphNavigation === 'function') {
+        window.openGraphNavigation();
+    }
+  });
+  } else {
+    // If sidebarGraph isn't in DOM yet, wait and retry
+    setTimeout(function() {
+      const graph = document.querySelector('.sidebar-graph');
+      if (graph) {
+        graph.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (typeof window.openGraphNavigation === 'function') {
+            window.openGraphNavigation();
+          }
+        });
+      }
+    }, 500);
   }
   
   const closeBtn = graphModal.querySelector('.graph-modal-close');
@@ -717,7 +780,7 @@ document.addEventListener('DOMContentLoaded', function() {
       currentNode.fx = centerX;
       currentNode.fy = centerY;
     }
-    
+
     // D3 force simulation for mini graph
     const simulation = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(d => d.id).distance(30))
@@ -732,8 +795,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clamp positions (except current node which stays fixed)
     nodes.forEach(n => {
       if (n.id !== currentId) {
-        n.x = Math.max(15, Math.min(width - 15, n.x));
-        n.y = Math.max(15, Math.min(height - 15, n.y));
+      n.x = Math.max(15, Math.min(width - 15, n.x));
+      n.y = Math.max(15, Math.min(height - 15, n.y));
       }
     });
     
@@ -796,7 +859,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     }
     try {
-      renderMiniGraph();
+  renderMiniGraph();
       console.log('Mini graph rendered successfully');
       return true;
     } catch (error) {
@@ -922,7 +985,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (zoomInBtn) {
       zoomInBtn.addEventListener('click', () => {
-        const container = document.getElementById('graph-container');
+    const container = document.getElementById('graph-container');
         const svg = d3.select(container).select('svg');
         if (svg && zoomBehavior) {
           svg.transition().call(zoomBehavior.scaleBy, 1.5);
@@ -981,7 +1044,10 @@ document.addEventListener('DOMContentLoaded', function() {
     svg.call(zoomBehavior);
 
     // Filter nodes by category and search
-    let filteredNodes = graphData.nodes.map(d => ({...d}));
+    let filteredNodes = graphData.nodes.map(d => ({
+      ...d,
+      id: String(d.id)  // Ensure all node IDs are strings
+    }));
     if (activeCategory !== 'all') {
       filteredNodes = filteredNodes.filter(n => n.cat === activeCategory);
     }
@@ -992,15 +1058,21 @@ document.addEventListener('DOMContentLoaded', function() {
       );
     }
     
-    const nodeIds = new Set(filteredNodes.map(n => n.id));
+    const nodeIds = new Set(filteredNodes.map(n => String(n.id)));
     
     // Filter links to only include filtered nodes
+    // Create new link objects with string IDs for D3 forceLink
     const filteredLinks = graphData.links
-      .map(l => ({source: l.source, target: l.target}))
       .filter(l => {
         const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
         const targetId = typeof l.target === 'object' ? l.target.id : l.target;
         return nodeIds.has(sourceId) && nodeIds.has(targetId);
+      })
+      .map(l => {
+        // Create new objects with string IDs (don't reference original)
+        const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+        const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+        return {source: String(sourceId), target: String(targetId)};
       });
 
     // Find connected nodes and paths
@@ -1031,15 +1103,15 @@ document.addEventListener('DOMContentLoaded', function() {
       neighbors.forEach(neighbor => {
         if (nodeIds.has(neighbor)) {
           findPathNodes(neighbor, visited);
-        }
-      });
+      }
+    });
       return visited;
     }
     
     const pathNodes = currentId ? findPathNodes(currentId) : new Set();
 
     // Find current node and center it
-    const currentNode = filteredNodes.find(n => n.id === currentId);
+    const currentNode = filteredNodes.find(n => String(n.id) === String(currentId));
     const centerX = width / 2;
     const centerY = height / 2;
     
@@ -1048,10 +1120,24 @@ document.addEventListener('DOMContentLoaded', function() {
       currentNode.fx = centerX;
       currentNode.fy = centerY;
     }
-    
+
     // D3 force simulation for full graph - centered on current node
+    // Create a map for quick node lookup by ID
+    const nodeMap = new Map(filteredNodes.map(n => [String(n.id), n]));
+    
+    // Ensure all links reference valid node IDs (filteredLinks already has string IDs)
+    const validLinks = filteredLinks.filter(l => {
+      const sourceId = String(l.source);
+      const targetId = String(l.target);
+      return nodeMap.has(sourceId) && nodeMap.has(targetId);
+    }).map(l => ({
+      // Create fresh objects to avoid mutation issues
+      source: String(l.source),
+      target: String(l.target)
+    }));
+    
     const simulation = d3.forceSimulation(filteredNodes)
-      .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(80))
+      .force('link', d3.forceLink(validLinks).id(d => String(d.id)).distance(80))
       .force('charge', d3.forceManyBody().strength(-200))
       .force('center', d3.forceCenter(centerX, centerY))
       .force('collision', d3.forceCollide().radius(25))
@@ -1062,9 +1148,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clamp positions (except current node which stays fixed at center)
     filteredNodes.forEach(n => {
-      if (n.id !== currentId) {
-        n.x = Math.max(50, Math.min(width - 50, n.x));
-        n.y = Math.max(50, Math.min(height - 50, n.y));
+      if (String(n.id) !== String(currentId)) {
+      n.x = Math.max(50, Math.min(width - 50, n.x));
+      n.y = Math.max(50, Math.min(height - 50, n.y));
       }
     });
     
@@ -1076,33 +1162,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Draw links with path highlighting (inside the g group for zoom/pan)
+    // After simulation, D3 mutates validLinks: source/target are now node objects
     g.selectAll('line.graph-link')
-      .data(filteredLinks)
+      .data(validLinks)
       .join('line')
       .attr('class', 'graph-link')
       .attr('x1', d => {
+        // After simulation, source/target are node objects with x/y properties
+        if (d.source && typeof d.source === 'object' && typeof d.source.x === 'number') {
+          return d.source.x;
+        }
+        // Fallback: find node by ID if source is still a string
         const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-        const sourceNode = filteredNodes.find(n => n.id === sourceId);
-        return sourceNode ? sourceNode.x : 0;
+        const sourceNode = filteredNodes.find(n => String(n.id) === String(sourceId));
+        return sourceNode && typeof sourceNode.x === 'number' ? sourceNode.x : 0;
       })
       .attr('y1', d => {
+        if (d.source && typeof d.source === 'object' && typeof d.source.y === 'number') {
+          return d.source.y;
+        }
         const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-        const sourceNode = filteredNodes.find(n => n.id === sourceId);
-        return sourceNode ? sourceNode.y : 0;
+        const sourceNode = filteredNodes.find(n => String(n.id) === String(sourceId));
+        return sourceNode && typeof sourceNode.y === 'number' ? sourceNode.y : 0;
       })
       .attr('x2', d => {
+        if (d.target && typeof d.target === 'object' && typeof d.target.x === 'number') {
+          return d.target.x;
+        }
         const targetId = typeof d.target === 'object' ? d.target.id : d.target;
-        const targetNode = filteredNodes.find(n => n.id === targetId);
-        return targetNode ? targetNode.x : 0;
+        const targetNode = filteredNodes.find(n => String(n.id) === String(targetId));
+        return targetNode && typeof targetNode.x === 'number' ? targetNode.x : 0;
       })
       .attr('y2', d => {
+        if (d.target && typeof d.target === 'object' && typeof d.target.y === 'number') {
+          return d.target.y;
+        }
         const targetId = typeof d.target === 'object' ? d.target.id : d.target;
-        const targetNode = filteredNodes.find(n => n.id === targetId);
-        return targetNode ? targetNode.y : 0;
+        const targetNode = filteredNodes.find(n => String(n.id) === String(targetId));
+        return targetNode && typeof targetNode.y === 'number' ? targetNode.y : 0;
       })
       .attr('class', d => {
-        const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-        const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+        // Get IDs from node objects (after simulation) or fallback to string IDs
+        const sourceId = d.source && typeof d.source === 'object' ? String(d.source.id) : String(d.source);
+        const targetId = d.target && typeof d.target === 'object' ? String(d.target.id) : String(d.target);
         const bothConnected = connectedNodes.has(sourceId) && connectedNodes.has(targetId);
         const bothInPath = pathNodes.has(sourceId) && pathNodes.has(targetId);
         return 'graph-link' + (bothConnected ? ' connected' : '') + (bothInPath ? ' path' : '');
@@ -1133,7 +1235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return 6;
       })
       .attr('fill', d => {
-        if (d.id === currentId) return 'var(--bs-primary)';
+        if (d.id === currentId) return '#20B2AA';  /* True Teal */
         if (connectedNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
         if (pathNodes.has(d.id)) return catColors[d.cat] || 'var(--bs-secondary)';
         return catColors[d.cat] || 'var(--bs-secondary)';
@@ -1152,6 +1254,693 @@ document.addEventListener('DOMContentLoaded', function() {
     currentGraphState = { nodes: filteredNodes, links: filteredLinks, svg, simulation };
   }
 });
+</script>
+
+<!-- Image Lightbox/Modal for clickable enlargements -->
+<style>
+/* Lightbox overlay */
+.image-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-lightbox.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.image-lightbox-content {
+  max-width: 95%;
+  max-height: 95%;
+  margin: auto;
+  display: block;
+  object-fit: contain;
+  cursor: default;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.image-lightbox-close:hover,
+.image-lightbox-close:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Make figures and images clickable */
+.quarto-figure,
+figure,
+.cell-output-display img,
+.cell-output-display svg,
+.quarto-plot img,
+img[src*=".png"],
+img[src*=".jpg"],
+img[src*=".jpeg"],
+img[src*=".svg"] {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.quarto-figure:hover,
+figure:hover,
+.cell-output-display img:hover,
+.cell-output-display svg:hover,
+.quarto-plot img:hover,
+img[src*=".png"]:hover,
+img[src*=".jpg"]:hover,
+img[src*=".jpeg"]:hover,
+img[src*=".svg"]:hover {
+  opacity: 0.9;
+}
+
+/* Exclude icons and small images */
+.navbar img,
+.nav-footer img,
+img[width][width<100],
+img[height][height<100] {
+  cursor: default;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Create lightbox element
+  const lightbox = document.createElement('div');
+  lightbox.className = 'image-lightbox';
+  lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img class="image-lightbox-content" src="" alt="">';
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxClose = lightbox.querySelector('.image-lightbox-close');
+
+  // Function to open lightbox
+  function openLightbox(imgSrc, imgAlt) {
+    lightboxImg.src = imgSrc;
+    lightboxImg.alt = imgAlt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Function to close lightbox
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close on X click
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  // Close on overlay click
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+
+  // Make all figures and images clickable
+  const selectors = [
+    '.quarto-figure img',
+    'figure img',
+    '.cell-output-display img',
+    '.cell-output-display svg',
+    '.quarto-plot img',
+    '.quarto-figure svg',
+    'figure svg'
+  ];
+
+  selectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(img => {
+      // Skip small images (likely icons)
+      if (img.width && img.width < 100) return;
+      if (img.height && img.height < 100) return;
+      
+      // Skip navbar/footer images
+      if (img.closest('.navbar') || img.closest('.nav-footer')) return;
+
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const src = this.src || this.getAttribute('data-src') || this.href;
+        if (src) {
+          openLightbox(src, this.alt || '');
+        }
+      });
+    });
+  });
+
+  // Also handle figure containers
+  document.querySelectorAll('.quarto-figure, figure').forEach(figure => {
+    const img = figure.querySelector('img, svg');
+    if (img && !img.closest('.navbar') && !img.closest('.nav-footer')) {
+      figure.style.cursor = 'pointer';
+      figure.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'IMG' && e.target.tagName !== 'SVG') {
+          const img = this.querySelector('img, svg');
+          if (img) {
+            e.preventDefault();
+            e.stopPropagation();
+            const src = img.src || img.getAttribute('data-src') || img.href;
+            if (src) {
+              openLightbox(src, img.alt || '');
+            }
+          }
+        }
+      });
+    }
+  });
+
+  // Back to top button
+  (function() {
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top-btn';
+    backToTopBtn.innerHTML = '↑';
+    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.setAttribute('title', 'Back to top');
+    backToTopBtn.type = 'button';
+    
+    if (document.body) {
+      document.body.appendChild(backToTopBtn);
+    } else {
+      // Wait for body if not ready
+      setTimeout(function() {
+        document.body.appendChild(backToTopBtn);
+      }, 100);
+    }
+
+    function updateBackToTopVisibility() {
+      if (!backToTopBtn.parentNode) return;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+      if (scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+
+    // Use both scroll events for better compatibility
+    window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+    document.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+    updateBackToTopVisibility(); // Check on load
+
+    backToTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Try multiple scroll methods for compatibility
+      if (window.scrollTo) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else if (document.documentElement.scrollTo) {
+        document.documentElement.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        // Fallback
+        window.scrollTo(0, 0);
+      }
+    });
+  })();
+
+
+  // Related Notes Section
+  function addRelatedNotes() {
+    // Only on note pages (not index, not projects, etc.)
+    const path = window.location.pathname;
+    const isNotePage = path.startsWith('/notes/') && 
+                      !path.endsWith('/notes/') && 
+                      !path.endsWith('/notes/index.html') &&
+                      path.includes('.html');
+    
+    if (!isNotePage) return;
+
+    // Get current page categories from meta tags or page data
+    const currentCategories = [];
+    const currentTags = [];
+    
+    // Try to get from meta tags
+    const categoryMeta = document.querySelector('meta[name="categories"], meta[property="article:tag"]');
+    if (categoryMeta) {
+      const cats = categoryMeta.content.split(',').map(c => c.trim());
+      currentCategories.push(...cats);
+    }
+    
+    // Try to get from page data attributes
+    const pageData = document.querySelector('[data-categories]');
+    if (pageData) {
+      const cats = pageData.getAttribute('data-categories').split(',').map(c => c.trim());
+      currentCategories.push(...cats);
+    }
+
+    // Get all notes from search.json or listings
+    fetch('/search.json')
+      .then(response => response.json())
+      .then(data => {
+        // Extract unique note pages
+        const notePages = new Map();
+        data.forEach(item => {
+          if (item.href && item.href.startsWith('/notes/') && 
+              !item.href.endsWith('/notes/index.html') &&
+              item.href.includes('.html') &&
+              !item.section) { // Only main pages, not sections
+            if (!notePages.has(item.href) || !notePages.get(item.href).title) {
+              notePages.set(item.href, {
+                href: item.href,
+                title: item.title || 'Untitled',
+                text: item.text || ''
+              });
+            }
+          }
+        });
+
+        // Find related notes (simple: same title words or series)
+        const currentTitle = document.querySelector('h1, .quarto-title h1')?.textContent || '';
+        const currentText = document.body.innerText || '';
+        const currentTitleWords = currentTitle.toLowerCase().split(/\s+/);
+        
+        const related = Array.from(notePages.values())
+          .filter(note => {
+            // Don't include current page
+            if (note.href === path || note.href === path.replace('.html', '')) return false;
+            
+            // Check for shared words in title
+            const noteTitleWords = note.title.toLowerCase().split(/\s+/);
+            const sharedWords = currentTitleWords.filter(w => 
+              w.length > 3 && noteTitleWords.includes(w)
+            );
+            
+            // Check for series (e.g., "Part 1", "Part 2")
+            const isSeries = /part\s+\d+/i.test(currentTitle) && /part\s+\d+/i.test(note.title);
+            
+            return sharedWords.length > 0 || isSeries || 
+                   (currentText.includes('risk') && note.text.toLowerCase().includes('risk')) ||
+                   (currentText.includes('climate') && note.text.toLowerCase().includes('climate'));
+          })
+          .slice(0, 5); // Limit to 5 related notes
+
+        if (related.length > 0) {
+          // Create related notes section
+          const relatedSection = document.createElement('div');
+          relatedSection.className = 'related-notes-section';
+          relatedSection.innerHTML = `
+            <h2 class="related-notes-heading">Related Notes</h2>
+            <ul class="related-notes-list">
+              ${related.map(note => `
+                <li>
+                  <a href="${note.href}">${note.title}</a>
+                </li>
+              `).join('')}
+            </ul>
+          `;
+
+          // Insert before footer or at end of content
+          const content = document.querySelector('#quarto-document-content, .content, main, article');
+          if (content) {
+            content.appendChild(relatedSection);
+          }
+        }
+      })
+      .catch(err => console.log('Could not load related notes:', err));
+  }
+
+  // Run after page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addRelatedNotes);
+  } else {
+    addRelatedNotes();
+  }
+});
+</script>
+
+<style>
+/* Related Notes Section */
+.related-notes-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.related-notes-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--bs-body-color);
+}
+
+.related-notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related-notes-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.related-notes-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--bs-secondary);
+}
+
+.related-notes-list a {
+  color: #1a1a1a !important;  /* Subtle, matches body text */
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.related-notes-list a:hover {
+  color: #20B2AA !important;  /* Teal on hover for interactivity */
+  text-decoration: underline;
+}
+</style>
+
+<style>
+/* Back to top button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background: var(--bs-primary);
+  color: var(--bs-body-bg);
+  border-color: var(--bs-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Hide in print */
+@media print {
+  .back-to-top-btn {
+    display: none !important;
+  }
+}
+</style>
+
+<style>
+/* Collapsible Code Blocks - Global */
+.code-block-wrapper {
+  margin: 1.5rem 0;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background: #f8f8f8;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  border-bottom: 1px solid var(--bs-border-color);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.code-block-header:hover {
+  background: #e8e8e8;
+}
+
+.code-block-title {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.code-block-toggle {
+  font-size: 0.75rem;
+  color: #666;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.code-block-wrapper.expanded .code-block-toggle {
+  transform: rotate(180deg);
+}
+
+.code-block-content {
+  display: none;
+  overflow: hidden;
+}
+
+.code-block-wrapper.expanded .code-block-content {
+  display: block;
+}
+
+.code-block-wrapper pre,
+.code-block-wrapper code {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Ensure outputs are always visible - never collapse them */
+.cell-output,
+.cell-output-stdout,
+.cell-output-stderr,
+.cell-output-display,
+.cell-output pre,
+.cell-output code {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure unwrapped code blocks are visible until JavaScript wraps them */
+pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
+.cell-code:not(.code-block-wrapper .cell-code) {
+  display: block !important;
+}
+</style>
+
+<script>
+(function() {
+  // Function to wrap code blocks in collapsible structure
+  // ONLY wrap input code blocks, NOT outputs
+  function makeCodeBlocksCollapsible() {
+    try {
+    // Find only INPUT code blocks - exclude outputs
+    // Target pre.sourceCode (standalone code blocks) and .cell-code (input code in cells)
+    // Exclude ones already wrapped and exclude any inside .cell-output
+    const codeBlocks = document.querySelectorAll('pre.sourceCode:not(.code-block-wrapper pre.sourceCode):not(.cell-output pre), .cell-code:not(.code-block-wrapper .cell-code):not(.cell-output .cell-code)');
+    
+    if (codeBlocks.length === 0) return;
+    
+    codeBlocks.forEach(function(block) {
+      // Skip if already wrapped
+      if (block.closest('.code-block-wrapper')) {
+        return;
+      }
+
+      // Skip if inside output container
+      if (block.closest('.cell-output, .cell-output-stdout, .cell-output-stderr, .cell-output-display')) {
+        return;
+      }
+
+      // Skip inline code
+      if (block.tagName === 'CODE' && block.parentElement && block.parentElement.tagName !== 'PRE') {
+        return;
+      }
+
+      // Get language from class or parent
+      let language = 'code';
+      const classList = block.className || '';
+      if (classList.includes('sourceCode')) {
+        const match = classList.match(/sourceCode-(\w+)/);
+        if (match) language = match[1];
+      } else if (block.querySelector('code')) {
+        const codeEl = block.querySelector('code');
+        if (codeEl && codeEl.className) {
+          const match = codeEl.className.match(/language-(\w+)|sourceCode-(\w+)/);
+          if (match) language = match[1] || match[2];
+        }
+      }
+
+      // Create wrapper
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+
+      // Create header
+      const header = document.createElement('div');
+      header.className = 'code-block-header';
+      header.innerHTML = `
+        <span class="code-block-title">
+          <span class="code-block-toggle">▼</span>
+          <span>${language}</span>
+        </span>
+      `;
+
+      // Create content container
+      const content = document.createElement('div');
+      content.className = 'code-block-content';
+      
+      // Store parent and next sibling BEFORE moving block
+      const parent = block.parentNode;
+      const nextSibling = block.nextSibling;
+      
+      // Move the block into content (don't clone, move it)
+      // This removes block from parent, so we need parent/nextSibling before this
+      content.appendChild(block);
+
+      // Assemble
+      wrapper.appendChild(header);
+      wrapper.appendChild(content);
+      
+      // Insert wrapper where block was
+      // Note: block is now inside content, so we insert wrapper at block's old position
+      if (parent) {
+        // If there's a next sibling, insert before it (block was before nextSibling)
+        // Otherwise append to end
+        if (nextSibling && nextSibling.parentNode === parent) {
+          parent.insertBefore(wrapper, nextSibling);
+        } else {
+          // If nextSibling is null or invalid, append to parent
+          parent.appendChild(wrapper);
+        }
+      }
+
+      // Add click handler
+      header.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.toggle('expanded');
+      });
+    });
+    } catch (error) {
+      console.error('Error in makeCodeBlocksCollapsible:', error);
+      // Don't break the page if code block wrapping fails
+    }
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', makeCodeBlocksCollapsible);
+  } else {
+    // DOM already loaded
+    makeCodeBlocksCollapsible();
+  }
+
+  // Also run after delays to catch dynamically loaded content
+  setTimeout(makeCodeBlocksCollapsible, 100);
+  setTimeout(makeCodeBlocksCollapsible, 500);
+  setTimeout(makeCodeBlocksCollapsible, 1000);
+
+  // Use MutationObserver to catch dynamically added code blocks
+  const observer = new MutationObserver(function(mutations) {
+    let shouldRun = false;
+    mutations.forEach(function(mutation) {
+      if (mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) { // Element node
+            // Only trigger if it's an input code block, not an output
+            if (node.matches && (
+              (node.matches('pre.sourceCode') && !node.closest('.cell-output')) ||
+              (node.matches('.cell-code') && !node.closest('.cell-output')) ||
+              (node.querySelector && node.querySelector('pre.sourceCode:not(.cell-output pre), .cell-code:not(.cell-output .cell-code)'))
+            )) {
+              shouldRun = true;
+            }
+          }
+        });
+      }
+    });
+    if (shouldRun) {
+      setTimeout(makeCodeBlocksCollapsible, 100);
+    }
+  });
+
+  // Start observing
+  if (document.body) {
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  }
+})();
 </script>
 
 
@@ -1339,7 +2128,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="navbar-title">re:current_analytics</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools tools-end">
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="mailto:timm.walker@recurrentanalytics.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           <div id="quarto-search" class="" title="Search"></div>
@@ -1360,7 +2151,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <li><a href="#key-implementation-decisions" id="toc-key-implementation-decisions" class="nav-link" data-scroll-target="#key-implementation-decisions">Key Implementation Decisions</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/notes/risk-series-3.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1391,7 +2182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 15, 2025</p>
+      <p class="date-modified">December 16, 2025</p>
     </div>
   </div>
     
@@ -1408,7 +2199,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div class="series-nav-links">
 <div class="series-nav-prev">
-<p><a href="../notes/risk-series-2.html">← Previous: Data</a></p>
+<p><a href="risk-series-2.html">← Previous: Data</a></p>
 </div>
 <div class="series-nav-next">
 
@@ -1416,12 +2207,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 <section id="putting-it-together" class="level2">
-<h2 class="anchored" data-anchor-id="putting-it-together">Putting It Together</h2>
-<p>Armed with the <a href="../notes/risk-series-1.html">theoretical foundations</a> and <a href="../notes/risk-series-2.html">data sources</a>, we can now implement a basic risk model.</p>
+<h2 data-anchor-id="putting-it-together">Putting It Together</h2>
+<p>Armed with the <a href="risk-series-1.html">theoretical foundations</a> and <a href="risk-series-2.html">data sources</a>, we can now implement a basic risk model.</p>
 </section>
 <section id="a-simple-loss-model" class="level2">
-<h2 class="anchored" data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
-<div id="2d43bef4" class="cell" data-execution_count="1">
+<h2 data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
+<div id="c7bcd99b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_losses(n_scenarios<span class="op">=</span><span class="dv">10000</span>, </span>
@@ -1451,14 +2242,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR 99%: $</span><span class="sc">{</span>np<span class="sc">.</span>percentile(losses, <span class="dv">99</span>)<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max Loss: $</span><span class="sc">{</span>losses<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Expected Loss: $30,053
-VaR 99%: $137,228
-Max Loss: $260,886</code></pre>
+<pre><code>Expected Loss: $29,955
+VaR 99%: $138,687
+Max Loss: $250,859</code></pre>
 </div>
 </div>
 </section>
 <section id="key-implementation-decisions" class="level2">
-<h2 class="anchored" data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
+<h2 data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
 <p>When building production risk models, consider:</p>
 <ol type="1">
 <li><strong>Correlation structure</strong> - How do risks aggregate?</li>
@@ -1468,12 +2259,12 @@ Max Loss: $260,886</code></pre>
 </ol>
 </section>
 <section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<h2 data-anchor-id="further-reading">Further Reading</h2>
 <p>This series provides a foundation. For deeper dives:</p>
 <section id="linked-from" class="level4 backlinks">
-<h4 class="anchored" data-anchor-id="linked-from">Linked from</h4>
+<h4 data-anchor-id="linked-from">Linked from</h4>
 <ul>
-<li><a href="../notes/risk-series-2.html">Risk Modelling Part 2: Data</a></li>
+<li><a href="risk-series-2.html">Risk Modelling Part 2: Data</a></li>
 </ul>
 </section>
 
@@ -1498,13 +2289,6 @@ Max Loss: $260,886</code></pre>
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -1959,7 +2743,7 @@ Max Loss: $260,886</code></pre>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>::: {.series-nav-links}</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>::: {.series-nav-prev}</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Previous: Data</span><span class="co">](risk-series-2.qmd)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Previous: Data</span><span class="co">](risk-series-2.html)</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>::: {.series-nav-next}</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1968,7 +2752,7 @@ Max Loss: $260,886</code></pre>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting It Together</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>Armed with the <span class="co">[</span><span class="ot">theoretical foundations</span><span class="co">](risk-series-1.qmd)</span> and <span class="co">[</span><span class="ot">data sources</span><span class="co">](risk-series-2.qmd)</span>, we can now implement a basic risk model.</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>Armed with the <span class="co">[</span><span class="ot">theoretical foundations</span><span class="co">](risk-series-1.html)</span> and <span class="co">[</span><span class="ot">data sources</span><span class="co">](risk-series-2.html)</span>, we can now implement a basic risk model.</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## A Simple Loss Model</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
@@ -2019,7 +2803,7 @@ Max Loss: $260,886</code></pre>
 <span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>::: {.backlinks}</span>
 <span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Linked from</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Risk Modelling Part 2: Data</span><span class="co">](risk-series-2.qmd)</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Risk Modelling Part 2: Data</span><span class="co">](risk-series-2.html)</span></span>
 <span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
@@ -2031,10 +2815,10 @@ Max Loss: $260,886</code></pre>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/notes/risk-series-3.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
     </div>
+    <div class="nav-footer-right">
+<p><a href="../notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a></p>
+</div>
   </div>
 </footer>
 

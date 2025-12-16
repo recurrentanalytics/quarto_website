@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About &amp; Contact – re:current_analytics</title>
+<title>deployment – re:current_analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1943,10 +1943,10 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
 </script>
 
 
-<meta property="og:title" content="About &amp; Contact – re:current_analytics">
+<meta property="og:title" content="re:current_analytics">
 <meta property="og:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
 <meta property="og:site_name" content="re:current_analytics">
-<meta name="twitter:title" content="About &amp; Contact – re:current_analytics">
+<meta name="twitter:title" content="re:current_analytics">
 <meta name="twitter:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
 <meta name="twitter:creator" content="@timmwalker">
 <meta name="twitter:card" content="summary">
@@ -2145,95 +2145,246 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#research-interests" id="toc-research-interests" class="nav-link active" data-scroll-target="#research-interests">Research Interests</a></li>
-  <li><a href="#work" id="toc-work" class="nav-link" data-scroll-target="#work">Work</a>
+  <li><a href="#deployment-guide" id="toc-deployment-guide" class="nav-link active" data-scroll-target="#deployment-guide">Deployment Guide</a>
   <ul class="collapse">
-  <li><a href="#current-projects" id="toc-current-projects" class="nav-link" data-scroll-target="#current-projects">Current Projects</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#local-development-workflow" id="toc-local-development-workflow" class="nav-link" data-scroll-target="#local-development-workflow">Local Development Workflow</a>
+  <ul class="collapse">
+  <li><a href="#step-1-build-locally" id="toc-step-1-build-locally" class="nav-link" data-scroll-target="#step-1-build-locally">Step 1: Build Locally</a></li>
+  <li><a href="#step-2-preview-locally" id="toc-step-2-preview-locally" class="nav-link" data-scroll-target="#step-2-preview-locally">Step 2: Preview Locally</a></li>
+  <li><a href="#step-3-verify-build" id="toc-step-3-verify-build" class="nav-link" data-scroll-target="#step-3-verify-build">Step 3: Verify Build</a></li>
   </ul></li>
-  <li><a href="#availability" id="toc-availability" class="nav-link" data-scroll-target="#availability">Availability</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#deployment-workflow" id="toc-deployment-workflow" class="nav-link" data-scroll-target="#deployment-workflow">Deployment Workflow</a>
+  <ul class="collapse">
+  <li><a href="#automatic-deployment-recommended" id="toc-automatic-deployment-recommended" class="nav-link" data-scroll-target="#automatic-deployment-recommended">Automatic Deployment (Recommended)</a></li>
+  <li><a href="#manual-deployment" id="toc-manual-deployment" class="nav-link" data-scroll-target="#manual-deployment">Manual Deployment</a></li>
+  </ul></li>
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes">Important Notes</a>
+  <ul class="collapse">
+  <li><a href="#cname-file-preservation" id="toc-cname-file-preservation" class="nav-link" data-scroll-target="#cname-file-preservation">CNAME File Preservation</a></li>
+  <li><a href="#branch-name" id="toc-branch-name" class="nav-link" data-scroll-target="#branch-name">Branch Name</a></li>
+  <li><a href="#custom-domain" id="toc-custom-domain" class="nav-link" data-scroll-target="#custom-domain">Custom Domain</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#build-fails-in-github-actions" id="toc-build-fails-in-github-actions" class="nav-link" data-scroll-target="#build-fails-in-github-actions">Build Fails in GitHub Actions</a></li>
+  <li><a href="#site-not-updating" id="toc-site-not-updating" class="nav-link" data-scroll-target="#site-not-updating">Site Not Updating</a></li>
+  <li><a href="#cname-file-missing" id="toc-cname-file-missing" class="nav-link" data-scroll-target="#cname-file-missing">CNAME File Missing</a></li>
+  </ul></li>
+  <li><a href="#rollback" id="toc-rollback" class="nav-link" data-scroll-target="#rollback">Rollback</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick Reference</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">About &amp; Contact</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<p>I’m Timm Walker. I work at the intersection of <strong>climate risk</strong>, <strong>(re)insurance</strong>, and <strong>data-driven modelling</strong>.<br>
-This site is a <strong>public lab notebook</strong> for the <em>re:current_analytics</em> project: small, composable models; clean notes; reproducible code.</p>
-<section id="research-interests" class="level2">
-<h2 data-anchor-id="research-interests">Research Interests</h2>
-<p>My work focuses on making climate risk quantifiable, transparent, and actionable. Key areas:</p>
+<section id="deployment-guide" class="level1">
+<h1>Deployment Guide</h1>
+<p>This guide explains how to safely build and deploy the Quarto website to GitHub Pages.</p>
+<section id="prerequisites" class="level2">
+<h2 data-anchor-id="prerequisites">Prerequisites</h2>
+<ol type="1">
+<li><strong>GitHub Pages must be configured</strong>:
 <ul>
-<li><strong>Hazard Analytics</strong> - Identifying and characterizing climate extremes (heatwaves, floods, droughts)</li>
-<li><strong>Parametric Triggers</strong> - Designing index-based insurance mechanisms</li>
-<li><strong>Time-Series Analysis</strong> - Modeling temporal patterns in climate and energy data</li>
-<li><strong>Energy–Water Systems</strong> - Understanding interdependencies in critical infrastructure</li>
-<li><strong>Serious Games</strong> - Using game design to explore complex systems (see <a href="./tipping-points/">Tipping Points</a>)</li>
-<li><strong>Uncertainty Quantification</strong> - Making model limitations explicit and tractable</li>
-<li><strong>Institutional Reality</strong> - Where quantitative methods meet governance and incentives</li>
-</ul>
-</section>
-<section id="work" class="level2">
-<h2 data-anchor-id="work">Work</h2>
-<p>I work on climate / risk analytics, consulting, and public-sector projects. Currently building <em>re:current_analytics</em> — an open lab for climate modelling and decision tools.</p>
-<section id="current-projects" class="level3">
-<h3 data-anchor-id="current-projects">Current Projects</h3>
+<li>Go to your repository Settings → Pages</li>
+<li>Under “Source”, select <strong>“GitHub Actions”</strong> (not “Deploy from a branch”)</li>
+<li>Save the settings</li>
+</ul></li>
+<li><strong>Repository permissions</strong>:
 <ul>
-<li><strong>re:current_analytics</strong> - This lab notebook and associated tools</li>
-<li><strong>Climate Extremes Explorer</strong> - Interactive analysis of extreme events</li>
-<li><strong>Heatwave-Price Analysis</strong> - Exploring relationships between temperature and energy markets</li>
-<li><strong>Tipping Points</strong> - Strategic card game modeling climate–politics interactions</li>
-</ul>
+<li>The GitHub Actions workflow needs write permissions to deploy</li>
+<li>These are automatically granted when you enable GitHub Actions</li>
+</ul></li>
+</ol>
+</section>
+<section id="local-development-workflow" class="level2">
+<h2 data-anchor-id="local-development-workflow">Local Development Workflow</h2>
+<section id="step-1-build-locally" class="level3">
+<h3 data-anchor-id="step-1-build-locally">Step 1: Build Locally</h3>
+<p>Always test your changes locally before deploying:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate conda environment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate recurrent-analytics</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the site</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Or use the convenience script</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> build</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-2-preview-locally" class="level3">
+<h3 data-anchor-id="step-2-preview-locally">Step 2: Preview Locally</h3>
+<p>Preview the built site to catch any issues:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: Use Quarto preview</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: Use the convenience script</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> preview</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 3: Use Python server</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> server.py</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Then open http://localhost:5000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-3-verify-build" class="level3">
+<h3 data-anchor-id="step-3-verify-build">Step 3: Verify Build</h3>
+<p>Check that: - ✅ All pages render correctly - ✅ <code>_site/CNAME</code> file exists (for custom domain) - ✅ All links work - ✅ Images and assets load properly - ✅ No console errors in browser</p>
 </section>
 </section>
-<section id="availability" class="level2">
-<h2 data-anchor-id="availability">Availability</h2>
-<p>I’m available for consulting engagements that align with my approach: transparent, reproducible, uncertainty-aware climate risk analysis.</p>
-<p>If you’re working on problems where intellectual honesty matters more than reassuring narratives, let’s talk.</p>
-<p><em>See <a href="./working-together.html">Working Together</a> for more on how I approach engagements.</em></p>
+<section id="deployment-workflow" class="level2">
+<h2 data-anchor-id="deployment-workflow">Deployment Workflow</h2>
+<section id="automatic-deployment-recommended" class="level3">
+<h3 data-anchor-id="automatic-deployment-recommended">Automatic Deployment (Recommended)</h3>
+<p>The site automatically deploys when you push to the <code>main</code> branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make your changes, then:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Your commit message"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>What happens:</strong> 1. GitHub Actions workflow triggers automatically 2. Site is built using Quarto 3. <code>CNAME</code> file is preserved 4. Site is deployed to GitHub Pages 5. Site goes live (usually within 1-2 minutes)</p>
+<p><strong>Monitor deployment:</strong> - Go to the “Actions” tab in your GitHub repository - Watch the workflow run in real-time - Check for any errors</p>
 </section>
-<section id="contact" class="level2">
-<h2 data-anchor-id="contact">Contact</h2>
+<section id="manual-deployment" class="level3">
+<h3 data-anchor-id="manual-deployment">Manual Deployment</h3>
+<p>If you need to manually trigger deployment:</p>
+<ol type="1">
+<li>Go to your repository on GitHub</li>
+<li>Click the “Actions” tab</li>
+<li>Select “Deploy to GitHub Pages” workflow</li>
+<li>Click “Run workflow” → “Run workflow”</li>
+<li>Select the branch (usually <code>main</code>)</li>
+<li>Click “Run workflow”</li>
+</ol>
+</section>
+</section>
+<section id="important-notes" class="level2">
+<h2 data-anchor-id="important-notes">Important Notes</h2>
+<section id="cname-file-preservation" class="level3">
+<h3 data-anchor-id="cname-file-preservation">CNAME File Preservation</h3>
+<p>The workflow automatically ensures the <code>CNAME</code> file is present in <code>_site/</code>: - If <code>CNAME</code> exists in the root, it’s copied to <code>_site/</code> - This preserves your custom domain (recurrentanalytics.com)</p>
+</section>
+<section id="branch-name" class="level3">
+<h3 data-anchor-id="branch-name">Branch Name</h3>
+<p>The workflow is configured for the <code>main</code> branch. If your default branch is different: 1. Edit <code>.github/workflows/deploy.yml</code> 2. Change <code>branches: - main</code> to your branch name (e.g., <code>master</code>)</p>
+</section>
+<section id="custom-domain" class="level3">
+<h3 data-anchor-id="custom-domain">Custom Domain</h3>
+<p>If you’re using a custom domain: - The <code>CNAME</code> file must exist in the repository root - GitHub Pages will automatically use it - DNS must be configured correctly (see GitHub Pages docs)</p>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 data-anchor-id="troubleshooting">Troubleshooting</h2>
+<section id="build-fails-in-github-actions" class="level3">
+<h3 data-anchor-id="build-fails-in-github-actions">Build Fails in GitHub Actions</h3>
+<ol type="1">
+<li><strong>Check the Actions log</strong>:
 <ul>
-<li><strong>Email:</strong> <a href="mailto:timm.walker@recurrentanalytics.com">timm.walker@recurrentanalytics.com</a></li>
-<li><strong>GitHub:</strong> <a href="https://github.com/recurrentanalytics">recurrentanalytics</a></li>
-<li><strong>Location:</strong> Germany (DE)</li>
-</ul>
-<p>For consulting inquiries, research discussions, or questions about the work here, feel free to reach out.</p>
-</section>
-<section id="background" class="level2">
-<h2 data-anchor-id="background">Background</h2>
+<li>Go to Actions tab → Click on failed workflow</li>
+<li>Expand the failed step to see error details</li>
+</ul></li>
+<li><strong>Common issues</strong>:
 <ul>
-<li>Climate / risk analytics, consulting &amp; public-sector work</li>
-<li>Building <em>re:current_analytics</em> — an open lab for climate modelling and decision tools</li>
-<li>Focus on transparency, reproducibility, and making uncertainty explicit</li>
-</ul>
-<p>Download full CV (PDF): <em>add later</em></p>
+<li>Missing Python dependencies → Check <code>requirements.txt</code></li>
+<li>Quarto version issues → Workflow uses latest Quarto</li>
+<li>Python code errors → Test locally first</li>
+</ul></li>
+<li><strong>Fix and retry</strong>:
+<ul>
+<li>Fix the issue locally</li>
+<li>Test with <code>quarto render</code></li>
+<li>Commit and push again</li>
+</ul></li>
+</ol>
+</section>
+<section id="site-not-updating" class="level3">
+<h3 data-anchor-id="site-not-updating">Site Not Updating</h3>
+<ol type="1">
+<li><strong>Check deployment status</strong>:
+<ul>
+<li>Go to Settings → Pages</li>
+<li>Check “Latest deployment” status</li>
+</ul></li>
+<li><strong>Verify workflow ran</strong>:
+<ul>
+<li>Go to Actions tab</li>
+<li>Ensure workflow completed successfully</li>
+</ul></li>
+<li><strong>Clear browser cache</strong>:
+<ul>
+<li>Hard refresh (Ctrl+Shift+R or Cmd+Shift+R)</li>
+<li>Or wait a few minutes for CDN to update</li>
+</ul></li>
+</ol>
+</section>
+<section id="cname-file-missing" class="level3">
+<h3 data-anchor-id="cname-file-missing">CNAME File Missing</h3>
+<p>If your custom domain stops working:</p>
+<ol type="1">
+<li><p><strong>Verify CNAME exists</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> CNAME</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> CNAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Check deployment</strong>:</p>
+<ul>
+<li>Go to Actions → Latest workflow run</li>
+<li>Check “Verify CNAME file exists” step</li>
+</ul></li>
+<li><p><strong>Manual fix</strong> (if needed):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure CNAME is in root</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"recurrentanalytics.com"</span> <span class="op">&gt;</span> CNAME</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add CNAME</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Restore CNAME file"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+</section>
+</section>
+<section id="rollback" class="level2">
+<h2 data-anchor-id="rollback">Rollback</h2>
+<p>If you need to rollback to a previous version:</p>
+<ol type="1">
+<li><p><strong>Find the previous commit</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Revert or checkout</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span> -- .</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Rollback to previous version"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+</section>
+<section id="best-practices" class="level2">
+<h2 data-anchor-id="best-practices">Best Practices</h2>
+<ol type="1">
+<li>✅ <strong>Always test locally first</strong> - Use <code>quarto render</code> and preview</li>
+<li>✅ <strong>Commit frequently</strong> - Small commits are easier to debug</li>
+<li>✅ <strong>Check Actions tab</strong> - Monitor deployments for issues</li>
+<li>✅ <strong>Keep CNAME in root</strong> - Don’t delete or modify unnecessarily</li>
+<li>✅ <strong>Use meaningful commit messages</strong> - Helps track changes</li>
+</ol>
+</section>
+<section id="quick-reference" class="level2">
+<h2 data-anchor-id="quick-reference">Quick Reference</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local development</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate recurrent-analytics</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> build      <span class="co"># Build site</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> preview    <span class="co"># Preview site</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Update site"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check deployment</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># → Go to GitHub Actions tab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -2694,59 +2845,221 @@ This site is a <strong>public lab notebook</strong> for the <em>re:current_analy
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> About &amp; Contact</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>I'm Timm Walker. I work at the intersection of **climate risk**, **(re)insurance**, and **data-driven modelling**.  </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>This site is a **public lab notebook** for the *re:current_analytics* project: small, composable models; clean notes; reproducible code.</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Interests</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>My work focuses on making climate risk quantifiable, transparent, and actionable. Key areas:</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Hazard Analytics** - Identifying and characterizing climate extremes (heatwaves, floods, droughts)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parametric Triggers** - Designing index-based insurance mechanisms</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Time-Series Analysis** - Modeling temporal patterns in climate and energy data</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Energy–Water Systems** - Understanding interdependencies in critical infrastructure</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Serious Games** - Using game design to explore complex systems (see <span class="co">[</span><span class="ot">Tipping Points</span><span class="co">](/tipping-points/)</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Uncertainty Quantification** - Making model limitations explicit and tractable</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Institutional Reality** - Where quantitative methods meet governance and incentives</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Work</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>I work on climate / risk analytics, consulting, and public-sector projects. Currently building *re:current_analytics* — an open lab for climate modelling and decision tools.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Current Projects</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**re:current_analytics** - This lab notebook and associated tools</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Climate Extremes Explorer** - Interactive analysis of extreme events</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Heatwave-Price Analysis** - Exploring relationships between temperature and energy markets</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Tipping Points** - Strategic card game modeling climate–politics interactions</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Availability</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>I'm available for consulting engagements that align with my approach: transparent, reproducible, uncertainty-aware climate risk analysis.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>If you're working on problems where intellectual honesty matters more than reassuring narratives, let's talk.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>*See [Working Together](/working-together.html) for more on how I approach engagements.*</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contact</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Email:** <span class="co">[</span><span class="ot">timm.walker@recurrentanalytics.com</span><span class="co">](mailto:timm.walker@recurrentanalytics.com)</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**GitHub:** <span class="co">[</span><span class="ot">recurrentanalytics</span><span class="co">](https://github.com/recurrentanalytics)</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Location:** Germany (DE)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>For consulting inquiries, research discussions, or questions about the work here, feel free to reach out.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Climate / risk analytics, consulting &amp; public-sector work</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Building *re:current_analytics* — an open lab for climate modelling and decision tools</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Focus on transparency, reproducibility, and making uncertainty explicit</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Download full CV (PDF): _add later_ </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Deployment Guide</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>This guide explains how to safely build and deploy the Quarto website to GitHub Pages.</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prerequisites</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**GitHub Pages must be configured**:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to your repository Settings → Pages</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Under "Source", select **"GitHub Actions"** (not "Deploy from a branch")</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Save the settings</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Repository permissions**:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>The GitHub Actions workflow needs write permissions to deploy</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>These are automatically granted when you enable GitHub Actions</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Local Development Workflow</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1: Build Locally</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>Always test your changes locally before deploying:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate conda environment</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate recurrent-analytics</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the site</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Or use the convenience script</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> build</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2: Preview Locally</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>Preview the built site to catch any issues:</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: Use Quarto preview</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: Use the convenience script</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> preview</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 3: Use Python server</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> server.py</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Then open http://localhost:5000</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3: Verify Build</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>Check that:</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ All pages render correctly</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ <span class="in">`_site/CNAME`</span> file exists (for custom domain)</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ All links work</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ Images and assets load properly</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>✅ No console errors in browser</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deployment Workflow</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### Automatic Deployment (Recommended)</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>The site automatically deploys when you push to the <span class="in">`main`</span> branch:</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Make your changes, then:</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Your commit message"</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>**What happens:**</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>GitHub Actions workflow triggers automatically</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Site is built using Quarto</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="in">`CNAME`</span> file is preserved</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Site is deployed to GitHub Pages</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Site goes live (usually within 1-2 minutes)</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>**Monitor deployment:**</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Go to the "Actions" tab in your GitHub repository</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Watch the workflow run in real-time</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check for any errors</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="fu">### Manual Deployment</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>If you need to manually trigger deployment:</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Go to your repository on GitHub</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Click the "Actions" tab</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Select "Deploy to GitHub Pages" workflow</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Click "Run workflow" → "Run workflow"</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Select the branch (usually <span class="in">`main`</span>)</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Click "Run workflow"</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important Notes</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### CNAME File Preservation</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>The workflow automatically ensures the <span class="in">`CNAME`</span> file is present in <span class="in">`_site/`</span>:</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`CNAME`</span> exists in the root, it's copied to <span class="in">`_site/`</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This preserves your custom domain (recurrentanalytics.com)</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Branch Name</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>The workflow is configured for the <span class="in">`main`</span> branch. If your default branch is different:</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Edit <span class="in">`.github/workflows/deploy.yml`</span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Change <span class="in">`branches: - main`</span> to your branch name (e.g., <span class="in">`master`</span>)</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### Custom Domain</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>If you're using a custom domain:</span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The <span class="in">`CNAME`</span> file must exist in the repository root</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GitHub Pages will automatically use it</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DNS must be configured correctly (see GitHub Pages docs)</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Troubleshooting</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Build Fails in GitHub Actions</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Check the Actions log**:</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to Actions tab → Click on failed workflow</span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Expand the failed step to see error details</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Common issues**:</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Missing Python dependencies → Check <span class="in">`requirements.txt`</span></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Quarto version issues → Workflow uses latest Quarto</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Python code errors → Test locally first</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Fix and retry**:</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Fix the issue locally</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Test with <span class="in">`quarto render`</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Commit and push again</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Site Not Updating</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Check deployment status**:</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to Settings → Pages</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Check "Latest deployment" status</span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Verify workflow ran**:</span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to Actions tab</span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Ensure workflow completed successfully</span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Clear browser cache**:</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Hard refresh (Ctrl+Shift+R or Cmd+Shift+R)</span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Or wait a few minutes for CDN to update</span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="fu">### CNAME File Missing</span></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>If your custom domain stops working:</span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Verify CNAME exists**:</span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>   <span class="in">```bash</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ls</span> <span class="at">-la</span> CNAME</span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>   <span class="fu">cat</span> CNAME</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Check deployment**:</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to Actions → Latest workflow run</span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Check "Verify CNAME file exists" step</span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Manual fix** (if needed):</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>   <span class="in">```bash</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Ensure CNAME is in root</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="st">"recurrentanalytics.com"</span> <span class="op">&gt;</span> CNAME</span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> add CNAME</span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Restore CNAME file"</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> push</span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rollback</span></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>If you need to rollback to a previous version:</span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Find the previous commit**:</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>   <span class="in">```bash</span></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> log <span class="at">--oneline</span></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Revert or checkout**:</span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a>   <span class="in">```bash</span></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> revert <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> push origin main</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a>   Or:</span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>   <span class="in">```bash</span></span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> checkout <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span> -- .</span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Rollback to previous version"</span></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>   <span class="fu">git</span> push origin main</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a>   <span class="in">```</span></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## Best Practices</span></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>✅ **Always test locally first** - Use <span class="in">`quarto render`</span> and preview</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>✅ **Commit frequently** - Small commits are easier to debug</span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>✅ **Check Actions tab** - Monitor deployments for issues</span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>✅ **Keep CNAME in root** - Don't delete or modify unnecessarily</span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>✅ **Use meaningful commit messages** - Helps track changes</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick Reference</span></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Local development</span></span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate recurrent-analytics</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> build      <span class="co"># Build site</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="ex">./dev.sh</span> preview    <span class="co"># Preview site</span></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy</span></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Update site"</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="co"># Check deployment</span></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="co"># → Go to GitHub Actions tab</span></span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

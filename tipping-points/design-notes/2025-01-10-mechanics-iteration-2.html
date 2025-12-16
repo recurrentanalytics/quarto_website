@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-01-10">
+<meta name="description" content="Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers.">
 
-<title>About &amp; Contact – re:current_analytics</title>
+<title>Mechanics Iteration 2: Threshold System Redesign – re:current_analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,28 +60,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ec8d78f0ebbe7cd36fa017e241e46b34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ec8d78f0ebbe7cd36fa017e241e46b34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1943,11 +1945,11 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
 </script>
 
 
-<meta property="og:title" content="About &amp; Contact – re:current_analytics">
-<meta property="og:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
+<meta property="og:title" content="Mechanics Iteration 2: Threshold System Redesign – re:current_analytics">
+<meta property="og:description" content="Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers.">
 <meta property="og:site_name" content="re:current_analytics">
-<meta name="twitter:title" content="About &amp; Contact – re:current_analytics">
-<meta name="twitter:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
+<meta name="twitter:title" content="Mechanics Iteration 2: Threshold System Redesign – re:current_analytics">
+<meta name="twitter:description" content="Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers.">
 <meta name="twitter:creator" content="@timmwalker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -2121,9 +2123,9 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">re:current_analytics</span>
     </a>
   </div>
@@ -2145,14 +2147,30 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#research-interests" id="toc-research-interests" class="nav-link active" data-scroll-target="#research-interests">Research Interests</a></li>
-  <li><a href="#work" id="toc-work" class="nav-link" data-scroll-target="#work">Work</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">Problem Statement</a>
   <ul class="collapse">
-  <li><a href="#current-projects" id="toc-current-projects" class="nav-link" data-scroll-target="#current-projects">Current Projects</a></li>
+  <li><a href="#original-system" id="toc-original-system" class="nav-link" data-scroll-target="#original-system">Original System</a></li>
+  <li><a href="#design-goals" id="toc-design-goals" class="nav-link" data-scroll-target="#design-goals">Design Goals</a></li>
   </ul></li>
-  <li><a href="#availability" id="toc-availability" class="nav-link" data-scroll-target="#availability">Availability</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#new-threshold-system" id="toc-new-threshold-system" class="nav-link" data-scroll-target="#new-threshold-system">New Threshold System</a>
+  <ul class="collapse">
+  <li><a href="#context-dependent-thresholds" id="toc-context-dependent-thresholds" class="nav-link" data-scroll-target="#context-dependent-thresholds">Context-Dependent Thresholds</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#implementation-details" id="toc-implementation-details" class="nav-link" data-scroll-target="#implementation-details">Implementation Details</a>
+  <ul class="collapse">
+  <li><a href="#threshold-calculation" id="toc-threshold-calculation" class="nav-link" data-scroll-target="#threshold-calculation">Threshold Calculation</a></li>
+  <li><a href="#player-visibility" id="toc-player-visibility" class="nav-link" data-scroll-target="#player-visibility">Player Visibility</a></li>
+  </ul></li>
+  <li><a href="#testing-approach" id="toc-testing-approach" class="nav-link" data-scroll-target="#testing-approach">Testing Approach</a></li>
+  <li><a href="#expected-outcomes" id="toc-expected-outcomes" class="nav-link" data-scroll-target="#expected-outcomes">Expected Outcomes</a>
+  <ul class="collapse">
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits">Benefits</a></li>
+  <li><a href="#risks" id="toc-risks" class="nav-link" data-scroll-target="#risks">Risks</a></li>
+  </ul></li>
+  <li><a href="#related-changes" id="toc-related-changes" class="nav-link" data-scroll-target="#related-changes">Related Changes</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
     </div>
@@ -2162,14 +2180,28 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">About &amp; Contact</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-</div>
+<div class="quarto-title-block"><div><h1 class="title">Mechanics Iteration 2: Threshold System Redesign</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">design-iteration</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 10, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -2179,57 +2211,109 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
 </header>
 
 
-<p>I’m Timm Walker. I work at the intersection of <strong>climate risk</strong>, <strong>(re)insurance</strong>, and <strong>data-driven modelling</strong>.<br>
-This site is a <strong>public lab notebook</strong> for the <em>re:current_analytics</em> project: small, composable models; clean notes; reproducible code.</p>
-<section id="research-interests" class="level2">
-<h2 data-anchor-id="research-interests">Research Interests</h2>
-<p>My work focuses on making climate risk quantifiable, transparent, and actionable. Key areas:</p>
+<section id="overview" class="level2">
+<h2 data-anchor-id="overview">Overview</h2>
+<p>This iteration addresses a core design challenge: how to make tipping points feel both inevitable and surprising. The initial design used fixed numerical thresholds, which felt too predictable. This revision introduces context-dependent thresholds that respond to system state.</p>
+</section>
+<section id="problem-statement" class="level2">
+<h2 data-anchor-id="problem-statement">Problem Statement</h2>
+<section id="original-system" class="level3">
+<h3 data-anchor-id="original-system">Original System</h3>
 <ul>
-<li><strong>Hazard Analytics</strong> - Identifying and characterizing climate extremes (heatwaves, floods, droughts)</li>
-<li><strong>Parametric Triggers</strong> - Designing index-based insurance mechanisms</li>
-<li><strong>Time-Series Analysis</strong> - Modeling temporal patterns in climate and energy data</li>
-<li><strong>Energy–Water Systems</strong> - Understanding interdependencies in critical infrastructure</li>
-<li><strong>Serious Games</strong> - Using game design to explore complex systems (see <a href="./tipping-points/">Tipping Points</a>)</li>
-<li><strong>Uncertainty Quantification</strong> - Making model limitations explicit and tractable</li>
-<li><strong>Institutional Reality</strong> - Where quantitative methods meet governance and incentives</li>
+<li>Fixed thresholds (e.g., “System stress &gt; 5 triggers tipping point”)</li>
+<li>Predictable outcomes</li>
+<li>Players could game the system by staying just below thresholds</li>
+<li>Felt mechanical rather than emergent</li>
 </ul>
 </section>
-<section id="work" class="level2">
-<h2 data-anchor-id="work">Work</h2>
-<p>I work on climate / risk analytics, consulting, and public-sector projects. Currently building <em>re:current_analytics</em> — an open lab for climate modelling and decision tools.</p>
-<section id="current-projects" class="level3">
-<h3 data-anchor-id="current-projects">Current Projects</h3>
+<section id="design-goals" class="level3">
+<h3 data-anchor-id="design-goals">Design Goals</h3>
+<ol type="1">
+<li>Maintain strategic depth while adding uncertainty</li>
+<li>Make tipping points feel like natural consequences, not arbitrary rules</li>
+<li>Preserve player agency while modeling real-world unpredictability</li>
+</ol>
+</section>
+</section>
+<section id="new-threshold-system" class="level2">
+<h2 data-anchor-id="new-threshold-system">New Threshold System</h2>
+<section id="context-dependent-thresholds" class="level3">
+<h3 data-anchor-id="context-dependent-thresholds">Context-Dependent Thresholds</h3>
+<p>Instead of fixed numbers, thresholds now depend on:</p>
+<ol type="1">
+<li><strong>System Interconnections</strong> - More connected systems = lower threshold (cascading risk)</li>
+<li><strong>Recent Events</strong> - Systems under recent stress = lower threshold (vulnerability)</li>
+<li><strong>Player Actions</strong> - Certain responses can raise or lower thresholds (resilience building)</li>
+</ol>
+</section>
+<section id="example" class="level3">
+<h3 data-anchor-id="example">Example</h3>
+<p><strong>Old System</strong>: Energy system stress &gt; 5 → trigger “Grid Failure” tipping point</p>
+<p><strong>New System</strong>: - Base threshold: 5 - If Agriculture system is stressed: -1 (food production affects energy demand) - If recent heatwave occurred: -1 (increased cooling demand) - If player invested in grid resilience: +1 (hardening pays off) - <strong>Effective threshold</strong>: 3-6 depending on context</p>
+</section>
+</section>
+<section id="implementation-details" class="level2">
+<h2 data-anchor-id="implementation-details">Implementation Details</h2>
+<section id="threshold-calculation" class="level3">
+<h3 data-anchor-id="threshold-calculation">Threshold Calculation</h3>
+<pre><code>effective_threshold = base_threshold 
+                    - interconnection_modifiers
+                    - recent_event_modifiers
+                    + resilience_modifiers
+                    + random_variance(0-1)</code></pre>
+</section>
+<section id="player-visibility" class="level3">
+<h3 data-anchor-id="player-visibility">Player Visibility</h3>
 <ul>
-<li><strong>re:current_analytics</strong> - This lab notebook and associated tools</li>
-<li><strong>Climate Extremes Explorer</strong> - Interactive analysis of extreme events</li>
-<li><strong>Heatwave-Price Analysis</strong> - Exploring relationships between temperature and energy markets</li>
-<li><strong>Tipping Points</strong> - Strategic card game modeling climate–politics interactions</li>
+<li>Players see current system stress levels</li>
+<li>They can see which modifiers are active</li>
+<li>But exact threshold is hidden (uncertainty)</li>
+<li>Players get “warning signs” when approaching thresholds</li>
 </ul>
 </section>
 </section>
-<section id="availability" class="level2">
-<h2 data-anchor-id="availability">Availability</h2>
-<p>I’m available for consulting engagements that align with my approach: transparent, reproducible, uncertainty-aware climate risk analysis.</p>
-<p>If you’re working on problems where intellectual honesty matters more than reassuring narratives, let’s talk.</p>
-<p><em>See <a href="./working-together.html">Working Together</a> for more on how I approach engagements.</em></p>
+<section id="testing-approach" class="level2">
+<h2 data-anchor-id="testing-approach">Testing Approach</h2>
+<ol type="1">
+<li><strong>Solo Playtesting</strong> - Test threshold calculations across different scenarios</li>
+<li><strong>Mathematical Modeling</strong> - Ensure thresholds create interesting decision spaces</li>
+<li><strong>Next Playtest</strong> - Validate with real players</li>
+</ol>
 </section>
-<section id="contact" class="level2">
-<h2 data-anchor-id="contact">Contact</h2>
+<section id="expected-outcomes" class="level2">
+<h2 data-anchor-id="expected-outcomes">Expected Outcomes</h2>
+<section id="benefits" class="level3">
+<h3 data-anchor-id="benefits">Benefits</h3>
 <ul>
-<li><strong>Email:</strong> <a href="mailto:timm.walker@recurrentanalytics.com">timm.walker@recurrentanalytics.com</a></li>
-<li><strong>GitHub:</strong> <a href="https://github.com/recurrentanalytics">recurrentanalytics</a></li>
-<li><strong>Location:</strong> Germany (DE)</li>
+<li>More dynamic, emergent gameplay</li>
+<li>Better models real-world uncertainty</li>
+<li>Maintains strategic depth (players can still plan)</li>
+<li>Creates tension and surprise</li>
 </ul>
-<p>For consulting inquiries, research discussions, or questions about the work here, feel free to reach out.</p>
 </section>
-<section id="background" class="level2">
-<h2 data-anchor-id="background">Background</h2>
+<section id="risks" class="level3">
+<h3 data-anchor-id="risks">Risks</h3>
 <ul>
-<li>Climate / risk analytics, consulting &amp; public-sector work</li>
-<li>Building <em>re:current_analytics</em> — an open lab for climate modelling and decision tools</li>
-<li>Focus on transparency, reproducibility, and making uncertainty explicit</li>
+<li>May feel too random if not balanced carefully</li>
+<li>Could slow down gameplay with calculations</li>
+<li>Need clear communication of system state</li>
 </ul>
-<p>Download full CV (PDF): <em>add later</em></p>
+</section>
+</section>
+<section id="related-changes" class="level2">
+<h2 data-anchor-id="related-changes">Related Changes</h2>
+<p>This iteration also includes: - Simplified card effects (fewer modifiers to track) - Clearer visual indicators for system stress - Updated rulebook with threshold examples</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 data-anchor-id="next-steps">Next Steps</h2>
+<ol type="1">
+<li>Complete mathematical modeling of threshold distributions</li>
+<li>Create playtest scenarios to stress-test the system</li>
+<li>Design visual aids for tracking system state</li>
+<li>Write updated rules document</li>
+</ol>
+<hr>
+<p><em>See also: <a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html">Playtest Session 1</a></em></p>
 
 
 <!-- -->
@@ -2694,59 +2778,111 @@ This site is a <strong>public lab notebook</strong> for the <em>re:current_analy
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> About &amp; Contact</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>I'm Timm Walker. I work at the intersection of **climate risk**, **(re)insurance**, and **data-driven modelling**.  </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>This site is a **public lab notebook** for the *re:current_analytics* project: small, composable models; clean notes; reproducible code.</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Interests</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>My work focuses on making climate risk quantifiable, transparent, and actionable. Key areas:</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Hazard Analytics** - Identifying and characterizing climate extremes (heatwaves, floods, droughts)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parametric Triggers** - Designing index-based insurance mechanisms</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Time-Series Analysis** - Modeling temporal patterns in climate and energy data</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Energy–Water Systems** - Understanding interdependencies in critical infrastructure</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Serious Games** - Using game design to explore complex systems (see <span class="co">[</span><span class="ot">Tipping Points</span><span class="co">](/tipping-points/)</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Uncertainty Quantification** - Making model limitations explicit and tractable</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Institutional Reality** - Where quantitative methods meet governance and incentives</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Work</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>I work on climate / risk analytics, consulting, and public-sector projects. Currently building *re:current_analytics* — an open lab for climate modelling and decision tools.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Current Projects</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**re:current_analytics** - This lab notebook and associated tools</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Climate Extremes Explorer** - Interactive analysis of extreme events</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Heatwave-Price Analysis** - Exploring relationships between temperature and energy markets</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Tipping Points** - Strategic card game modeling climate–politics interactions</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Availability</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>I'm available for consulting engagements that align with my approach: transparent, reproducible, uncertainty-aware climate risk analysis.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>If you're working on problems where intellectual honesty matters more than reassuring narratives, let's talk.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>*See [Working Together](/working-together.html) for more on how I approach engagements.*</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contact</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Email:** <span class="co">[</span><span class="ot">timm.walker@recurrentanalytics.com</span><span class="co">](mailto:timm.walker@recurrentanalytics.com)</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**GitHub:** <span class="co">[</span><span class="ot">recurrentanalytics</span><span class="co">](https://github.com/recurrentanalytics)</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Location:** Germany (DE)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>For consulting inquiries, research discussions, or questions about the work here, feel free to reach out.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Climate / risk analytics, consulting &amp; public-sector work</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Building *re:current_analytics* — an open lab for climate modelling and decision tools</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Focus on transparency, reproducibility, and making uncertainty explicit</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Download full CV (PDF): _add later_ </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Mechanics Iteration 2: Threshold System Redesign"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-01-10</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [design-iteration]</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [mechanics, thresholds, systems]</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers."</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>This iteration addresses a core design challenge: how to make tipping points feel both inevitable and surprising. The initial design used fixed numerical thresholds, which felt too predictable. This revision introduces context-dependent thresholds that respond to system state.</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem Statement</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">### Original System</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fixed thresholds (e.g., "System stress &gt; 5 triggers tipping point")</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictable outcomes</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Players could game the system by staying just below thresholds</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Felt mechanical rather than emergent</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Design Goals</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Maintain strategic depth while adding uncertainty</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make tipping points feel like natural consequences, not arbitrary rules</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Preserve player agency while modeling real-world unpredictability</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## New Threshold System</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">### Context-Dependent Thresholds</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>Instead of fixed numbers, thresholds now depend on:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**System Interconnections** - More connected systems = lower threshold (cascading risk)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Recent Events** - Systems under recent stress = lower threshold (vulnerability)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Player Actions** - Certain responses can raise or lower thresholds (resilience building)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>**Old System**: Energy system stress &gt; 5 → trigger "Grid Failure" tipping point</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>**New System**: </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Base threshold: 5</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If Agriculture system is stressed: -1 (food production affects energy demand)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If recent heatwave occurred: -1 (increased cooling demand)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If player invested in grid resilience: +1 (hardening pays off)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Effective threshold**: 3-6 depending on context</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Implementation Details</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Threshold Calculation</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="in">effective_threshold = base_threshold </span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="in">                    - interconnection_modifiers</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="in">                    - recent_event_modifiers</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="in">                    + resilience_modifiers</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">                    + random_variance(0-1)</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Player Visibility</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Players see current system stress levels</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>They can see which modifiers are active</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>But exact threshold is hidden (uncertainty)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Players get "warning signs" when approaching thresholds</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Testing Approach</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Solo Playtesting** - Test threshold calculations across different scenarios</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Mathematical Modeling** - Ensure thresholds create interesting decision spaces</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Next Playtest** - Validate with real players</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Expected Outcomes</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Benefits</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>More dynamic, emergent gameplay</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Better models real-world uncertainty</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Maintains strategic depth (players can still plan)</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Creates tension and surprise</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="fu">### Risks</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>May feel too random if not balanced carefully</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Could slow down gameplay with calculations</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Need clear communication of system state</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related Changes</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>This iteration also includes:</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Simplified card effects (fewer modifiers to track)</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clearer visual indicators for system stress</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Updated rulebook with threshold examples</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Next Steps</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Complete mathematical modeling of threshold distributions</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create playtest scenarios to stress-test the system</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Design visual aids for tracking system state</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Write updated rules document</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>*See also: [Playtest Session 1](/tipping-points/design-notes/2025-01-15-playtest-session-1.html)*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -2758,7 +2894,7 @@ This site is a <strong>public lab notebook</strong> for the <em>re:current_analy
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p><a href="./notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a></p>
+<p><a href="../../notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a></p>
 </div>
   </div>
 </footer>
@@ -2766,5 +2902,5 @@ This site is a <strong>public lab notebook</strong> for the <em>re:current_analy
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

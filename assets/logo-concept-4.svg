@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Asymmetric ripple - like a drop hitting water -->
-  <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
-  <circle cx="16" cy="16" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
-  <circle cx="16" cy="16" r="9.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-  <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.5"/>
-</svg>
