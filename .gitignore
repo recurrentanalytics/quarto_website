@@ -2,8 +2,18 @@
 **/*.quarto_ipynb
 _site/
 
+# Generated files (regenerated on build)
+search.json
+listings.json
+sitemap.xml
+
 # Python / venv
 .venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 
 # Data artefacts
 data/raw/

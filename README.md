@@ -190,33 +190,42 @@ Custom SCSS styles that layer on top of Bootstrap themes (Cosmo light, Cyborg da
 
 ### GitHub Pages Deployment
 
-The site is automatically deployed to GitHub Pages using GitHub Actions when you push to the `main` branch.
+The site is deployed manually to GitHub Pages by pushing the built `_site/` directory to the `gh-pages` branch.
 
-**Workflow:**
+**Deployment Workflow:**
 1. **Test locally first** (see above)
-2. **Commit and push your changes**:
+2. **Build the site**:
    ```bash
-   git add .
-   git commit -m "Your commit message"
-   git push origin main
+   conda activate recurrent-analytics
+   quarto render
    ```
-3. **GitHub Actions will automatically**:
-   - Build the site using Quarto
-   - Preserve the `CNAME` file for custom domain
-   - Deploy to the `gh-pages` branch
-   - Make the site live at your configured domain
-
-**Manual deployment** (if needed):
-- Go to Actions tab in GitHub
-- Select "Deploy to GitHub Pages" workflow
-- Click "Run workflow" → "Run workflow"
+3. **Deploy to gh-pages branch**:
+   ```bash
+   # Switch to gh-pages branch (or create it if it doesn't exist)
+   git checkout gh-pages
+   
+   # Copy built site contents
+   cp -r _site/* .
+   
+   # Ensure CNAME is present
+   cp CNAME _site/CNAME 2>/dev/null || echo "CNAME already in _site/"
+   
+   # Commit and push
+   git add .
+   git commit -m "Deploy site from dev branch"
+   git push origin gh-pages
+   
+   # Switch back to dev branch
+   git checkout dev
+   ```
 
 **Important Notes:**
-- The `CNAME` file is automatically preserved during deployment
-- The workflow uses GitHub Pages Actions (not the old `gh-pages` branch push method)
+- The `CNAME` file must be present in `_site/` for custom domain to work
 - Ensure GitHub Pages is enabled in your repository settings:
-  - Settings → Pages → Source: "GitHub Actions"
+  - Settings → Pages → Source: "Deploy from a branch"
+  - Branch: `gh-pages` / `root`
 - The site will be available at `https://recurrentanalytics.com` (or your configured domain)
+- Always test locally with `quarto render` before deploying
 
 ### Other Deployment Options
 
