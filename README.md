@@ -56,13 +56,16 @@ quarto_website/
    quarto preview
    ```
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+**For detailed setup instructions, troubleshooting, and full development workflow, see the [README on the `dev` branch](https://github.com/recurrentanalytics/quarto_website/tree/dev#readme).**
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for deployment instructions.
 
 ## 📖 Documentation
 
 - **[README.md](README.md)** - This file (project overview)
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment guide for GitHub Pages
-- **Source code**: See `dev` branch for all source files
+- **[Detailed Development Guide](https://github.com/recurrentanalytics/quarto_website/tree/dev#readme)** - Full setup, development workflow, and technical documentation (on `dev` branch)
+- **Source code**: See [`dev` branch](https://github.com/recurrentanalytics/quarto_website/tree/dev) for all source files
 
 ## 🛠️ Technology Stack
 
@@ -90,4 +93,4 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ---
 
-**Note**: This is the documentation branch. For source code, see the `dev` branch.
+**Note**: This is the documentation branch. For source code and detailed technical documentation, see the [`dev` branch](https://github.com/recurrentanalytics/quarto_website/tree/dev).
