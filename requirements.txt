@@ -1,0 +1,16 @@
+# Python dependencies for Quarto site
+# These are also specified in environment.yml and pyproject.toml
+matplotlib>=3.10.8
+pandas>=2.3.3
+pyarrow>=22.0.0
+requests>=2.32.5
+numpy
+scipy
+scikit-learn
+seaborn
+xarray
+cfgrib
+eccodes
+netcdf4
+h5netcdf
+

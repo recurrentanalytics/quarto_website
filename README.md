@@ -165,14 +165,64 @@ Custom SCSS styles that layer on top of Bootstrap themes (Cosmo light, Cyborg da
 
 ## Deployment
 
-The site is a static website. Deploy the `_site/` directory to any static hosting service:
+### Local Development & Testing
 
-- **GitHub Pages**: Push `_site/` contents to `gh-pages` branch
+1. **Build the site locally**:
+   ```bash
+   conda activate recurrent-analytics
+   quarto render
+   ```
+
+2. **Preview locally**:
+   ```bash
+   # Option 1: Use Quarto's preview server
+   quarto preview
+   
+   # Option 2: Use the included Python server
+   python server.py
+   # Then open http://localhost:5000
+   ```
+
+3. **Verify the build**:
+   - Check that `_site/` directory contains all expected files
+   - Verify `_site/CNAME` exists (for custom domain)
+   - Test all pages and links locally
+
+### GitHub Pages Deployment
+
+The site is automatically deployed to GitHub Pages using GitHub Actions when you push to the `main` branch.
+
+**Workflow:**
+1. **Test locally first** (see above)
+2. **Commit and push your changes**:
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   git push origin main
+   ```
+3. **GitHub Actions will automatically**:
+   - Build the site using Quarto
+   - Preserve the `CNAME` file for custom domain
+   - Deploy to the `gh-pages` branch
+   - Make the site live at your configured domain
+
+**Manual deployment** (if needed):
+- Go to Actions tab in GitHub
+- Select "Deploy to GitHub Pages" workflow
+- Click "Run workflow" → "Run workflow"
+
+**Important Notes:**
+- The `CNAME` file is automatically preserved during deployment
+- The workflow uses GitHub Pages Actions (not the old `gh-pages` branch push method)
+- Ensure GitHub Pages is enabled in your repository settings:
+  - Settings → Pages → Source: "GitHub Actions"
+- The site will be available at `https://recurrentanalytics.com` (or your configured domain)
+
+### Other Deployment Options
+
 - **Netlify**: Connect repository, set build command to `quarto render`, publish directory to `_site`
 - **Vercel**: Similar to Netlify
 - **Custom server**: Upload `_site/` contents to your web server
-
-The `CNAME` file is included for custom domain setup (e.g., recurrentanalytics.com).
 
 ## Troubleshooting
 
