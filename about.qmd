@@ -28,13 +28,21 @@ I work on climate / risk analytics, consulting, and public-sector projects. Curr
 - **Heatwave-Price Analysis** - Exploring relationships between temperature and energy markets
 - **Tipping Points** - Strategic card game modeling climate–politics interactions
 
+## Availability
+
+I'm available for consulting engagements that align with my approach: transparent, reproducible, uncertainty-aware climate risk analysis.
+
+If you're working on problems where intellectual honesty matters more than reassuring narratives, let's talk.
+
+*See [Working Together](/working-together.html) for more on how I approach engagements.*
+
 ## Contact
 
 - **Email:** [timm.walker@recurrentanalytics.com](mailto:timm.walker@recurrentanalytics.com)
 - **GitHub:** [recurrentanalytics](https://github.com/recurrentanalytics)
 - **Location:** Germany (DE)
 
-For collaboration inquiries, research discussions, or questions about the work here, feel free to reach out.
+For consulting inquiries, research discussions, or questions about the work here, feel free to reach out.
 
 ## Background
 

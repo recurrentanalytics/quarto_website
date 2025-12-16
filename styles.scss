@@ -1703,6 +1703,37 @@ a.anchorjs-link {
   margin: 0 !important;
 }
 
+/* Hide View Source link in sidebar/TOC area */
+#quarto-view-source,
+.quarto-view-source,
+.toc-action,
+a.toc-action,
+.toc-action a,
+.quarto-margin-sidebar .toc-action,
+#TOC .toc-action,
+#TOC a.toc-action,
+.quarto-margin-sidebar a[href*="github"],
+.quarto-margin-sidebar a[href*="source"],
+.quarto-margin-sidebar a[href*="blob"],
+.sidebar a[href*="github"],
+.sidebar a[href*="source"],
+.sidebar a[href*="blob"],
+#TOC a[href*="github"],
+#TOC a[href*="source"],
+#TOC a[href*="blob"],
+.quarto-title-meta a[href*="github"],
+.quarto-title-meta a[href*="source"],
+.quarto-title-meta a[href*="blob"],
+.quarto-listing a[href*="github"],
+.quarto-listing a[href*="source"],
+.quarto-listing a[href*="blob"],
+a[title="View Source"],
+a[aria-label*="Source"],
+a[aria-label*="source"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 /* Hide graph in print */
 @media print {
   .sidebar-graph, .graph-modal-overlay, .mobile-graph-btn {

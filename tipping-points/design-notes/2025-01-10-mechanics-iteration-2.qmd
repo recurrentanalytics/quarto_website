@@ -1,0 +1,106 @@
+---
+title: "Mechanics Iteration 2: Threshold System Redesign"
+date: 2025-01-10
+categories: [design-iteration]
+tags: [mechanics, thresholds, systems]
+description: "Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers."
+---
+
+## Overview
+
+This iteration addresses a core design challenge: how to make tipping points feel both inevitable and surprising. The initial design used fixed numerical thresholds, which felt too predictable. This revision introduces context-dependent thresholds that respond to system state.
+
+## Problem Statement
+
+### Original System
+
+- Fixed thresholds (e.g., "System stress > 5 triggers tipping point")
+- Predictable outcomes
+- Players could game the system by staying just below thresholds
+- Felt mechanical rather than emergent
+
+### Design Goals
+
+1. Maintain strategic depth while adding uncertainty
+2. Make tipping points feel like natural consequences, not arbitrary rules
+3. Preserve player agency while modeling real-world unpredictability
+
+## New Threshold System
+
+### Context-Dependent Thresholds
+
+Instead of fixed numbers, thresholds now depend on:
+
+1. **System Interconnections** - More connected systems = lower threshold (cascading risk)
+2. **Recent Events** - Systems under recent stress = lower threshold (vulnerability)
+3. **Player Actions** - Certain responses can raise or lower thresholds (resilience building)
+
+### Example
+
+**Old System**: Energy system stress > 5 → trigger "Grid Failure" tipping point
+
+**New System**: 
+- Base threshold: 5
+- If Agriculture system is stressed: -1 (food production affects energy demand)
+- If recent heatwave occurred: -1 (increased cooling demand)
+- If player invested in grid resilience: +1 (hardening pays off)
+- **Effective threshold**: 3-6 depending on context
+
+## Implementation Details
+
+### Threshold Calculation
+
+```
+effective_threshold = base_threshold 
+                    - interconnection_modifiers
+                    - recent_event_modifiers
+                    + resilience_modifiers
+                    + random_variance(0-1)
+```
+
+### Player Visibility
+
+- Players see current system stress levels
+- They can see which modifiers are active
+- But exact threshold is hidden (uncertainty)
+- Players get "warning signs" when approaching thresholds
+
+## Testing Approach
+
+1. **Solo Playtesting** - Test threshold calculations across different scenarios
+2. **Mathematical Modeling** - Ensure thresholds create interesting decision spaces
+3. **Next Playtest** - Validate with real players
+
+## Expected Outcomes
+
+### Benefits
+
+- More dynamic, emergent gameplay
+- Better models real-world uncertainty
+- Maintains strategic depth (players can still plan)
+- Creates tension and surprise
+
+### Risks
+
+- May feel too random if not balanced carefully
+- Could slow down gameplay with calculations
+- Need clear communication of system state
+
+## Related Changes
+
+This iteration also includes:
+- Simplified card effects (fewer modifiers to track)
+- Clearer visual indicators for system stress
+- Updated rulebook with threshold examples
+
+## Next Steps
+
+1. Complete mathematical modeling of threshold distributions
+2. Create playtest scenarios to stress-test the system
+3. Design visual aids for tracking system state
+4. Write updated rules document
+
+---
+
+*See also: [Playtest Session 1](/tipping-points/design-notes/2025-01-15-playtest-session-1.html)*
+

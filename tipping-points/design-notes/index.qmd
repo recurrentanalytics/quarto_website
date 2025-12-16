@@ -1,0 +1,30 @@
+---
+title: ""
+listing:
+  contents: .
+  type: default
+  sort: "date desc"
+  categories: true
+page-layout: article
+---
+
+# Design Notes
+
+Development blog for *Tipping Points* game design: iterations, playtesting, card design, and theoretical explorations.
+
+## About This Collection
+
+This collection documents the design and development process of *Tipping Points*. Posts cover:
+
+- **Design Iterations** - Changes to game mechanics, rules refinements, system evolution
+- **Playtesting Reports** - Session summaries, player feedback, observed gameplay patterns
+- **Card Design** - Individual card concepts, sets, themes, and design rationale
+- **Theoretical Explorations** - How academic concepts map to game mechanics
+- **Development Updates** - Progress, blockers, design decisions
+
+Posts are organized chronologically, with categories and tags for filtering by topic.
+
+## Browse by Category
+
+Use the category filters above to explore specific aspects of the design process.
+

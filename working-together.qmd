@@ -1,0 +1,53 @@
+---
+title: "Working Together"
+---
+
+# Working Together
+
+## How I Work
+
+I approach consulting the same way I approach research: with transparency, reproducibility, and explicit acknowledgment of uncertainty.
+
+- **Transparent methods** - You see how the analysis works, not just the results
+- **Reproducible analysis** - Code, data, and assumptions are documented and shareable
+- **Uncertainty-aware** - Model limitations and assumptions are made explicit, not hidden
+- **Intellectual honesty** - I'll tell you what we don't know, not what you want to hear
+
+## What I Take On
+
+I work on problems where:
+
+- **Climate risk** intersects with decision-making (insurance, infrastructure, policy)
+- **Quantitative rigor** matters more than reassuring narratives
+- **Uncertainty** needs to be understood, not minimized
+- **Transparency** is valued over polished presentations
+- **Reproducibility** is a requirement, not an afterthought
+
+Typical engagements include:
+- Climate risk assessment and modeling
+- Parametric insurance trigger design
+- Extreme event analysis and characterization
+- Energy-climate system interdependencies
+- Risk quantification for decision support
+
+## What I Don't Do
+
+- Traditional consulting pitches that oversell certainty
+- Black-box models where methodology is hidden
+- Analysis optimized for reassurance rather than understanding
+- Work where intellectual honesty is secondary to desired outcomes
+
+## Engagement
+
+If you're working on problems that align with this approach, reach out:
+
+- **Email:** [timm.walker@recurrentanalytics.com](mailto:timm.walker@recurrentanalytics.com)
+
+Include a brief description of the problem you're working on, and we can discuss whether it's a good fit.
+
+No sales process. No discovery calls. Just a direct conversation about whether the work aligns.
+
+---
+
+*See also: [About & Contact](/about.html) | [Projects](/projects/) | [Notes](/notes/)*
+

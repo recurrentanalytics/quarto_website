@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-432fe542f0e7438722e3797493e6cc83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-f3428b617d84566c749cb5fa437c21d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-432fe542f0e7438722e3797493e6cc83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ec8d78f0ebbe7cd36fa017e241e46b34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -341,6 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { title: 'Projects', path: '/projects/' },
     { title: 'Reading', path: '/reading/' },
     { title: 'Tipping Points', path: '/tipping-points/' },
+    { title: 'Design Notes', path: '/tipping-points/design-notes/' },
     { title: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
     { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
     { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
@@ -517,16 +518,27 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
       { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
       { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
-      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
-      { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'models' },
+      { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'projects' },
+      { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'projects' },
       { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
-      { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
+      { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' },
+      { id: 'design-notes', label: 'Design Notes', path: '/tipping-points/design-notes/', cat: 'tipping-points' },
+      { id: 'playtest-1', label: 'Playtest Session 1', path: '/tipping-points/design-notes/2025-01-15-playtest-session-1.html', cat: 'tipping-points' },
+      { id: 'mechanics-2', label: 'Mechanics Iteration 2', path: '/tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html', cat: 'tipping-points' },
+      { id: 'heatwave-card', label: 'Card Design: Heatwave', path: '/tipping-points/design-notes/2025-01-05-card-design-heatwave.html', cat: 'tipping-points' }
     ],
     links: [
       { source: 'home', target: 'notes' },
       { source: 'home', target: 'projects' },
       { source: 'home', target: 'tipping-points' },
       { source: 'home', target: 'about' },
+      { source: 'tipping-points', target: 'design-notes' },
+      { source: 'design-notes', target: 'playtest-1' },
+      { source: 'design-notes', target: 'mechanics-2' },
+      { source: 'design-notes', target: 'heatwave-card' },
+      { source: 'playtest-1', target: 'mechanics-2' },
+      { source: 'mechanics-2', target: 'playtest-1' },
+      { source: 'heatwave-card', target: 'design-notes' },
       { source: 'notes', target: 'hello' },
       { source: 'notes', target: 'risk-1' },
       { source: 'risk-1', target: 'risk-2' },
@@ -546,7 +558,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const catColors = {
     nav: 'var(--bs-secondary)',
     notes: 'var(--bs-info)',
-    models: 'var(--bs-success)'
+    projects: 'var(--bs-success)',
+    'tipping-points': '#9b59b6'  // Purple for game design content
   };
 
   // Create sidebar mini-graph widget - always add to body to ensure it's on all pages
@@ -622,7 +635,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <button class="graph-filter-btn active" data-cat="all">All</button>
           <button class="graph-filter-btn" data-cat="nav">Nav</button>
           <button class="graph-filter-btn" data-cat="notes">Notes</button>
-          <button class="graph-filter-btn" data-cat="models">Models</button>
+          <button class="graph-filter-btn" data-cat="projects">Projects</button>
+          <button class="graph-filter-btn" data-cat="tipping-points">Tipping Points</button>
         </div>
         <div class="graph-zoom-controls">
           <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
@@ -1060,7 +1074,10 @@ document.addEventListener('DOMContentLoaded', function() {
     svg.call(zoomBehavior);
 
     // Filter nodes by category and search
-    let filteredNodes = graphData.nodes.map(d => ({...d}));
+    let filteredNodes = graphData.nodes.map(d => ({
+      ...d,
+      id: String(d.id)  // Ensure all node IDs are strings
+    }));
     if (activeCategory !== 'all') {
       filteredNodes = filteredNodes.filter(n => n.cat === activeCategory);
     }
@@ -1071,15 +1088,21 @@ document.addEventListener('DOMContentLoaded', function() {
       );
     }
     
-    const nodeIds = new Set(filteredNodes.map(n => n.id));
+    const nodeIds = new Set(filteredNodes.map(n => String(n.id)));
     
     // Filter links to only include filtered nodes
+    // Create new link objects with string IDs for D3 forceLink
     const filteredLinks = graphData.links
-      .map(l => ({source: l.source, target: l.target}))
       .filter(l => {
         const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
         const targetId = typeof l.target === 'object' ? l.target.id : l.target;
         return nodeIds.has(sourceId) && nodeIds.has(targetId);
+      })
+      .map(l => {
+        // Create new objects with string IDs (don't reference original)
+        const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+        const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+        return {source: String(sourceId), target: String(targetId)};
       });
 
     // Find connected nodes and paths
@@ -1118,7 +1141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pathNodes = currentId ? findPathNodes(currentId) : new Set();
 
     // Find current node and center it
-    const currentNode = filteredNodes.find(n => n.id === currentId);
+    const currentNode = filteredNodes.find(n => String(n.id) === String(currentId));
     const centerX = width / 2;
     const centerY = height / 2;
     
@@ -1129,8 +1152,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // D3 force simulation for full graph - centered on current node
+    // Create a map for quick node lookup by ID
+    const nodeMap = new Map(filteredNodes.map(n => [String(n.id), n]));
+    
+    // Ensure all links reference valid node IDs (filteredLinks already has string IDs)
+    const validLinks = filteredLinks.filter(l => {
+      const sourceId = String(l.source);
+      const targetId = String(l.target);
+      return nodeMap.has(sourceId) && nodeMap.has(targetId);
+    }).map(l => ({
+      // Create fresh objects to avoid mutation issues
+      source: String(l.source),
+      target: String(l.target)
+    }));
+    
     const simulation = d3.forceSimulation(filteredNodes)
-      .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(80))
+      .force('link', d3.forceLink(validLinks).id(d => String(d.id)).distance(80))
       .force('charge', d3.forceManyBody().strength(-200))
       .force('center', d3.forceCenter(centerX, centerY))
       .force('collision', d3.forceCollide().radius(25))
@@ -1141,7 +1178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clamp positions (except current node which stays fixed at center)
     filteredNodes.forEach(n => {
-      if (n.id !== currentId) {
+      if (String(n.id) !== String(currentId)) {
       n.x = Math.max(50, Math.min(width - 50, n.x));
       n.y = Math.max(50, Math.min(height - 50, n.y));
       }
@@ -1155,33 +1192,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Draw links with path highlighting (inside the g group for zoom/pan)
+    // After simulation, D3 mutates validLinks: source/target are now node objects
     g.selectAll('line.graph-link')
-      .data(filteredLinks)
+      .data(validLinks)
       .join('line')
       .attr('class', 'graph-link')
       .attr('x1', d => {
+        // After simulation, source/target are node objects with x/y properties
+        if (d.source && typeof d.source === 'object' && typeof d.source.x === 'number') {
+          return d.source.x;
+        }
+        // Fallback: find node by ID if source is still a string
         const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-        const sourceNode = filteredNodes.find(n => n.id === sourceId);
-        return sourceNode ? sourceNode.x : 0;
+        const sourceNode = filteredNodes.find(n => String(n.id) === String(sourceId));
+        return sourceNode && typeof sourceNode.x === 'number' ? sourceNode.x : 0;
       })
       .attr('y1', d => {
+        if (d.source && typeof d.source === 'object' && typeof d.source.y === 'number') {
+          return d.source.y;
+        }
         const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-        const sourceNode = filteredNodes.find(n => n.id === sourceId);
-        return sourceNode ? sourceNode.y : 0;
+        const sourceNode = filteredNodes.find(n => String(n.id) === String(sourceId));
+        return sourceNode && typeof sourceNode.y === 'number' ? sourceNode.y : 0;
       })
       .attr('x2', d => {
+        if (d.target && typeof d.target === 'object' && typeof d.target.x === 'number') {
+          return d.target.x;
+        }
         const targetId = typeof d.target === 'object' ? d.target.id : d.target;
-        const targetNode = filteredNodes.find(n => n.id === targetId);
-        return targetNode ? targetNode.x : 0;
+        const targetNode = filteredNodes.find(n => String(n.id) === String(targetId));
+        return targetNode && typeof targetNode.x === 'number' ? targetNode.x : 0;
       })
       .attr('y2', d => {
+        if (d.target && typeof d.target === 'object' && typeof d.target.y === 'number') {
+          return d.target.y;
+        }
         const targetId = typeof d.target === 'object' ? d.target.id : d.target;
-        const targetNode = filteredNodes.find(n => n.id === targetId);
-        return targetNode ? targetNode.y : 0;
+        const targetNode = filteredNodes.find(n => String(n.id) === String(targetId));
+        return targetNode && typeof targetNode.y === 'number' ? targetNode.y : 0;
       })
       .attr('class', d => {
-        const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-        const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+        // Get IDs from node objects (after simulation) or fallback to string IDs
+        const sourceId = d.source && typeof d.source === 'object' ? String(d.source.id) : String(d.source);
+        const targetId = d.target && typeof d.target === 'object' ? String(d.target.id) : String(d.target);
         const bothConnected = connectedNodes.has(sourceId) && connectedNodes.has(targetId);
         const bothInPath = pathNodes.has(sourceId) && pathNodes.has(targetId);
         return 'graph-link' + (bothConnected ? ' connected' : '') + (bothInPath ? ' path' : '');
@@ -2134,7 +2187,9 @@ window.Quarto = {
     <span class="navbar-title">re:current_analytics</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools tools-end">
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="mailto:timm.walker@recurrentanalytics.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           <div id="quarto-search" class="" title="Search"></div>
@@ -2152,7 +2207,7 @@ window.Quarto = {
   <ul>
   <li><a href="#projects" id="toc-projects" class="nav-link active" data-scroll-target="#projects">Projects</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/projects/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+</nav>
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2xpbWF0ZQ==">climate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZW5lcmd5">energy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXh0cmVtZXM=">extremes <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dGltZS1zZXJpZXM=">time-series <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmlzdWFsaXphdGlvbg==">visualization <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
@@ -2173,10 +2228,10 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Y2xpbWF0ZSUyQ2V4dHJlbWVzJTJDYW5hbHlzaXMlMkN2aXN1YWxpemF0aW9u" data-listing-date-sort="1765785600000" data-listing-file-modified-sort="1765840577330" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2881">
+<div class="quarto-post image-right" data-index="0" data-categories="Y2xpbWF0ZSUyQ2V4dHJlbWVzJTJDYW5hbHlzaXMlMkN2aXN1YWxpemF0aW9u" data-listing-date-sort="1765785600000" data-listing-file-modified-sort="1765843303590" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2878">
 <div class="thumbnail"><a href="../models/climate-extremes-explorer.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:models/climate-extremes-explorer.html -->
+<p class="card-img-top"><img src="../models/climate-extremes-explorer_files/figure-html/cell-4-output-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -2195,7 +2250,7 @@ window.Quarto = {
 
 </div>
 <div class="delink listing-description"><a href="../models/climate-extremes-explorer.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:models/climate-extremes-explorer.html -->
+<p>Comprehensive interactive analysis of climate extremes using synthetic climate data. Demonstrates methods for identifying, analyzing, and visualizing extreme climate events including heatwaves, cold snaps, and extreme precipitation. Features return period analysis, event clustering, and multi-variable correlation analysis.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -2206,10 +2261,10 @@ Dec 15, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZW5lcmd5JTJDZXh0cmVtZXMlMkN0aW1lLXNlcmllcw==" data-listing-date-sort="1765526400000" data-listing-file-modified-sort="1765841442980" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1599">
+<div class="quarto-post image-right" data-index="1" data-categories="ZW5lcmd5JTJDZXh0cmVtZXMlMkN0aW1lLXNlcmllcw==" data-listing-date-sort="1765526400000" data-listing-file-modified-sort="1765843303590" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1780">
 <div class="thumbnail"><a href="../models/heatwave-prices-de-lu.html" class="no-external">
 
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:models/heatwave-prices-de-lu.html -->
+<p class="card-img-top"><img src="../models/heatwave-prices-de-lu_files/figure-html/cell-4-output-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -2226,7 +2281,7 @@ Dec 15, 2025
 
 </div>
 <div class="delink listing-description"><a href="../models/heatwave-prices-de-lu.html" class="no-external">
-<!-- desc(5A0113B34292)[max=175]:models/heatwave-prices-de-lu.html -->
+<p>Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -2719,10 +2774,10 @@ Dec 12, 2025
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/recurrentanalytics/recurrentanalytics/blob/main/projects/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
     </div>
+    <div class="nav-footer-right">
+<p><a href="../notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a></p>
+</div>
   </div>
 </footer>
 

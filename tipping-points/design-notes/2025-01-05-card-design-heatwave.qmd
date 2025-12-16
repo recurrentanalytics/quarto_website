@@ -1,0 +1,115 @@
+---
+title: "Card Design: Heatwave Climate Card"
+date: 2025-01-05
+categories: [card-design]
+tags: [climate-cards, heatwave, energy, design-process]
+description: "Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems."
+---
+
+## Card Concept
+
+The Heatwave card represents extended periods of extreme high temperatures—one of the most visible and impactful climate events. It needs to capture both immediate impacts (energy demand spikes) and longer-term effects (agricultural stress, health systems).
+
+## Design Goals
+
+1. **Realism** - Model actual heatwave impacts on energy, agriculture, health
+2. **Gameplay** - Create interesting strategic choices (mitigate vs. adapt)
+3. **Interconnections** - Show how one event affects multiple systems
+4. **Uncertainty** - Vary intensity and duration to model unpredictability
+
+## Initial Design
+
+### Version 1.0
+
+**Heatwave**  
+*Climate Card*
+
+**Intensity**: 4 (moderate)  
+**Duration**: 2 rounds
+
+**Effects**:
+- Energy system: +3 stress (cooling demand)
+- Agriculture: +2 stress (crop stress)
+- Health: +1 stress (heat-related illness)
+
+**Cascading**: If Energy stress > 5, trigger "Grid Overload" event
+
+### Issues with V1.0
+
+- Too predictable (fixed effects)
+- No player agency (just happens to you)
+- Doesn't capture variability of real heatwaves
+- Cascading effect too deterministic
+
+## Revised Design
+
+### Version 2.0
+
+**Heatwave**  
+*Climate Card*
+
+**Intensity**: 3-5 (variable)  
+**Duration**: 1-3 rounds (variable)
+
+**Primary Effects** (choose one):
+- **Energy Focus**: +4 Energy stress, +1 Agriculture stress
+- **Agriculture Focus**: +3 Agriculture stress, +2 Water stress
+- **Health Focus**: +3 Health stress, +1 Infrastructure stress
+
+**Secondary Effects** (if threshold crossed):
+- Energy > 5: Rolling blackouts (additional +2 stress next round)
+- Agriculture > 4: Crop failure (permanent -1 Agriculture capacity)
+- Health > 4: Emergency response (draw extra System card)
+
+**Player Choice**: When Heatwave is drawn, player chooses which system is primary focus (represents regional variation, preparation, or random chance)
+
+### Design Rationale
+
+1. **Variable Intensity/Duration** - Models real-world unpredictability
+2. **Player Choice** - Adds agency and strategic depth
+3. **Multiple Pathways** - Different heatwaves affect different systems
+4. **Cascading Effects** - Threshold-based secondary effects create tension
+
+## Real-World Context
+
+This card is based on:
+- European heatwaves (2003, 2018, 2022) - energy demand spikes, agricultural losses
+- North American heat domes - infrastructure stress, health impacts
+- Research on heatwave attribution and future projections
+
+Key insight: Heatwaves don't just raise temperatures—they stress multiple interconnected systems simultaneously.
+
+## Playtesting Notes
+
+- Players appreciated the choice element
+- Variable intensity created uncertainty without feeling random
+- Cascading effects felt natural and consequential
+- Some players wanted more ways to prepare for heatwaves
+
+## Future Iterations
+
+### Potential Additions
+
+1. **Regional Variants** - Different heatwave cards for different regions
+2. **Preparation Cards** - System cards that reduce heatwave impact
+3. **Compound Events** - Heatwave + Drought combinations
+4. **Adaptation Paths** - Long-term system changes that reduce vulnerability
+
+### Design Questions
+
+- Should heatwaves be more frequent but less intense, or rare but catastrophic?
+- How to model heatwave predictability (early warning systems)?
+- Should there be "heatwave seasons" that increase probability?
+
+## Card Art Concepts
+
+- Abstract: Temperature gradient (red to orange)
+- Realistic: Satellite imagery of heat patterns
+- Stylized: Thermometer breaking, sun icon with intensity markers
+
+*Art direction pending—focusing on mechanics first.*
+
+---
+
+*See also: [Design Notes Index](/tipping-points/design-notes/)*
+

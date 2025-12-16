@@ -11,31 +11,6 @@ A strategic card game exploring the intersection of climate science and politica
 
 *Tipping Points* is a card-based game that models how climate events interact with political and social systems. Players navigate cascading effects, feedback loops, and the challenge of building resilience in the face of uncertainty.
 
-## Game Components
-
-::: {.card}
-### Climate Cards
-Represent physical climate events: heatwaves, floods, droughts, sea-level rise, and extreme weather patterns.
-:::
-
-::: {.card}
-### System Cards
-Model political, economic, and social systems: governance structures, markets, infrastructure, and communities.
-:::
-
-::: {.card}
-### Tipping Point Cards
-Trigger cascading effects when certain conditions are met, creating feedback loops and system transformations.
-:::
-
-## How to Play
-
-1. **Setup**: Each player receives a hand of system cards representing different sectors (energy, agriculture, governance, etc.)
-2. **Climate Events**: Draw climate cards that trigger impacts on systems
-3. **Response**: Play system cards to build resilience or adapt
-4. **Tipping Points**: When thresholds are crossed, tipping point cards activate, changing the game state
-5. **Victory Conditions**: Win by maintaining system stability or by successfully transforming systems to be more resilient
-
 ## Design Philosophy
 
 The game is designed to:
@@ -43,15 +18,170 @@ The game is designed to:
 - Show how small changes can trigger large-scale transformations
 - Explore trade-offs between short-term stability and long-term adaptation
 - Model uncertainty and incomplete information
+- Bridge the gap between scientific understanding and political decision-making
 
-## Status
+The design emphasizes **emergent complexity**—simple rules that generate complex, unpredictable outcomes, mirroring real-world climate–politics dynamics.
 
-*Currently in development. Rules, cards, and mechanics are being refined through playtesting.*
+## Game Mechanics
+
+### Core Systems
+
+1. **Setup**: Each player receives a hand of system cards representing different sectors (energy, agriculture, governance, infrastructure, etc.)
+
+2. **Climate Events**: Draw climate cards that trigger impacts on systems. Events have:
+   - **Intensity** (magnitude of the event)
+   - **Duration** (how long effects persist)
+   - **Scope** (which systems are affected)
+
+3. **Response**: Play system cards to:
+   - Build resilience (reduce vulnerability)
+   - Adapt (change system structure)
+   - Mitigate (prevent future impacts)
+
+4. **Tipping Points**: When thresholds are crossed, tipping point cards activate, creating:
+   - Cascading effects across multiple systems
+   - Feedback loops (positive or negative)
+   - Irreversible state changes
+
+5. **Victory Conditions**: 
+   - **Stability Path**: Maintain system stability through multiple climate events
+   - **Transformation Path**: Successfully transform systems to be more resilient
+   - **Collaboration Path**: Achieve collective goals through coordinated action
+
+### Current Rules Version
+
+*Rules are currently in active development. See [Design Notes](/tipping-points/design-notes/) for latest iterations and playtesting results.*
+
+## Card Types
+
+### Climate Cards
+
+Represent physical climate events and their characteristics:
+
+- **Heatwaves** - Extreme temperature events affecting energy demand, agriculture, health systems
+- **Floods** - Water-related disasters impacting infrastructure, communities, agriculture
+- **Droughts** - Extended dry periods affecting water systems, agriculture, energy production
+- **Sea-Level Rise** - Long-term coastal impacts on infrastructure and communities
+- **Extreme Weather** - Storms, hurricanes, and other high-intensity events
+
+Each climate card includes:
+- Event description and real-world context
+- Affected systems
+- Intensity and duration parameters
+- Potential cascading effects
+
+### System Cards
+
+Model political, economic, and social systems:
+
+- **Governance** - Political structures, policy-making, institutional capacity
+- **Energy** - Power generation, distribution, grid infrastructure
+- **Agriculture** - Food production, supply chains, rural communities
+- **Infrastructure** - Transportation, water, communications
+- **Markets** - Economic systems, financial institutions, trade
+- **Communities** - Social networks, local organizations, civil society
+
+System cards have:
+- Current state (resilience level, vulnerabilities)
+- Response options (adaptation, mitigation, transformation)
+- Interconnections with other systems
+
+### Tipping Point Cards
+
+Trigger cascading effects when certain conditions are met:
+
+- **Threshold Crossings** - When system stress exceeds capacity
+- **Feedback Loops** - Self-reinforcing or self-limiting dynamics
+- **System Transformations** - Fundamental changes to system structure
+- **Cascading Failures** - When one system failure triggers others
+
+Tipping point cards change the game state permanently, creating new constraints and opportunities.
+
+## Theoretical Foundations
+
+The game design draws from multiple theoretical frameworks:
+
+### Complexity Theory
+- Emergent behavior from simple rules
+- Non-linear dynamics and phase transitions
+- Network effects and system interdependencies
+
+### Climate Science
+- Extreme event attribution
+- Climate system feedbacks
+- Uncertainty and scenario planning
+
+### Political Economy
+- Institutional analysis
+- Power dynamics and decision-making
+- Collective action problems
+
+### Game Design Theory
+- Serious games for learning
+- Simulation and modeling
+- Player agency and meaningful choices
+
+## Development Timeline
+
+- **2024 Q4**: Initial concept and card design
+- **2025 Q1**: First playtesting sessions, mechanics iteration
+- **2025 Q2**: Expanded card sets, refined rules
+- **Current**: Active development and playtesting
+
+*See [Design Notes](/tipping-points/design-notes/) for detailed development history.*
+
+## Latest Updates
+
+<div id="tipping-points-updates">
+  <p>Loading latest design notes...</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Fetch latest design notes from the collection
+  fetch('/tipping-points/design-notes/index.html')
+    .then(response => response.text())
+    .then(html => {
+      // Parse the HTML to extract recent posts
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const listingItems = doc.querySelectorAll('.quarto-listing-item');
+      
+      const updatesContainer = document.getElementById('tipping-points-updates');
+      if (listingItems.length > 0) {
+        let html = '<ul style="list-style: none; padding: 0;">';
+        Array.from(listingItems).slice(0, 5).forEach(item => {
+          const link = item.querySelector('a');
+          const title = link ? link.textContent : 'Untitled';
+          const href = link ? link.getAttribute('href') : '#';
+          const date = item.querySelector('.quarto-listing-item-date')?.textContent || '';
+          html += `<li style="margin-bottom: 0.75rem;">
+            <a href="${href}">${title}</a>
+            ${date ? `<span style="color: var(--bs-secondary); font-size: 0.9em; margin-left: 0.5rem;">${date}</span>` : ''}
+          </li>`;
+        });
+        html += '</ul>';
+        html += `<p><a href="/tipping-points/design-notes/">View all design notes →</a></p>`;
+        updatesContainer.innerHTML = html;
+      } else {
+        updatesContainer.innerHTML = '<p>No design notes yet. Check back soon!</p>';
+      }
+    })
+    .catch(err => {
+      document.getElementById('tipping-points-updates').innerHTML = 
+        '<p><a href="/tipping-points/design-notes/">View design notes →</a></p>';
+    });
+});
+</script>
 
 ## Resources
 
-- Game design notes and iterations
-- Card templates and artwork
-- Playtesting results and feedback
-- Theoretical foundations (complexity theory, climate science, political economy)
+- **[Design Notes](/tipping-points/design-notes/)** - Development blog with iterations, playtesting, and design decisions
+- **Card Database** - Catalog of designed cards (coming soon)
+- **Playtesting Results** - Structured feedback and session reports
+- **Theoretical Foundations** - Academic papers and references on complexity, climate science, and political economy
+
+## Status
+
+*Currently in active development. Rules, cards, and mechanics are being refined through playtesting. See [Design Notes](/tipping-points/design-notes/) for the latest updates.*
 

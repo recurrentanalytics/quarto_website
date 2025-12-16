@@ -1,0 +1,83 @@
+---
+title: "Playtest Session 1: Initial Mechanics Testing"
+date: 2025-01-15
+categories: [playtesting]
+tags: [mechanics, feedback, iteration]
+description: "First playtesting session with initial card set and basic mechanics. Key observations on game flow, player engagement, and areas for improvement."
+---
+
+## Session Overview
+
+**Date**: January 15, 2025  
+**Players**: 4  
+**Duration**: ~90 minutes  
+**Version**: v0.1 (initial prototype)
+
+## Participants
+
+- 2 players with game design experience
+- 1 player with climate science background
+- 1 player new to both domains
+
+## Setup
+
+- Used initial card set: 20 Climate cards, 30 System cards, 10 Tipping Point cards
+- Basic rules: 3 rounds, simple victory conditions
+- No time limits for turns
+
+## Key Observations
+
+### What Worked
+
+1. **Card Interactions** - Players found the system interconnections intuitive and engaging
+2. **Tipping Point Moments** - The threshold-crossing mechanics created memorable "oh no" moments
+3. **Strategic Depth** - Multiple viable paths to victory emerged naturally
+
+### Issues Identified
+
+1. **Pacing** - Game felt slow in early rounds before tipping points activated
+2. **Information Overload** - Too many system connections to track simultaneously
+3. **Victory Conditions** - Unclear when players were close to winning
+4. **Card Balance** - Some climate cards felt too powerful, others too weak
+
+## Player Feedback
+
+> "The cascading effects are really satisfying, but I wish I had more control over when they trigger." — Player A
+
+> "I love the concept, but the rules need to be clearer. I wasn't sure if I was playing correctly." — Player B
+
+> "The climate–politics connection is really well done. It feels like real decision-making under uncertainty." — Player C
+
+## Design Implications
+
+### Immediate Changes Needed
+
+1. **Streamline Setup** - Reduce initial card count or simplify first-round mechanics
+2. **Clarify Rules** - Add examples and edge case clarifications
+3. **Victory Tracking** - Add visual indicators for progress toward victory conditions
+4. **Card Rebalancing** - Adjust intensity values and effects
+
+### Future Iterations
+
+- Consider adding a "preparation phase" before climate events
+- Explore asymmetric player roles (different sectors, different goals)
+- Add more explicit feedback loops between systems
+
+## Next Steps
+
+1. Revise rules document with clarifications
+2. Rebalance initial card set
+3. Design victory condition tracking system
+4. Schedule second playtest with revised mechanics
+
+## Metrics
+
+- Average turn time: ~3 minutes
+- Total rounds played: 3
+- Tipping points triggered: 2
+- Player satisfaction (1-5): 3.5 average
+
+---
+
+*See also: [Mechanics Iteration 2](/tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html)*
+

@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 - **Projects:** models, tools, demos, and packaged work → [projects/](projects/)
 - **Tipping Points:** strategic card game on climate–politics → [tipping-points/](tipping-points/)
 - **About & Contact:** who/what/why → [about](about.html)
+- **Working Together:** consulting engagements → [working-together](working-together.html)
 
 <div id="featured-content-container">
   <div class="featured-content-loading">Loading featured content...</div>

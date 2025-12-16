@@ -18,13 +18,18 @@ website:
 
   navbar:
     search: true
+    tools:
+      - icon: envelope
+        href: mailto:timm.walker@recurrentanalytics.com
+      - icon: github
+        href: https://github.com/recurrentanalytics
 
   page-footer:
     left: "© Timm Walker"
+    right: '<a href="/notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a>'
 
   search: true
   repo-url: https://github.com/recurrentanalytics/recurrentanalytics
-  repo-actions: [source]
 
 format:
   html:
@@ -240,6 +245,7 @@ format:
             { title: 'Projects', path: '/projects/' },
             { title: 'Reading', path: '/reading/' },
             { title: 'Tipping Points', path: '/tipping-points/' },
+            { title: 'Design Notes', path: '/tipping-points/design-notes/' },
             { title: 'Hello, Lab', path: '/notes/2025-hello-world.html' },
             { title: 'Risk Modelling Part 1: Foundations', path: '/notes/risk-series-1.html' },
             { title: 'Risk Modelling Part 2: Data', path: '/notes/risk-series-2.html' },
@@ -419,13 +425,24 @@ format:
               { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'projects' },
               { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'projects' },
               { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
-              { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
+              { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' },
+              { id: 'design-notes', label: 'Design Notes', path: '/tipping-points/design-notes/', cat: 'tipping-points' },
+              { id: 'playtest-1', label: 'Playtest Session 1', path: '/tipping-points/design-notes/2025-01-15-playtest-session-1.html', cat: 'tipping-points' },
+              { id: 'mechanics-2', label: 'Mechanics Iteration 2', path: '/tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html', cat: 'tipping-points' },
+              { id: 'heatwave-card', label: 'Card Design: Heatwave', path: '/tipping-points/design-notes/2025-01-05-card-design-heatwave.html', cat: 'tipping-points' }
             ],
             links: [
               { source: 'home', target: 'notes' },
               { source: 'home', target: 'projects' },
               { source: 'home', target: 'tipping-points' },
               { source: 'home', target: 'about' },
+              { source: 'tipping-points', target: 'design-notes' },
+              { source: 'design-notes', target: 'playtest-1' },
+              { source: 'design-notes', target: 'mechanics-2' },
+              { source: 'design-notes', target: 'heatwave-card' },
+              { source: 'playtest-1', target: 'mechanics-2' },
+              { source: 'mechanics-2', target: 'playtest-1' },
+              { source: 'heatwave-card', target: 'design-notes' },
               { source: 'notes', target: 'hello' },
               { source: 'notes', target: 'risk-1' },
               { source: 'risk-1', target: 'risk-2' },
@@ -445,7 +462,8 @@ format:
           const catColors = {
             nav: 'var(--bs-secondary)',
             notes: 'var(--bs-info)',
-            projects: 'var(--bs-success)'
+            projects: 'var(--bs-success)',
+            'tipping-points': '#9b59b6'  // Purple for game design content
           };
 
           // Create sidebar mini-graph widget - always add to body to ensure it's on all pages
@@ -522,6 +540,7 @@ format:
                   <button class="graph-filter-btn" data-cat="nav">Nav</button>
                   <button class="graph-filter-btn" data-cat="notes">Notes</button>
                   <button class="graph-filter-btn" data-cat="projects">Projects</button>
+                  <button class="graph-filter-btn" data-cat="tipping-points">Tipping Points</button>
                 </div>
                 <div class="graph-zoom-controls">
                   <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
@@ -1891,3 +1910,11 @@ collections:
       type: default
       sort: "date desc"
       contents: "models/*"
+  tipping-points-notes:
+    feed: false
+    categories: true
+    sort: "date desc"
+    listing:
+      type: default
+      sort: "date desc"
+      contents: "tipping-points/design-notes/*"
