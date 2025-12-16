@@ -2,6 +2,12 @@
 title: "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019"
 date: 2025-12-12
 categories: [energy, extremes, time-series]
+description: "Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics."
+execute:
+  echo: true
+  warning: false
+  message: false
+freeze: auto
 ---
 
 ## Why this note exists
@@ -21,10 +27,6 @@ The challenge is temporal alignment: prices are hourly, heatwaves are daily phen
 ## Build processed inputs (hourly parquet)
 
 ```{python}
-import sys
-import os
-sys.path.insert(0, os.path.abspath('.'))
-
 import pandas as pd
 
 from src.data_download import (
@@ -40,11 +42,11 @@ END_WEATHER = "2020-01-01"
 
 # Try to load real data, fall back to synthetic if not available
 try:
-save_prices_from_opsd(start=START, end=END_PRICES)
-save_weather_de_from_opsd(start=START, end=END_WEATHER)
+    save_prices_from_opsd(start=START, end=END_PRICES)
+    save_weather_de_from_opsd(start=START, end=END_WEATHER)
 
-prices  = pd.read_parquet("data/processed/prices_de_lu_clean.parquet")
-weather = pd.read_parquet("data/processed/weather_de_agg.parquet")
+    prices  = pd.read_parquet("data/processed/prices_de_lu_clean.parquet")
+    weather = pd.read_parquet("data/processed/weather_de_agg.parquet")
 
     print("Real data loaded successfully:")
     print(prices.head())
@@ -98,14 +100,14 @@ if prices.empty or weather.empty:
     daily_flags = pd.DataFrame()
     merged = pd.DataFrame()
 else:
-prices_c, weather_c = restrict_common_period(prices, weather)
+    prices_c, weather_c = restrict_common_period(prices, weather)
 
-daily_temp  = compute_daily_max_temp(weather_c)
-daily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)
+    daily_temp  = compute_daily_max_temp(weather_c)
+    daily_flags = flag_heatwaves(daily_temp, threshold=30.0, min_duration=3)
 
-# Attach daily flag back to hourly weather and merge with hourly prices
-weather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)
-merged = merge_price_and_weather(prices_c, weather_hw)
+    # Attach daily flag back to hourly weather and merge with hourly prices
+    weather_hw = expand_heatwave_flag_to_hourly(weather_c, daily_flags)
+    merged = merge_price_and_weather(prices_c, weather_hw)
 
     print("Heatwave analysis completed:")
     print(merged.head())
@@ -121,20 +123,20 @@ This temporal clustering matters. A single hot day might cause a price spike, bu
 if daily_flags.empty:
     print("No data available for visualization.")
 else:
-hw_2019 = daily_flags["2019-06-01":"2019-08-31"]
+    hw_2019 = daily_flags["2019-06-01":"2019-08-31"]
 
-fig, ax = plt.subplots(figsize=(12, 4))
-ax.plot(hw_2019.index, hw_2019["t2m_daily_max_c"], label="Daily max temp")
-ax.scatter(
-    hw_2019.index[hw_2019["is_heatwave_day"]],
-    hw_2019["t2m_daily_max_c"][hw_2019["is_heatwave_day"]],
-    s=35,
-    label="Heatwave days",
-)
-ax.set_ylabel("°C")
-ax.set_title("Daily max temperature with heatwave days highlighted (Summer 2019)")
-ax.legend()
-plt.show()
+    fig, ax = plt.subplots(figsize=(12, 4))
+    ax.plot(hw_2019.index, hw_2019["t2m_daily_max_c"], label="Daily max temp")
+    ax.scatter(
+        hw_2019.index[hw_2019["is_heatwave_day"]],
+        hw_2019["t2m_daily_max_c"][hw_2019["is_heatwave_day"]],
+        s=35,
+        label="Heatwave days",
+    )
+    ax.set_ylabel("°C")
+    ax.set_title("Daily max temperature with heatwave days highlighted (Summer 2019)")
+    ax.legend()
+    plt.show()
 ```
 
 ## Price-Temperature Coupling: Visual Evidence
@@ -149,25 +151,25 @@ The dashed temperature line shows the underlying driver. Notice how price spikes
 if merged.empty:
     print("No data available for visualization.")
 else:
-summer = merged.set_index("datetime_utc")["2019-06-01":"2019-08-31"]
+    summer = merged.set_index("datetime_utc")["2019-06-01":"2019-08-31"]
 
-fig, ax1 = plt.subplots(figsize=(12, 5))
-ax2 = ax1.twinx()
+    fig, ax1 = plt.subplots(figsize=(12, 5))
+    ax2 = ax1.twinx()
 
-ax1.plot(summer.index, summer["price_eur_mwh"], label="Price (EUR/MWh)")
-ax2.plot(summer.index, summer["t2m_mean_c"], alpha=0.7, linestyle="--", label="Temperature (°C)")
+    ax1.plot(summer.index, summer["price_eur_mwh"], label="Price (EUR/MWh)")
+    ax2.plot(summer.index, summer["t2m_mean_c"], alpha=0.7, linestyle="--", label="Temperature (°C)")
 
-# Shade heatwave days
-for day in summer.index.normalize().unique():
-    day_mask = (summer.index.normalize() == day)
-    if summer.loc[day_mask, "is_heatwave_day"].any():
-        ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)
+    # Shade heatwave days
+    for day in summer.index.normalize().unique():
+        day_mask = (summer.index.normalize() == day)
+        if summer.loc[day_mask, "is_heatwave_day"].any():
+            ax1.axvspan(day, day + pd.Timedelta(days=1), alpha=0.12)
 
-ax1.set_ylabel("Price [EUR/MWh]")
-ax2.set_ylabel("Temperature [°C]")
-ax1.set_title("Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)")
-fig.tight_layout()
-plt.show()
+    ax1.set_ylabel("Price [EUR/MWh]")
+    ax2.set_ylabel("Temperature [°C]")
+    ax1.set_title("Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)")
+    fig.tight_layout()
+    plt.show()
 ```
 
 ## Distributional Differences: Quantifying the Heatwave Premium
@@ -203,16 +205,16 @@ else:
     hw = peak[peak["is_heatwave_day"]]
     normal = peak[~peak["is_heatwave_day"]]
     
-fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(8, 5))
 
-ax.hist(normal["price_eur_mwh"], bins=60, alpha=0.6, density=True, label="Normal days (peak hours)")
-ax.hist(hw["price_eur_mwh"],     bins=60, alpha=0.6, density=True, label="Heatwave days (peak hours)")
+    ax.hist(normal["price_eur_mwh"], bins=60, alpha=0.6, density=True, label="Normal days (peak hours)")
+    ax.hist(hw["price_eur_mwh"],     bins=60, alpha=0.6, density=True, label="Heatwave days (peak hours)")
 
-ax.set_xlabel("Day-ahead price (EUR/MWh)")
-ax.set_ylabel("Density")
-ax.set_title("DE-LU prices: heatwave vs normal days (2015–2019, peak hours)")
-ax.legend()
-plt.show()
+    ax.set_xlabel("Day-ahead price (EUR/MWh)")
+    ax.set_ylabel("Density")
+    ax.set_title("DE-LU prices: heatwave vs normal days (2015–2019, peak hours)")
+    ax.legend()
+    plt.show()
 ```
 
 ## Limitations and Extensions: What This Analysis Doesn't Tell Us

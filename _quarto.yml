@@ -416,8 +416,8 @@ format:
               { id: 'risk-1', label: 'Risk Part 1', path: '/notes/risk-series-1.html', cat: 'notes' },
               { id: 'risk-2', label: 'Risk Part 2', path: '/notes/risk-series-2.html', cat: 'notes' },
               { id: 'risk-3', label: 'Risk Part 3', path: '/notes/risk-series-3.html', cat: 'notes' },
-              { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'models' },
-              { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'models' },
+              { id: 'heatwave', label: 'Heatwave Prices', path: '/models/heatwave-prices-de-lu.html', cat: 'projects' },
+              { id: 'climate-extremes', label: 'Climate Extremes Explorer', path: '/models/climate-extremes-explorer.html', cat: 'projects' },
               { id: 'projects', label: 'Projects', path: '/projects/', cat: 'nav' },
               { id: 'tipping-points', label: 'Tipping Points', path: '/tipping-points/', cat: 'nav' }
             ],
@@ -445,7 +445,7 @@ format:
           const catColors = {
             nav: 'var(--bs-secondary)',
             notes: 'var(--bs-info)',
-            models: 'var(--bs-success)'
+            projects: 'var(--bs-success)'
           };
 
           // Create sidebar mini-graph widget - always add to body to ensure it's on all pages
@@ -521,7 +521,7 @@ format:
                   <button class="graph-filter-btn active" data-cat="all">All</button>
                   <button class="graph-filter-btn" data-cat="nav">Nav</button>
                   <button class="graph-filter-btn" data-cat="notes">Notes</button>
-                  <button class="graph-filter-btn" data-cat="models">Models</button>
+                  <button class="graph-filter-btn" data-cat="projects">Projects</button>
                 </div>
                 <div class="graph-zoom-controls">
                   <button class="graph-zoom-btn" id="zoom-in" title="Zoom in">+</button>
@@ -959,7 +959,10 @@ format:
             svg.call(zoomBehavior);
 
             // Filter nodes by category and search
-            let filteredNodes = graphData.nodes.map(d => ({...d}));
+            let filteredNodes = graphData.nodes.map(d => ({
+              ...d,
+              id: String(d.id)  // Ensure all node IDs are strings
+            }));
             if (activeCategory !== 'all') {
               filteredNodes = filteredNodes.filter(n => n.cat === activeCategory);
             }
@@ -970,15 +973,21 @@ format:
               );
             }
             
-            const nodeIds = new Set(filteredNodes.map(n => n.id));
+            const nodeIds = new Set(filteredNodes.map(n => String(n.id)));
             
             // Filter links to only include filtered nodes
+            // Create new link objects with string IDs for D3 forceLink
             const filteredLinks = graphData.links
-              .map(l => ({source: l.source, target: l.target}))
               .filter(l => {
                 const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
                 const targetId = typeof l.target === 'object' ? l.target.id : l.target;
                 return nodeIds.has(sourceId) && nodeIds.has(targetId);
+              })
+              .map(l => {
+                // Create new objects with string IDs (don't reference original)
+                const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                return {source: String(sourceId), target: String(targetId)};
               });
 
             // Find connected nodes and paths
@@ -1017,7 +1026,7 @@ format:
             const pathNodes = currentId ? findPathNodes(currentId) : new Set();
 
             // Find current node and center it
-            const currentNode = filteredNodes.find(n => n.id === currentId);
+            const currentNode = filteredNodes.find(n => String(n.id) === String(currentId));
             const centerX = width / 2;
             const centerY = height / 2;
             
@@ -1028,8 +1037,22 @@ format:
             }
 
             // D3 force simulation for full graph - centered on current node
+            // Create a map for quick node lookup by ID
+            const nodeMap = new Map(filteredNodes.map(n => [String(n.id), n]));
+            
+            // Ensure all links reference valid node IDs (filteredLinks already has string IDs)
+            const validLinks = filteredLinks.filter(l => {
+              const sourceId = String(l.source);
+              const targetId = String(l.target);
+              return nodeMap.has(sourceId) && nodeMap.has(targetId);
+            }).map(l => ({
+              // Create fresh objects to avoid mutation issues
+              source: String(l.source),
+              target: String(l.target)
+            }));
+            
             const simulation = d3.forceSimulation(filteredNodes)
-              .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(80))
+              .force('link', d3.forceLink(validLinks).id(d => String(d.id)).distance(80))
               .force('charge', d3.forceManyBody().strength(-200))
               .force('center', d3.forceCenter(centerX, centerY))
               .force('collision', d3.forceCollide().radius(25))
@@ -1040,7 +1063,7 @@ format:
 
             // Clamp positions (except current node which stays fixed at center)
             filteredNodes.forEach(n => {
-              if (n.id !== currentId) {
+              if (String(n.id) !== String(currentId)) {
               n.x = Math.max(50, Math.min(width - 50, n.x));
               n.y = Math.max(50, Math.min(height - 50, n.y));
               }
@@ -1054,33 +1077,49 @@ format:
             }
 
             // Draw links with path highlighting (inside the g group for zoom/pan)
+            // After simulation, D3 mutates validLinks: source/target are now node objects
             g.selectAll('line.graph-link')
-              .data(filteredLinks)
+              .data(validLinks)
               .join('line')
               .attr('class', 'graph-link')
               .attr('x1', d => {
+                // After simulation, source/target are node objects with x/y properties
+                if (d.source && typeof d.source === 'object' && typeof d.source.x === 'number') {
+                  return d.source.x;
+                }
+                // Fallback: find node by ID if source is still a string
                 const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-                const sourceNode = filteredNodes.find(n => n.id === sourceId);
-                return sourceNode ? sourceNode.x : 0;
+                const sourceNode = filteredNodes.find(n => String(n.id) === String(sourceId));
+                return sourceNode && typeof sourceNode.x === 'number' ? sourceNode.x : 0;
               })
               .attr('y1', d => {
+                if (d.source && typeof d.source === 'object' && typeof d.source.y === 'number') {
+                  return d.source.y;
+                }
                 const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-                const sourceNode = filteredNodes.find(n => n.id === sourceId);
-                return sourceNode ? sourceNode.y : 0;
+                const sourceNode = filteredNodes.find(n => String(n.id) === String(sourceId));
+                return sourceNode && typeof sourceNode.y === 'number' ? sourceNode.y : 0;
               })
               .attr('x2', d => {
+                if (d.target && typeof d.target === 'object' && typeof d.target.x === 'number') {
+                  return d.target.x;
+                }
                 const targetId = typeof d.target === 'object' ? d.target.id : d.target;
-                const targetNode = filteredNodes.find(n => n.id === targetId);
-                return targetNode ? targetNode.x : 0;
+                const targetNode = filteredNodes.find(n => String(n.id) === String(targetId));
+                return targetNode && typeof targetNode.x === 'number' ? targetNode.x : 0;
               })
               .attr('y2', d => {
+                if (d.target && typeof d.target === 'object' && typeof d.target.y === 'number') {
+                  return d.target.y;
+                }
                 const targetId = typeof d.target === 'object' ? d.target.id : d.target;
-                const targetNode = filteredNodes.find(n => n.id === targetId);
-                return targetNode ? targetNode.y : 0;
+                const targetNode = filteredNodes.find(n => String(n.id) === String(targetId));
+                return targetNode && typeof targetNode.y === 'number' ? targetNode.y : 0;
               })
               .attr('class', d => {
-                const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
-                const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+                // Get IDs from node objects (after simulation) or fallback to string IDs
+                const sourceId = d.source && typeof d.source === 'object' ? String(d.source.id) : String(d.source);
+                const targetId = d.target && typeof d.target === 'object' ? String(d.target.id) : String(d.target);
                 const bothConnected = connectedNodes.has(sourceId) && connectedNodes.has(targetId);
                 const bothInPath = pathNodes.has(sourceId) && pathNodes.has(targetId);
                 return 'graph-link' + (bothConnected ? ' connected' : '') + (bothInPath ? ' path' : '');

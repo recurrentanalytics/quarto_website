@@ -2,6 +2,12 @@
 title: "Climate Extremes Explorer"
 date: 2025-12-15
 categories: [climate, extremes, analysis, visualization]
+description: "Comprehensive interactive analysis of climate extremes using synthetic climate data. Demonstrates methods for identifying, analyzing, and visualizing extreme climate events including heatwaves, cold snaps, and extreme precipitation. Features return period analysis, event clustering, and multi-variable correlation analysis."
+execute:
+  echo: true
+  warning: false
+  message: false
+freeze: auto
 ---
 
 ## Overview
@@ -31,10 +37,6 @@ This isn't "fake data" in the pejorative sense—it's a generative model that ca
 ### Generate and Load Climate Data
 
 ```{python}
-import sys
-import os
-sys.path.insert(0, os.path.abspath('.'))
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
