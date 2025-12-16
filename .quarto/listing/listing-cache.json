@@ -1,0 +1,13 @@
+{
+  "listingMap": {
+    "tipping-points/design-notes/index.qmd": [
+      "."
+    ],
+    "projects/index.qmd": [
+      "../models/*.qmd"
+    ],
+    "notes/index.qmd": [
+      "."
+    ]
+  }
+}

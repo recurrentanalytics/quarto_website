@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-12-12">
+<meta name="description" content="Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics.">
 
-<title>index – re:current_analytics</title>
+<title>Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019 – re:current_analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,30 +60,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ec8d78f0ebbe7cd36fa017e241e46b34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ec8d78f0ebbe7cd36fa017e241e46b34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-453edaec89a67b4aaf50980fc95ba5b8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -109,35 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <!-- IBM Plex Sans Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1973,43 +1944,20 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
 })();
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="– re:current_analytics">
-<meta property="og:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
+<meta property="og:title" content="Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019 – re:current_analytics">
+<meta property="og:description" content="Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics.">
+<meta property="og:image" content="https://recurrentanalytics.com/models/heatwave-prices-de-lu_files/figure-html/cell-4-output-1.png">
 <meta property="og:site_name" content="re:current_analytics">
-<meta name="twitter:title" content="– re:current_analytics">
-<meta name="twitter:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
+<meta property="og:image:height" content="714">
+<meta property="og:image:width" content="1953">
+<meta name="twitter:title" content="Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019 – re:current_analytics">
+<meta name="twitter:description" content="Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics.">
+<meta name="twitter:image" content="https://recurrentanalytics.com/models/heatwave-prices-de-lu_files/figure-html/cell-4-output-1.png">
 <meta name="twitter:creator" content="@timmwalker">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="714">
+<meta name="twitter:image-width" content="1953">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -2181,9 +2129,9 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">re:current_analytics</span>
     </a>
   </div>
@@ -2205,133 +2153,340 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#design-notes" id="toc-design-notes" class="nav-link active" data-scroll-target="#design-notes">Design Notes</a>
-  <ul class="collapse">
-  <li><a href="#about-this-collection" id="toc-about-this-collection" class="nav-link" data-scroll-target="#about-this-collection">About This Collection</a></li>
-  <li><a href="#browse-by-category" id="toc-browse-by-category" class="nav-link" data-scroll-target="#browse-by-category">Browse by Category</a></li>
-  </ul></li>
+  <li><a href="#why-this-note-exists" id="toc-why-this-note-exists" class="nav-link active" data-scroll-target="#why-this-note-exists">Why this note exists</a></li>
+  <li><a href="#data-two-time-series-one-question" id="toc-data-two-time-series-one-question" class="nav-link" data-scroll-target="#data-two-time-series-one-question">Data: Two Time Series, One Question</a></li>
+  <li><a href="#build-processed-inputs-hourly-parquet" id="toc-build-processed-inputs-hourly-parquet" class="nav-link" data-scroll-target="#build-processed-inputs-hourly-parquet">Build processed inputs (hourly parquet)</a></li>
+  <li><a href="#heatwave-definition-a-threshold-with-consequences" id="toc-heatwave-definition-a-threshold-with-consequences" class="nav-link" data-scroll-target="#heatwave-definition-a-threshold-with-consequences">Heatwave Definition: A Threshold with Consequences</a></li>
+  <li><a href="#flag-heatwaves-and-merge-with-prices" id="toc-flag-heatwaves-and-merge-with-prices" class="nav-link" data-scroll-target="#flag-heatwaves-and-merge-with-prices">Flag heatwaves and merge with prices</a></li>
+  <li><a href="#summer-2019-a-case-study-in-heatwave-clustering" id="toc-summer-2019-a-case-study-in-heatwave-clustering" class="nav-link" data-scroll-target="#summer-2019-a-case-study-in-heatwave-clustering">Summer 2019: A Case Study in Heatwave Clustering</a></li>
+  <li><a href="#price-temperature-coupling-visual-evidence" id="toc-price-temperature-coupling-visual-evidence" class="nav-link" data-scroll-target="#price-temperature-coupling-visual-evidence">Price-Temperature Coupling: Visual Evidence</a></li>
+  <li><a href="#distributional-differences-quantifying-the-heatwave-premium" id="toc-distributional-differences-quantifying-the-heatwave-premium" class="nav-link" data-scroll-target="#distributional-differences-quantifying-the-heatwave-premium">Distributional Differences: Quantifying the Heatwave Premium</a></li>
+  <li><a href="#limitations-and-extensions-what-this-analysis-doesnt-tell-us" id="toc-limitations-and-extensions-what-this-analysis-doesnt-tell-us" class="nav-link" data-scroll-target="#limitations-and-extensions-what-this-analysis-doesnt-tell-us">Limitations and Extensions: What This Analysis Doesn’t Tell Us</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Y2FyZC1kZXNpZ24=">card-design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVzaWduLWl0ZXJhdGlvbg==">design-iteration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGxheXRlc3Rpbmc=">playtesting <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">energy</div>
+    <div class="quarto-category">extremes</div>
+    <div class="quarto-category">time-series</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="design-notes" class="level1">
-<h1>Design Notes</h1>
-<p>Development blog for <em>Tipping Points</em> game design: iterations, playtesting, card design, and theoretical explorations.</p>
-<section id="about-this-collection" class="level2">
-<h2 data-anchor-id="about-this-collection">About This Collection</h2>
-<p>This collection documents the design and development process of <em>Tipping Points</em>. Posts cover:</p>
-<ul>
-<li><strong>Design Iterations</strong> - Changes to game mechanics, rules refinements, system evolution</li>
-<li><strong>Playtesting Reports</strong> - Session summaries, player feedback, observed gameplay patterns</li>
-<li><strong>Card Design</strong> - Individual card concepts, sets, themes, and design rationale</li>
-<li><strong>Theoretical Explorations</strong> - How academic concepts map to game mechanics</li>
-<li><strong>Development Updates</strong> - Progress, blockers, design decisions</li>
-</ul>
-<p>Posts are organized chronologically, with categories and tags for filtering by topic.</p>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="why-this-note-exists" class="level2">
+<h2 data-anchor-id="why-this-note-exists">Why this note exists</h2>
+<p>Heatwaves stress energy systems. Air conditioning demand spikes. Thermal power plants lose efficiency. Grid operators face the dual challenge of surging demand and constrained supply. This note asks a simple question: do electricity prices reflect this stress?</p>
+<p>This is not a causal analysis. We’re not claiming heatwaves cause price spikes—too many confounding factors exist. Instead, we document an operational definition of a heatwave, trace it through a data pipeline, and observe what happens to prices when heatwaves occur. The pipeline is meant to be inspectable rather than “correct” in any final sense. Every choice—the 30°C threshold, the 3-day minimum duration, the peak hours definition—is explicit and debatable.</p>
 </section>
-<section id="browse-by-category" class="level2">
-<h2 data-anchor-id="browse-by-category">Browse by Category</h2>
-<p>Use the category filters above to explore specific aspects of the design process.</p>
+<section id="data-two-time-series-one-question" class="level2">
+<h2 data-anchor-id="data-two-time-series-one-question">Data: Two Time Series, One Question</h2>
+<p>We need two things: electricity prices and temperature. The DE-LU day-ahead price represents the marginal cost of electricity in the German-Luxembourg bidding zone—the price at which the last unit of demand is satisfied. It’s a market signal that reflects supply-demand balance in real-time.</p>
+<p>German temperature data provides the heatwave signal. We use Germany because it’s the dominant market in the DE-LU zone, and temperature is the primary driver of cooling demand. The data spans 2015-2020, capturing multiple summers with varying heatwave intensity.</p>
+<p>The challenge is temporal alignment: prices are hourly, heatwaves are daily phenomena. We need to bridge this gap—flagging heatwave days, then attributing that flag to all hours within those days. This is a modeling choice: we’re assuming that if a day is a heatwave day, all hours within it are “heatwave hours,” even though nighttime hours might be cooler.</p>
+</section>
+<section id="build-processed-inputs-hourly-parquet" class="level2">
+<h2 data-anchor-id="build-processed-inputs-hourly-parquet">Build processed inputs (hourly parquet)</h2>
+<div id="038ff5b9" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.data_download <span class="im">import</span> (</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    save_prices_from_opsd, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    save_weather_de_from_opsd,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    generate_synthetic_prices,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    generate_synthetic_weather,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>START <span class="op">=</span> <span class="st">"2015-01-01"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>END_PRICES  <span class="op">=</span> <span class="st">"2020-07-01"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>END_WEATHER <span class="op">=</span> <span class="st">"2020-01-01"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Try to load real data, fall back to synthetic if not available</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    save_prices_from_opsd(start<span class="op">=</span>START, end<span class="op">=</span>END_PRICES)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    save_weather_de_from_opsd(start<span class="op">=</span>START, end<span class="op">=</span>END_WEATHER)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    prices  <span class="op">=</span> pd.read_parquet(<span class="st">"data/processed/prices_de_lu_clean.parquet"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    weather <span class="op">=</span> pd.read_parquet(<span class="st">"data/processed/weather_de_agg.parquet"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Real data loaded successfully:"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(prices.head())</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(weather.head())</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> (<span class="pp">FileNotFoundError</span>, <span class="pp">Exception</span>) <span class="im">as</span> e:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Real data files not found: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Generating synthetic data for demonstration purposes..."</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"(To use real data, download from:"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"- Time series: https://data.open-power-system-data.org/time_series/"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"- Weather data: https://data.open-power-system-data.org/weather_data/"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  and place CSV files in data/raw/)</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate synthetic data</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    prices <span class="op">=</span> generate_synthetic_prices(start<span class="op">=</span>START, end<span class="op">=</span>END_PRICES, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    weather <span class="op">=</span> generate_synthetic_weather(start<span class="op">=</span>START, end<span class="op">=</span>END_WEATHER, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Synthetic data generated:"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Prices: </span><span class="sc">{</span><span class="bu">len</span>(prices)<span class="sc">}</span><span class="ss"> hourly records"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Weather: </span><span class="sc">{</span><span class="bu">len</span>(weather)<span class="sc">}</span><span class="ss"> hourly records"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(prices.head())</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(weather.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Real data files not found: File not found at data/raw/time_series_60min_singleindex.csv. Download from: https://data.open-power-system-data.org/time_series/latest/
 
+Generating synthetic data for demonstration purposes...
+(To use real data, download from:
+- Time series: https://data.open-power-system-data.org/time_series/
+- Weather data: https://data.open-power-system-data.org/weather_data/
+  and place CSV files in data/raw/)
+
+Synthetic data generated:
+Prices: 48193 hourly records
+Weather: 43825 hourly records
+               datetime_utc  price_eur_mwh
+0 2015-01-01 00:00:00+00:00      42.013229
+1 2015-01-01 01:00:00+00:00      38.289080
+2 2015-01-01 02:00:00+00:00      42.898693
+3 2015-01-01 03:00:00+00:00      48.032570
+4 2015-01-01 04:00:00+00:00      37.726690
+               datetime_utc  t2m_mean_c
+0 2015-01-01 00:00:00+00:00   -3.286388
+1 2015-01-01 01:00:00+00:00   -5.020953
+2 2015-01-01 02:00:00+00:00   -2.163592
+3 2015-01-01 03:00:00+00:00    1.257025
+4 2015-01-01 04:00:00+00:00   -2.978991</code></pre>
+</div>
+</div>
+</section>
+<section id="heatwave-definition-a-threshold-with-consequences" class="level2">
+<h2 data-anchor-id="heatwave-definition-a-threshold-with-consequences">Heatwave Definition: A Threshold with Consequences</h2>
+<p>The definition is simple: daily maximum temperature ≥ 30°C for at least 3 consecutive days. But this simplicity masks complexity. Why 30°C? Why 3 days? These choices determine which events get flagged, which get ignored, and ultimately what patterns we observe in the price data.</p>
+<p>The 30°C threshold is arbitrary but meaningful. In Germany, 30°C represents a temperature where cooling demand becomes significant. Below this, natural ventilation and shading might suffice. Above this, active cooling (air conditioning) becomes necessary, driving electricity demand. The 3-day minimum filters out brief heat spikes, focusing on sustained events that have cumulative impacts on both demand (building heat storage) and supply (thermal plant efficiency degradation).</p>
+<p>Alternative definitions exist: percentile-based (e.g., 95th percentile of summer temperatures), regionalized (different thresholds for different regions), or impact-based (thresholds tied to actual cooling degree days). Each would produce a different set of flagged days, potentially revealing different price patterns. The point isn’t to find the “correct” definition—it’s to make the choice explicit and trace its implications.</p>
+</section>
+<section id="flag-heatwaves-and-merge-with-prices" class="level2">
+<h2 data-anchor-id="flag-heatwaves-and-merge-with-prices">Flag heatwaves and merge with prices</h2>
+<div id="42092bf0" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.heatwave_defs <span class="im">import</span> (</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    restrict_common_period,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    compute_daily_max_temp,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    flag_heatwaves,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    expand_heatwave_flag_to_hourly,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    merge_price_and_weather,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if data is available</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> prices.empty <span class="kw">or</span> weather.empty:</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Skipping analysis: data files not available."</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Please download the required data files to run this analysis."</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    prices_c <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    weather_c <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    daily_flags <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    merged <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    prices_c, weather_c <span class="op">=</span> restrict_common_period(prices, weather)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    daily_temp  <span class="op">=</span> compute_daily_max_temp(weather_c)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    daily_flags <span class="op">=</span> flag_heatwaves(daily_temp, threshold<span class="op">=</span><span class="fl">30.0</span>, min_duration<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Attach daily flag back to hourly weather and merge with hourly prices</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    weather_hw <span class="op">=</span> expand_heatwave_flag_to_hourly(weather_c, daily_flags)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    merged <span class="op">=</span> merge_price_and_weather(prices_c, weather_hw)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Heatwave analysis completed:"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(merged.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Heatwave analysis completed:
+               datetime_utc  price_eur_mwh  t2m_mean_c  is_heatwave_day  hour  \
+0 2015-01-01 00:00:00+00:00      42.013229   -3.286388            False     0   
+1 2015-01-01 01:00:00+00:00      38.289080   -5.020953            False     1   
+2 2015-01-01 02:00:00+00:00      42.898693   -2.163592            False     2   
+3 2015-01-01 03:00:00+00:00      48.032570    1.257025            False     3   
+4 2015-01-01 04:00:00+00:00      37.726690   -2.978991            False     4   
+
+   dow  month  
+0    3      1  
+1    3      1  
+2    3      1  
+3    3      1  
+4    3      1  </code></pre>
+</div>
+</div>
+</section>
+<section id="summer-2019-a-case-study-in-heatwave-clustering" class="level2">
+<h2 data-anchor-id="summer-2019-a-case-study-in-heatwave-clustering">Summer 2019: A Case Study in Heatwave Clustering</h2>
+<p>Summer 2019 serves as a concrete example. The visualization shows daily maximum temperatures with heatwave days highlighted. Notice the clustering: heatwaves don’t occur in isolation. They cluster in time, creating multi-week periods of elevated stress. The first visualization isolates temperature, showing the heatwave signal clearly—days that exceed 30°C for three or more consecutive days.</p>
+<p>This temporal clustering matters. A single hot day might cause a price spike, but sustained heatwaves create cumulative effects: building heat storage saturates (requiring more cooling), thermal plants lose efficiency over time, and grid operators face sustained stress rather than brief spikes. The 3-day minimum captures this sustained nature.</p>
+<div id="b3eb249f" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> daily_flags.empty:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for visualization."</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    hw_2019 <span class="op">=</span> daily_flags[<span class="st">"2019-06-01"</span>:<span class="st">"2019-08-31"</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(hw_2019.index, hw_2019[<span class="st">"t2m_daily_max_c"</span>], label<span class="op">=</span><span class="st">"Daily max temp"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    ax.scatter(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        hw_2019.index[hw_2019[<span class="st">"is_heatwave_day"</span>]],</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        hw_2019[<span class="st">"t2m_daily_max_c"</span>][hw_2019[<span class="st">"is_heatwave_day"</span>]],</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        s<span class="op">=</span><span class="dv">35</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"Heatwave days"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"°C"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Daily max temperature with heatwave days highlighted (Summer 2019)"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="heatwave-prices-de-lu_files/figure-html/cell-4-output-1.png" width="977" height="357" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="price-temperature-coupling-visual-evidence" class="level2">
+<h2 data-anchor-id="price-temperature-coupling-visual-evidence">Price-Temperature Coupling: Visual Evidence</h2>
+<p>The dual-axis plot reveals the relationship between prices and temperature during summer 2019. The shaded regions mark heatwave days, creating a visual test: do prices behave differently during these periods?</p>
+<p>What we observe: prices show volatility throughout the summer, but heatwave periods (shaded) often coincide with price spikes. This is descriptive, not causal. Prices could be spiking for other reasons—renewable generation shortfalls, plant outages, cross-border flow constraints. But the visual correlation is suggestive: when heatwaves occur, prices tend to be elevated.</p>
+<p>The dashed temperature line shows the underlying driver. Notice how price spikes often lag temperature peaks slightly—this reflects the time it takes for cooling demand to build (buildings heat up gradually) and for grid operators to respond to demand signals.</p>
+<div id="53227e30" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> merged.empty:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for visualization."</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    summer <span class="op">=</span> merged.set_index(<span class="st">"datetime_utc"</span>)[<span class="st">"2019-06-01"</span>:<span class="st">"2019-08-31"</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax1.plot(summer.index, summer[<span class="st">"price_eur_mwh"</span>], label<span class="op">=</span><span class="st">"Price (EUR/MWh)"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(summer.index, summer[<span class="st">"t2m_mean_c"</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Temperature (°C)"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shade heatwave days</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> day <span class="kw">in</span> summer.index.normalize().unique():</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        day_mask <span class="op">=</span> (summer.index.normalize() <span class="op">==</span> day)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> summer.loc[day_mask, <span class="st">"is_heatwave_day"</span>].<span class="bu">any</span>():</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            ax1.axvspan(day, day <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>), alpha<span class="op">=</span><span class="fl">0.12</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">"Price [EUR/MWh]"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">"Temperature [°C]"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">"Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="heatwave-prices-de-lu_files/figure-html/cell-5-output-1.png" width="1140" height="469" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="distributional-differences-quantifying-the-heatwave-premium" class="level2">
+<h2 data-anchor-id="distributional-differences-quantifying-the-heatwave-premium">Distributional Differences: Quantifying the Heatwave Premium</h2>
+<p>The histogram comparison is the core of the analysis. It asks: do price distributions differ between heatwave and non-heatwave days during peak hours (8 AM to 8 PM)? Peak hours matter because that’s when cooling demand is highest and when price formation is most sensitive to marginal units.</p>
+<p>What we typically observe: the heatwave distribution is shifted right (higher prices on average) and has a fatter right tail (more extreme price spikes). The mean difference quantifies the “heatwave premium”—the average price increase during heatwave periods. But the tail matters more: extreme price spikes during heatwaves can be orders of magnitude higher than normal prices, creating financial stress for consumers and opportunities for generators.</p>
+<p>The statistical summary provides the numbers: mean, median, standard deviation, and percentiles for both distributions. The difference in means tells us about average impact. The difference in 95th percentiles tells us about tail risk. Both matter, but for different purposes: average impact affects long-term costs, tail risk affects system resilience and financial planning.</p>
+<div id="e0aa20ce" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> merged.empty:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for analysis."</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>peak <span class="op">=</span> merged[(merged[<span class="st">"hour"</span>] <span class="op">&gt;=</span> <span class="dv">8</span>) <span class="op">&amp;</span> (merged[<span class="st">"hour"</span>] <span class="op">&lt;=</span> <span class="dv">20</span>)].copy()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>hw <span class="op">=</span> peak[peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>normal <span class="op">=</span> peak[<span class="op">~</span>peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"normal_peak_hours"</span>: normal[<span class="st">"price_eur_mwh"</span>].describe(),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"heatwave_peak_hours"</span>: hw[<span class="st">"price_eur_mwh"</span>].describe(),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">peak = merged[(merged["hour"] &gt;= 8) &amp; (merged["hour"] &lt;= 20)].copy()</span>
+    ^
+<span class="ansi-red-fg">IndentationError</span><span class="ansi-red-fg">:</span> expected an indented block after 'else' statement on line 4
+</pre>
+</div>
+</div>
+</div>
+<div id="ff3829dd" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> merged.empty:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for visualization."</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> merged[(merged[<span class="st">"hour"</span>] <span class="op">&gt;=</span> <span class="dv">8</span>) <span class="op">&amp;</span> (merged[<span class="st">"hour"</span>] <span class="op">&lt;=</span> <span class="dv">20</span>)].copy()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    hw <span class="op">=</span> peak[peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    normal <span class="op">=</span> peak[<span class="op">~</span>peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ax.hist(normal[<span class="st">"price_eur_mwh"</span>], bins<span class="op">=</span><span class="dv">60</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">"Normal days (peak hours)"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ax.hist(hw[<span class="st">"price_eur_mwh"</span>],     bins<span class="op">=</span><span class="dv">60</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">"Heatwave days (peak hours)"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Day-ahead price (EUR/MWh)"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Density"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"DE-LU prices: heatwave vs normal days (2015–2019, peak hours)"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="heatwave-prices-de-lu_files/figure-html/cell-7-output-1.png" width="672" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="limitations-and-extensions-what-this-analysis-doesnt-tell-us" class="level2">
+<h2 data-anchor-id="limitations-and-extensions-what-this-analysis-doesnt-tell-us">Limitations and Extensions: What This Analysis Doesn’t Tell Us</h2>
+<p>This analysis is intentionally limited. It’s descriptive, not causal. We observe that prices are higher during heatwaves, but we don’t claim heatwaves cause those higher prices. Too many confounding factors exist: renewable generation (solar output is high during heatwaves, potentially offsetting demand), plant outages (thermal plants are more likely to fail during heat stress), cross-border flows (neighboring countries also face heatwaves), and fuel prices (which drive marginal costs).</p>
+<p>To establish causality, we’d need an identification strategy: perhaps exploiting spatial variation (heatwaves in one region but not another), temporal variation (comparing similar days with and without heatwaves), or instrumental variables (using temperature as an instrument for cooling demand). This is beyond the scope of this note.</p>
+<p>Natural extensions include: - <strong>Alternative heatwave definitions</strong>: Percentile-based thresholds that adapt to regional climate, or impact-based definitions tied to actual cooling degree days - <strong>Multivariate analysis</strong>: Adding load, renewable generation, and plant availability as covariates to control for confounding factors - <strong>Multi-year stability</strong>: Do these patterns hold across different summers? Are heatwave impacts getting stronger over time (suggesting increasing system stress)? - <strong>Spatial analysis</strong>: Do heatwaves in different regions have different price impacts? Does transmission capacity matter?</p>
+<p>The value of this analysis isn’t in its completeness—it’s in its transparency. Every choice is explicit, every assumption is visible, and the pipeline is inspectable. This makes it a foundation for more sophisticated analysis, not an endpoint.</p>
+<section id="related" class="level4 backlinks">
+<h4 data-anchor-id="related">Related</h4>
+<ul>
+<li><a href="../notes/risk-series-2.html">Risk Modelling Part 2: Data</a> - Data sources for climate risk</li>
+</ul>
+</section>
 
 
 <!-- -->
 
 </section>
-</section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cGxheXRlc3Rpbmc=" data-listing-date-sort="1736928000000" data-listing-file-modified-sort="1765889963518" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="320">
-<div class="thumbnail"><a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">Playtest Session 1: Initial Mechanics Testing</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGxheXRlc3Rpbmc='); return false;">playtesting</div>
-
-</div>
-<div class="delink listing-description"><a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">
-<p>First playtesting session with initial card set and basic mechanics. Key observations on game flow, player engagement, and areas for improvement.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">
-<div class="listing-date">
-Jan 15, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZGVzaWduLWl0ZXJhdGlvbg==" data-listing-date-sort="1736496000000" data-listing-file-modified-sort="1765889963518" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="435">
-<div class="thumbnail"><a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">Mechanics Iteration 2: Threshold System Redesign</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGVzaWduLWl0ZXJhdGlvbg=='); return false;">design-iteration</div>
-
-</div>
-<div class="delink listing-description"><a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">
-<p>Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">
-<div class="listing-date">
-Jan 10, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Y2FyZC1kZXNpZ24=" data-listing-date-sort="1736064000000" data-listing-file-modified-sort="1765889963518" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="433">
-<div class="thumbnail"><a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">Card Design: Heatwave Climate Card</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y2FyZC1kZXNpZ24='); return false;">card-design</div>
-
-</div>
-<div class="delink listing-description"><a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">
-<p>Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">
-<div class="listing-date">
-Jan 5, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -2789,35 +2944,244 @@ Jan 5, 2025
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> ""</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  contents: .</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  type: default</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  sort: "date desc"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  categories: true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># Design Notes</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Development blog for *Tipping Points* game design: iterations, playtesting, card design, and theoretical explorations.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## About This Collection</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>This collection documents the design and development process of *Tipping Points*. Posts cover:</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Design Iterations** - Changes to game mechanics, rules refinements, system evolution</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Playtesting Reports** - Session summaries, player feedback, observed gameplay patterns</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Card Design** - Individual card concepts, sets, themes, and design rationale</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Theoretical Explorations** - How academic concepts map to game mechanics</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Development Updates** - Progress, blockers, design decisions</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Posts are organized chronologically, with categories and tags for filtering by topic.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Browse by Category</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Use the category filters above to explore specific aspects of the design process.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Heatwaves and Day-Ahead Prices: DE-LU, Summer 2019"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-12-12</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [energy, extremes, time-series]</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Analysis of electricity day-ahead prices in Germany-Luxembourg during heatwave events. Explores the relationship between extreme temperatures and energy market dynamics using operational heatwave definitions and descriptive statistics."</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="an">freeze:</span><span class="co"> auto</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why this note exists</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>Heatwaves stress energy systems. Air conditioning demand spikes. Thermal power plants lose efficiency. Grid operators face the dual challenge of surging demand and constrained supply. This note asks a simple question: do electricity prices reflect this stress?</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>This is not a causal analysis. We're not claiming heatwaves cause price spikes—too many confounding factors exist. Instead, we document an operational definition of a heatwave, trace it through a data pipeline, and observe what happens to prices when heatwaves occur. The pipeline is meant to be inspectable rather than "correct" in any final sense. Every choice—the 30°C threshold, the 3-day minimum duration, the peak hours definition—is explicit and debatable.</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data: Two Time Series, One Question</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>We need two things: electricity prices and temperature. The DE-LU day-ahead price represents the marginal cost of electricity in the German-Luxembourg bidding zone—the price at which the last unit of demand is satisfied. It's a market signal that reflects supply-demand balance in real-time.</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>German temperature data provides the heatwave signal. We use Germany because it's the dominant market in the DE-LU zone, and temperature is the primary driver of cooling demand. The data spans 2015-2020, capturing multiple summers with varying heatwave intensity.</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>The challenge is temporal alignment: prices are hourly, heatwaves are daily phenomena. We need to bridge this gap—flagging heatwave days, then attributing that flag to all hours within those days. This is a modeling choice: we're assuming that if a day is a heatwave day, all hours within it are "heatwave hours," even though nighttime hours might be cooler.</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Build processed inputs (hourly parquet)</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.data_download <span class="im">import</span> (</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    save_prices_from_opsd, </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    save_weather_de_from_opsd,</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    generate_synthetic_prices,</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    generate_synthetic_weather,</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>START <span class="op">=</span> <span class="st">"2015-01-01"</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>END_PRICES  <span class="op">=</span> <span class="st">"2020-07-01"</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>END_WEATHER <span class="op">=</span> <span class="st">"2020-01-01"</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Try to load real data, fall back to synthetic if not available</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    save_prices_from_opsd(start<span class="op">=</span>START, end<span class="op">=</span>END_PRICES)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    save_weather_de_from_opsd(start<span class="op">=</span>START, end<span class="op">=</span>END_WEATHER)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    prices  <span class="op">=</span> pd.read_parquet(<span class="st">"data/processed/prices_de_lu_clean.parquet"</span>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    weather <span class="op">=</span> pd.read_parquet(<span class="st">"data/processed/weather_de_agg.parquet"</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Real data loaded successfully:"</span>)</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(prices.head())</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(weather.head())</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> (<span class="pp">FileNotFoundError</span>, <span class="pp">Exception</span>) <span class="im">as</span> e:</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Real data files not found: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Generating synthetic data for demonstration purposes..."</span>)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"(To use real data, download from:"</span>)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"- Time series: https://data.open-power-system-data.org/time_series/"</span>)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"- Weather data: https://data.open-power-system-data.org/weather_data/"</span>)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  and place CSV files in data/raw/)</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate synthetic data</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    prices <span class="op">=</span> generate_synthetic_prices(start<span class="op">=</span>START, end<span class="op">=</span>END_PRICES, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    weather <span class="op">=</span> generate_synthetic_weather(start<span class="op">=</span>START, end<span class="op">=</span>END_WEATHER, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Synthetic data generated:"</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Prices: </span><span class="sc">{</span><span class="bu">len</span>(prices)<span class="sc">}</span><span class="ss"> hourly records"</span>)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Weather: </span><span class="sc">{</span><span class="bu">len</span>(weather)<span class="sc">}</span><span class="ss"> hourly records"</span>)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(prices.head())</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(weather.head())</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heatwave Definition: A Threshold with Consequences</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>The definition is simple: daily maximum temperature ≥ 30°C for at least 3 consecutive days. But this simplicity masks complexity. Why 30°C? Why 3 days? These choices determine which events get flagged, which get ignored, and ultimately what patterns we observe in the price data.</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>The 30°C threshold is arbitrary but meaningful. In Germany, 30°C represents a temperature where cooling demand becomes significant. Below this, natural ventilation and shading might suffice. Above this, active cooling (air conditioning) becomes necessary, driving electricity demand. The 3-day minimum filters out brief heat spikes, focusing on sustained events that have cumulative impacts on both demand (building heat storage) and supply (thermal plant efficiency degradation).</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>Alternative definitions exist: percentile-based (e.g., 95th percentile of summer temperatures), regionalized (different thresholds for different regions), or impact-based (thresholds tied to actual cooling degree days). Each would produce a different set of flagged days, potentially revealing different price patterns. The point isn't to find the "correct" definition—it's to make the choice explicit and trace its implications.</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flag heatwaves and merge with prices</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.heatwave_defs <span class="im">import</span> (</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    restrict_common_period,</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>    compute_daily_max_temp,</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>    flag_heatwaves,</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>    expand_heatwave_flag_to_hourly,</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>    merge_price_and_weather,</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if data is available</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> prices.empty <span class="kw">or</span> weather.empty:</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Skipping analysis: data files not available."</span>)</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Please download the required data files to run this analysis."</span>)</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>    prices_c <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>    weather_c <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>    daily_flags <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    merged <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>    prices_c, weather_c <span class="op">=</span> restrict_common_period(prices, weather)</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>    daily_temp  <span class="op">=</span> compute_daily_max_temp(weather_c)</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>    daily_flags <span class="op">=</span> flag_heatwaves(daily_temp, threshold<span class="op">=</span><span class="fl">30.0</span>, min_duration<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Attach daily flag back to hourly weather and merge with hourly prices</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>    weather_hw <span class="op">=</span> expand_heatwave_flag_to_hourly(weather_c, daily_flags)</span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>    merged <span class="op">=</span> merge_price_and_weather(prices_c, weather_hw)</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Heatwave analysis completed:"</span>)</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(merged.head())</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summer 2019: A Case Study in Heatwave Clustering</span></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>Summer 2019 serves as a concrete example. The visualization shows daily maximum temperatures with heatwave days highlighted. Notice the clustering: heatwaves don't occur in isolation. They cluster in time, creating multi-week periods of elevated stress. The first visualization isolates temperature, showing the heatwave signal clearly—days that exceed 30°C for three or more consecutive days.</span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>This temporal clustering matters. A single hot day might cause a price spike, but sustained heatwaves create cumulative effects: building heat storage saturates (requiring more cooling), thermal plants lose efficiency over time, and grid operators face sustained stress rather than brief spikes. The 3-day minimum captures this sustained nature.</span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> daily_flags.empty:</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for visualization."</span>)</span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>    hw_2019 <span class="op">=</span> daily_flags[<span class="st">"2019-06-01"</span>:<span class="st">"2019-08-31"</span>]</span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>    ax.plot(hw_2019.index, hw_2019[<span class="st">"t2m_daily_max_c"</span>], label<span class="op">=</span><span class="st">"Daily max temp"</span>)</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>    ax.scatter(</span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>        hw_2019.index[hw_2019[<span class="st">"is_heatwave_day"</span>]],</span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>        hw_2019[<span class="st">"t2m_daily_max_c"</span>][hw_2019[<span class="st">"is_heatwave_day"</span>]],</span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>        s<span class="op">=</span><span class="dv">35</span>,</span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"Heatwave days"</span>,</span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"°C"</span>)</span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Daily max temperature with heatwave days highlighted (Summer 2019)"</span>)</span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## Price-Temperature Coupling: Visual Evidence</span></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>The dual-axis plot reveals the relationship between prices and temperature during summer 2019. The shaded regions mark heatwave days, creating a visual test: do prices behave differently during these periods?</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>What we observe: prices show volatility throughout the summer, but heatwave periods (shaded) often coincide with price spikes. This is descriptive, not causal. Prices could be spiking for other reasons—renewable generation shortfalls, plant outages, cross-border flow constraints. But the visual correlation is suggestive: when heatwaves occur, prices tend to be elevated.</span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>The dashed temperature line shows the underlying driver. Notice how price spikes often lag temperature peaks slightly—this reflects the time it takes for cooling demand to build (buildings heat up gradually) and for grid operators to respond to demand signals.</span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> merged.empty:</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for visualization."</span>)</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>    summer <span class="op">=</span> merged.set_index(<span class="st">"datetime_utc"</span>)[<span class="st">"2019-06-01"</span>:<span class="st">"2019-08-31"</span>]</span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>    ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>    ax1.plot(summer.index, summer[<span class="st">"price_eur_mwh"</span>], label<span class="op">=</span><span class="st">"Price (EUR/MWh)"</span>)</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>    ax2.plot(summer.index, summer[<span class="st">"t2m_mean_c"</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Temperature (°C)"</span>)</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shade heatwave days</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> day <span class="kw">in</span> summer.index.normalize().unique():</span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>        day_mask <span class="op">=</span> (summer.index.normalize() <span class="op">==</span> day)</span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> summer.loc[day_mask, <span class="st">"is_heatwave_day"</span>].<span class="bu">any</span>():</span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>            ax1.axvspan(day, day <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>), alpha<span class="op">=</span><span class="fl">0.12</span>)</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">"Price [EUR/MWh]"</span>)</span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">"Temperature [°C]"</span>)</span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">"Summer 2019: DE-LU day-ahead prices and DE temperature (heatwave days shaded)"</span>)</span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distributional Differences: Quantifying the Heatwave Premium</span></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>The histogram comparison is the core of the analysis. It asks: do price distributions differ between heatwave and non-heatwave days during peak hours (8 AM to 8 PM)? Peak hours matter because that's when cooling demand is highest and when price formation is most sensitive to marginal units.</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>What we typically observe: the heatwave distribution is shifted right (higher prices on average) and has a fatter right tail (more extreme price spikes). The mean difference quantifies the "heatwave premium"—the average price increase during heatwave periods. But the tail matters more: extreme price spikes during heatwaves can be orders of magnitude higher than normal prices, creating financial stress for consumers and opportunities for generators.</span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>The statistical summary provides the numbers: mean, median, standard deviation, and percentiles for both distributions. The difference in means tells us about average impact. The difference in 95th percentiles tells us about tail risk. Both matter, but for different purposes: average impact affects long-term costs, tail risk affects system resilience and financial planning.</span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> merged.empty:</span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for analysis."</span>)</span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a>peak <span class="op">=</span> merged[(merged[<span class="st">"hour"</span>] <span class="op">&gt;=</span> <span class="dv">8</span>) <span class="op">&amp;</span> (merged[<span class="st">"hour"</span>] <span class="op">&lt;=</span> <span class="dv">20</span>)].copy()</span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a>hw <span class="op">=</span> peak[peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>normal <span class="op">=</span> peak[<span class="op">~</span>peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>    <span class="st">"normal_peak_hours"</span>: normal[<span class="st">"price_eur_mwh"</span>].describe(),</span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>    <span class="st">"heatwave_peak_hours"</span>: hw[<span class="st">"price_eur_mwh"</span>].describe(),</span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(summary)</span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> merged.empty:</span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No data available for visualization."</span>)</span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> merged[(merged[<span class="st">"hour"</span>] <span class="op">&gt;=</span> <span class="dv">8</span>) <span class="op">&amp;</span> (merged[<span class="st">"hour"</span>] <span class="op">&lt;=</span> <span class="dv">20</span>)].copy()</span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a>    hw <span class="op">=</span> peak[peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a>    normal <span class="op">=</span> peak[<span class="op">~</span>peak[<span class="st">"is_heatwave_day"</span>]]</span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a>    ax.hist(normal[<span class="st">"price_eur_mwh"</span>], bins<span class="op">=</span><span class="dv">60</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">"Normal days (peak hours)"</span>)</span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a>    ax.hist(hw[<span class="st">"price_eur_mwh"</span>],     bins<span class="op">=</span><span class="dv">60</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">"Heatwave days (peak hours)"</span>)</span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Day-ahead price (EUR/MWh)"</span>)</span>
+<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Density"</span>)</span>
+<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"DE-LU prices: heatwave vs normal days (2015–2019, peak hours)"</span>)</span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations and Extensions: What This Analysis Doesn't Tell Us</span></span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a>This analysis is intentionally limited. It's descriptive, not causal. We observe that prices are higher during heatwaves, but we don't claim heatwaves cause those higher prices. Too many confounding factors exist: renewable generation (solar output is high during heatwaves, potentially offsetting demand), plant outages (thermal plants are more likely to fail during heat stress), cross-border flows (neighboring countries also face heatwaves), and fuel prices (which drive marginal costs).</span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a>To establish causality, we'd need an identification strategy: perhaps exploiting spatial variation (heatwaves in one region but not another), temporal variation (comparing similar days with and without heatwaves), or instrumental variables (using temperature as an instrument for cooling demand). This is beyond the scope of this note.</span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a>Natural extensions include:</span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Alternative heatwave definitions**: Percentile-based thresholds that adapt to regional climate, or impact-based definitions tied to actual cooling degree days</span>
+<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Multivariate analysis**: Adding load, renewable generation, and plant availability as covariates to control for confounding factors</span>
+<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Multi-year stability**: Do these patterns hold across different summers? Are heatwave impacts getting stronger over time (suggesting increasing system stress)?</span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Spatial analysis**: Do heatwaves in different regions have different price impacts? Does transmission capacity matter?</span>
+<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a>The value of this analysis isn't in its completeness—it's in its transparency. Every choice is explicit, every assumption is visible, and the pipeline is inspectable. This makes it a foundation for more sophisticated analysis, not an endpoint.</span>
+<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a>::: {.backlinks}</span>
+<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Related</span></span>
+<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Risk Modelling Part 2: Data</span><span class="co">](/notes/risk-series-2.html)</span> - Data sources for climate risk</span>
+<span id="cb9-249"><a href="#cb9-249" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -2829,7 +3193,7 @@ Jan 5, 2025
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p><a href="../../notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a></p>
+<p><a href="../notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a></p>
 </div>
   </div>
 </footer>
@@ -2837,5 +3201,5 @@ Jan 5, 2025
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

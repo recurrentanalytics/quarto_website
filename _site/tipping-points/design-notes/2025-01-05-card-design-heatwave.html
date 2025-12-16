@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-01-05">
+<meta name="description" content="Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems.">
 
-<title>index – re:current_analytics</title>
+<title>Card Design: Heatwave Climate Card – re:current_analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +68,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -109,35 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <!-- IBM Plex Sans Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1973,41 +1944,12 @@ pre.sourceCode:not(.code-block-wrapper pre.sourceCode),
 })();
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="– re:current_analytics">
-<meta property="og:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
+<meta property="og:title" content="Card Design: Heatwave Climate Card – re:current_analytics">
+<meta property="og:description" content="Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems.">
 <meta property="og:site_name" content="re:current_analytics">
-<meta name="twitter:title" content="– re:current_analytics">
-<meta name="twitter:description" content="A lab-notebook for climate risk, models, and recurrent intelligence.">
+<meta name="twitter:title" content="Card Design: Heatwave Climate Card – re:current_analytics">
+<meta name="twitter:description" content="Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems.">
 <meta name="twitter:creator" content="@timmwalker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -2205,133 +2147,173 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#design-notes" id="toc-design-notes" class="nav-link active" data-scroll-target="#design-notes">Design Notes</a>
+  <li><a href="#card-concept" id="toc-card-concept" class="nav-link active" data-scroll-target="#card-concept">Card Concept</a></li>
+  <li><a href="#design-goals" id="toc-design-goals" class="nav-link" data-scroll-target="#design-goals">Design Goals</a></li>
+  <li><a href="#initial-design" id="toc-initial-design" class="nav-link" data-scroll-target="#initial-design">Initial Design</a>
   <ul class="collapse">
-  <li><a href="#about-this-collection" id="toc-about-this-collection" class="nav-link" data-scroll-target="#about-this-collection">About This Collection</a></li>
-  <li><a href="#browse-by-category" id="toc-browse-by-category" class="nav-link" data-scroll-target="#browse-by-category">Browse by Category</a></li>
+  <li><a href="#version-1.0" id="toc-version-1.0" class="nav-link" data-scroll-target="#version-1.0">Version 1.0</a></li>
+  <li><a href="#issues-with-v1.0" id="toc-issues-with-v1.0" class="nav-link" data-scroll-target="#issues-with-v1.0">Issues with V1.0</a></li>
   </ul></li>
+  <li><a href="#revised-design" id="toc-revised-design" class="nav-link" data-scroll-target="#revised-design">Revised Design</a>
+  <ul class="collapse">
+  <li><a href="#version-2.0" id="toc-version-2.0" class="nav-link" data-scroll-target="#version-2.0">Version 2.0</a></li>
+  <li><a href="#design-rationale" id="toc-design-rationale" class="nav-link" data-scroll-target="#design-rationale">Design Rationale</a></li>
+  </ul></li>
+  <li><a href="#real-world-context" id="toc-real-world-context" class="nav-link" data-scroll-target="#real-world-context">Real-World Context</a></li>
+  <li><a href="#playtesting-notes" id="toc-playtesting-notes" class="nav-link" data-scroll-target="#playtesting-notes">Playtesting Notes</a></li>
+  <li><a href="#future-iterations" id="toc-future-iterations" class="nav-link" data-scroll-target="#future-iterations">Future Iterations</a>
+  <ul class="collapse">
+  <li><a href="#potential-additions" id="toc-potential-additions" class="nav-link" data-scroll-target="#potential-additions">Potential Additions</a></li>
+  <li><a href="#design-questions" id="toc-design-questions" class="nav-link" data-scroll-target="#design-questions">Design Questions</a></li>
+  </ul></li>
+  <li><a href="#card-art-concepts" id="toc-card-art-concepts" class="nav-link" data-scroll-target="#card-art-concepts">Card Art Concepts</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Y2FyZC1kZXNpZ24=">card-design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVzaWduLWl0ZXJhdGlvbg==">design-iteration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGxheXRlc3Rpbmc=">playtesting <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Card Design: Heatwave Climate Card</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">card-design</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="design-notes" class="level1">
-<h1>Design Notes</h1>
-<p>Development blog for <em>Tipping Points</em> game design: iterations, playtesting, card design, and theoretical explorations.</p>
-<section id="about-this-collection" class="level2">
-<h2 data-anchor-id="about-this-collection">About This Collection</h2>
-<p>This collection documents the design and development process of <em>Tipping Points</em>. Posts cover:</p>
-<ul>
-<li><strong>Design Iterations</strong> - Changes to game mechanics, rules refinements, system evolution</li>
-<li><strong>Playtesting Reports</strong> - Session summaries, player feedback, observed gameplay patterns</li>
-<li><strong>Card Design</strong> - Individual card concepts, sets, themes, and design rationale</li>
-<li><strong>Theoretical Explorations</strong> - How academic concepts map to game mechanics</li>
-<li><strong>Development Updates</strong> - Progress, blockers, design decisions</li>
-</ul>
-<p>Posts are organized chronologically, with categories and tags for filtering by topic.</p>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 5, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="card-concept" class="level2">
+<h2 data-anchor-id="card-concept">Card Concept</h2>
+<p>The Heatwave card represents extended periods of extreme high temperatures—one of the most visible and impactful climate events. It needs to capture both immediate impacts (energy demand spikes) and longer-term effects (agricultural stress, health systems).</p>
 </section>
-<section id="browse-by-category" class="level2">
-<h2 data-anchor-id="browse-by-category">Browse by Category</h2>
-<p>Use the category filters above to explore specific aspects of the design process.</p>
-
+<section id="design-goals" class="level2">
+<h2 data-anchor-id="design-goals">Design Goals</h2>
+<ol type="1">
+<li><strong>Realism</strong> - Model actual heatwave impacts on energy, agriculture, health</li>
+<li><strong>Gameplay</strong> - Create interesting strategic choices (mitigate vs.&nbsp;adapt)</li>
+<li><strong>Interconnections</strong> - Show how one event affects multiple systems</li>
+<li><strong>Uncertainty</strong> - Vary intensity and duration to model unpredictability</li>
+</ol>
+</section>
+<section id="initial-design" class="level2">
+<h2 data-anchor-id="initial-design">Initial Design</h2>
+<section id="version-1.0" class="level3">
+<h3 data-anchor-id="version-1.0">Version 1.0</h3>
+<p><strong>Heatwave</strong><br>
+<em>Climate Card</em></p>
+<p><strong>Intensity</strong>: 4 (moderate)<br>
+<strong>Duration</strong>: 2 rounds</p>
+<p><strong>Effects</strong>: - Energy system: +3 stress (cooling demand) - Agriculture: +2 stress (crop stress) - Health: +1 stress (heat-related illness)</p>
+<p><strong>Cascading</strong>: If Energy stress &gt; 5, trigger “Grid Overload” event</p>
+</section>
+<section id="issues-with-v1.0" class="level3">
+<h3 data-anchor-id="issues-with-v1.0">Issues with V1.0</h3>
+<ul>
+<li>Too predictable (fixed effects)</li>
+<li>No player agency (just happens to you)</li>
+<li>Doesn’t capture variability of real heatwaves</li>
+<li>Cascading effect too deterministic</li>
+</ul>
+</section>
+</section>
+<section id="revised-design" class="level2">
+<h2 data-anchor-id="revised-design">Revised Design</h2>
+<section id="version-2.0" class="level3">
+<h3 data-anchor-id="version-2.0">Version 2.0</h3>
+<p><strong>Heatwave</strong><br>
+<em>Climate Card</em></p>
+<p><strong>Intensity</strong>: 3-5 (variable)<br>
+<strong>Duration</strong>: 1-3 rounds (variable)</p>
+<p><strong>Primary Effects</strong> (choose one): - <strong>Energy Focus</strong>: +4 Energy stress, +1 Agriculture stress - <strong>Agriculture Focus</strong>: +3 Agriculture stress, +2 Water stress - <strong>Health Focus</strong>: +3 Health stress, +1 Infrastructure stress</p>
+<p><strong>Secondary Effects</strong> (if threshold crossed): - Energy &gt; 5: Rolling blackouts (additional +2 stress next round) - Agriculture &gt; 4: Crop failure (permanent -1 Agriculture capacity) - Health &gt; 4: Emergency response (draw extra System card)</p>
+<p><strong>Player Choice</strong>: When Heatwave is drawn, player chooses which system is primary focus (represents regional variation, preparation, or random chance)</p>
+</section>
+<section id="design-rationale" class="level3">
+<h3 data-anchor-id="design-rationale">Design Rationale</h3>
+<ol type="1">
+<li><strong>Variable Intensity/Duration</strong> - Models real-world unpredictability</li>
+<li><strong>Player Choice</strong> - Adds agency and strategic depth</li>
+<li><strong>Multiple Pathways</strong> - Different heatwaves affect different systems</li>
+<li><strong>Cascading Effects</strong> - Threshold-based secondary effects create tension</li>
+</ol>
+</section>
+</section>
+<section id="real-world-context" class="level2">
+<h2 data-anchor-id="real-world-context">Real-World Context</h2>
+<p>This card is based on: - European heatwaves (2003, 2018, 2022) - energy demand spikes, agricultural losses - North American heat domes - infrastructure stress, health impacts - Research on heatwave attribution and future projections</p>
+<p>Key insight: Heatwaves don’t just raise temperatures—they stress multiple interconnected systems simultaneously.</p>
+</section>
+<section id="playtesting-notes" class="level2">
+<h2 data-anchor-id="playtesting-notes">Playtesting Notes</h2>
+<ul>
+<li>Players appreciated the choice element</li>
+<li>Variable intensity created uncertainty without feeling random</li>
+<li>Cascading effects felt natural and consequential</li>
+<li>Some players wanted more ways to prepare for heatwaves</li>
+</ul>
+</section>
+<section id="future-iterations" class="level2">
+<h2 data-anchor-id="future-iterations">Future Iterations</h2>
+<section id="potential-additions" class="level3">
+<h3 data-anchor-id="potential-additions">Potential Additions</h3>
+<ol type="1">
+<li><strong>Regional Variants</strong> - Different heatwave cards for different regions</li>
+<li><strong>Preparation Cards</strong> - System cards that reduce heatwave impact</li>
+<li><strong>Compound Events</strong> - Heatwave + Drought combinations</li>
+<li><strong>Adaptation Paths</strong> - Long-term system changes that reduce vulnerability</li>
+</ol>
+</section>
+<section id="design-questions" class="level3">
+<h3 data-anchor-id="design-questions">Design Questions</h3>
+<ul>
+<li>Should heatwaves be more frequent but less intense, or rare but catastrophic?</li>
+<li>How to model heatwave predictability (early warning systems)?</li>
+<li>Should there be “heatwave seasons” that increase probability?</li>
+</ul>
+</section>
+</section>
+<section id="card-art-concepts" class="level2">
+<h2 data-anchor-id="card-art-concepts">Card Art Concepts</h2>
+<ul>
+<li>Abstract: Temperature gradient (red to orange)</li>
+<li>Realistic: Satellite imagery of heat patterns</li>
+<li>Stylized: Thermometer breaking, sun icon with intensity markers</li>
+</ul>
+<p><em>Art direction pending—focusing on mechanics first.</em></p>
+<hr>
+<p><em>See also: <a href="../../tipping-points/design-notes/">Design Notes Index</a></em></p>
 
 
 <!-- -->
 
 </section>
-</section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cGxheXRlc3Rpbmc=" data-listing-date-sort="1736928000000" data-listing-file-modified-sort="1765889963518" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="320">
-<div class="thumbnail"><a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">Playtest Session 1: Initial Mechanics Testing</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGxheXRlc3Rpbmc='); return false;">playtesting</div>
-
-</div>
-<div class="delink listing-description"><a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">
-<p>First playtesting session with initial card set and basic mechanics. Key observations on game flow, player engagement, and areas for improvement.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../tipping-points/design-notes/2025-01-15-playtest-session-1.html" class="no-external">
-<div class="listing-date">
-Jan 15, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZGVzaWduLWl0ZXJhdGlvbg==" data-listing-date-sort="1736496000000" data-listing-file-modified-sort="1765889963518" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="435">
-<div class="thumbnail"><a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">Mechanics Iteration 2: Threshold System Redesign</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGVzaWduLWl0ZXJhdGlvbg=='); return false;">design-iteration</div>
-
-</div>
-<div class="delink listing-description"><a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">
-<p>Major revision to the threshold and tipping point mechanics based on initial playtesting. Moving from fixed thresholds to dynamic, context-dependent triggers.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html" class="no-external">
-<div class="listing-date">
-Jan 10, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Y2FyZC1kZXNpZ24=" data-listing-date-sort="1736064000000" data-listing-file-modified-sort="1765889963518" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="433">
-<div class="thumbnail"><a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">Card Design: Heatwave Climate Card</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y2FyZC1kZXNpZ24='); return false;">card-design</div>
-
-</div>
-<div class="delink listing-description"><a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">
-<p>Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../tipping-points/design-notes/2025-01-05-card-design-heatwave.html" class="no-external">
-<div class="listing-date">
-Jan 5, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -2790,34 +2772,119 @@ Jan 5, 2025
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> ""</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  contents: .</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  type: default</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  sort: "date desc"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  categories: true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Card Design: Heatwave Climate Card"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-01-05</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [card-design]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [climate-cards, heatwave, energy, design-process]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Design process and rationale for the Heatwave climate card. Exploring how to model extreme temperature events and their cascading effects on multiple systems."</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Card Concept</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># Design Notes</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>The Heatwave card represents extended periods of extreme high temperatures—one of the most visible and impactful climate events. It needs to capture both immediate impacts (energy demand spikes) and longer-term effects (agricultural stress, health systems).</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Development blog for *Tipping Points* game design: iterations, playtesting, card design, and theoretical explorations.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Design Goals</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## About This Collection</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>This collection documents the design and development process of *Tipping Points*. Posts cover:</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Design Iterations** - Changes to game mechanics, rules refinements, system evolution</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Playtesting Reports** - Session summaries, player feedback, observed gameplay patterns</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Card Design** - Individual card concepts, sets, themes, and design rationale</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Theoretical Explorations** - How academic concepts map to game mechanics</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Development Updates** - Progress, blockers, design decisions</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Posts are organized chronologically, with categories and tags for filtering by topic.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Realism** - Model actual heatwave impacts on energy, agriculture, health</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Gameplay** - Create interesting strategic choices (mitigate vs. adapt)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Interconnections** - Show how one event affects multiple systems</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Uncertainty** - Vary intensity and duration to model unpredictability</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Initial Design</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Version 1.0</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>**Heatwave**  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>*Climate Card*</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Browse by Category</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Use the category filters above to explore specific aspects of the design process.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>**Intensity**: 4 (moderate)  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>**Duration**: 2 rounds</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>**Effects**:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Energy system: +3 stress (cooling demand)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Agriculture: +2 stress (crop stress)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Health: +1 stress (heat-related illness)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>**Cascading**: If Energy stress &gt; 5, trigger "Grid Overload" event</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Issues with V1.0</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Too predictable (fixed effects)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No player agency (just happens to you)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Doesn't capture variability of real heatwaves</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cascading effect too deterministic</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revised Design</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Version 2.0</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>**Heatwave**  </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>*Climate Card*</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>**Intensity**: 3-5 (variable)  </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>**Duration**: 1-3 rounds (variable)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>**Primary Effects** (choose one):</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Energy Focus**: +4 Energy stress, +1 Agriculture stress</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Agriculture Focus**: +3 Agriculture stress, +2 Water stress</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Health Focus**: +3 Health stress, +1 Infrastructure stress</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>**Secondary Effects** (if threshold crossed):</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Energy &gt; 5: Rolling blackouts (additional +2 stress next round)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Agriculture &gt; 4: Crop failure (permanent -1 Agriculture capacity)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Health &gt; 4: Emergency response (draw extra System card)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>**Player Choice**: When Heatwave is drawn, player chooses which system is primary focus (represents regional variation, preparation, or random chance)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Design Rationale</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Variable Intensity/Duration** - Models real-world unpredictability</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Player Choice** - Adds agency and strategic depth</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Multiple Pathways** - Different heatwaves affect different systems</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Cascading Effects** - Threshold-based secondary effects create tension</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Real-World Context</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>This card is based on:</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>European heatwaves (2003, 2018, 2022) - energy demand spikes, agricultural losses</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>North American heat domes - infrastructure stress, health impacts</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Research on heatwave attribution and future projections</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>Key insight: Heatwaves don't just raise temperatures—they stress multiple interconnected systems simultaneously.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Playtesting Notes</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Players appreciated the choice element</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Variable intensity created uncertainty without feeling random</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cascading effects felt natural and consequential</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some players wanted more ways to prepare for heatwaves</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future Iterations</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Potential Additions</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Regional Variants** - Different heatwave cards for different regions</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Preparation Cards** - System cards that reduce heatwave impact</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Compound Events** - Heatwave + Drought combinations</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Adaptation Paths** - Long-term system changes that reduce vulnerability</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="fu">### Design Questions</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Should heatwaves be more frequent but less intense, or rare but catastrophic?</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How to model heatwave predictability (early warning systems)?</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Should there be "heatwave seasons" that increase probability?</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Card Art Concepts</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Abstract: Temperature gradient (red to orange)</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Realistic: Satellite imagery of heat patterns</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Stylized: Thermometer breaking, sun icon with intensity markers</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>*Art direction pending—focusing on mechanics first.*</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>*See also: [Design Notes Index](/tipping-points/design-notes/)*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>InstalledPrinters</key>
+	<array>
+		<string>MANUFACTURER:1133;MODEL:50504</string>
+		<string>MANUFACTURER:16700;MODEL:45166</string>
+		<string>MANUFACTURER:16700;MODEL:45167</string>
+		<string>MANUFACTURER:1921;MODEL:21981</string>
+		<string>MANUFACTURER:3034;MODEL:1043</string>
+		<string>MANUFACTURER:3034;MODEL:1159</string>
+		<string>MANUFACTURER:3034;MODEL:21523</string>
+		<string>MANUFACTURER:3034;MODEL:21639</string>
+		<string>MANUFACTURER:3034;MODEL:33107</string>
+		<string>MANUFACTURER:Dell;MODEL:dock</string>
+		<string>MANUFACTURER:Dell Inc.;MODEL:Dell dock</string>
+		<string>MANUFACTURER:Logitech;MODEL:USB Receiver</string>
+		<string>MANUFACTURER:Realtek;MODEL:USB 10_100_1000 LAN</string>
+		<string>MANUFACTURER:SanDisk;MODEL:Extreme 55DD</string>
+	</array>
+	<key>Manufacturers</key>
+	<array>
+		<string>1133</string>
+		<string>16700</string>
+		<string>1921</string>
+		<string>3034</string>
+		<string>Dell</string>
+		<string>Dell Inc.</string>
+		<string>Logitech</string>
+		<string>Realtek</string>
+		<string>SanDisk</string>
+	</array>
+</dict>
+</plist>
