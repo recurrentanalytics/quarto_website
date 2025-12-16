@@ -1,0 +1,62 @@
+{
+  "reading/index.qmd": {
+    "index.html": "ff0b3748"
+  },
+  "tipping-points/design-notes/2025-01-15-playtest-session-1.qmd": {
+    "2025-01-15-playtest-session-1.html": "3829a0b8"
+  },
+  "tipping-points/design-notes/2025-01-10-mechanics-iteration-2.qmd": {
+    "2025-01-10-mechanics-iteration-2.html": "8c588848"
+  },
+  "tipping-points/design-notes/index.qmd": {
+    "index.html": "ee318ad4"
+  },
+  "tipping-points/design-notes/2025-01-05-card-design-heatwave.qmd": {
+    "2025-01-05-card-design-heatwave.html": "24c38ced"
+  },
+  "tipping-points/index.qmd": {
+    "index.html": "18daf5f5"
+  },
+  "404.qmd": {
+    "404.html": "016a0781"
+  },
+  "projects/index.qmd": {
+    "index.html": "9b8a3d74"
+  },
+  "working-together.qmd": {
+    "working-together.html": "467fcb13"
+  },
+  "models/climate-extremes-explorer.qmd": {
+    "climate-extremes-explorer.html": "450368f9"
+  },
+  "models/heatwave-prices-de-lu.qmd": {
+    "heatwave-prices-de-lu.html": "19b4b6af"
+  },
+  "index.qmd": {
+    "index.html": "65136c7e"
+  },
+  "about.qmd": {
+    "about.html": "7fbacae0"
+  },
+  "notes/2025-hello-world.qmd": {
+    "2025-hello-world.html": "c24d087b"
+  },
+  "notes/index.qmd": {
+    "index.html": "99cc114d"
+  },
+  "notes/example-reading-note.qmd": {
+    "example-reading-note.html": "3b413f19"
+  },
+  "notes/risk-series-3.qmd": {
+    "risk-series-3.html": "6c950a4d"
+  },
+  "notes/risk-series-2.qmd": {
+    "risk-series-2.html": "316c526d"
+  },
+  "notes/risk-series-1.qmd": {
+    "risk-series-1.html": "85ef17fb"
+  },
+  "DEPLOYMENT.md": {
+    "DEPLOYMENT.html": "474ddc00"
+  }
+}

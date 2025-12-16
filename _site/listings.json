@@ -1,0 +1,27 @@
+[
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/models/climate-extremes-explorer.html",
+      "/models/heatwave-prices-de-lu.html"
+    ]
+  },
+  {
+    "listing": "/tipping-points/design-notes/index.html",
+    "items": [
+      "/tipping-points/design-notes/2025-01-15-playtest-session-1.html",
+      "/tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html",
+      "/tipping-points/design-notes/2025-01-05-card-design-heatwave.html"
+    ]
+  },
+  {
+    "listing": "/notes/index.html",
+    "items": [
+      "/notes/example-reading-note.html",
+      "/notes/risk-series-3.html",
+      "/notes/risk-series-2.html",
+      "/notes/risk-series-1.html",
+      "/notes/2025-hello-world.html"
+    ]
+  }
+]
