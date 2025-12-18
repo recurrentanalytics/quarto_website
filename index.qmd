@@ -131,6 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
 - **About & Contact:** who/what/why → [about](about.html)
 - **Working Together:** consulting engagements → [working-together](working-together.html)
 
+<div id="homepage-stats-container">
+  <div class="homepage-stats-loading">Loading content statistics...</div>
+</div>
+
 <div id="featured-content-container">
   <div class="featured-content-loading">Loading featured content...</div>
 </div>
@@ -283,6 +287,101 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Start auto-advance
   startAutoAdvance();
+});
+
+// Content Statistics
+document.addEventListener('DOMContentLoaded', function() {
+  const statsContainer = document.getElementById('homepage-stats-container');
+  if (!statsContainer) return;
+  
+  // Fetch search.json to get all content
+  fetch('/search.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Filter content by type - handle hrefs with or without leading slash
+      // Also filter out section anchors (items with # in href or section field)
+      const notes = data.filter(item => {
+        const href = item.href || '';
+        return (href.includes('notes/') || href.startsWith('/notes/')) && 
+               href.includes('.html') &&
+               !href.includes('#') &&
+               !href.includes('index.html') &&
+               !item.section; // Exclude section anchors
+      });
+      
+      // Get unique note pages (remove duplicates)
+      const uniqueNoteHrefs = new Set(notes.map(item => {
+        const href = item.href || '';
+        // Normalize to remove leading slash for comparison
+        return href.startsWith('/') ? href.substring(1) : href;
+      }));
+      
+      const models = data.filter(item => {
+        const href = item.href || '';
+        return (href.includes('models/') || href.startsWith('/models/')) && 
+               href.includes('.html') &&
+               !href.includes('#') &&
+               !item.section; // Exclude section anchors
+      });
+      
+      // Get unique model pages
+      const uniqueModelHrefs = new Set(models.map(item => {
+        const href = item.href || '';
+        return href.startsWith('/') ? href.substring(1) : href;
+      }));
+      
+      // Count series - need to get unique notes first, then check for series
+      const uniqueNotes = Array.from(uniqueNoteHrefs).map(href => {
+        return notes.find(item => {
+          const itemHref = item.href || '';
+          const normalizedHref = itemHref.startsWith('/') ? itemHref.substring(1) : itemHref;
+          return normalizedHref === href;
+        });
+      }).filter(Boolean);
+      
+      // Count series (notes with "series" in categories or title containing "Part")
+      const series = uniqueNotes.filter(item => {
+        const categories = item.categories || [];
+        const title = (item.title || '').toLowerCase();
+        return categories.includes('series') || 
+               title.includes('part 1') || 
+               title.includes('part 2') || 
+               title.includes('part 3');
+      });
+      
+      // Count unique series (group by base title)
+      const seriesGroups = new Set();
+      series.forEach(item => {
+        const title = item.title || '';
+        // Extract series name (remove "Part X" suffix)
+        const seriesName = title.replace(/\s*Part\s+\d+.*$/i, '').trim();
+        if (seriesName) {
+          seriesGroups.add(seriesName);
+        }
+      });
+      
+      // Display statistics
+      statsContainer.innerHTML = `
+        <div class="homepage-stats">
+          <span class="stat-item"><strong>${uniqueNoteHrefs.size}</strong> notes</span>
+          <span class="stat-separator">·</span>
+          <span class="stat-item"><strong>${uniqueModelHrefs.size}</strong> models</span>
+          <span class="stat-separator">·</span>
+          <span class="stat-item"><strong>${seriesGroups.size}</strong> series</span>
+        </div>
+      `;
+    })
+    .catch(err => {
+      console.log('Could not load content statistics:', err);
+      // Hide gracefully
+      statsContainer.innerHTML = '';
+      statsContainer.style.display = 'none';
+    });
 });
 </script>
 
@@ -485,6 +584,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
   .featured-content-title {
     font-size: 1.25rem;
+  }
+}
+
+/* Content Statistics */
+#homepage-stats-container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.homepage-stats-loading {
+  color: var(--bs-secondary);
+  font-size: 0.9rem;
+}
+
+.homepage-stats {
+  font-size: 0.95rem;
+  color: var(--bs-body-color);
+  line-height: 1.8;
+}
+
+.stat-item {
+  color: var(--bs-body-color);
+}
+
+.stat-item strong {
+  font-weight: 600;
+  color: var(--bs-primary);
+}
+
+.stat-separator {
+  color: var(--bs-secondary);
+  margin: 0 0.5rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .homepage-stats {
+    font-size: 0.9rem;
   }
 }
 </style>

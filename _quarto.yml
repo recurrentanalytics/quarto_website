@@ -19,6 +19,9 @@ website:
   navbar:
     search: true
     tools:
+      - icon: rss
+        href: /notes/index.xml
+        title: RSS Feed
       - icon: envelope
         href: mailto:timm.walker@recurrentanalytics.com
       - icon: github
@@ -26,7 +29,7 @@ website:
 
   page-footer:
     left: "© Timm Walker"
-    right: '<a href="/notes/index.xml" title="RSS Feed" aria-label="RSS Feed">📡 RSS</a> · <a href="https://github.com/recurrentanalytics" title="GitHub">GitHub</a> · <a href="mailto:timm.walker@recurrentanalytics.com" title="Email">Email</a>'
+    right: ""
 
   search: true
   repo-url: https://github.com/recurrentanalytics/recurrentanalytics
