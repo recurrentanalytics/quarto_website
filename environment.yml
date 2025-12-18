@@ -16,5 +16,5 @@ dependencies:
   - netcdf4
   - h5netcdf
   # Optional, nice to have:
-  # - cartopy           # maps/projections (larger)
+  - cartopy           # maps/projections (larger)
   # - cftime            # robust time decoding

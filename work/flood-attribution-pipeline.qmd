@@ -1,0 +1,762 @@
+---
+title: "Extreme Rainfall Attribution Pipeline"
+date: 2025-01-15
+categories: [attribution, extremes, climate-risk]
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  error: true
+  output: true
+  fig-width: 10
+  fig-height: 6
+format:
+  html:
+    toc: true
+    code-tools: true
+    code-copy: true
+    code-overflow: wrap
+    include-in-header:
+      text: |
+        <!-- D3.js for network graph -->
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <!-- Graph script - same as global header -->
+        <script src="../assets/graph-script.js" defer></script>
+        <script>
+        // Fallback: ensure graph loads even if main script fails
+        window.addEventListener('load', function() {
+          if (!document.getElementById('mini-graph-container')) {
+            setTimeout(function() {
+              const script = document.createElement('script');
+              script.src = '../assets/graph-script.js';
+              document.head.appendChild(script);
+            }, 500);
+          }
+        });
+        </script>
+        
+        <style>
+        /* Prevent scrolling in code output areas */
+        .cell-output,
+        .cell-output-stdout,
+        .cell-output-display,
+        .cell-output-error,
+        .cell-output-warning {
+          overflow: visible !important;
+          max-height: none !important;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+        
+        pre.sourceCode,
+        pre code {
+          overflow: visible !important;
+          max-height: none !important;
+        }
+        
+        /* Ensure output containers don't scroll */
+        .cell-output > pre,
+        .cell-output-stdout > pre {
+          overflow: visible !important;
+          max-height: none !important;
+        }
+        
+        /* Better spacing and layout for code cells */
+        .cell {
+          margin: 2rem 0;
+        }
+        
+        .cell-code {
+          margin-bottom: 0.5rem;
+        }
+        
+        /* Text output styling */
+        .cell-output-stdout {
+          margin-top: 0.75rem;
+          padding: 1rem;
+          background: var(--bs-tertiary-bg, #f8f9fa);
+          border-radius: 0.375rem;
+          border-left: 3px solid var(--bs-primary, #0d6efd);
+        }
+        
+        .cell-output-stdout pre {
+          margin: 0;
+          padding: 0;
+          background: transparent;
+          border: none;
+          font-size: 0.9rem;
+          line-height: 1.6;
+        }
+        
+        /* Visual output styling - better stacking */
+        .cell-output-display {
+          margin-top: 1rem;
+          margin-bottom: 0;
+        }
+        
+        .cell-output-display figure {
+          margin: 0;
+          padding: 0;
+        }
+        
+        .cell-output-display .figure-img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+          border-radius: 0.375rem;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .cell-output-display .figure-img:hover {
+          transform: scale(1.02);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Lightbox modal */
+        .figure-lightbox {
+          display: none;
+          position: fixed;
+          z-index: 10000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(4px);
+          animation: fadeIn 0.2s ease;
+        }
+        
+        .figure-lightbox.active {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        .figure-lightbox-content {
+          position: relative;
+          max-width: 95%;
+          max-height: 95vh;
+          margin: auto;
+          animation: zoomIn 0.2s ease;
+        }
+        
+        @keyframes zoomIn {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        
+        .figure-lightbox-img {
+          max-width: 100%;
+          max-height: 95vh;
+          width: auto;
+          height: auto;
+          border-radius: 0.5rem;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        
+        .figure-lightbox-close {
+          position: absolute;
+          top: -2.5rem;
+          right: 0;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          background: rgba(0, 0, 0, 0.5);
+          border: none;
+          border-radius: 50%;
+          width: 2.5rem;
+          height: 2.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s ease;
+        }
+        
+        .figure-lightbox-close:hover {
+          background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .figure-lightbox-close:focus {
+          outline: 2px solid white;
+          outline-offset: 2px;
+        }
+        
+        @media (max-width: 768px) {
+          .figure-lightbox-content {
+            max-width: 98%;
+          }
+          
+          .figure-lightbox-close {
+            top: 1rem;
+            right: 1rem;
+          }
+        }
+        
+        /* Better separation between code and output */
+        .cell-code + .cell-output {
+          margin-top: 0.75rem;
+        }
+        
+        /* Error output styling */
+        .cell-output-error {
+          margin-top: 0.75rem;
+          padding: 1rem;
+          background: var(--bs-danger-bg-subtle, #f8d7da);
+          border-radius: 0.375rem;
+          border-left: 3px solid var(--bs-danger, #dc3545);
+          color: var(--bs-danger-text-emphasis, #721c24);
+        }
+        
+        .cell-output-error pre {
+          margin: 0;
+          padding: 0;
+          background: transparent;
+          border: none;
+        }
+        </style>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Create lightbox container
+          const lightbox = document.createElement('div');
+          lightbox.className = 'figure-lightbox';
+          lightbox.innerHTML = `
+            <div class="figure-lightbox-content">
+              <button class="figure-lightbox-close" aria-label="Close">&times;</button>
+              <img class="figure-lightbox-img" src="" alt="Enlarged figure">
+            </div>
+          `;
+          document.body.appendChild(lightbox);
+          
+          const lightboxImg = lightbox.querySelector('.figure-lightbox-img');
+          const lightboxClose = lightbox.querySelector('.figure-lightbox-close');
+          
+          // Make all figure images clickable
+          document.querySelectorAll('.cell-output-display .figure-img').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.setAttribute('title', 'Click to enlarge');
+            
+            img.addEventListener('click', function(e) {
+              e.stopPropagation();
+              lightboxImg.src = this.src;
+              lightboxImg.alt = this.alt || 'Enlarged figure';
+              lightbox.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            });
+          });
+          
+          // Close lightbox
+          function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+          
+          lightboxClose.addEventListener('click', closeLightbox);
+          
+          lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+              closeLightbox();
+            }
+          });
+          
+          // Close on Escape key
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+              closeLightbox();
+            }
+          });
+        });
+        </script>
+---
+
+## Why this pipeline exists
+
+This pipeline quantifies how climate change altered the probability and intensity of extreme rainfall events. It implements standard attribution methods (Fraction of Attributable Risk and Probability Ratio) using ERA5 reanalysis data.
+
+**Code Execution:** All code cells are executed when the page is rendered. The code and its output are shown together, making it easy to see what each step does.
+
+**What this does:**
+- Analyzes precipitation extremes (not flood impacts directly)
+- Calculates attribution metrics with uncertainty quantification
+- Works for any region, date range, and event definition
+- Reproducible and inspectable
+
+**What this doesn't do:**
+- Model actual flood impacts (runoff, infrastructure vulnerability)
+- Provide causal attribution (this is statistical attribution)
+- Account for all regional/local factors
+
+This is an intermediate object: a working tool that makes explicit choices and limitations.
+
+## Introduction: Extreme Event Attribution
+
+Extreme event attribution asks: *"How did climate change alter the probability or intensity of this specific event?"*
+
+Two common metrics:
+
+1. **Fraction of Attributable Risk (FAR)**: The fraction of risk that can be attributed to climate change
+   - FAR = 1 - (P_historical / P_recent)
+   - Range: -∞ to 1 (1 = fully attributable, 0 = no change, negative = less likely)
+
+2. **Probability Ratio (PR)**: How many times more likely the event became
+   - PR = P_recent / P_historical
+   - Range: 0 to ∞ (1 = no change, >1 = more likely, <1 = less likely)
+
+Both metrics compare probabilities of exceeding a threshold in a historical baseline period versus a recent period.
+
+## Data Requirements
+
+This pipeline uses **ERA5 reanalysis** precipitation data. ERA5 provides:
+- Global coverage from 1950 to present
+- Hourly or daily temporal resolution
+- ~31km spatial resolution
+- Variable: `total_precipitation` (accumulated over hour, in meters)
+
+**To use this pipeline, you need:**
+1. ERA5 data downloaded (via CDS API or pre-downloaded files)
+2. Or modify the data loading functions to use your own data source
+
+**Data download:**
+- [CDS API](https://cds.climate.copernicus.eu/) (requires registration)
+- Variable: `total_precipitation`
+- Product: `reanalysis-era5-single-levels`
+
+## Example 1: 2021 Western Europe Floods
+
+The July 2021 floods in Germany, Belgium, and Netherlands were caused by extreme rainfall. Let's analyze the attribution of this event.
+
+### Define the event
+
+```{python}
+import sys
+from pathlib import Path
+# Add project root to Python path  
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+from src.attribution.event_definitions import define_rainfall_event
+
+# Event definition: July 12-15, 2021, Western Europe
+# Cumulative rainfall >150mm over 2-3 days
+event_2021 = define_rainfall_event(
+    region={'lat': (48.0, 52.0), 'lon': (4.0, 9.0)},  # Germany/Belgium region
+    date_range=('2021-07-12', '2021-07-15'),
+    threshold=150.0,  # mm
+    metric='cumulative',
+    duration=3,  # days
+)
+
+print(f"Event: {event_2021.date_range[0]} to {event_2021.date_range[1]}")
+print(f"Region: {event_2021.region}")
+print(f"Threshold: {event_2021.threshold} mm over {event_2021.duration} days")
+```
+
+### Load ERA5 data
+
+**Note:** This example assumes you have ERA5 data available. In practice, you would:
+
+1. Download ERA5 data via CDS API, or
+2. Use pre-downloaded NetCDF files, or
+3. Use a data service that provides ERA5 access
+
+For demonstration, we'll show the structure with synthetic data:
+
+```{python}
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+
+# Generate synthetic ERA5-like data for demonstration
+# In practice, use: load_era5_precipitation() from src.attribution.data_loading
+
+np.random.seed(42)
+
+# Create date ranges
+baseline_dates = pd.date_range('1950-01-01', '1980-12-31', freq='D')
+recent_dates = pd.date_range('1990-01-01', '2023-12-31', freq='D')
+event_dates = pd.date_range('2021-07-12', '2021-07-15', freq='D')
+
+# Synthetic precipitation (gamma distribution, realistic for Europe)
+# Baseline: lower mean, recent: higher mean (climate change signal)
+baseline_precip = np.random.gamma(shape=2, scale=5, size=len(baseline_dates))
+recent_precip = np.random.gamma(shape=2, scale=6, size=len(recent_dates))
+
+# Add extreme event in 2021
+event_precip = np.array([45, 85, 70, 30])  # mm per day, totals 230mm over 3 days
+
+# Combine into DataFrames
+baseline_data = pd.DataFrame({
+    'date': baseline_dates,
+    'precipitation_mm': baseline_precip
+})
+
+recent_data = pd.DataFrame({
+    'date': recent_dates,
+    'precipitation_mm': recent_precip
+})
+
+# Insert event into recent data
+event_mask = recent_data['date'].isin(event_dates)
+recent_data.loc[event_mask, 'precipitation_mm'] = event_precip
+
+print("Data loaded:")
+print(f"Baseline period: {len(baseline_data)} days")
+print(f"Recent period: {len(recent_data)} days")
+print(f"\nBaseline stats:")
+print(baseline_data['precipitation_mm'].describe())
+print(f"\nRecent stats:")
+print(recent_data['precipitation_mm'].describe())
+```
+
+### Detect the event
+
+```{python}
+import sys
+from pathlib import Path
+# Add project root to Python path  
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+from src.attribution.event_definitions import detect_rainfall_events, extract_event_data
+
+# Detect all events matching criteria in recent period
+recent_with_events = detect_rainfall_events(
+    recent_data,
+    threshold=150.0,
+    min_duration=3,
+    metric='cumulative',
+    duration=3,
+)
+
+# Extract the specific 2021 event
+event_data = extract_event_data(recent_data, event_2021)
+
+print("2021 Event details:")
+print(event_data[['date', 'precipitation_mm']])
+print(f"\nCumulative rainfall: {event_data['precipitation_mm'].sum():.1f} mm")
+print(f"Event threshold: {event_2021.threshold} mm")
+print(f"Event exceeded threshold: {event_data['precipitation_mm'].sum() >= event_2021.threshold}")
+```
+
+### Calculate attribution
+
+```{python}
+import sys
+from pathlib import Path
+# Add project root to Python path  
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+from src.attribution.attribution_methods import bootstrap_attribution
+
+# Calculate attribution with bootstrap confidence intervals
+attribution_results = bootstrap_attribution(
+    historical_data=baseline_data['precipitation_mm'],
+    recent_data=recent_data['precipitation_mm'],
+    event_threshold=150.0,  # 150mm cumulative over 3 days
+    n_bootstrap=1000,
+    distribution_type='gamma',
+    random_seed=42,
+)
+
+print("Attribution Results:")
+print(f"Fraction of Attributable Risk (FAR): {attribution_results['far']:.3f}")
+print(f"  95% CI: [{attribution_results['far_ci_lower']:.3f}, {attribution_results['far_ci_upper']:.3f}]")
+print(f"\nProbability Ratio (PR): {attribution_results['pr']:.3f}")
+print(f"  95% CI: [{attribution_results['pr_ci_lower']:.3f}, {attribution_results['pr_ci_upper']:.3f}]")
+print(f"\nHistorical probability: {attribution_results['p_historical']:.6f}")
+print(f"Recent probability: {attribution_results['p_recent']:.6f}")
+```
+
+### Visualize results
+
+```{python}
+import sys
+from pathlib import Path
+# Add project root to Python path  
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+import matplotlib.pyplot as plt
+from src.attribution.visualization import (
+    plot_precipitation_timeseries,
+    plot_distribution_comparison,
+    plot_attribution_results,
+    plot_cumulative_rainfall,
+)
+
+# Combine data for time series plot
+all_data = pd.concat([
+    baseline_data.assign(period='baseline'),
+    recent_data.assign(period='recent')
+], ignore_index=True)
+
+# Time series with event highlighted
+fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+
+# 1. Time series
+ax1 = axes[0, 0]
+plot_precipitation_timeseries(
+    all_data,
+    event_2021,
+    baseline_period=('1950-01-01', '1980-12-31'),
+    recent_period=('1990-01-01', '2023-12-31'),
+    ax=ax1,
+)
+
+# 2. Distribution comparison
+ax2 = axes[0, 1]
+plot_distribution_comparison(
+    baseline_data['precipitation_mm'],
+    recent_data['precipitation_mm'],
+    event_threshold=150.0,
+    ax=ax2,
+)
+
+# 3. Attribution results
+ax3 = axes[1, 0]
+plot_attribution_results(
+    attribution_results['far'],
+    attribution_results['pr'],
+    confidence_intervals={
+        'far_ci_lower': attribution_results['far_ci_lower'],
+        'far_ci_upper': attribution_results['far_ci_upper'],
+        'pr_ci_lower': attribution_results['pr_ci_lower'],
+        'pr_ci_upper': attribution_results['pr_ci_upper'],
+    },
+    ax=ax3,
+)
+
+# 4. Cumulative rainfall for event
+ax4 = axes[1, 1]
+plot_cumulative_rainfall(event_data, event_2021, ax=ax4)
+
+plt.tight_layout()
+plt.show()
+```
+
+### Interpretation
+
+```{python}
+# Display interpretation
+far_pct = attribution_results['far'] * 100
+pr_rounded = round(attribution_results['pr'])
+
+print(f"Based on the attribution analysis:")
+print(f"\nFAR = {attribution_results['far']:.3f}")
+print(f"This means approximately {far_pct:.1f}% of the risk of this event")
+print(f"can be attributed to climate change.")
+print(f"\nPR = {attribution_results['pr']:.3f}")
+print(f"The event is approximately {pr_rounded}x more likely in the recent period")
+print(f"compared to the historical baseline.")
+```
+
+**Note:** These are synthetic results for demonstration. Real attribution requires:
+- Actual ERA5 data
+- Careful selection of baseline and recent periods
+- Consideration of seasonal patterns
+- Validation against observational data
+
+### Spatial Visualization
+
+We can also visualize the spatial distribution of the event and the study region on a map:
+
+```{python}
+import sys
+from pathlib import Path
+# Add project root to Python path  
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+import numpy as np
+import xarray as xr
+from src.mapping import create_base_map, plot_region_outline, add_event_markers
+from src.attribution.visualization import plot_event_spatial_distribution
+
+# Create synthetic spatial precipitation data for the event period
+# In practice, this would come from ERA5 hourly data preserving spatial dimensions
+lat_range = np.linspace(48.0, 52.0, 20)
+lon_range = np.linspace(4.0, 9.0, 25)
+lon_grid, lat_grid = np.meshgrid(lon_range, lat_range)
+
+# Generate synthetic precipitation pattern (higher in center, simulating storm)
+center_lat, center_lon = 50.5, 6.5
+distance = np.sqrt((lat_grid - center_lat)**2 + (lon_grid - center_lon)**2)
+precipitation_spatial = 200 * np.exp(-distance / 1.5) + np.random.normal(0, 10, lat_grid.shape)
+precipitation_spatial = np.maximum(precipitation_spatial, 0)
+
+# Create xarray DataArray
+event_spatial_data = xr.DataArray(
+    precipitation_spatial,
+    coords={'latitude': lat_range, 'longitude': lon_range},
+    dims=['latitude', 'longitude'],
+    name='total_precipitation'
+)
+
+# Plot spatial distribution
+fig, ax = plot_event_spatial_distribution(
+    event_data=event_spatial_data,
+    region=event_2021.region,
+    event_definition=event_2021,
+    variable='total_precipitation',
+    title='2021 Western Europe Flood: Spatial Precipitation Distribution',
+    colormap='Blues'
+)
+
+plt.tight_layout()
+plt.show()
+```
+
+We can also create a simple map showing just the event region:
+
+```{python}
+# Create base map with event region highlighted
+fig, ax = create_base_map(
+    region={'lat': (47.0, 53.0), 'lon': (3.0, 10.0)},  # Slightly larger for context
+    projection='PlateCarree',
+    figsize=(10, 8)
+)
+
+# Highlight the event region
+plot_region_outline(
+    event_2021.region,
+    ax,
+    color='red',
+    linewidth=3,
+    label='2021 Flood Event Region'
+)
+
+# Add event marker at center
+center_lat = (event_2021.region['lat'][0] + event_2021.region['lat'][1]) / 2
+center_lon = (event_2021.region['lon'][0] + event_2021.region['lon'][1]) / 2
+
+add_event_markers(
+    [{'lat': center_lat, 'lon': center_lon, 'label': 'July 2021 Floods'}],
+    ax,
+    color='red',
+    size=200,
+    label='Event Location'
+)
+
+ax.set_title('2021 Western Europe Flood Event Region', fontsize=14, fontweight='bold')
+ax.legend(loc='upper right')
+plt.tight_layout()
+plt.show()
+```
+
+## Example 2: User-Defined Event
+
+The pipeline is generalizable. Here's how to analyze any rainfall event:
+
+```{python}
+import sys
+from pathlib import Path
+# Add project root to Python path  
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+from src.attribution.event_definitions import define_rainfall_event
+from src.attribution.data_loading import get_historical_baseline, get_recent_period
+from src.attribution.attribution_methods import bootstrap_attribution
+
+# Define your event
+my_event = define_rainfall_event(
+    region={'lat': (40.0, 50.0), 'lon': (-10.0, 5.0)},  # Your region
+    date_range=('2023-06-01', '2023-06-05'),  # Your dates
+    threshold=100.0,  # Your threshold (mm)
+    metric='cumulative',  # or 'intensity', 'duration'
+    duration=5,  # days
+)
+
+# Load data (replace with actual data loading)
+# baseline = get_historical_baseline(my_event.region, '1950-01-01', '1980-12-31')
+# recent = get_recent_period(my_event.region, '1990-01-01', '2023-12-31')
+
+# Calculate attribution
+# results = bootstrap_attribution(
+#     baseline['precipitation_mm'],
+#     recent['precipitation_mm'],
+#     my_event.threshold,
+#     n_bootstrap=1000,
+# )
+
+print("Event defined. Next steps:")
+print("1. Load ERA5 data for your region")
+print("2. Run attribution analysis")
+print("3. Visualize results")
+```
+
+## Methodology Details
+
+### Statistical Approach
+
+**Distribution Fitting:**
+- Precipitation data is typically right-skewed with many zero values
+- We fit gamma distributions (common for precipitation)
+- Alternative: log-normal or GEV (for extremes)
+
+**Bootstrap Confidence Intervals:**
+- Resample data with replacement (1000 iterations)
+- Calculate FAR and PR for each bootstrap sample
+- 95% CI from percentiles (2.5th, 97.5th)
+
+**Seasonality:**
+- Precipitation has strong seasonal patterns
+- For robust attribution, compare same seasons across periods
+- This pipeline can be extended to handle seasonality
+
+### Limitations
+
+1. **Precipitation vs Floods**: This analyzes rainfall extremes, not actual flood impacts. Floods depend on:
+   - Runoff and drainage
+   - Soil moisture and saturation
+   - Infrastructure and land use
+   - River discharge and capacity
+
+2. **Reanalysis Data**: ERA5 is a model-based reanalysis, not pure observations. It may have biases, especially for:
+   - Extreme events
+   - Mountainous regions
+   - Coastal areas
+
+3. **Non-Stationarity**: Assumes distributions are stationary within each period. Climate change may introduce trends even within "recent" period.
+
+4. **Regional Specificity**: Results are for the defined region. Local factors (urbanization, land use changes) are not accounted for.
+
+## Extensions and Future Work
+
+**Possible extensions:**
+
+1. **Add observational data**: Compare ERA5 with station observations
+2. **CMIP6 integration**: Use climate model ensembles for counterfactual analysis
+3. **Compound events**: Include antecedent soil moisture, temperature
+4. **Spatial analysis**: Map attribution results across regions
+5. **Seasonal attribution**: Separate analysis by season
+6. **Flood impact modeling**: Connect precipitation to actual flood risk
+
+**References:**
+
+- Stott et al. (2016). "Attribution of extreme weather and climate-related events." *WIREs Climate Change*
+- National Academies (2016). *Attribution of Extreme Weather Events in the Context of Climate Change*
+- World Weather Attribution: [worldweatherattribution.org](https://www.worldweatherattribution.org/)
+
+## Integration with Other Content
+
+This pipeline connects to:
+
+- [Risk Series Part 2](/notes/risk-series-2.html) - Data sources for climate risk
+- [Monte Carlo Basics](/notes/climate/monte-carlo-basics.html) - Bootstrap methods used here
+
+::: {.backlinks}
+#### Related
+- [Risk Modelling Series](/notes/risk-series-1.html) - Foundations of risk modeling
+- [Monte Carlo Basics](/notes/climate/monte-carlo-basics.html) - Statistical methods
+:::
+

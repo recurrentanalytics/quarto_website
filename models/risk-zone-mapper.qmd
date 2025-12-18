@@ -1,0 +1,319 @@
+---
+title: "Risk Zone Mapper"
+date: 2025-12-18
+categories: [climate, mapping, risk, visualization]
+description: "Geographic mapping of climate risk zones using cartopy. Demonstrates how to visualize flood risk zones, heatwave risk zones, and other climate hazards on static maps with proper projections and geographic features."
+execute:
+  echo: true
+  warning: false
+  message: false
+freeze: auto
+---
+
+## Overview
+
+Geographic visualization is essential for understanding climate risk. Risk is not uniform—it varies spatially, and maps make these patterns visible. This model demonstrates how to create static maps showing risk zones, hazard intensity, and event locations using cartopy and matplotlib.
+
+The mapping utilities provide:
+
+- **Base map creation** with proper projections (PlateCarree, Mercator, Lambert)
+- **Risk zone visualization** with color-coded intensity levels
+- **Hazard overlays** for precipitation, temperature, and other climate variables
+- **Event markers** to highlight specific events
+- **Region highlighting** to mark study areas
+
+## Setup and Imports
+
+```{python}
+import sys
+from pathlib import Path
+
+# Add project root to path
+project_root = Path.cwd() if Path('src').exists() else Path.cwd().parent
+sys.path.insert(0, str(project_root))
+
+import numpy as np
+import pandas as pd
+import xarray as xr
+import matplotlib.pyplot as plt
+
+# Import mapping utilities
+from src.mapping import (
+    create_base_map,
+    plot_risk_zones,
+    plot_hazard_intensity,
+    add_event_markers,
+    plot_region_outline,
+)
+
+print("Mapping utilities loaded successfully")
+```
+
+## Example 1: Base Map Creation
+
+First, let's create a simple base map for a region of interest. We'll use Western Europe as an example.
+
+```{python}
+# Define region: Western Europe (Germany, Belgium, Netherlands)
+region_we = {
+    'lat': (48.0, 52.0),  # Latitude range
+    'lon': (4.0, 9.0),    # Longitude range
+}
+
+# Create base map with PlateCarree projection
+fig, ax = create_base_map(
+    region=region_we,
+    projection='PlateCarree',
+    figsize=(10, 8),
+    resolution='50m'
+)
+
+ax.set_title('Western Europe Base Map', fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+## Example 2: Synthetic Precipitation Risk Zones
+
+For demonstration, we'll create synthetic spatial precipitation data to show risk zones. In practice, you would load ERA5 or other reanalysis data.
+
+```{python}
+# Create synthetic precipitation data for Western Europe
+# In practice, this would come from ERA5 or other data sources
+lat_range = np.linspace(48.0, 52.0, 20)
+lon_range = np.linspace(4.0, 9.0, 25)
+
+# Create meshgrid
+lon_grid, lat_grid = np.meshgrid(lon_range, lat_range)
+
+# Generate synthetic precipitation data (higher in center, simulating a storm)
+center_lat, center_lon = 50.0, 6.5
+distance = np.sqrt((lat_grid - center_lat)**2 + (lon_grid - center_lon)**2)
+precipitation = 100 * np.exp(-distance / 2.0) + np.random.normal(0, 5, lat_grid.shape)
+precipitation = np.maximum(precipitation, 0)  # No negative precipitation
+
+# Create xarray DataArray
+precip_data = xr.DataArray(
+    precipitation,
+    coords={'latitude': lat_range, 'longitude': lon_range},
+    dims=['latitude', 'longitude'],
+    name='precipitation_mm'
+)
+
+# Plot risk zones
+fig, ax = plot_risk_zones(
+    data=precip_data,
+    region=region_we,
+    colormap='Blues',
+    title='Synthetic Precipitation Risk Zones (Western Europe)',
+    colorbar_label='Precipitation (mm)'
+)
+
+plt.tight_layout()
+plt.show()
+```
+
+## Example 3: Heatwave Risk Zones
+
+Now let's create a map showing temperature extremes (heatwave risk zones). We'll use a different region and colormap.
+
+```{python}
+# Define region: Central Europe
+region_ce = {
+    'lat': (45.0, 55.0),
+    'lon': (5.0, 15.0),
+}
+
+# Create synthetic temperature data
+lat_range_ce = np.linspace(45.0, 55.0, 30)
+lon_range_ce = np.linspace(5.0, 15.0, 40)
+lon_grid_ce, lat_grid_ce = np.meshgrid(lon_range_ce, lat_range_ce)
+
+# Generate temperature pattern (warmer in south, with hot spots)
+temperature = 20 + (lat_grid_ce - 50) * 0.5 + np.random.normal(0, 2, lat_grid_ce.shape)
+# Add heatwave hotspot
+hotspot_lat, hotspot_lon = 48.5, 10.0
+distance_hotspot = np.sqrt((lat_grid_ce - hotspot_lat)**2 + (lon_grid_ce - hotspot_lon)**2)
+temperature += 8 * np.exp(-distance_hotspot / 1.5)
+
+temp_data = xr.DataArray(
+    temperature,
+    coords={'latitude': lat_range_ce, 'longitude': lon_range_ce},
+    dims=['latitude', 'longitude'],
+    name='temperature_c'
+)
+
+# Plot heatwave risk zones
+fig, ax = plot_hazard_intensity(
+    data=temp_data,
+    region=region_ce,
+    colormap='YlOrRd',
+    title='Heatwave Risk Zones (Central Europe)',
+    colorbar_label='Temperature (°C)'
+)
+
+plt.tight_layout()
+plt.show()
+```
+
+## Example 4: Event Markers and Region Highlighting
+
+We can combine base maps with event markers to show specific events and highlight study regions.
+
+```{python}
+# Create base map
+fig, ax = create_base_map(
+    region=region_we,
+    projection='PlateCarree',
+    figsize=(12, 8)
+)
+
+# Define events (e.g., flood locations)
+events = [
+    {'lat': 50.5, 'lon': 6.0, 'label': '2021 Flood Event'},
+    {'lat': 51.0, 'lon': 7.0, 'label': '2018 Flood Event'},
+]
+
+# Add event markers
+add_event_markers(
+    events,
+    ax,
+    color='red',
+    size=150,
+    label='Flood Events'
+)
+
+# Highlight a specific study region
+study_region = {
+    'lat': (49.5, 50.5),
+    'lon': (5.5, 6.5),
+}
+plot_region_outline(
+    study_region,
+    ax,
+    color='blue',
+    linewidth=2,
+    label='Study Region'
+)
+
+ax.set_title('Event Markers and Region Highlighting', fontsize=14, fontweight='bold')
+ax.legend(loc='upper right')
+plt.tight_layout()
+plt.show()
+```
+
+## Example 5: Multiple Projections
+
+Different map projections are appropriate for different regions and use cases. Let's compare a few.
+
+```{python}
+# Create maps with different projections
+projections = ['PlateCarree', 'Mercator']
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 6), subplot_kw={'projection': None})
+
+for i, proj in enumerate(projections):
+    fig_sub, ax_sub = create_base_map(
+        region=region_ce,
+        projection=proj,
+        figsize=(8, 6)
+    )
+    
+    # Plot temperature data
+    plot_hazard_intensity(
+        data=temp_data,
+        region=region_ce,
+        colormap='YlOrRd',
+        ax=ax_sub,
+        projection=proj,
+        title=f'{proj} Projection'
+    )
+    
+    # Close the subplot figure and add to main figure
+    # (Note: This is a simplified approach; in practice you'd manage subplots differently)
+    if i == 0:
+        axes[0] = ax_sub
+    else:
+        axes[1] = ax_sub
+
+plt.suptitle('Comparison of Map Projections', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+## Example 6: Combined Risk Map
+
+We can create a combined risk index by normalizing and combining multiple hazards.
+
+```{python}
+# Normalize precipitation and temperature to 0-1 scale
+precip_norm = (precipitation - precipitation.min()) / (precipitation.max() - precipitation.min())
+temp_norm = (temperature - temperature.min()) / (temperature.max() - temperature.min())
+
+# Create combined risk index (weighted average)
+risk_index = 0.6 * precip_norm + 0.4 * temp_norm
+
+# Create DataArray for combined risk
+risk_data = xr.DataArray(
+    risk_index,
+    coords={'latitude': lat_range_ce, 'longitude': lon_range_ce},
+    dims=['latitude', 'longitude'],
+    name='combined_risk'
+)
+
+# Plot combined risk map
+fig, ax = plot_risk_zones(
+    data=risk_data,
+    region=region_ce,
+    colormap='RdYlGn_r',  # Reversed: red = high risk, green = low risk
+    title='Combined Climate Risk Index',
+    colorbar_label='Risk Index (0-1)'
+)
+
+plt.tight_layout()
+plt.show()
+```
+
+## Integration with Real Data
+
+To use real ERA5 data, you would load it using the attribution data loading functions:
+
+```python
+from src.attribution.data_loading import load_era5_precipitation
+
+# Load ERA5 data (preserving spatial dimensions)
+region = {'lat': (48.0, 52.0), 'lon': (4.0, 9.0)}
+date_range = ('2021-07-12', '2021-07-15')
+
+# Load with temporal_resolution='hourly' to preserve spatial structure
+era5_data = load_era5_precipitation(
+    region=region,
+    date_range=date_range,
+    temporal_resolution='hourly'  # Keep spatial dimensions
+)
+
+# Now you can plot the spatial distribution
+from src.attribution.visualization import plot_event_spatial_distribution
+
+fig, ax = plot_event_spatial_distribution(
+    event_data=era5_data,
+    region=region,
+    variable='total_precipitation',
+    title='2021 Western Europe Flood: Spatial Precipitation Distribution'
+)
+```
+
+## Best Practices
+
+1. **Choose appropriate projections**: PlateCarree for global/equatorial regions, Mercator for mid-latitudes, Lambert for specific regions
+2. **Use meaningful colormaps**: YlOrRd for heat/temperature, Blues for precipitation, RdYlGn_r for risk indices
+3. **Set appropriate levels**: Use meaningful contour levels based on your data distribution
+4. **Label clearly**: Always include colorbar labels and descriptive titles
+5. **Consider resolution**: Higher resolution coastlines (10m) look better but are slower to render
+
+## References
+
+- Cartopy documentation: https://scitools.org.uk/cartopy/
+- Map projections: https://scitools.org.uk/cartopy/docs/latest/crs/projections.html
+- Matplotlib colormaps: https://matplotlib.org/stable/tutorials/colors/colormaps.html
+
