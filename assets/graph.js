@@ -57,7 +57,7 @@ window.RAC_GRAPH = {
   },
   {
    "id": "notes/index",
-   "label": "Notes",
+   "label": "under:current",
    "path": "/notes/",
    "cat": "notes"
   },

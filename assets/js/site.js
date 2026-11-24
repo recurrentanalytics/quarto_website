@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const pages = [
     { title: 'Home', path: '/' },
     { title: 'About & Contact', path: '/about.html' },
-    { title: 'Notes & Knowledge Base', path: '/notes/' },
+    { title: 'under:current', path: '/notes/' },
     { title: 'Projects', path: '/projects/' },
     { title: 'Library', path: '/library/' },
     { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' }
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="graph-category-filters">
           <button class="graph-filter-btn active" data-cat="all">All</button>
           <button class="graph-filter-btn" data-cat="nav">Nav</button>
-          <button class="graph-filter-btn" data-cat="notes">Notes</button>
+          <button class="graph-filter-btn" data-cat="notes">under:current</button>
           <button class="graph-filter-btn" data-cat="projects">Projects</button>
           <button class="graph-filter-btn" data-cat="livelines">LiveLines</button>
         </div>
