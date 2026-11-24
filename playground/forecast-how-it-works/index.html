@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-21">
+<meta name="description" content="The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game’s own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty.">
+
+<title>A forecast you can trust, until you can’t – re:current_analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-83473db31452f667965bb465e6000f16.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Fonts are self-hosted (assets/fonts/, SIL OFL): no visitor request goes to Google. -->
+<link rel="stylesheet" href="../../assets/fonts/fonts.css">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<!-- Phone menu (overlay + command line): menu.css, menu.js; the class marks "JS on". -->
+<link rel="stylesheet" href="../../assets/css/menu.css">
+<script>document.documentElement.classList.add('rac-menu-js');</script>
+<!-- Article preview cards: previews.css, previews.js (series thumbnails). -->
+<link rel="stylesheet" href="../../assets/css/previews.css">
+<!-- d3 7.9.0, self-hosted, as an ES module (assets/js/vendor/): pages with interactive
+     cells may load require.js, which would swallow the plain UMD build; the wrapper
+     never asks require.js. Module scripts run before DOMContentLoaded, as site.js needs. -->
+<script type="module">import d3 from "/assets/js/vendor/d3-7.9.0.esm.js"; window.d3 = d3;</script>
+<script src="../../assets/graph.js"></script>
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/extras.js"></script>
+<script src="../../assets/js/code-fold.js"></script>
+<script defer="" src="../../assets/js/motion.js"></script>
+<script defer="" src="../../assets/js/menu.js"></script>
+<script defer="" src="../../assets/js/previews.js"></script>
+
+
+<meta property="og:title" content="A forecast you can trust, until you can’t – re:current_analytics">
+<meta property="og:description" content="The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game’s own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty.">
+<meta property="og:image" content="https://recurrentanalytics.com/playground/forecast-how-it-works/preview.png">
+<meta property="og:site_name" content="re:current_analytics">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="A forecast you can trust, until you can’t – re:current_analytics">
+<meta name="twitter:description" content="The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game’s own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty.">
+<meta name="twitter:image" content="https://recurrentanalytics.com/playground/forecast-how-it-works/preview.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/brand/lockup-small-light.svg" alt="re:current_analytics, home" class="navbar-logo light-content">
+    <img src="../../assets/brand/lockup-small-dark.svg" alt="re:current_analytics, home" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/livelines.html"> 
+<span class="menu-text">LiveLines</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../showcases/index.html"> 
+<span class="menu-text">Showcases</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../playground/index.html"> 
+<span class="menu-text">Playground</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="../../notes/index.xml" title="" class="quarto-navigation-tool px-1" aria-label="RSS feed"><i class="bi bi-rss"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#a-game-not-a-model" id="toc-a-game-not-a-model" class="nav-link active" data-scroll-target="#a-game-not-a-model">A game, not a model</a></li>
+  <li><a href="#what-you-do" id="toc-what-you-do" class="nav-link" data-scroll-target="#what-you-do">What you do</a></li>
+  <li><a href="#three-years-three-kinds-of-not-knowing" id="toc-three-years-three-kinds-of-not-knowing" class="nav-link" data-scroll-target="#three-years-three-kinds-of-not-knowing">Three years, three kinds of not knowing</a></li>
+  <li><a href="#what-a-player-can-try-and-what-the-literature-calls-it" id="toc-what-a-player-can-try-and-what-the-literature-calls-it" class="nav-link" data-scroll-target="#what-a-player-can-try-and-what-the-literature-calls-it">What a player can try, and what the literature calls it</a></li>
+  <li><a href="#how-it-is-built" id="toc-how-it-is-built" class="nav-link" data-scroll-target="#how-it-is-built">How it is built</a></li>
+  <li><a href="#what-the-game-leaves-out" id="toc-what-the-game-leaves-out" class="nav-link" data-scroll-target="#what-the-game-leaves-out">What the game leaves out</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">A forecast you can trust, until you can’t</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">The idea behind a small tactics game about weather, crews and deep uncertainty, and how it is built</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">playground</div>
+    <div class="quarto-category">deep uncertainty</div>
+    <div class="quarto-category">serious games</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game’s own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+/* This page shows a little of its code: the excerpts stay open, without the site's fold bar. */
+.code-block-wrapper { background: transparent; border: 0; }
+.code-block-wrapper .code-block-header { display: none; }
+.code-block-wrapper .code-block-content { display: block; }
+/* Long DOI links in the reference list wrap on a narrow screen. */
+#refs a { overflow-wrap: anywhere; }
+/* The stills are pixel art: keep the pixels sharp when the browser scales them. */
+.quarto-figure img { image-rendering: pixelated; }
+</style>
+<p><a href="../forecast/">Forecast</a> is a small game. Three crews look after a riverside town for three years, and before every round the game shows what the weather will do. This article is about the idea behind it, how it is built, and what to read to go further.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="How this was made">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How this was made
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the code and the first draft of this article. The reference list was checked against Crossref, the publisher’s page or a library record, and what the article says about each source against the source itself or its abstract.</p>
+</div>
+</div>
+<div id="fig-ranges" class="quarto-float quarto-figure quarto-figure-center" alt="Pixel-art island with a river, groups of small houses, three crew figures, blue and orange tinted tiles, some of them speckled, and red signs reading minus one">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ranges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="shot-ranges.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: A round in year 2. Blue ground will flood, orange ground will be hot. Speckled ground and a question mark mean the forecast is not sure. The red signs count the people a quarter would lose."><img src="shot-ranges.jpg" class="img-fluid figure-img" alt="Pixel-art island with a river, groups of small houses, three crew figures, blue and orange tinted tiles, some of them speckled, and red signs reading minus one"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ranges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A round in year 2. Blue ground will flood, orange ground will be hot. Speckled ground and a question mark mean the forecast is not sure. The red signs count the people a quarter would lose.
+</figcaption>
+</figure>
+</div>
+<section id="a-game-not-a-model" class="level2">
+<h2 data-anchor-id="a-game-not-a-model">A game, not a model</h2>
+<p>The town does not exist. Its rules were made up to make a good puzzle, no number in it has a unit, and nothing was fitted to a measurement. A flood in the game takes “one person per quarter” because that is easy to see and to count, not because floods do that.</p>
+<p>So the game says nothing about any real place or any real forecast. What it can do is let you feel one situation from the inside: you plan with a forecast, the forecast gets worse, and nobody tells you when.</p>
+</section>
+<section id="what-you-do" class="level2">
+<h2 data-anchor-id="what-you-do">What you do</h2>
+<p>The town is an 8 by 8 grid with a river. Each house is one person; a quarter holds up to four. A game lasts three years of five rounds.</p>
+<p>Before each round the map shows the weather that is coming, in the order it will arrive:</p>
+<ul>
+<li>a <strong>storm</strong> sweeps half a row. It takes one person in every quarter on its way and knocks down trees and levees (sandbags laid on open ground).</li>
+<li><strong>heat</strong> covers a square of 2 by 2 tiles. It takes one person per quarter, unless a tree stands on one of the eight tiles around the quarter.</li>
+<li>a <strong>flood</strong> spreads from a stretch of the river, one or two tiles inland, and takes one person in every quarter it reaches.</li>
+</ul>
+<p>You have three crews. Each walks up to three tiles and then works once: one lays sandbags, one plants trees, one shelters a quarter for the round. Then you end the round and the forecast comes true. Between years people move back, one per quarter that still has people.</p>
+<div id="fig-round" class="quarto-float quarto-figure quarto-figure-center" alt="Phone screenshot of the game: the island map on top, a hint line, a chip reading flood minus one, three crew buttons and a button reading End round minus one">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="shot-round.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Round 1 on a phone. The sandbag crew has walked next to the house the flood would take; the glowing tiles show where it can work, with a faint preview of the sandbags."><img src="shot-round.jpg" class="img-fluid figure-img" alt="Phone screenshot of the game: the island map on top, a hint line, a chip reading flood minus one, three crew buttons and a button reading End round minus one" width="320"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-round-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Round 1 on a phone. The sandbag crew has walked next to the house the flood would take; the glowing tiles show where it can work, with a faint preview of the sandbags.
+</figcaption>
+</figure>
+</div>
+<p>The idea of showing every threat one turn ahead comes from turn-based tactics games. A well-known example is Into the Breach (Subset Games, 2018), where every enemy shows its next attack before it lands. Forecast borrows that idea and nothing else: no names, no art, no text.</p>
+</section>
+<section id="three-years-three-kinds-of-not-knowing" class="level2">
+<h2 data-anchor-id="three-years-three-kinds-of-not-knowing">Three years, three kinds of not knowing</h2>
+<p>The rounds look the same in every year. What changes is how much the forecast is worth.</p>
+<p><strong>Year 1: you know.</strong> The forecast is exact. Every tinted tile will be hit and no other. All that is left is a planning puzzle: three crews, more threats than hands.</p>
+<p><strong>Year 2: you know what you do not know.</strong> The forecast now gives ranges: the storm takes row 4 or row 5, the flood runs one or two tiles inland, the heat sits somewhere in a square of 3 by 3. The map shows the sure part as a solid tint and the unsure part speckled, with a question mark on the losses. The truth is always inside the range. You can still plan: cover the worst case if you have the hands, or decide which loss you can accept.</p>
+<p><strong>Year 3: you do not know that you do not know.</strong> One rule of the weather changes, and the game does not say so. The forecast looks as exact as in year 1, because it still runs on the old rules. A flood reaches one tile further than shown, or trees stop helping against heat, or storms take two rows. The first sign is a loss the forecast did not show, or a tile that was hit without being tinted.</p>
+<p>The three years follow an old distinction. Frank Knight separated risk, where the odds can be measured, from uncertainty, where they cannot <span class="citation" data-cites="knight1921">(<a href="#ref-knight1921" role="doc-biblioref">Knight 1921</a>)</span>. The work on decisions under <em>deep uncertainty</em> goes one step further. Lempert, Popper and Bankes use the term for situations in which analysts do not know, or the parties to a decision cannot agree on, the models that describe how the system works, the probability distributions for its key uncertainties, or how to value the outcomes <span class="citation" data-cites="lempert2003">(<a href="#ref-lempert2003" role="doc-biblioref">Lempert, Popper, and Bankes 2003</a>)</span>. Year 2 of the game sits near Knight’s uncertainty: the outcomes are listed, the odds are not. Year 3 is a toy version of the deeper kind: the model itself is no longer right.</p>
+<p>Water management has a well-known name for the assumption that breaks in year 3. Milly and colleagues describe <em>stationarity</em> as the idea that natural systems fluctuate within an unchanging envelope of variability, call it a foundation of training and practice in water engineering, and argue that climate change has undermined it <span class="citation" data-cites="milly2008">(<a href="#ref-milly2008" role="doc-biblioref">Milly et al. 2008</a>)</span>. A forecast that was tuned on the old weather and is still trusted is the game’s picture of that.</p>
+</section>
+<section id="what-a-player-can-try-and-what-the-literature-calls-it" class="level2">
+<h2 data-anchor-id="what-a-player-can-try-and-what-the-literature-calls-it">What a player can try, and what the literature calls it</h2>
+<p>In year 3 a plan that covers the forecast exactly is the first to fail: if the flood runs one tile further, the levee stood one tile too close. Two habits are open to a player, and both have names in the literature.</p>
+<p>The first is to stop planning for the one forecast future and to look for plans that still work when it is wrong: a tree where none is needed yet, a crew held back. Lempert, Popper and Bankes call strategies <em>robust</em> when they perform reasonably well across a wide range of plausible futures, instead of best in one <span class="citation" data-cites="lempert2003">(<a href="#ref-lempert2003" role="doc-biblioref">Lempert, Popper, and Bankes 2003</a>)</span>.</p>
+<p>The second is to watch for the sign that the forecast has failed and to change course when it comes. Dynamic adaptive policy pathways build this into a plan from the start: a sequence of actions over time, and signposts to monitor that show when the plan has to change <span class="citation" data-cites="haasnoot2013">(<a href="#ref-haasnoot2013" role="doc-biblioref">Haasnoot et al. 2013</a>)</span>. In the game the signpost is the dashed red outline around a tile where the weather did more than the forecast said.</p>
+<p>The game does not test either method. It only gives a few minutes in which both feel like the obvious thing to do. For the methods themselves, the open-access book edited by Marchau and colleagues is a good start <span class="citation" data-cites="marchau2019">(<a href="#ref-marchau2019" role="doc-biblioref">Marchau et al. 2019</a>)</span>.</p>
+</section>
+<section id="how-it-is-built" class="level2">
+<h2 data-anchor-id="how-it-is-built">How it is built</h2>
+<p>The game is one HTML file of about 100 KB with no library, no image files and no sound files. A short Python script puts it together from five JavaScript modules, a page template and a style sheet, about 1,700 lines in all.</p>
+<section id="one-name-one-town" class="level3">
+<h3 data-anchor-id="one-name-one-town">One name, one town</h3>
+<p>The address of a game carries a short name, such as <code>?seed=k7m2p9</code>. The name is hashed into a number that drives a small random generator, and everything follows from it: where the river bends, where the quarters lie (until at least 28 people live in town), the two first trees, where the crews start, all the weather of the fifteen rounds, and which rule will change in year 3. The same link gives the same game.</p>
+<p>The first round is chosen when the town is made: the game looks for a stretch of river whose flood the sandbag crew can stop alone, if need be from another starting tile. In a few towns (about 3 in 100) no such stretch exists, and the first round is harder.</p>
+</section>
+<section id="the-forecast-is-the-rules-run-forward" class="level3">
+<h3 data-anchor-id="the-forecast-is-the-rules-run-forward">The forecast is the rules, run forward</h3>
+<p>There is no separate forecast. The red numbers come from running the round’s own rules on a copy of the map. In year 2 the forecast holds several versions of each hazard (two rows, four squares, two flood depths). A round in year 2 has two hazards, and the game runs every combination, eight at most. A tile that is hit in every run is drawn solid, a tile hit in some is speckled, and each quarter shows the most it could lose.</p>
+<p>Year 3 needs only one more argument. The forecast runs the rules without the hidden change; the round itself runs them with it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">endRound</span>(g) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hz <span class="op">=</span> g<span class="op">.</span><span class="at">rounds</span>[g<span class="op">.</span><span class="at">t</span>]<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> guard <span class="op">=</span> { <span class="dt">shelter</span><span class="op">:</span> g<span class="op">.</span><span class="at">shelter</span><span class="op">,</span> <span class="dt">bags</span><span class="op">:</span> g<span class="op">.</span><span class="at">bags</span> }<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> said <span class="op">=</span> <span class="fu">predict</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> hz<span class="op">,</span> guard)<span class="op">;</span>          <span class="co">// what the forecast says</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> change <span class="op">=</span> <span class="fu">yearOf</span>(g<span class="op">.</span><span class="at">t</span>) <span class="op">===</span> <span class="dv">2</span> <span class="op">?</span> g<span class="op">.</span><span class="at">change</span> <span class="op">:</span> <span class="kw">null</span><span class="op">;</span>      <span class="co">// year 3: the hidden change</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o <span class="op">=</span> <span class="fu">resolve</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> <span class="fu">actual</span>(hz)<span class="op">,</span> guard<span class="op">,</span> change)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The game then compares the two. Tiles that were hit without being named, and quarters that lost more than the forecast allowed, get the dashed outline.</p>
+</section>
+<section id="how-hard-it-is" class="level3">
+<h3 data-anchor-id="how-hard-it-is">How hard it is</h3>
+<p>A script played 40 towns to set the difficulty (<code>_tools/balance.js</code> next to this article’s source). With no crews at work, 39 % of the people are still in town after three years, on average. A simple player that moves one crew at a time to wherever the forecast loss drops most keeps 76 % (between 53 % and 107 % in single towns; more than 100 % is possible because quarters grow back between years). A person who plans the three crews together may do better. Nobody has measured how people play it yet.</p>
+</section>
+<section id="pixels-and-sound-from-code" class="level3">
+<h3 data-anchor-id="pixels-and-sound-from-code">Pixels and sound from code</h3>
+<p>Every sprite on the map (houses, trees, sandbags, crews) is a few rows of letters, and each letter is a colour of the day or night palette. The ground, the tints and the signs are drawn by code. This is the levee’s sandbag:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bag<span class="op">:</span> [<span class="st">'.oooooo.'</span><span class="op">,</span> <span class="st">'osssssSo'</span><span class="op">,</span> <span class="st">'ossssSSo'</span><span class="op">,</span> <span class="st">'oSSSSSSo'</span><span class="op">,</span> <span class="st">'.oooooo.'</span>]<span class="op">,</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The map is drawn on a canvas of 344 by 208 pixels and scaled up without smoothing, so the pixels stay sharp. The ground is drawn once per town and year; water, weather, crews and houses are drawn on top in every frame. The grass gets a little drier each year.</p>
+<div id="fig-year3" class="quarto-float quarto-figure quarto-figure-center" alt="The island with dry yellow-green grass, ruins between the remaining houses and tinted weather areas">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-year3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="shot-year3.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Year 3 in another town. The grass has dried, and where people were lost, ruins remain. The forecast is drawn as sharply as in year 1; the dashed red outlines mark where the round before did more than it said."><img src="shot-year3.jpg" class="img-fluid figure-img" alt="The island with dry yellow-green grass, ruins between the remaining houses and tinted weather areas"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-year3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Year 3 in another town. The grass has dried, and where people were lost, ruins remain. The forecast is drawn as sharply as in year 1; the dashed red outlines mark where the round before did more than it said.
+</figcaption>
+</figure>
+</div>
+<div id="fig-night" class="quarto-float quarto-figure quarto-figure-center" alt="The island at night: dark ground, houses with lit windows, the river and three crews">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-night-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="shot-night.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: The same game by night, with lit windows."><img src="shot-night.jpg" class="img-fluid figure-img" alt="The island at night: dark ground, houses with lit windows, the river and three crews"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-night-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The same game by night, with lit windows.
+</figcaption>
+</figure>
+</div>
+<p>The music is made with the Web Audio API and reads the town like a score: a line sweeps the eight columns, each quarter with people plays a note (higher on the map, higher note; more people, louder), trees add a low tone and the river a bass. The coming weather sets the sound and the tempo, and each new year shifts the scale. In year 3 the music changes before the map shows why.</p>
+</section>
+<section id="without-a-mouse-without-motion" class="level3">
+<h3 data-anchor-id="without-a-mouse-without-motion">Without a mouse, without motion</h3>
+<p>Behind the canvas lie 64 ordinary buttons, one per tile, out of sight. They carry the map for keyboards and screen readers: each one says what stands on its tile, what weather is coming and what would be lost. With reduced motion switched on, the map is drawn in still frames.</p>
+</section>
+</section>
+<section id="what-the-game-leaves-out" class="level2">
+<h2 data-anchor-id="what-the-game-leaves-out">What the game leaves out</h2>
+<ul>
+<li><strong>Odds.</strong> Year 2 gives ranges but no probabilities, and the player never learns how often the worse end came true.</li>
+<li><strong>Disagreement.</strong> In the definition above, deep uncertainty is also about people who cannot agree on what a good outcome is. The game has one goal and one player.</li>
+<li><strong>Cost.</strong> Sandbags, trees and shelter are free; only time is short. Real protection competes with everything else a town needs.</li>
+<li><strong>A forecast that learns.</strong> After the first miss, a real forecaster would start to doubt the model. The game’s forecast never does.</li>
+<li><strong>Slow change.</strong> The rule changes once and at once. Real change is gradual, and that makes it harder to notice.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-haasnoot2013" class="csl-entry" role="listitem">
+Haasnoot, Marjolijn, Jan H. Kwakkel, Warren E. Walker, and Judith ter Maat. 2013. <span>“Dynamic Adaptive Policy Pathways: A Method for Crafting Robust Decisions for a Deeply Uncertain World.”</span> <em>Global Environmental Change</em> 23 (2): 485–98. <a href="https://doi.org/10.1016/j.gloenvcha.2012.12.006">https://doi.org/10.1016/j.gloenvcha.2012.12.006</a>.
+</div>
+<div id="ref-knight1921" class="csl-entry" role="listitem">
+Knight, Frank H. 1921. <em>Risk, Uncertainty and Profit</em>. Boston; New York: Houghton Mifflin.
+</div>
+<div id="ref-lempert2003" class="csl-entry" role="listitem">
+Lempert, Robert J., Steven W. Popper, and Steven C. Bankes. 2003. <em>Shaping the Next One Hundred Years: New Methods for Quantitative, Long-Term Policy Analysis</em>. MR-1626-RPC. Santa Monica, CA: RAND Corporation. <a href="https://doi.org/10.7249/MR1626">https://doi.org/10.7249/MR1626</a>.
+</div>
+<div id="ref-marchau2019" class="csl-entry" role="listitem">
+Marchau, Vincent A. W. J., Warren E. Walker, Pieter J. T. M. Bloemen, and Steven W. Popper, eds. 2019. <em>Decision Making Under Deep Uncertainty: From Theory to Practice</em>. Cham: Springer. <a href="https://doi.org/10.1007/978-3-030-05252-2">https://doi.org/10.1007/978-3-030-05252-2</a>.
+</div>
+<div id="ref-milly2008" class="csl-entry" role="listitem">
+Milly, P. C. D., Julio Betancourt, Malin Falkenmark, Robert M. Hirsch, Zbigniew W. Kundzewicz, Dennis P. Lettenmaier, and Ronald J. Stouffer. 2008. <span>“Stationarity Is Dead: Whither Water Management?”</span> <em>Science</em> 319 (5863): 573–74. <a href="https://doi.org/10.1126/science.1151915">https://doi.org/10.1126/science.1151915</a>.
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/recurrentanalytics\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "A forecast you can trust, until you can't"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "The idea behind a small tactics game about weather, crews and deep uncertainty, and how it is built"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game's own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty."</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-11-21</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [playground, deep uncertainty, serious games]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> preview.png</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">/* This page shows a little of its code: the excerpts stay open, without the site's fold bar. */</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper { background: transparent; border: 0; }</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper .code-block-header { display: none; }</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper .code-block-content { display: block; }</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">/* Long DOI links in the reference list wrap on a narrow screen. */</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">#refs a { overflow-wrap: anywhere; }</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">/* The stills are pixel art: keep the pixels sharp when the browser scales them. */</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">.quarto-figure img { image-rendering: pixelated; }</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Forecast</span><span class="co">](../forecast/)</span> is a small game. Three crews look after a riverside town for three</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>years, and before every round the game shows what the weather will do. This article is about</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>the idea behind it, how it is built, and what to read to go further.</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>Crossref, the publisher's page or a library record, and what the article says about each source against the</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>source itself or its abstract.</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>![A round in year 2. Blue ground will flood, orange ground will be hot. Speckled ground and a</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>question mark mean the forecast is not sure. The red signs count the people a quarter would</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>lose.](shot-ranges.jpg){#fig-ranges fig-alt="Pixel-art island with a river, groups of small houses, three crew figures, blue and orange tinted tiles, some of them speckled, and red signs reading minus one"}</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## A game, not a model</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>The town does not exist. Its rules were made up to make a good puzzle, no number in it has a</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>unit, and nothing was fitted to a measurement. A flood in the game takes "one person per</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>quarter" because that is easy to see and to count, not because floods do that.</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>So the game says nothing about any real place or any real forecast. What it can do is let</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>you feel one situation from the inside: you plan with a forecast, the forecast gets worse,</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>and nobody tells you when.</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you do</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>The town is an 8 by 8 grid with a river. Each house is one person; a quarter holds up to</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>four. A game lasts three years of five rounds.</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>Before each round the map shows the weather that is coming, in the order it will arrive:</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **storm** sweeps half a row. It takes one person in every quarter on its way and knocks</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  down trees and levees (sandbags laid on open ground).</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**heat** covers a square of 2 by 2 tiles. It takes one person per quarter, unless a tree</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  stands on one of the eight tiles around the quarter.</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **flood** spreads from a stretch of the river, one or two tiles inland, and takes one</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  person in every quarter it reaches.</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>You have three crews. Each walks up to three tiles and then works once: one lays sandbags,</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>one plants trees, one shelters a quarter for the round. Then you end the round and the</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>forecast comes true. Between years people move back, one per quarter that still has people.</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>![Round 1 on a phone. The sandbag crew has walked next to the house the flood would take;</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>the glowing tiles show where it can work, with a faint preview of the</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>sandbags.](shot-round.jpg){#fig-round fig-alt="Phone screenshot of the game: the island map on top, a hint line, a chip reading flood minus one, three crew buttons and a button reading End round minus one" width=320}</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>The idea of showing every threat one turn ahead comes from turn-based tactics games. A</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>well-known example is Into the Breach (Subset Games, 2018), where every enemy shows its next</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>attack before it lands. Forecast borrows that idea and nothing else: no names, no art, no</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>text.</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Three years, three kinds of not knowing</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>The rounds look the same in every year. What changes is how much the forecast is worth.</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>**Year 1: you know.** The forecast is exact. Every tinted tile will be hit and no other.</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>All that is left is a planning puzzle: three crews, more threats than hands.</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>**Year 2: you know what you do not know.** The forecast now gives ranges: the storm takes</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>row 4 or row 5, the flood runs one or two tiles inland, the heat sits somewhere in a square</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>of 3 by 3. The map shows the sure part as a solid tint and the unsure part speckled, with a</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>question mark on the losses. The truth is always inside the range. You can still plan: cover</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>the worst case if you have the hands, or decide which loss you can accept.</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>**Year 3: you do not know that you do not know.** One rule of the weather changes, and the</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>game does not say so. The forecast looks as exact as in year 1, because it still runs on the</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>old rules. A flood reaches one tile further than shown, or trees stop helping against heat,</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>or storms take two rows. The first sign is a loss the forecast did not show, or a tile that</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>was hit without being tinted.</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>The three years follow an old distinction. Frank Knight separated risk, where the odds can</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>be measured, from uncertainty, where they cannot <span class="co">[</span><span class="ot">@knight1921</span><span class="co">]</span>. The work on decisions under</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>*deep uncertainty* goes one step further. Lempert, Popper and Bankes use the term for</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>situations in which analysts do not know, or the parties to a decision cannot agree on, the</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>models that describe how the system works, the probability distributions for its key</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>uncertainties, or how to value the outcomes <span class="co">[</span><span class="ot">@lempert2003</span><span class="co">]</span>. Year 2 of the game sits near</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>Knight's uncertainty: the outcomes are listed, the odds are not. Year 3 is a toy version of</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>the deeper kind: the model itself is no longer right.</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>Water management has a well-known name for the assumption that breaks in year 3. Milly and</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>colleagues describe *stationarity* as the idea that natural systems fluctuate within an</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>unchanging envelope of variability, call it a foundation of training and practice in water</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>engineering, and argue that climate change has undermined it <span class="co">[</span><span class="ot">@milly2008</span><span class="co">]</span>. A forecast that</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>was tuned on the old weather and is still trusted is the game's picture of that.</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## What a player can try, and what the literature calls it</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>In year 3 a plan that covers the forecast exactly is the first to fail: if the flood runs</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>one tile further, the levee stood one tile too close. Two habits are open to a player, and</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>both have names in the literature.</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>The first is to stop planning for the one forecast future and to look for plans that still</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>work when it is wrong: a tree where none is needed yet, a crew held back. Lempert, Popper</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>and Bankes call strategies *robust* when they perform reasonably well across a wide range</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>of plausible futures, instead of best in one <span class="co">[</span><span class="ot">@lempert2003</span><span class="co">]</span>.</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>The second is to watch for the sign that the forecast has failed and to change course when</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>it comes. Dynamic adaptive policy pathways build this into a plan from the start: a</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>sequence of actions over time, and signposts to monitor that show when the plan has to</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>change <span class="co">[</span><span class="ot">@haasnoot2013</span><span class="co">]</span>. In the game the signpost is the dashed red outline around a tile where the</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>weather did more than the forecast said.</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>The game does not test either method. It only gives a few minutes in which both feel like</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>the obvious thing to do. For the methods themselves, the open-access book edited by Marchau</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>and colleagues is a good start <span class="co">[</span><span class="ot">@marchau2019</span><span class="co">]</span>.</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## How it is built</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>The game is one HTML file of about 100 KB with no library, no image files and no sound</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>files. A short Python script puts it together from five JavaScript modules, a page template</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>and a style sheet, about 1,700 lines in all.</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### One name, one town</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>The address of a game carries a short name, such as <span class="in">`?seed=k7m2p9`</span>. The name is hashed into</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>a number that drives a small random generator, and everything follows from it: where the</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>river bends, where the quarters lie (until at least 28 people live in town), the two first</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>trees, where the crews start, all the weather of the fifteen rounds, and which rule will</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>change in year 3. The same link gives the same game.</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>The first round is chosen when the town is made: the game looks for a stretch of river whose</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>flood the sandbag crew can stop alone, if need be from another starting tile. In a few towns</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>(about 3 in 100) no such stretch exists, and the first round is harder.</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### The forecast is the rules, run forward</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>There is no separate forecast. The red numbers come from running the round's own rules on a</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>copy of the map. In year 2 the forecast holds several versions of each hazard (two rows, four</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>squares, two flood depths). A round in year 2 has two hazards, and the game runs every</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>combination, eight at most.</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>A tile that is hit in every run is drawn solid, a tile hit in some is speckled, and each</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>quarter shows the most it could lose.</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>Year 3 needs only one more argument. The forecast runs the rules without the hidden change;</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>the round itself runs them with it:</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">endRound</span>(g) {</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hz <span class="op">=</span> g<span class="op">.</span><span class="at">rounds</span>[g<span class="op">.</span><span class="at">t</span>]<span class="op">;</span></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> guard <span class="op">=</span> { <span class="dt">shelter</span><span class="op">:</span> g<span class="op">.</span><span class="at">shelter</span><span class="op">,</span> <span class="dt">bags</span><span class="op">:</span> g<span class="op">.</span><span class="at">bags</span> }<span class="op">;</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> said <span class="op">=</span> <span class="fu">predict</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> hz<span class="op">,</span> guard)<span class="op">;</span>          <span class="co">// what the forecast says</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> change <span class="op">=</span> <span class="fu">yearOf</span>(g<span class="op">.</span><span class="at">t</span>) <span class="op">===</span> <span class="dv">2</span> <span class="op">?</span> g<span class="op">.</span><span class="at">change</span> <span class="op">:</span> <span class="kw">null</span><span class="op">;</span>      <span class="co">// year 3: the hidden change</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o <span class="op">=</span> <span class="fu">resolve</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> <span class="fu">actual</span>(hz)<span class="op">,</span> guard<span class="op">,</span> change)<span class="op">;</span></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="vs">The game then compares the two. Tiles that were hit without being named, and quarters that</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="vs">lost more than the forecast allowed, get the dashed outline.</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="vs">### How hard it is</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="vs">A script played 40 towns to set the difficulty (`</span>_tools<span class="op">/</span>balance<span class="op">.</span><span class="fu">js</span><span class="vs">` next to this article's</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a><span class="vs">source). With no crews at work, 39 % of the people</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="vs">are still in town after three years, on average. A simple player that moves one crew at a</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="vs">time to wherever the forecast loss drops most keeps 76 % (between 53 % and 107 % in single</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="vs">towns; more than 100 % is possible because quarters grow back between years). A person who</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="vs">plans the three crews together may do better. Nobody has measured how people play it yet.</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="vs">### Pixels and sound from code</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="vs">Every sprite on the map (houses, trees, sandbags, crews) is a few rows of letters, and each</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="vs">letter is a colour of the day or night palette. The ground, the tints and the signs are drawn</span></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="vs">by code. This is the levee's sandbag:</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="dt">bag</span><span class="op">:</span> [<span class="st">'.oooooo.'</span><span class="op">,</span> <span class="st">'osssssSo'</span><span class="op">,</span> <span class="st">'ossssSSo'</span><span class="op">,</span> <span class="st">'oSSSSSSo'</span><span class="op">,</span> <span class="st">'.oooooo.'</span>]<span class="op">,</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="vs">The map is drawn on a canvas of 344 by 208 pixels and scaled up without smoothing, so the</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="vs">pixels stay sharp. The ground is drawn once per town and year; water, weather, crews and</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="vs">houses are drawn on top in every frame. The grass gets a little drier each year.</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="vs">![Year 3 in another town. The grass has dried, and where people were lost, ruins remain. The</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="vs">forecast is drawn as sharply as in year 1; the dashed red outlines mark where the round</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="vs">before did more than it said.](shot-year3.jpg){#fig-year3 fig-alt="The island with dry yellow-green grass, ruins between the remaining houses and tinted weather areas"}</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="vs">![The same game by night, with lit windows.](shot-night.jpg){#fig-night fig-alt="The island at night: dark ground, houses with lit windows, the river and three crews"}</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="vs">The music is made with the Web Audio API and reads the town like a score: a line sweeps the</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a><span class="vs">eight columns, each quarter with people plays a note (higher on the map, higher note; more</span></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="vs">people, louder), trees add a low tone and the river a bass. The coming weather sets the</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a><span class="vs">sound and the tempo, and each new year shifts the scale. In year 3 the music changes before</span></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="vs">the map shows why.</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a><span class="vs">### Without a mouse, without motion</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="vs">Behind the canvas lie 64 ordinary buttons, one per tile, out of sight. They carry the map</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="vs">for keyboards and screen readers: each one says what stands on its tile, what weather is</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="vs">coming and what would be lost. With reduced motion switched on, the map is drawn in still</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="vs">frames.</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="vs">## What the game leaves out</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Odds.** Year 2 gives ranges but no probabilities, and the player never learns how often</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="vs">  the worse end came true.</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Disagreement.** In the definition above, deep uncertainty is also about people who</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="vs">  cannot agree on what a good outcome is. The game has one goal and one player.</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Cost.** Sandbags, trees and shelter are free; only time is short. Real protection</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="vs">  competes with everything else a town needs.</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="vs">- **A forecast that learns.** After the first miss, a real forecaster would start to doubt</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="vs">  the model. The game's forecast never does.</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Slow change.** The rule changes once and at once. Real change is gradual, and that makes</span></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="vs">  it harder to notice.</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="vs">## References</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {#refs}</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© re:current_analytics · <a href="../../how-this-site-is-made.html#licence">Texts CC BY 4.0, code MIT</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="mailto:timm.walker@recurrentanalytics.com">
+<p>Email</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/walkertimm">
+<p>LinkedIn</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/recurrentanalytics">
+<p>GitHub</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.xml">
+<p>RSS</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../library/index.html">
+<p>Library</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../how-this-site-is-made.html">
+<p>Colophon</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../datenschutz.html">
+<p>Datenschutz</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

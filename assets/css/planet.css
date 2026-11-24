@@ -1,0 +1,114 @@
+/* Living planet (home page, assets/js/planet.js) and the storm over the site (assets/js/storm.js).
+   Everything below "the page floats on the weather" applies only while the field is shown
+   (html.rac-planet-on, set by planet.js): without JavaScript or data the page keeps its bands. */
+
+/* ------------------------------------------------------------ the field */
+.rac-planet { pointer-events: none; }
+.rac-planet[data-planet="page"] { display: none; }
+html.rac-planet-on .rac-planet[data-planet="page"] {
+  display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; z-index: -1;
+}
+.rac-planet[data-planet="strip"] { position: absolute; inset: 0; z-index: 0; }
+.rac-planet-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 1.4s ease-out; }
+html.rac-planet-shown .rac-planet-canvas { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .rac-planet-canvas { transition: none; } }
+
+/* ------------------------------------------------------------ the page floats on the weather
+   The bands turn transparent and every section becomes a panel with its own opaque
+   background (night or paper), so no text ever sits on moving particles; the wind shows in
+   the gaps, the side margins and around the hero's text and figure. */
+html.rac-planet-on { background: var(--rac-night); }
+html.rac-planet-on body { background: transparent !important; }
+html.rac-planet-on body.rac-fullbleed :is(.rac-night, .rac-paper, .rac-fact-band) {
+  background: transparent !important; border-top-color: transparent !important;
+}
+html.rac-planet-on body.rac-fullbleed .rac-line-top { border-top-color: transparent; }
+html.rac-planet-on body.rac-fullbleed #quarto-content :is(.rac-night, .rac-paper) > .rac-wrap {
+  --rac-gap: clamp(10px, 3vw, 32px);
+  width: calc(100% - 2 * var(--rac-gap)); max-width: 1152px;
+  margin: 0 auto clamp(14px, 4vw, 48px) !important;
+  padding: clamp(28px, 5vw, 56px) clamp(18px, 4vw, 48px) !important;
+  background: var(--rac-night); border: 1px solid var(--rac-night-line); border-radius: 22px;
+}
+html.rac-planet-on body.rac-fullbleed #quarto-content .rac-paper > .rac-wrap { background: var(--rac-bg); border-color: var(--rac-line); }
+/* Hero: the text column and the figure are the panels; the field runs all round them. */
+html.rac-planet-on .rac-planet-stage > .rac-wrap { padding-top: 8px !important; }
+html.rac-planet-on .rac-planet-stage .rac-hero { padding: clamp(20px, 6vw, 64px) 0 56px; }
+html.rac-planet-on .rac-planet-stage .rac-hero-text {
+  background: var(--rac-night); border: 1px solid var(--rac-night-line); border-radius: 22px;
+  padding: clamp(22px, 4vw, 40px);
+}
+/* Facts: four small cards. */
+html.rac-planet-on .rac-fact-band .rac-facts { padding-top: 0 !important; padding-bottom: 0 !important; margin-bottom: clamp(10px, 3vw, 32px) !important; }
+html.rac-planet-on .rac-fact-band .rac-facts > div {
+  background: var(--rac-night); border: 1px solid var(--rac-night-line); border-radius: 16px; padding: 18px 20px;
+}
+/* The footer keeps an opaque floor. */
+html.rac-planet-on .nav-footer { background: var(--rac-night); position: relative; }
+html.rac-planet-on .nav-footer, html.rac-planet-on footer.footer { background-color: var(--rac-night) !important; }
+
+/* The "?" keyboard hint (site.js) gets a chip too. */
+html.rac-planet-on .keyboard-hint {
+  background: var(--rac-night); color: var(--rac-night-muted); border: 1px solid var(--rac-night-line);
+  border-radius: 8px; padding: 4px 8px; z-index: 1042;
+}
+html.rac-planet-on .keyboard-hint.visible { opacity: 1; }
+
+/* The open window under the hero: nothing but the field, with one opaque caption at its foot
+   that says what it is, and the two buttons. */
+.rac-planet-credit {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 8px;
+  min-height: clamp(280px, 58svh, 560px); margin: 0; padding: 0 0 clamp(14px, 4vw, 48px);
+  font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; line-height: 1.5; color: var(--rac-night-ink);
+}
+.rac-planet-credit[hidden] { display: none; }
+.rac-planet-what, .rac-planet-storms {
+  margin: 0; max-width: min(36em, calc(100% - 64px)); background: var(--rac-night); border: 1px solid var(--rac-night-line);
+  padding: 8px 12px; border-radius: 12px;
+}
+.rac-planet-credit a { color: var(--rac-night-ink) !important; text-decoration: underline; text-underline-offset: 2px; }
+.rac-planet-ctrls { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; margin: 0; }
+.rac-planet-ctrls .rac-storm-slot { display: contents; }
+
+/* ?planet=debug: one status line under the hero. */
+.rac-planet-debug {
+  position: relative; z-index: 3; margin: 0 0 12px; padding: 6px 16px; overflow-wrap: anywhere;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; line-height: 1.45;
+  background: var(--rac-night); color: var(--rac-night-ink); border: 1px dashed var(--rac-night-line);
+}
+
+/* ------------------------------------------------------------ the storm over the site */
+.rac-storm-switch {
+  font: inherit; font-size: 0.8rem; color: inherit; background: var(--rac-night); cursor: pointer;
+  border: 1px solid currentColor; border-radius: 999px; padding: 2px 10px; min-height: 28px;
+}
+.rac-storm-switch:hover { background: var(--rac-night-2); }
+.rac-storm-switch:focus-visible { outline: 2px solid var(--rac-accent); outline-offset: 2px; }
+.rac-planet-credit .rac-storm-switch { font-size: 0.8rem; min-height: 36px; padding: 4px 14px; }
+
+/* A block the vortex passes: two short dips (under 3 a second), then "out": colour drained
+   and a dashed outline, no opacity, so the text keeps its contrast. */
+.rac-shed-flicker { animation: rac-flicker 0.8s steps(1, end) 1; }
+@keyframes rac-flicker { 0% { filter: brightness(0.9); } 25% { filter: none; } 50% { filter: brightness(0.92); } 75% { filter: none; } }
+.rac-shed { filter: grayscale(0.9); outline: 1px dashed var(--rac-line); outline-offset: 4px; }
+.rac-shed:focus-visible { outline: 2px solid var(--rac-accent); outline-offset: 2px; }
+html.rac-storming :is(.rac-card, .rac-facts > div, .rac-ledger, .quarto-grid-item, .rac-hero-text, .rac-figure-frame) {
+  transition: filter 0.5s, border-color 0.15s, transform 0.15s;
+}
+.rac-shed-note {
+  position: absolute; top: -11px; right: 12px; z-index: 2; max-width: calc(100% - 24px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; line-height: 1.3;
+  background: var(--rac-night); color: var(--rac-night-ink); border: 1px solid var(--rac-night-line);
+  border-radius: 6px; padding: 3px 8px; pointer-events: none;
+}
+.rac-storm-toast {
+  position: fixed; left: 16px; bottom: 16px; z-index: 1041; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+  max-width: calc(100vw - 32px); padding: 8px 12px; border-radius: 10px;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.74rem;
+  background: var(--rac-night); color: var(--rac-night-ink); border: 1px solid var(--rac-night-line);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+}
+@media print {
+  .rac-planet, .rac-storm-toast { display: none !important; }
+  html.rac-planet-on body.rac-fullbleed #quarto-content :is(.rac-night, .rac-paper) > .rac-wrap { border: 0; }
+}

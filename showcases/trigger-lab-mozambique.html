@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-19">
+<meta name="description" content="Design a parametric cyclone trigger over 47 seasons of storm tracks and see when it would have paid, when it would have missed, and why. Basis risk, hands on.">
+
+<title>Trigger Lab: a cyclone cover for Mozambique – re:current_analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-83473db31452f667965bb465e6000f16.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<!-- Fonts are self-hosted (assets/fonts/, SIL OFL): no visitor request goes to Google. -->
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/components.css">
+<!-- Phone menu (overlay + command line): menu.css, menu.js; the class marks "JS on". -->
+<link rel="stylesheet" href="../assets/css/menu.css">
+<script>document.documentElement.classList.add('rac-menu-js');</script>
+<!-- Article preview cards: previews.css, previews.js (series thumbnails). -->
+<link rel="stylesheet" href="../assets/css/previews.css">
+<!-- d3 7.9.0, self-hosted, as an ES module (assets/js/vendor/): pages with interactive
+     cells may load require.js, which would swallow the plain UMD build; the wrapper
+     never asks require.js. Module scripts run before DOMContentLoaded, as site.js needs. -->
+<script type="module">import d3 from "/assets/js/vendor/d3-7.9.0.esm.js"; window.d3 = d3;</script>
+<script src="../assets/graph.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/extras.js"></script>
+<script src="../assets/js/code-fold.js"></script>
+<script defer="" src="../assets/js/motion.js"></script>
+<script defer="" src="../assets/js/menu.js"></script>
+<script defer="" src="../assets/js/previews.js"></script>
+
+
+<link rel="stylesheet" href="assets/trigger-lab.css">
+<meta property="og:title" content="Trigger Lab: a cyclone cover for Mozambique – re:current_analytics">
+<meta property="og:description" content="Design a parametric cyclone trigger over 47 seasons of storm tracks and see when it would have paid, when it would have missed, and why. Basis risk, hands on.">
+<meta property="og:image" content="https://recurrentanalytics.com/showcases/previews/trigger-lab-mozambique.png">
+<meta property="og:site_name" content="re:current_analytics">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="Trigger Lab: a cyclone cover for Mozambique – re:current_analytics">
+<meta name="twitter:description" content="Design a parametric cyclone trigger over 47 seasons of storm tracks and see when it would have paid, when it would have missed, and why. Basis risk, hands on.">
+<meta name="twitter:image" content="https://recurrentanalytics.com/showcases/previews/trigger-lab-mozambique.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed rac-hide-desc tl-page fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/brand/lockup-small-light.svg" alt="re:current_analytics, home" class="navbar-logo light-content">
+    <img src="../assets/brand/lockup-small-dark.svg" alt="re:current_analytics, home" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/livelines.html"> 
+<span class="menu-text">LiveLines</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../showcases/index.html"> 
+<span class="menu-text">Showcases</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../playground/index.html"> 
+<span class="menu-text">Playground</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="../notes/index.xml" title="" class="quarto-navigation-tool px-1" aria-label="RSS feed"><i class="bi bi-rss"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Trigger Lab: a cyclone cover for Mozambique</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">finance</div>
+    <div class="quarto-category">parametric-insurance</div>
+    <div class="quarto-category">tropical-cyclones</div>
+    <div class="quarto-category">basis-risk</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Design a parametric cyclone trigger over 47 seasons of storm tracks and see when it would have paid, when it would have missed, and why. Basis risk, hands on.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="rac-kicker">
+<p>Showcase · risk finance</p>
+</div>
+<div class="rac-lead">
+<p>A parametric cover pays when a measured hazard crosses a line agreed in advance, not when the damage has been counted. That makes it fast. It also means it can pay when little was lost, or stay silent when a lot was. That gap is <strong>basis risk</strong>. Draw your own line below.</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="27" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 26;"><span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>tl <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/trigger-lab/trigger-lab.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>KT_KMH <span class="op">=</span> <span class="fl">1.852</span>                                   <span class="co">// 1 knot = 1.852 km/h (exact)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>seasonLabel <span class="op">=</span> (s) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>s <span class="op">-</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">/</span><span class="sc">${</span><span class="bu">String</span>(s)<span class="op">.</span><span class="fu">slice</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>fmtInt <span class="op">=</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">","</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">// Seasons with an open season-by-season impact record (INGD table via HDX). A season in</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">// IBTrACS runs July to June, so a record starting in October 2016 covers 2016/17 onwards.</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>recordSpan <span class="op">=</span> {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">ingd</span><span class="op">.</span><span class="at">dataset_date</span><span class="op">.</span><span class="fu">match</span>(<span class="ss">/</span><span class="sc">(\d{4})</span><span class="ss">-</span><span class="sc">(\d{2})</span><span class="ss">.</span><span class="sc">*</span><span class="ss">TO </span><span class="sc">(\d{4})</span><span class="ss">-</span><span class="sc">(\d{2})</span><span class="ss">/</span>)<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> season <span class="op">=</span> (y<span class="op">,</span> mo) <span class="kw">=&gt;</span> (mo <span class="op">&gt;=</span> <span class="dv">7</span> <span class="op">?</span> y <span class="op">+</span> <span class="dv">1</span> <span class="op">:</span> y)<span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [<span class="fu">season</span>(<span class="op">+</span>m[<span class="dv">1</span>]<span class="op">,</span> <span class="op">+</span>m[<span class="dv">2</span>])<span class="op">,</span> <span class="fu">season</span>(<span class="op">+</span>m[<span class="dv">3</span>]<span class="op">,</span> <span class="op">+</span>m[<span class="dv">4</span>])]<span class="op">;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>seasons <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">seasons</span>[<span class="dv">0</span>]<span class="op">,</span> tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">seasons</span>[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">slider</span>({min<span class="op">,</span> max<span class="op">,</span> step<span class="op">,</span> value<span class="op">,</span> label<span class="op">,</span> fmt}) {</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;output&gt;&lt;/output&gt;`</span><span class="op">;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> input <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;input type="range" min=</span><span class="sc">${</span>min<span class="sc">}</span><span class="vs"> max=</span><span class="sc">${</span>max<span class="sc">}</span><span class="vs"> step=</span><span class="sc">${</span>step<span class="sc">}</span><span class="vs"> value=</span><span class="sc">${</span>value<span class="sc">}</span><span class="vs">&gt;`</span><span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  input<span class="op">.</span><span class="fu">setAttribute</span>(<span class="st">"aria-label"</span><span class="op">,</span> label)<span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> el <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;label class="tl-ctl"&gt;&lt;span class="tl-ctl-head"&gt;&lt;span&gt;</span><span class="sc">${</span>label<span class="sc">}</span><span class="vs">&lt;/span&gt;</span><span class="sc">${</span>out<span class="sc">}</span><span class="vs">&lt;/span&gt;</span><span class="sc">${</span>input<span class="sc">}</span><span class="vs">&lt;/label&gt;`</span><span class="op">;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> update <span class="op">=</span> () <span class="kw">=&gt;</span> { el<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="op">+</span>input<span class="op">.</span><span class="at">value</span><span class="op">;</span> out<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="fu">fmt</span>(<span class="op">+</span>input<span class="op">.</span><span class="at">value</span>)<span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  input<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> update)<span class="op">;</span>   <span class="co">// runs before the event bubbles up to the label</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>()<span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> el<span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">choice</span>({options<span class="op">,</span> value<span class="op">,</span> label}) {</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sel <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;select&gt;</span><span class="sc">${</span>options<span class="op">.</span><span class="fu">map</span>(([v<span class="op">,</span> t]) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;option value=</span><span class="sc">${</span>v<span class="sc">}</span><span class="vs">&gt;</span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">&lt;/option&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/select&gt;`</span><span class="op">;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  sel<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="bu">String</span>(value)<span class="op">;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  sel<span class="op">.</span><span class="fu">setAttribute</span>(<span class="st">"aria-label"</span><span class="op">,</span> label)<span class="op">;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> el <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;label class="tl-ctl"&gt;&lt;span class="tl-ctl-head"&gt;&lt;span&gt;</span><span class="sc">${</span>label<span class="sc">}</span><span class="vs">&lt;/span&gt;&lt;/span&gt;</span><span class="sc">${</span>sel<span class="sc">}</span><span class="vs">&lt;/label&gt;`</span><span class="op">;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> update <span class="op">=</span> () <span class="kw">=&gt;</span> { el<span class="op">.</span><span class="at">value</span> <span class="op">=</span> options<span class="op">.</span><span class="fu">find</span>(([v]) <span class="kw">=&gt;</span> <span class="bu">String</span>(v) <span class="op">===</span> sel<span class="op">.</span><span class="at">value</span>)[<span class="dv">0</span>]<span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  sel<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> update)<span class="op">;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>()<span class="op">;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> el<span class="op">;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="column-page tl-lab">
+<div class="tl-controls">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="70" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 69;"><span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>viewof zone <span class="op">=</span> <span class="fu">choice</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Where"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Mozambique"</span><span class="op">,</span> <span class="dt">options</span><span class="op">:</span> [</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Mozambique"</span><span class="op">,</span> <span class="st">"Anywhere in Mozambique"</span>]<span class="op">,</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span>tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">cities</span><span class="op">.</span><span class="fu">map</span>((c) <span class="kw">=&gt;</span> [c<span class="op">.</span><span class="at">name</span><span class="op">,</span> <span class="vs">`Around </span><span class="sc">${</span>c<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">`</span>])]})</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>viewof radius <span class="op">=</span> <span class="fu">slider</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Within"</span><span class="op">,</span> <span class="dt">min</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fmt</span><span class="op">:</span> (r) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>r<span class="sc">}</span><span class="vs"> km`</span>})   <span class="co">// must not depend on zone: that would reset the slider</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>viewof wind <span class="op">=</span> <span class="fu">slider</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Wind at least"</span><span class="op">,</span> <span class="dt">min</span><span class="op">:</span> <span class="dv">34</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">140</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">64</span><span class="op">,</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fmt</span><span class="op">:</span> (k) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>k<span class="sc">}</span><span class="vs"> kt &lt;span class="tl-dim"&gt;· </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(k <span class="op">*</span> KT_KMH)<span class="sc">}</span><span class="vs"> km/h&lt;/span&gt;`</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p class="tl-note">
+Wind: the storm’s 1-minute sustained maximum from US agencies (JTWC), read while its centre is inside the zone. For Mozambique, 0 km means the centre is over land.
+</p>
+<details class="tl-more">
+<summary>
+What counts as a disaster
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="86" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>viewof minAffected <span class="op">=</span> <span class="fu">choice</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"A season is a disaster when INGD lists a storm with"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  <span class="dt">options</span><span class="op">:</span> [[<span class="dv">0</span><span class="op">,</span> <span class="st">"any people affected"</span>]<span class="op">,</span> [<span class="dv">100000</span><span class="op">,</span> <span class="st">"≥ 100,000 people affected"</span>]<span class="op">,</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">500000</span><span class="op">,</span> <span class="st">"≥ 500,000 people affected"</span>]]})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="tl-map">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="99" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 98;"><span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> W <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">620</span>)<span class="op">,</span> H <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(W <span class="op">*</span> <span class="fl">1.22</span>)<span class="op">;</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> box <span class="op">=</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"Polygon"</span><span class="op">,</span> <span class="dt">coordinates</span><span class="op">:</span> [[[<span class="dv">26</span><span class="op">,</span> <span class="op">-</span><span class="dv">31</span>]<span class="op">,</span> [<span class="dv">26</span><span class="op">,</span> <span class="op">-</span><span class="dv">8</span>]<span class="op">,</span> [<span class="fl">45.5</span><span class="op">,</span> <span class="op">-</span><span class="dv">8</span>]<span class="op">,</span> [<span class="fl">45.5</span><span class="op">,</span> <span class="op">-</span><span class="dv">31</span>]<span class="op">,</span> [<span class="dv">26</span><span class="op">,</span> <span class="op">-</span><span class="dv">31</span>]]]}<span class="op">;</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> show <span class="op">=</span> sel <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> rows <span class="op">:</span> rows<span class="op">.</span><span class="fu">filter</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">season</span> <span class="op">===</span> sel)<span class="op">;</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paidIds <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(show<span class="op">.</span><span class="fu">flatMap</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">paying</span><span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">id</span>)))<span class="op">;</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lossIds <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(show<span class="op">.</span><span class="fu">flatMap</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">events</span><span class="op">.</span><span class="fu">map</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">sid</span>)))<span class="op">;</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> visible <span class="op">=</span> sel <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> tl<span class="op">.</span><span class="at">storms</span> <span class="op">:</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">season</span> <span class="op">===</span> sel)<span class="op">;</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> (list) <span class="kw">=&gt;</span> list<span class="op">.</span><span class="fu">flatMap</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">track</span><span class="op">.</span><span class="fu">map</span>(([lon<span class="op">,</span> lat<span class="op">,</span> w]) <span class="kw">=&gt;</span> ({<span class="dt">id</span><span class="op">:</span> s<span class="op">.</span><span class="at">id</span><span class="op">,</span> lon<span class="op">,</span> lat<span class="op">,</span> w})))<span class="op">;</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ghost <span class="op">=</span> <span class="fu">pts</span>(visible<span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> <span class="op">!</span>paidIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>) <span class="op">&amp;&amp;</span> <span class="op">!</span>lossIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>)))<span class="op">;</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> missed <span class="op">=</span> <span class="fu">pts</span>(visible<span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> lossIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>) <span class="op">&amp;&amp;</span> <span class="op">!</span>paidIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>)))<span class="op">;</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paid <span class="op">=</span> <span class="fu">pts</span>(visible<span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> paidIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>)))<span class="op">;</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hits <span class="op">=</span> paid<span class="op">.</span><span class="fu">filter</span>((p) <span class="kw">=&gt;</span> p<span class="op">.</span><span class="at">w</span> <span class="op">&gt;=</span> wind <span class="op">&amp;&amp;</span> <span class="fu">inZone</span>(p<span class="op">.</span><span class="at">lon</span><span class="op">,</span> p<span class="op">.</span><span class="at">lat</span>))<span class="op">;</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> names <span class="op">=</span> sel <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> [] <span class="op">:</span> visible<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> {</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> t <span class="op">=</span> s<span class="op">.</span><span class="at">track</span>[<span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(s<span class="op">.</span><span class="at">track</span><span class="op">.</span><span class="at">length</span> <span class="op">/</span> <span class="dv">2</span>)] <span class="op">??</span> s<span class="op">.</span><span class="at">track</span>[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">lon</span><span class="op">:</span> t[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">lat</span><span class="op">:</span> t[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">name</span><span class="op">:</span> s<span class="op">.</span><span class="at">name</span>}<span class="op">;</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">lon</span> <span class="op">&gt;</span> <span class="dv">26</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">lon</span> <span class="op">&lt;</span> <span class="fl">45.5</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">lat</span> <span class="op">&gt;</span> <span class="op">-</span><span class="dv">31</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">lat</span> <span class="op">&lt;</span> <span class="op">-</span><span class="dv">8</span>)<span class="op">;</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> W<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> H<span class="op">,</span> <span class="dt">margin</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"IBM Plex Mono, monospace"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"11px"</span>}<span class="op">,</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">projection</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"mercator"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> box}<span class="op">,</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">geo</span>(tl<span class="op">.</span><span class="at">land</span><span class="op">,</span> {<span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-band)"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-svg-line)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.6</span>})<span class="op">,</span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">geo</span>(tl<span class="op">.</span><span class="at">land</span><span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((f) <span class="kw">=&gt;</span> f<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">iso</span> <span class="op">===</span> <span class="st">"MOZ"</span>)<span class="op">,</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>        {<span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-surface)"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-muted)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.8</span>})<span class="op">,</span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">geo</span>([zoneGeo]<span class="op">,</span> {<span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-accent)"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.16</span><span class="op">,</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-accent-ink)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4 3"</span>})<span class="op">,</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(ghost<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"id"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-muted)"</span><span class="op">,</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeOpacity</span><span class="op">:</span> sel <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="fl">0.35</span> <span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.8</span>})<span class="op">,</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(missed<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"id"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-mod-storm)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span>})<span class="op">,</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(paid<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"id"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-track)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span>})<span class="op">,</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">dot</span>(hits<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">2.6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-track)"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-bg)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.8</span>})<span class="op">,</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">dot</span>(tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">cities</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">2.2</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-ink)"</span>})<span class="op">,</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>(tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">cities</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"name"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"end"</span><span class="op">,</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-ink-2)"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-surface)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">paintOrder</span><span class="op">:</span> <span class="st">"stroke"</span>})<span class="op">,</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>(names<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"name"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">8</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"var(--rac-ink)"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-bg)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">paintOrder</span><span class="op">:</span> <span class="st">"stroke"</span>})<span class="op">,</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">frame</span>({<span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rac-line)"</span>})</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="tl-legend" aria-hidden="true">
+<span class="tl-li"><span class="tl-key tl-key-paid"></span>pays</span> <span class="tl-li"><span class="tl-key tl-key-miss"></span>disaster storm, no payout</span> <span class="tl-li"><span class="tl-key tl-key-other"></span>other storm</span> <span class="tl-li"><span class="tl-key tl-key-zone"></span>your zone</span>
+</div>
+</div>
+<div class="tl-seasons">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="152" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 151;"><span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> byS <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>(rows<span class="op">.</span><span class="fu">map</span>((r) <span class="kw">=&gt;</span> [r<span class="op">.</span><span class="at">season</span><span class="op">,</span> r]))<span class="op">;</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> decades <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(seasons[<span class="dv">0</span>] <span class="op">/</span> <span class="dv">10</span>) <span class="op">*</span> <span class="dv">10</span><span class="op">,</span> seasons<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cell <span class="op">=</span> (s) <span class="kw">=&gt;</span> {</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r <span class="op">=</span> byS<span class="op">.</span><span class="fu">get</span>(s)<span class="op">;</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>r) <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;span class="tl-cell tl-empty"&gt;&lt;/span&gt;`</span><span class="op">;</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> title <span class="op">=</span> [<span class="fu">seasonLabel</span>(s)<span class="op">,</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>      r<span class="op">.</span><span class="at">paid</span> <span class="op">?</span> <span class="vs">`pays: </span><span class="sc">${</span>r<span class="op">.</span><span class="at">paying</span><span class="op">.</span><span class="fu">map</span>((p) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>p<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>p<span class="op">.</span><span class="at">mw</span><span class="sc">}</span><span class="vs"> kt in zone)`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="st">"no payout"</span><span class="op">,</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>      <span class="op">!</span>r<span class="op">.</span><span class="at">record</span> <span class="op">?</span> <span class="st">"no open impact record"</span> <span class="op">:</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>        r<span class="op">.</span><span class="at">disaster</span> <span class="op">?</span> <span class="vs">`disaster: </span><span class="sc">${</span>r<span class="op">.</span><span class="at">events</span><span class="op">.</span><span class="fu">map</span>((e) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span><span class="fu">stormName</span>(e)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span><span class="fu">fmtInt</span>(e<span class="op">.</span><span class="at">people_affected</span>)<span class="sc">}</span><span class="vs"> affected)`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>                   <span class="op">:</span> <span class="st">"no cyclone disaster listed"</span>]<span class="op">.</span><span class="fu">join</span>(<span class="st">" · "</span>)<span class="op">;</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> b <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;button type="button" class="tl-cell tl-</span><span class="sc">${</span>r<span class="op">.</span><span class="at">cat</span><span class="sc">}${</span>sel <span class="op">===</span> s <span class="op">?</span> <span class="st">" tl-sel"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">" title=</span><span class="sc">${</span>title<span class="sc">}</span><span class="vs"> aria-label=</span><span class="sc">${</span>title<span class="sc">}</span><span class="vs"> aria-pressed=</span><span class="sc">${</span>sel <span class="op">===</span> s<span class="sc">}</span><span class="vs">&gt;</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span class="tl-yr"&gt;’</span><span class="sc">${</span><span class="bu">String</span>(s)<span class="op">.</span><span class="fu">slice</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/span&gt;&lt;/button&gt;`</span><span class="op">;</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>    b<span class="op">.</span><span class="at">onclick</span> <span class="op">=</span> () <span class="kw">=&gt;</span> { mutable sel <span class="op">=</span> sel <span class="op">===</span> s <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> s<span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b<span class="op">;</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> grid <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="tl-grid" role="group" aria-label="Seasons"&gt;&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> dec <span class="kw">of</span> decades) {</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>    grid<span class="op">.</span><span class="fu">append</span>(<span class="fu">html</span><span class="vs">`&lt;span class="tl-dec"&gt;</span><span class="sc">${</span>dec<span class="sc">}</span><span class="vs">s&lt;/span&gt;`</span>)<span class="op">;</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> s <span class="kw">of</span> d3<span class="op">.</span><span class="fu">range</span>(dec<span class="op">,</span> dec <span class="op">+</span> <span class="dv">10</span>))</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>      grid<span class="op">.</span><span class="fu">append</span>(seasons<span class="op">.</span><span class="fu">includes</span>(s) <span class="op">?</span> <span class="fu">cell</span>(s) <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;span class="tl-cell tl-empty"&gt;&lt;/span&gt;`</span>)<span class="op">;</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div&gt;</span><span class="sc">${</span>grid<span class="sc">}</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p class="tl-hint"&gt;Each cell is one season, labelled by the year it ends: ’19 is 2018/19.&lt;/p&gt;</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="tl-legend"&gt;</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="tl-li"&gt;&lt;span class="tl-key tl-hit"&gt;&lt;/span&gt;paid, disaster&lt;/span&gt;</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="tl-li"&gt;&lt;span class="tl-key tl-false"&gt;&lt;/span&gt;paid, no disaster listed&lt;/span&gt;</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="tl-li"&gt;&lt;span class="tl-key tl-miss"&gt;&lt;/span&gt;disaster, no payout&lt;/span&gt;</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="tl-li"&gt;&lt;span class="tl-key tl-quiet"&gt;&lt;/span&gt;neither&lt;/span&gt;</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="tl-li"&gt;&lt;span class="tl-key tl-paid-norec"&gt;&lt;/span&gt;paid, no open record&lt;/span&gt;</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="tl-li"&gt;&lt;span class="tl-key tl-none-norec"&gt;&lt;/span&gt;no payout, no open record&lt;/span&gt;</span></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="189" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 188;"><span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (sel <span class="op">===</span> <span class="kw">null</span>) <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="tl-hint"&gt;Tap a season to see its storms.&lt;/p&gt;`</span><span class="op">;</span></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> r <span class="op">=</span> rows<span class="op">.</span><span class="fu">find</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">season</span> <span class="op">===</span> sel)<span class="op">;</span></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> st <span class="op">=</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">season</span> <span class="op">===</span> sel)<span class="op">;</span></span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> clear <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;button type="button" class="tl-clear"&gt;Show all seasons&lt;/button&gt;`</span><span class="op">;</span></span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>  clear<span class="op">.</span><span class="at">onclick</span> <span class="op">=</span> () <span class="kw">=&gt;</span> { mutable sel <span class="op">=</span> <span class="kw">null</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="tl-detail"&gt;&lt;strong&gt;</span><span class="sc">${</span><span class="fu">seasonLabel</span>(sel)<span class="sc">}</span><span class="vs">&lt;/strong&gt;</span></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>st<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;No storm passed within 500 km of Mozambique.&lt;/p&gt;`</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;ul&gt;</span><span class="sc">${</span>st<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> {</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> mw <span class="op">=</span> s<span class="op">.</span><span class="at">mw</span>[zone][ri]<span class="op">;</span></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;li&gt;&lt;strong&gt;</span><span class="sc">${</span>s<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">&lt;/strong&gt;: peak </span><span class="sc">${</span>s<span class="op">.</span><span class="at">vmax</span><span class="sc">}</span><span class="vs"> kt; </span><span class="sc">${</span>mw <span class="op">?</span> <span class="vs">`</span><span class="sc">${</span>mw<span class="sc">}</span><span class="vs"> kt inside your zone`</span> <span class="op">:</span> <span class="st">"never inside your zone"</span><span class="sc">}${</span>mw <span class="op">&gt;=</span> wind <span class="op">?</span> <span class="fu">html</span><span class="vs">` → &lt;span class="tl-tag tl-tag-paid"&gt;pays&lt;/span&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}${</span>s<span class="op">.</span><span class="at">provisional</span> <span class="op">?</span> <span class="st">" (provisional track)"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>    })<span class="sc">}</span><span class="vs">&lt;/ul&gt;`</span><span class="sc">}</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;p&gt;</span><span class="sc">${</span><span class="op">!</span>r<span class="op">.</span><span class="at">record</span> <span class="op">?</span> <span class="st">"No open season-by-season impact record for this season."</span> <span class="op">:</span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>      r<span class="op">.</span><span class="at">events</span><span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> r<span class="op">.</span><span class="at">eventsAll</span><span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"INGD lists no cyclone this season."</span> <span class="op">:</span></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>      <span class="fu">html</span><span class="vs">`INGD lists: </span><span class="sc">${</span>r<span class="op">.</span><span class="at">eventsAll</span><span class="op">.</span><span class="fu">map</span>((e) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span><span class="fu">stormName</span>(e)<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="fu">fmtInt</span>(e<span class="op">.</span><span class="at">people_affected</span>)<span class="sc">}</span><span class="vs"> people affected`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">"; "</span>)<span class="sc">}</span><span class="vs">.`</span><span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>clear<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="tl-result">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="213" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 212;"><span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> rows<span class="op">.</span><span class="at">length</span><span class="op">,</span> nPaid <span class="op">=</span> rows<span class="op">.</span><span class="fu">filter</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">paid</span>)<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rec <span class="op">=</span> rows<span class="op">.</span><span class="fu">filter</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">record</span>)<span class="op">;</span></span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> c <span class="op">=</span> (k) <span class="kw">=&gt;</span> rec<span class="op">.</span><span class="fu">filter</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">cat</span> <span class="op">===</span> k)<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ret <span class="op">=</span> nPaid <span class="op">?</span> n <span class="op">/</span> nPaid <span class="op">:</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> nameList <span class="op">=</span> (list<span class="op">,</span> f) <span class="kw">=&gt;</span> list<span class="op">.</span><span class="fu">map</span>((r) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span><span class="fu">seasonLabel</span>(r<span class="op">.</span><span class="at">season</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span><span class="fu">f</span>(r)<span class="sc">}</span><span class="vs">)`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="op">;</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> miss <span class="op">=</span> rec<span class="op">.</span><span class="fu">filter</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">cat</span> <span class="op">===</span> <span class="st">"miss"</span>)<span class="op">,</span> fals <span class="op">=</span> rec<span class="op">.</span><span class="fu">filter</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">cat</span> <span class="op">===</span> <span class="st">"false"</span>)<span class="op">;</span></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p class="tl-big"&gt;&lt;span&gt;</span><span class="sc">${</span>nPaid<span class="sc">}</span><span class="vs">&lt;/span&gt; of </span><span class="sc">${</span>n<span class="sc">}</span><span class="vs"> seasons would have paid since </span><span class="sc">${</span><span class="fu">seasonLabel</span>(seasons[<span class="dv">0</span>])<span class="sc">}${</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>    ret <span class="op">?</span> <span class="fu">html</span><span class="vs">`, about once every &lt;span&gt;</span><span class="sc">${</span>ret <span class="op">&lt;</span> <span class="fl">1.5</span> <span class="op">?</span> ret<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(ret)<span class="sc">}</span><span class="vs">&lt;/span&gt; years`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">.&lt;/p&gt;</span></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p class="tl-sub"&gt;In the </span><span class="sc">${</span>rec<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> seasons with an open impact record (</span><span class="sc">${</span><span class="fu">seasonLabel</span>(recordSpan[<span class="dv">0</span>])<span class="sc">}</span><span class="vs"> to </span><span class="sc">${</span><span class="fu">seasonLabel</span>(recordSpan[<span class="dv">1</span>])<span class="sc">}</span><span class="vs">):&lt;/p&gt;</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;table class="tl-2x2"&gt;</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;Disaster&lt;/th&gt;&lt;th&gt;No disaster listed&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tbody&gt;</span></span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr&gt;&lt;th&gt;Paid&lt;/th&gt;&lt;td class="tl-hit"&gt;</span><span class="sc">${</span><span class="fu">c</span>(<span class="st">"hit"</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td class="tl-false"&gt;</span><span class="sc">${</span><span class="fu">c</span>(<span class="st">"false"</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr&gt;&lt;th&gt;No payout&lt;/th&gt;&lt;td class="tl-miss"&gt;</span><span class="sc">${</span><span class="fu">c</span>(<span class="st">"miss"</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td class="tl-quiet"&gt;</span><span class="sc">${</span><span class="fu">c</span>(<span class="st">"quiet"</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tbody&gt;</span></span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/table&gt;</span></span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="tl-reading"&gt;</span></span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>miss<span class="op">.</span><span class="at">length</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;strong&gt;Missed:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">nameList</span>(miss<span class="op">,</span> (r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">events</span><span class="op">.</span><span class="fu">map</span>((e) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> s <span class="op">=</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">find</span>((x) <span class="kw">=&gt;</span> x<span class="op">.</span><span class="at">id</span> <span class="op">===</span> e<span class="op">.</span><span class="at">sid</span>)<span class="op">;</span></span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> mw <span class="op">=</span> s <span class="op">?</span> s<span class="op">.</span><span class="at">mw</span>[zone][ri] <span class="op">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>s <span class="op">?</span> s<span class="op">.</span><span class="at">name</span> <span class="op">:</span> e<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>mw <span class="op">?</span> <span class="vs">`</span><span class="sc">${</span>mw<span class="sc">}</span><span class="vs"> kt in your zone`</span> <span class="op">:</span> <span class="st">"never in your zone"</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>    })<span class="op">.</span><span class="fu">join</span>(<span class="st">"; "</span>))<span class="sc">}</span><span class="vs">. The disaster came, the money did not: the basis risk that hurts most.&lt;/p&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>fals<span class="op">.</span><span class="at">length</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;strong&gt;Paid, no disaster listed:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">nameList</span>(fals<span class="op">,</span> (r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">paying</span><span class="op">.</span><span class="fu">map</span>((p) <span class="kw">=&gt;</span> p<span class="op">.</span><span class="at">name</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>))<span class="sc">}</span><span class="vs">. Money flows when the record shows no cyclone disaster. Premium spent on it is premium not spent elsewhere.&lt;/p&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span><span class="op">!</span>miss<span class="op">.</span><span class="at">length</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>fals<span class="op">.</span><span class="at">length</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;No mismatch in these </span><span class="sc">${</span>rec<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> seasons. That is a small sample: look at how often the trigger fires over the whole record, and what it would cost.&lt;/p&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="250" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 249;"><span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a>mutable sel <span class="op">=</span> <span class="kw">null</span></span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a>ri <span class="op">=</span> tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">radii_km</span><span class="op">.</span><span class="fu">indexOf</span>(radius)</span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>city <span class="op">=</span> tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">cities</span><span class="op">.</span><span class="fu">find</span>((c) <span class="kw">=&gt;</span> c<span class="op">.</span><span class="at">name</span> <span class="op">===</span> zone)</span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a><span class="co">// Is a track point inside the zone? Same method as prepare.py: great circle to a city; for</span></span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a><span class="co">// Mozambique 0 inside the outline, else the distance to the nearest boundary segment in a</span></span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a><span class="co">// local projection centred on the point.</span></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a>inZone <span class="op">=</span> {</span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (city) <span class="cf">return</span> (lon<span class="op">,</span> lat) <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">geoDistance</span>([lon<span class="op">,</span> lat]<span class="op">,</span> [city<span class="op">.</span><span class="at">lon</span><span class="op">,</span> city<span class="op">.</span><span class="at">lat</span>]) <span class="op">*</span> <span class="fl">6371.0088</span> <span class="op">&lt;=</span> radius<span class="op">;</span></span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ring <span class="op">=</span> mozFeature<span class="op">.</span><span class="at">geometry</span><span class="op">.</span><span class="at">coordinates</span>[<span class="dv">0</span>]<span class="op">,</span> k <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">180</span> <span class="op">*</span> <span class="fl">6371.0088</span><span class="op">;</span></span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (lon<span class="op">,</span> lat) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d3<span class="op">.</span><span class="fu">geoContains</span>(mozFeature<span class="op">,</span> [lon<span class="op">,</span> lat])) <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> c <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(lat <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">180</span>)<span class="op">;</span></span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> best <span class="op">=</span> <span class="kw">Infinity</span><span class="op">;</span></span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> ring<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> ux <span class="op">=</span> (ring[i][<span class="dv">0</span>] <span class="op">-</span> lon) <span class="op">*</span> c <span class="op">*</span> k<span class="op">,</span> uy <span class="op">=</span> (ring[i][<span class="dv">1</span>] <span class="op">-</span> lat) <span class="op">*</span> k<span class="op">;</span></span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> dx <span class="op">=</span> (ring[i <span class="op">+</span> <span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> ring[i][<span class="dv">0</span>]) <span class="op">*</span> c <span class="op">*</span> k<span class="op">,</span> dy <span class="op">=</span> (ring[i <span class="op">+</span> <span class="dv">1</span>][<span class="dv">1</span>] <span class="op">-</span> ring[i][<span class="dv">1</span>]) <span class="op">*</span> k<span class="op">;</span></span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> t <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">1</span><span class="op">,</span> <span class="op">-</span>(ux <span class="op">*</span> dx <span class="op">+</span> uy <span class="op">*</span> dy) <span class="op">/</span> (dx <span class="op">*</span> dx <span class="op">+</span> dy <span class="op">*</span> dy <span class="op">||</span> <span class="dv">1</span>)))<span class="op">;</span></span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a>      best <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(best<span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">hypot</span>(ux <span class="op">+</span> t <span class="op">*</span> dx<span class="op">,</span> uy <span class="op">+</span> t <span class="op">*</span> dy))<span class="op">;</span></span>
+<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> best <span class="op">&lt;=</span> radius<span class="op">;</span></span>
+<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a><span class="co">// Cross-check of INGD's list: storms in the record seasons whose centre crossed Mozambique</span></span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a>crossed <span class="op">=</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">season</span> <span class="op">&gt;=</span> recordSpan[<span class="dv">0</span>] <span class="op">&amp;&amp;</span> s<span class="op">.</span><span class="at">season</span> <span class="op">&lt;=</span> recordSpan[<span class="dv">1</span>] <span class="op">&amp;&amp;</span> s<span class="op">.</span><span class="at">mw</span><span class="op">.</span><span class="at">Mozambique</span>[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a>listedIds <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(tl<span class="op">.</span><span class="at">impacts</span><span class="op">.</span><span class="fu">map</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">sid</span>))</span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a>listedMin <span class="op">=</span> d3<span class="op">.</span><span class="fu">min</span>(crossed<span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> listedIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>))<span class="op">,</span> (s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">mw</span><span class="op">.</span><span class="at">Mozambique</span>[<span class="dv">0</span>])</span>
+<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a>unlistedStorms <span class="op">=</span> crossed<span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> <span class="op">!</span>listedIds<span class="op">.</span><span class="fu">has</span>(s<span class="op">.</span><span class="at">id</span>))</span>
+<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a>unlisted <span class="op">=</span> unlistedStorms<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>s<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs"> </span><span class="sc">${</span><span class="fu">seasonLabel</span>(s<span class="op">.</span><span class="at">season</span>)<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span>s<span class="op">.</span><span class="at">mw</span><span class="op">.</span><span class="at">Mozambique</span>[<span class="dv">0</span>]<span class="sc">}</span><span class="vs"> kt`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">"; "</span>)</span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a>ingdCheck <span class="op">=</span> {</span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> start <span class="op">=</span> <span class="vs">`That open table starts in </span><span class="sc">${</span><span class="fu">seasonLabel</span>(recordSpan[<span class="dv">0</span>])<span class="sc">}</span><span class="vs">.`</span><span class="op">;</span></span>
+<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Only claim the wind split if the data really show it (checked on every rebuild).</span></span>
+<span id="cb8-283"><a href="#cb8-283" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (unlistedStorms<span class="op">.</span><span class="at">length</span> <span class="op">&amp;&amp;</span> d3<span class="op">.</span><span class="fu">max</span>(unlistedStorms<span class="op">,</span> (s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">mw</span><span class="op">.</span><span class="at">Mozambique</span>[<span class="dv">0</span>]) <span class="op">&lt;</span> listedMin)</span>
+<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>start<span class="sc">}</span><span class="vs"> Every storm whose centre crossed Mozambique at </span><span class="sc">${</span>listedMin<span class="sc">}</span><span class="vs"> kt or more in those seasons is in INGD's list; weaker ones that crossed it (</span><span class="sc">${</span>unlisted<span class="sc">}</span><span class="vs">) are not.`</span><span class="op">;</span></span>
+<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>unlistedStorms<span class="op">.</span><span class="at">length</span>) <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>start<span class="sc">}</span><span class="vs"> Every storm whose centre crossed Mozambique in those seasons is in INGD's list.`</span><span class="op">;</span></span>
+<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>start<span class="sc">}</span><span class="vs"> Storms whose centre crossed Mozambique but are not in INGD's list: </span><span class="sc">${</span>unlisted<span class="sc">}</span><span class="vs">.`</span><span class="op">;</span></span>
+<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-288"><a href="#cb8-288" aria-hidden="true" tabindex="-1"></a>stormCount <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> storms. </span><span class="sc">${</span>tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">ibtracs</span><span class="op">.</span><span class="at">storms_near_without_us_track</span><span class="sc">}</span><span class="vs"> more came that close but have no US track and are left out.`</span></span>
+<span id="cb8-289"><a href="#cb8-289" aria-hidden="true" tabindex="-1"></a>olderCheck <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">ibtracs</span><span class="op">.</span><span class="at">seasons_of_storms_without_us_track</span><span class="op">.</span><span class="fu">filter</span>((y) <span class="kw">=&gt;</span> y <span class="op">&lt;=</span> <span class="dv">1990</span>)<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> of the </span><span class="sc">${</span>tl<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">ibtracs</span><span class="op">.</span><span class="at">storms_near_without_us_track</span><span class="sc">}</span><span class="vs"> storms left out for lack of a US track are from the 1979/80 to 1989/90 seasons.`</span></span>
+<span id="cb8-290"><a href="#cb8-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-291"><a href="#cb8-291" aria-hidden="true" tabindex="-1"></a>provisionalSeasons <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">provisional</span>)<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> <span class="fu">seasonLabel</span>(s<span class="op">.</span><span class="at">season</span>)))]<span class="op">.</span><span class="fu">join</span>(<span class="st">" and "</span>)</span>
+<span id="cb8-292"><a href="#cb8-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-293"><a href="#cb8-293" aria-hidden="true" tabindex="-1"></a>stormName <span class="op">=</span> (e) <span class="kw">=&gt;</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">find</span>((s) <span class="kw">=&gt;</span> s<span class="op">.</span><span class="at">id</span> <span class="op">===</span> e<span class="op">.</span><span class="at">sid</span>)<span class="op">?.</span><span class="at">name</span> <span class="op">??</span> e<span class="op">.</span><span class="at">name</span></span>
+<span id="cb8-294"><a href="#cb8-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-295"><a href="#cb8-295" aria-hidden="true" tabindex="-1"></a>mozFeature <span class="op">=</span> tl<span class="op">.</span><span class="at">land</span><span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">find</span>((f) <span class="kw">=&gt;</span> f<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">iso</span> <span class="op">===</span> <span class="st">"MOZ"</span>)</span>
+<span id="cb8-296"><a href="#cb8-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-297"><a href="#cb8-297" aria-hidden="true" tabindex="-1"></a>zoneGeo <span class="op">=</span> {</span>
+<span id="cb8-298"><a href="#cb8-298" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (city) <span class="cf">return</span> radius <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"Point"</span><span class="op">,</span> <span class="dt">coordinates</span><span class="op">:</span> [city<span class="op">.</span><span class="at">lon</span><span class="op">,</span> city<span class="op">.</span><span class="at">lat</span>]}</span>
+<span id="cb8-299"><a href="#cb8-299" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> d3<span class="op">.</span><span class="fu">geoCircle</span>()<span class="op">.</span><span class="fu">center</span>([city<span class="op">.</span><span class="at">lon</span><span class="op">,</span> city<span class="op">.</span><span class="at">lat</span>])<span class="op">.</span><span class="fu">radius</span>(radius <span class="op">/</span> <span class="fl">111.195</span>)()<span class="op">;</span></span>
+<span id="cb8-300"><a href="#cb8-300" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (radius <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> mozFeature<span class="op">.</span><span class="at">geometry</span><span class="op">;</span></span>
+<span id="cb8-301"><a href="#cb8-301" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g <span class="op">=</span> tl<span class="op">.</span><span class="at">grid</span><span class="op">;</span></span>
+<span id="cb8-302"><a href="#cb8-302" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [c] <span class="op">=</span> d3<span class="op">.</span><span class="fu">contours</span>()<span class="op">.</span><span class="fu">size</span>([g<span class="op">.</span><span class="at">nx</span><span class="op">,</span> g<span class="op">.</span><span class="at">ny</span>])<span class="op">.</span><span class="fu">thresholds</span>([<span class="op">-</span>radius])(g<span class="op">.</span><span class="at">km</span><span class="op">.</span><span class="fu">map</span>((v) <span class="kw">=&gt;</span> <span class="op">-</span>v))<span class="op">;</span></span>
+<span id="cb8-303"><a href="#cb8-303" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> tr <span class="op">=</span> ([x<span class="op">,</span> y]) <span class="kw">=&gt;</span> [g<span class="op">.</span><span class="at">lon0</span> <span class="op">+</span> (x <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> g<span class="op">.</span><span class="at">step</span><span class="op">,</span> g<span class="op">.</span><span class="at">lat0</span> <span class="op">-</span> (y <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> g<span class="op">.</span><span class="at">step</span>]<span class="op">;</span></span>
+<span id="cb8-304"><a href="#cb8-304" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> geom <span class="op">=</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"MultiPolygon"</span><span class="op">,</span> <span class="dt">coordinates</span><span class="op">:</span> c<span class="op">.</span><span class="at">coordinates</span><span class="op">.</span><span class="fu">map</span>((p) <span class="kw">=&gt;</span> p<span class="op">.</span><span class="fu">map</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">map</span>(tr)))}<span class="op">;</span></span>
+<span id="cb8-305"><a href="#cb8-305" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (d3<span class="op">.</span><span class="fu">geoArea</span>(geom) <span class="op">&gt;</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>) geom<span class="op">.</span><span class="at">coordinates</span><span class="op">.</span><span class="fu">forEach</span>((p) <span class="kw">=&gt;</span> p<span class="op">.</span><span class="fu">forEach</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">reverse</span>()))<span class="op">;</span></span>
+<span id="cb8-306"><a href="#cb8-306" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> geom<span class="op">;</span></span>
+<span id="cb8-307"><a href="#cb8-307" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-308"><a href="#cb8-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-309"><a href="#cb8-309" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> seasons<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-310"><a href="#cb8-310" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paying <span class="op">=</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">season</span> <span class="op">===</span> s <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">mw</span>[zone][ri] <span class="op">&gt;=</span> wind)</span>
+<span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span>((d) <span class="kw">=&gt;</span> ({<span class="dt">id</span><span class="op">:</span> d<span class="op">.</span><span class="at">id</span><span class="op">,</span> <span class="dt">name</span><span class="op">:</span> d<span class="op">.</span><span class="at">name</span><span class="op">,</span> <span class="dt">mw</span><span class="op">:</span> d<span class="op">.</span><span class="at">mw</span>[zone][ri]}))<span class="op">;</span></span>
+<span id="cb8-312"><a href="#cb8-312" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eventsAll <span class="op">=</span> tl<span class="op">.</span><span class="at">impacts</span><span class="op">.</span><span class="fu">filter</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">season</span> <span class="op">===</span> s)<span class="op">;</span></span>
+<span id="cb8-313"><a href="#cb8-313" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> events <span class="op">=</span> eventsAll<span class="op">.</span><span class="fu">filter</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">people_affected</span> <span class="op">&gt;=</span> minAffected)<span class="op">;</span></span>
+<span id="cb8-314"><a href="#cb8-314" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> record <span class="op">=</span> s <span class="op">&gt;=</span> recordSpan[<span class="dv">0</span>] <span class="op">&amp;&amp;</span> s <span class="op">&lt;=</span> recordSpan[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb8-315"><a href="#cb8-315" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paid <span class="op">=</span> paying<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">,</span> disaster <span class="op">=</span> events<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cat <span class="op">=</span> <span class="op">!</span>record <span class="op">?</span> (paid <span class="op">?</span> <span class="st">"paid-norec"</span> <span class="op">:</span> <span class="st">"none-norec"</span>)</span>
+<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> paid <span class="op">&amp;&amp;</span> disaster <span class="op">?</span> <span class="st">"hit"</span> <span class="op">:</span> paid <span class="op">?</span> <span class="st">"false"</span> <span class="op">:</span> disaster <span class="op">?</span> <span class="st">"miss"</span> <span class="op">:</span> <span class="st">"quiet"</span><span class="op">;</span></span>
+<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">season</span><span class="op">:</span> s<span class="op">,</span> paying<span class="op">,</span> events<span class="op">,</span> eventsAll<span class="op">,</span> record<span class="op">,</span> paid<span class="op">,</span> disaster<span class="op">,</span> cat}<span class="op">;</span></span>
+<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-15" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-16" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-17" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<section id="how-it-works" class="level2">
+<h2 data-anchor-id="how-it-works">How it works</h2>
+<ul>
+<li><strong>Storms.</strong> Every storm since the 1979/80 season with a US-agency (JTWC) track in IBTrACS whose centre came within 500 km of Mozambique: <span><span id="ojs-element-id-1"></span></span> The whole track counts, weak and extratropical stages included. JTWC fixes are 6-hourly (3-hourly in IBTrACS); positions and winds are interpolated to hourly, gaps over 6 hours are not bridged. Mozambique is the 1:50m mainland outline, without small islands.</li>
+<li><strong>The trigger.</strong> A season pays if at least one storm, while its centre is inside your zone, reaches your wind threshold. One payout per season, all or nothing.</li>
+<li><strong>Disasters.</strong> A season counts as a disaster when Mozambique’s disaster management institute (INGD) lists a named storm in it. <span><span id="ojs-element-id-2"></span></span> Earlier seasons are marked “no open record”: no season-by-season record is used here, which does not mean nothing happened.</li>
+<li><strong>Seasons, not years.</strong> Cyclones here come mostly between November and April, so a season spans two calendar years. IBTrACS counts a southern season from July to June.</li>
+</ul>
+</section>
+<section id="what-this-does-not-show" class="level2">
+<h2 data-anchor-id="what-this-does-not-show">What this does not show</h2>
+<ul>
+<li><strong>Wind is the storm’s peak, not the wind on the ground.</strong> The maximum sustained wind is “the highest one-minute average wind … associated with that weather system” (<a href="https://www.nhc.noaa.gov/aboutgloss.shtml">NHC glossary</a>), wherever it blows in the storm. A cover that measures wind at the site, or modelled losses, behaves differently.</li>
+<li><strong>Rain and floods.</strong> Damage also comes from rain, rivers and storm surge, which a wind trigger does not see. Idai (2019) brought more than 200 mm of rain in 24 hours; rivers overflowed and about 3,000 km² of land was flooded (Government of Mozambique and partners, <a href="https://www.undp.org/publications/mozambique-cyclone-idai-post-disaster-needs-assessment-pdnadna">Post-Disaster Needs Assessment, 2019</a>).</li>
+<li><strong>Recent tracks are provisional.</strong> For <span><span id="ojs-element-id-3"></span></span> the US best tracks are not final yet and may change.</li>
+<li><strong>The missing record is part of the risk.</strong> Before <span><span id="ojs-element-id-4"></span></span> no open record found for this page says which seasons cyclones hurt. Mozambique’s national disaster inventory for 1979–2012 is open on HDX, but only as totals by year or by hazard, not cyclone disasters by season (<a href="https://data.humdata.org/dataset/mozambique-disaster-inventory">UNDRR DesInventar via HDX</a>, CC BY; not used here). Without such a record a trigger cannot be tested against the losses it is meant to cover. That gap is basis risk too.</li>
+<li><strong>Older storm records are thinner.</strong> <span><span id="ojs-element-id-5"></span></span></li>
+<li><strong><span><span id="ojs-element-id-6"></span></span> seasons is a small sample</strong> for judging a trigger. Real programmes calibrate on long modelled event sets as well as history; some trigger on modelled losses rather than wind (<a href="https://www.ccrif.org/sites/default/files/publications/technical-materials/Technical_Paper_CCRIF_Policies_November_2015.pdf">CCRIF, 2015</a>).</li>
+</ul>
+<p>This is an educational tool. It reproduces no real insurance product and uses only open data. How it is built, with its code and a reading list: <a href="trigger-lab-how-it-works/">A cyclone trigger, taken apart</a>.</p>
+</section>
+<section id="data-and-licences" class="level2">
+<h2 data-anchor-id="data-and-licences">Data and licences</h2>
+<ul>
+<li><strong>Storm tracks:</strong> NOAA’s International Best Track Archive for Climate Stewardship (IBTrACS), version 4r01, South Indian basin, US-agency columns only (<code>USA_LAT</code>, <code>USA_LON</code>, <code>USA_WIND</code>, 1-minute sustained wind), accessed 19 November 2026 (<a href="https://www.ncei.noaa.gov/products/international-best-track-archive">NCEI</a>). Knapp, K. R., M. C. Kruk, D. H. Levinson, H. J. Diamond and C. J. Neumann (2010): The International Best Track Archive for Climate Stewardship (IBTrACS): Unifying Tropical Cyclone Data. <em>Bulletin of the American Meteorological Society</em> 91, 363–376, <a href="https://doi.org/10.1175/2009BAMS2755.1">doi:10.1175/2009BAMS2755.1</a>. Gahtan, J., K. R. Knapp, C. J. Schreck, H. J. Diamond, J. P. Kossin and M. C. Kruk (2024): International Best Track Archive for Climate Stewardship (IBTrACS) Project, Version 4r01. NOAA National Centers for Environmental Information, <a href="https://doi.org/10.25921/82ty-9e16">doi:10.25921/82ty-9e16</a>. NCEI’s terms: IBTrACS follows the World Data Center for Meteorology’s “full and open access” policy, with WMO Resolution 40 as the guide for commercial use. To stay clear of Resolution 40 limits on other agencies’ data, this page uses only the US-agency data; for <span><span id="ojs-element-id-7"></span></span> these are provisional (TC Vitals). No endorsement by NOAA implied.</li>
+<li><strong>Disaster seasons:</strong> INGD (Instituto Nacional de Gestão e Redução do Risco de Desastres), <a href="https://data.humdata.org/dataset/impact-of-cyclones">“Mozambique: Impact of Cyclones”</a>, via the Humanitarian Data Exchange (OCHA), public domain (CC0), accessed 19 November 2026. Used here: storm name, year and total people affected; storms matched to IBTrACS by name. INGD’s sheet for Idai is titled “Cyclone IDAI and TS - 2019”; its total may include a tropical storm in the same weeks and is shown under Idai.</li>
+<li><strong>Map:</strong> Made with <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain), 1:50m countries and 1:10m populated places.</li>
+<li><strong>Preparation:</strong> <code>prepare.py</code> in <code>scripts/showcase_trigger_lab/</code> of the site’s source code.</li>
+</ul>
+
+
+<div class="ojs-auto-generated hidden">
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNvdXJjZSI6Imh0bC5odG1sYDxzcGFuPiR7c3Rvcm1Db3VudH08L3NwYW4+YCIsICJjZWxsTmFtZSI6Im9qcy1lbGVtZW50LWlkLTEifSwgIHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImlubGluZSI6InRydWUiLCJzb3VyY2UiOiJodGwuaHRtbGA8c3Bhbj4ke2luZ2RDaGVja308L3NwYW4+YCIsICJjZWxsTmFtZSI6Im9qcy1lbGVtZW50LWlkLTIifSwgIHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImlubGluZSI6InRydWUiLCJzb3VyY2UiOiJodGwuaHRtbGA8c3Bhbj4ke3Byb3Zpc2lvbmFsU2Vhc29uc308L3NwYW4+YCIsICJjZWxsTmFtZSI6Im9qcy1lbGVtZW50LWlkLTMifSwgIHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImlubGluZSI6InRydWUiLCJzb3VyY2UiOiJodGwuaHRtbGA8c3Bhbj4ke3NlYXNvbkxhYmVsKHJlY29yZFNwYW5bMF0pfTwvc3Bhbj5gIiwgImNlbGxOYW1lIjoib2pzLWVsZW1lbnQtaWQtNCJ9LCAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNvdXJjZSI6Imh0bC5odG1sYDxzcGFuPiR7b2xkZXJDaGVja308L3NwYW4+YCIsICJjZWxsTmFtZSI6Im9qcy1lbGVtZW50LWlkLTUifSwgIHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImlubGluZSI6InRydWUiLCJzb3VyY2UiOiJodGwuaHRtbGA8c3Bhbj4ke3Jvd3MuZmlsdGVyKChyKSA9PiByLnJlY29yZCkubGVuZ3RofTwvc3Bhbj5gIiwgImNlbGxOYW1lIjoib2pzLWVsZW1lbnQtaWQtNiJ9LCAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNvdXJjZSI6Imh0bC5odG1sYDxzcGFuPiR7cHJvdmlzaW9uYWxTZWFzb25zfTwvc3Bhbj5gIiwgImNlbGxOYW1lIjoib2pzLWVsZW1lbnQtaWQtNyJ9XX0=
+</script>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldExlbmllbnQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTEiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ0bCA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS90cmlnZ2VyLWxhYi90cmlnZ2VyLWxhYi5qc29uXCIpLmpzb24oKVxuS1RfS01IID0gMS44NTIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC8vIDEga25vdCA9IDEuODUyIGttL2ggKGV4YWN0KVxuc2Vhc29uTGFiZWwgPSAocykgPT4gYCR7cyAtIDF9LyR7U3RyaW5nKHMpLnNsaWNlKDIpfWBcbmZtdEludCA9IGQzLmZvcm1hdChcIixcIilcblxuLy8gU2Vhc29ucyB3aXRoIGFuIG9wZW4gc2Vhc29uLWJ5LXNlYXNvbiBpbXBhY3QgcmVjb3JkIChJTkdEIHRhYmxlIHZpYSBIRFgpLiBBIHNlYXNvbiBpblxuLy8gSUJUckFDUyBydW5zIEp1bHkgdG8gSnVuZSwgc28gYSByZWNvcmQgc3RhcnRpbmcgaW4gT2N0b2JlciAyMDE2IGNvdmVycyAyMDE2LzE3IG9ud2FyZHMuXG5yZWNvcmRTcGFuID0ge1xuICBjb25zdCBtID0gdGwubWV0YS5pbmdkLmRhdGFzZXRfZGF0ZS5tYXRjaCgvKFxcZHs0fSktKFxcZHsyfSkuKlRPIChcXGR7NH0pLShcXGR7Mn0pLyk7XG4gIGNvbnN0IHNlYXNvbiA9ICh5LCBtbykgPT4gKG1vID49IDcgPyB5ICsgMSA6IHkpO1xuICByZXR1cm4gW3NlYXNvbigrbVsxXSwgK21bMl0pLCBzZWFzb24oK21bM10sICttWzRdKV07XG59XG5zZWFzb25zID0gZDMucmFuZ2UodGwubWV0YS5zZWFzb25zWzBdLCB0bC5tZXRhLnNlYXNvbnNbMV0gKyAxKVxuXG5mdW5jdGlvbiBzbGlkZXIoe21pbiwgbWF4LCBzdGVwLCB2YWx1ZSwgbGFiZWwsIGZtdH0pIHtcbiAgY29uc3Qgb3V0ID0gaHRtbGA8b3V0cHV0Pjwvb3V0cHV0PmA7XG4gIGNvbnN0IGlucHV0ID0gaHRtbGA8aW5wdXQgdHlwZT1cInJhbmdlXCIgbWluPSR7bWlufSBtYXg9JHttYXh9IHN0ZXA9JHtzdGVwfSB2YWx1ZT0ke3ZhbHVlfT5gO1xuICBpbnB1dC5zZXRBdHRyaWJ1dGUoXCJhcmlhLWxhYmVsXCIsIGxhYmVsKTtcbiAgY29uc3QgZWwgPSBodG1sYDxsYWJlbCBjbGFzcz1cInRsLWN0bFwiPjxzcGFuIGNsYXNzPVwidGwtY3RsLWhlYWRcIj48c3Bhbj4ke2xhYmVsfTwvc3Bhbj4ke291dH08L3NwYW4+JHtpbnB1dH08L2xhYmVsPmA7XG4gIGNvbnN0IHVwZGF0ZSA9ICgpID0+IHsgZWwudmFsdWUgPSAraW5wdXQudmFsdWU7IG91dC5pbm5lckhUTUwgPSBmbXQoK2lucHV0LnZhbHVlKTsgfTtcbiAgaW5wdXQuYWRkRXZlbnRMaXN0ZW5lcihcImlucHV0XCIsIHVwZGF0ZSk7ICAgLy8gcnVucyBiZWZvcmUgdGhlIGV2ZW50IGJ1YmJsZXMgdXAgdG8gdGhlIGxhYmVsXG4gIHVwZGF0ZSgpO1xuICByZXR1cm4gZWw7XG59XG5cbmZ1bmN0aW9uIGNob2ljZSh7b3B0aW9ucywgdmFsdWUsIGxhYmVsfSkge1xuICBjb25zdCBzZWwgPSBodG1sYDxzZWxlY3Q+JHtvcHRpb25zLm1hcCgoW3YsIHRdKSA9PiBodG1sYDxvcHRpb24gdmFsdWU9JHt2fT4ke3R9PC9vcHRpb24+YCl9PC9zZWxlY3Q+YDtcbiAgc2VsLnZhbHVlID0gU3RyaW5nKHZhbHVlKTtcbiAgc2VsLnNldEF0dHJpYnV0ZShcImFyaWEtbGFiZWxcIiwgbGFiZWwpO1xuICBjb25zdCBlbCA9IGh0bWxgPGxhYmVsIGNsYXNzPVwidGwtY3RsXCI+PHNwYW4gY2xhc3M9XCJ0bC1jdGwtaGVhZFwiPjxzcGFuPiR7bGFiZWx9PC9zcGFuPjwvc3Bhbj4ke3NlbH08L2xhYmVsPmA7XG4gIGNvbnN0IHVwZGF0ZSA9ICgpID0+IHsgZWwudmFsdWUgPSBvcHRpb25zLmZpbmQoKFt2XSkgPT4gU3RyaW5nKHYpID09PSBzZWwudmFsdWUpWzBdOyB9O1xuICBzZWwuYWRkRXZlbnRMaXN0ZW5lcihcImlucHV0XCIsIHVwZGF0ZSk7XG4gIHVwZGF0ZSgpO1xuICByZXR1cm4gZWw7XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRMZW5pZW50IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIHpvbmUgPSBjaG9pY2Uoe2xhYmVsOiBcIldoZXJlXCIsIHZhbHVlOiBcIk1vemFtYmlxdWVcIiwgb3B0aW9uczogW1xuICBbXCJNb3phbWJpcXVlXCIsIFwiQW55d2hlcmUgaW4gTW96YW1iaXF1ZVwiXSxcbiAgLi4udGwubWV0YS5jaXRpZXMubWFwKChjKSA9PiBbYy5uYW1lLCBgQXJvdW5kICR7Yy5uYW1lfWBdKV19KVxudmlld29mIHJhZGl1cyA9IHNsaWRlcih7bGFiZWw6IFwiV2l0aGluXCIsIG1pbjogMCwgbWF4OiA1MDAsIHN0ZXA6IDI1LCB2YWx1ZTogMTAwLFxuICBmbXQ6IChyKSA9PiBgJHtyfSBrbWB9KSAgIC8vIG11c3Qgbm90IGRlcGVuZCBvbiB6b25lOiB0aGF0IHdvdWxkIHJlc2V0IHRoZSBzbGlkZXJcbnZpZXdvZiB3aW5kID0gc2xpZGVyKHtsYWJlbDogXCJXaW5kIGF0IGxlYXN0XCIsIG1pbjogMzQsIG1heDogMTQwLCBzdGVwOiAxLCB2YWx1ZTogNjQsXG4gIGZtdDogKGspID0+IGAke2t9IGt0IDxzcGFuIGNsYXNzPVwidGwtZGltXCI+wrcgJHtNYXRoLnJvdW5kKGsgKiBLVF9LTUgpfSBrbS9oPC9zcGFuPmB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0TGVuaWVudCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBtaW5BZmZlY3RlZCA9IGNob2ljZSh7bGFiZWw6IFwiQSBzZWFzb24gaXMgYSBkaXNhc3RlciB3aGVuIElOR0QgbGlzdHMgYSBzdG9ybSB3aXRoXCIsIHZhbHVlOiAwLFxuICBvcHRpb25zOiBbWzAsIFwiYW55IHBlb3BsZSBhZmZlY3RlZFwiXSwgWzEwMDAwMCwgXCLiiaUgMTAwLDAwMCBwZW9wbGUgYWZmZWN0ZWRcIl0sXG4gICAgICAgICAgICBbNTAwMDAwLCBcIuKJpSA1MDAsMDAwIHBlb3BsZSBhZmZlY3RlZFwiXV19KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0TGVuaWVudCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IntcbiAgY29uc3QgVyA9IE1hdGgubWluKHdpZHRoLCA2MjApLCBIID0gTWF0aC5yb3VuZChXICogMS4yMik7XG4gIGNvbnN0IGJveCA9IHt0eXBlOiBcIlBvbHlnb25cIiwgY29vcmRpbmF0ZXM6IFtbWzI2LCAtMzFdLCBbMjYsIC04XSwgWzQ1LjUsIC04XSwgWzQ1LjUsIC0zMV0sIFsyNiwgLTMxXV1dfTtcbiAgY29uc3Qgc2hvdyA9IHNlbCA9PT0gbnVsbCA/IHJvd3MgOiByb3dzLmZpbHRlcigocikgPT4gci5zZWFzb24gPT09IHNlbCk7XG4gIGNvbnN0IHBhaWRJZHMgPSBuZXcgU2V0KHNob3cuZmxhdE1hcCgocikgPT4gci5wYXlpbmcubWFwKChzKSA9PiBzLmlkKSkpO1xuICBjb25zdCBsb3NzSWRzID0gbmV3IFNldChzaG93LmZsYXRNYXAoKHIpID0+IHIuZXZlbnRzLm1hcCgoZSkgPT4gZS5zaWQpKSk7XG4gIGNvbnN0IHZpc2libGUgPSBzZWwgPT09IG51bGwgPyB0bC5zdG9ybXMgOiB0bC5zdG9ybXMuZmlsdGVyKChzKSA9PiBzLnNlYXNvbiA9PT0gc2VsKTtcbiAgY29uc3QgcHRzID0gKGxpc3QpID0+IGxpc3QuZmxhdE1hcCgocykgPT4gcy50cmFjay5tYXAoKFtsb24sIGxhdCwgd10pID0+ICh7aWQ6IHMuaWQsIGxvbiwgbGF0LCB3fSkpKTtcbiAgY29uc3QgZ2hvc3QgPSBwdHModmlzaWJsZS5maWx0ZXIoKHMpID0+ICFwYWlkSWRzLmhhcyhzLmlkKSAmJiAhbG9zc0lkcy5oYXMocy5pZCkpKTtcbiAgY29uc3QgbWlzc2VkID0gcHRzKHZpc2libGUuZmlsdGVyKChzKSA9PiBsb3NzSWRzLmhhcyhzLmlkKSAmJiAhcGFpZElkcy5oYXMocy5pZCkpKTtcbiAgY29uc3QgcGFpZCA9IHB0cyh2aXNpYmxlLmZpbHRlcigocykgPT4gcGFpZElkcy5oYXMocy5pZCkpKTtcbiAgY29uc3QgaGl0cyA9IHBhaWQuZmlsdGVyKChwKSA9PiBwLncgPj0gd2luZCAmJiBpblpvbmUocC5sb24sIHAubGF0KSk7XG4gIGNvbnN0IG5hbWVzID0gc2VsID09PSBudWxsID8gW10gOiB2aXNpYmxlLm1hcCgocykgPT4ge1xuICAgIGNvbnN0IHQgPSBzLnRyYWNrW01hdGguZmxvb3Iocy50cmFjay5sZW5ndGggLyAyKV0gPz8gcy50cmFja1swXTtcbiAgICByZXR1cm4ge2xvbjogdFswXSwgbGF0OiB0WzFdLCBuYW1lOiBzLm5hbWV9O1xuICB9KS5maWx0ZXIoKGQpID0+IGQubG9uID4gMjYgJiYgZC5sb24gPCA0NS41ICYmIGQubGF0ID4gLTMxICYmIGQubGF0IDwgLTgpO1xuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogVywgaGVpZ2h0OiBILCBtYXJnaW46IDAsXG4gICAgc3R5bGU6IHtiYWNrZ3JvdW5kOiBcInRyYW5zcGFyZW50XCIsIGZvbnRGYW1pbHk6IFwiSUJNIFBsZXggTW9ubywgbW9ub3NwYWNlXCIsIGZvbnRTaXplOiBcIjExcHhcIn0sXG4gICAgcHJvamVjdGlvbjoge3R5cGU6IFwibWVyY2F0b3JcIiwgZG9tYWluOiBib3h9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90Lmdlbyh0bC5sYW5kLCB7ZmlsbDogXCJ2YXIoLS1yYWMtYmFuZClcIiwgc3Ryb2tlOiBcInZhcigtLXJhYy1zdmctbGluZSlcIiwgc3Ryb2tlV2lkdGg6IDAuNn0pLFxuICAgICAgUGxvdC5nZW8odGwubGFuZC5mZWF0dXJlcy5maWx0ZXIoKGYpID0+IGYucHJvcGVydGllcy5pc28gPT09IFwiTU9aXCIpLFxuICAgICAgICB7ZmlsbDogXCJ2YXIoLS1yYWMtc3VyZmFjZSlcIiwgc3Ryb2tlOiBcInZhcigtLXJhYy1tdXRlZClcIiwgc3Ryb2tlV2lkdGg6IDAuOH0pLFxuICAgICAgUGxvdC5nZW8oW3pvbmVHZW9dLCB7ZmlsbDogXCJ2YXIoLS1yYWMtYWNjZW50KVwiLCBmaWxsT3BhY2l0eTogMC4xNixcbiAgICAgICAgc3Ryb2tlOiBcInZhcigtLXJhYy1hY2NlbnQtaW5rKVwiLCBzdHJva2VXaWR0aDogMSwgc3Ryb2tlRGFzaGFycmF5OiBcIjQgM1wifSksXG4gICAgICBQbG90LmxpbmUoZ2hvc3QsIHt4OiBcImxvblwiLCB5OiBcImxhdFwiLCB6OiBcImlkXCIsIHN0cm9rZTogXCJ2YXIoLS1yYWMtbXV0ZWQpXCIsXG4gICAgICAgIHN0cm9rZU9wYWNpdHk6IHNlbCA9PT0gbnVsbCA/IDAuMzUgOiAwLjgsIHN0cm9rZVdpZHRoOiAwLjh9KSxcbiAgICAgIFBsb3QubGluZShtaXNzZWQsIHt4OiBcImxvblwiLCB5OiBcImxhdFwiLCB6OiBcImlkXCIsIHN0cm9rZTogXCJ2YXIoLS1yYWMtbW9kLXN0b3JtKVwiLCBzdHJva2VXaWR0aDogMS44fSksXG4gICAgICBQbG90LmxpbmUocGFpZCwge3g6IFwibG9uXCIsIHk6IFwibGF0XCIsIHo6IFwiaWRcIiwgc3Ryb2tlOiBcInZhcigtLXJhYy10cmFjaylcIiwgc3Ryb2tlV2lkdGg6IDEuOH0pLFxuICAgICAgUGxvdC5kb3QoaGl0cywge3g6IFwibG9uXCIsIHk6IFwibGF0XCIsIHI6IDIuNiwgZmlsbDogXCJ2YXIoLS1yYWMtdHJhY2spXCIsIHN0cm9rZTogXCJ2YXIoLS1yYWMtYmcpXCIsIHN0cm9rZVdpZHRoOiAwLjh9KSxcbiAgICAgIFBsb3QuZG90KHRsLm1ldGEuY2l0aWVzLCB7eDogXCJsb25cIiwgeTogXCJsYXRcIiwgcjogMi4yLCBmaWxsOiBcInZhcigtLXJhYy1pbmspXCJ9KSxcbiAgICAgIFBsb3QudGV4dCh0bC5tZXRhLmNpdGllcywge3g6IFwibG9uXCIsIHk6IFwibGF0XCIsIHRleHQ6IFwibmFtZVwiLCBkeDogLTYsIHRleHRBbmNob3I6IFwiZW5kXCIsXG4gICAgICAgIGZpbGw6IFwidmFyKC0tcmFjLWluay0yKVwiLCBzdHJva2U6IFwidmFyKC0tcmFjLXN1cmZhY2UpXCIsIHN0cm9rZVdpZHRoOiAzLCBwYWludE9yZGVyOiBcInN0cm9rZVwifSksXG4gICAgICBQbG90LnRleHQobmFtZXMsIHt4OiBcImxvblwiLCB5OiBcImxhdFwiLCB0ZXh0OiBcIm5hbWVcIiwgZHk6IC04LCBmb250V2VpZ2h0OiA2MDAsXG4gICAgICAgIGZpbGw6IFwidmFyKC0tcmFjLWluaylcIiwgc3Ryb2tlOiBcInZhcigtLXJhYy1iZylcIiwgc3Ryb2tlV2lkdGg6IDMsIHBhaW50T3JkZXI6IFwic3Ryb2tlXCJ9KSxcbiAgICAgIFBsb3QuZnJhbWUoe3N0cm9rZTogXCJ2YXIoLS1yYWMtbGluZSlcIn0pXG4gICAgXVxuICB9KTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldExlbmllbnQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IGJ5UyA9IG5ldyBNYXAocm93cy5tYXAoKHIpID0+IFtyLnNlYXNvbiwgcl0pKTtcbiAgY29uc3QgZGVjYWRlcyA9IGQzLnJhbmdlKE1hdGguZmxvb3Ioc2Vhc29uc1swXSAvIDEwKSAqIDEwLCBzZWFzb25zLmF0KC0xKSArIDEsIDEwKTtcbiAgY29uc3QgY2VsbCA9IChzKSA9PiB7XG4gICAgY29uc3QgciA9IGJ5Uy5nZXQocyk7XG4gICAgaWYgKCFyKSByZXR1cm4gaHRtbGA8c3BhbiBjbGFzcz1cInRsLWNlbGwgdGwtZW1wdHlcIj48L3NwYW4+YDtcbiAgICBjb25zdCB0aXRsZSA9IFtzZWFzb25MYWJlbChzKSxcbiAgICAgIHIucGFpZCA/IGBwYXlzOiAke3IucGF5aW5nLm1hcCgocCkgPT4gYCR7cC5uYW1lfSAoJHtwLm13fSBrdCBpbiB6b25lKWApLmpvaW4oXCIsIFwiKX1gIDogXCJubyBwYXlvdXRcIixcbiAgICAgICFyLnJlY29yZCA/IFwibm8gb3BlbiBpbXBhY3QgcmVjb3JkXCIgOlxuICAgICAgICByLmRpc2FzdGVyID8gYGRpc2FzdGVyOiAke3IuZXZlbnRzLm1hcCgoZSkgPT4gYCR7c3Rvcm1OYW1lKGUpfSAoJHtmbXRJbnQoZS5wZW9wbGVfYWZmZWN0ZWQpfSBhZmZlY3RlZClgKS5qb2luKFwiLCBcIil9YFxuICAgICAgICAgICAgICAgICAgIDogXCJubyBjeWNsb25lIGRpc2FzdGVyIGxpc3RlZFwiXS5qb2luKFwiIMK3IFwiKTtcbiAgICBjb25zdCBiID0gaHRtbGA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInRsLWNlbGwgdGwtJHtyLmNhdH0ke3NlbCA9PT0gcyA/IFwiIHRsLXNlbFwiIDogXCJcIn1cIiB0aXRsZT0ke3RpdGxlfSBhcmlhLWxhYmVsPSR7dGl0bGV9IGFyaWEtcHJlc3NlZD0ke3NlbCA9PT0gc30+XG4gICAgICA8c3BhbiBjbGFzcz1cInRsLXlyXCI+4oCZJHtTdHJpbmcocykuc2xpY2UoMil9PC9zcGFuPjwvYnV0dG9uPmA7XG4gICAgYi5vbmNsaWNrID0gKCkgPT4geyBtdXRhYmxlIHNlbCA9IHNlbCA9PT0gcyA/IG51bGwgOiBzOyB9O1xuICAgIHJldHVybiBiO1xuICB9O1xuICBjb25zdCBncmlkID0gaHRtbGA8ZGl2IGNsYXNzPVwidGwtZ3JpZFwiIHJvbGU9XCJncm91cFwiIGFyaWEtbGFiZWw9XCJTZWFzb25zXCI+PC9kaXY+YDtcbiAgZm9yIChjb25zdCBkZWMgb2YgZGVjYWRlcykge1xuICAgIGdyaWQuYXBwZW5kKGh0bWxgPHNwYW4gY2xhc3M9XCJ0bC1kZWNcIj4ke2RlY31zPC9zcGFuPmApO1xuICAgIGZvciAoY29uc3QgcyBvZiBkMy5yYW5nZShkZWMsIGRlYyArIDEwKSlcbiAgICAgIGdyaWQuYXBwZW5kKHNlYXNvbnMuaW5jbHVkZXMocykgPyBjZWxsKHMpIDogaHRtbGA8c3BhbiBjbGFzcz1cInRsLWNlbGwgdGwtZW1wdHlcIj48L3NwYW4+YCk7XG4gIH1cbiAgcmV0dXJuIGh0bWxgPGRpdj4ke2dyaWR9XG4gIDxwIGNsYXNzPVwidGwtaGludFwiPkVhY2ggY2VsbCBpcyBvbmUgc2Vhc29uLCBsYWJlbGxlZCBieSB0aGUgeWVhciBpdCBlbmRzOiDigJkxOSBpcyAyMDE4LzE5LjwvcD5cbiAgPGRpdiBjbGFzcz1cInRsLWxlZ2VuZFwiPlxuICAgIDxzcGFuIGNsYXNzPVwidGwtbGlcIj48c3BhbiBjbGFzcz1cInRsLWtleSB0bC1oaXRcIj48L3NwYW4+cGFpZCwgZGlzYXN0ZXI8L3NwYW4+XG4gICAgPHNwYW4gY2xhc3M9XCJ0bC1saVwiPjxzcGFuIGNsYXNzPVwidGwta2V5IHRsLWZhbHNlXCI+PC9zcGFuPnBhaWQsIG5vIGRpc2FzdGVyIGxpc3RlZDwvc3Bhbj5cbiAgICA8c3BhbiBjbGFzcz1cInRsLWxpXCI+PHNwYW4gY2xhc3M9XCJ0bC1rZXkgdGwtbWlzc1wiPjwvc3Bhbj5kaXNhc3Rlciwgbm8gcGF5b3V0PC9zcGFuPlxuICAgIDxzcGFuIGNsYXNzPVwidGwtbGlcIj48c3BhbiBjbGFzcz1cInRsLWtleSB0bC1xdWlldFwiPjwvc3Bhbj5uZWl0aGVyPC9zcGFuPlxuICAgIDxzcGFuIGNsYXNzPVwidGwtbGlcIj48c3BhbiBjbGFzcz1cInRsLWtleSB0bC1wYWlkLW5vcmVjXCI+PC9zcGFuPnBhaWQsIG5vIG9wZW4gcmVjb3JkPC9zcGFuPlxuICAgIDxzcGFuIGNsYXNzPVwidGwtbGlcIj48c3BhbiBjbGFzcz1cInRsLWtleSB0bC1ub25lLW5vcmVjXCI+PC9zcGFuPm5vIHBheW91dCwgbm8gb3BlbiByZWNvcmQ8L3NwYW4+XG4gIDwvZGl2PjwvZGl2PmA7XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRMZW5pZW50IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBpZiAoc2VsID09PSBudWxsKSByZXR1cm4gaHRtbGA8cCBjbGFzcz1cInRsLWhpbnRcIj5UYXAgYSBzZWFzb24gdG8gc2VlIGl0cyBzdG9ybXMuPC9wPmA7XG4gIGNvbnN0IHIgPSByb3dzLmZpbmQoKGQpID0+IGQuc2Vhc29uID09PSBzZWwpO1xuICBjb25zdCBzdCA9IHRsLnN0b3Jtcy5maWx0ZXIoKHMpID0+IHMuc2Vhc29uID09PSBzZWwpO1xuICBjb25zdCBjbGVhciA9IGh0bWxgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJ0bC1jbGVhclwiPlNob3cgYWxsIHNlYXNvbnM8L2J1dHRvbj5gO1xuICBjbGVhci5vbmNsaWNrID0gKCkgPT4geyBtdXRhYmxlIHNlbCA9IG51bGw7IH07XG4gIHJldHVybiBodG1sYDxkaXYgY2xhc3M9XCJ0bC1kZXRhaWxcIj48c3Ryb25nPiR7c2Vhc29uTGFiZWwoc2VsKX08L3N0cm9uZz5cbiAgICAke3N0Lmxlbmd0aCA9PT0gMCA/IGh0bWxgPHA+Tm8gc3Rvcm0gcGFzc2VkIHdpdGhpbiA1MDAga20gb2YgTW96YW1iaXF1ZS48L3A+YCA6IGh0bWxgPHVsPiR7c3QubWFwKChzKSA9PiB7XG4gICAgICBjb25zdCBtdyA9IHMubXdbem9uZV1bcmldO1xuICAgICAgcmV0dXJuIGh0bWxgPGxpPjxzdHJvbmc+JHtzLm5hbWV9PC9zdHJvbmc+OiBwZWFrICR7cy52bWF4fSBrdDsgJHttdyA/IGAke213fSBrdCBpbnNpZGUgeW91ciB6b25lYCA6IFwibmV2ZXIgaW5zaWRlIHlvdXIgem9uZVwifSR7bXcgPj0gd2luZCA/IGh0bWxgIOKGkiA8c3BhbiBjbGFzcz1cInRsLXRhZyB0bC10YWctcGFpZFwiPnBheXM8L3NwYW4+YCA6IFwiXCJ9JHtzLnByb3Zpc2lvbmFsID8gXCIgKHByb3Zpc2lvbmFsIHRyYWNrKVwiIDogXCJcIn08L2xpPmA7XG4gICAgfSl9PC91bD5gfVxuICAgIDxwPiR7IXIucmVjb3JkID8gXCJObyBvcGVuIHNlYXNvbi1ieS1zZWFzb24gaW1wYWN0IHJlY29yZCBmb3IgdGhpcyBzZWFzb24uXCIgOlxuICAgICAgci5ldmVudHMubGVuZ3RoID09PSAwICYmIHIuZXZlbnRzQWxsLmxlbmd0aCA9PT0gMCA/IFwiSU5HRCBsaXN0cyBubyBjeWNsb25lIHRoaXMgc2Vhc29uLlwiIDpcbiAgICAgIGh0bWxgSU5HRCBsaXN0czogJHtyLmV2ZW50c0FsbC5tYXAoKGUpID0+IGAke3N0b3JtTmFtZShlKX0sICR7Zm10SW50KGUucGVvcGxlX2FmZmVjdGVkKX0gcGVvcGxlIGFmZmVjdGVkYCkuam9pbihcIjsgXCIpfS5gfTwvcD5cbiAgICAke2NsZWFyfTwvZGl2PmA7XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRMZW5pZW50IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBjb25zdCBuID0gcm93cy5sZW5ndGgsIG5QYWlkID0gcm93cy5maWx0ZXIoKHIpID0+IHIucGFpZCkubGVuZ3RoO1xuICBjb25zdCByZWMgPSByb3dzLmZpbHRlcigocikgPT4gci5yZWNvcmQpO1xuICBjb25zdCBjID0gKGspID0+IHJlYy5maWx0ZXIoKHIpID0+IHIuY2F0ID09PSBrKS5sZW5ndGg7XG4gIGNvbnN0IHJldCA9IG5QYWlkID8gbiAvIG5QYWlkIDogbnVsbDtcbiAgY29uc3QgbmFtZUxpc3QgPSAobGlzdCwgZikgPT4gbGlzdC5tYXAoKHIpID0+IGAke3NlYXNvbkxhYmVsKHIuc2Vhc29uKX0gKCR7ZihyKX0pYCkuam9pbihcIiwgXCIpO1xuICBjb25zdCBtaXNzID0gcmVjLmZpbHRlcigocikgPT4gci5jYXQgPT09IFwibWlzc1wiKSwgZmFscyA9IHJlYy5maWx0ZXIoKHIpID0+IHIuY2F0ID09PSBcImZhbHNlXCIpO1xuICByZXR1cm4gaHRtbGBcbiAgPHAgY2xhc3M9XCJ0bC1iaWdcIj48c3Bhbj4ke25QYWlkfTwvc3Bhbj4gb2YgJHtufSBzZWFzb25zIHdvdWxkIGhhdmUgcGFpZCBzaW5jZSAke3NlYXNvbkxhYmVsKHNlYXNvbnNbMF0pfSR7XG4gICAgcmV0ID8gaHRtbGAsIGFib3V0IG9uY2UgZXZlcnkgPHNwYW4+JHtyZXQgPCAxLjUgPyByZXQudG9GaXhlZCgxKSA6IE1hdGgucm91bmQocmV0KX08L3NwYW4+IHllYXJzYCA6IFwiXCJ9LjwvcD5cbiAgPHAgY2xhc3M9XCJ0bC1zdWJcIj5JbiB0aGUgJHtyZWMubGVuZ3RofSBzZWFzb25zIHdpdGggYW4gb3BlbiBpbXBhY3QgcmVjb3JkICgke3NlYXNvbkxhYmVsKHJlY29yZFNwYW5bMF0pfSB0byAke3NlYXNvbkxhYmVsKHJlY29yZFNwYW5bMV0pfSk6PC9wPlxuICA8dGFibGUgY2xhc3M9XCJ0bC0yeDJcIj5cbiAgICA8dGhlYWQ+PHRyPjx0aD48L3RoPjx0aD5EaXNhc3RlcjwvdGg+PHRoPk5vIGRpc2FzdGVyIGxpc3RlZDwvdGg+PC90cj48L3RoZWFkPlxuICAgIDx0Ym9keT5cbiAgICAgIDx0cj48dGg+UGFpZDwvdGg+PHRkIGNsYXNzPVwidGwtaGl0XCI+JHtjKFwiaGl0XCIpfTwvdGQ+PHRkIGNsYXNzPVwidGwtZmFsc2VcIj4ke2MoXCJmYWxzZVwiKX08L3RkPjwvdHI+XG4gICAgICA8dHI+PHRoPk5vIHBheW91dDwvdGg+PHRkIGNsYXNzPVwidGwtbWlzc1wiPiR7YyhcIm1pc3NcIil9PC90ZD48dGQgY2xhc3M9XCJ0bC1xdWlldFwiPiR7YyhcInF1aWV0XCIpfTwvdGQ+PC90cj5cbiAgICA8L3Rib2R5PlxuICA8L3RhYmxlPlxuICA8ZGl2IGNsYXNzPVwidGwtcmVhZGluZ1wiPlxuICAgICR7bWlzcy5sZW5ndGggPyBodG1sYDxwPjxzdHJvbmc+TWlzc2VkOjwvc3Ryb25nPiAke25hbWVMaXN0KG1pc3MsIChyKSA9PiByLmV2ZW50cy5tYXAoKGUpID0+IHtcbiAgICAgIGNvbnN0IHMgPSB0bC5zdG9ybXMuZmluZCgoeCkgPT4geC5pZCA9PT0gZS5zaWQpO1xuICAgICAgY29uc3QgbXcgPSBzID8gcy5td1t6b25lXVtyaV0gOiAwO1xuICAgICAgcmV0dXJuIGAke3MgPyBzLm5hbWUgOiBlLm5hbWV9OiAke213ID8gYCR7bXd9IGt0IGluIHlvdXIgem9uZWAgOiBcIm5ldmVyIGluIHlvdXIgem9uZVwifWA7XG4gICAgfSkuam9pbihcIjsgXCIpKX0uIFRoZSBkaXNhc3RlciBjYW1lLCB0aGUgbW9uZXkgZGlkIG5vdDogdGhlIGJhc2lzIHJpc2sgdGhhdCBodXJ0cyBtb3N0LjwvcD5gIDogXCJcIn1cbiAgICAke2ZhbHMubGVuZ3RoID8gaHRtbGA8cD48c3Ryb25nPlBhaWQsIG5vIGRpc2FzdGVyIGxpc3RlZDo8L3N0cm9uZz4gJHtuYW1lTGlzdChmYWxzLCAocikgPT4gci5wYXlpbmcubWFwKChwKSA9PiBwLm5hbWUpLmpvaW4oXCIsIFwiKSl9LiBNb25leSBmbG93cyB3aGVuIHRoZSByZWNvcmQgc2hvd3Mgbm8gY3ljbG9uZSBkaXNhc3Rlci4gUHJlbWl1bSBzcGVudCBvbiBpdCBpcyBwcmVtaXVtIG5vdCBzcGVudCBlbHNld2hlcmUuPC9wPmAgOiBcIlwifVxuICAgICR7IW1pc3MubGVuZ3RoICYmICFmYWxzLmxlbmd0aCA/IGh0bWxgPHA+Tm8gbWlzbWF0Y2ggaW4gdGhlc2UgJHtyZWMubGVuZ3RofSBzZWFzb25zLiBUaGF0IGlzIGEgc21hbGwgc2FtcGxlOiBsb29rIGF0IGhvdyBvZnRlbiB0aGUgdHJpZ2dlciBmaXJlcyBvdmVyIHRoZSB3aG9sZSByZWNvcmQsIGFuZCB3aGF0IGl0IHdvdWxkIGNvc3QuPC9wPmAgOiBcIlwifVxuICA8L2Rpdj5gO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0TGVuaWVudCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im11dGFibGUgc2VsID0gbnVsbFxucmkgPSB0bC5tZXRhLnJhZGlpX2ttLmluZGV4T2YocmFkaXVzKVxuY2l0eSA9IHRsLm1ldGEuY2l0aWVzLmZpbmQoKGMpID0+IGMubmFtZSA9PT0gem9uZSlcblxuLy8gSXMgYSB0cmFjayBwb2ludCBpbnNpZGUgdGhlIHpvbmU/IFNhbWUgbWV0aG9kIGFzIHByZXBhcmUucHk6IGdyZWF0IGNpcmNsZSB0byBhIGNpdHk7IGZvclxuLy8gTW96YW1iaXF1ZSAwIGluc2lkZSB0aGUgb3V0bGluZSwgZWxzZSB0aGUgZGlzdGFuY2UgdG8gdGhlIG5lYXJlc3QgYm91bmRhcnkgc2VnbWVudCBpbiBhXG4vLyBsb2NhbCBwcm9qZWN0aW9uIGNlbnRyZWQgb24gdGhlIHBvaW50LlxuaW5ab25lID0ge1xuICBpZiAoY2l0eSkgcmV0dXJuIChsb24sIGxhdCkgPT4gZDMuZ2VvRGlzdGFuY2UoW2xvbiwgbGF0XSwgW2NpdHkubG9uLCBjaXR5LmxhdF0pICogNjM3MS4wMDg4IDw9IHJhZGl1cztcbiAgY29uc3QgcmluZyA9IG1vekZlYXR1cmUuZ2VvbWV0cnkuY29vcmRpbmF0ZXNbMF0sIGsgPSBNYXRoLlBJIC8gMTgwICogNjM3MS4wMDg4O1xuICByZXR1cm4gKGxvbiwgbGF0KSA9PiB7XG4gICAgaWYgKGQzLmdlb0NvbnRhaW5zKG1vekZlYXR1cmUsIFtsb24sIGxhdF0pKSByZXR1cm4gdHJ1ZTtcbiAgICBjb25zdCBjID0gTWF0aC5jb3MobGF0ICogTWF0aC5QSSAvIDE4MCk7XG4gICAgbGV0IGJlc3QgPSBJbmZpbml0eTtcbiAgICBmb3IgKGxldCBpID0gMDsgaSA8IHJpbmcubGVuZ3RoIC0gMTsgaSsrKSB7XG4gICAgICBjb25zdCB1eCA9IChyaW5nW2ldWzBdIC0gbG9uKSAqIGMgKiBrLCB1eSA9IChyaW5nW2ldWzFdIC0gbGF0KSAqIGs7XG4gICAgICBjb25zdCBkeCA9IChyaW5nW2kgKyAxXVswXSAtIHJpbmdbaV1bMF0pICogYyAqIGssIGR5ID0gKHJpbmdbaSArIDFdWzFdIC0gcmluZ1tpXVsxXSkgKiBrO1xuICAgICAgY29uc3QgdCA9IE1hdGgubWF4KDAsIE1hdGgubWluKDEsIC0odXggKiBkeCArIHV5ICogZHkpIC8gKGR4ICogZHggKyBkeSAqIGR5IHx8IDEpKSk7XG4gICAgICBiZXN0ID0gTWF0aC5taW4oYmVzdCwgTWF0aC5oeXBvdCh1eCArIHQgKiBkeCwgdXkgKyB0ICogZHkpKTtcbiAgICB9XG4gICAgcmV0dXJuIGJlc3QgPD0gcmFkaXVzO1xuICB9O1xufVxuXG4vLyBDcm9zcy1jaGVjayBvZiBJTkdEJ3MgbGlzdDogc3Rvcm1zIGluIHRoZSByZWNvcmQgc2Vhc29ucyB3aG9zZSBjZW50cmUgY3Jvc3NlZCBNb3phbWJpcXVlXG5jcm9zc2VkID0gdGwuc3Rvcm1zLmZpbHRlcigocykgPT4gcy5zZWFzb24gPj0gcmVjb3JkU3BhblswXSAmJiBzLnNlYXNvbiA8PSByZWNvcmRTcGFuWzFdICYmIHMubXcuTW96YW1iaXF1ZVswXSA+IDApXG5saXN0ZWRJZHMgPSBuZXcgU2V0KHRsLmltcGFjdHMubWFwKChlKSA9PiBlLnNpZCkpXG5saXN0ZWRNaW4gPSBkMy5taW4oY3Jvc3NlZC5maWx0ZXIoKHMpID0+IGxpc3RlZElkcy5oYXMocy5pZCkpLCAocykgPT4gcy5tdy5Nb3phbWJpcXVlWzBdKVxudW5saXN0ZWRTdG9ybXMgPSBjcm9zc2VkLmZpbHRlcigocykgPT4gIWxpc3RlZElkcy5oYXMocy5pZCkpXG51bmxpc3RlZCA9IHVubGlzdGVkU3Rvcm1zLm1hcCgocykgPT4gYCR7cy5uYW1lfSAke3NlYXNvbkxhYmVsKHMuc2Vhc29uKX0sICR7cy5tdy5Nb3phbWJpcXVlWzBdfSBrdGApLmpvaW4oXCI7IFwiKVxuaW5nZENoZWNrID0ge1xuICBjb25zdCBzdGFydCA9IGBUaGF0IG9wZW4gdGFibGUgc3RhcnRzIGluICR7c2Vhc29uTGFiZWwocmVjb3JkU3BhblswXSl9LmA7XG4gIC8vIE9ubHkgY2xhaW0gdGhlIHdpbmQgc3BsaXQgaWYgdGhlIGRhdGEgcmVhbGx5IHNob3cgaXQgKGNoZWNrZWQgb24gZXZlcnkgcmVidWlsZCkuXG4gIGlmICh1bmxpc3RlZFN0b3Jtcy5sZW5ndGggJiYgZDMubWF4KHVubGlzdGVkU3Rvcm1zLCAocykgPT4gcy5tdy5Nb3phbWJpcXVlWzBdKSA8IGxpc3RlZE1pbilcbiAgICByZXR1cm4gYCR7c3RhcnR9IEV2ZXJ5IHN0b3JtIHdob3NlIGNlbnRyZSBjcm9zc2VkIE1vemFtYmlxdWUgYXQgJHtsaXN0ZWRNaW59IGt0IG9yIG1vcmUgaW4gdGhvc2Ugc2Vhc29ucyBpcyBpbiBJTkdEJ3MgbGlzdDsgd2Vha2VyIG9uZXMgdGhhdCBjcm9zc2VkIGl0ICgke3VubGlzdGVkfSkgYXJlIG5vdC5gO1xuICBpZiAoIXVubGlzdGVkU3Rvcm1zLmxlbmd0aCkgcmV0dXJuIGAke3N0YXJ0fSBFdmVyeSBzdG9ybSB3aG9zZSBjZW50cmUgY3Jvc3NlZCBNb3phbWJpcXVlIGluIHRob3NlIHNlYXNvbnMgaXMgaW4gSU5HRCdzIGxpc3QuYDtcbiAgcmV0dXJuIGAke3N0YXJ0fSBTdG9ybXMgd2hvc2UgY2VudHJlIGNyb3NzZWQgTW96YW1iaXF1ZSBidXQgYXJlIG5vdCBpbiBJTkdEJ3MgbGlzdDogJHt1bmxpc3RlZH0uYDtcbn1cbnN0b3JtQ291bnQgPSBgJHt0bC5zdG9ybXMubGVuZ3RofSBzdG9ybXMuICR7dGwubWV0YS5pYnRyYWNzLnN0b3Jtc19uZWFyX3dpdGhvdXRfdXNfdHJhY2t9IG1vcmUgY2FtZSB0aGF0IGNsb3NlIGJ1dCBoYXZlIG5vIFVTIHRyYWNrIGFuZCBhcmUgbGVmdCBvdXQuYFxub2xkZXJDaGVjayA9IGAke3RsLm1ldGEuaWJ0cmFjcy5zZWFzb25zX29mX3N0b3Jtc193aXRob3V0X3VzX3RyYWNrLmZpbHRlcigoeSkgPT4geSA8PSAxOTkwKS5sZW5ndGh9IG9mIHRoZSAke3RsLm1ldGEuaWJ0cmFjcy5zdG9ybXNfbmVhcl93aXRob3V0X3VzX3RyYWNrfSBzdG9ybXMgbGVmdCBvdXQgZm9yIGxhY2sgb2YgYSBVUyB0cmFjayBhcmUgZnJvbSB0aGUgMTk3OS84MCB0byAxOTg5LzkwIHNlYXNvbnMuYFxuXG5wcm92aXNpb25hbFNlYXNvbnMgPSBbLi4ubmV3IFNldCh0bC5zdG9ybXMuZmlsdGVyKChzKSA9PiBzLnByb3Zpc2lvbmFsKS5tYXAoKHMpID0+IHNlYXNvbkxhYmVsKHMuc2Vhc29uKSkpXS5qb2luKFwiIGFuZCBcIilcblxuc3Rvcm1OYW1lID0gKGUpID0+IHRsLnN0b3Jtcy5maW5kKChzKSA9PiBzLmlkID09PSBlLnNpZCk/Lm5hbWUgPz8gZS5uYW1lXG5cbm1vekZlYXR1cmUgPSB0bC5sYW5kLmZlYXR1cmVzLmZpbmQoKGYpID0+IGYucHJvcGVydGllcy5pc28gPT09IFwiTU9aXCIpXG5cbnpvbmVHZW8gPSB7XG4gIGlmIChjaXR5KSByZXR1cm4gcmFkaXVzID09PSAwID8ge3R5cGU6IFwiUG9pbnRcIiwgY29vcmRpbmF0ZXM6IFtjaXR5LmxvbiwgY2l0eS5sYXRdfVxuICAgIDogZDMuZ2VvQ2lyY2xlKCkuY2VudGVyKFtjaXR5LmxvbiwgY2l0eS5sYXRdKS5yYWRpdXMocmFkaXVzIC8gMTExLjE5NSkoKTtcbiAgaWYgKHJhZGl1cyA9PT0gMCkgcmV0dXJuIG1vekZlYXR1cmUuZ2VvbWV0cnk7XG4gIGNvbnN0IGcgPSB0bC5ncmlkO1xuICBjb25zdCBbY10gPSBkMy5jb250b3VycygpLnNpemUoW2cubngsIGcubnldKS50aHJlc2hvbGRzKFstcmFkaXVzXSkoZy5rbS5tYXAoKHYpID0+IC12KSk7XG4gIGNvbnN0IHRyID0gKFt4LCB5XSkgPT4gW2cubG9uMCArICh4IC0gMC41KSAqIGcuc3RlcCwgZy5sYXQwIC0gKHkgLSAwLjUpICogZy5zdGVwXTtcbiAgY29uc3QgZ2VvbSA9IHt0eXBlOiBcIk11bHRpUG9seWdvblwiLCBjb29yZGluYXRlczogYy5jb29yZGluYXRlcy5tYXAoKHApID0+IHAubWFwKChyKSA9PiByLm1hcCh0cikpKX07XG4gIGlmIChkMy5nZW9BcmVhKGdlb20pID4gMiAqIE1hdGguUEkpIGdlb20uY29vcmRpbmF0ZXMuZm9yRWFjaCgocCkgPT4gcC5mb3JFYWNoKChyKSA9PiByLnJldmVyc2UoKSkpO1xuICByZXR1cm4gZ2VvbTtcbn1cblxucm93cyA9IHNlYXNvbnMubWFwKChzKSA9PiB7XG4gIGNvbnN0IHBheWluZyA9IHRsLnN0b3Jtcy5maWx0ZXIoKGQpID0+IGQuc2Vhc29uID09PSBzICYmIGQubXdbem9uZV1bcmldID49IHdpbmQpXG4gICAgLm1hcCgoZCkgPT4gKHtpZDogZC5pZCwgbmFtZTogZC5uYW1lLCBtdzogZC5td1t6b25lXVtyaV19KSk7XG4gIGNvbnN0IGV2ZW50c0FsbCA9IHRsLmltcGFjdHMuZmlsdGVyKChlKSA9PiBlLnNlYXNvbiA9PT0gcyk7XG4gIGNvbnN0IGV2ZW50cyA9IGV2ZW50c0FsbC5maWx0ZXIoKGUpID0+IGUucGVvcGxlX2FmZmVjdGVkID49IG1pbkFmZmVjdGVkKTtcbiAgY29uc3QgcmVjb3JkID0gcyA+PSByZWNvcmRTcGFuWzBdICYmIHMgPD0gcmVjb3JkU3BhblsxXTtcbiAgY29uc3QgcGFpZCA9IHBheWluZy5sZW5ndGggPiAwLCBkaXNhc3RlciA9IGV2ZW50cy5sZW5ndGggPiAwO1xuICBjb25zdCBjYXQgPSAhcmVjb3JkID8gKHBhaWQgPyBcInBhaWQtbm9yZWNcIiA6IFwibm9uZS1ub3JlY1wiKVxuICAgIDogcGFpZCAmJiBkaXNhc3RlciA/IFwiaGl0XCIgOiBwYWlkID8gXCJmYWxzZVwiIDogZGlzYXN0ZXIgPyBcIm1pc3NcIiA6IFwicXVpZXRcIjtcbiAgcmV0dXJuIHtzZWFzb246IHMsIHBheWluZywgZXZlbnRzLCBldmVudHNBbGwsIHJlY29yZCwgcGFpZCwgZGlzYXN0ZXIsIGNhdH07XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd6b25lJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3JhZGl1cycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd3aW5kJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21pbkFmZmVjdGVkJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../showcases";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/recurrentanalytics\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© re:current_analytics · <a href="../how-this-site-is-made.html#licence">Texts CC BY 4.0, code MIT</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="mailto:timm.walker@recurrentanalytics.com">
+<p>Email</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/walkertimm">
+<p>LinkedIn</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/recurrentanalytics">
+<p>GitHub</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../notes/index.xml">
+<p>RSS</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../library/index.html">
+<p>Library</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../how-this-site-is-made.html">
+<p>Colophon</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../datenschutz.html">
+<p>Datenschutz</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

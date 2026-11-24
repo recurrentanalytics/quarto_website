@@ -8,35 +8,37 @@
 <title>re:current_analytics</title>
 <link>https://recurrentanalytics.com/notes/</link>
 <atom:link href="https://recurrentanalytics.com/notes/index.xml" rel="self" type="application/rss+xml"/>
-<description>A lab-notebook for climate risk, models, and recurrent intelligence.</description>
+<description>under:current: books, films, music and art that run underneath the work.</description>
+<image>
+<url>https://recurrentanalytics.com/assets/brand/og-default.png</url>
+<title>re:current_analytics</title>
+<link>https://recurrentanalytics.com/notes/</link>
+</image>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 15 Dec 2025 08:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 20 Nov 2026 23:00:00 GMT</lastBuildDate>
 <item>
-  <title>Example Reading Note</title>
-  <dc:creator>Author Name</dc:creator>
-  <link>https://recurrentanalytics.com/notes/example-reading-note.html</link>
+  <title>A seagull, a butterfly, a flood</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-gleick.html</link>
   <description><![CDATA[ 
 
 
 
 
 
-<section id="summary" class="level2">
-<h2 data-anchor-id="summary">Summary</h2>
-<p>This is an example reading note to demonstrate how reading notes appear in the Notes listing. Reading notes are treated just like other notes and will appear alongside regular notes in the collection.</p>
+<p>Some writers you read for a subject. James Gleick I read for the people he finds inside one.</p>
+<section id="chaos" class="level2">
+<h2 data-anchor-id="chaos">Chaos</h2>
+<p><em>Chaos: Making a New Science</em> came out with Viking in 1987 and was a <a href="https://www.nationalbook.org/people/james-gleick/">National Book Award finalist</a>. Its material is nonlinearity, strange attractors and fractals, and the people who took them seriously early: Edward Lorenz, Mitchell Feigenbaum, Benoit Mandelbrot.</p>
+<p>Lorenz is the one I keep coming back to. He was a meteorologist at MIT, and his 1963 paper <em>Deterministic Nonperiodic Flow</em> showed that a tiny, fully deterministic model of a fluid could still be <a href="https://www.technologyreview.com/2011/02/22/196987/when-the-butterfly-effect-took-flight/">unpredictable in the long run</a>. The butterfly came later, in the title of a talk he gave in Washington in December 1972. Before that, his image had been <a href="https://www.sciencenews.org/article/born-half-century-ago-chaos-theory-languished-years">a seagull</a>.</p>
+<p>For anyone who works with weather this is the founding paradox: the equations are known, and the forecast still has a horizon. I like that Gleick tells it as a story about attention, about people who looked twice at a result others would have rounded away.</p>
+<p>The book had a second life on stage. Tom Stoppard’s <em>Arcadia</em> (1993) was <a href="https://lithub.com/this-week-in-literary-history-tom-stoppards-arcadia-premieres-in-london">inspired by it</a>: one English country house, two centuries, a girl with a question about rice pudding. Read the book, then see the play, and leave the rest of the premise alone.</p>
 </section>
-<section id="key-takeaways" class="level2">
-<h2 data-anchor-id="key-takeaways">Key Takeaways</h2>
-<ul>
-<li>Reading notes go directly in the <code>notes/</code> directory</li>
-<li>They automatically appear in the Notes listing</li>
-<li>Use <code>categories: [reading]</code> to group them (optional)</li>
-<li>Add tags for topic filtering</li>
-</ul>
-</section>
-<section id="notes" class="level2">
-<h2 data-anchor-id="notes">Notes</h2>
-<p>This is a placeholder example. Delete this file when adding your first real reading note.</p>
+<section id="the-rest-of-the-shelf" class="level2">
+<h2 data-anchor-id="the-rest-of-the-shelf">The rest of the shelf</h2>
+<p><em>Genius</em> (1992) is his life of Richard Feynman, the second National Book Award finalist. <em>Faster</em> (1999) is about acceleration: atomic clocks, waiting rooms, air-traffic control. Written before smartphones, it reads now like a weather report from just before the storm. <em>Isaac Newton</em> (2003) keeps the alchemy next to the optics and the calculus, which is the honest way to tell it.</p>
+<p><em>The Information</em> (2011) is the big one: a history that runs from African talking drums through Babbage, Ada Byron and Morse to Shannon and Turing. It won the <a href="https://royalsociety.org/news/2012/science-book-winner-2012">Royal Society Winton Prize</a> in 2012. Pair it with Jorge Luis Borges’s <em>The Library of Babel</em> (1941), a story set in a library that holds every possible book, which is a joke about information and a nightmare about it at the same time.</p>
+<p><em>Time Travel</em> (2016) follows an idea rather than a science, from H. G. Wells’s <em>The Time Machine</em> to Gödel and <em>Doctor Who</em>. Its film partner is Chris Marker’s <em>La Jetée</em> (1962), a short told almost entirely in still photographs.</p>
+<p>The newest, <a href="https://around.com/about/"><em>The Telephone: A New History</em></a>, came out in the US this month.</p>
 
 
 <!-- -->
@@ -44,186 +46,43 @@
 </section>
 
  ]]></description>
-  <category>reading</category>
-  <guid>https://recurrentanalytics.com/notes/example-reading-note.html</guid>
-  <pubDate>Mon, 15 Dec 2025 08:00:00 GMT</pubDate>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-gleick.html</guid>
+  <pubDate>Fri, 20 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-gleick.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
-  <title>Risk Modelling Part 3: Implementation</title>
-  <link>https://recurrentanalytics.com/notes/risk-series-3.html</link>
+  <title>Ice, fire, jungle, voice</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-herzog.html</link>
   <description><![CDATA[ 
 
 
 
 
 
-<div class="series-nav">
-<div class="series-nav-header">
-<p>Series: Introduction to Risk Modelling (Part 3 of 3)</p>
-</div>
-<div class="series-nav-links">
-<div class="series-nav-prev">
-<p><a href="risk-series-2.html">← Previous: Data</a></p>
-</div>
-<div class="series-nav-next">
-
-</div>
-</div>
-</div>
-<section id="putting-it-together" class="level2">
-<h2 data-anchor-id="putting-it-together">Putting It Together</h2>
-<p>Armed with the <a href="risk-series-1.html">theoretical foundations</a> and <a href="risk-series-2.html">data sources</a>, we can now implement a basic risk model.</p>
+<p>Not one film this time but all of them, or as many as I have caught. Werner Herzog, born in Munich in 1942, has made <a href="https://www.wernerherzog.com/">more than sixty</a> features and documentaries, and in 2025 Venice gave him its <a href="https://www.labiennale.org/en/news/werner-herzog-golden-lion-lifetime-achievement">Golden Lion for Lifetime Achievement</a>. What holds them together for me is not a genre. It is a landscape at its limit, a person who goes there anyway, and a voice that refuses to pretend the landscape cares.</p>
+<section id="jungle" class="level2">
+<h2 data-anchor-id="jungle">Jungle</h2>
+<p>The early fiction is where most people start. In <a href="https://www.bfi.org.uk/film/9fa0c60c-1f79-5d0c-923c-396a6dfa317d/aguirre-wrath-of-god"><em>Aguirre, the Wrath of God</em></a> (1972), conquistadors go down from the Andes into the Amazon in search of El Dorado. In <a href="https://www.festival-cannes.com/en/f/fitzcarraldo/"><em>Fitzcarraldo</em></a> (1982), which won him Best Director at Cannes, a man who wants to bring opera to the jungle sets out to haul a steamship over a mountain between two rivers. That is the premise, and I will leave it there.</p>
+<p>Both are scored by <a href="https://daily.redbullmusicacademy.com/2017/05/fricke-and-herzog">Popol Vuh</a>, Florian Fricke’s group. Their <em>Aguirre</em> album is worth hearing on its own, without the pictures, in the dark.</p>
 </section>
-<section id="a-simple-loss-model" class="level2">
-<h2 data-anchor-id="a-simple-loss-model">A Simple Loss Model</h2>
-<div id="3d0ade56" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> np</span>
-<span id="cb1-2"></span>
-<span id="cb1-3"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> simulate_losses(n_scenarios<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10000</span>, </span>
-<span id="cb1-4">                    mean_hazard<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.1</span>, </span>
-<span id="cb1-5">                    exposure<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1000000</span>,</span>
-<span id="cb1-6">                    vulnerability<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.3</span>):</span>
-<span id="cb1-7">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb1-8"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    Simple Monte Carlo loss simulation.</span></span>
-<span id="cb1-9"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    </span></span>
-<span id="cb1-10"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    """</span></span>
-<span id="cb1-11">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Simulate hazard intensity (e.g., flood depth)</span></span>
-<span id="cb1-12">    hazard <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> np.random.exponential(mean_hazard, n_scenarios)</span>
-<span id="cb1-13">    </span>
-<span id="cb1-14">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Calculate damage ratio based on vulnerability</span></span>
-<span id="cb1-15">    damage_ratio <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> np.minimum(hazard <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> vulnerability, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.0</span>)</span>
-<span id="cb1-16">    </span>
-<span id="cb1-17">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Compute losses</span></span>
-<span id="cb1-18">    losses <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> exposure <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> damage_ratio</span>
-<span id="cb1-19">    </span>
-<span id="cb1-20">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> losses</span>
-<span id="cb1-21"></span>
-<span id="cb1-22"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Run simulation</span></span>
-<span id="cb1-23">losses <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> simulate_losses()</span>
-<span id="cb1-24"></span>
-<span id="cb1-25"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Key statistics</span></span>
-<span id="cb1-26"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Expected Loss: $</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>losses<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>mean()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb1-27"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"VaR 99%: $</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>np<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>percentile(losses, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">99</span>)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb1-28"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Max Loss: $</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>losses<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">max</span>()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:,.0f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span></code></pre></div></div>
-</div>
+<section id="fire" class="level2">
+<h2 data-anchor-id="fire">Fire</h2>
+<p><em>Lessons of Darkness</em> (1992) films the <a href="https://www.idfa.nl/en/film/a57ea402-37d8-437b-ae0f-af0fc5988a5b/lessons-of-darkness">oil fires of Kuwait</a> after the Gulf War, shortly before they were put out, as if they were the landscape of another planet. It is the most disturbing climate film I know, and it never mentions climate.</p>
+<p>The volcano films came later. <a href="https://filmsandfestivals.britishcouncil.org/projects/into-the-inferno"><em>Into the Inferno</em></a> (2016) he co-directed with the volcanologist Clive Oppenheimer. <em>The Fire Within</em> (2022) is built from more than two hundred hours of footage shot by the volcanologists Katia and Maurice Krafft. In the same year Sara Dosa made <em>Fire of Love</em> from the same archive. Watching both is a lesson in how much the cut decides: same people, same mountains, two different films.</p>
 </section>
-<section id="key-implementation-decisions" class="level2">
-<h2 data-anchor-id="key-implementation-decisions">Key Implementation Decisions</h2>
-<p>When building production risk models, consider:</p>
-<ol type="1">
-<li><strong>Correlation structure</strong> - How do risks aggregate?</li>
-<li><strong>Tail dependence</strong> - Do extreme events cluster?</li>
-<li><strong>Computational efficiency</strong> - Can you run enough scenarios?</li>
-<li><strong>Validation</strong> - How do you test the model?</li>
-</ol>
+<section id="ice" class="level2">
+<h2 data-anchor-id="ice">Ice</h2>
+<p><a href="https://lwlies.com/reviews/encounters-at-the-end-of-the-world"><em>Encounters at the End of the World</em></a> (2007) goes to McMurdo Station in Antarctica and finds, among the ice, the caves and the volcanoes, a community of people who ended up at the bottom of the world for reasons of their own. It is the warmest film he made, and the one I would start with.</p>
 </section>
-<section id="further-reading" class="level2">
-<h2 data-anchor-id="further-reading">Further Reading</h2>
-<p>This series provides a foundation. For deeper dives:</p>
-<section id="linked-from" class="level4 backlinks">
-<h4 data-anchor-id="linked-from">Linked from</h4>
-<ul>
-<li><a href="risk-series-2.html">Risk Modelling Part 2: Data</a></li>
-</ul>
+<section id="people-at-the-edge" class="level2">
+<h2 data-anchor-id="people-at-the-edge">People at the edge</h2>
+<p><em>Grizzly Man</em> (2005) is built largely from the footage of Timothy Treadwell, who filmed himself among the bears of Katmai in Alaska. <a href="https://www.tiff.ro/en/film/cave-forgotten-dreams"><em>Cave of Forgotten Dreams</em></a> (2010) takes a 3D camera into the Chauvet cave in southern France. And in <a href="https://www.labiennale.org/en/cinema/2025/out-competition/ghost-elephants"><em>Ghost Elephants</em></a> (2025), Steve Boyes searches the highlands of Angola for a herd that may or may not be there.</p>
 </section>
+<section id="the-voice" class="level2">
+<h2 data-anchor-id="the-voice">The voice</h2>
+<p>In 1999 Herzog read out his twelve-point <a href="https://designmanifestos.org/werner-herzog-the-minnesota-declaration/">Minnesota Declaration</a>, a short polemic against the documentary that only records facts. Its central claim is that “there is such a thing as poetic, ecstatic truth”. You can disagree with it, and I sometimes do. But it explains the films better than any review.</p>
+<p>He also writes. <em>The Twilight World</em>, his first novel (German 2021, English 2022), is about Hiroo Onoda on the island of Lubang. His memoir came out in German in 2022 as <em>Jeder für sich und Gott gegen alle</em> and in English in 2023. Both read like the films sound.</p>
 
 
 <!-- -->
@@ -231,131 +90,84 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
 </section>
 
  ]]></description>
-  <category>risk</category>
-  <category>series</category>
-  <category>code</category>
-  <guid>https://recurrentanalytics.com/notes/risk-series-3.html</guid>
-  <pubDate>Fri, 12 Dec 2025 08:00:00 GMT</pubDate>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-herzog.html</guid>
+  <pubDate>Fri, 20 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-herzog.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
-  <title>Risk Modelling Part 2: Data</title>
-  <link>https://recurrentanalytics.com/notes/risk-series-2.html</link>
+  <title>Water, absent</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-burtynsky.html</link>
   <description><![CDATA[ 
 
 
 
 
 
-<div class="series-nav">
-<div class="series-nav-header">
-<p>Series: Introduction to Risk Modelling (Part 2 of 3)</p>
-</div>
-<div class="series-nav-links">
-<div class="series-nav-prev">
-<p><a href="risk-series-1.html">← Previous: Foundations</a></p>
-</div>
-<div class="series-nav-next">
-<p><a href="risk-series-3.html">Next: Implementation →</a></p>
-</div>
-</div>
-</div>
-<section id="data-sources-for-climate-risk" class="level2">
-<h2 data-anchor-id="data-sources-for-climate-risk">Data Sources for Climate Risk</h2>
-<p>Building on the <a href="risk-series-1.html">foundations from Part 1</a>, this note covers the data landscape for climate risk modelling.</p>
-<section id="observational-data" class="level3">
-<h3 data-anchor-id="observational-data">Observational Data</h3>
-<ul>
-<li><strong>ERA5</strong> - ECMWF’s reanalysis dataset</li>
-<li><strong>GHCN</strong> - Global Historical Climatology Network</li>
-<li><strong>Station data</strong> - Local weather observations</li>
-</ul>
-</section>
-<section id="modelled-data" class="level3">
-<h3 data-anchor-id="modelled-data">Modelled Data</h3>
-<ul>
-<li><strong>CMIP6</strong> - Climate model ensembles for projections</li>
-<li><strong>Downscaled projections</strong> - Regional climate scenarios</li>
-<li><strong>Catastrophe model outputs</strong> - Vendor-specific hazard layers</li>
-</ul>
-</section>
-</section>
-<section id="data-quality-considerations" class="level2">
-<h2 data-anchor-id="data-quality-considerations">Data Quality Considerations</h2>
-<p>When working with climate data, always consider:</p>
-<ol type="1">
-<li><strong>Spatial resolution</strong> - Is the data granular enough for your use case?</li>
-<li><strong>Temporal coverage</strong> - Do you have enough historical data?</li>
-<li><strong>Bias</strong> - Are there systematic errors in the observations?</li>
-<li><strong>Uncertainty</strong> - What are the confidence intervals?</li>
-</ol>
-<p>Various frameworks provide approaches to validating spatial data quality.</p>
-</section>
-<section id="next-steps" class="level2">
-<h2 data-anchor-id="next-steps">Next Steps</h2>
-<p>With data in hand, we move to <a href="risk-series-3.html">Part 3: Implementation</a> where we build actual models.</p>
-<section id="linked-from" class="level4 backlinks">
-<h4 data-anchor-id="linked-from">Linked from</h4>
-<ul>
-<li><a href="risk-series-1.html">Risk Modelling Part 1: Foundations</a></li>
-<li><a href="risk-series-3.html">Risk Modelling Part 3: Implementation</a></li>
-</ul>
-</section>
+<p>Edward Burtynsky, <em>Water</em> (Steidl, 2013). Dams, irrigation circles, a dry lake bed, seen from far above. In many of the pictures, as the curator Russell Lord wrote of the series, the water is absent. From that height a farm looks like a painting. Only the scale tells you it was a decision.</p>
+<p>Two companions. Godfrey Reggio’s film <em>Koyaanisqatsi</em> (1982): no dialogue, cities and landscapes often seen from the air or sped up, Philip Glass’s music doing the talking. And Robert Smithson’s <em>Spiral Jetty</em> (1970), a coil of rock built out into the Great Salt Lake. Within a few years the water covered it; drought brought it back for good in 2002, and today the shore lies far from it. A sculpture that turned into a gauge.</p>
 
 
 <!-- -->
 
-</section>
 
  ]]></description>
-  <category>risk</category>
-  <category>series</category>
-  <category>data</category>
-  <guid>https://recurrentanalytics.com/notes/risk-series-2.html</guid>
-  <pubDate>Fri, 12 Dec 2025 08:00:00 GMT</pubDate>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-burtynsky.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-burtynsky.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
-  <title>Risk Modelling Part 1: Foundations</title>
-  <link>https://recurrentanalytics.com/notes/risk-series-1.html</link>
+  <title>Eighty-nine papers and a sandpile</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-complexity-compendium.html</link>
   <description><![CDATA[ 
 
 
 
 
 
-<div class="series-nav">
-<div class="series-nav-header">
-<p>Series: Introduction to Risk Modelling (Part 1 of 3)</p>
-</div>
-<div class="series-nav-links">
-<div class="series-nav-prev">
-
-</div>
-<div class="series-nav-next">
-<p><a href="risk-series-2.html">Next: Data →</a></p>
-</div>
-</div>
-</div>
-<section id="what-is-risk-modelling" class="level2">
-<h2 data-anchor-id="what-is-risk-modelling">What is Risk Modelling?</h2>
-<p>Risk modelling is the practice of using mathematical frameworks to quantify uncertainty and potential losses. In climate contexts, this typically involves:</p>
-<ol type="1">
-<li><strong>Hazard identification</strong> - What can go wrong?</li>
-<li><strong>Exposure assessment</strong> - What assets are at risk?</li>
-<li><strong>Vulnerability analysis</strong> - How susceptible are those assets?</li>
-<li><strong>Loss estimation</strong> - What are the potential consequences?</li>
-</ol>
+<p>This one is long, because the books are.</p>
+<section id="the-object" class="level2">
+<h2 data-anchor-id="the-object">The object</h2>
+<p><em>Foundational Papers in Complexity Science</em> is a set of four volumes from SFI Press, the Santa Fe Institute’s publisher, edited by David C. Krakauer and published over the course of 2024. It reprints 89 papers written between 1922 and 2000, each with a new introduction and annotations by present-day researchers. By the publisher’s page counts that is a little over 3,100 pages.</p>
+<p>It is not a set you read from front to back. It is one you open somewhere in the middle and argue with.</p>
+<p>The order is strictly chronological, and I think that is the best editorial decision in it. Papers that were never meant to meet end up as neighbours. Hayek’s “The Use of Knowledge in Society” (1945) sits two places before Shannon’s “A Mathematical Theory of Communication” (1948): one on how prices carry what no planner can know, the other on how any message can be counted in bits. Turing’s “Computing Machinery and Intelligence” (1950) is followed by Nash’s “Non-Cooperative Games” (1951) and then by Turing again, two years on, asking how pattern in a living thing could arise from chemistry alone. You would never put these on one syllabus. Side by side they look like one long conversation about how order comes out of many small parts that do not know about the whole.</p>
 </section>
-<section id="core-concepts" class="level2">
-<h2 data-anchor-id="core-concepts">Core Concepts</h2>
-<p>The foundation of risk modelling rests on probability theory. We often use Monte Carlo methods to simulate thousands of scenarios and understand the distribution of possible outcomes.</p>
-<p>Key terms: - <strong>Expected loss</strong>: The average loss across all scenarios - <strong>Value at Risk (VaR)</strong>: The maximum loss at a given confidence level - <strong>Tail risk</strong>: The probability of extreme events</p>
+<section id="the-climate-book-hidden-inside" class="level2">
+<h2 data-anchor-id="the-climate-book-hidden-inside">The climate book hidden inside</h2>
+<p>Nobody would sell this as a climate book. Read the contents with climate in mind, though, and one appears.</p>
+<ul>
+<li><strong>Lorenz, “Deterministic Nonperiodic Flow” (1963).</strong> Three equations for convection whose solutions never settle and never repeat. Two almost identical starting points drift apart until they have nothing in common. This is why a weather forecast has a horizon, and why climate has to be asked about in a different way from weather.</li>
+<li><strong>Mandelbrot, “How Long is the Coast of Britain?” (1967).</strong> The measured length of a coast depends on the length of the ruler. Every dataset of exposed coastline should carry that sentence on its first page, and almost none does.</li>
+<li><strong>Budyko, “The Effect of Solar Radiation Variations on the Climate of the Earth” (1969).</strong> An energy balance model with ice in it. Ice reflects sunlight, the cooling grows more ice, and past a point the feedback runs away towards a frozen planet. Tipping points, decades before the phrase became common.</li>
+<li><strong>May, “Will a Large Complex System Be Stable?” (1972).</strong> Two pages in <em>Nature</em>. Make a system larger and more richly connected at random, and beyond a threshold it becomes almost certainly unstable. The intuition that more connections mean more safety is not a law.</li>
+<li><strong>Holling, “Resilience and Stability of Ecological Systems” (1973).</strong> Holling separates stability, how quickly a system returns to where it was, from resilience, how much disturbance it can take and still persist as the same kind of system. Much of today’s talk of resilience in adaptation plans quietly blurs the two.</li>
+<li><strong>Hasselmann, “Stochastic Climate Models Part I. Theory” (1976).</strong> Weather treated as random noise that the slow ocean adds up into climate variability. Hasselmann shared the 2021 Nobel Prize in Physics for the physical modelling of Earth’s climate. The other half of that prize went to Giorgio Parisi, whose 1979 spin glass paper sits a few entries further on in the same volume. I find that funnier than I can justify.</li>
+<li><strong>Lansing and Kremer, “Emergent Properties of Balinese Water Temple Networks” (1993).</strong> The irrigation of a whole landscape coordinated through a network of water temples, and modelled as a system whose good outcome is a property of the network, not of any one farmer or any one plan.</li>
+<li><strong>Ostrom, “Collective Action and the Evolution of Social Norms” (2000).</strong> The last paper in the set, on how groups manage shared things without either a state or a market doing it for them. It is a good place to end a century.</li>
+</ul>
+<p>Put together, this is most of what I would want someone to have in their head before they build a climate risk model: limits to prediction, measures that depend on scale, thresholds, fragile connectivity, two meanings of resilience, noise that adds up, and institutions that work without a centre.</p>
 </section>
-<section id="why-this-matters-for-climate" class="level2">
-<h2 data-anchor-id="why-this-matters-for-climate">Why This Matters for Climate</h2>
-<p>Climate change introduces non-stationarity into our models. Historical data becomes less reliable as a predictor of future risk. This is explored further in <a href="risk-series-2.html">Part 2: Data</a>.</p>
-<div class="backlinks">
-
-</div>
+<section id="two-favourites" class="level2">
+<h2 data-anchor-id="two-favourites">Two favourites</h2>
+<p><strong>The sandpile.</strong> Bak, Tang and Wiesenfeld, “Self-Organized Criticality: An Explanation of the 1/f Noise” (1987). Drop grains of sand onto a pile one at a time. The pile builds itself to a critical slope and then stays there, shedding avalanches of every size: many small ones, a few huge ones, with nobody tuning anything. What I love in it is the image, and one uncomfortable consequence: the grain that starts a catastrophe is an ordinary grain. The size of the trigger says nothing about the size of what follows. How much of the real world works like that is still argued about, and I do not think the argument is over. As a picture for risk it is hard to beat.</p>
+<p><strong>The best title.</strong> Conant and Ashby, “Every Good Regulator of a System Must Be a Model of That System” (1970). I have nothing to add to the title except that it should hang above every desk where someone manages a risk with a model they do not understand.</p>
+<p>A smaller pleasure: Craig Reynolds’ “Flocks, Herds, and Schools: A Distributed Behavioral Model” (1987) is in volume three, three rules that make a flock without a leader. The fish in the mangrove toy swim by those rules, as its <a href="../playground/mangrove-how-it-works/index.html">taken-apart page</a> explains.</p>
+</section>
+<section id="neighbours-outside-the-books" class="level2">
+<h2 data-anchor-id="neighbours-outside-the-books">Neighbours outside the books</h2>
+<p>The set has no music in it, but complexity has a soundtrack. Steve Reich’s <em>Music for 18 Musicians</em> (1976): pulses and short repeated patterns for many players, and a large shape that changes so slowly you hear it arrive rather than watch it being built. Brian Eno’s <em>Ambient 1: Music for Airports</em> from the end of the 1970s, built from tape loops of different lengths that drift in and out of step, so the music keeps making combinations no one wrote down.</p>
+<p>Then a game with no players: John Conway’s Game of Life, introduced to the world in Martin Gardner’s “Mathematical Games” column in <em>Scientific American</em> in October 1970. A grid, a handful of rules that fit on a napkin, and behaviour people are still cataloguing.</p>
+<p>And on stage, Tom Stoppard’s <em>Arcadia</em> (1993), a country-house comedy whose scenes move between two centuries in the same room, with iterated equations, heat and the second law of thermodynamics in among the gossip. It is the only play I know in which an algorithm gets a laugh.</p>
+</section>
+<section id="an-argument-with-it" class="level2">
+<h2 data-anchor-id="an-argument-with-it">An argument with it</h2>
+<p>My quarrel is with what the set leaves out by design. Most of the papers here are models or theory, and the best are beautiful because they are so spare: a sandpile, a random matrix, three equations. What the century of complexity science did much less often, at least in this selection, was take one of those models to a messy record of the real world and see what survived. For climate risk that confrontation is the whole job. The gap between a sandpile and a loss database is where the work is, and those volumes mostly stop at its edge.</p>
+<p>The other quarrel is gentler. The chronological order that I praised above also hides the threads. A reader who wants to follow one idea, feedback, say, or networks, has to build the path through the volumes alone. Perhaps that is the point. It is certainly how I would want to read it anyway: with a pencil, out of order, and with a list of papers to go back to.</p>
+</section>
+<section id="what-i-take-from-it" class="level2">
+<h2 data-anchor-id="what-i-take-from-it">What I take from it</h2>
+<p>Complexity is not a method. It is a set of warnings, each with a name and a year attached, and the most useful ones are about where our models stop. Reading the warnings in their original form, one paper at a time, is a better use of an evening than most new papers.</p>
 
 
 <!-- -->
@@ -363,31 +175,156 @@ font-style: inherit;">"</span>)</span></code></pre></div></div>
 </section>
 
  ]]></description>
-  <category>risk</category>
-  <category>series</category>
-  <guid>https://recurrentanalytics.com/notes/risk-series-1.html</guid>
-  <pubDate>Fri, 12 Dec 2025 08:00:00 GMT</pubDate>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-complexity-compendium.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-complexity-compendium.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
-  <title>Hello, Lab</title>
-  <link>https://recurrentanalytics.com/notes/2025-hello-world.html</link>
+  <title>MANIAC, twice</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-maniac.html</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>First check-in. The lab notebook is live.<br>
-Use this space for short, source-controlled notes.</p>
+<p>Three parts, like the book, then three neighbours and a detour.</p>
+<section id="one-book-two-languages" class="level2">
+<h2 data-anchor-id="one-book-two-languages">One book, two languages</h2>
+<p>Benjamín Labatut is Chilean, and his earlier book, <em>Un verdor terrible</em>, was written in Spanish and translated into English by Adrian Nathan West as <em>When We Cease to Understand the World</em>. With this one he turned it around. He wrote <em>The MANIAC</em> in English, his first book in that language; it came out with Penguin Press in New York on 3 October 2023, and with Pushkin Press in Britain. Then he translated it into Spanish himself. Anagrama published that version as <em>MANIAC</em> on 25 October 2023, in its series for Spanish-language literature; its page names no other translator.</p>
+<p>That is rarer than it sounds. A translator owes the original loyalty. An author translating himself owes it nothing, and at a press conference in Barcelona in November 2023 he said as much: translating himself let him betray himself in a way no translator would. So, in a sense, there are two originals, and the second is allowed to depart from the first. I like that idea more than I can say, and it suits a book about people who did not trust a single version of anything. If you read both languages, read a chapter or two side by side. Not to catch differences, but to watch one writer choose twice.</p>
+</section>
+<section id="the-premise" class="level2">
+<h2 data-anchor-id="the-premise">The premise</h2>
+<p>The three parts carry first names: Paul, John, Lee. Paul is the physicist Paul Ehrenfest. John is von Neumann, the longest part, made of many voices. Lee is Lee Sedol, at a Go board in Seoul in 2016, across from AlphaGo. That is all I will say about what happens. The history is public; the book’s way through it is worth arriving at fresh.</p>
+<p>Be clear about what kind of book it is. In interviews Labatut has said his details are usually real, and that he goes close to the record and then steps back. The voices in the middle are his writing, an imagined oral history of real people, not transcripts, and reviewers have noted that he takes liberties with the lives. Read it as a novel that keeps close to the record, not as a biography.</p>
+</section>
+<section id="three-neighbours" class="level2">
+<h2 data-anchor-id="three-neighbours">Three neighbours</h2>
+<p>George Dyson’s <em>Turing’s Cathedral</em> (2012) is the non-fiction history of von Neumann’s computer at the Institute for Advanced Study in Princeton: the record that the novel goes close to and then steps back from. Greg Kohs’ documentary <em>AlphaGo</em> (2017) follows the people who built the program up to and through the match in Seoul. And Philip Glass and Robert Wilson’s <em>Einstein on the Beach</em> (1976), an opera about a scientist that tells no story about him at all, built from repetition, counted numbers and images. It is the opposite of Labatut’s method, and seeing both makes each clearer.</p>
+</section>
+<section id="the-machine-and-a-tangent" class="level2">
+<h2 data-anchor-id="the-machine-and-a-tangent">The machine, and a tangent</h2>
+<p>The MANIAC itself was a computer built at Los Alamos in the early 1950s under Nicholas Metropolis, modelled on the machine von Neumann was building at Princeton. It sits in a line of work that matters to anyone who models risk. In 1946 Stanislaw Ulam, recovering from an illness and playing solitaire, wondered whether he could estimate the odds of winning by simply playing many random games instead of doing the combinatorics. With von Neumann, Metropolis and Robert Richtmyer that became the Monte Carlo method, named by Metropolis partly after an uncle of Ulam’s who liked the casino. Its first runs, on ENIAC in 1948, were bomb physics.</p>
+<p>Every catastrophe model that simulates ten thousand years of storms, every probabilistic loss curve, every basis risk estimate on a synthetic event set, descends from that idea: when the equations are too hard, roll the dice many times and count. The book is not about Monte Carlo. But it is about the people in whose rooms it was born, what they built, and what they thought they were doing. That makes it, to me, an uncomfortable family history of the tools risk modelling still uses.</p>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-maniac.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-maniac.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>Nausicaä, on paper</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-nausicaa.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>If you know the film, you know the overture. Read the manga anyway. No spoilers here.</p>
+<p><em>Nausicaä of the Valley of the Wind</em> ran in Tokuma Shoten’s <em>Animage</em> magazine from 1982 to 1994, twelve years with long pauses while Miyazaki made films, and fills seven volumes. The 1984 film came out when only the first sixteen chapters existed and covers roughly the first two volumes. The rest grew over the next ten years into something much larger and darker than the film.</p>
+<p>The premise is simple. A world poisoned long ago. A toxic forest that keeps spreading, full of giant insects. People living at its edge, in small valleys and under empires, afraid of it. And a princess who goes into the forest to study it instead of fighting it, because she wants to understand it.</p>
+<p>That is the part I love most. The forest is drawn as a living world, not a monster: strange, deadly, and endlessly interesting. Fear is the normal response in that world, and curiosity is the unusual one. The book takes the side of curiosity without pretending it is safe.</p>
+<p>Then the drawing. Miyazaki drew the pages mostly in pencil, without inking, and the collected volumes are printed in brown ink. The pages are dense, almost crowded: machines, armour, clouds, crowds, plants, all in fine pencil lines, filling the panels to their edges. Next to the clean colour of the film, they look like field notes from a world that kept on existing after the camera left.</p>
+<p>And the politics. The empires around the valley are not good or evil. Everyone has reasons, most of them bad, some of them understandable, and the story does not tidy them up for you. It is a book about people with reasons.</p>
+<p>Some neighbours. The heroine has two sources Miyazaki named himself: the princess Nausicaa of the <em>Odyssey</em>, as he met her in Bernard Evslin’s small dictionary of Greek mythology, and <em>The Lady Who Loved Insects</em>, a Heian-period Japanese tale about a young noblewoman who would rather keep caterpillars than behave as expected. The tale is short, and worth finding.</p>
+<p>For the drawing, the natural companion is Moebius, the French artist Jean Giraud. He and Miyazaki shared an exhibition at the Monnaie de Paris from December 2004 to March 2005, and the pairing makes sense on the page. For the forest, a much later relative: Jeff VanderMeer’s <em>Annihilation</em> (2014), in which a small expedition walks into Area X, a stretch of coast that nature has taken back and nobody understands. Both books ask how to look at a living place that will not behave like scenery.</p>
+<p>Read it slowly. It rewards looking at each page longer than you need to follow the story.</p>
 
 
 <!-- -->
 
 
  ]]></description>
-  <category>setup</category>
-  <guid>https://recurrentanalytics.com/notes/2025-hello-world.html</guid>
-  <pubDate>Wed, 12 Nov 2025 08:00:00 GMT</pubDate>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-nausicaa.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-nausicaa.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>A shelf of strange books</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-penguin-science-fiction.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A series, not a single work, and a good argument for letting a publisher choose for you now and then.</p>
+<section id="the-series" class="level2">
+<h2 data-anchor-id="the-series">The series</h2>
+<p><a href="https://www.penguin.co.uk/series/PENGSCIFI/penguin-science-fiction">Penguin Science Fiction</a> launched in August 2020 under the Penguin Classics imprint, with ten books and more following. The publisher’s series page lists nineteen as of November 2026. Penguin said it wanted to challenge stereotypes about the genre, and for once the list actually does it.</p>
+<p>What strikes me is the mix. <em>Flatland</em> (1884) and Vonnegut’s <em>Cat’s Cradle</em> are the names you expect. Around them sit books that are much less known in English: Japanese, Russian, Polish, German and Argentinian science fiction in translation, a 1931 satire on race in America, cosmic mysticism, pulp horror, robot fairy tales. Very little of it is about spaceships. Much of it is funny. A lot of it is about catastrophe, and almost none of it treats catastrophe as an action film. These are books about what people do while the world goes wrong slowly, absurdly or in plain sight.</p>
+<p>Four to start with, chosen for range. Premises only.</p>
+</section>
+<section id="kobo-abe-the-ark-sakura" class="level2">
+<h2 data-anchor-id="kobo-abe-the-ark-sakura">Kobo Abe, <em>The Ark Sakura</em></h2>
+<p>The shelter is ready: a disused quarry, fitted out by one man who goes by Mole, for the day the bombs fall. What it still lacks is a crew. Abe published it in Japanese in 1984; the English translation by Juliet Winters Carpenter followed in 1988, and that is the one <a href="https://www.penguin.co.uk/books/317662/the-ark-sakura-by-abe-kobo/9780241454589">Penguin prints</a>.</p>
+<p>It is the best book I know about preparedness as a state of mind. The shelter is enormous, carefully engineered and slightly ridiculous, and its builder is all three as well. Anyone who has ever planned for the worst will recognise something uncomfortable in him, and laugh anyway. If it hooks you, go back to Abe’s <em>The Woman in the Dunes</em> (1962) and Hiroshi Teshigahara’s film of it (1964), for which Abe wrote the screenplay: an insect collector, a village in the sand, and a premise I will leave there.</p>
+</section>
+<section id="harry-harrison-make-room-make-room" class="level2">
+<h2 data-anchor-id="harry-harrison-make-room-make-room">Harry Harrison, <em>Make Room! Make Room!</em></h2>
+<p>Written in 1966 and set in a New York of thirty-five million people at the end of the twentieth century, where water and food are rationed and everything is shared with too many others. A police detective is the thread through it.</p>
+<p>What I like is how unspectacular it is. No single disaster, only scarcity as weather: queues, crowding, the daily arithmetic of not enough. As a forecast it got the numbers wrong. As a picture of a system running at its limit for years, it still reads well. It is <a href="https://www.penguin.co.uk/books/57645/make-room-make-room-by-harrison-harry/9780241507704">in the series</a> too.</p>
+</section>
+<section id="stanisław-lem-the-cyberiad" class="level2">
+<h2 data-anchor-id="stanisław-lem-the-cyberiad">Stanisław Lem, <em>The Cyberiad</em></h2>
+<p>Two robot engineers, Trurl and Klapaucius, build machines for kings, for each other and for bets, across a universe that seems to be made mostly of robots. Lem published the collection in Polish in 1965; Michael Kandel’s English translation came out in 1974.</p>
+<p>These are fairy tales for engineers, and the jokes are engineering jokes, about specifications, precision and pride. Lem’s wordplay is everywhere, and Kandel’s English version of it is a small miracle of its own. Read it for the pleasure of the language before anything else, with Kraftwerk’s <em>Die Mensch-Maschine</em> (1978) playing: robots, deadpan, and fonder of people than they let on. <a href="https://www.penguin.co.uk/books/256135/the-cyberiad-by-lem-stanislaw/9780241467992">Penguin edition</a>.</p>
+</section>
+<section id="arkady-and-boris-strugatsky-one-billion-years-to-the-end-of-the-world" class="level2">
+<h2 data-anchor-id="arkady-and-boris-strugatsky-one-billion-years-to-the-end-of-the-world">Arkady and Boris Strugatsky, <em>One Billion Years to the End of the World</em></h2>
+<p>Leningrad in high summer. Malianov, an astrophysicist, has the calculation of his life on his desk, and the world will not leave him alone with it. That is as far as I will go.</p>
+<p>The Strugatskys published it in Russian in 1976 and 1977, in a magazine; Antonina W. Bouis translated it, first under the English title <em>Definitely Maybe</em> (1978), and <a href="https://www.penguin.co.uk/books/320603/one-billion-years-to-the-end-of-the-world-by-strugatsky-arkady-and-boris/9780241472477">Penguin’s edition</a> credits her translation, under a title closer to the original. It is a short book about pressure, and I think it is the best of the four. Their <em>Roadside Picnic</em> (1972) is not in this series, but it is the other door into their work: it became Andrei Tarkovsky’s <em>Stalker</em> (1979), which the brothers scripted, and book and film are different enough that both are worth having.</p>
+</section>
+<section id="where-to-go-next" class="level2">
+<h2 data-anchor-id="where-to-go-next">Where to go next</h2>
+<p>The rest of the list rewards wandering: Tiptree’s two collections, Gorodischer’s <em>Trafalgar</em>, Eschbach’s <em>The Hair Carpet Weavers</em>, Schuyler’s <em>Black No More</em>. Pick by title. That is what a series like this is for.</p>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-penguin-science-fiction.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-penguin-science-fiction.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>Haunted DAGs and spurious waffles</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A statistics textbook with jokes in the chapter titles. That is rarer than it should be.</p>
+<p><em>Statistical Rethinking</em> is Richard McElreath’s book on Bayesian data analysis and causal inference (CRC Press, first edition 2016, second 2020). He teaches it as a lecture course again most years and puts the lectures on YouTube for free; the 2026 run split it into a beginner and an experienced section.</p>
+<p>The chapter titles alone are worth it: “The Haunted DAG &amp; The Causal Terror”, “Conditional Manatees”, “God Spiked the Integers”, “Monsters and Mixtures”, and, as the last chapter, “Horoscopes”. The book opens with the golem of Prague: a statistical model is a clay creature that does exactly what it is told, with great power and no judgement. The judgement has to come from you, from a causal model of where the data came from.</p>
+<p>My favourite example is the spurious waffles of chapter five. US states with more Waffle House restaurants per person have higher divorce rates. Nobody believes the waffles cause it, and the chapter uses it to show how to look for what is really going on. The extra joke for anyone in disaster risk: the chapter opens by noting that Waffle House is known for staying open after hurricanes, so reliably that its closures are read as a sign of how bad a storm was.</p>
+<p>One thing I would argue with. The causal graphs in the book are DAGs, directed acyclic graphs: no loops allowed. Climate risk is made of loops. Losses change behaviour, behaviour changes exposure, exposure changes the next loss. You can unroll a loop in time, and chapter sixteen does go into population dynamics, but the acyclic picture still nudges you to think in one direction. I would keep the discipline of drawing the graph and be suspicious of the arrows that only point one way.</p>
+<p>Three companions. Paul Wegener and Carl Boese’s silent film <em>Der Golem, wie er in die Welt kam</em> (1920), for the clay creature itself, in a Prague of crooked expressionist streets. Jorge Luis Borges’ story “The Garden of Forking Paths” (1941), which lent its title to one of the most useful ideas in applied statistics: Andrew Gelman and Eric Loken’s “garden of forking paths” (2013), the many small choices in an analysis that could have gone otherwise and can quietly turn noise into a finding. Read the story first; it is a spy story, and better than it needs to be. And Tyler Vigen’s <em>Spurious Correlations</em>, a website and then a book (2015), where the waffles would feel at home: chart after chart of unrelated things rising and falling together.</p>
+
+
+<!-- -->
+
+
+ ]]></description>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-statistical-rethinking.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>

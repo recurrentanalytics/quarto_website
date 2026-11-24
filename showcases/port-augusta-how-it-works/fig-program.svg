@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">
+<rect width="760" height="400" fill="#f7f4ee"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1c232b"/></marker></defs>
+<g fill="#1c232b">
+<text x="20" y="24" font-weight="700">Open data</text><text x="270" y="24" font-weight="700">Python scripts (run once)</text><text x="520" y="24" font-weight="700">Files the page loads</text>
+</g>
+<g fill="#fff" stroke="#1c232b" stroke-opacity="0.45">
+<rect x="20" y="36" width="210" height="34" rx="6"/><rect x="20" y="78" width="210" height="34" rx="6"/><rect x="20" y="120" width="210" height="34" rx="6"/><rect x="20" y="162" width="210" height="34" rx="6"/><rect x="20" y="204" width="210" height="34" rx="6"/><rect x="20" y="246" width="210" height="34" rx="6"/>
+<rect x="270" y="36" width="210" height="34" rx="6"/><rect x="270" y="99" width="210" height="34" rx="6"/><rect x="270" y="162" width="210" height="34" rx="6"/><rect x="270" y="204" width="210" height="34" rx="6"/><rect x="270" y="246" width="210" height="34" rx="6"/>
+<rect x="520" y="36" width="220" height="34" rx="6"/><rect x="520" y="99" width="220" height="34" rx="6"/><rect x="520" y="162" width="220" height="34" rx="6"/><rect x="520" y="204" width="220" height="34" rx="6"/><rect x="520" y="246" width="220" height="34" rx="6"/>
+</g>
+<g fill="#1c232b">
+<text x="30" y="57">AEMO: 5-minute output, price</text><text x="30" y="99">Geoscience Australia: heights</text><text x="30" y="141">OpenStreetMap: coast, roads, sites</text><text x="30" y="183">Sentinel-2B pass of 15 Oct 2026</text><text x="30" y="225">AGRI picture, 2.5 m, 2008 to 2010</text><text x="30" y="267">Microsoft building footprints</text>
+<text x="280" y="57">diorama_snapshot.py</text><text x="280" y="120">diorama_terrain.py</text><text x="280" y="183">diorama_imagery.py</text><text x="280" y="225">diorama_detail.py</text><text x="280" y="267">diorama_buildings.py</text>
+<text x="530" y="57">day.json: the day's numbers</text><text x="530" y="120">scene.json, terrain.bin</text><text x="530" y="183">ground, mid, outer, relief, water</text><text x="530" y="225">detail/ (11 tiles, on demand)</text><text x="530" y="267">buildings.bin</text>
+</g>
+<g stroke="#1c232b" stroke-opacity="0.7" fill="none" marker-end="url(#a)">
+<path d="M230 53H268"/><path d="M230 95L268 112"/><path d="M230 137L268 120"/><path d="M230 137L268 258"/><path d="M230 179H268"/><path d="M230 95L268 175"/><path d="M230 221H268"/><path d="M230 263H268"/>
+<path d="M480 53H518"/><path d="M480 116H518"/><path d="M480 179H518"/><path d="M480 221H518"/><path d="M480 263H518"/>
+</g>
+<rect x="20" y="304" width="720" height="78" rx="8" fill="#fff" stroke="#c77d0a" stroke-width="1.5"/>
+<text x="32" y="324" fill="#1c232b" font-weight="700">The page, every frame</text>
+<g fill="#fdf1dc" stroke="#c77d0a"><rect x="32" y="336" width="120" height="32" rx="6"/><rect x="170" y="336" width="120" height="32" rx="6"/><rect x="308" y="336" width="120" height="32" rx="6"/><rect x="446" y="336" width="130" height="32" rx="6"/><rect x="594" y="336" width="134" height="32" rx="6"/></g>
+<g fill="#1c232b"><text x="42" y="356">move the clock</text><text x="180" y="356">read the values</text><text x="318" y="356">place the sun</text><text x="456" y="356">hill shadows (part)</text><text x="604" y="356">draw, then glow</text></g>
+<g stroke="#1c232b" fill="none" marker-end="url(#a)"><path d="M152 352H168"/><path d="M290 352H306"/><path d="M428 352H444"/><path d="M576 352H592"/></g>
+</svg>

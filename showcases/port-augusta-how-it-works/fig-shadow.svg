@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">
+<rect width="760" height="260" fill="#f7f4ee"/>
+<path d="M20 210 L120 208 L200 200 L260 190 L330 150 L380 95 L420 70 L460 100 L520 160 L600 195 L740 205 L740 235 L20 235 Z" fill="#d9c49c" stroke="#1c232b" stroke-opacity="0.6"/>
+<circle cx="700" cy="34" r="14" fill="#f0b343"/>
+<line x1="160" y1="204" x2="690" y2="38" stroke="#c77d0a" stroke-width="1.5"/>
+<g fill="#c77d0a"><circle cx="160" cy="204" r="4.5" fill="#1c232b"/><circle cx="208" cy="189" r="3"/><circle cx="256" cy="174" r="3"/><circle cx="304" cy="159" r="3"/><circle cx="352" cy="144" r="3"/><circle cx="400" cy="129" r="3"/></g>
+<line x1="352" y1="144" x2="352" y2="124" stroke="#1c232b"/><line x1="400" y1="129" x2="400" y2="82" stroke="#1c232b"/>
+<g fill="#1c232b">
+<text x="96" y="226">a ground cell</text>
+<text x="188" y="150">the walk toward the sun: one step</text><text x="188" y="166">sideways, the ray a little higher</text>
+<text x="412" y="52">here the hill stands above the ray:</text><text x="412" y="68">the cell is in shadow</text>
+<text x="540" y="140">the ray rises above the highest</text><text x="540" y="156">ground: the walk can stop</text>
+</g>
+<path d="M20 235 L20 210 L120 208 L200 200 L260 190 L315 160 L20 235Z" fill="#1c232b" opacity="0.18"/>
+</svg>

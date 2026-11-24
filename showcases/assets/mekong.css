@@ -1,0 +1,112 @@
+/* Mekong coast showcase. Uses the site's --rac-* tokens, so light and dark follow the theme. */
+
+.mk-player { margin: 1.5rem 0 1rem; }
+
+.mk-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.mk-tabs button {
+  font: 500 0.85rem/1.2 "IBM Plex Sans", system-ui, sans-serif;
+  color: var(--rac-ink-2); background: var(--rac-surface);
+  border: 1px solid var(--rac-line); border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.mk-tabs button:hover { border-color: var(--rac-accent); }
+.mk-tabs button[aria-selected="true"] { color: #0b0f14; background: var(--rac-accent); border-color: var(--rac-accent); }
+
+.mk-stage-wrap { max-width: 560px; }
+.mk-stage, .mk-still-fig {
+  position: relative; margin: 0; aspect-ratio: 1 / 1; overflow: hidden;
+  border-radius: 14px; border: 1px solid var(--rac-line); background: #283039;
+}
+.mk-stage img, .mk-still-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mk-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mk-overlay path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.mk-overlay .mk-now { stroke: #f5b02e; stroke-width: 3; filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.7)); }
+.mk-overlay .mk-then { stroke: #ffffff; stroke-width: 2; stroke-dasharray: 4 4; opacity: 0.9; filter: drop-shadow(0 0 1px rgb(0 0 0 / 0.8)); }
+
+.mk-year {
+  position: absolute; top: 10px; left: 10px; padding: 2px 8px; border-radius: 6px;
+  font: 600 1.1rem/1.3 "IBM Plex Mono", monospace; color: #fff; background: rgb(11 15 20 / 0.72);
+}
+.mk-north, .mk-scale {
+  position: absolute; bottom: 10px; font: 500 0.72rem/1 "IBM Plex Mono", monospace; color: #fff;
+  background: rgb(11 15 20 / 0.6); padding: 4px 6px; border-radius: 5px;
+}
+.mk-north { right: 10px; }
+.mk-scale { left: 10px; width: 11%; display: flex; flex-direction: column; gap: 4px; background: none; padding: 0; text-shadow: 0 0 3px #000; }
+.mk-scale i { display: block; width: 100%; height: 4px; background: #fff; border: 1px solid #000; }
+
+.mk-still { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mk-still[hidden], .mk-stage[hidden], .mk-controls[hidden] { display: none; }
+
+.mk-controls { display: flex; align-items: center; gap: 12px; margin-top: 10px; max-width: 560px; }
+.mk-play {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  border: 1px solid var(--rac-line); background: var(--rac-surface); color: var(--rac-ink);
+  font-size: 0.95rem; line-height: 1;
+}
+.mk-play:hover { border-color: var(--rac-accent); }
+.mk-slider { flex: 1 1 auto; accent-color: var(--rac-accent); min-height: 44px; }
+
+.mk-legend { margin: 8px 0 0; font-size: 0.85rem; color: var(--rac-muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.mk-leg { white-space: nowrap; margin-right: 12px; }
+.mk-key { display: inline-block; width: 26px; height: 0; vertical-align: middle; }
+.mk-key-now { border-top: 3px solid #f5b02e; }
+.mk-key-then { border-top: 2px dashed var(--rac-ink-2); }
+
+.mk-readout { margin-top: 12px; max-width: 46rem; }
+.mk-readout p { margin: 0 0 4px; }
+.mk-name { font: 600 0.78rem/1.4 "IBM Plex Mono", monospace; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rac-accent-ink); }
+.mk-rate { font-size: 1.05rem; color: var(--rac-ink); }
+.mk-note { color: var(--rac-ink-2); }
+
+.mk-chart-fig { margin: 2rem 0 1.5rem; }
+.mk-chart-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.mk-chart-svg .mk-grid { stroke: var(--rac-line); }
+.mk-chart-svg .mk-zero { stroke: var(--rac-muted); stroke-dasharray: 3 3; }
+.mk-chart-svg .mk-tick { font: 11px "IBM Plex Mono", monospace; fill: var(--rac-muted); }
+.mk-series { cursor: pointer; }
+.mk-series path { fill: none; stroke: var(--rac-muted); stroke-width: 1.5; opacity: 0.55; }
+.mk-series .mk-label { font: 11px "IBM Plex Sans", system-ui, sans-serif; fill: var(--rac-muted); }
+.mk-series.is-on path { stroke: var(--rac-accent); stroke-width: 2.5; opacity: 1; }
+.mk-series.is-on .mk-label { fill: var(--rac-ink); font-weight: 600; }
+
+.mk-method, .mk-counter {
+  margin: 1.5rem 0; padding: 14px 16px; border-radius: 12px;
+  background: var(--rac-surface); border: 1px solid var(--rac-line); font-size: 0.93rem; color: var(--rac-ink-2);
+}
+.mk-counter { border-left: 3px solid var(--rac-accent); font-size: 1rem; }
+.mk-method p:last-child, .mk-counter p:last-child { margin-bottom: 0; }
+
+.mk-drivers, .mk-decide { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 1.25rem 0; }
+.mk-driver, .mk-option {
+  border: 1px solid var(--rac-line); border-radius: 14px; background: var(--rac-surface); padding: 14px 16px;
+}
+.mk-driver p, .mk-option p { margin: 0 0 8px; }
+.mk-driver-kicker, .mk-option-when {
+  font: 500 0.72rem/1.4 "IBM Plex Mono", monospace; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rac-accent-ink);
+}
+.mk-driver-num { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.01em; color: var(--rac-ink); }
+.mk-driver-num small { font-size: 0.8rem; font-weight: 500; color: var(--rac-muted); }
+.mk-option h3 { font-size: 1.2rem; margin: 2px 0 8px; }
+.mk-src { font-size: 0.8rem; color: var(--rac-muted); }
+
+.mk-sources ul { padding-left: 1.1rem; font-size: 0.88rem; color: var(--rac-ink-2); }
+.mk-sources li { margin-bottom: 4px; }
+
+@media (max-width: 480px) {
+  .mk-tabs button { font-size: 0.8rem; padding: 6px 10px; }
+  .mk-still { grid-template-columns: 1fr; }
+  .mk-chart-svg .mk-tick, .mk-series .mk-label { font-size: 13px; }
+}
+
+@media (min-width: 900px) {
+  .mk-player {
+    display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); column-gap: 28px;
+    grid-template-areas: "tabs tabs" "stage side" "controls side";
+    align-items: start;
+  }
+  .mk-tabs { grid-area: tabs; }
+  .mk-stage-wrap { grid-area: stage; }
+  .mk-controls { grid-area: controls; }
+  .mk-side { grid-area: side; }
+  .mk-readout { margin-top: 14px; }
+}

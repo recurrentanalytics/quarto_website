@@ -1,0 +1,18 @@
+{
+ "run": "2026-11-20T12:00Z",
+ "generated": "2026-11-20T21:29Z",
+ "source": "NOAA GFS 1.0 degree analysis, 10 m wind; storms from GFS TC vitals (NHC, CPHC)",
+ "attribution": "NOAA GFS, processed by re:current_analytics",
+ "wind": {
+  "file": "wind.png",
+  "width": 360,
+  "height": 181,
+  "lat_top": 90,
+  "lon_left": 0,
+  "step_deg": 1,
+  "min": -40.0,
+  "max": 40.0,
+  "channels": "R=u, G=v (m/s), B=land"
+ },
+ "storms": []
+}

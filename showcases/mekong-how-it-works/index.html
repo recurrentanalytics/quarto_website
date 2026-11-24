@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-21">
+<meta name="description" content="The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list.">
+
+<title>A coastline measured from space, taken apart – re:current_analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-83473db31452f667965bb465e6000f16.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Fonts are self-hosted (assets/fonts/, SIL OFL): no visitor request goes to Google. -->
+<link rel="stylesheet" href="../../assets/fonts/fonts.css">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<!-- Phone menu (overlay + command line): menu.css, menu.js; the class marks "JS on". -->
+<link rel="stylesheet" href="../../assets/css/menu.css">
+<script>document.documentElement.classList.add('rac-menu-js');</script>
+<!-- Article preview cards: previews.css, previews.js (series thumbnails). -->
+<link rel="stylesheet" href="../../assets/css/previews.css">
+<!-- d3 7.9.0, self-hosted, as an ES module (assets/js/vendor/): pages with interactive
+     cells may load require.js, which would swallow the plain UMD build; the wrapper
+     never asks require.js. Module scripts run before DOMContentLoaded, as site.js needs. -->
+<script type="module">import d3 from "/assets/js/vendor/d3-7.9.0.esm.js"; window.d3 = d3;</script>
+<script src="../../assets/graph.js"></script>
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/extras.js"></script>
+<script src="../../assets/js/code-fold.js"></script>
+<script defer="" src="../../assets/js/motion.js"></script>
+<script defer="" src="../../assets/js/menu.js"></script>
+<script defer="" src="../../assets/js/previews.js"></script>
+
+
+<meta property="og:title" content="A coastline measured from space, taken apart – re:current_analytics">
+<meta property="og:description" content="The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list.">
+<meta property="og:image" content="https://recurrentanalytics.com/showcases/previews/mekong-coast.png">
+<meta property="og:site_name" content="re:current_analytics">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="A coastline measured from space, taken apart – re:current_analytics">
+<meta name="twitter:description" content="The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list.">
+<meta name="twitter:image" content="https://recurrentanalytics.com/showcases/previews/mekong-coast.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/brand/lockup-small-light.svg" alt="re:current_analytics, home" class="navbar-logo light-content">
+    <img src="../../assets/brand/lockup-small-dark.svg" alt="re:current_analytics, home" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/livelines.html"> 
+<span class="menu-text">LiveLines</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../showcases/index.html"> 
+<span class="menu-text">Showcases</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../playground/index.html"> 
+<span class="menu-text">Playground</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="../../notes/index.xml" title="" class="quarto-navigation-tool px-1" aria-label="RSS feed"><i class="bi bi-rss"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#the-images" id="toc-the-images" class="nav-link active" data-scroll-target="#the-images">The images</a></li>
+  <li><a href="#where-is-the-coast" id="toc-where-is-the-coast" class="nav-link" data-scroll-target="#where-is-the-coast">Where is the coast?</a></li>
+  <li><a href="#a-rate-from-noisy-years" id="toc-a-rate-from-noisy-years" class="nav-link" data-scroll-target="#a-rate-from-noisy-years">A rate from noisy years</a></li>
+  <li><a href="#what-others-measured" id="toc-what-others-measured" class="nav-link" data-scroll-target="#what-others-measured">What others measured</a></li>
+  <li><a href="#what-the-measurement-cannot-see" id="toc-what-the-measurement-cannot-see" class="nav-link" data-scroll-target="#what-the-measurement-cannot-see">What the measurement cannot see</a></li>
+  <li><a href="#data-and-sources" id="toc-data-and-sources" class="nav-link" data-scroll-target="#data-and-sources">Data and sources</a></li>
+  <li><a href="#a-reading-guide" id="toc-a-reading-guide" class="nav-link" data-scroll-target="#a-reading-guide">A reading guide</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">A coastline measured from space, taken apart</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">How the Mekong showcase is made: 38 dry seasons of Landsat, one rule for where the coast is, and a trend that a few bad years cannot drag</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">showcase</div>
+    <div class="quarto-category">coasts</div>
+    <div class="quarto-category">mangroves</div>
+    <div class="quarto-category">remote-sensing</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+/* This page is about its code: every excerpt stays open, without the site's fold bar. */
+.code-block-wrapper { background: transparent; border: 0; }
+.code-block-wrapper .code-block-header { display: none; }
+.code-block-wrapper .code-block-content { display: block; }
+/* Long links in the reference and source lists wrap on a narrow screen. */
+#refs a, #data-and-sources a { overflow-wrap: anywhere; }
+</style>
+<p>The <a href="../../showcases/mekong-coast.html">Mekong showcase</a> looks at 38 dry seasons of satellite images, 1988 to 2025, over five stretches of the delta’s coast and draws, year by year, where the vegetation ends and the mudflat begins. On the Ca Mau east coast that edge stood more than a kilometre further inland in 2025 than in the first clear years. This article takes the measurement apart: where the images come from, how a coastline is found in them, how a rate is read from 38 noisy years, and what it cannot see.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="How this was made">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How this was made
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the code and the first draft of this article. The reference list was checked against Crossref, and what I say about each source against its abstract or an open copy (for one, which has neither online, I say nothing beyond its title).</p>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../data/mekong/camau-east/1988.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="1988"><img src="../data/mekong/camau-east/1988.webp" class="img-fluid figure-img" alt="Landsat true-colour image of a 9 km box on the Ca Mau east coast in 1988: green vegetation over most of the box, pale mudflat along the right side; the dark patches at the top left are masked pixels"></a></p>
+<figcaption>1988</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../data/mekong/camau-east/2025.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="2025"><img src="../data/mekong/camau-east/2025.webp" class="img-fluid figure-img" alt="The same box in 2025: green land divided into ponds and fields, its edge further up and to the left, a wide pale mudflat and water across the lower right"></a></p>
+<figcaption>2025</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The same 9 × 9 km box on the Ca Mau east coast in the dry seasons of 1988 and 2025, as the page shows it (without its lines). Landsat images courtesy of the U.S. Geological Survey.</p>
+<section id="the-images" class="level2">
+<h2 data-anchor-id="the-images">The images</h2>
+<p>Every image on the page is a Landsat image: Landsat 5 for the early years, then 7, 8 and 9. The archive has been reprocessed as Collection 2, and since then the U.S. Geological Survey provides surface reflectance worldwide, corrected for the atmosphere, as a ready product <span class="citation" data-cites="crawford2023">(<a href="#ref-crawford2023" role="doc-biblioref">Crawford et al. 2023</a>)</span>. The page uses that product, called Level 2.</p>
+<p>It reads the images through the Microsoft Planetary Computer, which offers the Landsat archive with a free, anonymous access token, and reads only the 9 × 9 km box from each scene, not the whole scene. A script, <code>scripts/showcase_mekong/build_frames.py</code>, asks the catalogue for every scene of a dry season over a box (from <code>build_frames.py</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    body <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"collections"</span>: [<span class="st">"landsat-c2-l2"</span>],</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bbox"</span>: bbox_ll,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"datetime"</span>: <span class="ss">f"</span><span class="sc">{</span>year <span class="op">-</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">-12-01T00:00:00Z/</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">-04-30T23:59:59Z"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"query"</span>: {<span class="st">"eo:cloud_cover"</span>: {<span class="st">"lt"</span>: MAX_SCENE_CLOUD},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"platform"</span>: {<span class="st">"in"</span>: [<span class="st">"landsat-5"</span>, <span class="st">"landsat-7"</span>, <span class="st">"landsat-8"</span>, <span class="st">"landsat-9"</span>]}},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"limit"</span>: <span class="dv">100</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It looks only at the dry season, December to April. The script sorts the scenes so that Landsat 7 after May 2003, whose images have gaps from a broken scan-line corrector, comes last, then by cloud cover.</p>
+<section id="clouds-out-one-picture-per-year" class="level3">
+<h3 data-anchor-id="clouds-out-one-picture-per-year">Clouds out, one picture per year</h3>
+<p>Each Landsat pixel comes with a quality band that flags fill, cloud, the margin around a cloud and cloud shadow. The script drops every pixel with any of those flags:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clear_mask(qa: np.ndarray) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> qa.astype(np.uint16)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    fill <span class="op">=</span> (q <span class="op">&amp;</span> <span class="dv">1</span>) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    bad <span class="op">=</span> (q <span class="op">&amp;</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">1</span>)) <span class="op">|</span> (q <span class="op">&amp;</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">3</span>)) <span class="op">|</span> (q <span class="op">&amp;</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">4</span>))  <span class="co"># dilated cloud, cloud, shadow</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">~</span>fill) <span class="op">&amp;</span> (bad <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (q <span class="op">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Of the first 16 scenes of a season, it keeps up to five whose box is at least 90 % clear, preferring those with the least haze (judged by how bright the blue band is); if fewer than three qualify, it adds the clearest of the rest. From those it takes, pixel by pixel, the median. A median ignores a single bright cloud edge or a dark shadow the mask missed, as long as most looks at that pixel are clean. In practice there are fewer looks than that: on the Ca Mau east coast, the typical pixel of a clear year has two to four clean looks, and with two the median is just their mean and rejects nothing. A year counts for the measurement only if at least 85 % of the box is clear in the result. On the Ca Mau east coast, three of the 38 years fail that test: 1993, 2011 and 2012.</p>
+</section>
+</section>
+<section id="where-is-the-coast" class="level2">
+<h2 data-anchor-id="where-is-the-coast">Where is the coast?</h2>
+<p>On a sandy beach the coast is the waterline. On the Mekong’s mud coast that does not work: the waterline moves a long way with the tide over the mudflats, so in an image it says more about the hour the image was taken than about the coast. The page uses the seaward edge of the vegetation instead, which moves much less with the tide.</p>
+<p>Vegetation is found with the normalised difference vegetation index, NDVI: the difference between near-infrared and red reflectance, divided by their sum. Green leaves reflect much near-infrared and absorb red, so NDVI is high over them and low over water and mud. <span class="citation" data-cites="tucker1979">Tucker (<a href="#ref-tucker1979" role="doc-biblioref">1979</a>)</span> studied how red and infrared measurements can be combined to monitor vegetation. The script also requires a bright near-infrared (at least 0.15), so that green, algae-rich water is not taken for forest.</p>
+<p>Then the edge. Across each box run straight lines from the sea to the land, 90 m apart, roughly at right angles to the coast. Along each, every 15 m, the script reads the NDVI and walks in from the sea. The edge is the first point where the vegetation holds for five samples in a row, 15 m apart (the page calls this 75 m) (from <code>veg_line</code> in <code>build_frames.py</code>, shortened):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(seg.size):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> unknown[k]:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                gap <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                run <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> gap <span class="op">&gt;</span> MAX_GAP:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span>           <span class="co"># long cloud gap on the way in: no answer here</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># …</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> veg[k]:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> run <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                    start, start_after_gap <span class="op">=</span> k, after_gap</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                run <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                run <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># …</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> run <span class="op">==</span> RUN:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                <span class="co"># an edge right behind a cloud gap could really sit inside the gap</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> start_after_gap:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                    pos[p] <span class="op">=</span> dists[ins[start]]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Two guards keep it honest. A line must start in clear, unvegetated water or mud, or it has no crossing to find. And an edge found right behind a masked gap is thrown away, because the real edge might lie inside the gap.</p>
+<p>This kind of measurement is now routine on sandy coasts. <span class="citation" data-cites="vos2019">Vos et al. (<a href="#ref-vos2019" role="doc-biblioref">2019</a>)</span> published an open toolkit that extracts shorelines from Landsat and Sentinel-2 to about 10 m, and <span class="citation" data-cites="luijendijk2018">Luijendijk et al. (<a href="#ref-luijendijk2018" role="doc-biblioref">2018</a>)</span> used freely available satellite images since 1984 to assess the world’s sandy beaches, 1984 to 2016, finding 24 % of them eroding by more than half a metre a year. The page’s rule is much simpler than theirs, and made for a mud coast.</p>
+</section>
+<section id="a-rate-from-noisy-years" class="level2">
+<h2 data-anchor-id="a-rate-from-noisy-years">A rate from noisy years</h2>
+<p>Each line now has an edge position for most clear years (35 on the Ca Mau east coast, all 38 at Ca Mau west and Soc Trang). Some years are off, for reasons such as haze or a gap the median could not fill. A straight line fitted by least squares would be pulled by such years. The page uses the Theil–Sen estimator instead, after Henri Theil and <span class="citation" data-cites="sen1968">Sen (<a href="#ref-sen1968" role="doc-biblioref">1968</a>)</span>: take every pair of years, compute the slope between them, and keep the median of all those slopes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> theil_sen(x: np.ndarray, y: np.ndarray) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Median of all pairwise slopes: a trend that a few bad years cannot drag."""</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    i, j <span class="op">=</span> np.triu_indices(<span class="bu">len</span>(x), <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">=</span> x[j] <span class="op">-</span> x[i]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.median((y[j] <span class="op">-</span> y[i])[dx <span class="op">&gt;</span> <span class="dv">0</span>] <span class="op">/</span> dx[dx <span class="op">&gt;</span> <span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Sen showed that this median slope is robust against gross errors, where least squares is not. Only lines with an edge in at least 60 % of the clear years, spread over at least 25 years, get a trend. <a href="#fig-transect" class="quarto-xref">Figure&nbsp;1</a> shows one of them.</p>
+<div id="fig-transect" class="quarto-float quarto-figure quarto-figure-center" alt="Dots falling steadily from 0 in 1988 to about minus 1,050 m in 2025, with two almost identical straight lines through them">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-transect.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;1: One line on the Ca Mau east coast, the one whose trend is closest to the box’s median: where its edge stood in each clear year in which it found one, with the Theil–Sen and the least-squares trend."><img src="fig-transect.svg" class="img-fluid figure-img" alt="Dots falling steadily from 0 in 1988 to about minus 1,050 m in 2025, with two almost identical straight lines through them"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: One line on the Ca Mau east coast, the one whose trend is closest to the box’s median: where its edge stood in each clear year in which it found one, with the Theil–Sen and the least-squares trend.
+</figcaption>
+</figure>
+</div>
+<p>On this line the two methods almost agree: −30.0 against −28.7 m a year. They part where a line has a few wild years, by up to 35 m a year on some lines at Bac Lieu; there the median is the safer reading, though nothing here can prove which is right.</p>
+<p>The rate of a box is the median over its lines; the page shows the middle half of them as the spread (<a href="#fig-rates" class="quarto-xref">Figure&nbsp;2</a>).</p>
+<div id="fig-rates" class="quarto-float quarto-figure quarto-figure-center" alt="Dot strips per box: Ca Mau east between about minus 65 and minus 20 m a year, Ca Mau west mostly around minus 17, Bac Lieu and the Cape around zero, Soc Trang between 0 and plus 65">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-rates.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: The trend of every line in the five boxes. The box marks the middle half, the black line the median."><img src="fig-rates.svg" class="img-fluid figure-img" alt="Dot strips per box: Ca Mau east between about minus 65 and minus 20 m a year, Ca Mau west mostly around minus 17, Bac Lieu and the Cape around zero, Soc Trang between 0 and plus 65"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The trend of every line in the five boxes. The box marks the middle half, the black line the median.
+</figcaption>
+</figure>
+</div>
+<table class="table-striped caption-top table">
+<caption>The vegetation edge, 1988 to 2025. Negative is towards land.</caption>
+<thead>
+<tr class="header">
+<th>Box</th>
+<th>Median</th>
+<th>Middle half</th>
+<th>Lines with a trend</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ca Mau, east coast</td>
+<td>−30.0 m/yr</td>
+<td>−46.8 to −28.6</td>
+<td>119</td>
+</tr>
+<tr class="even">
+<td>Ca Mau, west coast</td>
+<td>−17.4 m/yr</td>
+<td>−18.6 to −15.0</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Bac Lieu, sea dyke</td>
+<td>−3.2 m/yr</td>
+<td>−4.8 to −1.5</td>
+<td>119</td>
+</tr>
+<tr class="even">
+<td>Ca Mau Cape</td>
+<td>−1.0 m/yr</td>
+<td>−6.8 to +4.9</td>
+<td>74</td>
+</tr>
+<tr class="odd">
+<td>Soc Trang, Vinh Chau</td>
+<td>+37.2 m/yr</td>
+<td>+17.1 to +47.1</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+<p>Two results surprised. Soc Trang grows, although the research before the build expected erosion nearby; this box does not show it. And in the Cape box one side grows and the other retreats, so its median near zero hides two opposite coasts.</p>
+</section>
+<section id="what-others-measured" class="level2">
+<h2 data-anchor-id="what-others-measured">What others measured</h2>
+<p><span class="citation" data-cites="anthony2015">Anthony et al. (<a href="#ref-anthony2015" role="doc-biblioref">2015</a>)</span> measured the delta’s shoreline from SPOT 5 images, 2003 to 2012, and found erosion over more than half of a shoreline over 600 km long, with no identified change in the river’s discharge or in waves and wind; they find it consistent with less mud from the river, sand mining and subsidence. <span class="citation" data-cites="tamura2020">Tamura et al. (<a href="#ref-tamura2020" role="doc-biblioref">2020</a>)</span> add the long view: on the Ca Mau peninsula, the mud supply had fallen sharply by the early 20th century, after a vast network of canals was built, and the peninsula has been eroding since. <span class="citation" data-cites="phan2015">Phan, Thiel de Vries, and Stive (<a href="#ref-phan2015" role="doc-biblioref">2015</a>)</span> find that a mangrove belt on the eastern coast needs on average at least 140 m to stay healthy, and that sea dykes built too close squeeze it.</p>
+<p>The page’s own numbers do not test any of this. They measure a different edge, in different boxes and years, with 30 m pixels. Where they overlap, on the muddy east coast, both see retreat.</p>
+</section>
+<section id="what-the-measurement-cannot-see" class="level2">
+<h2 data-anchor-id="what-the-measurement-cannot-see">What the measurement cannot see</h2>
+<p><strong>A dyke stops the edge.</strong> Where a dyke holds the line, the edge cannot move inland, so “no change” in front of a dyke is not “stable”. The page says this for the Bac Lieu box.</p>
+<p><strong>Planting looks like growth.</strong> New planting shows up as growth, as the page says.</p>
+<p><strong>30 m pixels.</strong> A single year’s step of less than about 30 m is noise; only the trend over decades means something.</p>
+<p><strong>One fixed threshold.</strong> NDVI 0.3 is a choice, the same for every year and every box. Spikes remain in the yearly chart (on the Ca Mau east coast, for example, in 2019), and their causes were not traced.</p>
+<p><strong>Boxes, not the coast.</strong> Five boxes of 9 × 9 km, chosen from the literature and the images, not a survey of the whole delta. The names of the boxes (“sea dyke”, “Vinh Chau”) rest on the research notes and the imagery, not on a map of the dykes.</p>
+<p><strong>An edge is not a sediment budget.</strong> The measurement says where the trees end, not how much mud came or went, nor why. The causes on the page come from the studies it cites, not from these images.</p>
+</section>
+<section id="data-and-sources" class="level2">
+<h2 data-anchor-id="data-and-sources">Data and sources</h2>
+<ul>
+<li><strong>Imagery</strong>: Landsat Collection 2 Level-2 images courtesy of the U.S. Geological Survey (public domain), accessed through the Microsoft Planetary Computer STAC catalogue. Processing, frames and vegetation lines: re:current_analytics.</li>
+<li>The studies behind the page’s causes and choices are listed on the <a href="../../showcases/mekong-coast.html#sources">Mekong page</a>.</li>
+</ul>
+</section>
+<section id="a-reading-guide" class="level2">
+<h2 data-anchor-id="a-reading-guide">A reading guide</h2>
+<p><strong>Seeing coasts from space.</strong> The Landsat archive <span class="citation" data-cites="crawford2023">(<a href="#ref-crawford2023" role="doc-biblioref">Crawford et al. 2023</a>)</span>, a vegetation index <span class="citation" data-cites="tucker1979">(<a href="#ref-tucker1979" role="doc-biblioref">Tucker 1979</a>)</span>, shorelines from satellites <span class="citation" data-cites="vos2019 luijendijk2018">(<a href="#ref-vos2019" role="doc-biblioref">Vos et al. 2019</a>; <a href="#ref-luijendijk2018" role="doc-biblioref">Luijendijk et al. 2018</a>)</span>.</p>
+<p><strong>Robust trends.</strong> The median of pairwise slopes <span class="citation" data-cites="sen1968">(<a href="#ref-sen1968" role="doc-biblioref">Sen 1968</a>)</span>.</p>
+<p><strong>The Mekong’s coast.</strong> <span class="citation" data-cites="anthony2015 tamura2020 phan2015">(<a href="#ref-anthony2015" role="doc-biblioref">Anthony et al. 2015</a>; <a href="#ref-tamura2020" role="doc-biblioref">Tamura et al. 2020</a>; <a href="#ref-phan2015" role="doc-biblioref">Phan, Thiel de Vries, and Stive 2015</a>)</span>, and the full list on the <a href="../../showcases/mekong-coast.html#sources">Mekong page</a>.</p>
+</section>
+<section id="references" class="level2">
+<h2 data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-anthony2015" class="csl-entry" role="listitem">
+Anthony, Edward J., Guillaume Brunier, Manon Besset, Marc Goichot, Philippe Dussouillez, and Van Lap Nguyen. 2015. <span>“Linking Rapid Erosion of the <span>Mekong</span> River Delta to Human Activities.”</span> <em>Scientific Reports</em> 5 (1): 14745. <a href="https://doi.org/10.1038/srep14745">https://doi.org/10.1038/srep14745</a>.
+</div>
+<div id="ref-crawford2023" class="csl-entry" role="listitem">
+Crawford, Christopher J., David P. Roy, Saeed Arab, Christopher Barnes, Eric Vermote, Glynn Hulley, et al. 2023. <span>“The 50-Year <span>Landsat</span> Collection 2 Archive.”</span> <em>Science of Remote Sensing</em> 8: 100103. <a href="https://doi.org/10.1016/j.srs.2023.100103">https://doi.org/10.1016/j.srs.2023.100103</a>.
+</div>
+<div id="ref-luijendijk2018" class="csl-entry" role="listitem">
+Luijendijk, Arjen, Gerben Hagenaars, Roshanka Ranasinghe, Fedor Baart, Gennadii Donchyts, and Stefan Aarninkhof. 2018. <span>“The State of the World’s Beaches.”</span> <em>Scientific Reports</em> 8 (1): 6641. <a href="https://doi.org/10.1038/s41598-018-24630-6">https://doi.org/10.1038/s41598-018-24630-6</a>.
+</div>
+<div id="ref-phan2015" class="csl-entry" role="listitem">
+Phan, Linh K., Jaap S. M. van Thiel de Vries, and Marcel J. F. Stive. 2015. <span>“Coastal Mangrove Squeeze in the <span>Mekong</span> Delta.”</span> <em>Journal of Coastal Research</em> 31 (2): 233–43. <a href="https://doi.org/10.2112/JCOASTRES-D-14-00049.1">https://doi.org/10.2112/JCOASTRES-D-14-00049.1</a>.
+</div>
+<div id="ref-sen1968" class="csl-entry" role="listitem">
+Sen, Pranab Kumar. 1968. <span>“Estimates of the Regression Coefficient Based on <span>Kendall</span>’s Tau.”</span> <em>Journal of the American Statistical Association</em> 63 (324): 1379–89. <a href="https://doi.org/10.1080/01621459.1968.10480934">https://doi.org/10.1080/01621459.1968.10480934</a>.
+</div>
+<div id="ref-tamura2020" class="csl-entry" role="listitem">
+Tamura, Toru, Van Lap Nguyen, Thi Kim Oanh Ta, Mark D. Bateman, Marcello Gugliotta, Edward J. Anthony, et al. 2020. <span>“Long-Term Sediment Decline Causes Ongoing Shrinkage of the <span>Mekong</span> Megadelta, <span>Vietnam</span>.”</span> <em>Scientific Reports</em> 10 (1): 8085. <a href="https://doi.org/10.1038/s41598-020-64630-z">https://doi.org/10.1038/s41598-020-64630-z</a>.
+</div>
+<div id="ref-tucker1979" class="csl-entry" role="listitem">
+Tucker, Compton J. 1979. <span>“Red and Photographic Infrared Linear Combinations for Monitoring Vegetation.”</span> <em>Remote Sensing of Environment</em> 8 (2): 127–50. <a href="https://doi.org/10.1016/0034-4257(79)90013-0">https://doi.org/10.1016/0034-4257(79)90013-0</a>.
+</div>
+<div id="ref-vos2019" class="csl-entry" role="listitem">
+Vos, Kilian, Kristen D. Splinter, Mitchell D. Harley, Joshua A. Simmons, and Ian L. Turner. 2019. <span>“<span>CoastSat</span>: A <span>Google Earth Engine</span>-Enabled <span>Python</span> Toolkit to Extract Shorelines from Publicly Available Satellite Imagery.”</span> <em>Environmental Modelling &amp; Software</em> 122: 104528. <a href="https://doi.org/10.1016/j.envsoft.2019.104528">https://doi.org/10.1016/j.envsoft.2019.104528</a>.
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/recurrentanalytics\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "A coastline measured from space, taken apart"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "How the Mekong showcase is made: 38 dry seasons of Landsat, one rule for where the coast is, and a trend that a few bad years cannot drag"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list."</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-11-21</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [showcase, coasts, mangroves, remote-sensing]</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 2</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> ../previews/mekong-coast.png</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="in">/* This page is about its code: every excerpt stays open, without the site's fold bar. */</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper { background: transparent; border: 0; }</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper .code-block-header { display: none; }</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper .code-block-content { display: block; }</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">/* Long links in the reference and source lists wrap on a narrow screen. */</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="in">#refs a, #data-and-sources a { overflow-wrap: anywhere; }</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Mekong showcase</span><span class="co">](../mekong-coast.qmd)</span> looks at 38 dry seasons of satellite images, 1988</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>to 2025, over five stretches of the delta's coast and draws, year by year, where the vegetation ends and</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>the mudflat begins. On the Ca Mau east coast that edge stood more than a kilometre further inland in 2025 than</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>in the first clear years. This article takes the measurement apart: where the images come from, how a</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>coastline is found in them, how a rate is read from 38 noisy years, and what it cannot see.</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy (for one,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>which has neither online, I say nothing beyond its title).</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="al">![1988](../data/mekong/camau-east/1988.webp)</span>{fig-alt="Landsat true-colour image of a 9 km box on the Ca Mau east coast in 1988: green vegetation over most of the box, pale mudflat along the right side; the dark patches at the top left are masked pixels"}</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="al">![2025](../data/mekong/camau-east/2025.webp)</span>{fig-alt="The same box in 2025: green land divided into ponds and fields, its edge further up and to the left, a wide pale mudflat and water across the lower right"}</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>The same 9 × 9 km box on the Ca Mau east coast in the dry seasons of 1988 and 2025, as the</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>page shows it (without its lines). Landsat images courtesy of the U.S. Geological Survey.</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## The images</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>Every image on the page is a Landsat image: Landsat 5 for the early years, then 7, 8 and 9.</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>The archive has been reprocessed as Collection 2, and since then the U.S. Geological Survey</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>provides surface reflectance worldwide, corrected for the atmosphere, as a ready product</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@crawford2023</span><span class="co">]</span>. The page uses that product, called Level 2.</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>It reads the images through the Microsoft Planetary Computer, which offers the Landsat</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>archive with a free, anonymous access token, and reads only the 9 × 9 km box from each</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>scene, not the whole scene. A script, <span class="in">`scripts/showcase_mekong/build_frames.py`</span>, asks the</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>catalogue for every scene of a dry season over a box (from <span class="in">`build_frames.py`</span>):</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    body <span class="op">=</span> {</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">"collections"</span>: [<span class="st">"landsat-c2-l2"</span>],</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bbox"</span>: bbox_ll,</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>        <span class="st">"datetime"</span>: <span class="ss">f"</span><span class="sc">{</span>year <span class="op">-</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">-12-01T00:00:00Z/</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">-04-30T23:59:59Z"</span>,</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>        <span class="st">"query"</span>: {<span class="st">"eo:cloud_cover"</span>: {<span class="st">"lt"</span>: MAX_SCENE_CLOUD},</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"platform"</span>: {<span class="st">"in"</span>: [<span class="st">"landsat-5"</span>, <span class="st">"landsat-7"</span>, <span class="st">"landsat-8"</span>, <span class="st">"landsat-9"</span>]}},</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        <span class="st">"limit"</span>: <span class="dv">100</span>,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>It looks only at the dry season, December to April. The script sorts the scenes so</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>that Landsat 7 after May 2003, whose images have gaps from a broken scan-line corrector,</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>comes last, then by cloud cover.</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Clouds out, one picture per year</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>Each Landsat pixel comes with a quality band that flags fill, cloud, the margin around a</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>cloud and cloud shadow. The script drops every pixel with any of those flags:</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clear_mask(qa: np.ndarray) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> qa.astype(np.uint16)</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    fill <span class="op">=</span> (q <span class="op">&amp;</span> <span class="dv">1</span>) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    bad <span class="op">=</span> (q <span class="op">&amp;</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">1</span>)) <span class="op">|</span> (q <span class="op">&amp;</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">3</span>)) <span class="op">|</span> (q <span class="op">&amp;</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">4</span>))  <span class="co"># dilated cloud, cloud, shadow</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">~</span>fill) <span class="op">&amp;</span> (bad <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (q <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>Of the first 16 scenes of a season, it keeps up to five whose box is at least 90 % clear,</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>preferring those with the least haze (judged by how bright the blue band is); if fewer than</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>three qualify, it adds the clearest of the rest. From those</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>it takes, pixel by pixel, the median. A median ignores a single bright cloud edge or a dark</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>shadow the mask missed, as long as most looks at that pixel are clean. In practice there are fewer looks than that: on the Ca Mau</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>east coast, the typical pixel of a clear year has two to four clean looks, and with two the</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>median is just their mean and rejects nothing. A year counts for</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>the measurement only if at least 85 % of the box is clear in the result. On the Ca Mau east</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>coast, three of the 38 years fail that test: 1993, 2011 and 2012.</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Where is the coast?</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>On a sandy beach the coast is the waterline. On the Mekong's mud coast that does not work:</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>the waterline moves a long way with the tide over the mudflats, so in an image it says more</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>about the hour the image was taken than about the coast. The page uses the seaward edge of the vegetation instead, which moves much less with the</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>tide.</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>Vegetation is found with the normalised difference vegetation index, NDVI: the difference</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>between near-infrared and red reflectance, divided by their sum. Green leaves reflect much</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>near-infrared and absorb red, so NDVI is high over them and low over water and mud.</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>@tucker1979 studied how red and infrared measurements can be combined to monitor</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>vegetation. The script also requires a bright near-infrared (at least 0.15), so that</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>green, algae-rich water is not taken for forest.</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>Then the edge. Across each box run straight lines from the sea to the land, 90 m apart,</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>roughly at right angles to the coast. Along each, every 15 m, the script reads the NDVI and</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>walks in from the sea. The edge is the first point where the vegetation holds for five</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>samples in a row, 15 m apart (the page calls this 75 m) (from <span class="in">`veg_line`</span> in <span class="in">`build_frames.py`</span>, shortened):</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(seg.size):</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> unknown[k]:</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>                gap <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>                run <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> gap <span class="op">&gt;</span> MAX_GAP:</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span>           <span class="co"># long cloud gap on the way in: no answer here</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>            <span class="co"># …</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> veg[k]:</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> run <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>                    start, start_after_gap <span class="op">=</span> k, after_gap</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>                run <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>                run <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>            <span class="co"># …</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> run <span class="op">==</span> RUN:</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>                <span class="co"># an edge right behind a cloud gap could really sit inside the gap</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> start_after_gap:</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>                    pos[p] <span class="op">=</span> dists[ins[start]]</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>Two guards keep it honest. A line must start in clear, unvegetated water or mud, or it has</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>no crossing to find. And an edge found right behind a masked gap is thrown away, because</span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>the real edge might lie inside the gap.</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>This kind of measurement is now routine on sandy coasts. @vos2019 published an open toolkit</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>that extracts shorelines from Landsat and Sentinel-2 to about 10 m, and</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>@luijendijk2018 used freely available satellite images since 1984 to assess the world's sandy beaches, 1984 to 2016,</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>finding 24 % of them eroding by more than half a metre a year. The page's rule is much</span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>simpler than theirs, and made for a mud coast.</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="fu">## A rate from noisy years</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>Each line now has an edge position for most clear years (35 on the Ca Mau east coast, all</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>38 at Ca Mau west and Soc Trang). Some years are off, for reasons such as haze or a gap the</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>median could not fill. A straight line fitted by least squares would be pulled by such years. The</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>page uses the Theil–Sen estimator instead, after Henri Theil and @sen1968: take every pair of</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>years, compute the slope between them, and keep the median of all those slopes.</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> theil_sen(x: np.ndarray, y: np.ndarray) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Median of all pairwise slopes: a trend that a few bad years cannot drag."""</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>    i, j <span class="op">=</span> np.triu_indices(<span class="bu">len</span>(x), <span class="dv">1</span>)</span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">=</span> x[j] <span class="op">-</span> x[i]</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.median((y[j] <span class="op">-</span> y[i])[dx <span class="op">&gt;</span> <span class="dv">0</span>] <span class="op">/</span> dx[dx <span class="op">&gt;</span> <span class="dv">0</span>]))</span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>Sen showed that this median slope is robust against gross errors, where least squares is</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>not. Only lines with an edge in at least 60 % of the clear years, spread over at least 25</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>years, get a trend. @fig-transect shows one of them.</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>![One line on the Ca Mau east coast, the one whose trend is closest to the box's median:</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>where its edge stood in each clear year in which it found one, with the Theil–Sen and the least-squares</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>trend.](fig-transect.svg){#fig-transect fig-alt="Dots falling steadily from 0 in 1988 to about minus 1,050 m in 2025, with two almost identical straight lines through them"}</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>On this line the two methods almost agree: −30.0 against −28.7 m a year. They part where a line has a few wild years, by up to 35 m a year on some lines at Bac Lieu;</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>there the median is the safer reading, though nothing here can prove which is right.</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>The rate of a box is the median over its lines; the page shows the middle half of them as</span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>the spread (@fig-rates).</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>![The trend of every line in the five boxes. The box marks the middle half, the black line</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>the median.](fig-rates.svg){#fig-rates fig-alt="Dot strips per box: Ca Mau east between about minus 65 and minus 20 m a year, Ca Mau west mostly around minus 17, Bac Lieu and the Cape around zero, Soc Trang between 0 and plus 65"}</span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Box <span class="pp">|</span> Median <span class="pp">|</span> Middle half <span class="pp">|</span> Lines with a trend <span class="pp">|</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Ca Mau, east coast <span class="pp">|</span> −30.0 m/yr <span class="pp">|</span> −46.8 to −28.6 <span class="pp">|</span> 119 <span class="pp">|</span></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Ca Mau, west coast <span class="pp">|</span> −17.4 m/yr <span class="pp">|</span> −18.6 to −15.0 <span class="pp">|</span> 100 <span class="pp">|</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bac Lieu, sea dyke <span class="pp">|</span> −3.2 m/yr <span class="pp">|</span> −4.8 to −1.5 <span class="pp">|</span> 119 <span class="pp">|</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Ca Mau Cape <span class="pp">|</span> −1.0 m/yr <span class="pp">|</span> −6.8 to +4.9 <span class="pp">|</span> 74 <span class="pp">|</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Soc Trang, Vinh Chau <span class="pp">|</span> +37.2 m/yr <span class="pp">|</span> +17.1 to +47.1 <span class="pp">|</span> 101 <span class="pp">|</span></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a>: The vegetation edge, 1988 to 2025. Negative is towards land. {.striped}</span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>Two results surprised. Soc Trang grows, although the research before the build expected erosion nearby; this box</span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>does not show it. And in the Cape box one side grows and the other retreats, so its median</span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>near zero hides two opposite coasts.</span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## What others measured</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>@anthony2015 measured the delta's shoreline from SPOT 5 images, 2003 to 2012, and found erosion over more than half of a shoreline over 600 km long, with no identified</span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>change in the river's discharge or in waves and wind; they find it consistent with less mud</span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a>from the river, sand mining and subsidence. @tamura2020 add the long view: on the Ca Mau peninsula, the mud</span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>supply had fallen sharply by the early 20th century, after a vast network of canals was</span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>built, and the peninsula has been eroding since. @phan2015 find that a mangrove belt on the</span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>eastern coast needs on average at least 140 m to stay healthy, and that sea dykes built too</span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>close squeeze it.</span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>The page's own numbers do not test any of this. They measure a different edge, in different</span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>boxes and years, with 30 m pixels. Where they overlap, on the muddy east coast, both see retreat.</span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the measurement cannot see</span></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>**A dyke stops the edge.** Where a dyke holds the line, the edge cannot move inland, so "no</span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>change" in front of a dyke is not "stable". The page says this for the Bac Lieu box.</span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>**Planting looks like growth.** New planting shows up as growth, as the page says.</span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>**30 m pixels.** A single year's step of less than about 30 m is noise; only the trend over</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>decades means something.</span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>**One fixed threshold.** NDVI 0.3 is a choice, the same for every year and every box.</span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>Spikes remain in the yearly chart (on the Ca Mau east coast, for example, in 2019), and</span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>their causes were not traced.</span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>**Boxes, not the coast.** Five boxes of 9 × 9 km, chosen from the literature and the images,</span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>not a survey of the whole delta. The names of the boxes ("sea dyke", "Vinh Chau") rest on</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>the research notes and the imagery, not on a map of the dykes.</span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>**An edge is not a sediment budget.** The measurement says where the trees end, not how much</span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>mud came or went, nor why. The causes on the page come from the studies it cites, not from</span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>these images.</span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and sources</span></span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Imagery**: Landsat Collection 2 Level-2 images courtesy of the U.S. Geological Survey</span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>  (public domain), accessed through the Microsoft Planetary Computer STAC catalogue.</span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>  Processing, frames and vegetation lines: re:current_analytics.</span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The studies behind the page's causes and choices are listed on the</span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">Mekong page</span><span class="co">](../mekong-coast.qmd#sources)</span>.</span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## A reading guide</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>**Seeing coasts from space.** The Landsat archive <span class="co">[</span><span class="ot">@crawford2023</span><span class="co">]</span>, a vegetation index</span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@tucker1979</span><span class="co">]</span>, shorelines from satellites <span class="co">[</span><span class="ot">@vos2019; @luijendijk2018</span><span class="co">]</span>.</span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>**Robust trends.** The median of pairwise slopes <span class="co">[</span><span class="ot">@sen1968</span><span class="co">]</span>.</span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>**The Mekong's coast.** <span class="co">[</span><span class="ot">@anthony2015; @tamura2020; @phan2015</span><span class="co">]</span>, and the full list on the</span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Mekong page</span><span class="co">](../mekong-coast.qmd#sources)</span>.</span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© re:current_analytics · <a href="../../how-this-site-is-made.html#licence">Texts CC BY 4.0, code MIT</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="mailto:timm.walker@recurrentanalytics.com">
+<p>Email</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/walkertimm">
+<p>LinkedIn</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/recurrentanalytics">
+<p>GitHub</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.xml">
+<p>RSS</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../library/index.html">
+<p>Library</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../how-this-site-is-made.html">
+<p>Colophon</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../datenschutz.html">
+<p>Datenschutz</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

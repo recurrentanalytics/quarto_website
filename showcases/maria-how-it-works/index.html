@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-21">
+<meta name="description" content="The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list.">
+
+<title>A hurricane over a grid, taken apart – re:current_analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-83473db31452f667965bb465e6000f16.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Fonts are self-hosted (assets/fonts/, SIL OFL): no visitor request goes to Google. -->
+<link rel="stylesheet" href="../../assets/fonts/fonts.css">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<!-- Phone menu (overlay + command line): menu.css, menu.js; the class marks "JS on". -->
+<link rel="stylesheet" href="../../assets/css/menu.css">
+<script>document.documentElement.classList.add('rac-menu-js');</script>
+<!-- Article preview cards: previews.css, previews.js (series thumbnails). -->
+<link rel="stylesheet" href="../../assets/css/previews.css">
+<!-- d3 7.9.0, self-hosted, as an ES module (assets/js/vendor/): pages with interactive
+     cells may load require.js, which would swallow the plain UMD build; the wrapper
+     never asks require.js. Module scripts run before DOMContentLoaded, as site.js needs. -->
+<script type="module">import d3 from "/assets/js/vendor/d3-7.9.0.esm.js"; window.d3 = d3;</script>
+<script src="../../assets/graph.js"></script>
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/extras.js"></script>
+<script src="../../assets/js/code-fold.js"></script>
+<script defer="" src="../../assets/js/motion.js"></script>
+<script defer="" src="../../assets/js/menu.js"></script>
+<script defer="" src="../../assets/js/previews.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="A hurricane over a grid, taken apart – re:current_analytics">
+<meta property="og:description" content="The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list.">
+<meta property="og:image" content="https://recurrentanalytics.com/showcases/data/maria/og.png">
+<meta property="og:site_name" content="re:current_analytics">
+<meta property="og:image:height" content="628">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:alt" content="Puerto Rico's transmission grid after Hurricane Maria in the model: red lines down in at least half of the runs, amber in some.">
+<meta name="twitter:title" content="A hurricane over a grid, taken apart – re:current_analytics">
+<meta name="twitter:description" content="The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list.">
+<meta name="twitter:image" content="https://recurrentanalytics.com/showcases/data/maria/og.png">
+<meta name="twitter:image-height" content="628">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:image:alt" content="Puerto Rico's transmission grid after Hurricane Maria in the model: red lines down in at least half of the runs, amber in some.">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/brand/lockup-small-light.svg" alt="re:current_analytics, home" class="navbar-logo light-content">
+    <img src="../../assets/brand/lockup-small-dark.svg" alt="re:current_analytics, home" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/livelines.html"> 
+<span class="menu-text">LiveLines</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../showcases/index.html"> 
+<span class="menu-text">Showcases</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../playground/index.html"> 
+<span class="menu-text">Playground</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="../../notes/index.xml" title="" class="quarto-navigation-tool px-1" aria-label="RSS feed"><i class="bi bi-rss"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#a-screening-model-held-up-against-the-record" id="toc-a-screening-model-held-up-against-the-record" class="nav-link active" data-scroll-target="#a-screening-model-held-up-against-the-record">A screening model, held up against the record</a></li>
+  <li><a href="#the-chain" id="toc-the-chain" class="nav-link" data-scroll-target="#the-chain">The chain</a></li>
+  <li><a href="#the-grid" id="toc-the-grid" class="nav-link" data-scroll-target="#the-grid">The grid</a></li>
+  <li><a href="#the-wind" id="toc-the-wind" class="nav-link" data-scroll-target="#the-wind">The wind</a></li>
+  <li><a href="#when-a-line-breaks" id="toc-when-a-line-breaks" class="nav-link" data-scroll-target="#when-a-line-breaks">When a line breaks</a></li>
+  <li><a href="#where-the-power-goes" id="toc-where-the-power-goes" class="nav-link" data-scroll-target="#where-the-power-goes">Where the power goes</a></li>
+  <li><a href="#holding-it-up-against-the-record" id="toc-holding-it-up-against-the-record" class="nav-link" data-scroll-target="#holding-it-up-against-the-record">Holding it up against the record</a></li>
+  <li><a href="#the-page-itself" id="toc-the-page-itself" class="nav-link" data-scroll-target="#the-page-itself">The page itself</a></li>
+  <li><a href="#what-came-later" id="toc-what-came-later" class="nav-link" data-scroll-target="#what-came-later">What came later</a></li>
+  <li><a href="#from-screening-to-model" id="toc-from-screening-to-model" class="nav-link" data-scroll-target="#from-screening-to-model">From screening to model</a></li>
+  <li><a href="#what-the-model-leaves-out" id="toc-what-the-model-leaves-out" class="nav-link" data-scroll-target="#what-the-model-leaves-out">What the model leaves out</a></li>
+  <li><a href="#a-reading-guide" id="toc-a-reading-guide" class="nav-link" data-scroll-target="#a-reading-guide">A reading guide</a></li>
+  <li><a href="#data-and-sources" id="toc-data-and-sources" class="nav-link" data-scroll-target="#data-and-sources">Data and sources</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">A hurricane over a grid, taken apart</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">How the Maria showcase is made: the model chain behind it, the checks against the satellite and the outage reports, and what went wrong</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">showcase</div>
+    <div class="quarto-category">livelines</div>
+    <div class="quarto-category">power-grids</div>
+    <div class="quarto-category">tropical-cyclones</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+/* This page is about its code: every excerpt stays open, without the site's fold bar. */
+.code-block-wrapper { background: transparent; border: 0; }
+.code-block-wrapper .code-block-header { display: none; }
+.code-block-wrapper .code-block-content { display: block; }
+/* Long DOI links in the reference list wrap on a narrow screen. */
+#refs a, #data-and-sources a { overflow-wrap: anywhere; }
+</style>
+<p>The <a href="../../showcases/maria-2017-puerto-rico.html">Maria showcase</a> sends Hurricane Maria across a model of Puerto Rico’s transmission grid, hour by hour, and then holds the result up against the satellite and the outage reports. Its verdict: the model gets the direction right and misses the depth. This article takes it apart: what each piece does, the code that does it, the idea behind it, what went wrong, and what to read to go further.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="How this was made">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How this was made
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the code and the first draft of this article. The reference list was checked against Crossref (one report without a DOI and one preprint against their PDFs), and what I say about each source against its abstract or an open copy. I am not an expert in this field. I am learning it, and this article is my map so far.</p>
+</div>
+</div>
+<div id="fig-page" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic map of Puerto Rico's transmission grid in the model after Hurricane Maria on a dark background: many lines red, some amber">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-page-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../data/maria/og.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: The page’s map at the model’s last hour: red lines are down in at least half of the eight runs, amber in some."><img src="../data/maria/og.png" class="img-fluid figure-img" alt="Schematic map of Puerto Rico's transmission grid in the model after Hurricane Maria on a dark background: many lines red, some amber"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-page-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The page’s map at the model’s last hour: red lines are down in at least half of the eight runs, amber in some.
+</figcaption>
+</figure>
+</div>
+<section id="a-screening-model-held-up-against-the-record" class="level2">
+<h2 data-anchor-id="a-screening-model-held-up-against-the-record">A screening model, held up against the record</h2>
+<p>The showcase does not forecast anything. It replays a storm that happened, through a model whose every piece is a first draft, and then asks how far the result is from what was measured. LiveLines, the tool behind it, calls such a comparison a record and keeps the records that miss as well as those that hit. The Maria record is a miss with a likely cause, and the most useful part of this article is the <a href="#what-came-later">last third</a>, on what a later look at that miss found.</p>
+</section>
+<section id="the-chain" class="level2">
+<h2 data-anchor-id="the-chain">The chain</h2>
+<p>The model is a chain of small modules in the LiveLines kernel. Each takes the output of the one before (<a href="#fig-chain" class="quarto-xref">Figure&nbsp;2</a>): a grid, a storm, a rule for when lines break, a power flow, and an outcome per substation and hour. The comparison with the satellite and the reports happens outside the chain, on its last hour.</p>
+<div id="fig-chain" class="quarto-float quarto-figure quarto-figure-center" alt="Diagram: grid, storm and fragility feed a power flow, which gives an outcome; the outcome is compared with night lights and outage reports">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-chain.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: The chain behind the Maria page. The outcome at the model’s last hour is compared with two things measured outside the model."><img src="fig-chain.svg" class="img-fluid figure-img" alt="Diagram: grid, storm and fragility feed a power flow, which gives an outcome; the outcome is compared with night lights and outage reports"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The chain behind the Maria page. The outcome at the model’s last hour is compared with two things measured outside the model.
+</figcaption>
+</figure>
+</div>
+<p>The whole run is written down as one small file, a preset, so that the app and the page run the same thing: 48 model hours from 13:00 UTC on 19 September 2017, 8 runs from the seed 42. The page’s data come from a script, <code>scripts/showcase_maria/build_data.py</code>, that sends the preset to a locally running kernel three times (as it is, with the collapse rule on, and with it plus an over-frequency rule), re-derives the record’s scores from the answer, and stops if they differ from the record. The numbers from the run are not typed by hand: they come from the file this script writes.</p>
+</section>
+<section id="the-grid" class="level2">
+<h2 data-anchor-id="the-grid">The grid</h2>
+<p>The grid comes from OpenStreetMap, turned into a network model by PyPSA-Earth <span class="citation" data-cites="parzen2023">(<a href="#ref-parzen2023" role="doc-biblioref">Parzen et al. 2023</a>)</span>, an open model built on the PyPSA toolbox <span class="citation" data-cites="brown2018">(<a href="#ref-brown2018" role="doc-biblioref">Brown, Hörsch, and Schlachtberger 2018</a>)</span>. It has 56 substations and 92 branches at 115 and 230 kV: 76 lines and 16 transformers. To it come the island’s power plants built by 2017, mostly from Global Energy Monitor’s trackers, some matched with powerplantmatching <span class="citation" data-cites="gotzens2019">(<a href="#ref-gotzens2019" role="doc-biblioref">Gotzens et al. 2019</a>)</span>, with their status as of the trackers’ 2025 releases, and an hourly demand series (DemandCast) that PyPSA-Earth spreads over the substations.</p>
+<p>Three things about this grid matter for everything below:</p>
+<ul>
+<li>It is <strong>today’s map</strong>, not 2017’s. Of the 2,659 km of overhead line mapped in Puerto Rico, the model keeps 1,415 km.</li>
+<li>The <strong>line ratings</strong> are standard values per voltage, not the real ones.</li>
+<li>The plants are at <strong>nameplate</strong>: 5,666 MW of them, against 1,889 MW of load at the model’s last hour. Whether they were available in September 2017 is not in the model.</li>
+</ul>
+</section>
+<section id="the-wind" class="level2">
+<h2 data-anchor-id="the-wind">The wind</h2>
+<p>The storm is Maria’s track from IBTrACS <span class="citation" data-cites="knapp2010">(<a href="#ref-knapp2010" role="doc-biblioref">Knapp et al. 2010</a>)</span>, the US agency columns only: position, strongest wind, central pressure and the radius of strongest wind every few hours. From these a wind profile gives the wind at any distance from the centre. LiveLines uses the profile of <span class="citation" data-cites="holland1980">Holland (<a href="#ref-holland1980" role="doc-biblioref">1980</a>)</span> (<a href="#fig-profile" class="quarto-xref">Figure&nbsp;3</a>).</p>
+<div id="fig-profile" class="quarto-float quarto-figure quarto-figure-center" alt="Three curves rising steeply to a peak at one radius of maximum wind and falling off slowly; the higher B, the sharper the peak and the faster the fall">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-profile.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Holland’s profile: the wind as a share of its maximum, against the distance from the centre in radii of maximum wind. The shape parameter B sets how sharply the wind falls off outside the eyewall; LiveLines keeps it between 1 and 2.5."><img src="fig-profile.svg" class="img-fluid figure-img" alt="Three curves rising steeply to a peak at one radius of maximum wind and falling off slowly; the higher B, the sharper the peak and the faster the fall"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Holland’s profile: the wind as a share of its maximum, against the distance from the centre in radii of maximum wind. The shape parameter <span class="math inline">\(B\)</span> sets how sharply the wind falls off outside the eyewall; LiveLines keeps it between 1 and 2.5.
+</figcaption>
+</figure>
+</div>
+<p>The model is a few lines of algebra. With <span class="math inline">\(\Delta p\)</span> the drop in pressure from the surroundings to the centre, <span class="math inline">\(\rho\)</span> the density of air, <span class="math inline">\(R_m\)</span> the radius of strongest wind and <span class="math inline">\(r\)</span> the distance from the centre, the wind above the surface layer is, in the cyclostrophic form the kernel uses (the Earth’s rotation is left out),</p>
+<p><span class="math display">\[
+V_g(r) = \sqrt{\frac{B\,\Delta p}{\rho}\,u\,e^{-u}}, \qquad u = \left(\frac{R_m}{r}\right)^{B},
+\]</span></p>
+<p>and <span class="math inline">\(B\)</span> follows from the track’s strongest wind and pressure drop, kept between 1 and 2.5. In the kernel (from <code>src/kritis/chain/storm.py</code>, shortened):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    c_lat, c_lon <span class="op">=</span> at(track.lat), at(track.lon)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    dp <span class="op">=</span> at(track.p_env_pa) <span class="op">-</span> at(track.p_c_pa)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    rmax <span class="op">=</span> at(track.r_max_m)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    vg_max <span class="op">=</span> at(track.v_max_ms) <span class="op">/</span> params.k_surface</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    vtrans, heading <span class="op">=</span> at(track.v_trans_ms), at(track.heading_deg)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> holland_b(vg_max, dp, params.rho_air)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    b_use <span class="op">=</span> np.where(np.isfinite(b), np.clip(b, params.b_min, params.b_max), params.b_min)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    r, theta <span class="op">=</span> geodesy.inverse(c_lat, c_lon, pts[<span class="va">None</span>, :, <span class="dv">1</span>], pts[<span class="va">None</span>, :, <span class="dv">0</span>],</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                               a<span class="op">=</span>params.wgs84_a, inv_f<span class="op">=</span>params.wgs84_inv_f)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    v_g <span class="op">=</span> gradient_wind(r, rmax, b_use, dp, params.rho_air)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    _, gust <span class="op">=</span> surface_gust(v_g, vtrans, theta, heading, c_lat, k_surface<span class="op">=</span>params.k_surface,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                           asymmetry_a<span class="op">=</span>params.asymmetry_a, gust_factor<span class="op">=</span>params.gust_factor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>at</code> interpolates the track to the times wanted. <code>surface_gust</code> then brings the wind down to the surface (a factor of 0.9), adds up to half the storm’s forward speed on its right-hand side, where the winds of a moving northern-hemisphere storm are strongest, takes as much away on the left, and turns the result into a 3-second gust with a factor of 1.23. That factor is the cell of a WMO guideline’s table for a 3-second gust within one minute, at a coastline with the wind coming off the sea <span class="citation" data-cites="harper2010">(<a href="#ref-harper2010" role="doc-biblioref">Harper, Kepert, and Ginger 2010</a>, Table 1.1)</span>.</p>
+<p>Where is the wind needed? Every branch is cut into pieces of at most 10 km, and the wind is computed at the middle of each piece, twice per model hour. The hour’s value is the higher of the two.</p>
+</section>
+<section id="when-a-line-breaks" class="level2">
+<h2 data-anchor-id="when-a-line-breaks">When a line breaks</h2>
+<p>A line does not break at one wind speed. Two towers of the same design, in the same gust, may fare differently. A fragility curve describes this as a probability: the chance that a piece of line breaks at a given gust (<a href="#fig-fragility" class="quarto-xref">Figure&nbsp;4</a>).</p>
+<div id="fig-fragility" class="quarto-float quarto-figure quarto-figure-center" alt="An S-shaped curve from 0 to 1, steepest around 78.6 m/s; below it a box plot of the branches' peak gusts from 52.8 to 88.9 m/s with a median of 75.5">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fragility-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-fragility.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: The line curve the model uses, for every voltage: the chance that one piece of line breaks, against the 3-second gust. Below it, where the strongest gust on each branch falls in the Maria run."><img src="fig-fragility.svg" class="img-fluid figure-img" alt="An S-shaped curve from 0 to 1, steepest around 78.6 m/s; below it a box plot of the branches' peak gusts from 52.8 to 88.9 m/s with a median of 75.5"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fragility-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The line curve the model uses, for every voltage: the chance that one piece of line breaks, against the 3-second gust. Below it, where the strongest gust on each branch falls in the Maria run.
+</figcaption>
+</figure>
+</div>
+<p>The curve is borrowed. <span class="citation" data-cites="raj2021">Raj, Bhatia, and Kumar (<a href="#ref-raj2021" role="doc-biblioref">2021</a>)</span> fitted it to the transmission towers of Odisha in India after Cyclone Fani in 2019: 128 towers at 132 and 220 kV that collapsed or lost their function, out of a network of 41,814. Its median is 78.6 m/s, and it is steep: the chance rises from 1 in 100 at about 65 m/s to 99 in 100 at about 96 m/s. Hold on to that steepness; it comes back <a href="#two-errors-that-hide-each-other">below</a>. One more thing comes with the curve: the authors fitted it to gusts from a different wind profile <span class="citation" data-cites="willoughby2006">(<a href="#ref-willoughby2006" role="doc-biblioref">Willoughby, Darling, and Rahn 2006</a>)</span>, scaled by their own factor, so it carries that wind model’s errors too.</p>
+<p>The kernel draws, for every run and every piece of line, a breaking gust from that curve, and lets the piece break in the first hour its peak gust so far reaches it. A line is out as soon as one of its pieces is (from <code>src/kritis/chain/fragility.py</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> rng.standard_normal((n_sample, n_point))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    cap <span class="op">=</span> np.exp(np.log(median_ms[pl])[<span class="va">None</span>, :] <span class="op">+</span> beta[pl][<span class="va">None</span>, :] <span class="op">*</span> z)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># running peak gust per point: a segment that has failed stays failed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> np.maximum.accumulate(wind.gust_ms, axis<span class="op">=</span><span class="dv">0</span>)  <span class="co"># (hour, point)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    exceeded <span class="op">=</span> peak[<span class="va">None</span>, :, :] <span class="op">&gt;=</span> cap[:, <span class="va">None</span>, :]  <span class="co"># (sample, hour, point)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    seg_fail <span class="op">=</span> np.where(exceeded.<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>), exceeded.argmax(axis<span class="op">=</span><span class="dv">1</span>), n_hour)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    t_fail <span class="op">=</span> np.full((n_sample, n_line), n_hour, dtype<span class="op">=</span>np.int64)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    np.minimum.at(t_fail, (<span class="bu">slice</span>(<span class="va">None</span>), pl), seg_fail.astype(np.int64))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>cap</code> is the breaking gust: a normal random number <span class="math inline">\(z\)</span>, turned into a lognormal one with the curve’s median and spread. Nothing is ever repaired in this run. With the seed 42, the eight runs lose between 39 and 45 of the 92 branches. The 16 transformers are treated like lines here, with the same tower curve, and 3 to 8 of them fail per run; whether that is intended is an open question in LiveLines.</p>
+<p>Fragility curves for power lines in storms are a field of their own. <span class="citation" data-cites="panteli2017resilience">Panteli and Mancarella (<a href="#ref-panteli2017resilience" role="doc-biblioref">2017</a>)</span> introduce a framework in which weather- and time-dependent failure probabilities from such curves drive a sequential Monte Carlo simulation of a power system; <span class="citation" data-cites="panteli2017fragility">Panteli et al. (<a href="#ref-panteli2017fragility" role="doc-biblioref">2017</a>)</span> build fragility models of components and of the whole transmission system for wind and test them on a version of Great Britain’s grid. LiveLines follows the same pattern, in a much smaller form.</p>
+</section>
+<section id="where-the-power-goes" class="level2">
+<h2 data-anchor-id="where-the-power-goes">Where the power goes</h2>
+<p>Breaking lines is not yet an outage. What matters is whether power still gets from the plants to the load. The kernel answers this with a DC power flow, the linear approximation that power-system planners use when they need many answers fast. <span class="citation" data-cites="stott2009">Stott, Jardim, and Alsac (<a href="#ref-stott2009" role="doc-biblioref">2009</a>)</span> re-examine it and note that correct flows from it are “by no means assured”.</p>
+<p>Each hour, the kernel does four things for every run:</p>
+<ol type="1">
+<li><strong>Islands.</strong> It finds the groups of substations still connected by working lines.</li>
+<li><strong>Dispatch.</strong> In each island, the plants cover the load as far as they can. An island without a plant goes dark; one with too little serves every load the same fraction.</li>
+<li><strong>Flows.</strong> It solves the DC power flow in each island.</li>
+<li><strong>Cascade.</strong> Any line carrying more than 1.5 times its rating trips, and the kernel goes back to step 1, until nothing more trips.</li>
+</ol>
+<p>The cascade is the part a picture of the network alone would miss. <span class="citation" data-cites="hines2010">Hines, Cotilla-Sanchez, and Blumsack (<a href="#ref-hines2010" role="doc-biblioref">2010</a>)</span> compared measures of vulnerability taken from the network’s shape with a model of cascading failure, found only a mild correlation, and concluded that judging a grid by its topology alone can mislead. In the Maria run the cascade adds up to 6 trips to the wind’s damage.</p>
+<p>A second engine, PyPSA itself, solves the same hour as an optimisation: an ideal operator who sheds as little load as possible and never overloads a line. The page shows both; the ideal operator serves a little more here.</p>
+<section id="the-rule-that-turns-the-lights-off" class="level3">
+<h3 data-anchor-id="the-rule-that-turns-the-lights-off">The rule that turns the lights off</h3>
+<p>Step 2 above has a blind spot. A real grid that is suddenly cut in two does not quietly serve what it can. If an island loses more generation than its automatic load shedding can make up, its frequency falls, plants protect themselves by tripping, and the whole island goes dark in seconds. Without a rule for this, the model reroutes power around every gap.</p>
+<p>LiveLines has such a rule, switched off in the main run and on in two variants. An island goes dark when its sudden shortfall, measured against the load it served the hour before, exceeds a threshold (from <code>src/kritis/chain/powerflow_dc.py</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> isl <span class="kw">in</span> np.unique(label):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        buses <span class="op">=</span> label <span class="op">==</span> isl</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="bu">float</span>(prev_served[buses].<span class="bu">sum</span>())</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="op">&lt;=</span> _EPS:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> <span class="bu">float</span>(prev_gen[gen_label <span class="op">==</span> isl].<span class="bu">sum</span>()) <span class="op">+</span> <span class="bu">float</span>(prev_used[buses].<span class="bu">sum</span>())</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="op">-</span> g <span class="op">&gt;</span> threshold <span class="op">*</span> s <span class="op">+</span> tol_mw:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            out <span class="op">|=</span> buses</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The threshold is 25 %. It comes from a North American reliability standard (NERC PRC-006-5), which asks that load-shedding schemes survive an imbalance of up to that size. It is the least a scheme must survive, not a measured breaking point, and Puerto Rico is not under NERC. A second rule does the same for an island that suddenly has too much generation.</p>
+</section>
+</section>
+<section id="holding-it-up-against-the-record" class="level2">
+<h2 data-anchor-id="holding-it-up-against-the-record">Holding it up against the record</h2>
+<p>The model ends after 48 hours. Two kinds of observation are held against its last hour.</p>
+<section id="lights-at-night" class="level3">
+<h3 data-anchor-id="lights-at-night">Lights at night</h3>
+<p>NASA’s Black Marble product gives the light the Earth emits at night, every day, at about 500 m, corrected among other things for the moon and for stray light <span class="citation" data-cites="roman2018">(<a href="#ref-roman2018" role="doc-biblioref">Román et al. 2018</a>)</span>. The light is not electricity, but where a whole town’s power fails, its light goes too. <span class="citation" data-cites="roman2019">Román et al. (<a href="#ref-roman2019" role="doc-biblioref">2019</a>)</span> used Black Marble to follow the outage and the restoration in Puerto Rico after Maria; by their estimate, the island’s lights fell by about 80 % right after the storm.</p>
+<p>The showcase uses the same data in a simpler way. Every land pixel on the island goes to its nearest substation. For every pixel, the normal light is the median over the clear nights before 6 September (when Irma passed north of the island). For every substation area and night, the light ratio is the light of the clear pixels that night, divided by their normal light (from LiveLines’ <code>scripts/nightlight_bus_areas.py</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>            sel <span class="op">=</span> usable <span class="op">&amp;</span> has_base</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> np.bincount(bus[sel], weights<span class="op">=</span>ntl[sel], minlength<span class="op">=</span><span class="bu">len</span>(names))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            den <span class="op">=</span> np.bincount(bus[sel], weights<span class="op">=</span>base0[sel], minlength<span class="op">=</span><span class="bu">len</span>(names))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A night counts for an area only if at least half its normal light was seen through clear sky. From 21 September on, the first such nights were the 27th and 28th. On those two nights every one of the 50 substation areas with data was below half its normal light, and on average they kept 19 %. The model, at its last hour, still served 63 % in the same areas (a plain mean over them), and only 17 of them fell below half.</p>
+</section>
+<section id="customers-without-power" class="level3">
+<h3 data-anchor-id="customers-without-power">Customers without power</h3>
+<p>The U.S. Department of Energy published situation reports through the crisis. On 24 September 2017 they counted 1,569,796 customers without power: all of them. The model, at its last hour three days earlier, still served 39 % of the island’s load.</p>
+<p>Both comparisons say the same thing. The model gets the direction right, a severe outage, and misses the depth, an island that went entirely dark. Its first explanation was on the page from the start: there is no system-wide collapse in the main run. With the collapse rule on, the areas’ mean drops to 57 %; with both rules, to 55 %. Closer, but nowhere near 19 %.</p>
+</section>
+</section>
+<section id="the-page-itself" class="level2">
+<h2 data-anchor-id="the-page-itself">The page itself</h2>
+<p>The page is plain HTML with one script and no library. Two things in it are worth taking away.</p>
+<p><strong>The run’s numbers are checked.</strong> Most numbers from the run sit in a small tagged element in the text that carries the value as written. When the page loads, the script computes the same value from the data file and complains in the browser’s console if they differ (from <code>showcases/assets/maria.js</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">root</span><span class="op">.</span><span class="fu">querySelectorAll</span>(<span class="st">'[data-k]'</span>)<span class="op">.</span><span class="fu">forEach</span>(<span class="kw">function</span> (s) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> k <span class="op">=</span> s<span class="op">.</span><span class="fu">getAttribute</span>(<span class="st">'data-k'</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>(k <span class="kw">in</span> K)) { <span class="bu">console</span><span class="op">.</span><span class="fu">warn</span>(<span class="st">'maria: no value for'</span><span class="op">,</span> k)<span class="op">;</span> <span class="cf">return</span><span class="op">;</span> }</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> v <span class="op">=</span> <span class="bu">String</span>(K[k])<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (s<span class="op">.</span><span class="at">textContent</span><span class="op">.</span><span class="fu">trim</span>() <span class="op">!==</span> v) <span class="bu">console</span><span class="op">.</span><span class="fu">warn</span>(<span class="st">'maria: text says'</span><span class="op">,</span> s<span class="op">.</span><span class="at">textContent</span><span class="op">.</span><span class="fu">trim</span>()<span class="op">,</span> <span class="st">'data says'</span><span class="op">,</span> v<span class="op">,</span> <span class="st">'('</span> <span class="op">+</span> k <span class="op">+</span> <span class="st">')'</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>So these numbers cannot quietly drift away from the run. The text around them is still written by hand, so it reads like text and works without the script. Numbers from other sources on the page, such as the kilometres of mapped line, are typed and were checked by hand.</p>
+<p><strong>Scrolling runs the clock.</strong> On the step “Hour by hour”, how far the step has scrolled sets the model hour, from hour 12 to hour 47, and the map redraws. Visitors who have asked their device for less motion get four still maps instead (hours 19, 21, 24 and 47).</p>
+</section>
+<section id="what-came-later" class="level2">
+<h2 data-anchor-id="what-came-later">What came later</h2>
+<p>A day after the page was built, LiveLines looked at the miss again, with a method it had used before on Typhoon Haiyan: rank the possible causes, say what each rests on, change no parameter and fit nothing. The full analysis is a record in the LiveLines repository; here is what it found, and what it means for the page.</p>
+<section id="two-errors-that-hide-each-other" class="level3">
+<h3 data-anchor-id="two-errors-that-hide-each-other">Two errors that hide each other</h3>
+<p>LiveLines compared its wind with the gusts that weather stations on the island measured, as the National Hurricane Center’s report on Maria lists them. At the five stations whose records are not marked incomplete, the measured gust was 0.71 of the model’s (the median), and the model was 16.0 m/s higher on average. Four wind models from CLIMADA, run on the same track and the same points, were also higher, by 10.3 to 18.3 m/s on average. There is no correction for the stations’ height or exposure, and the report states no averaging time for its gusts, so this is a pointer, not a measurement of the error.</p>
+<p>Now recall how steep the line curve is. What happens if the wind is a little weaker? The analysis ran the model with every gust scaled down:</p>
+<table class="table-striped caption-top table">
+<caption>Sensitivity runs, not proposed values. “Expected” is the sum over branches of each one’s chance to fail; served is the DC engine’s median over the eight runs. Source: LiveLines record <code>pypsaearth_pr_maria_gap_analysis</code>.</caption>
+<thead>
+<tr class="header">
+<th>Gust ×</th>
+<th>Branches expected to fail</th>
+<th>Island load served, end</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>41.6</td>
+<td>39 %</td>
+</tr>
+<tr class="even">
+<td>0.9</td>
+<td>19.1</td>
+<td>83 %</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>2.5</td>
+<td>99 %</td>
+</tr>
+<tr class="even">
+<td>0.7</td>
+<td>0.0</td>
+<td>99 %</td>
+</tr>
+</tbody>
+</table>
+<p>With a fifth less wind, almost nothing breaks. Yet Puerto Rico’s transmission lines did break, badly: <span class="citation" data-cites="kwasinski2019">Kwasinski et al. (<a href="#ref-kwasinski2019" role="doc-biblioref">2019</a>)</span> describe damage to transmission and distribution far worse than in other recent US hurricanes. So if the stations are right, the borrowed Indian tower curve is far too strong for Puerto Rico’s lines, and the model’s too-strong wind hides it. Fix one without the other and the model breaks almost no lines at all. Both must move together, from sources, and neither may be tuned to make Maria come out right.</p>
+<p>Two of the readings behind this article point at the wind. <span class="citation" data-cites="willoughby2006">Willoughby, Darling, and Rahn (<a href="#ref-willoughby2006" role="doc-biblioref">2006</a>)</span> compared the most common profile functions with aircraft measurements and found that “winds near the peak are too strong” and fall off too fast away from it. And the WMO guideline whose 1.23 the kernel uses says that a “maximum 1-min sustained” wind, the kind a best track reports, is itself a gust, not a mean <span class="citation" data-cites="harper2010">(<a href="#ref-harper2010" role="doc-biblioref">Harper, Kepert, and Ginger 2010, 2</a>)</span>; a gust factor is meant for a mean wind. Whether either explains the excess here has not been tested.</p>
+</section>
+<section id="the-median-hid-the-blackouts" class="level3">
+<h3 data-anchor-id="the-median-hid-the-blackouts">The median hid the blackouts</h3>
+<p>The collapse rule seemed to change little: the median over the eight runs barely moved. A closer look found that the largest sudden shortfall of any island of five or more substations lies between 18 % and 31 % in six of the runs, right around the 25 % threshold. With both rules on, three of the eight runs end with the island completely dark, which is what was reported, and the other five keep between 32 % and 44 % of the load. The median sits among the five. A model on a knife-edge needs its spread reported, not just its middle; showing “3 of 8 runs went dark” is now an open proposal in LiveLines.</p>
+</section>
+<section id="the-outage-started-earlier" class="level3">
+<h3 data-anchor-id="the-outage-started-earlier">The outage started earlier</h3>
+<p>A DOE report not used on the page says that at 07:37 UTC on 20 September, 2.6 hours before landfall, about 56 % of customers were already without power. The model still served almost all of its load then. What failed first is not known from the reports.</p>
+</section>
+<section id="a-different-measure-a-different-gap" class="level3">
+<h3 data-anchor-id="a-different-measure-a-different-gap">A different measure, a different gap</h3>
+<p>The page’s “63 % served” is a plain mean over 50 areas, and 13 of them have no load in the model, so they count as fully served. The analysis took the measure apart:</p>
+<table class="table-striped caption-top table">
+<caption>Source: LiveLines record <code>pypsaearth_pr_maria_gap_analysis</code>.</caption>
+<thead>
+<tr class="header">
+<th>Measure (DC engine, last hour)</th>
+<th>Served</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>plain mean, all 50 areas with light data</td>
+<td>63 %</td>
+</tr>
+<tr class="even">
+<td>plain mean, the 37 of them with load</td>
+<td>51 %</td>
+</tr>
+<tr class="odd">
+<td>weighted by load, the same 37</td>
+<td>33 %</td>
+</tr>
+<tr class="even">
+<td>island total</td>
+<td>39 %</td>
+</tr>
+</tbody>
+</table>
+<p>The honest size of the miss is the island total against the reports, about 39 points, not the 45 points between 63 % and 19 %. The page already gives both numbers; it says which is which in small print.</p>
+</section>
+<section id="what-this-means-for-the-page" class="level3">
+<h3 data-anchor-id="what-this-means-for-the-page">What this means for the page</h3>
+<p>The page stands as it is: every number on it comes from the run it names, and its “why it misses” says the collapse is the likely cause, not the proven one. Two things on it are now known to be incomplete. Its fragility caveat (“borrowed”) understates how much rests on the wind, and its collapse variant reports the median that hides three dark runs. Since then LiveLines has also rebuilt its night-light table so that it drops pixels on nights lit by the moon; on that table the satellite mean is 18 %, not 19 %. The page keeps the numbers of the run it names; a rebuilt page would take the new ones.</p>
+</section>
+</section>
+<section id="from-screening-to-model" class="level2">
+<h2 data-anchor-id="from-screening-to-model">From screening to model</h2>
+<p>What would it take before a model like this could say something about the next storm?</p>
+<p><strong>The distribution grid.</strong> The model stops at the substation. The lines to streets and homes, where much of Maria’s damage was, are not in it. <span class="citation" data-cites="kwasinski2019">Kwasinski et al. (<a href="#ref-kwasinski2019" role="doc-biblioref">2019</a>)</span> describe an outage that “initially affected the entire island” and lasted more than ten months, with transmission and distribution damaged far worse than in other recent US hurricanes and generation only lightly.</p>
+<p><strong>A tower curve from the place.</strong> Puerto Rico’s own damage records, not Odisha’s, and a curve per tower rather than per 10 km of line.</p>
+<p><strong>Wind checked against stations</strong>, with height, exposure and averaging time corrected, before the wind is changed.</p>
+<p><strong>Repair.</strong> Without repair, the model’s last hour has to stand for every later date. With it, the model could be held against the months of restoration that <span class="citation" data-cites="roman2019">Román et al. (<a href="#ref-roman2019" role="doc-biblioref">2019</a>)</span> followed from space.</p>
+<p><strong>More runs and the spread.</strong> Eight runs are enough to see a knife-edge, not to measure it.</p>
+</section>
+<section id="what-the-model-leaves-out" class="level2">
+<h2 data-anchor-id="what-the-model-leaves-out">What the model leaves out</h2>
+<p>No distribution lines and no repair. Today’s map, standard line ratings, plants at nameplate. A tower curve from another country, applied per 10 km. A wind profile from a formula, unchecked against stations. Collapse thresholds from North American standards. Night lights as a stand-in for power. Eight runs. Every module in the chain is at placeholder maturity, and the page says so.</p>
+</section>
+<section id="a-reading-guide" class="level2">
+<h2 data-anchor-id="a-reading-guide">A reading guide</h2>
+<p><strong>Wind in a hurricane.</strong> The profile <span class="citation" data-cites="holland1980">(<a href="#ref-holland1980" role="doc-biblioref">Holland 1980</a>)</span>, an alternative fitted to aircraft data <span class="citation" data-cites="willoughby2006">(<a href="#ref-willoughby2006" role="doc-biblioref">Willoughby, Darling, and Rahn 2006</a>)</span>, gusts and averaging times <span class="citation" data-cites="harper2010">(<a href="#ref-harper2010" role="doc-biblioref">Harper, Kepert, and Ginger 2010</a>)</span>, the tracks <span class="citation" data-cites="knapp2010">(<a href="#ref-knapp2010" role="doc-biblioref">Knapp et al. 2010</a>)</span>.</p>
+<p><strong>Grids under storms.</strong> Fragility and resilience <span class="citation" data-cites="panteli2017resilience panteli2017fragility">(<a href="#ref-panteli2017resilience" role="doc-biblioref">Panteli and Mancarella 2017</a>; <a href="#ref-panteli2017fragility" role="doc-biblioref">Panteli et al. 2017</a>)</span>, a tower curve and its data <span class="citation" data-cites="raj2021">(<a href="#ref-raj2021" role="doc-biblioref">Raj, Bhatia, and Kumar 2021</a>)</span>, why flows and not only topology <span class="citation" data-cites="hines2010">(<a href="#ref-hines2010" role="doc-biblioref">Hines, Cotilla-Sanchez, and Blumsack 2010</a>)</span>, the DC approximation <span class="citation" data-cites="stott2009">(<a href="#ref-stott2009" role="doc-biblioref">Stott, Jardim, and Alsac 2009</a>)</span>.</p>
+<p><strong>Open grid models.</strong> <span class="citation" data-cites="brown2018 parzen2023 gotzens2019">(<a href="#ref-brown2018" role="doc-biblioref">Brown, Hörsch, and Schlachtberger 2018</a>; <a href="#ref-parzen2023" role="doc-biblioref">Parzen et al. 2023</a>; <a href="#ref-gotzens2019" role="doc-biblioref">Gotzens et al. 2019</a>)</span>.</p>
+<p><strong>Seeing outages from space.</strong> <span class="citation" data-cites="roman2018 roman2019">(<a href="#ref-roman2018" role="doc-biblioref">Román et al. 2018</a>, <a href="#ref-roman2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p><strong>Maria and Puerto Rico’s grid.</strong> <span class="citation" data-cites="kwasinski2019 roman2019">(<a href="#ref-kwasinski2019" role="doc-biblioref">Kwasinski et al. 2019</a>; <a href="#ref-roman2019" role="doc-biblioref">Román et al. 2019</a>)</span>.</p>
+</section>
+<section id="data-and-sources" class="level2">
+<h2 data-anchor-id="data-and-sources">Data and sources</h2>
+<p>The figures and numbers in this article come from the Maria showcase’s run and from the LiveLines repository. The data behind them, as on the <a href="../../showcases/maria-2017-puerto-rico.html#mx-sources">showcase page</a>:</p>
+<ul>
+<li><strong>Grid</strong> (the map in <a href="#fig-page" class="quarto-xref">Figure&nbsp;1</a>, 56 substations, 92 branches): © OpenStreetMap contributors, <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>, built with PyPSA-Earth.</li>
+<li><strong>Power plants</strong> (the 5,666 MW): Global Energy Monitor, Global Oil and Gas Plant Tracker (August 2025 release), Global Coal Plant Tracker (July 2025 release), Global Solar Power Tracker and Global Wind Power Tracker (February 2025 releases), <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Three combined-cycle units: data obtained from <a href="https://GlobalEnergyObservatory.org/">GlobalEnergyObservatory.org</a>, <a href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>. Modified: units built after 2017 removed, used at nameplate.</li>
+<li><strong>Demand</strong> (the 1,889 MW and every share of load): DemandCast, Antonini, E., V. P. Goli, K. Steijn (2026), Global Dataset of Forecasted Hourly Electricity Demand from 2000 to 2024 Using DemandCast, version 1.0.0, <a href="https://doi.org/10.5281/zenodo.18374352">doi:10.5281/zenodo.18374352</a>; Steijn, K., V. P. Goli, E. Antonini (2025), DemandCast: Global hourly electricity demand forecasting, <a href="https://arxiv.org/abs/2510.08000">arXiv:2510.08000</a>. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The island series is split over the substations by PyPSA-Earth, so load per substation is modelled. The split over buses uses GADM 4.1 administrative units (<a href="https://gadm.org/">gadm.org</a>) as weights. GADM allows free academic and other non-commercial use; whether numbers weighted by its units count as redistribution is not settled, and GADM has not been asked.</li>
+<li><strong>Storm track</strong>: IBTrACS, NHC best track (USA columns only), <span class="citation" data-cites="knapp2010">Knapp et al. (<a href="#ref-knapp2010" role="doc-biblioref">2010</a>)</span>; Gahtan, J. et al. (2024), IBTrACS Project, Version 4r01, NOAA National Centers for Environmental Information, <a href="https://doi.org/10.25921/82ty-9e16">doi:10.25921/82ty-9e16</a>.</li>
+<li><strong>Night lights</strong>: NASA Black Marble VNP46A2, Collection 2, <a href="https://doi.org/10.5067/VIIRS/VNP46A2.002">doi:10.5067/VIIRS/VNP46A2.002</a>, CC0. Credit: NASA.</li>
+<li><strong>Outage reports</strong>: U.S. Department of Energy, Office of Electricity, <a href="https://www.energy.gov/oe/downloads/hurricanes-irma-and-harvey-situation-reports">Hurricanes Nate, Maria, Irma, and Harvey Situation Reports</a> (2017–2018), public domain. With thanks to the Department of Energy.</li>
+<li><strong>Station gusts</strong>: Pasch, R. J., A. B. Penny and R. Berg, National Hurricane Center Tropical Cyclone Report: Hurricane Maria (AL152017), <a href="https://www.nhc.noaa.gov/data/tcr/AL152017_Maria.pdf">nhc.noaa.gov</a>; used through LiveLines’ comparison, not shown. A National Weather Service product; the Weather Service states that its information is in the public domain unless specifically noted otherwise.</li>
+<li><strong>Model and records</strong>: LiveLines kernel, commit 865bcc9, preset chain_maria_pr; the later analysis is the LiveLines record <code>pypsaearth_pr_maria_gap_analysis</code>.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-brown2018" class="csl-entry" role="listitem">
+Brown, Thomas, Jonas Hörsch, and David Schlachtberger. 2018. <span>“<span>PyPSA</span>: Python for Power System Analysis.”</span> <em>Journal of Open Research Software</em> 6 (1): 4. <a href="https://doi.org/10.5334/jors.188">https://doi.org/10.5334/jors.188</a>.
+</div>
+<div id="ref-gotzens2019" class="csl-entry" role="listitem">
+Gotzens, Fabian, Heidi Heinrichs, Jonas Hörsch, and Fabian Hofmann. 2019. <span>“Performing Energy Modelling Exercises in a Transparent Way – the Issue of Data Quality in Power Plant Databases.”</span> <em>Energy Strategy Reviews</em> 23: 1–12. <a href="https://doi.org/10.1016/j.esr.2018.11.004">https://doi.org/10.1016/j.esr.2018.11.004</a>.
+</div>
+<div id="ref-harper2010" class="csl-entry" role="listitem">
+Harper, B. A., J. D. Kepert, and J. D. Ginger. 2010. <span>“Guidelines for Converting Between Various Wind Averaging Periods in Tropical Cyclone Conditions.”</span> WMO/TD-No. 1555. World Meteorological Organization. <a href="http://www.systemsengineeringaustralia.com.au/download/WMO_TC_Wind_Averaging_27_Aug_2010.pdf">http://www.systemsengineeringaustralia.com.au/download/WMO_TC_Wind_Averaging_27_Aug_2010.pdf</a>.
+</div>
+<div id="ref-hines2010" class="csl-entry" role="listitem">
+Hines, Paul, Eduardo Cotilla-Sanchez, and Seth Blumsack. 2010. <span>“Do Topological Models Provide Good Information about Electricity Infrastructure Vulnerability?”</span> <em>Chaos: An Interdisciplinary Journal of Nonlinear Science</em> 20 (3): 033122. <a href="https://doi.org/10.1063/1.3489887">https://doi.org/10.1063/1.3489887</a>.
+</div>
+<div id="ref-holland1980" class="csl-entry" role="listitem">
+Holland, Greg J. 1980. <span>“An Analytic Model of the Wind and Pressure Profiles in Hurricanes.”</span> <em>Monthly Weather Review</em> 108 (8): 1212–18. <a href="https://doi.org/10.1175/1520-0493(1980)108<1212:AAMOTW>2.0.CO;2">https://doi.org/10.1175/1520-0493(1980)108&lt;1212:AAMOTW&gt;2.0.CO;2</a>.
+</div>
+<div id="ref-knapp2010" class="csl-entry" role="listitem">
+Knapp, Kenneth R., Michael C. Kruk, David H. Levinson, Howard J. Diamond, and Charles J. Neumann. 2010. <span>“The International Best Track Archive for Climate Stewardship (<span>IBTrACS</span>): Unifying Tropical Cyclone Data.”</span> <em>Bulletin of the American Meteorological Society</em> 91 (3): 363–76. <a href="https://doi.org/10.1175/2009BAMS2755.1">https://doi.org/10.1175/2009BAMS2755.1</a>.
+</div>
+<div id="ref-kwasinski2019" class="csl-entry" role="listitem">
+Kwasinski, Alexis, Fabio Andrade, Marcel J. Castro-Sitiriche, and Efrain O’Neill-Carrillo. 2019. <span>“<span>Hurricane Maria</span> Effects on <span>Puerto Rico</span> Electric Power Infrastructure.”</span> <em>IEEE Power and Energy Technology Systems Journal</em> 6 (1): 85–94. <a href="https://doi.org/10.1109/JPETS.2019.2900293">https://doi.org/10.1109/JPETS.2019.2900293</a>.
+</div>
+<div id="ref-panteli2017resilience" class="csl-entry" role="listitem">
+Panteli, Mathaios, and Pierluigi Mancarella. 2017. <span>“Modeling and Evaluating the Resilience of Critical Electrical Power Infrastructure to Extreme Weather Events.”</span> <em>IEEE Systems Journal</em> 11 (3): 1733–42. <a href="https://doi.org/10.1109/JSYST.2015.2389272">https://doi.org/10.1109/JSYST.2015.2389272</a>.
+</div>
+<div id="ref-panteli2017fragility" class="csl-entry" role="listitem">
+Panteli, Mathaios, Cassandra Pickering, Sean Wilkinson, Richard Dawson, and Pierluigi Mancarella. 2017. <span>“Power System Resilience to Extreme Weather: Fragility Modeling, Probabilistic Impact Assessment, and Adaptation Measures.”</span> <em>IEEE Transactions on Power Systems</em> 32 (5): 3747–57. <a href="https://doi.org/10.1109/TPWRS.2016.2641463">https://doi.org/10.1109/TPWRS.2016.2641463</a>.
+</div>
+<div id="ref-parzen2023" class="csl-entry" role="listitem">
+Parzen, Maximilian, Hazem Abdel-Khalek, Ekaterina Fedotova, Matin Mahmood, Martha Maria Frysztacki, Johannes Hampp, Lukas Franken, et al. 2023. <span>“<span>PyPSA-Earth</span>. A New Global Open Energy System Optimization Model Demonstrated in <span>Africa</span>.”</span> <em>Applied Energy</em> 341: 121096. <a href="https://doi.org/10.1016/j.apenergy.2023.121096">https://doi.org/10.1016/j.apenergy.2023.121096</a>.
+</div>
+<div id="ref-raj2021" class="csl-entry" role="listitem">
+Raj, Surender V., Udit Bhatia, and Manish Kumar. 2021. <span>“Cyclone Preparedness Strategies for Regional Power Transmission Systems in Data-Scarce Coastal Regions of <span>India</span>.”</span> arXiv preprint. <a href="https://arxiv.org/abs/2105.00909">https://arxiv.org/abs/2105.00909</a>.
+</div>
+<div id="ref-roman2019" class="csl-entry" role="listitem">
+Román, Miguel O., Eleanor C. Stokes, Ranjay Shrestha, Zhuosen Wang, Lori Schultz, Edil A. Sepúlveda Carlo, et al. 2019. <span>“Satellite-Based Assessment of Electricity Restoration Efforts in <span>Puerto Rico</span> After <span>Hurricane Maria</span>.”</span> <em>PLOS ONE</em> 14 (6): e0218883. <a href="https://doi.org/10.1371/journal.pone.0218883">https://doi.org/10.1371/journal.pone.0218883</a>.
+</div>
+<div id="ref-roman2018" class="csl-entry" role="listitem">
+Román, Miguel O., Zhuosen Wang, Qingsong Sun, Virginia Kalb, Steven D. Miller, Andrew Molthan, et al. 2018. <span>“<span>NASA</span>’s <span>Black Marble</span> Nighttime Lights Product Suite.”</span> <em>Remote Sensing of Environment</em> 210: 113–43. <a href="https://doi.org/10.1016/j.rse.2018.03.017">https://doi.org/10.1016/j.rse.2018.03.017</a>.
+</div>
+<div id="ref-stott2009" class="csl-entry" role="listitem">
+Stott, B., J. Jardim, and O. Alsac. 2009. <span>“<span>DC</span> Power Flow Revisited.”</span> <em>IEEE Transactions on Power Systems</em> 24 (3): 1290–300. <a href="https://doi.org/10.1109/TPWRS.2009.2021235">https://doi.org/10.1109/TPWRS.2009.2021235</a>.
+</div>
+<div id="ref-willoughby2006" class="csl-entry" role="listitem">
+Willoughby, H. E., R. W. R. Darling, and M. E. Rahn. 2006. <span>“Parametric Representation of the Primary Hurricane Vortex. Part <span>II</span>: A New Family of Sectionally Continuous Profiles.”</span> <em>Monthly Weather Review</em> 134 (4): 1102–20. <a href="https://doi.org/10.1175/MWR3106.1">https://doi.org/10.1175/MWR3106.1</a>.
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/recurrentanalytics\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "A hurricane over a grid, taken apart"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "How the Maria showcase is made: the model chain behind it, the checks against the satellite and the outage reports, and what went wrong"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list."</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-11-21</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [showcase, livelines, power-grids, tropical-cyclones]</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 2</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> ../data/maria/og.png</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> "Puerto Rico's transmission grid after Hurricane Maria in the model: red lines down in at least half of the runs, amber in some."</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="in">/* This page is about its code: every excerpt stays open, without the site's fold bar. */</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper { background: transparent; border: 0; }</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper .code-block-header { display: none; }</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="in">.code-block-wrapper .code-block-content { display: block; }</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="in">/* Long DOI links in the reference list wrap on a narrow screen. */</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="in">#refs a, #data-and-sources a { overflow-wrap: anywhere; }</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Maria showcase</span><span class="co">](../maria-2017-puerto-rico.qmd)</span> sends Hurricane Maria across a model of</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>Puerto Rico's transmission grid, hour by hour, and then holds the result up against the</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>satellite and the outage reports. Its verdict: the model gets the direction right and misses</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>the depth. This article takes it apart: what each piece does, the code that does it, the</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>idea behind it, what went wrong, and what to read to go further.</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>Crossref (one report without a DOI and one preprint against their PDFs), and what I say</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>about each source against its abstract or an open copy. I am not an expert in this field.</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>I am learning it, and this article is my map so far.</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>![The page's map at the model's last hour: red lines are down in at least half of the eight</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>runs, amber in some.](../data/maria/og.png){#fig-page fig-alt="Schematic map of Puerto Rico's transmission grid in the model after Hurricane Maria on a dark background: many lines red, some amber"}</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## A screening model, held up against the record</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>The showcase does not forecast anything. It replays a storm that happened, through a model</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>whose every piece is a first draft, and then asks how far the result is from what was</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>measured. LiveLines, the tool behind it, calls such a comparison a record and keeps the</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>records that miss as well as those that hit. The Maria record is a miss with a likely</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>cause, and the most useful part of this article is the <span class="co">[</span><span class="ot">last third</span><span class="co">](#what-came-later)</span>, on</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>what a later look at that miss found.</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## The chain</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>The model is a chain of small modules in the LiveLines kernel. Each takes the output of the</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>one before (@fig-chain): a grid, a storm, a rule for when lines break, a power flow, and an</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>outcome per substation and hour. The comparison with the satellite and the reports happens</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>outside the chain, on its last hour.</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>![The chain behind the Maria page. The outcome at the model's last hour is compared with two</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>things measured outside the model.](fig-chain.svg){#fig-chain fig-alt="Diagram: grid, storm and fragility feed a power flow, which gives an outcome; the outcome is compared with night lights and outage reports"}</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>The whole run is written down as one small file, a preset, so that the app and the page run</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>the same thing: 48 model hours from 13:00 UTC on 19 September 2017, 8 runs from the seed 42.</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>The page's data come from a script, <span class="in">`scripts/showcase_maria/build_data.py`</span>, that sends the</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>preset to a locally running kernel three times (as it is, with the collapse rule on, and with</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>it plus an over-frequency rule), re-derives the record's scores from the answer, and stops if</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>they differ from the record. The numbers from the run are not typed by hand: they come from</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>the file this script writes.</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## The grid</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>The grid comes from OpenStreetMap, turned into a network model by PyPSA-Earth</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@parzen2023</span><span class="co">]</span>, an open model built on the PyPSA toolbox <span class="co">[</span><span class="ot">@brown2018</span><span class="co">]</span>. It has 56 substations</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>and 92 branches at 115 and 230 kV: 76 lines and 16 transformers. To it come the island's</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>power plants built by 2017, mostly from Global Energy Monitor's trackers, some matched with</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>powerplantmatching <span class="co">[</span><span class="ot">@gotzens2019</span><span class="co">]</span>, with their status as of the trackers' 2025 releases, and an</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>hourly demand series (DemandCast) that PyPSA-Earth spreads over the substations.</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>Three things about this grid matter for everything below:</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It is **today's map**, not 2017's. Of the 2,659 km of overhead line mapped in Puerto Rico,</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  the model keeps 1,415 km.</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **line ratings** are standard values per voltage, not the real ones.</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The plants are at **nameplate**: 5,666 MW of them, against 1,889 MW of load at the</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  model's last hour. Whether they were available in September 2017 is not in the model.</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## The wind</span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>The storm is Maria's track from IBTrACS <span class="co">[</span><span class="ot">@knapp2010</span><span class="co">]</span>, the US agency columns only: position,</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>strongest wind, central pressure and the radius of strongest wind every few hours. From these</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>a wind profile gives the wind at any distance from the centre. LiveLines uses the profile of</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>@holland1980 (@fig-profile).</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>![Holland's profile: the wind as a share of its maximum, against the distance from the</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>centre in radii of maximum wind. The shape parameter $B$ sets how sharply the wind falls off</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>outside the eyewall; LiveLines keeps it between 1 and 2.5.](fig-profile.svg){#fig-profile fig-alt="Three curves rising steeply to a peak at one radius of maximum wind and falling off slowly; the higher B, the sharper the peak and the faster the fall"}</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>The model is a few lines of algebra. With $\Delta p$ the drop in pressure from the</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>surroundings to the centre, $\rho$ the density of air, $R_m$ the radius of strongest wind and</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>$r$ the distance from the centre, the wind above the surface layer is, in the cyclostrophic</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>form the kernel uses (the Earth's rotation is left out),</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>V_g(r) = \sqrt{\frac{B\,\Delta p}{\rho}\,u\,e^{-u}}, \qquad u = \left(\frac{R_m}{r}\right)^{B},</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>and $B$ follows from the track's strongest wind and pressure drop, kept between 1 and 2.5.</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>In the kernel</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>(from <span class="in">`src/kritis/chain/storm.py`</span>, shortened):</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>    c_lat, c_lon <span class="op">=</span> at(track.lat), at(track.lon)</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>    dp <span class="op">=</span> at(track.p_env_pa) <span class="op">-</span> at(track.p_c_pa)</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>    rmax <span class="op">=</span> at(track.r_max_m)</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>    vg_max <span class="op">=</span> at(track.v_max_ms) <span class="op">/</span> params.k_surface</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>    vtrans, heading <span class="op">=</span> at(track.v_trans_ms), at(track.heading_deg)</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> holland_b(vg_max, dp, params.rho_air)</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>    b_use <span class="op">=</span> np.where(np.isfinite(b), np.clip(b, params.b_min, params.b_max), params.b_min)</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>    r, theta <span class="op">=</span> geodesy.inverse(c_lat, c_lon, pts[<span class="va">None</span>, :, <span class="dv">1</span>], pts[<span class="va">None</span>, :, <span class="dv">0</span>],</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>                               a<span class="op">=</span>params.wgs84_a, inv_f<span class="op">=</span>params.wgs84_inv_f)</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>    v_g <span class="op">=</span> gradient_wind(r, rmax, b_use, dp, params.rho_air)</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>    _, gust <span class="op">=</span> surface_gust(v_g, vtrans, theta, heading, c_lat, k_surface<span class="op">=</span>params.k_surface,</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>                           asymmetry_a<span class="op">=</span>params.asymmetry_a, gust_factor<span class="op">=</span>params.gust_factor)</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="in">`at`</span> interpolates the track to the times wanted. <span class="in">`surface_gust`</span> then brings the wind down to</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>the surface (a factor of 0.9), adds up to half the storm's forward speed on its right-hand</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>side, where the winds of a moving northern-hemisphere storm are strongest, takes as much</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>away on the left, and turns the result</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>into a 3-second gust with a factor of 1.23. That factor is the cell of a WMO guideline's</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>table for a 3-second gust within one minute, at a coastline with the wind coming off the sea</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@harper2010, Table 1.1</span><span class="co">]</span>.</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>Where is the wind needed? Every branch is cut into pieces of at most 10 km, and the wind is</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>computed at the middle of each piece, twice per model hour. The hour's value is the higher</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>of the two.</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## When a line breaks</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>A line does not break at one wind speed. Two towers of the same design, in the same gust,</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>may fare differently. A fragility curve describes this as a probability: the chance that a</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>piece of line breaks at a given gust (@fig-fragility).</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>![The line curve the model uses, for every voltage: the chance that one piece of line breaks,</span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>against the 3-second gust. Below it, where the strongest gust on each branch falls in the</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>Maria run.](fig-fragility.svg){#fig-fragility fig-alt="An S-shaped curve from 0 to 1, steepest around 78.6 m/s; below it a box plot of the branches' peak gusts from 52.8 to 88.9 m/s with a median of 75.5"}</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>The curve is borrowed. @raj2021 fitted it to the transmission towers of Odisha in India</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>after Cyclone Fani in 2019: 128 towers at 132 and 220 kV that collapsed or lost their</span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>function, out of a network of 41,814. Its median is 78.6 m/s, and it is steep: the chance</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>rises from 1 in 100 at about 65 m/s to 99 in 100 at about 96 m/s. Hold on to that</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>steepness; it comes back <span class="co">[</span><span class="ot">below</span><span class="co">](#two-errors-that-hide-each-other)</span>. One more thing comes with</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>the curve: the authors fitted it to gusts from a different wind profile <span class="co">[</span><span class="ot">@willoughby2006</span><span class="co">]</span>,</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>scaled by their own factor, so it carries that wind model's errors too.</span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>The kernel draws, for every run and every piece of line, a breaking gust from that curve,</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>and lets the piece break in the first hour its peak gust so far reaches it. A line is out as</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>soon as one of its pieces is (from <span class="in">`src/kritis/chain/fragility.py`</span>):</span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> rng.standard_normal((n_sample, n_point))</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>    cap <span class="op">=</span> np.exp(np.log(median_ms[pl])[<span class="va">None</span>, :] <span class="op">+</span> beta[pl][<span class="va">None</span>, :] <span class="op">*</span> z)</span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>    <span class="co"># running peak gust per point: a segment that has failed stays failed</span></span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> np.maximum.accumulate(wind.gust_ms, axis<span class="op">=</span><span class="dv">0</span>)  <span class="co"># (hour, point)</span></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>    exceeded <span class="op">=</span> peak[<span class="va">None</span>, :, :] <span class="op">&gt;=</span> cap[:, <span class="va">None</span>, :]  <span class="co"># (sample, hour, point)</span></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>    seg_fail <span class="op">=</span> np.where(exceeded.<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>), exceeded.argmax(axis<span class="op">=</span><span class="dv">1</span>), n_hour)</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>    t_fail <span class="op">=</span> np.full((n_sample, n_line), n_hour, dtype<span class="op">=</span>np.int64)</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>    np.minimum.at(t_fail, (<span class="bu">slice</span>(<span class="va">None</span>), pl), seg_fail.astype(np.int64))</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="in">`cap`</span> is the breaking gust: a normal random number $z$, turned into a lognormal one with the</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>curve's median and spread. Nothing is ever repaired in this run. With the seed 42, the eight</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>runs lose between 39 and 45 of the 92 branches. The 16 transformers are treated like lines</span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>here, with the same tower curve, and 3 to 8 of them fail per run; whether that is intended is</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>an open question in LiveLines.</span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>Fragility curves for power lines in storms are a field of their own. @panteli2017resilience</span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>introduce a framework in which weather- and time-dependent failure probabilities from such</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>curves drive a sequential Monte Carlo simulation of a power system; @panteli2017fragility</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>build fragility models of components and of the whole transmission system for wind and test</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>them on a version of Great Britain's grid. LiveLines follows the same pattern, in a much</span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>smaller form.</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a><span class="fu">## Where the power goes</span></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>Breaking lines is not yet an outage. What matters is whether power still gets from the</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>plants to the load. The kernel answers this with a DC power flow, the linear approximation</span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>that power-system planners use when they need many answers fast. @stott2009 re-examine it</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>and note that correct flows from it are "by no means assured".</span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>Each hour, the kernel does four things for every run:</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Islands.** It finds the groups of substations still connected by working lines.</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Dispatch.** In each island, the plants cover the load as far as they can. An island</span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>   without a plant goes dark; one with too little serves every load the same fraction.</span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Flows.** It solves the DC power flow in each island.</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Cascade.** Any line carrying more than 1.5 times its rating trips, and the kernel goes</span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>   back to step 1, until nothing more trips.</span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>The cascade is the part a picture of the network alone would miss. @hines2010 compared</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>measures of vulnerability taken from the network's shape with a model of cascading failure,</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>found only a mild correlation, and concluded that judging a grid by its topology alone can</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>mislead. In the Maria run the cascade adds up to 6 trips to the wind's damage.</span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>A second engine, PyPSA itself, solves the same hour as an optimisation: an ideal operator who</span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>sheds as little load as possible and never overloads a line. The page shows both; the ideal</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>operator serves a little more here.</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### The rule that turns the lights off</span></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>Step 2 above has a blind spot. A real grid that is suddenly cut in two does not quietly</span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>serve what it can. If an island loses more generation than its automatic load shedding can</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>make up, its frequency falls, plants protect themselves by tripping, and the whole island</span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>goes dark in seconds. Without a rule for this, the model reroutes power around every gap.</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>LiveLines has such a rule, switched off in the main run and on in two variants. An island</span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>goes dark when its sudden shortfall, measured against the load it served the hour before,</span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a>exceeds a threshold (from <span class="in">`src/kritis/chain/powerflow_dc.py`</span>):</span>
+<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> isl <span class="kw">in</span> np.unique(label):</span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>        buses <span class="op">=</span> label <span class="op">==</span> isl</span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="bu">float</span>(prev_served[buses].<span class="bu">sum</span>())</span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="op">&lt;=</span> _EPS:</span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> <span class="bu">float</span>(prev_gen[gen_label <span class="op">==</span> isl].<span class="bu">sum</span>()) <span class="op">+</span> <span class="bu">float</span>(prev_used[buses].<span class="bu">sum</span>())</span>
+<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="op">-</span> g <span class="op">&gt;</span> threshold <span class="op">*</span> s <span class="op">+</span> tol_mw:</span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>            out <span class="op">|=</span> buses</span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>The threshold is 25 %. It comes from a North American reliability standard (NERC PRC-006-5),</span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>which asks that load-shedding schemes survive an imbalance of up to that size. It is the</span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>least a scheme must survive, not a measured breaking point, and Puerto Rico is not under</span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>NERC. A second rule does the same for an island that suddenly has too much generation.</span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="fu">## Holding it up against the record</span></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a>The model ends after 48 hours. Two kinds of observation are held against its last hour.</span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lights at night</span></span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>NASA's Black Marble product gives the light the Earth emits at night, every day, at about</span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>500 m, corrected among other things for the moon and for stray light <span class="co">[</span><span class="ot">@roman2018</span><span class="co">]</span>. The</span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a>light is not electricity, but where a whole town's power fails, its light goes too.</span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>@roman2019 used Black Marble to follow the outage and the restoration in Puerto Rico after</span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>Maria; by their estimate, the island's lights fell by about 80 % right after the storm.</span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>The showcase uses the same data in a simpler way. Every land pixel on the island goes to</span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a>its nearest substation. For every pixel, the normal light is the median over the clear</span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>nights before 6 September (when Irma passed north of the island). For every substation area</span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>and night, the light ratio is the light of the clear pixels that night, divided by their</span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>normal light (from LiveLines' <span class="in">`scripts/nightlight_bus_areas.py`</span>):</span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>            sel <span class="op">=</span> usable <span class="op">&amp;</span> has_base</span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> np.bincount(bus[sel], weights<span class="op">=</span>ntl[sel], minlength<span class="op">=</span><span class="bu">len</span>(names))</span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>            den <span class="op">=</span> np.bincount(bus[sel], weights<span class="op">=</span>base0[sel], minlength<span class="op">=</span><span class="bu">len</span>(names))</span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>A night counts for an area only if at least half its normal light was seen through clear</span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>sky. From 21 September on, the first such nights were the 27th and 28th. On those two</span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>nights every one of the 50 substation areas with data was below half its normal light, and</span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>on average they kept 19 %. The model, at its last hour, still served 63 % in the same areas</span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>(a plain mean over them), and only 17 of them fell below half.</span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### Customers without power</span></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>The U.S. Department of Energy published situation reports through the crisis. On 24</span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>September 2017 they counted 1,569,796 customers without power: all of them. The model, at</span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>its last hour three days earlier, still served 39 % of the island's load.</span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>Both comparisons say the same thing. The model gets the direction right, a severe outage,</span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>and misses the depth, an island that went entirely dark. Its first explanation was on the</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>page from the start: there is no system-wide collapse in the main run. With the collapse</span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>rule on, the areas' mean drops to 57 %; with both rules, to 55 %. Closer, but nowhere near</span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>19 %.</span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a><span class="fu">## The page itself</span></span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>The page is plain HTML with one script and no library. Two things in it are worth taking</span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>away.</span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>**The run's numbers are checked.** Most numbers from the run sit in a small tagged element</span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>in the text that carries the value as written. When the page loads, the script computes the same value from</span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>the data file and complains in the browser's console if they differ (from</span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="in">`showcases/assets/maria.js`</span>):</span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>    <span class="bu">root</span><span class="op">.</span><span class="fu">querySelectorAll</span>(<span class="st">'[data-k]'</span>)<span class="op">.</span><span class="fu">forEach</span>(<span class="kw">function</span> (s) {</span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> k <span class="op">=</span> s<span class="op">.</span><span class="fu">getAttribute</span>(<span class="st">'data-k'</span>)<span class="op">;</span></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="op">!</span>(k <span class="kw">in</span> K)) { <span class="bu">console</span><span class="op">.</span><span class="fu">warn</span>(<span class="st">'maria: no value for'</span><span class="op">,</span> k)<span class="op">;</span> <span class="cf">return</span><span class="op">;</span> }</span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> v <span class="op">=</span> <span class="bu">String</span>(K[k])<span class="op">;</span></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (s<span class="op">.</span><span class="at">textContent</span><span class="op">.</span><span class="fu">trim</span>() <span class="op">!==</span> v) <span class="bu">console</span><span class="op">.</span><span class="fu">warn</span>(<span class="st">'maria: text says'</span><span class="op">,</span> s<span class="op">.</span><span class="at">textContent</span><span class="op">.</span><span class="fu">trim</span>()<span class="op">,</span> <span class="st">'data says'</span><span class="op">,</span> v<span class="op">,</span> <span class="st">'('</span> <span class="op">+</span> k <span class="op">+</span> <span class="st">')'</span>)<span class="op">;</span></span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>So these numbers cannot quietly drift away from the run. The text around them is still</span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>written by hand, so it reads like text and works without the script. Numbers from other</span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>sources on the page, such as the kilometres of mapped line, are typed and were checked by</span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>hand.</span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>**Scrolling runs the clock.** On the step "Hour by hour", how far the step has scrolled sets</span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a>the model hour, from hour 12 to hour 47, and the map redraws. Visitors who have asked their</span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>device for less motion get four still maps instead (hours 19, 21, 24 and 47).</span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="fu">## What came later</span></span>
+<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a>A day after the page was built, LiveLines looked at the miss again, with a method it had</span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>used before on Typhoon Haiyan: rank the possible causes, say what each rests on, change no</span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a>parameter and fit nothing. The full analysis is a record in the LiveLines repository; here</span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a>is what it found, and what it means for the page.</span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a><span class="fu">### Two errors that hide each other</span></span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>LiveLines compared its wind with the gusts that weather stations on the island measured,</span>
+<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a>as the National Hurricane Center's report on Maria lists them. At the five stations whose records</span>
+<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a>are not marked incomplete, the measured gust was 0.71 of the model's (the median), and the</span>
+<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a>model was 16.0 m/s higher on average. Four wind models from CLIMADA, run on the same track</span>
+<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a>and the same points, were also higher, by 10.3 to 18.3 m/s on average. There is no</span>
+<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a>correction for the stations' height or exposure, and the report states no averaging time for</span>
+<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a>its gusts, so this is a pointer, not a measurement of the error.</span>
+<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a>Now recall how steep the line curve is. What happens if the wind is a little weaker? The</span>
+<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a>analysis ran the model with every gust scaled down:</span>
+<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gust × <span class="pp">|</span> Branches expected to fail <span class="pp">|</span> Island load served, end <span class="pp">|</span></span>
+<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1.0 <span class="pp">|</span> 41.6 <span class="pp">|</span> 39 % <span class="pp">|</span></span>
+<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.9 <span class="pp">|</span> 19.1 <span class="pp">|</span> 83 % <span class="pp">|</span></span>
+<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.8 <span class="pp">|</span> 2.5 <span class="pp">|</span> 99 % <span class="pp">|</span></span>
+<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.7 <span class="pp">|</span> 0.0 <span class="pp">|</span> 99 % <span class="pp">|</span></span>
+<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a>: Sensitivity runs, not proposed values. "Expected" is the sum over branches of each one's</span>
+<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a>chance to fail; served is the DC engine's median over the eight runs. Source: LiveLines record</span>
+<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a><span class="in">`pypsaearth_pr_maria_gap_analysis`</span>. {.striped}</span>
+<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a>With a fifth less wind, almost nothing breaks. Yet Puerto Rico's transmission lines did</span>
+<span id="cb6-344"><a href="#cb6-344" aria-hidden="true" tabindex="-1"></a>break, badly: @kwasinski2019 describe damage to transmission and distribution far worse than</span>
+<span id="cb6-345"><a href="#cb6-345" aria-hidden="true" tabindex="-1"></a>in other recent US hurricanes. So if the stations are right, the borrowed Indian tower curve is far too strong for Puerto</span>
+<span id="cb6-346"><a href="#cb6-346" aria-hidden="true" tabindex="-1"></a>Rico's lines, and the model's too-strong wind hides it. Fix one without the other and the</span>
+<span id="cb6-347"><a href="#cb6-347" aria-hidden="true" tabindex="-1"></a>model breaks almost no lines at all. Both must move together, from sources, and neither may</span>
+<span id="cb6-348"><a href="#cb6-348" aria-hidden="true" tabindex="-1"></a>be tuned to make Maria come out right.</span>
+<span id="cb6-349"><a href="#cb6-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-350"><a href="#cb6-350" aria-hidden="true" tabindex="-1"></a>Two of the readings behind this article point at the wind. @willoughby2006 compared the</span>
+<span id="cb6-351"><a href="#cb6-351" aria-hidden="true" tabindex="-1"></a>most common profile functions with aircraft measurements and found that "winds near the</span>
+<span id="cb6-352"><a href="#cb6-352" aria-hidden="true" tabindex="-1"></a>peak are too strong" and fall off too fast away from it. And the WMO guideline whose 1.23</span>
+<span id="cb6-353"><a href="#cb6-353" aria-hidden="true" tabindex="-1"></a>the kernel uses says that a "maximum 1-min sustained" wind, the kind a best track reports, is</span>
+<span id="cb6-354"><a href="#cb6-354" aria-hidden="true" tabindex="-1"></a>itself a gust, not a mean <span class="co">[</span><span class="ot">@harper2010, p. 2</span><span class="co">]</span>; a gust factor is meant for a mean wind. Whether</span>
+<span id="cb6-355"><a href="#cb6-355" aria-hidden="true" tabindex="-1"></a>either explains the excess here has not been tested.</span>
+<span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a><span class="fu">### The median hid the blackouts</span></span>
+<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a>The collapse rule seemed to change little: the median over the eight runs barely moved. A</span>
+<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a>closer look found that the largest sudden shortfall of any island of five or more</span>
+<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a>substations lies between 18 % and 31 % in six of the runs, right around the 25 % threshold. With both rules on, three of the eight runs</span>
+<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a>end with the island completely dark, which is what was reported, and the other five keep</span>
+<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a>between 32 % and 44 % of the load. The median sits among the five. A model on a knife-edge needs its</span>
+<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a>spread reported, not just its middle; showing "3 of 8 runs went dark" is now an open</span>
+<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a>proposal in LiveLines.</span>
+<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a><span class="fu">### The outage started earlier</span></span>
+<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a>A DOE report not used on the page says that at 07:37 UTC on 20 September, 2.6 hours before</span>
+<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a>landfall, about 56 % of customers were already without power. The model still served almost</span>
+<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a>all of its load then. What failed first is not known from the reports.</span>
+<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a><span class="fu">### A different measure, a different gap</span></span>
+<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a>The page's "63 % served" is a plain mean over 50 areas, and 13 of them have no load in the</span>
+<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a>model, so they count as fully served. The analysis took the measure apart:</span>
+<span id="cb6-377"><a href="#cb6-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-378"><a href="#cb6-378" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Measure (DC engine, last hour) <span class="pp">|</span> Served <span class="pp">|</span></span>
+<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> plain mean, all 50 areas with light data <span class="pp">|</span> 63 % <span class="pp">|</span></span>
+<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> plain mean, the 37 of them with load <span class="pp">|</span> 51 % <span class="pp">|</span></span>
+<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> weighted by load, the same 37 <span class="pp">|</span> 33 % <span class="pp">|</span></span>
+<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> island total <span class="pp">|</span> 39 % <span class="pp">|</span></span>
+<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a>: Source: LiveLines record <span class="in">`pypsaearth_pr_maria_gap_analysis`</span>. {.striped}</span>
+<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a>The honest size of the miss is the island total against the reports, about 39 points, not</span>
+<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a>the 45 points between 63 % and 19 %. The page already gives both numbers; it says which is</span>
+<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a>which in small print.</span>
+<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### What this means for the page</span></span>
+<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a>The page stands as it is: every number on it comes from the run it names, and its "why it</span>
+<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a>misses" says the collapse is the likely cause, not the proven one. Two things on it are now</span>
+<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a>known to be incomplete. Its fragility caveat ("borrowed") understates how much rests on the</span>
+<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a>wind, and its collapse variant reports the median that hides three dark runs. Since then</span>
+<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a>LiveLines has also rebuilt its night-light table so that it drops pixels on nights lit by</span>
+<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a>the moon; on that table</span>
+<span id="cb6-399"><a href="#cb6-399" aria-hidden="true" tabindex="-1"></a>the satellite mean is 18 %, not 19 %. The page keeps the numbers of the run it names; a</span>
+<span id="cb6-400"><a href="#cb6-400" aria-hidden="true" tabindex="-1"></a>rebuilt page would take the new ones.</span>
+<span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a><span class="fu">## From screening to model</span></span>
+<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a>What would it take before a model like this could say something about the next storm?</span>
+<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a>**The distribution grid.** The model stops at the substation. The lines to streets and</span>
+<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a>homes, where much of Maria's damage was, are not in it. @kwasinski2019 describe an outage</span>
+<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a>that "initially affected the entire island" and lasted more than ten months, with</span>
+<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a>transmission and distribution damaged far worse than in other recent US hurricanes and</span>
+<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a>generation only lightly.</span>
+<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a>**A tower curve from the place.** Puerto Rico's own damage records, not Odisha's, and a curve</span>
+<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a>per tower rather than per 10 km of line.</span>
+<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a>**Wind checked against stations**, with height, exposure and averaging time corrected, before</span>
+<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a>the wind is changed.</span>
+<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a>**Repair.** Without repair, the model's last hour has to stand for every later date. With</span>
+<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a>it, the model could be held against the months of restoration that @roman2019 followed from</span>
+<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a>space.</span>
+<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a>**More runs and the spread.** Eight runs are enough to see a knife-edge, not to measure it.</span>
+<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the model leaves out</span></span>
+<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a>No distribution lines and no repair. Today's map, standard line ratings, plants at</span>
+<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a>nameplate. A tower curve from another country, applied per 10 km. A wind profile from a</span>
+<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a>formula, unchecked against stations. Collapse thresholds from North American standards.</span>
+<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a>Night lights as a stand-in for power. Eight runs. Every module in the chain is at</span>
+<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a>placeholder maturity, and the page says so.</span>
+<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a><span class="fu">## A reading guide</span></span>
+<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-434"><a href="#cb6-434" aria-hidden="true" tabindex="-1"></a>**Wind in a hurricane.** The profile <span class="co">[</span><span class="ot">@holland1980</span><span class="co">]</span>, an alternative fitted to aircraft data</span>
+<span id="cb6-435"><a href="#cb6-435" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@willoughby2006</span><span class="co">]</span>, gusts and averaging times <span class="co">[</span><span class="ot">@harper2010</span><span class="co">]</span>, the tracks <span class="co">[</span><span class="ot">@knapp2010</span><span class="co">]</span>.</span>
+<span id="cb6-436"><a href="#cb6-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-437"><a href="#cb6-437" aria-hidden="true" tabindex="-1"></a>**Grids under storms.** Fragility and resilience [@panteli2017resilience;</span>
+<span id="cb6-438"><a href="#cb6-438" aria-hidden="true" tabindex="-1"></a>@panteli2017fragility], a tower curve and its data <span class="co">[</span><span class="ot">@raj2021</span><span class="co">]</span>, why flows and not only</span>
+<span id="cb6-439"><a href="#cb6-439" aria-hidden="true" tabindex="-1"></a>topology <span class="co">[</span><span class="ot">@hines2010</span><span class="co">]</span>, the DC approximation <span class="co">[</span><span class="ot">@stott2009</span><span class="co">]</span>.</span>
+<span id="cb6-440"><a href="#cb6-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-441"><a href="#cb6-441" aria-hidden="true" tabindex="-1"></a>**Open grid models.** <span class="co">[</span><span class="ot">@brown2018; @parzen2023; @gotzens2019</span><span class="co">]</span>.</span>
+<span id="cb6-442"><a href="#cb6-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-443"><a href="#cb6-443" aria-hidden="true" tabindex="-1"></a>**Seeing outages from space.** <span class="co">[</span><span class="ot">@roman2018; @roman2019</span><span class="co">]</span>.</span>
+<span id="cb6-444"><a href="#cb6-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-445"><a href="#cb6-445" aria-hidden="true" tabindex="-1"></a>**Maria and Puerto Rico's grid.** <span class="co">[</span><span class="ot">@kwasinski2019; @roman2019</span><span class="co">]</span>.</span>
+<span id="cb6-446"><a href="#cb6-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-447"><a href="#cb6-447" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and sources</span></span>
+<span id="cb6-448"><a href="#cb6-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-449"><a href="#cb6-449" aria-hidden="true" tabindex="-1"></a>The figures and numbers in this article come from the Maria showcase's run and from the</span>
+<span id="cb6-450"><a href="#cb6-450" aria-hidden="true" tabindex="-1"></a>LiveLines repository. The data behind them, as on the <span class="co">[</span><span class="ot">showcase page</span><span class="co">](../maria-2017-puerto-rico.qmd#mx-sources)</span>:</span>
+<span id="cb6-451"><a href="#cb6-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-452"><a href="#cb6-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Grid** (the map in @fig-page, 56 substations, 92 branches): © OpenStreetMap</span>
+<span id="cb6-453"><a href="#cb6-453" aria-hidden="true" tabindex="-1"></a>  contributors, <span class="co">[</span><span class="ot">ODbL 1.0</span><span class="co">](https://opendatacommons.org/licenses/odbl/1-0/)</span>, built with</span>
+<span id="cb6-454"><a href="#cb6-454" aria-hidden="true" tabindex="-1"></a>  PyPSA-Earth.</span>
+<span id="cb6-455"><a href="#cb6-455" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Power plants** (the 5,666 MW): Global Energy Monitor, Global Oil and Gas Plant Tracker</span>
+<span id="cb6-456"><a href="#cb6-456" aria-hidden="true" tabindex="-1"></a>  (August 2025 release), Global Coal Plant Tracker (July 2025 release), Global Solar Power</span>
+<span id="cb6-457"><a href="#cb6-457" aria-hidden="true" tabindex="-1"></a>  Tracker and Global Wind Power Tracker (February 2025 releases),</span>
+<span id="cb6-458"><a href="#cb6-458" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>. Three combined-cycle units:</span>
+<span id="cb6-459"><a href="#cb6-459" aria-hidden="true" tabindex="-1"></a>  data obtained from <span class="co">[</span><span class="ot">GlobalEnergyObservatory.org</span><span class="co">](https://GlobalEnergyObservatory.org/)</span>,</span>
+<span id="cb6-460"><a href="#cb6-460" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">CC BY 3.0 US</span><span class="co">](https://creativecommons.org/licenses/by/3.0/us/)</span>. Modified: units built</span>
+<span id="cb6-461"><a href="#cb6-461" aria-hidden="true" tabindex="-1"></a>  after 2017 removed, used at nameplate.</span>
+<span id="cb6-462"><a href="#cb6-462" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Demand** (the 1,889 MW and every share of load): DemandCast, Antonini, E., V. P. Goli,</span>
+<span id="cb6-463"><a href="#cb6-463" aria-hidden="true" tabindex="-1"></a>  K. Steijn (2026), Global Dataset of Forecasted Hourly Electricity Demand from 2000 to 2024</span>
+<span id="cb6-464"><a href="#cb6-464" aria-hidden="true" tabindex="-1"></a>  Using DemandCast, version 1.0.0,</span>
+<span id="cb6-465"><a href="#cb6-465" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.5281/zenodo.18374352</span><span class="co">](https://doi.org/10.5281/zenodo.18374352)</span>;</span>
+<span id="cb6-466"><a href="#cb6-466" aria-hidden="true" tabindex="-1"></a>  Steijn, K., V. P. Goli, E. Antonini (2025), DemandCast: Global hourly electricity demand</span>
+<span id="cb6-467"><a href="#cb6-467" aria-hidden="true" tabindex="-1"></a>  forecasting, <span class="co">[</span><span class="ot">arXiv:2510.08000</span><span class="co">](https://arxiv.org/abs/2510.08000)</span>.</span>
+<span id="cb6-468"><a href="#cb6-468" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>. The island series is split over</span>
+<span id="cb6-469"><a href="#cb6-469" aria-hidden="true" tabindex="-1"></a>  the substations by PyPSA-Earth, so load per substation is modelled. The split over buses uses GADM 4.1 administrative units (<span class="co">[</span><span class="ot">gadm.org</span><span class="co">](https://gadm.org/)</span>) as weights. GADM allows free academic and other non-commercial use; whether numbers weighted by its units count as redistribution is not settled, and GADM has not been asked.</span>
+<span id="cb6-470"><a href="#cb6-470" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Storm track**: IBTrACS, NHC best track (USA columns only), @knapp2010; Gahtan, J. et al.</span>
+<span id="cb6-471"><a href="#cb6-471" aria-hidden="true" tabindex="-1"></a>  (2024), IBTrACS Project, Version 4r01, NOAA National Centers for Environmental Information,</span>
+<span id="cb6-472"><a href="#cb6-472" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.25921/82ty-9e16</span><span class="co">](https://doi.org/10.25921/82ty-9e16)</span>.</span>
+<span id="cb6-473"><a href="#cb6-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Night lights**: NASA Black Marble VNP46A2, Collection 2,</span>
+<span id="cb6-474"><a href="#cb6-474" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.5067/VIIRS/VNP46A2.002</span><span class="co">](https://doi.org/10.5067/VIIRS/VNP46A2.002)</span>, CC0. Credit:</span>
+<span id="cb6-475"><a href="#cb6-475" aria-hidden="true" tabindex="-1"></a>  NASA.</span>
+<span id="cb6-476"><a href="#cb6-476" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Outage reports**: U.S. Department of Energy, Office of Electricity,</span>
+<span id="cb6-477"><a href="#cb6-477" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">Hurricanes Nate, Maria, Irma, and Harvey Situation Reports</span><span class="co">](https://www.energy.gov/oe/downloads/hurricanes-irma-and-harvey-situation-reports)</span></span>
+<span id="cb6-478"><a href="#cb6-478" aria-hidden="true" tabindex="-1"></a>  (2017–2018), public domain. With thanks to the Department of Energy.</span>
+<span id="cb6-479"><a href="#cb6-479" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Station gusts**: Pasch, R. J., A. B. Penny and R. Berg, National Hurricane Center</span>
+<span id="cb6-480"><a href="#cb6-480" aria-hidden="true" tabindex="-1"></a>  Tropical Cyclone Report: Hurricane Maria (AL152017),</span>
+<span id="cb6-481"><a href="#cb6-481" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">nhc.noaa.gov</span><span class="co">](https://www.nhc.noaa.gov/data/tcr/AL152017_Maria.pdf)</span>; used through</span>
+<span id="cb6-482"><a href="#cb6-482" aria-hidden="true" tabindex="-1"></a>  LiveLines' comparison, not shown. A National Weather Service product; the Weather Service</span>
+<span id="cb6-483"><a href="#cb6-483" aria-hidden="true" tabindex="-1"></a>  states that its information is in the public domain unless specifically noted otherwise.</span>
+<span id="cb6-484"><a href="#cb6-484" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Model and records**: LiveLines kernel, commit 865bcc9, preset chain_maria_pr; the later</span>
+<span id="cb6-485"><a href="#cb6-485" aria-hidden="true" tabindex="-1"></a>  analysis is the LiveLines record <span class="in">`pypsaearth_pr_maria_gap_analysis`</span>.</span>
+<span id="cb6-486"><a href="#cb6-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-487"><a href="#cb6-487" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb6-488"><a href="#cb6-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-489"><a href="#cb6-489" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb6-490"><a href="#cb6-490" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© re:current_analytics · <a href="../../how-this-site-is-made.html#licence">Texts CC BY 4.0, code MIT</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="mailto:timm.walker@recurrentanalytics.com">
+<p>Email</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/walkertimm">
+<p>LinkedIn</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/recurrentanalytics">
+<p>GitHub</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.xml">
+<p>RSS</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../library/index.html">
+<p>Library</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../how-this-site-is-made.html">
+<p>Colophon</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../datenschutz.html">
+<p>Datenschutz</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

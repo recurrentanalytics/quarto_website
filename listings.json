@@ -2,26 +2,35 @@
   {
     "listing": "/projects/index.html",
     "items": [
+      "/models/how-rare/index.html",
       "/models/climate-extremes-explorer.html",
       "/models/heatwave-prices-de-lu.html"
     ]
   },
   {
-    "listing": "/tipping-points/design-notes/index.html",
+    "listing": "/index.html",
     "items": [
-      "/tipping-points/design-notes/2025-01-15-playtest-session-1.html",
-      "/tipping-points/design-notes/2025-01-10-mechanics-iteration-2.html",
-      "/tipping-points/design-notes/2025-01-05-card-design-heatwave.html"
+      "/notes/undercurrent-gleick.html",
+      "/notes/undercurrent-herzog.html",
+      "/notes/undercurrent-burtynsky.html",
+      "/notes/undercurrent-complexity-compendium.html",
+      "/notes/undercurrent-maniac.html",
+      "/notes/undercurrent-nausicaa.html",
+      "/notes/undercurrent-penguin-science-fiction.html",
+      "/notes/undercurrent-statistical-rethinking.html"
     ]
   },
   {
     "listing": "/notes/index.html",
     "items": [
-      "/notes/example-reading-note.html",
-      "/notes/risk-series-3.html",
-      "/notes/risk-series-2.html",
-      "/notes/risk-series-1.html",
-      "/notes/2025-hello-world.html"
+      "/notes/undercurrent-gleick.html",
+      "/notes/undercurrent-herzog.html",
+      "/notes/undercurrent-burtynsky.html",
+      "/notes/undercurrent-complexity-compendium.html",
+      "/notes/undercurrent-maniac.html",
+      "/notes/undercurrent-nausicaa.html",
+      "/notes/undercurrent-penguin-science-fiction.html",
+      "/notes/undercurrent-statistical-rethinking.html"
     ]
   }
 ]

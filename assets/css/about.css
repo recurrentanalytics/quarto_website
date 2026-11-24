@@ -1,0 +1,185 @@
+/* About page (about.qmd): the chain, the path, the map. Colours come from the site's theme
+   tokens (theme-light.scss, theme-dark.scss), so both themes work. Everything here is the
+   complete, still page; motion is added by assets/js/about.js through .ab-live / .ab-anim. */
+
+.ab-page { --ab-gap: 24px; overflow-x: clip; }
+.ab-k {
+  font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--rac-muted); margin: 0 0 28px; padding: 0; border: 0 !important;
+}
+.rac-night .ab-k { color: var(--rac-night-muted); }
+.ab-k b { color: var(--rac-accent-ink); font-weight: 500; }
+
+/* ------------------------------------------------------------ intro */
+.ab-intro { padding-top: 56px !important; padding-bottom: 48px !important; }
+.ab-title { font-size: clamp(2.5rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; margin: 0; }
+.ab-lead { margin: 18px 0 0; font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.5; max-width: 40rem; }
+
+.ab-band { padding: 64px 0 72px; }
+
+/* ------------------------------------------------------------ the chain
+   Each station draws its own node and the segment down (or across) to the next one; the
+   segments run from grey to amber, the last node glows. */
+.ab-chain { list-style: none; margin: 0; padding: 0; position: relative; --ab-node: 22px; }
+.ab-st { position: relative; padding: 0 0 36px 52px; margin: 0; }
+.ab-st:last-child { padding-bottom: 0; }
+.ab-st > p, .ab-st > h3 { margin: 0; }
+.ab-num { font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; color: var(--rac-night-muted); line-height: 22px; }
+.ab-st h3 { font-size: clamp(1.4rem, 3.4vw, 1.7rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 6px 0 8px; color: var(--rac-night-ink); }
+.ab-st h3 + p { color: var(--rac-night-muted); font-size: 1.05rem; line-height: 1.55; }
+.rac-night .ab-st a { color: var(--rac-night-ink); text-decoration-color: var(--rac-accent); }
+.rac-night .ab-st a.ab-more {
+  display: inline-block; margin-top: 12px; font-family: "IBM Plex Mono", monospace; font-size: 0.86rem;
+  color: var(--rac-accent-ink); text-decoration: none; line-height: 1.45; min-height: 24px;
+}
+.rac-night .ab-st a.ab-more:hover { text-decoration: underline; }
+
+.ab-node {
+  position: absolute; left: 4px; top: 0; width: var(--ab-node); height: var(--ab-node); border-radius: 50%;
+  border: 2px solid var(--ab-c1); background: var(--rac-night); box-sizing: border-box; z-index: 1;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+.ab-st:last-child .ab-node { background: var(--rac-accent); border-color: var(--rac-accent); box-shadow: 0 0 0 6px rgb(245 176 46 / 0.18), 0 0 22px 4px rgb(245 176 46 / 0.45); }
+.ab-seg {
+  position: absolute; left: calc(4px + var(--ab-node) / 2 - 1px); width: 2px;
+  top: var(--ab-node); bottom: 0;
+  background: linear-gradient(to bottom, var(--ab-c1), var(--ab-c2));
+}
+.ab-seg i { position: absolute; inset: 0; background: var(--rac-accent); transform-origin: 0 0; transform: scaleY(0); display: none; }
+
+/* Grey to amber, one step per segment. */
+.ab-st { --ab-grey: color-mix(in srgb, var(--rac-night-muted) 55%, transparent); }
+.ab-st:nth-child(1) { --ab-c1: var(--ab-grey); --ab-c2: color-mix(in srgb, var(--rac-accent) 25%, var(--ab-grey)); }
+.ab-st:nth-child(2) { --ab-c1: color-mix(in srgb, var(--rac-accent) 25%, var(--ab-grey)); --ab-c2: color-mix(in srgb, var(--rac-accent) 50%, var(--ab-grey)); }
+.ab-st:nth-child(3) { --ab-c1: color-mix(in srgb, var(--rac-accent) 50%, var(--ab-grey)); --ab-c2: color-mix(in srgb, var(--rac-accent) 75%, var(--ab-grey)); }
+.ab-st:nth-child(4) { --ab-c1: color-mix(in srgb, var(--rac-accent) 75%, var(--ab-grey)); --ab-c2: var(--rac-accent); }
+.ab-st:nth-child(5) { --ab-c1: var(--rac-accent); }
+
+/* Wide screens: the chain runs across, five columns. */
+@media (min-width: 992px) {
+  .ab-chain { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 var(--ab-gap); }
+  .ab-st { padding: 40px 0 0; }
+  .ab-node { left: 0; }
+  .ab-seg {
+    top: calc(var(--ab-node) / 2 - 1px); bottom: auto; height: 2px; width: auto;
+    left: var(--ab-node); right: calc(-1 * var(--ab-gap));
+    background: linear-gradient(to right, var(--ab-c1), var(--ab-c2));
+  }
+  .ab-seg i { transform: scaleX(0); }
+  .ab-st h3 { font-size: 1.3rem; }
+  .ab-st h3 + p { font-size: 1rem; }
+}
+
+/* Live (about.js): the line starts grey, fills amber as the runner passes, stations light up. */
+.ab-live .ab-seg { background: var(--ab-grey); }
+.ab-live .ab-seg i { display: block; }
+.ab-live .ab-node, .ab-live .ab-st:last-child .ab-node { border-color: var(--ab-grey); background: var(--rac-night); box-shadow: none; }
+.ab-live .ab-st.is-lit .ab-node { border-color: var(--rac-accent); }
+.ab-live .ab-st.is-lit .ab-num { color: var(--rac-accent-ink); }
+.ab-live .ab-st h3, .ab-live .ab-st h3 + p, .ab-live .ab-more { transition: opacity 0.4s; }
+.ab-live .ab-st:not(.is-lit) h3, .ab-live .ab-st:not(.is-lit) h3 + p, .ab-live .ab-st:not(.is-lit) .ab-more { opacity: 0.45; }
+.ab-runner {
+  position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: var(--rac-accent); z-index: 2; pointer-events: none; will-change: transform;
+  box-shadow: 0 0 0 5px rgb(245 176 46 / 0.2), 0 0 18px 3px rgb(245 176 46 / 0.5);
+}
+.ab-live.is-done .ab-runner { width: 22px; height: 22px; margin: -11px 0 0 -11px; transition: width 0.3s, height 0.3s, margin 0.3s; }
+
+/* ------------------------------------------------------------ path */
+.ab-path { padding-top: 64px !important; padding-bottom: 64px !important; }
+.ab-tl {
+  list-style: none; margin: 0; padding: 0; position: relative;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px;
+  --ab-third: calc((100% - 32px) / 3 * 2 + 32px);
+}
+.ab-tl > li { display: contents; }
+.ab-tl::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 3px; border-radius: 2px;
+  background: linear-gradient(to right, var(--rac-ink) 0 var(--ab-third), var(--rac-accent) var(--ab-third));
+  transform-origin: 0 50%;
+}
+.ab-tl-dot { grid-row: 1; width: 17px; height: 17px; border-radius: 50%; background: var(--rac-ink); position: relative; z-index: 1; margin-bottom: 12px; }
+.ab-tl-3 .ab-tl-dot { background: var(--rac-accent); box-shadow: 0 0 0 5px rgb(245 176 46 / 0.22); }
+.ab-tl-when, .ab-tl-what { margin: 0; }
+.ab-tl-when { grid-row: 2; font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 0.95rem; }
+.ab-tl-what { grid-row: 3; color: var(--rac-ink-2); line-height: 1.35; }
+.ab-tl-3 .ab-tl-what { font-family: "IBM Plex Mono", monospace; font-size: 0.9rem; color: var(--rac-accent-ink); padding-top: 2px; }
+.ab-tl-1 > * { grid-column: 1; }
+.ab-tl-2 > * { grid-column: 2; }
+.ab-tl-3 > * { grid-column: 3; }
+.ab-tl-cap { grid-row: 4; margin: 14px 0 0; color: var(--rac-ink-2); font-size: 1rem; line-height: 1.55; }
+
+/* Phone: the three captions become full rows under the rail, each with its stretch's mark. */
+@media (max-width: 767px) {
+  .ab-tl-cap { grid-column: 1 / -1 !important; position: relative; padding-left: 22px; margin-top: 12px; }
+  .ab-tl-1 .ab-tl-cap { grid-row: 4; margin-top: 22px; }
+  .ab-tl-2 .ab-tl-cap { grid-row: 5; }
+  .ab-tl-3 .ab-tl-cap { grid-row: 6; }
+  .ab-tl-cap::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 10px; height: 10px; border-radius: 50%; background: var(--rac-ink); }
+  .ab-tl-3 .ab-tl-cap::before { background: var(--rac-accent); }
+  .ab-tl-what { font-size: 0.95rem; }
+  .ab-tl-3 .ab-tl-what { font-size: 0.82rem; }
+}
+
+/* ------------------------------------------------------------ where */
+.ab-map { margin: 0 auto; max-width: 920px; }
+.ab-map-box { position: relative; padding-top: 6px; }
+.ab-map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ab-map-land circle { fill: color-mix(in srgb, var(--rac-night-muted) 38%, transparent); }
+.ab-map-arcs path { stroke: var(--rac-accent); stroke-width: 1.4; opacity: 0.85; vector-effect: non-scaling-stroke; }
+.ab-map-node { fill: var(--rac-accent); }
+.ab-map-glow { fill: rgb(245 176 46 / 0.22); }
+.ab-map-home { fill: var(--rac-night); stroke: var(--rac-night-ink); stroke-width: 2.5; }
+.ab-lbl {
+  position: absolute; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; line-height: 1.25;
+  color: var(--rac-night-ink); white-space: nowrap; pointer-events: none;
+  text-shadow: 0 0 3px var(--rac-night), 0 0 6px var(--rac-night);
+}
+.ab-lbl-home { transform: translate(10px, -50%); }
+.ab-lbl-af, .ab-lbl-as { transform: translate(9px, -50%); }
+.ab-lbl-la { transform: translate(-14px, 10px); }
+.ab-src { margin-top: 18px; font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--rac-night-muted); }
+.rac-night .ab-src a { color: var(--rac-night-muted); }
+@media (min-width: 768px) {
+  .ab-lbl { font-size: 13px; }
+  .ab-lbl-la br { display: none; }
+}
+
+/* ------------------------------------------------------------ how I work, contact, bio */
+.ab-work { padding-top: 56px !important; padding-bottom: 8px !important; }
+.ab-work > *, .ab-bio > * { max-width: 46rem; }
+.ab-how { font-size: 1.25rem; line-height: 1.5; margin: 0; }
+.ab-contact { margin: 18px 0 0; color: var(--rac-ink-2); line-height: 1.6; }
+.ab-actions { margin-top: 20px; }
+.ab-actions .rac-btn { flex: 1 1 auto; justify-content: center; white-space: nowrap; }
+@media (min-width: 576px) { .ab-actions .rac-btn { flex: 0 0 auto; } }
+.ab-meta { margin: 28px 0 0; font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; line-height: 1.7; color: var(--rac-muted); }
+.ab-meta span { display: block; }
+.ab-meta span + span { margin-top: 8px; }
+.ab-meta a { color: var(--rac-muted); overflow-wrap: anywhere; }
+.ab-bio { padding-top: 24px !important; padding-bottom: 72px !important; font-size: 0.92rem; color: var(--rac-ink-2); }
+.ab-bio .callout { margin: 0; }
+.ab-bio h2 { font-size: 0.95rem; margin: 0; }
+
+/* ------------------------------------------------------------ one-time draw-in (about.js) */
+.ab-anim.ab-tl::before { transform: scaleX(0); transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.ab-anim .ab-tl-dot { opacity: 0; transition: opacity 0.4s; }
+.ab-anim .ab-tl-2 .ab-tl-dot { transition-delay: 0.45s; }
+.ab-anim .ab-tl-3 .ab-tl-dot { transition-delay: 0.8s; }
+.ab-anim.is-in.ab-tl::before { transform: none; }
+.ab-anim.is-in .ab-tl-dot { opacity: 1; }
+.ab-anim .ab-map-arcs path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s ease-out; }
+.ab-anim .ab-map-arcs path:nth-child(2) { transition-delay: 0.2s; }
+.ab-anim .ab-map-arcs path:nth-child(3) { transition-delay: 0.4s; }
+.ab-anim .ab-map-nodes circle:not(.ab-map-home), .ab-anim .ab-lbl:not(.ab-lbl-home) { opacity: 0; transition: opacity 0.5s 1s; }
+.ab-anim.is-in .ab-map-arcs path { stroke-dashoffset: 0; }
+.ab-anim.is-in .ab-map-nodes circle, .ab-anim.is-in .ab-lbl { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-anim.ab-tl::before { transform: none !important; }
+  .ab-anim .ab-tl-dot, .ab-anim .ab-map-nodes circle, .ab-anim .ab-lbl { opacity: 1 !important; }
+  .ab-anim .ab-map-arcs path { stroke-dashoffset: 0 !important; }
+}
+@media print {
+  .ab-runner { display: none; }
+}

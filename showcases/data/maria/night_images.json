@@ -1,0 +1,36 @@
+{
+ "product": "NASA Black Marble VNP46A2 C2, DNB_BRDF-Corrected_NTL",
+ "doi": "10.5067/VIIRS/VNP46A2.002",
+ "tile": "h11v07",
+ "extent_lon_lat": [
+  -67.4,
+  17.8,
+  -65.1,
+  18.7
+ ],
+ "pixels": [
+  552,
+  216
+ ],
+ "before_nights": [
+  "2017-07-31",
+  "2017-09-05",
+  37
+ ],
+ "after_nights": [
+  "2017-09-27",
+  "2017-09-28"
+ ],
+ "after_rule": "nights from 21 Sep to 2 Oct 2017 on which at least one bus area counts in the record (usable share >= 0.5)",
+ "after_nights_with_usable_land_pixels": [
+  "2017-09-27",
+  "2017-09-28"
+ ],
+ "land_usable_share_before": 0.998,
+ "land_usable_share_after": 0.861,
+ "log10_radiance_scale": [
+  -0.397,
+  1.752
+ ],
+ "built_by": "scripts/showcase_maria/night_images.py"
+}

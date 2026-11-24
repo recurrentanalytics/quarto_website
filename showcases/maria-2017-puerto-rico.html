@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-19">
+<meta name="description" content="A storm crosses a model of Puerto Rico’s transmission grid, hour by hour. Then the model meets the satellite and the outage reports. What it gets right, what it misses, and why.">
+
+<title>Maria 2017: what the grid model gets right, and what it misses – re:current_analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-83473db31452f667965bb465e6000f16.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Fonts are self-hosted (assets/fonts/, SIL OFL): no visitor request goes to Google. -->
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/components.css">
+<!-- Phone menu (overlay + command line): menu.css, menu.js; the class marks "JS on". -->
+<link rel="stylesheet" href="../assets/css/menu.css">
+<script>document.documentElement.classList.add('rac-menu-js');</script>
+<!-- Article preview cards: previews.css, previews.js (series thumbnails). -->
+<link rel="stylesheet" href="../assets/css/previews.css">
+<!-- d3 7.9.0, self-hosted, as an ES module (assets/js/vendor/): pages with interactive
+     cells may load require.js, which would swallow the plain UMD build; the wrapper
+     never asks require.js. Module scripts run before DOMContentLoaded, as site.js needs. -->
+<script type="module">import d3 from "/assets/js/vendor/d3-7.9.0.esm.js"; window.d3 = d3;</script>
+<script src="../assets/graph.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/extras.js"></script>
+<script src="../assets/js/code-fold.js"></script>
+<script defer="" src="../assets/js/motion.js"></script>
+<script defer="" src="../assets/js/menu.js"></script>
+<script defer="" src="../assets/js/previews.js"></script>
+
+
+<meta property="og:title" content="Maria 2017: what the grid model gets right, and what it misses">
+<meta property="og:description" content="A storm crosses a model of Puerto Rico’s transmission grid, hour by hour. Then the model meets the satellite and the outage reports. What it gets right, what it misses, and why.">
+<meta property="og:image" content="https://recurrentanalytics.com/showcases/data/maria/og.png">
+<meta property="og:site_name" content="re:current_analytics">
+<meta property="og:image:height" content="628">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:alt" content="Puerto Rico's transmission grid after Hurricane Maria in the model: red lines down in at least half of the runs, amber in some.">
+<meta name="twitter:title" content="Maria 2017: what the grid model gets right, and what it misses">
+<meta name="twitter:description" content="A storm crosses a model of Puerto Rico’s transmission grid, hour by hour. Then the model meets the satellite and the outage reports. What it gets right, what it misses, and why.">
+<meta name="twitter:image" content="https://recurrentanalytics.com/showcases/data/maria/og.png">
+<meta name="twitter:image-height" content="628">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:image:alt" content="Puerto Rico's transmission grid after Hurricane Maria in the model: red lines down in at least half of the runs, amber in some.">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed rac-fullbleed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/brand/lockup-small-light.svg" alt="re:current_analytics, home" class="navbar-logo light-content">
+    <img src="../assets/brand/lockup-small-dark.svg" alt="re:current_analytics, home" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/livelines.html"> 
+<span class="menu-text">LiveLines</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../showcases/index.html"> 
+<span class="menu-text">Showcases</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../playground/index.html"> 
+<span class="menu-text">Playground</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="../notes/index.xml" title="" class="quarto-navigation-tool px-1" aria-label="RSS feed"><i class="bi bi-rss"></i></a>
+    <a href="https://github.com/recurrentanalytics" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hurricane Maria 2017 over Puerto Rico’s power grid</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">showcase</div>
+    <div class="quarto-category">livelines</div>
+    <div class="quarto-category">power-grids</div>
+    <div class="quarto-category">tropical-cyclones</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A storm crosses a model of Puerto Rico’s transmission grid, hour by hour. Then the model meets the satellite and the outage reports. What it gets right, what it misses, and why.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<link rel="stylesheet" href="assets/maria.css">
+<div class="rac-night mx" id="mx" data-base="data/maria/">
+  <div class="rac-wrap">
+    <section class="rac-hero" aria-labelledby="mx-title" style="padding-bottom:28px">
+      <div class="rac-hero-text" style="flex-basis:100%">
+        <p class="rac-eyebrow">Showcase 1 of 3 · Modelling</p>
+        <h1 id="mx-title" style="font-size:clamp(2.2rem,6vw,3.8rem)">Hurricane Maria 2017 over Puerto Rico's power grid</h1>
+        <p class="rac-hero-lead" style="max-width:44rem">We sent Maria across a model of the island's transmission grid, hour by hour. Then we held the model up against the satellite and the outage reports. It gets the direction right and misses the depth. Here is the likely reason.</p>
+        <div class="rac-actions">
+          <a class="rac-btn" href="../projects/livelines.html">How LiveLines works</a>
+          <a class="rac-btn rac-btn-ghost" href="maria-how-it-works/">How this page was made</a>
+        </div>
+        <p class="mx-meta">LiveLines kernel <span data-k="kernel_sha">865bcc9</span> · preset chain_maria_pr · <span data-k="n_runs">8</span> runs, seed <span data-k="seed">42</span> · hours in UTC</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="rac-wrap mx-scrolly">
+    <div class="mx-sticky" aria-live="off"></div>
+    <div class="mx-steps">
+
+      <div class="mx-step" data-state="{&quot;image&quot;:&quot;before&quot;,&quot;caption&quot;:&quot;Night lights before the storms, 31 Jul to 5 Sep 2017&quot;}">
+        <div class="mx-card">
+          <p class="rac-kicker">The grid</p>
+          <p><span data-k="n_buses">56</span> substations and <span data-k="n_branches">92</span> branches (<span data-k="n_lines">76</span> lines, <span data-k="n_trafo">16</span> transformers) at 115 and 230 kV, built from OpenStreetMap with PyPSA-Earth, plus the island's 2017 power plants.</p>
+          <p class="mx-small">Behind it: the island's lights on normal nights before the storms (NASA Black Marble).</p>
+        </div>
+      </div>
+
+      <div class="mx-step" data-state="{&quot;image&quot;:&quot;before&quot;,&quot;track&quot;:true,&quot;caption&quot;:&quot;Track: IBTrACS, NHC best track&quot;}">
+        <div class="mx-card">
+          <p class="rac-kicker">The storm</p>
+          <p>Maria made landfall in the southeast at <span data-k="landfall_utc">10:15 UTC</span> on 20 September 2017 (<span data-k="landfall_local">06:15 local</span>): category <span data-k="landfall_cat">4</span>, <span data-k="landfall_kt">135 kt</span>. It crossed the whole island and left in the northwest.</p>
+        </div>
+      </div>
+
+      <div class="mx-step" data-scrub="19,21,24,47" data-range="12,47" data-state="{&quot;track&quot;:true,&quot;eye&quot;:true,&quot;fail&quot;:true}">
+        <div class="mx-card">
+          <p class="rac-kicker">Hour by hour</p>
+          <p>Scroll to run the clock. A line turns red once it is down in at least half of the <span data-k="n_runs">8</span> runs, amber while only some.</p>
+          <p>The first lines break at hour <span data-k="first_fail_hour">19</span>. Each section of line has an even chance of breaking at a gust of about <span data-k="frag_median">79 m/s</span>; a line fails at its first broken section. The strongest gust the model puts on any line: <span data-k="peak_gust">88.9 m/s</span>.</p>
+        </div>
+        <div class="mx-card">
+          <p>Closest approach: hour <span data-k="closest_hour">24</span>, <span data-k="closest_time">20 Sep 13:00 UTC · 09:00 local</span>. After that the wind breaks nothing new, and nothing gets repaired: the model has no repair crews.</p>
+        </div>
+      </div>
+
+      <div class="mx-step" data-state="{&quot;hour&quot;:&quot;end&quot;,&quot;track&quot;:true,&quot;fail&quot;:true}">
+        <div class="mx-card">
+          <p class="rac-kicker">48 hours on</p>
+          <p>The wind has broken <span data-k="fail_min">39</span> to <span data-k="fail_max">45</span> of <span data-k="n_branches">92</span> branches, depending on the run. The model still serves <span data-k="served_end_dc">39%</span> of the island's load (median of the runs), down from <span data-k="served_intact">99%</span>.</p>
+          <p>So far, the direction is right: a severe outage.</p>
+          <p class="mx-small">Island total, weighted by load: <span data-k="served_end_dc_p05">35%</span> to <span data-k="served_end_dc_p95">57%</span> (5th to 95th percentile of the runs); <span data-k="served_end_pypsa">47%</span> with an ideal operator. The DC power flow trips up to <span data-k="overload_max">6</span> more branches on overload.</p>
+        </div>
+      </div>
+
+      <div class="mx-step" data-state="{&quot;image&quot;:&quot;after&quot;,&quot;areas&quot;:true,&quot;fail&quot;:true,&quot;hour&quot;:&quot;end&quot;,&quot;caption&quot;:&quot;Satellite: NASA Black Marble, clear nights 27 and 28 Sep 2017&quot;}">
+        <div class="mx-card">
+          <p class="rac-kicker">What the satellite saw</p>
+          <p>Every one of the <span data-k="n_areas">50</span> substation areas with satellite data fell below half its normal light. On average they kept <span data-k="sat_mean">19%</span>.</p>
+          <p>The model keeps the same areas at <span data-k="dc_mean">63%</span> served; only <span data-k="dc_below">17</span> drop below half. Nor can it say which areas went darkest (rank correlation <span data-k="dc_spearman">0.08</span>).</p>
+          <p class="mx-small">A plain mean over the areas, so higher than the load-weighted island figure.</p>
+        </div>
+      </div>
+
+      <div class="mx-step" data-state="{&quot;image&quot;:&quot;after&quot;,&quot;areas&quot;:true,&quot;fail&quot;:true,&quot;hour&quot;:&quot;end&quot;,&quot;caption&quot;:&quot;Satellite: 27 and 28 Sep · model: hour 47&quot;}">
+        <div class="mx-card">
+          <p class="rac-kicker">What was reported</p>
+          <p>On 24 September the U.S. Department of Energy reported <span data-k="doe_customers">1,569,796</span> customers without power: <span data-k="doe_customers_pct">100%</span>, confirmed.</p>
+          <p>Three days earlier, at its last hour, the model still served <span data-k="served_end_dc">39%</span> of the island's load. The same miss as in the night lights.</p>
+          <p class="mx-small">Customers are not load; the model has no repair, so its last hour stands for 24 September.</p>
+        </div>
+      </div>
+
+      <div class="mx-step" data-state="{&quot;image&quot;:&quot;after&quot;,&quot;areas&quot;:true,&quot;fail&quot;:true,&quot;hour&quot;:&quot;end&quot;,&quot;caption&quot;:&quot;Satellite: 27 and 28 Sep · model: hour 47&quot;}">
+        <div class="mx-card">
+          <p class="rac-kicker">Why it misses</p>
+          <p>The model breaks lines and reroutes power around the gaps; whatever still connects to a running plant stays lit. The real grid failed as a system: the whole island went dark.</p>
+          <p>The likely cause, as LiveLines' scoreboard names it: <strong>no system-wide collapse in the model</strong>. A first collapse rule (a cut-off part of the grid goes dark when its sudden shortfall exceeds <span data-k="collapse_threshold">25%</span> of its load) brings the model to <span data-k="collapse_mean">57%</span>; with over-frequency trips, <span data-k="overfreq_mean">55%</span>. Closer, still far from <span data-k="sat_mean">19%</span>.</p>
+          <p class="mx-small">The comparison points to the collapse; it does not prove it. Distribution damage (poles, lines, transformers), not modelled, adds to the gap.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="rac-wrap rac-band" aria-labelledby="mx-score" style="padding-top:40px">
+    <h2 id="mx-score" class="rac-h2">The scorecard</h2>
+    <p class="rac-sub rac-muted">Mean over the <span data-k="n_areas">50</span> substation areas with satellite data: share of normal night light (satellite) against share of load served at the model's last hour.</p>
+    <div id="mx-scorecard"></div>
+  </section>
+
+  <section class="rac-wrap rac-band" aria-labelledby="mx-months" style="padding-top:0">
+    <h2 id="mx-months" class="rac-h2">Hours in the model, months on the island</h2>
+    <p class="rac-sub rac-muted">The model's end state, <span data-k="unserved_end_dc">61%</span> of load not served, is where the island stood only weeks later, in its slow repair. The model has no repair, so this comparison runs one way only.</p>
+    <div id="mx-doe"></div>
+    <p class="mx-note">Customers without power as the DOE situation reports state them (from early October estimated, not counted). Load not restored = 100% minus the share of normal peak load restored that the reports give (2,685 MW in October and November; "generally between 2500 and 3000 MW" in December and January, recalibrated from 3 January; on 28 March "of pre-storm capacity"). Customers are not load, the model's share is of its own modelled load, and the model does not see distribution lines.</p>
+  </section>
+
+  <section class="rac-wrap rac-band" aria-labelledby="mx-limits" style="padding-top:0">
+    <h2 id="mx-limits" class="rac-h2">Limits, in plain words</h2>
+    <ul class="mx-limits">
+      <li><strong>Transmission only.</strong> The model stops at the substation. The lines to streets and homes, where much of Maria's damage was, are not in it.</li>
+      <li><strong>Today's map, not 2017's.</strong> The grid comes from today's OpenStreetMap, and keeps 1,415 of the 2,659 km of overhead line mapped there. Line ratings are standard values per voltage, not the real ones.</li>
+      <li><strong>Plants and demand.</strong> The 2017 plants are at nameplate, with their status from a 2025 tracker; 340 MW of them may already have been out of service in 2017. Small plants and hydro are missing. Demand is modelled, not measured.</li>
+      <li><strong>Borrowed fragility.</strong> How likely a line is to fail in a given gust comes from a study of Indian transmission towers. Nothing is repaired, and there are only 8 runs.</li>
+      <li><strong>Light is not power.</strong> Night lights measure emitted light. Each area is simply the land nearest a substation, not what that substation really feeds. There were no usable satellite nights until 27 September; the satellite numbers rest on 27 and 28 September.</li>
+      <li><strong>Different moments.</strong> The model covers 48 hours around landfall; the satellite nights are 7 and 8 days after landfall, the DOE count of 24 September 4 days after. Without repair, the model's last hour stands for those dates.</li>
+      <li><strong>One loose end.</strong> One substation carries load but has no line in the model: it is dark from hour 0. That is why the intact grid serves <span data-k="served_intact">99%</span>, not 100%.</li>
+      <li><strong>Collapse rules are first drafts.</strong> Their thresholds come from North American (NERC) standards; Puerto Rico is not under NERC, and the values are placeholders.</li>
+      <li><strong>A screening model, not a forecast.</strong> Every module in this chain is at placeholder maturity.</li>
+    </ul>
+  </section>
+
+  <section class="rac-wrap rac-band" aria-labelledby="mx-sources" style="padding-top:0">
+    <h2 id="mx-sources" class="rac-h2">Sources and licences</h2>
+    <ul class="mx-sources">
+      <li><strong>Grid</strong>: © OpenStreetMap contributors, <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>, built with PyPSA-Earth. The grid and line-failure data behind this page (<a href="data/maria/maria.json">maria.json</a>: substations, lines, failure hours per run) is a derived database, offered under ODbL 1.0.</li>
+      <li><strong>Power plants, 2017</strong>: Global Energy Monitor, Global Oil and Gas Plant Tracker (August 2025 release), Global Coal Plant Tracker (July 2025 release), Global Solar Power Tracker and Global Wind Power Tracker (February 2025 releases), <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Three combined-cycle units (GEO plant 46322): data obtained from <a href="https://GlobalEnergyObservatory.org/">https://GlobalEnergyObservatory.org/</a>, <a href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>. Solar, wind and the GEO units were matched with powerplantmatching (Gotzens et al. 2019, Energy Strategy Reviews 23, <a href="https://doi.org/10.1016/j.esr.2018.11.004">doi:10.1016/j.esr.2018.11.004</a>) in PyPSA-Earth; the oil, gas and coal units were taken from the GEM trackers by LiveLines. Modified: units built after 2017 removed, status as of the 2025 releases, used at nameplate. No plant data is shown on this page.</li>
+      <li><strong>Demand</strong>: hourly demand from DemandCast: Antonini, E., V. P. Goli, K. Steijn (2026), Global Dataset of Forecasted Hourly Electricity Demand from 2000 to 2024 Using DemandCast, version 1.0.0, <a href="https://doi.org/10.5281/zenodo.18374352">doi:10.5281/zenodo.18374352</a>; Steijn, K., V. P. Goli, E. Antonini (2025), DemandCast: Global hourly electricity demand forecasting, <a href="https://arxiv.org/abs/2510.08000">arXiv:2510.08000</a>. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The island series is split over the substations by PyPSA-Earth, so load per substation is modelled; this page shows no load per substation, only island-wide figures. The split over buses uses GADM 4.1 administrative units (<a href="https://gadm.org/">gadm.org</a>) as weights. GADM allows free academic and other non-commercial use; whether numbers weighted by its units count as redistribution is not settled, and GADM has not been asked.</li>
+      <li><strong>Storm track</strong>: IBTrACS, NHC best track (USA columns only). Knapp, K. R., M. C. Kruk, D. H. Levinson, H. J. Diamond, C. J. Neumann (2010): The International Best Track Archive for Climate Stewardship (IBTrACS): Unifying Tropical Cyclone Data. <em>Bulletin of the American Meteorological Society</em> 91, 363–376, <a href="https://doi.org/10.1175/2009BAMS2755.1">doi:10.1175/2009BAMS2755.1</a>. Gahtan, J., K. R. Knapp, C. J. Schreck, H. J. Diamond, J. P. Kossin, M. C. Kruk (2024): IBTrACS Project, Version 4r01, subset MARIA 2017 (SID 2017260N12310). NOAA National Centers for Environmental Information, <a href="https://doi.org/10.25921/82ty-9e16">doi:10.25921/82ty-9e16</a>, local copy dated 30 April 2026 (access date not recorded).</li>
+      <li><strong>Night lights</strong>: NASA Black Marble VNP46A2, Collection 2, <a href="https://doi.org/10.5067/VIIRS/VNP46A2.002">doi:10.5067/VIIRS/VNP46A2.002</a>, CC0. Credit: NASA. Images and area values processed by re:current_analytics (before: nights 31 July to 5 September 2017; after: 27 and 28 September 2017, the clear nights; median of each pixel's clear nights).</li>
+      <li><strong>Outage reports</strong>: U.S. Department of Energy, Office of Electricity, <a href="https://www.energy.gov/oe/downloads/hurricanes-irma-and-harvey-situation-reports">Hurricanes Nate, Maria, Irma, and Harvey Situation Reports</a> (2017–2018), public domain. With thanks to the Department of Energy.</li>
+      <li><strong>Model</strong>: LiveLines kernel, commit <span data-k="kernel_sha">865bcc9</span>, preset chain_maria_pr, <span data-k="n_runs">8</span> runs with seed <span data-k="seed">42</span>. Comparison records pypsaearth_pr_maria_nightlights_track with its collapse and over-frequency variants (LiveLines 98678e2, same chain with the Maria grid and storm) and pypsaearth_pr_maria_doe_outages (LiveLines f3b0584); this run reproduces their numbers. Every number on this page comes from that run or those records.</li>
+    </ul>
+  </section>
+  <noscript><div class="rac-wrap"><p class="mx-note">The map and charts need JavaScript. Every number is in the text.</p></div></noscript>
+</div>
+<script src="assets/maria.js" defer=""></script>
+
+
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/recurrentanalytics\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© re:current_analytics · <a href="../how-this-site-is-made.html#licence">Texts CC BY 4.0, code MIT</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="mailto:timm.walker@recurrentanalytics.com">
+<p>Email</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/walkertimm">
+<p>LinkedIn</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/recurrentanalytics">
+<p>GitHub</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../notes/index.xml">
+<p>RSS</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../library/index.html">
+<p>Library</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../how-this-site-is-made.html">
+<p>Colophon</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../datenschutz.html">
+<p>Datenschutz</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

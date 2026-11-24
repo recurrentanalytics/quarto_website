@@ -1,0 +1,124 @@
+/* Showcase: Hurricane Maria 2017 over Puerto Rico's grid. Page-only styles (prefix mx-).
+   Colours come from the site's theme tokens (--rac-*), so light and dark follow the site.
+   The map plate stays a night plate in both themes: it shows a satellite night image. */
+
+.mx { --mx-plate: #0b0f14; --mx-plate-ink: #e9eef3; --mx-plate-muted: #b3bfcc;
+      --mx-line: #3a4a5c; --mx-some: #f5b02e; --mx-most: #ff5a3c; --mx-bus: #8fb8e0; }
+
+.mx-meta { font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; line-height: 1.6;
+           color: var(--rac-night-muted); margin: 18px 0 0; }
+
+/* ---------------------------------------------------------------- scrollytelling */
+.mx-scrolly { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); }
+.mx-sticky { position: sticky; top: 56px; z-index: 4; padding: 8px 0 10px;
+             background: var(--rac-night); transition: top 0.2s; }
+/* The site's header slides away while scrolling down (Quarto headroom): follow it. */
+body:has(#quarto-header.headroom--unpinned) .mx-sticky { top: 0; }
+.mx-steps { position: relative; z-index: 3; padding: 0 0 30vh; }
+.mx-step { min-height: 66vh; display: flex; align-items: flex-start; padding-top: 4vh; }
+.mx-step[data-scrub] { min-height: 230vh; display: block; }
+.mx-step[data-scrub] .mx-card + .mx-card { margin-top: 62vh; }
+.mx-card { background: var(--rac-surface); color: var(--rac-ink); border: 1px solid var(--rac-line);
+           border-radius: 14px; padding: 16px 18px; max-width: 30rem; box-shadow: var(--rac-shadow); }
+.mx-card p { margin: 0; font-size: 1rem; line-height: 1.55; }
+.mx-card p + p { margin-top: 0.6rem; }
+.mx-card .rac-kicker { margin-bottom: 0.35rem; }
+.mx-card .mx-small { font-size: 0.86rem; color: var(--rac-muted); }
+
+.mx-figure { margin: 0; border-radius: 14px; overflow: hidden; background: var(--mx-plate);
+             border: 1px solid var(--rac-night-line); color: var(--mx-plate-ink); }
+.mx-map { display: block; width: 100%; height: auto; }
+.mx-readout { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px;
+              padding: 8px 12px 0; font-family: "IBM Plex Mono", monospace; font-size: 0.74rem;
+              line-height: 1.4; color: var(--mx-plate-muted); min-height: 2.6em; }
+.mx-readout strong { color: var(--mx-plate-ink); font-weight: 500; }
+.mx-mini { display: block; width: 100%; height: auto; }
+.mx-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 4px 12px 10px;
+             font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; color: var(--mx-plate-muted); }
+.mx-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.mx-legend i { display: inline-block; width: 16px; height: 0; border-top: 2px solid; }
+.mx-legend i.dot { width: 9px; height: 9px; border: 0; border-radius: 50%; }
+.mx-legend [hidden] { display: none; }
+
+/* map layers */
+.mx-map .ln, .mx-map .track, .mx-map .eye, .mx-map .area { vector-effect: non-scaling-stroke; }
+.mx-map .ln { stroke: #6a7d92; stroke-width: 1.3; fill: none; stroke-linecap: round;
+              transition: stroke 0.25s, stroke-width 0.25s; }
+.mx-map .ln.some { stroke: var(--mx-some); stroke-width: 1.7; stroke-dasharray: 3 3; }
+.mx-map .ln.most { stroke: var(--mx-most); stroke-width: 2.1; }
+.mx-map .bus { fill: var(--mx-bus); }
+.mx-map .track { stroke: var(--mx-plate-ink); stroke-width: 1.2; stroke-dasharray: 1 4;
+                 fill: none; opacity: 0.75; stroke-linecap: round; }
+.mx-map .fix { fill: var(--mx-plate-ink); opacity: 0.8; }
+.mx-map .eye { fill: rgb(233 238 243 / 0.12); stroke: var(--mx-plate-ink); stroke-width: 1.5; }
+.mx-map .eye-core { fill: var(--mx-plate-ink); }
+.mx-map .lbl { font-family: "IBM Plex Mono", monospace; fill: var(--mx-plate-muted); }
+.mx-map .area { stroke: var(--mx-plate); stroke-width: 1; }
+.mx-map .layer { transition: opacity 0.4s; }
+.mx-map .layer.off { opacity: 0; }
+/* The pre-storm lights sit back, so the grid on top reads; the after image is dark anyway. */
+.mx-map image.img-before:not(.off) { opacity: 0.6; }
+.mx-map image.img-after:not(.off) { opacity: 0.85; }
+.mx-mini .band { fill: var(--mx-most); opacity: 0.25; }
+.mx-mini .p50 { stroke: var(--mx-most); stroke-width: 2; fill: none; }
+.mx-mini .axis { stroke: var(--mx-line); }
+.mx-mini text { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--mx-plate-muted); }
+.mx-mini .cursor { stroke: var(--mx-plate-ink); stroke-width: 1.5; }
+.mx-mini .mark { stroke: var(--mx-plate-muted); stroke-dasharray: 2 3; }
+
+/* static frames (reduced motion, or no sticky) */
+.mx-frame { margin: 0 0 12px; max-width: 34rem; }
+.mx-frame figcaption { padding: 6px 12px 8px; font-family: "IBM Plex Mono", monospace;
+                       font-size: 0.72rem; color: var(--mx-plate-muted); }
+.mx.is-static .mx-sticky { display: none; }
+.mx.is-static .mx-step, .mx.is-static .mx-step[data-scrub] { min-height: 0; display: block; padding: 0 0 36px; }
+.mx.is-static .mx-step[data-scrub] .mx-card + .mx-card { margin-top: 16px; }
+.mx.is-static .mx-steps { padding-bottom: 24px; }
+
+@media (min-width: 900px) {
+  .mx-scrolly { grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 40px; }
+  .mx-sticky { grid-column: 2; grid-row: 1; top: 72px; align-self: start; padding-top: 24px; background: transparent; z-index: 2; }
+  body:has(#quarto-header.headroom--unpinned) .mx-sticky { top: 16px; }
+  .mx-steps { grid-column: 1; grid-row: 1; }
+  .mx-step { min-height: 92vh; padding-top: 22vh; }
+  .mx.is-static .mx-scrolly { grid-template-columns: minmax(0, 1fr); }
+  .mx.is-static .mx-steps { grid-column: 1; }
+  .mx.is-static .mx-step { display: grid; grid-template-columns: minmax(0, 34rem) minmax(0, 30rem); gap: 24px; align-items: start; }
+  .mx.is-static .mx-step[data-scrub] { display: block; }
+  .mx.is-static .mx-step[data-scrub] .mx-frames { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+/* ---------------------------------------------------------------- charts and lists */
+.mx-chart { display: block; width: 100%; height: auto; margin-top: 24px; overflow: visible; max-width: 760px; }
+.mx-key { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; font-family: "IBM Plex Mono", monospace;
+          font-size: 0.78rem; color: var(--rac-night-muted); }
+.mx-key span { display: inline-block; }
+.mx-key i { display: inline-block; width: 18px; height: 0; border-top: 2px solid; margin-right: 7px; vertical-align: middle; }
+.mx-key i.dot { width: 10px; height: 10px; border: 0; border-radius: 50%; }
+.mx-chart text { font-family: "IBM Plex Mono", monospace; font-size: 12px; fill: var(--rac-night-muted); }
+.mx-chart .name { font-family: "IBM Plex Sans", sans-serif; font-size: 14px; fill: var(--rac-night-ink); }
+.mx-chart .val { fill: var(--rac-night-ink); font-weight: 500; }
+.mx-chart .grid { stroke: var(--rac-night-line); }
+.mx-chart .bar-sat { fill: var(--rac-accent); }
+.mx-chart .bar-model { fill: var(--rac-mod-outcome); }
+.mx-chart .bar-variant { fill: var(--rac-mod-outcome); opacity: 0.55; }
+.mx-chart .s-cust { stroke: var(--rac-mod-storm); fill: none; stroke-width: 2; }
+.mx-chart .d-cust { fill: var(--rac-mod-storm); }
+.mx-chart .s-load { stroke: var(--rac-night-muted); fill: none; stroke-width: 2; stroke-dasharray: 5 4; }
+.mx-chart .d-load { fill: var(--rac-night-muted); }
+.mx-chart .d-model { fill: var(--rac-mod-outcome); stroke: var(--rac-night); stroke-width: 2; }
+.mx-note { font-size: 0.88rem; color: var(--rac-night-muted); margin: 10px 0 0; max-width: 44rem; }
+.mx-limits { margin: 24px 0 0; padding-left: 1.2rem; max-width: 46rem; }
+.mx-limits li { margin: 0 0 0.7rem; line-height: 1.55; }
+.mx-sources { margin: 20px 0 0; padding: 0; list-style: none; max-width: 52rem; font-size: 0.92rem; }
+.mx-sources li { padding: 10px 0; border-top: 1px solid var(--rac-night-line); line-height: 1.55; }
+.mx-sources strong { font-weight: 600; }
+.mx-err { color: var(--rac-mod-storm); font-family: "IBM Plex Mono", monospace; font-size: 0.85rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-map .ln, .mx-map .layer { transition: none; }
+}
+@media (max-width: 899px) {
+  .mx-sticky { margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+  .mx-card { margin-left: auto; margin-right: auto; }
+}

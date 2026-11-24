@@ -1,0 +1,110 @@
+/* Trigger Lab (showcases/trigger-lab-mozambique.qmd). Uses the site's --rac-* tokens,
+   so light and dark follow the theme. Page-specific only. */
+
+.tl-page {
+  --tl-hit: var(--rac-mod-grid);
+  --tl-false: var(--rac-accent);
+  --tl-miss: var(--rac-mod-storm);
+  --tl-quiet: var(--rac-band);
+}
+
+body.tl-page #quarto-document-content code { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Layout: phone stacks controls, map, seasons, result; wide screens put the map left. */
+.tl-lab { display: grid; gap: 1rem 2rem; grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "controls" "map" "seasons" "result"; margin-top: 1.5rem; }
+.tl-controls { grid-area: controls; }
+.tl-map { grid-area: map; }
+.tl-seasons { grid-area: seasons; }
+.tl-result { grid-area: result; }
+@media (min-width: 992px) {
+  .tl-lab { grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+    grid-template-areas: "map controls" "map seasons" "map result"; align-items: start; }
+  .tl-map { position: sticky; top: 4.5rem; }
+}
+.tl-lab .cell-output-display, .tl-lab .observablehq { margin: 0; }
+.tl-map svg { display: block; width: 100%; height: auto; border-radius: 8px; background: var(--rac-figure-bg); }
+
+/* Controls: big thumbs, one per row */
+.tl-controls { background: var(--rac-surface); border: 1px solid var(--rac-line); border-radius: 10px;
+  padding: 0.9rem 1rem 0.6rem; box-shadow: var(--rac-shadow); }
+.tl-ctl { display: block; margin: 0 0 0.7rem; width: 100%; }
+.tl-ctl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--rac-muted); }
+.tl-ctl-head output { font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--rac-ink); font-weight: 500; }
+.tl-dim { color: var(--rac-muted); font-size: 0.85rem; }
+.tl-ctl select { width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.6rem; font: inherit; font-size: 1rem;
+  color: var(--rac-ink); background: var(--rac-bg); border: 1px solid var(--rac-line); border-radius: 8px; }
+.tl-ctl input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 36px;
+  background: transparent; margin: 0.1rem 0 0; touch-action: pan-y; cursor: pointer; }
+.tl-ctl input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--rac-line); }
+.tl-ctl input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--rac-line); }
+.tl-ctl input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px;
+  border-radius: 50%; background: var(--rac-accent); border: 3px solid var(--rac-surface); box-shadow: 0 0 0 1px var(--rac-accent-ink); }
+.tl-ctl input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%;
+  background: var(--rac-accent); border: 3px solid var(--rac-surface); box-shadow: 0 0 0 1px var(--rac-accent-ink); }
+.tl-ctl input[type="range"]:focus-visible { outline: 2px solid var(--rac-link); outline-offset: 2px; border-radius: 4px; }
+.tl-note { font-size: 0.82rem; color: var(--rac-muted); margin: 0 0 0.5rem; }
+.tl-more summary { font-size: 0.85rem; color: var(--rac-link); cursor: pointer; padding: 0.3rem 0; }
+.tl-more[open] summary { margin-bottom: 0.4rem; }
+
+/* Legends */
+.tl-legend { display: flex; flex-wrap: wrap; gap: 0.25rem 0.9rem; align-items: center; margin: 0.5rem 0 0;
+  font-size: 0.78rem; color: var(--rac-muted); }
+.tl-key { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 0.35rem; vertical-align: -2px; }
+.tl-li { white-space: nowrap; }
+.tl-key-paid { height: 3px; background: var(--rac-track); }
+.tl-key-miss { height: 3px; background: var(--rac-mod-storm); }
+.tl-key-other { height: 2px; background: var(--rac-muted); opacity: 0.6; }
+.tl-key-zone { background: color-mix(in srgb, var(--rac-accent) 22%, transparent); border: 1px dashed var(--rac-accent-ink); }
+
+/* Season grid: one row per decade, ten seasons per row */
+.tl-grid { display: grid; grid-template-columns: 2.6rem repeat(10, minmax(0, 1fr)); gap: 3px; }
+.tl-dec { font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; color: var(--rac-muted); align-self: center; }
+.tl-cell { position: relative; display: block; min-height: 34px; border-radius: 4px; border: 1px solid transparent;
+  padding: 0; font: inherit; background: var(--tl-quiet); color: var(--rac-ink-2);
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+button.tl-cell { cursor: pointer; }
+button.tl-cell:hover { border-color: var(--rac-ghost-hover); }
+button.tl-cell:focus-visible { outline: 2px solid var(--rac-link); outline-offset: 1px; }
+.tl-cell.tl-empty { background: transparent; }
+.tl-yr { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; line-height: 34px; }
+.tl-hit { background: var(--tl-hit); }
+.tl-false { background: var(--tl-false); }
+.tl-miss { background: var(--tl-miss); }
+.tl-quiet { background: var(--tl-quiet); }
+.tl-cell.tl-hit .tl-yr, .tl-cell.tl-miss .tl-yr { color: var(--rac-surface); }
+.tl-cell.tl-false .tl-yr { color: #101418; }
+/* No open impact record: hatched; a payout shows as an amber frame */
+.tl-paid-norec, .tl-none-norec { background: repeating-linear-gradient(135deg, var(--rac-band) 0 4px, transparent 4px 8px); }
+.tl-paid-norec { border: 2px solid var(--rac-accent); }
+.tl-cell.tl-sel { border: 2px solid var(--rac-ink); transform: scale(1.06); z-index: 1; }
+.tl-legend .tl-key.tl-paid-norec { border-width: 2px; }
+.tl-legend .tl-key.tl-none-norec, .tl-legend .tl-key.tl-quiet { border: 1px solid var(--rac-line); }
+
+.tl-hint { font-size: 0.85rem; color: var(--rac-muted); margin: 0.6rem 0 0; }
+.tl-detail { margin-top: 0.7rem; padding: 0.7rem 0.9rem; border-left: 3px solid var(--rac-accent); background: var(--rac-surface); border-radius: 0 8px 8px 0; font-size: 0.92rem; }
+.tl-detail ul { margin: 0.3rem 0; padding-left: 1.1rem; }
+.tl-detail p { margin: 0.3rem 0; }
+.tl-tag { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; padding: 0 0.35rem; border-radius: 3px; }
+.tl-tag-paid { background: var(--rac-accent); color: #101418; }
+.tl-clear { margin-top: 0.3rem; font-size: 0.85rem; background: none; border: 1px solid var(--rac-line); color: var(--rac-link);
+  border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
+
+/* Result */
+.tl-big { font-size: 1.3rem; line-height: 1.4; margin: 0.2rem 0 0.4rem; }
+.tl-big span { font-weight: 700; color: var(--rac-accent-ink); }
+.tl-sub { font-size: 0.9rem; color: var(--rac-muted); margin: 0 0 0.4rem; }
+.tl-2x2 { width: 100%; max-width: 26rem; border-collapse: separate; border-spacing: 3px; margin: 0 0 0.6rem; }
+.tl-2x2 th { font-size: 0.7rem; text-align: left; padding: 0.2rem 0.3rem; }
+.tl-2x2 td { text-align: center; font-size: 1.4rem; font-weight: 700; padding: 0.45rem; border-radius: 6px; color: var(--rac-ink); }
+.tl-2x2 td.tl-hit, .tl-2x2 td.tl-miss { color: var(--rac-surface); }
+.tl-2x2 td.tl-false { color: #101418; }
+.tl-2x2 td.tl-quiet { border: 1px solid var(--rac-line); }
+.tl-reading p { font-size: 0.95rem; margin: 0.4rem 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-cell { transition: none; }
+  .tl-cell.tl-sel { transform: none; }
+}
