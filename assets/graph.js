@@ -291,10 +291,6 @@ window.RAC_GRAPH = {
   },
   {
    "source": "index",
-   "target": "projects/livelines-how-it-works/index"
-  },
-  {
-   "source": "index",
    "target": "showcases/index"
   },
   {
