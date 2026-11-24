@@ -67,8 +67,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -80,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-60d79dee572bf72507bb5a4e744a8a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-fb3be10e0f20382a1c830f46872d0609.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-60d79dee572bf72507bb5a4e744a8a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,35 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-models .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-models'] = new List('listing-models', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <!-- Fonts are self-hosted (assets/fonts/, SIL OFL): no visitor request goes to Google. -->
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -161,35 +130,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script defer="" src="../assets/js/menu.js"></script>
 <script defer="" src="../assets/js/previews.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="Projects – re:current_analytics">
 <meta property="og:description" content="Packaged work from the lab: models you can run, tools you can open, and a game.">
@@ -455,84 +395,28 @@ window.Quarto = {
 <div class="rac-paper rac-grid" style="background:transparent">
   <a class="rac-card rac-card-split" href="../projects/livelines.html" style="grid-column:1/-1;background:var(--rac-night);border-color:var(--rac-night-line);color:var(--rac-night-ink)!important">
     <img class="rac-card-img" src="../projects/previews/livelines.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
-    <p class="rac-card-kicker" style="color:var(--rac-accent)">Flagship · in development</p>
+    <p class="rac-card-kicker" style="color:var(--rac-accent)">Flagship</p>
     <h3>LiveLines</h3>
-    <p style="color:var(--rac-night-muted)">What a storm does to a power grid, hour by hour, line by line: any recorded tropical cyclone, any transmission grid, every number traced to its source.</p>
+    <p style="color:var(--rac-night-muted)">What a storm does to a power grid, hour by hour, line by line. An open method: every value shows its source or says it is a placeholder.</p>
+    <p class="rac-card-kicker rac-card-status" data-status="dev">In development · checked against observations</p>
   </a>
   <a class="rac-card" href="https://recurrentanalytics.github.io/wal.funk_891/">
     <img class="rac-card-img" src="../projects/previews/walfunk-891.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async">
     <p class="rac-card-kicker">Experiment · ongoing</p>
     <h3>wal.funk_891</h3>
     <p>A Raspberry Pi listens to open hydrophone archives (Monterey Canyon, 891 m; Salish Sea) and tests whale detectors in public, with every pass mark fixed in advance.</p>
+    <p class="rac-card-kicker rac-card-status" data-status="dev">In development</p>
   </a>
 </div>
 <section id="models" class="level2">
 <h2 data-anchor-id="models">Models</h2>
-<div id="listing-models" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-categories="Y2xpbWF0ZSUyQ2V4dHJlbWVzJTJDaGVhdCUyQ3JhaW4lMkNvYnNlcnZhdGlvbnM=" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795537599606" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1205">
-<a href="../models/how-rare/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../models/how-rare/preview.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-How rare was that?
-</h5>
-<div class="card-text listing-description delink">
-<p>Pick a place and a day. See how often a day like it came around 1961 to 1990, and how often in the last 30 years.</p>
+<!-- Hand cards, not a listing, so each carries its status label (as on Showcases and the
+     home page). A new model page needs its card here. -->
+<div class="rac-paper rac-grid" style="background:transparent">
+  <a class="rac-card" href="../models/how-rare/"><img class="rac-card-img" src="../models/how-rare/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><h3>How rare was that?</h3><p>Pick a place and a day. See how often a day like it came around 1961 to 1990, and how often in the last 30 years.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+  <a class="rac-card" href="../models/climate-extremes-explorer.html"><img class="rac-card-img" src="../models/previews/climate-extremes-explorer.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><h3>Climate Extremes Explorer: Berlin, 1948 to 2025</h3><p>Seventy-eight years of daily measurements at Berlin-Tempelhof. Set your own definition of a hot spell and see how often Berlin gets hot, how hot a rare day has become, and what changed.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+  <a class="rac-card" href="../models/heatwave-prices-de-lu.html"><img class="rac-card-img" src="../models/previews/heatwave-prices-de-lu.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><h3>Heatwaves and day-ahead prices: Germany, summers 2019 to 2025</h3><p>Do electricity prices rise when Germany is hot? Seven summers of day-ahead prices against measured temperatures, with your own heatwave definition and each day compared with its month.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
 </div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Nov 20, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Y2xpbWF0ZSUyQ2V4dHJlbWVzJTJDaGVhdCUyQ29ic2VydmF0aW9ucw==" data-listing-date-sort="1765753200000" data-listing-file-modified-sort="1795537599514" data-listing-date-modified-sort="1794956400000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1361">
-<a href="../models/climate-extremes-explorer.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="/assets/brand/og-default.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Climate Extremes Explorer: Berlin, 1948 to 2025
-</h5>
-<div class="card-text listing-description delink">
-<p>Seventy-eight years of daily measurements at Berlin-Tempelhof. Set your own definition of a hot spell and see how often Berlin gets hot, how hot a rare day has become, and…</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Dec 15, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="ZW5lcmd5JTJDZXh0cmVtZXMlMkNoZWF0JTJDZWxlY3RyaWNpdHktbWFya2V0cw==" data-listing-date-sort="1765494000000" data-listing-file-modified-sort="1795538835648" data-listing-date-modified-sort="1795474800000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1512">
-<a href="../models/heatwave-prices-de-lu.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="/assets/brand/og-default.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Heatwaves and day-ahead prices: Germany, summers 2019 to 2025
-</h5>
-<div class="card-text listing-description delink">
-<p>Do electricity prices rise when Germany is hot? Seven summers of day-ahead prices against measured temperatures, with your own heatwave definition and each day compared with…</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Dec 12, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-
 
 
 <!-- -->
@@ -1000,44 +884,42 @@ Dec 12, 2025
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Projects"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Packaged work from the lab: models you can run, tools you can open, and a game."</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  id: models</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  contents:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - ../models/*.qmd</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    # How rare was that? lives in its own folder (data files beside it).</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    - ../models/how-rare/index.qmd</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">  type: grid</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  grid-columns: 2</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  sort: "date desc"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">  categories: false</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">  fields: [image, date, title, description]</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">  image-placeholder: /assets/brand/og-default.png</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> false</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Section page: the site picture as its social preview (else Quarto takes the first card).</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> /assets/brand/og-default.png</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="rac-paper rac-grid" style="background:transparent"&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card rac-card-split" href="/projects/livelines.html" style="grid-column:1/-1;background:var(--rac-night);border-color:var(--rac-night-line);color:var(--rac-night-ink)!important"&gt;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="/projects/previews/livelines.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker" style="color:var(--rac-accent)"&gt;Flagship · in development&lt;/p&gt;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;LiveLines&lt;/h3&gt;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p style="color:var(--rac-night-muted)"&gt;What a storm does to a power grid, hour by hour, line by line: any recorded tropical cyclone, any transmission grid, every number traced to its source.&lt;/p&gt;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="https://recurrentanalytics.github.io/wal.funk_891/"&gt;</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="/projects/previews/walfunk-891.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;Experiment · ongoing&lt;/p&gt;</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;wal.funk_891&lt;/h3&gt;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A Raspberry Pi listens to open hydrophone archives (Monterey Canyon, 891 m; Salish Sea) and tests whale detectors in public, with every pass mark fixed in advance.&lt;/p&gt;</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Models</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>::: {#models}</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> false</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Section page: the site picture as its social preview (else Quarto takes the first card).</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> /assets/brand/og-default.png</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="rac-paper rac-grid" style="background:transparent"&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card rac-card-split" href="/projects/livelines.html" style="grid-column:1/-1;background:var(--rac-night);border-color:var(--rac-night-line);color:var(--rac-night-ink)!important"&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="/projects/previews/livelines.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker" style="color:var(--rac-accent)"&gt;Flagship&lt;/p&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;LiveLines&lt;/h3&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p style="color:var(--rac-night-muted)"&gt;What a storm does to a power grid, hour by hour, line by line. An open method: every value shows its source or says it is a placeholder.&lt;/p&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="dev"&gt;In development · checked against observations&lt;/p&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="https://recurrentanalytics.github.io/wal.funk_891/"&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="/projects/previews/walfunk-891.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;Experiment · ongoing&lt;/p&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;wal.funk_891&lt;/h3&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A Raspberry Pi listens to open hydrophone archives (Monterey Canyon, 891 m; Salish Sea) and tests whale detectors in public, with every pass mark fixed in advance.&lt;/p&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="dev"&gt;In development&lt;/p&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Models</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Hand cards, not a listing, so each carries its status label (as on Showcases and the</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">     home page). A new model page needs its card here. --&gt;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="rac-paper rac-grid" style="background:transparent"&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="../models/how-rare/"&gt;&lt;img class="rac-card-img" src="../models/how-rare/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;&lt;h3&gt;How rare was that?&lt;/h3&gt;&lt;p&gt;Pick a place and a day. See how often a day like it came around 1961 to 1990, and how often in the last 30 years.&lt;/p&gt;&lt;p class="rac-card-kicker rac-card-status" data-status="measured"&gt;Measured data&lt;/p&gt;&lt;/a&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="../models/climate-extremes-explorer.html"&gt;&lt;img class="rac-card-img" src="../models/previews/climate-extremes-explorer.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;&lt;h3&gt;Climate Extremes Explorer: Berlin, 1948 to 2025&lt;/h3&gt;&lt;p&gt;Seventy-eight years of daily measurements at Berlin-Tempelhof. Set your own definition of a hot spell and see how often Berlin gets hot, how hot a rare day has become, and what changed.&lt;/p&gt;&lt;p class="rac-card-kicker rac-card-status" data-status="measured"&gt;Measured data&lt;/p&gt;&lt;/a&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="../models/heatwave-prices-de-lu.html"&gt;&lt;img class="rac-card-img" src="../models/previews/heatwave-prices-de-lu.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;&lt;h3&gt;Heatwaves and day-ahead prices: Germany, summers 2019 to 2025&lt;/h3&gt;&lt;p&gt;Do electricity prices rise when Germany is hot? Seven summers of day-ahead prices against measured temperatures, with your own heatwave definition and each day compared with its month.&lt;/p&gt;&lt;p class="rac-card-kicker rac-card-status" data-status="measured"&gt;Measured data&lt;/p&gt;&lt;/a&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

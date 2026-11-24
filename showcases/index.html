@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-60d79dee572bf72507bb5a4e744a8a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-fb3be10e0f20382a1c830f46872d0609.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-60d79dee572bf72507bb5a4e744a8a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -401,6 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <p class="rac-card-kicker">1 · Modelling</p>
     <h3>Hurricane Maria 2017 over Puerto Rico's power grid</h3>
     <p>A storm crosses the grid hour by hour, lines fail. Then the model meets the satellite: what it gets right, what it misses, and why.</p>
+    <p class="rac-card-kicker rac-card-status" data-status="checked">Checked against observations</p>
   </a>
   <a class="rac-card" href="maria-how-it-works/">
     <img class="rac-card-img" src="data/maria/og.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
@@ -413,6 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <p class="rac-card-kicker">2 · Finance</p>
     <h3>Trigger Lab</h3>
     <p>Design a parametric cyclone trigger for Mozambique over the historical tracks, and see its basis risk.</p>
+    <p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p>
   </a>
   <a class="rac-card" href="trigger-lab-how-it-works/">
     <img class="rac-card-img" src="previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
@@ -425,6 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <p class="rac-card-kicker">3 · Policy and decisions</p>
     <h3>The vanishing coast of the Mekong Delta</h3>
     <p>A coastline in retreat seen from space, what drives it, and the choice between dykes and mangroves.</p>
+    <p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p>
   </a>
   <a class="rac-card" href="mekong-how-it-works/">
     <img class="rac-card-img" src="previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
@@ -437,6 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <p class="rac-card-kicker">4 · Real place, real data</p>
     <h3>Port Augusta energy diorama</h3>
     <p>A small 3D Port Augusta in South Australia, at the head of Spencer Gulf with the Flinders Ranges behind. Two solar farms, two wind farms and a battery follow one real day of AEMO 5-minute data, replayed in three minutes: fields glow, rotors turn, the battery charges and discharges, and the real South Australian electricity price runs above. Drag the sun or the clock through the day; tap a plant for its numbers.</p>
+    <p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p>
   </a>
   <a class="rac-card" href="port-augusta-how-it-works/">
     <img class="rac-card-img" src="port-augusta-how-it-works/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
@@ -927,51 +931,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;1 · Modelling&lt;/p&gt;</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Hurricane Maria 2017 over Puerto Rico's power grid&lt;/h3&gt;</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A storm crosses the grid hour by hour, lines fail. Then the model meets the satellite: what it gets right, what it misses, and why.&lt;/p&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="maria-how-it-works/"&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="data/maria/og.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A hurricane over a grid, taken apart&lt;/h3&gt;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list.&lt;/p&gt;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="trigger-lab-mozambique.html"&gt;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;2 · Finance&lt;/p&gt;</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Trigger Lab&lt;/h3&gt;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;Design a parametric cyclone trigger for Mozambique over the historical tracks, and see its basis risk.&lt;/p&gt;</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="trigger-lab-how-it-works/"&gt;</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A cyclone trigger, taken apart&lt;/h3&gt;</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Trigger Lab, taken apart: 47 seasons of storm tracks reduced to a lookup table, Mozambique's open impact record, the four outcomes of a trigger, and why a short record sees misses but hardly sees false alarms. With code, figures and a reading list.&lt;/p&gt;</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="mekong-coast.html"&gt;</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;3 · Policy and decisions&lt;/p&gt;</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;The vanishing coast of the Mekong Delta&lt;/h3&gt;</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A coastline in retreat seen from space, what drives it, and the choice between dykes and mangroves.&lt;/p&gt;</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="mekong-how-it-works/"&gt;</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A coastline measured from space, taken apart&lt;/h3&gt;</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list.&lt;/p&gt;</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="port-augusta/"&gt;</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="port-augusta/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;4 · Real place, real data&lt;/p&gt;</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Port Augusta energy diorama&lt;/h3&gt;</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A small 3D Port Augusta in South Australia, at the head of Spencer Gulf with the Flinders Ranges behind. Two solar farms, two wind farms and a battery follow one real day of AEMO 5-minute data, replayed in three minutes: fields glow, rotors turn, the battery charges and discharges, and the real South Australian electricity price runs above. Drag the sun or the clock through the day; tap a plant for its numbers.&lt;/p&gt;</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="port-augusta-how-it-works/"&gt;</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="port-augusta-how-it-works/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Port Augusta, taken apart&lt;/h3&gt;</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Port Augusta scene, piece by piece: five-minute market data, a satellite picture of the day before, houses from open outlines, light and shadow in WebGL and a small battery game, with code, diagrams and a reading list.&lt;/p&gt;</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="checked"&gt;Checked against observations&lt;/p&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="maria-how-it-works/"&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="data/maria/og.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A hurricane over a grid, taken apart&lt;/h3&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Hurricane Maria showcase, taken apart: a grid built from OpenStreetMap, a wind profile from 1980, a borrowed tower curve, a DC power flow with collapse rules, night lights from space, and the two errors that hide each other. With code, figures and a reading list.&lt;/p&gt;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="trigger-lab-mozambique.html"&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;2 · Finance&lt;/p&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Trigger Lab&lt;/h3&gt;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;Design a parametric cyclone trigger for Mozambique over the historical tracks, and see its basis risk.&lt;/p&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="measured"&gt;Measured data&lt;/p&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="trigger-lab-how-it-works/"&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A cyclone trigger, taken apart&lt;/h3&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Trigger Lab, taken apart: 47 seasons of storm tracks reduced to a lookup table, Mozambique's open impact record, the four outcomes of a trigger, and why a short record sees misses but hardly sees false alarms. With code, figures and a reading list.&lt;/p&gt;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="mekong-coast.html"&gt;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;3 · Policy and decisions&lt;/p&gt;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;The vanishing coast of the Mekong Delta&lt;/h3&gt;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A coastline in retreat seen from space, what drives it, and the choice between dykes and mangroves.&lt;/p&gt;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="measured"&gt;Measured data&lt;/p&gt;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="mekong-how-it-works/"&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A coastline measured from space, taken apart&lt;/h3&gt;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Mekong coast showcase, taken apart: Landsat composites from 1988 to 2025, a vegetation edge found along transects, Theil–Sen trends, what the five boxes show, and what the measurement cannot see. With code, figures and a reading list.&lt;/p&gt;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="port-augusta/"&gt;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="port-augusta/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;4 · Real place, real data&lt;/p&gt;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Port Augusta energy diorama&lt;/h3&gt;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A small 3D Port Augusta in South Australia, at the head of Spencer Gulf with the Flinders Ranges behind. Two solar farms, two wind farms and a battery follow one real day of AEMO 5-minute data, replayed in three minutes: fields glow, rotors turn, the battery charges and discharges, and the real South Australian electricity price runs above. Drag the sun or the clock through the day; tap a plant for its numbers.&lt;/p&gt;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="measured"&gt;Measured data&lt;/p&gt;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="port-augusta-how-it-works/"&gt;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="port-augusta-how-it-works/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Port Augusta, taken apart&lt;/h3&gt;</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Port Augusta scene, piece by piece: five-minute market data, a satellite picture of the day before, houses from open outlines, light and shadow in WebGL and a small battery game, with code, diagrams and a reading list.&lt;/p&gt;</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

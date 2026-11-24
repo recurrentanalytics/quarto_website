@@ -275,6 +275,10 @@ window.RAC_GRAPH = {
   },
   {
    "source": "index",
+   "target": "models/how-rare/index"
+  },
+  {
+   "source": "index",
    "target": "notes/index"
   },
   {
@@ -292,6 +296,18 @@ window.RAC_GRAPH = {
   {
    "source": "index",
    "target": "showcases/index"
+  },
+  {
+   "source": "index",
+   "target": "showcases/maria-2017-puerto-rico"
+  },
+  {
+   "source": "index",
+   "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "index",
+   "target": "showcases/trigger-lab-mozambique"
   },
   {
    "source": "library/index",
@@ -348,6 +364,18 @@ window.RAC_GRAPH = {
   {
    "source": "playground/index",
    "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "projects/index",
+   "target": "models/climate-extremes-explorer"
+  },
+  {
+   "source": "projects/index",
+   "target": "models/heatwave-prices-de-lu"
+  },
+  {
+   "source": "projects/index",
+   "target": "models/how-rare/index"
   },
   {
    "source": "projects/index",

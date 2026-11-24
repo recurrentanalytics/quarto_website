@@ -45,9 +45,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-c1d2c1a7e404cfb483b6c608dc59ed54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fa7f3404cdf26151c10e5aca1514a2c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-60d79dee572bf72507bb5a4e744a8a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fb3be10e0f20382a1c830f46872d0609.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-60d79dee572bf72507bb5a4e744a8a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -424,9 +424,11 @@ window.Quarto = {
       <div class="rac-hero-text">
         <p class="rac-eyebrow">re:current_analytics</p>
         <h1 id="hero-title">Climate risk models for the systems people depend on.</h1>
-        <p class="rac-hero-lead">Power grids, water, food and the infrastructure in between. I build open, reproducible models of how extreme weather hits them, and work with the people who have to decide what to do about it.</p>
+        <p class="rac-hero-lead">I build open, reproducible models of how extreme weather hits power grids, water and the infrastructure in between, and learn in public how such models can inform decisions.</p>
+        <p class="rac-hero-frame">A working notebook: what I can already build, and what I'm still learning.</p>
         <div class="rac-actions">
-          <a class="rac-btn" href="./projects/livelines.html">See LiveLines</a>
+          <a class="rac-btn" href="#work">See the work</a>
+          <a class="rac-btn rac-btn-ghost" href="./projects/livelines.html">LiveLines</a>
         </div>
       </div>
       <figure class="rac-hero-figure figure">
@@ -473,29 +475,74 @@ window.Quarto = {
   <script defer="" src="./assets/js/planet.js"></script>
   <script defer="" src="./assets/js/storm.js"></script>
 
+  <!-- The four topics. Icons: inline SVG line drawings in the theme's muted ink, one amber
+       node each (as in the logo's grid). Each topic links to the work that exists for it. -->
   <section class="rac-fact-band rac-line-top" aria-label="What I work on">
     <div class="rac-wrap rac-band-tight rac-facts">
-      <div><p class="rac-fact-label">Energy and grids</p><p class="rac-fact">How storms and heat take down lines, and who keeps supply.</p></div>
-      <div><p class="rac-fact-label">Water</p><p class="rac-fact">Floods, early warning and the governance of scarce water.</p></div>
-      <div><p class="rac-fact-label">Food and agriculture</p><p class="rac-fact">Heat, soil and pests: extremes where crops are grown.</p></div>
-      <div><p class="rac-fact-label">Risk and decisions</p><p class="rac-fact">From hazard data to triggers, budgets and early action.</p></div>
+      <div class="rac-topic">
+        <svg class="rac-topic-icon" viewbox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M9 28 L12 7 L15 28 M10.4 18 H13.6 M6 11 H18 M20 28 L23 7 L26 28 M21.4 18 H24.6 M17 11 H29"></path><path d="M18 11 Q20.5 14.5 23 11 M1 14 Q3.5 11 6 11" opacity="0.6"></path><circle class="rac-topic-node" cx="23" cy="7" r="2.4"></circle></svg>
+        <p class="rac-fact-label">Energy and grids</p>
+        <p class="rac-fact">How storms and heat take down lines, and who keeps supply.</p>
+        <p class="rac-topic-links"><a href="./projects/livelines.html">LiveLines</a> · <a href="./showcases/maria-2017-puerto-rico.html">Hurricane Maria</a> · <a href="./showcases/port-augusta/">Port Augusta</a> · <a href="./models/heatwave-prices-de-lu.html">Heatwaves and prices</a></p>
+      </div>
+      <div class="rac-topic">
+        <svg class="rac-topic-icon" viewbox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 4 C13 8.5 10 12.5 10 16.5 a6 6 0 0 0 12 0 C22 12.5 19 8.5 16 4 Z"></path><path d="M3 27.5 q3.25 -3 6.5 0 t6.5 0 t6.5 0 t6.5 0" opacity="0.6"></path><circle class="rac-topic-node" cx="16" cy="16.5" r="2.4"></circle></svg>
+        <p class="rac-fact-label">Water</p>
+        <p class="rac-fact">Coasts, floods and water under stress: a first case on the Mekong coast.</p>
+        <p class="rac-topic-links"><a href="./showcases/mekong-coast.html">The Mekong coast</a></p>
+      </div>
+      <div class="rac-topic">
+        <svg class="rac-topic-icon" viewbox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 27 V13"></path><path d="M16 19 C10.5 19 7.5 15.5 7.5 11 C12.5 11 16 14 16 19 Z M16 14.5 C16 9.5 19.5 5.5 25 5.5 C25 10.5 21.5 14.5 16 14.5 Z"></path><path d="M6 27 H26" opacity="0.6"></path><circle class="rac-topic-node" cx="16" cy="27" r="2.4"></circle></svg>
+        <p class="rac-fact-label">Food and agriculture</p>
+        <p class="rac-fact">Heat and drought where crops are grown. Nothing published yet.</p>
+        <p class="rac-topic-links rac-topic-none">Nothing published here yet.</p>
+      </div>
+      <div class="rac-topic">
+        <svg class="rac-topic-icon" viewbox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M3 16 H12 M12 16 L20 8 H25 M12 16 L20 24 H25"></path><circle cx="27" cy="8" r="2" opacity="0.6"></circle><circle cx="27" cy="24" r="2" opacity="0.6"></circle><circle class="rac-topic-node" cx="12" cy="16" r="2.6"></circle></svg>
+        <p class="rac-fact-label">Risk and decisions</p>
+        <p class="rac-fact">From hazard data to triggers, budgets and early action.</p>
+        <p class="rac-topic-links"><a href="./showcases/trigger-lab-mozambique.html">Trigger Lab</a> · <a href="./playground/forecast/">Forecast (a game)</a></p>
+      </div>
     </div>
   </section>
+</div>
 
+<div class="rac-paper">
+  <section class="rac-wrap rac-band" id="work" aria-labelledby="work-title">
+    <h2 id="work-title" class="rac-h2">Selected work</h2>
+    <p class="rac-sub" style="color:var(--rac-ink-2)">Each card says how far the work is checked: against what really happened, built on measured data, or a toy.</p>
+    <div class="rac-grid rac-work-grid">
+      <a class="rac-card rac-card-split rac-card-wide" href="./projects/livelines.html"><img class="rac-card-img" src="./projects/previews/livelines.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Flagship · tool</p><h3>LiveLines</h3><p>What a storm does to a power grid, hour by hour, line by line. An open method: every value shows its source or says it is a placeholder.</p><p class="rac-card-kicker rac-card-status" data-status="dev">In development · checked against observations</p></a>
+      <a class="rac-card" href="./showcases/maria-2017-puerto-rico.html"><img class="rac-card-img" src="./showcases/data/maria/og.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Hurricane Maria 2017 over Puerto Rico's power grid</h3><p>A storm crosses the grid hour by hour, lines fail. Then the model meets the satellite: what it gets right, what it misses, and why.</p><p class="rac-card-kicker rac-card-status" data-status="checked">Checked against observations</p></a>
+      <a class="rac-card" href="./showcases/trigger-lab-mozambique.html"><img class="rac-card-img" src="./showcases/previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Trigger Lab</h3><p>Design a parametric cyclone trigger for Mozambique over the historical tracks, and see its basis risk.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+      <a class="rac-card" href="./showcases/mekong-coast.html"><img class="rac-card-img" src="./showcases/previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>The vanishing coast of the Mekong Delta</h3><p>A coastline in retreat seen from space, what drives it, and the choice between dykes and mangroves.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+      <a class="rac-card" href="./showcases/port-augusta/"><img class="rac-card-img" src="./showcases/port-augusta/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Port Augusta energy diorama</h3><p>A small 3D Port Augusta in South Australia: two solar farms, two wind farms and a battery follow one real day of AEMO 5-minute data.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+      <a class="rac-card" href="./models/how-rare/"><img class="rac-card-img" src="./models/how-rare/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>How rare was that?</h3><p>Pick a place and a day. See how often a day like it came around 1961 to 1990, and how often in the last 30 years.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+      <a class="rac-card" href="./models/climate-extremes-explorer.html"><img class="rac-card-img" src="./models/previews/climate-extremes-explorer.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Climate Extremes Explorer</h3><p>78 years of measured heat and rain in Berlin: set your own heatwave and see what changed.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+      <a class="rac-card" href="./models/heatwave-prices-de-lu.html"><img class="rac-card-img" src="./models/previews/heatwave-prices-de-lu.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Heatwaves and day-ahead prices</h3><p>Seven summers of measured heat against day-ahead electricity prices in Germany and Luxembourg.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a>
+      <a class="rac-card" href="./playground/"><img class="rac-card-img" src="./playground/previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Small worlds made from code</h3><p>A mangrove coast, a fire in Hannover's city forest and a forecast game. Toys, not models: the rules are made up.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a>
+    </div>
+  </section>
+</div>
+
+<div class="rac-night">
+  <section class="rac-wrap rac-band-tight rac-hire" id="contact" aria-labelledby="contact-title">
+    <div>
+      <h2 id="contact-title" class="rac-h2">Hiring for climate risk work?</h2>
+      <p class="rac-sub rac-muted">Open to roles in research, public institutions, utilities and international organisations. Transparent methods, reproducible analysis, and I'll tell you what we don't know.</p>
+    </div>
+    <div class="rac-actions"><a class="rac-btn" href="./about.html#chain">Experience</a><a class="rac-btn rac-btn-ghost" href="./contact/">Contact</a></div>
+  </section>
+</div>
+
+<div class="rac-night">
   <section class="rac-wrap rac-band" aria-labelledby="depths-title">
     <p class="rac-eyebrow">Flagship · LiveLines</p>
     <h2 id="depths-title" class="rac-h2">What a storm does to a power grid. Hour by hour, line by line.</h2>
-    <p class="rac-sub rac-muted">Any recorded tropical cyclone across a transmission grid, anywhere on Earth: which lines fail, where the power goes, who keeps supply. One calculation, seen at three depths; change a knob at one and the others follow.</p>
+    <p class="rac-sub rac-muted">Any recorded tropical cyclone, wherever OpenStreetMap maps the power lines: which lines are likely to fail, hour by hour. Where a grid model exists, so far for the Philippines, Puerto Rico and Mozambique, it goes on to where the power goes and who keeps supply. One calculation, seen at three depths; change a knob at one and the others follow.</p>
     <div class="rac-actions"><a class="rac-btn" href="https://livelines.recurrentanalytics.com/">Open LiveLines</a><a class="rac-btn rac-btn-ghost" href="./projects/livelines.html">How it works</a></div>
     <p class="rac-phone-hint">LiveLines is built for a bigger screen. On a phone, try landscape mode and open one panel at a time.</p>
-    <div class="rac-grid">
-      <article class="rac-card"><p class="rac-card-kicker">1 · Steps</p><h3>The chain over the map</h3><p>Place, storm, grid, fragility, power flow, outcome: six boxes, one map, a slider through the hours.</p></article>
-      <article class="rac-card"><p class="rac-card-kicker">2 · Rack</p><h3>Modules and cables</h3><p>Every module with its knobs and the values it reads. Patch in scopes, set your own evidence, compare two power flows.</p></article>
-      <article class="rac-card"><p class="rac-card-kicker">3 · Code</p><h3>Every step as Python</h3><p>The same chain as a notebook. Read it here, edit the numpy modules in your browser, or take it home.</p></article>
-      <article class="rac-card"><p class="rac-card-kicker">All</p><h3>Side by side</h3><p>Map, Rack and Code at once: turn a knob and watch the lines and the notebook answer.</p></article>
-    </div>
   </section>
-
   <section class="rac-wrap rac-band rac-split" aria-labelledby="honest-title" style="padding-top:0">
     <div>
       <h2 id="honest-title" class="rac-h2">Every number has one home.</h2>
@@ -512,85 +559,6 @@ window.Quarto = {
 </div>
 
 <div class="rac-paper">
-  <section class="rac-wrap rac-band" id="work" aria-labelledby="work-title">
-    <h2 id="work-title" class="rac-h2">Also in the lab</h2>
-    <div class="rac-grid">
-      <a class="rac-card" href="./models/climate-extremes-explorer.html"><img class="rac-card-img" src="./models/previews/climate-extremes-explorer.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Climate Extremes Explorer</h3><p>78 years of measured heat and rain in Berlin: set your own heatwave and see what changed.</p></a>
-      <a class="rac-card" href="./models/heatwave-prices-de-lu.html"><img class="rac-card-img" src="./models/previews/heatwave-prices-de-lu.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Heatwaves and day-ahead prices</h3><p>Seven summers of measured heat against day-ahead electricity prices in Germany and Luxembourg.</p></a>
-    </div>
-  </section>
-</div>
-<div class="rac-paper"><div class="rac-wrap" style="padding-bottom:72px"><h2 class="rac-h2" id="latest">under:current</h2>
-<div id="listing-latest-notes" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795537599613" data-listing-date-modified-sort="1795537599000" data-listing-reading-time-sort="2" data-listing-word-count-sort="371">
-<a href="./notes/undercurrent-gleick.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./notes/previews/undercurrent-gleick.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-A seagull, a butterfly, a flood
-</h5>
-<div class="card-text listing-description delink">
-<p>James Gleick’s books, from Chaos to The Telephone: science told through the people who did it.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Nov 21, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795537599613" data-listing-date-modified-sort="1795537599000" data-listing-reading-time-sort="3" data-listing-word-count-sort="465">
-<a href="./notes/undercurrent-herzog.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./notes/previews/undercurrent-herzog.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Ice, fire, jungle, voice
-</h5>
-<div class="card-text listing-description delink">
-<p>Werner Herzog’s films as one body of work: landscapes at their limit and the people who go there. No spoilers.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Nov 21, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795537599613" data-listing-date-modified-sort="1795537599000" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
-<a href="./notes/undercurrent-burtynsky.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./notes/previews/undercurrent-burtynsky.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Water, absent
-</h5>
-<div class="card-text listing-description delink">
-<p>Edward Burtynsky’s Water, in a few lines.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Nov 20, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-</div></div>
-<div class="rac-paper" style="border-top:1px solid var(--rac-line)">
   <section class="rac-wrap rac-band rac-split" id="about" aria-labelledby="about-title">
     <div>
       <h2 id="about-title" class="rac-h2">A working notebook</h2>
@@ -635,26 +603,87 @@ Nov 20, 2026
 <p>It does not claim to have answers.</p>
 </div>
 </noscript>
-
     </div>
   </section>
 </div>
-
+<div class="rac-paper" style="border-top:1px solid var(--rac-line)"><div class="rac-wrap" style="padding-bottom:72px"><h2 class="rac-h2" id="latest">under:current</h2>
+<div id="listing-latest-notes" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795556590611" data-listing-date-modified-sort="1795556590000" data-listing-reading-time-sort="2" data-listing-word-count-sort="371">
+<a href="./notes/undercurrent-gleick.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./notes/previews/undercurrent-gleick.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+A seagull, a butterfly, a flood
+</h5>
+<div class="card-text listing-description delink">
+<p>James Gleick’s books, from Chaos to The Telephone: science told through the people who did it.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 21, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795556590611" data-listing-date-modified-sort="1795556590000" data-listing-reading-time-sort="3" data-listing-word-count-sort="465">
+<a href="./notes/undercurrent-herzog.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./notes/previews/undercurrent-herzog.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Ice, fire, jungle, voice
+</h5>
+<div class="card-text listing-description delink">
+<p>Werner Herzog’s films as one body of work: landscapes at their limit and the people who go there. No spoilers.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 21, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795556590611" data-listing-date-modified-sort="1795556590000" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
+<a href="./notes/undercurrent-burtynsky.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./notes/previews/undercurrent-burtynsky.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Water, absent
+</h5>
+<div class="card-text listing-description delink">
+<p>Edward Burtynsky’s Water, in a few lines.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 20, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</div></div>
 <div class="rac-night">
   <section class="rac-wrap rac-band rac-split" aria-labelledby="map-title">
     <div>
       <h2 id="map-title" class="rac-h2">Everything here, connected</h2>
       <p class="rac-sub rac-muted">Every page of this site and the links between them. Click the map to explore it; press <kbd>g</kbd> on any page to open it again.</p>
+      <p class="rac-foot-contact" style="margin-top:20px"><a href="./contact/">Contact →</a></p>
     </div>
     <div class="rac-graph-slot"></div>
-  </section>
-
-  <section class="rac-wrap rac-band rac-line-top" id="contact" aria-labelledby="contact-title" style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between">
-    <div style="flex:1 1 520px;min-width:0">
-      <h2 id="contact-title" class="rac-h2">Hiring, or working on a hard climate risk question?</h2>
-      <p class="rac-sub rac-muted">Open to roles in research, public institutions, utilities and international organisations. Transparent methods, reproducible analysis, and I'll tell you what we don't know.</p>
-    </div>
-    <div class="rac-actions" style="margin-top:0"><a class="rac-btn" href="./about.html#chain">Experience</a><a class="rac-btn rac-btn-ghost" href="./contact/">Contact</a></div>
   </section>
 </div>
 <script src="./assets/js/manifesto.js"></script>

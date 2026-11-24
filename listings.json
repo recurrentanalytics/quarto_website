@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/projects/index.html",
-    "items": [
-      "/models/how-rare/index.html",
-      "/models/climate-extremes-explorer.html",
-      "/models/heatwave-prices-de-lu.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/notes/undercurrent-gleick.html",
