@@ -992,18 +992,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Light / dark shared with LiveLines (same origin): when the visitor picks a scheme here,
-// the LiveLines app opens in it too (its key: kritis.theme.v1; see viewer/src/theme.ts).
-(function syncThemeWithLiveLines() {
-  function sync() {
-    try {
-      if (!localStorage.getItem('quarto-color-scheme')) return; // no explicit choice yet
-      const dark = document.body.classList.contains('quarto-dark');
-      localStorage.setItem('kritis.theme.v1', dark ? 'dark' : 'light');
-    } catch (e) { /* storage blocked */ }
-  }
-  document.addEventListener('DOMContentLoaded', function () {
-    sync();
-    new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-  });
-})();
+// Light / dark shared with LiveLines: see assets/js/theme-cookie.js (cookie ra_theme).
