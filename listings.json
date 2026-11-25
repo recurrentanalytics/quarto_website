@@ -3,26 +3,26 @@
     "listing": "/notes/index.html",
     "items": [
       "/notes/undercurrent-gleick.html",
-      "/notes/undercurrent-herzog.html",
       "/notes/undercurrent-burtynsky.html",
+      "/notes/undercurrent-statistical-rethinking.html",
+      "/notes/undercurrent-herzog.html",
       "/notes/undercurrent-complexity-compendium.html",
-      "/notes/undercurrent-maniac.html",
       "/notes/undercurrent-nausicaa.html",
       "/notes/undercurrent-penguin-science-fiction.html",
-      "/notes/undercurrent-statistical-rethinking.html"
+      "/notes/undercurrent-maniac.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
       "/notes/undercurrent-gleick.html",
-      "/notes/undercurrent-herzog.html",
       "/notes/undercurrent-burtynsky.html",
+      "/notes/undercurrent-statistical-rethinking.html",
+      "/notes/undercurrent-herzog.html",
       "/notes/undercurrent-complexity-compendium.html",
-      "/notes/undercurrent-maniac.html",
       "/notes/undercurrent-nausicaa.html",
       "/notes/undercurrent-penguin-science-fiction.html",
-      "/notes/undercurrent-statistical-rethinking.html"
+      "/notes/undercurrent-maniac.html"
     ]
   }
 ]

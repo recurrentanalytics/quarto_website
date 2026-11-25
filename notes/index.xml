@@ -112,6 +112,30 @@
   <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-burtynsky.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
+  <title>Haunted DAGs and spurious waffles</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A statistics textbook with jokes in the chapter titles. That is rarer than it should be.</p>
+<p><em>Statistical Rethinking</em> is Richard McElreath’s book on Bayesian data analysis and causal inference (CRC Press, first edition 2016, second 2020). He teaches it as a lecture course again most years and puts the lectures on YouTube for free; the 2026 run split it into a beginner and an experienced section.</p>
+<p>The chapter titles alone are worth it: “The Haunted DAG &amp; The Causal Terror”, “Conditional Manatees”, “God Spiked the Integers”, “Monsters and Mixtures”, and, as the last chapter, “Horoscopes”. The book opens with the golem of Prague: a statistical model is a clay creature that does exactly what it is told, with great power and no judgement. The judgement has to come from you, from a causal model of where the data came from.</p>
+<p>My favourite example is the spurious waffles of chapter five. US states with more Waffle House restaurants per person have higher divorce rates. Nobody believes the waffles cause it, and the chapter uses it to show how to look for what is really going on. The extra joke for anyone in disaster risk: the chapter opens by noting that Waffle House is known for staying open after hurricanes, so reliably that its closures are read as a sign of how bad a storm was.</p>
+<p>One thing I would argue with. The causal graphs in the book are DAGs, directed acyclic graphs: no loops allowed. Climate risk is made of loops. Losses change behaviour, behaviour changes exposure, exposure changes the next loss. You can unroll a loop in time, and chapter sixteen does go into population dynamics, but the acyclic picture still nudges you to think in one direction. I would keep the discipline of drawing the graph and be suspicious of the arrows that only point one way.</p>
+<p>Three companions. Paul Wegener and Carl Boese’s silent film <em>Der Golem, wie er in die Welt kam</em> (1920), for the clay creature itself, in a Prague of crooked expressionist streets. Jorge Luis Borges’ story “The Garden of Forking Paths” (1941), which lent its title to one of the most useful ideas in applied statistics: Andrew Gelman and Eric Loken’s “garden of forking paths” (2013), the many small choices in an analysis that could have gone otherwise and can quietly turn noise into a finding. Read the story first; it is a spy story, and better than it needs to be. And Tyler Vigen’s <em>Spurious Correlations</em>, a website and then a book (2015), where the waffles would feel at home: chart after chart of unrelated things rising and falling together.</p>
+
+
+
+ ]]></description>
+  <category>under:current</category>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</guid>
+  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-statistical-rethinking.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
   <title>Eighty-nine papers and a sandpile</title>
   <link>https://recurrentanalytics.com/notes/undercurrent-complexity-compendium.html</link>
   <description><![CDATA[ 
@@ -171,44 +195,6 @@
   <guid>https://recurrentanalytics.com/notes/undercurrent-complexity-compendium.html</guid>
   <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
   <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-complexity-compendium.png" medium="image" type="image/png" height="76" width="144"/>
-</item>
-<item>
-  <title>MANIAC, twice</title>
-  <link>https://recurrentanalytics.com/notes/undercurrent-maniac.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Three parts, like the book, then three neighbours and a detour.</p>
-<section id="one-book-two-languages" class="level2">
-<h2 data-anchor-id="one-book-two-languages">One book, two languages</h2>
-<p>Benjamín Labatut is Chilean, and his earlier book, <em>Un verdor terrible</em>, was written in Spanish and translated into English by Adrian Nathan West as <em>When We Cease to Understand the World</em>. With this one he turned it around. He wrote <em>The MANIAC</em> in English, his first book in that language; it came out with Penguin Press in New York on 3 October 2023, and with Pushkin Press in Britain. Then he translated it into Spanish himself. Anagrama published that version as <em>MANIAC</em> on 25 October 2023, in its series for Spanish-language literature; its page names no other translator.</p>
-<p>That is rarer than it sounds. A translator owes the original loyalty. An author translating himself owes it nothing, and at a press conference in Barcelona in November 2023 he said as much: translating himself let him betray himself in a way no translator would. So, in a sense, there are two originals, and the second is allowed to depart from the first. I like that idea more than I can say, and it suits a book about people who did not trust a single version of anything. If you read both languages, read a chapter or two side by side. Not to catch differences, but to watch one writer choose twice.</p>
-</section>
-<section id="the-premise" class="level2">
-<h2 data-anchor-id="the-premise">The premise</h2>
-<p>The three parts carry first names: Paul, John, Lee. Paul is the physicist Paul Ehrenfest. John is von Neumann, the longest part, made of many voices. Lee is Lee Sedol, at a Go board in Seoul in 2016, across from AlphaGo. That is all I will say about what happens. The history is public; the book’s way through it is worth arriving at fresh.</p>
-<p>Be clear about what kind of book it is. In interviews Labatut has said his details are usually real, and that he goes close to the record and then steps back. The voices in the middle are his writing, an imagined oral history of real people, not transcripts, and reviewers have noted that he takes liberties with the lives. Read it as a novel that keeps close to the record, not as a biography.</p>
-</section>
-<section id="three-neighbours" class="level2">
-<h2 data-anchor-id="three-neighbours">Three neighbours</h2>
-<p>George Dyson’s <em>Turing’s Cathedral</em> (2012) is the non-fiction history of von Neumann’s computer at the Institute for Advanced Study in Princeton: the record that the novel goes close to and then steps back from. Greg Kohs’ documentary <em>AlphaGo</em> (2017) follows the people who built the program up to and through the match in Seoul. And Philip Glass and Robert Wilson’s <em>Einstein on the Beach</em> (1976), an opera about a scientist that tells no story about him at all, built from repetition, counted numbers and images. It is the opposite of Labatut’s method, and seeing both makes each clearer.</p>
-</section>
-<section id="the-machine-and-a-tangent" class="level2">
-<h2 data-anchor-id="the-machine-and-a-tangent">The machine, and a tangent</h2>
-<p>The MANIAC itself was a computer built at Los Alamos in the early 1950s under Nicholas Metropolis, modelled on the machine von Neumann was building at Princeton. It sits in a line of work that matters to anyone who models risk. In 1946 Stanislaw Ulam, recovering from an illness and playing solitaire, wondered whether he could estimate the odds of winning by simply playing many random games instead of doing the combinatorics. With von Neumann, Metropolis and Robert Richtmyer that became the Monte Carlo method, named by Metropolis partly after an uncle of Ulam’s who liked the casino. Its first runs, on ENIAC in 1948, were bomb physics.</p>
-<p>Every catastrophe model that simulates ten thousand years of storms, every probabilistic loss curve, every basis risk estimate on a synthetic event set, descends from that idea: when the equations are too hard, roll the dice many times and count. The book is not about Monte Carlo. But it is about the people in whose rooms it was born, what they built, and what they thought they were doing. That makes it, to me, an uncomfortable family history of the tools risk modelling still uses.</p>
-
-
-</section>
-
- ]]></description>
-  <category>under:current</category>
-  <guid>https://recurrentanalytics.com/notes/undercurrent-maniac.html</guid>
-  <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
-  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-maniac.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Nausicaä, on paper</title>
@@ -287,28 +273,42 @@
   <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-penguin-science-fiction.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
-  <title>Haunted DAGs and spurious waffles</title>
-  <link>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</link>
+  <title>MANIAC, twice</title>
+  <link>https://recurrentanalytics.com/notes/undercurrent-maniac.html</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>A statistics textbook with jokes in the chapter titles. That is rarer than it should be.</p>
-<p><em>Statistical Rethinking</em> is Richard McElreath’s book on Bayesian data analysis and causal inference (CRC Press, first edition 2016, second 2020). He teaches it as a lecture course again most years and puts the lectures on YouTube for free; the 2026 run split it into a beginner and an experienced section.</p>
-<p>The chapter titles alone are worth it: “The Haunted DAG &amp; The Causal Terror”, “Conditional Manatees”, “God Spiked the Integers”, “Monsters and Mixtures”, and, as the last chapter, “Horoscopes”. The book opens with the golem of Prague: a statistical model is a clay creature that does exactly what it is told, with great power and no judgement. The judgement has to come from you, from a causal model of where the data came from.</p>
-<p>My favourite example is the spurious waffles of chapter five. US states with more Waffle House restaurants per person have higher divorce rates. Nobody believes the waffles cause it, and the chapter uses it to show how to look for what is really going on. The extra joke for anyone in disaster risk: the chapter opens by noting that Waffle House is known for staying open after hurricanes, so reliably that its closures are read as a sign of how bad a storm was.</p>
-<p>One thing I would argue with. The causal graphs in the book are DAGs, directed acyclic graphs: no loops allowed. Climate risk is made of loops. Losses change behaviour, behaviour changes exposure, exposure changes the next loss. You can unroll a loop in time, and chapter sixteen does go into population dynamics, but the acyclic picture still nudges you to think in one direction. I would keep the discipline of drawing the graph and be suspicious of the arrows that only point one way.</p>
-<p>Three companions. Paul Wegener and Carl Boese’s silent film <em>Der Golem, wie er in die Welt kam</em> (1920), for the clay creature itself, in a Prague of crooked expressionist streets. Jorge Luis Borges’ story “The Garden of Forking Paths” (1941), which lent its title to one of the most useful ideas in applied statistics: Andrew Gelman and Eric Loken’s “garden of forking paths” (2013), the many small choices in an analysis that could have gone otherwise and can quietly turn noise into a finding. Read the story first; it is a spy story, and better than it needs to be. And Tyler Vigen’s <em>Spurious Correlations</em>, a website and then a book (2015), where the waffles would feel at home: chart after chart of unrelated things rising and falling together.</p>
+<p>Three parts, like the book, then three neighbours and a detour.</p>
+<section id="one-book-two-languages" class="level2">
+<h2 data-anchor-id="one-book-two-languages">One book, two languages</h2>
+<p>Benjamín Labatut is Chilean, and his earlier book, <em>Un verdor terrible</em>, was written in Spanish and translated into English by Adrian Nathan West as <em>When We Cease to Understand the World</em>. With this one he turned it around. He wrote <em>The MANIAC</em> in English, his first book in that language; it came out with Penguin Press in New York on 3 October 2023, and with Pushkin Press in Britain. Then he translated it into Spanish himself. Anagrama published that version as <em>MANIAC</em> on 25 October 2023, in its series for Spanish-language literature; its page names no other translator.</p>
+<p>That is rarer than it sounds. A translator owes the original loyalty. An author translating himself owes it nothing, and at a press conference in Barcelona in November 2023 he said as much: translating himself let him betray himself in a way no translator would. So, in a sense, there are two originals, and the second is allowed to depart from the first. I like that idea more than I can say, and it suits a book about people who did not trust a single version of anything. If you read both languages, read a chapter or two side by side. Not to catch differences, but to watch one writer choose twice.</p>
+</section>
+<section id="the-premise" class="level2">
+<h2 data-anchor-id="the-premise">The premise</h2>
+<p>The three parts carry first names: Paul, John, Lee. Paul is the physicist Paul Ehrenfest. John is von Neumann, the longest part, made of many voices. Lee is Lee Sedol, at a Go board in Seoul in 2016, across from AlphaGo. That is all I will say about what happens. The history is public; the book’s way through it is worth arriving at fresh.</p>
+<p>Be clear about what kind of book it is. In interviews Labatut has said his details are usually real, and that he goes close to the record and then steps back. The voices in the middle are his writing, an imagined oral history of real people, not transcripts, and reviewers have noted that he takes liberties with the lives. Read it as a novel that keeps close to the record, not as a biography.</p>
+</section>
+<section id="three-neighbours" class="level2">
+<h2 data-anchor-id="three-neighbours">Three neighbours</h2>
+<p>George Dyson’s <em>Turing’s Cathedral</em> (2012) is the non-fiction history of von Neumann’s computer at the Institute for Advanced Study in Princeton: the record that the novel goes close to and then steps back from. Greg Kohs’ documentary <em>AlphaGo</em> (2017) follows the people who built the program up to and through the match in Seoul. And Philip Glass and Robert Wilson’s <em>Einstein on the Beach</em> (1976), an opera about a scientist that tells no story about him at all, built from repetition, counted numbers and images. It is the opposite of Labatut’s method, and seeing both makes each clearer.</p>
+</section>
+<section id="the-machine-and-a-tangent" class="level2">
+<h2 data-anchor-id="the-machine-and-a-tangent">The machine, and a tangent</h2>
+<p>The MANIAC itself was a computer built at Los Alamos in the early 1950s under Nicholas Metropolis, modelled on the machine von Neumann was building at Princeton. It sits in a line of work that matters to anyone who models risk. In 1946 Stanislaw Ulam, recovering from an illness and playing solitaire, wondered whether he could estimate the odds of winning by simply playing many random games instead of doing the combinatorics. With von Neumann, Metropolis and Robert Richtmyer that became the Monte Carlo method, named by Metropolis partly after an uncle of Ulam’s who liked the casino. Its first runs, on ENIAC in 1948, were bomb physics.</p>
+<p>Every catastrophe model that simulates ten thousand years of storms, every probabilistic loss curve, every basis risk estimate on a synthetic event set, descends from that idea: when the equations are too hard, roll the dice many times and count. The book is not about Monte Carlo. But it is about the people in whose rooms it was born, what they built, and what they thought they were doing. That makes it, to me, an uncomfortable family history of the tools risk modelling still uses.</p>
 
 
+</section>
 
  ]]></description>
   <category>under:current</category>
-  <guid>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</guid>
+  <guid>https://recurrentanalytics.com/notes/undercurrent-maniac.html</guid>
   <pubDate>Thu, 19 Nov 2026 23:00:00 GMT</pubDate>
-  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-statistical-rethinking.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://recurrentanalytics.com/notes/previews/undercurrent-maniac.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>
