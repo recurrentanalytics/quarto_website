@@ -111,19 +111,22 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 100);
     }
 
+    // Shown only after two screens, and only once the visitor scrolls up: it never sits over
+    // the text being read on the way down (UX fixes 2026-11-25). The direction is taken over
+    // at least 8 px, so a slow scroll counts too.
+    let lastY = window.scrollY || 0;
+    let queued = 0;
     function updateBackToTopVisibility() {
+      queued = 0;
       if (!backToTopBtn.parentNode) return;
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
-      if (scrollY > 300) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
-      }
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y <= 2 * window.innerHeight) { backToTopBtn.classList.remove('visible'); lastY = y; return; }
+      if (y > lastY + 8) { backToTopBtn.classList.remove('visible'); lastY = y; }
+      else if (y < lastY - 8) { backToTopBtn.classList.add('visible'); lastY = y; }
     }
+    function scheduleBackToTop() { if (!queued) queued = requestAnimationFrame(updateBackToTopVisibility); }
 
-    // Use both scroll events for better compatibility
-    window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
-    document.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+    window.addEventListener('scroll', scheduleBackToTop, { passive: true });
     updateBackToTopVisibility(); // Check on load
 
     backToTopBtn.addEventListener('click', function(e) {

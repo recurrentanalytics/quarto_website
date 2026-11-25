@@ -113,25 +113,25 @@ window.RAC_GRAPH = {
    "id": "playground/eilenriede-how-it-works/index",
    "label": "A forest fire in the city forest, taken apart",
    "path": "/playground/eilenriede-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "playground/forecast-how-it-works/index",
    "label": "A forecast you can trust, until you can't",
    "path": "/playground/forecast-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "playground/index",
    "label": "Playground",
    "path": "/playground/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "playground/mangrove-how-it-works/index",
    "label": "A mangrove coast from code, taken apart",
    "path": "/playground/mangrove-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "projects/index",
@@ -155,48 +155,54 @@ window.RAC_GRAPH = {
    "id": "showcases/index",
    "label": "Showcases",
    "path": "/showcases/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/maria-2017-puerto-rico",
    "label": "Hurricane Maria 2017 over Puerto Rico's power grid",
    "path": "/showcases/maria-2017-puerto-rico.html",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/maria-how-it-works/index",
    "label": "A hurricane over a grid, taken apart",
    "path": "/showcases/maria-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/mekong-coast",
    "label": "The vanishing coast of the Mekong Delta",
    "path": "/showcases/mekong-coast.html",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/mekong-how-it-works/index",
    "label": "A coastline measured from space, taken apart",
    "path": "/showcases/mekong-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/port-augusta-how-it-works/index",
    "label": "Port Augusta, taken apart",
    "path": "/showcases/port-augusta-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/trigger-lab-how-it-works/index",
    "label": "A cyclone trigger, taken apart",
    "path": "/showcases/trigger-lab-how-it-works/",
-   "cat": "nav"
+   "cat": "projects"
   },
   {
    "id": "showcases/trigger-lab-mozambique",
    "label": "Trigger Lab: a cyclone cover for Mozambique",
    "path": "/showcases/trigger-lab-mozambique.html",
+   "cat": "projects"
+  },
+  {
+   "id": "work/index",
+   "label": "Work",
+   "path": "/work/",
    "cat": "nav"
   }
  ],
@@ -308,6 +314,10 @@ window.RAC_GRAPH = {
   {
    "source": "index",
    "target": "showcases/trigger-lab-mozambique"
+  },
+  {
+   "source": "index",
+   "target": "work/index"
   },
   {
    "source": "library/index",
@@ -444,6 +454,46 @@ window.RAC_GRAPH = {
   {
    "source": "showcases/trigger-lab-mozambique",
    "target": "showcases/trigger-lab-how-it-works/index"
+  },
+  {
+   "source": "work/index",
+   "target": "models/climate-extremes-explorer"
+  },
+  {
+   "source": "work/index",
+   "target": "models/heatwave-prices-de-lu"
+  },
+  {
+   "source": "work/index",
+   "target": "models/how-rare/index"
+  },
+  {
+   "source": "work/index",
+   "target": "playground/index"
+  },
+  {
+   "source": "work/index",
+   "target": "projects/index"
+  },
+  {
+   "source": "work/index",
+   "target": "projects/livelines"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/index"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/maria-2017-puerto-rico"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/trigger-lab-mozambique"
   }
  ]
 };

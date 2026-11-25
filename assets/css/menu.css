@@ -129,12 +129,13 @@ html.rac-menu-locked, html.rac-menu-locked body { overflow: hidden; }
 }
 .rac-menu-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
 .rac-menu-links > * + *::before { content: "·"; color: var(--m-dim); margin: 0 8px; }
-.rac-menu-links a, .rac-menu-links button { color: var(--m-muted); background: none; border: 0; padding: 6px 0; font: inherit; cursor: pointer; }
+/* 44 px tap height for the small links and the theme switch (UX fixes 2026-11-25). */
+.rac-menu-links a, .rac-menu-links button { display: inline-flex; align-items: center; min-height: 44px; color: var(--m-muted); background: none; border: 0; padding: 0 2px; font: inherit; cursor: pointer; }
 .rac-menu-links a:hover, .rac-menu-links button:hover { color: var(--m-ink); }
 .rac-menu-links .rac-menu-search-btn { color: var(--m-ink); }
-.rac-menu-theme { display: inline-flex; border: 1px solid #2b3846; border-radius: 18px; overflow: hidden; }
+.rac-menu-theme { display: inline-flex; border: 1px solid #2b3846; border-radius: 22px; overflow: hidden; }
 .rac-menu-theme button {
-  height: 34px; padding: 0 12px; border: 0; background: transparent; color: var(--m-muted); font: inherit; cursor: pointer;
+  height: 44px; padding: 0 12px; border: 0; background: transparent; color: var(--m-muted); font: inherit; cursor: pointer;
 }
 .rac-menu-theme button[aria-pressed="true"] { background: #1c2531; color: var(--m-ink); }
 .rac-menu-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

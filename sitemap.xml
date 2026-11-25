@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://recurrentanalytics.com/showcases/trigger-lab-mozambique.html</loc>
-    <lastmod>2026-11-24T21:43:10.899Z</lastmod>
+    <loc>https://recurrentanalytics.com/work/index.html</loc>
+    <lastmod>2026-11-24T23:50:40.555Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/showcases/port-augusta-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.744Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/trigger-lab-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.898Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/showcases/mekong-coast.html</loc>
+    <loc>https://recurrentanalytics.com/showcases/mekong-how-it-works/index.html</loc>
     <lastmod>2026-11-24T21:43:10.741Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/showcases/maria-2017-puerto-rico.html</loc>
-    <lastmod>2026-11-24T21:43:10.740Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/maria-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.741Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/projects/livelines.html</loc>
-    <lastmod>2026-11-24T21:46:51.427Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/index.html</loc>
+    <lastmod>2026-11-24T21:55:13.351Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/projects/index.html</loc>
-    <lastmod>2026-11-24T21:55:13.350Z</lastmod>
+    <loc>https://recurrentanalytics.com/projects/livelines-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.666Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/playground/index.html</loc>
-    <lastmod>2026-11-24T21:46:46.854Z</lastmod>
+    <loc>https://recurrentanalytics.com/playground/mangrove-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.651Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/playground/eilenriede-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.617Z</lastmod>
+    <loc>https://recurrentanalytics.com/playground/forecast-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.637Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-penguin-science-fiction.html</loc>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</loc>
     <lastmod>2026-11-24T21:43:10.612Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-maniac.html</loc>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-nausicaa.html</loc>
+    <lastmod>2026-11-24T21:43:10.612Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-herzog.html</loc>
+    <lastmod>2026-11-24T21:43:10.611Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-complexity-compendium.html</loc>
+    <lastmod>2026-11-24T21:43:10.611Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/index.html</loc>
+    <lastmod>2026-11-24T23:50:00.767Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/heatwave-prices-de-lu.html</loc>
+    <lastmod>2026-11-24T21:49:35.971Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/library/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.505Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/how-this-site-is-made.html</loc>
+    <lastmod>2026-11-24T23:53:11.394Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/about.html</loc>
+    <lastmod>2026-11-24T21:46:51.427Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/contact/index.html</loc>
+    <lastmod>2026-11-24T23:52:22.222Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/datenschutz.html</loc>
+    <lastmod>2026-11-25T00:10:25.381Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/index.html</loc>
+    <lastmod>2026-11-24T23:50:12.677Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/climate-extremes-explorer.html</loc>
+    <lastmod>2026-11-24T21:49:35.969Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/models/how-rare/index.html</loc>
+    <lastmod>2026-11-24T21:49:35.972Z</lastmod>
+  </url>
+  <url>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-burtynsky.html</loc>
     <lastmod>2026-11-24T21:43:10.611Z</lastmod>
   </url>
   <url>
@@ -45,91 +97,43 @@
     <lastmod>2026-11-24T21:43:10.611Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-burtynsky.html</loc>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-maniac.html</loc>
     <lastmod>2026-11-24T21:43:10.611Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/models/how-rare/index.html</loc>
-    <lastmod>2026-11-24T21:49:35.972Z</lastmod>
+    <loc>https://recurrentanalytics.com/notes/undercurrent-penguin-science-fiction.html</loc>
+    <lastmod>2026-11-24T21:43:10.612Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/models/climate-extremes-explorer.html</loc>
-    <lastmod>2026-11-24T21:49:35.969Z</lastmod>
+    <loc>https://recurrentanalytics.com/playground/eilenriede-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.617Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/index.html</loc>
-    <lastmod>2026-11-24T22:35:55.968Z</lastmod>
+    <loc>https://recurrentanalytics.com/playground/index.html</loc>
+    <lastmod>2026-11-24T21:46:46.854Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/datenschutz.html</loc>
-    <lastmod>2026-11-24T22:55:03.600Z</lastmod>
+    <loc>https://recurrentanalytics.com/projects/index.html</loc>
+    <lastmod>2026-11-24T21:55:13.350Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/contact/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.482Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/about.html</loc>
+    <loc>https://recurrentanalytics.com/projects/livelines.html</loc>
     <lastmod>2026-11-24T21:46:51.427Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/how-this-site-is-made.html</loc>
-    <lastmod>2026-11-24T21:43:10.504Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/maria-2017-puerto-rico.html</loc>
+    <lastmod>2026-11-24T23:52:04.766Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/library/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.505Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/mekong-coast.html</loc>
+    <lastmod>2026-11-24T23:52:04.785Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/models/heatwave-prices-de-lu.html</loc>
-    <lastmod>2026-11-24T21:49:35.971Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/port-augusta-how-it-works/index.html</loc>
+    <lastmod>2026-11-24T21:43:10.744Z</lastmod>
   </url>
   <url>
-    <loc>https://recurrentanalytics.com/notes/index.html</loc>
-    <lastmod>2026-11-24T22:35:55.968Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-complexity-compendium.html</loc>
-    <lastmod>2026-11-24T21:43:10.611Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-herzog.html</loc>
-    <lastmod>2026-11-24T21:43:10.611Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-nausicaa.html</loc>
-    <lastmod>2026-11-24T21:43:10.612Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/notes/undercurrent-statistical-rethinking.html</loc>
-    <lastmod>2026-11-24T21:43:10.612Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/playground/forecast-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.637Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/playground/mangrove-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.651Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/projects/livelines-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.666Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/showcases/index.html</loc>
-    <lastmod>2026-11-24T21:55:13.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/showcases/maria-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.741Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/showcases/mekong-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.741Z</lastmod>
-  </url>
-  <url>
-    <loc>https://recurrentanalytics.com/showcases/trigger-lab-how-it-works/index.html</loc>
-    <lastmod>2026-11-24T21:43:10.898Z</lastmod>
+    <loc>https://recurrentanalytics.com/showcases/trigger-lab-mozambique.html</loc>
+    <lastmod>2026-11-24T23:52:04.784Z</lastmod>
   </url>
 </urlset>

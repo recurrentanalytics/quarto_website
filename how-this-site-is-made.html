@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-11a8c5683a45d0a82253c5df66344476.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-5dc2b471c8ffd0731b92e3796baef79c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-11a8c5683a45d0a82253c5df66344476.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -292,7 +292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -305,6 +306,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -330,20 +339,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
+    <a class="nav-link" href="./work/index.html"> 
+<span class="menu-text">Work</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./projects/livelines.html"> 
 <span class="menu-text">LiveLines</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./showcases/index.html"> 
-<span class="menu-text">Showcases</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./projects/index.html"> 
-<span class="menu-text">Projects</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./playground/index.html"> 
-<span class="menu-text">Playground</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./notes/index.html"> 
@@ -352,6 +353,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./contact/index.html"> 
+<span class="menu-text">Contact</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -406,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Checks.</strong> No number, date or citation is made up; an unknown is left out or shown as a placeholder. Before a model page or factual text is done, a separate, read-only AI review checks the numbers against their sources and the sources against their licences.</li>
 <li><strong>Misses.</strong> The <a href="./showcases/maria-2017-puerto-rico.html">Hurricane Maria showcase</a> holds a grid model up against satellite images and outage reports: it gets the direction right, misses the depth, and says so.</li>
 <li><strong>AI tools.</strong> Since the 2026 redesign, code and first drafts are written with AI coding tools. I set the direction, test, decide, and confirm every text before publication. Older parts predate these rules; another AI tool helped build the 2025 site.</li>
-<li><strong>The pages.</strong> Static, built with Quarto, with fonts served from here, no cookies and no analytics. Some libraries, such as MathJax and those of the interactive charts, load from the CDNs jsDelivr and cdnjs; the <a href="./datenschutz.html">privacy policy</a> (in German) lists them.</li>
+<li><strong>The pages.</strong> Static, built with Quarto, with fonts served from here and no analytics. One functional cookie keeps your choice of light or dark, shared with the LiveLines app. Some libraries, such as MathJax and those of the interactive charts, load from the CDN jsDelivr; the <a href="./datenschutz.html">privacy policy</a> (in German) lists them.</li>
 <li><span id="licence"></span><strong>Licence.</strong> Texts are <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>: reuse them with credit to re:current_analytics and a link. Code is <a href="https://opensource.org/license/mit">MIT</a>. Data, fonts, libraries, other people’s images and the logo keep their own licences, named where they are used.</li>
 </ul>
 <p>See it at work in the <a href="./showcases/">showcases</a>, or <a href="./contact/">write to me</a>.</p>
@@ -898,16 +903,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**AI tools.** Since the 2026 redesign, code and first drafts are written with AI coding</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  tools. I set the direction, test, decide, and confirm every text before publication. Older</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  parts predate these rules; another AI tool helped build the 2025 site.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The pages.** Static, built with Quarto, with fonts served from here, no cookies and no</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  analytics. Some libraries, such as MathJax and those of the interactive charts, load from</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  the CDNs jsDelivr and cdnjs; the <span class="co">[</span><span class="ot">privacy policy</span><span class="co">](/datenschutz.html)</span> (in German) lists them.</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>[]{#licence}**Licence.** Texts are</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>: reuse them with credit to</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  re:current_analytics and a link. Code is <span class="co">[</span><span class="ot">MIT</span><span class="co">](https://opensource.org/license/mit)</span>. Data,</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  fonts, libraries, other people's images and the logo keep their own licences, named where</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  they are used.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>See it at work in the <span class="co">[</span><span class="ot">showcases</span><span class="co">](/showcases/)</span>, or <span class="co">[</span><span class="ot">write to me</span><span class="co">](/contact/)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The pages.** Static, built with Quarto, with fonts served from here and no analytics. One</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  functional cookie keeps your choice of light or dark, shared with the LiveLines app. Some</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  libraries, such as MathJax and those of the interactive charts, load from the CDN jsDelivr;</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  the <span class="co">[</span><span class="ot">privacy policy</span><span class="co">](/datenschutz.html)</span> (in German) lists them.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>[]{#licence}**Licence.** Texts are</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>: reuse them with credit to</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  re:current_analytics and a link. Code is <span class="co">[</span><span class="ot">MIT</span><span class="co">](https://opensource.org/license/mit)</span>. Data,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  fonts, libraries, other people's images and the logo keep their own licences, named where</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  they are used.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>See it at work in the <span class="co">[</span><span class="ot">showcases</span><span class="co">](/showcases/)</span>, or <span class="co">[</span><span class="ot">write to me</span><span class="co">](/contact/)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -952,7 +958,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     <li class="nav-item">
     <a class="nav-link" href="./datenschutz.html">
-<p>Datenschutz</p>
+<p>Privacy (Datenschutz)</p>
 </a>
   </li>  
 </ul>

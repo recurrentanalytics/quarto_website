@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
     pathParts.forEach((part, index) => {
       const isLast = index === pathParts.length - 1;
 
-      // Special handling for "models" - link to projects page instead
+      // "models" has no section page of its own: its pages sit under Work.
       if (part === 'models' && !isLast) {
-        breadcrumbHTML += '<li class="breadcrumb-item"><a href="/projects/">Projects</a></li>';
+        breadcrumbHTML += '<li class="breadcrumb-item"><a href="/work/#models">Work</a></li>';
         return; // Skip adding to currentPath
       }
 
@@ -64,12 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       currentPath += '/' + part;
-      const label = part.replace(/\.html$/, '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      // Section names as the menu spells them; others from the folder name.
+      const named = { notes: 'under:current', work: 'Work' };
+      const label = named[part] || part.replace(/\.html$/, '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
       if (isLast) {
-        // The page's own title, short form (before a colon), else the file name.
+        // The page's own title, short form (before ": "), else the file name. A colon inside
+        // a word (under:current) is part of the name.
         const h1 = document.querySelector('h1.title, .quarto-title h1');
-        const own = h1 ? h1.textContent.split(':')[0].trim() : '';
+        const own = h1 ? h1.textContent.split(': ')[0].trim() : '';
         const text = (own || label).replace(/[<>&]/g, '');
         breadcrumbHTML += `<li class="breadcrumb-item active" aria-current="page">${text}</li>`;
       } else {
@@ -170,11 +173,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // Command Palette (Cmd+K / Ctrl+K)
   const pages = [
     { title: 'Home', path: '/' },
-    { title: 'About & Contact', path: '/about.html' },
+    { title: 'Work', path: '/work/' },
+    { title: 'LiveLines', path: '/projects/livelines.html' },
     { title: 'under:current', path: '/notes/' },
+    { title: 'About', path: '/about.html' },
+    { title: 'Contact', path: '/contact/' },
+    { title: 'Map of this site', path: '#map', action: 'map' },
+    { title: 'Showcases', path: '/showcases/' },
     { title: 'Projects', path: '/projects/' },
-    { title: 'Library', path: '/library/' },
-    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' }
+    { title: 'Playground', path: '/playground/' },
+    { title: 'How rare was that?', path: '/models/how-rare/' },
+    { title: 'Heatwaves and Day-Ahead Prices', path: '/models/heatwave-prices-de-lu.html' },
+    { title: 'Library', path: '/library/' }
   ];
 
   const overlay = document.createElement('div');
@@ -227,11 +237,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function renderResults(filter = '') {
     if (!filter.trim()) {
-      const filtered = pages.slice(0, 10);
+      const filtered = pages.slice(0, 13);
     results.innerHTML = filtered.map((p, i) => `
-      <a href="${p.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+      <a href="${p.path}"${p.action ? ` data-action="${p.action}"` : ''} class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
         <div class="cmd-palette-item-title">${p.title}</div>
-        <div class="cmd-palette-item-path">${p.path}</div>
+        <div class="cmd-palette-item-path">${p.action ? '' : p.path}</div>
       </a>
     `).join('');
     return filtered;
@@ -249,9 +259,9 @@ document.addEventListener('DOMContentLoaded', function() {
       .slice(0, 10);
 
     results.innerHTML = scored.map((item, i) => `
-      <a href="${item.page.path}" class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
+      <a href="${item.page.path}"${item.page.action ? ` data-action="${item.page.action}"` : ''} class="cmd-palette-item ${i === selectedIndex ? 'selected' : ''}">
         <div class="cmd-palette-item-title">${item.page.title}</div>
-        <div class="cmd-palette-item-path">${item.page.path}</div>
+        <div class="cmd-palette-item-path">${item.page.action ? '' : item.page.path}</div>
       </a>
     `).join('');
     return scored.map(item => item.page);
@@ -271,6 +281,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closePalette();
+    // "Map of this site" opens the Connections graph instead of following a link.
+    const act = e.target.closest && e.target.closest('[data-action="map"]');
+    if (act) { e.preventDefault(); closePalette(); openGraph(); }
   });
 
   input.addEventListener('input', () => {
@@ -394,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <button class="graph-filter-btn active" data-cat="all">All</button>
           <button class="graph-filter-btn" data-cat="nav">Nav</button>
           <button class="graph-filter-btn" data-cat="notes">under:current</button>
-          <button class="graph-filter-btn" data-cat="projects">Projects</button>
+          <button class="graph-filter-btn" data-cat="projects">Work</button>
           <button class="graph-filter-btn" data-cat="livelines">LiveLines</button>
         </div>
         <div class="graph-zoom-controls">

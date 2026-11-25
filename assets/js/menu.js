@@ -139,6 +139,18 @@
       sBtn.addEventListener('click', function () { openSearch(''); });
       links.appendChild(sBtn);
     }
+    // The map of this site (site.js): on phones there is no floating Connections button.
+    var mBtn = el('button', 'rac-menu-map-btn', 'Map of this site');
+    mBtn.type = 'button';
+    mBtn.addEventListener('click', function () {
+      close(true);
+      if (typeof window.openGraphNavigation === 'function') {
+        window.openGraphNavigation();
+        var shut = document.querySelector('.graph-modal-close');   // focus into the map dialog
+        if (shut) shut.focus({ preventScroll: true });
+      }
+    });
+    links.appendChild(mBtn);
     // LinkedIn from the page footer, GitHub and RSS from the navbar tools.
     var li = document.querySelector('.nav-footer a[href*="linkedin.com"]');
     if (li) links.appendChild(copyLink(li, 'LinkedIn'));
@@ -182,6 +194,24 @@
       var d = isDark();
       themeGroup.children[0].setAttribute('aria-pressed', String(!d));
       themeGroup.children[1].setAttribute('aria-pressed', String(d));
+    }
+
+    // ---------------------------------------------------------- light/dark in the header
+    // Below 1200 px Quarto's own switch sits in the hidden navbar tools: a sun/moon button
+    // beside Menu does the same (styles.scss, .rac-theme-btn). Wide screens keep Quarto's
+    // switch, which gets the same name for screen readers.
+    var qToggle = navbar.querySelector('.quarto-color-scheme-toggle');
+    if (qToggle) { qToggle.setAttribute('aria-label', 'Switch light/dark'); qToggle.setAttribute('title', 'Switch light/dark'); }
+    if (typeof window.quartoToggleColorScheme === 'function' && qToggle) {
+      var tBtn = el('button', 'rac-theme-btn');
+      tBtn.type = 'button';
+      tBtn.setAttribute('aria-label', 'Switch light/dark');
+      tBtn.title = 'Switch light/dark';
+      tBtn.innerHTML =
+        '<svg class="rac-sun" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2.2M10 16v2.2M1.8 10H4M16 10h2.2M4.2 4.2l1.6 1.6M14.2 14.2l1.6 1.6M4.2 15.8l1.6-1.6M14.2 5.8l1.6-1.6"/></svg>' +
+        '<svg class="rac-moon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1Z"/></svg>';
+      tBtn.addEventListener('click', function () { window.quartoToggleColorScheme(); syncTheme(); });
+      toggler.parentNode.insertBefore(tBtn, toggler);
     }
 
     // ---------------------------------------------------------- the button

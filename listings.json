@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/notes/index.html",
     "items": [
       "/notes/undercurrent-gleick.html",
       "/notes/undercurrent-herzog.html",
@@ -13,7 +13,7 @@
     ]
   },
   {
-    "listing": "/notes/index.html",
+    "listing": "/index.html",
     "items": [
       "/notes/undercurrent-gleick.html",
       "/notes/undercurrent-herzog.html",
