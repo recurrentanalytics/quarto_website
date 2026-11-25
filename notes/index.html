@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="under:current: books, films, music and art that run underneath the work.">
+<meta name="description" content="Books, films, music and art that run underneath the work.">
 
 <title>under:current – re:current_analytics</title>
 <style>
@@ -131,13 +131,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="alternate" type="application/rss+xml" title="re:current_analytics" href="index.xml" data-external="1"><meta property="og:title" content="under:current – re:current_analytics">
-<meta property="og:description" content="under:current: books, films, music and art that run underneath the work.">
+<meta property="og:description" content="Books, films, music and art that run underneath the work.">
 <meta property="og:image" content="https://recurrentanalytics.com/assets/brand/og-default.png">
 <meta property="og:site_name" content="re:current_analytics">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
 <meta name="twitter:title" content="under:current – re:current_analytics">
-<meta name="twitter:description" content="under:current: books, films, music and art that run underneath the work.">
+<meta name="twitter:description" content="Books, films, music and art that run underneath the work.">
 <meta name="twitter:image" content="https://recurrentanalytics.com/assets/brand/og-default.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
@@ -380,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    under:current: books, films, music and art that run underneath the work.
+    Books, films, music and art that run underneath the work.
   </div>
 </div>
 
@@ -471,7 +471,8 @@ ul.task-list li input[type="checkbox"] {
     for (let x = 4; x <= 400; x += 4) d += ` L${x} ${wave(x).toFixed(1)}`;
     el('path', { d: `${d} L400 ${H} L0 ${H} Z`, fill: 'var(--rac-surface)' });
     el('path', { d, fill: 'none', stroke: 'var(--rac-muted)', 'stroke-width': 1, opacity: .6 });
-    el('text', { x: 396, y: SURF + 16, 'text-anchor': 'end', class: 'uc-lbl' }).textContent = 'surface';
+    el('text', { x: 396, y: SURF - 7, 'text-anchor': 'end', class: 'uc-lbl' }).textContent = 'surface';
+    el('text', { x: 396, y: SURF + 18, 'text-anchor': 'end', class: 'uc-lbl' }).textContent = 'under:current';
     WORKS.forEach(w => {
       const a = el('a', { href: w.href, 'aria-label': w.name });
       el('rect', { x: w.x - 5, y: SURF - 10, width: 10, height: 10, fill: 'var(--rac-ink)', rx: 1 }, a);
