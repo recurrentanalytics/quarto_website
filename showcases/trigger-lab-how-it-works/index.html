@@ -99,9 +99,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-72fe1072ab46dcb0c5323460b9c2d533.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -463,6 +463,9 @@ div.csl-indent {
 /* Long links in the reference and source lists wrap on a narrow screen. */
 #refs a, #data-and-sources a { overflow-wrap: anywhere; }
 </style>
+<div class="rac-backlink">
+<p><a href="../../showcases/trigger-lab-mozambique.html">← Back to Trigger Lab</a></p>
+</div>
 <p>The <a href="../../showcases/trigger-lab-mozambique.html">Trigger Lab</a> lets you design a parametric cyclone cover for Mozambique: pick a place, a radius and a wind speed, and see in which seasons since 1979/80 it would have paid, and how that matches the seasons that hurt. This article takes it apart: what each piece does, the code that does it, the ideas behind it, what it cannot tell, and what to read to go further.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How this was made">
 <div class="callout-header d-flex align-content-center">
@@ -1112,271 +1115,275 @@ Velden, Christopher, Bruce Harper, Frank Wells, John L. Beven, Ray Zehr, Timothy
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Trigger Lab</span><span class="co">](../trigger-lab-mozambique.qmd)</span> lets you design a parametric cyclone cover</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>for Mozambique: pick a place, a radius and a wind speed, and see in which seasons since</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>1979/80 it would have paid, and how that matches the seasons that hurt. This article takes</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>it apart: what each piece does, the code that does it, the ideas behind it, what it cannot</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>tell, and what to read to go further.</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy.</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## A trigger, not a claim</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>An ordinary insurance pays after someone has counted the damage. A parametric cover pays</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>when something measured crosses a line agreed in advance: a wind speed, a rainfall total, a</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>modelled loss. That makes it fast, because nobody has to count anything first. The price of that speed is that the measurement is not the loss. The</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>cover can pay when little was lost, or stay silent when a lot was. That gap is called basis</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>risk.</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>Index insurance of this kind is also used in farming: @barnett2007 describe weather index</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>products for agriculture in lower-income countries and what they need to work. The Trigger</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>Lab uses the simplest trigger there is, one storm, one wind speed, one zone, so that every</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>part of the gap can be seen.</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Four outcomes</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>In any season, two questions have yes-or-no answers: did the trigger pay, and was there a</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>disaster? That makes four outcomes (@fig-outcomes).</span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>![The four outcomes of a trigger in one season. Basis risk is the two cells off the</span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>diagonal.](fig-outcomes.svg){#fig-outcomes fig-alt="A two-by-two table: paid and disaster is a hit, paid and no disaster a false alarm, no payout and disaster a miss, neither is quiet"}</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>This is the same table that weather forecasters use to check a yes-or-no forecast: a</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>forecast of rain against whether it rained. The parallel is more than a picture. A trigger</span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>is a forecast of loss made from a hazard measurement, and it can be judged the way forecasts</span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>are. @murphy1993 separates three kinds of goodness in a forecast: consistency, quality (how</span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>well forecasts match what was observed) and value (what a decision maker gains by using</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>them). The Trigger Lab shows quality, the four counts. It does not show value: what a miss</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>costs a government against what a false alarm costs in premium.</span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>@figueiredo2018 take the parallel further. A trigger that answers only yes or no, they</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>argue, is open to basis risk; they propose triggers that give a probability of loss instead,</span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>and judge them with the tools of forecast verification. The Trigger Lab stays with yes or</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>no, on purpose: it is the version a reader can hold in their head.</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## The storms</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>The storms come from IBTrACS <span class="co">[</span><span class="ot">@knapp2010</span><span class="co">]</span>, the archive that gathers the best tracks of all</span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>the agencies that watch tropical cyclones. For the South Indian Ocean it holds, among</span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>others, the tracks of the US Joint Typhoon Warning Center and of the regional centre on La</span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>Réunion. The page uses only the US columns: <span class="in">`USA_LAT`</span>, <span class="in">`USA_LON`</span> and <span class="in">`USA_WIND`</span>. Two reasons:</span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**One way of measuring wind.** According to IBTrACS' column documentation, agencies average the wind over</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  different times: the US agencies over one minute, others over three or ten. A slider that mixed them would</span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  compare different things.</span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Terms of use.** NCEI, which publishes IBTrACS, names the World Meteorological</span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  Organization's Resolution 40 as the guide for commercial use. Using only the US agencies'</span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  data keeps the page clear of the limits that resolution allows other agencies to set.</span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>The wind is the storm's maximum sustained wind: the highest one-minute average anywhere in</span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>the storm, not the wind at a given place. Over the open ocean, that number is often an</span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>estimate from satellite images of the storm's clouds, with methods that go back to Vernon Dvorak <span class="co">[</span><span class="ot">@velden2006</span><span class="co">]</span>. A trigger on it inherits that estimate.</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>::: {.rac-backlink}</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Back to Trigger Lab</span><span class="co">](../trigger-lab-mozambique.qmd)</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Trigger Lab</span><span class="co">](../trigger-lab-mozambique.qmd)</span> lets you design a parametric cyclone cover</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>for Mozambique: pick a place, a radius and a wind speed, and see in which seasons since</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>1979/80 it would have paid, and how that matches the seasons that hurt. This article takes</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>it apart: what each piece does, the code that does it, the ideas behind it, what it cannot</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>tell, and what to read to go further.</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy.</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## A trigger, not a claim</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>An ordinary insurance pays after someone has counted the damage. A parametric cover pays</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>when something measured crosses a line agreed in advance: a wind speed, a rainfall total, a</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>modelled loss. That makes it fast, because nobody has to count anything first. The price of that speed is that the measurement is not the loss. The</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>cover can pay when little was lost, or stay silent when a lot was. That gap is called basis</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>risk.</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>Index insurance of this kind is also used in farming: @barnett2007 describe weather index</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>products for agriculture in lower-income countries and what they need to work. The Trigger</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>Lab uses the simplest trigger there is, one storm, one wind speed, one zone, so that every</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>part of the gap can be seen.</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Four outcomes</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>In any season, two questions have yes-or-no answers: did the trigger pay, and was there a</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>disaster? That makes four outcomes (@fig-outcomes).</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>![The four outcomes of a trigger in one season. Basis risk is the two cells off the</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>diagonal.](fig-outcomes.svg){#fig-outcomes fig-alt="A two-by-two table: paid and disaster is a hit, paid and no disaster a false alarm, no payout and disaster a miss, neither is quiet"}</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>This is the same table that weather forecasters use to check a yes-or-no forecast: a</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>forecast of rain against whether it rained. The parallel is more than a picture. A trigger</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>is a forecast of loss made from a hazard measurement, and it can be judged the way forecasts</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>are. @murphy1993 separates three kinds of goodness in a forecast: consistency, quality (how</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>well forecasts match what was observed) and value (what a decision maker gains by using</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>them). The Trigger Lab shows quality, the four counts. It does not show value: what a miss</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>costs a government against what a false alarm costs in premium.</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>@figueiredo2018 take the parallel further. A trigger that answers only yes or no, they</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>argue, is open to basis risk; they propose triggers that give a probability of loss instead,</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>and judge them with the tools of forecast verification. The Trigger Lab stays with yes or</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>no, on purpose: it is the version a reader can hold in their head.</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## The storms</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>The storms come from IBTrACS <span class="co">[</span><span class="ot">@knapp2010</span><span class="co">]</span>, the archive that gathers the best tracks of all</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>the agencies that watch tropical cyclones. For the South Indian Ocean it holds, among</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>others, the tracks of the US Joint Typhoon Warning Center and of the regional centre on La</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>Réunion. The page uses only the US columns: <span class="in">`USA_LAT`</span>, <span class="in">`USA_LON`</span> and <span class="in">`USA_WIND`</span>. Two reasons:</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**One way of measuring wind.** According to IBTrACS' column documentation, agencies average the wind over</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  different times: the US agencies over one minute, others over three or ten. A slider that mixed them would</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  compare different things.</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Terms of use.** NCEI, which publishes IBTrACS, names the World Meteorological</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  Organization's Resolution 40 as the guide for commercial use. Using only the US agencies'</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  data keeps the page clear of the limits that resolution allows other agencies to set.</span>
 <span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>A southern-hemisphere season runs from July to June, so the season 2018/19 holds Idai and</span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>Kenneth. The page covers 47 seasons, from 1979/80 to 2025/26. For the two latest, the US</span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>tracks are still provisional and will change when they are made final.</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>The wind is the storm's maximum sustained wind: the highest one-minute average anywhere in</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>the storm, not the wind at a given place. Over the open ocean, that number is often an</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>estimate from satellite images of the storm's clouds, with methods that go back to Vernon Dvorak <span class="co">[</span><span class="ot">@velden2006</span><span class="co">]</span>. A trigger on it inherits that estimate.</span>
 <span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## From tracks to one small table</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>The page must answer every combination of zone, radius and wind threshold the instant a</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>slider moves. Computing that from the tracks in the browser would be slow. So a script,</span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="in">`scripts/showcase_trigger_lab/prepare.py`</span>, does all of it once, and the page only looks the</span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>answer up.</span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>**Hourly positions.** The US agency fixes are six-hourly, and IBTrACS adds points in</span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>between, so the file has a position every three hours; the script fills in every hour by</span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>straight lines between them, but never across a gap of more than six hours (from</span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="in">`prepare.py`</span>):</span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g) <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> (t[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> t[i]) <span class="op">/</span> np.timedelta64(<span class="dv">1</span>, <span class="st">"h"</span>)</span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="bu">int</span>(h) <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;</span> h <span class="op">&lt;=</span> <span class="dv">6</span> <span class="cf">else</span> <span class="dv">1</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>            f <span class="op">=</span> k <span class="op">/</span> n <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">6</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>            rows.append((t[i] <span class="op">+</span> np.timedelta64(k, <span class="st">"h"</span>) <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">6</span> <span class="cf">else</span> t[i], <span class="op">*</span>(v[i] <span class="op">+</span> f <span class="op">*</span> (v[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> v[i]))))</span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>**Distance to the country.** For the zone "anywhere in Mozambique, within r km", the script</span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>needs the distance from each hourly position to the country's outline (Natural Earth,</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>1:50m). It flattens the Earth locally around each point, measures the distance to every</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>segment of the outline, and keeps the smallest; inside the country the distance is zero.</span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>The script's notes put the error of the flat approximation under 1 % for distances up to</span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>500 km:</span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> np.cos(np.radians(py))</span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>        ux, uy <span class="op">=</span> (ax <span class="op">-</span> px) <span class="op">*</span> c <span class="op">*</span> k, (ay <span class="op">-</span> py) <span class="op">*</span> k</span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>        vx, vy <span class="op">=</span> (bx <span class="op">-</span> px) <span class="op">*</span> c <span class="op">*</span> k, (by <span class="op">-</span> py) <span class="op">*</span> k</span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>        dx, dy <span class="op">=</span> vx <span class="op">-</span> ux, vy <span class="op">-</span> uy</span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> np.clip(<span class="op">-</span>(ux <span class="op">*</span> dx <span class="op">+</span> uy <span class="op">*</span> dy) <span class="op">/</span> (dx <span class="op">*</span> dx <span class="op">+</span> dy <span class="op">*</span> dy <span class="op">+</span> <span class="fl">1e-12</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>        qx, qy <span class="op">=</span> ux <span class="op">+</span> t <span class="op">*</span> dx, uy <span class="op">+</span> t <span class="op">*</span> dy</span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>        out[s:s <span class="op">+</span> chunk] <span class="op">=</span> np.sqrt(qx <span class="op">*</span> qx <span class="op">+</span> qy <span class="op">*</span> qy).<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a><span class="in">`t`</span> is how far along a segment the nearest point lies, clipped to the segment's ends. For</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>the six cities, the distance is the ordinary great-circle distance.</span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>**The table.** For every storm and every zone, the script keeps one number per radius step</span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>(0 to 500 km in steps of 25): the strongest wind while the centre was inside. That is the</span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>whole trick:</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>A southern-hemisphere season runs from July to June, so the season 2018/19 holds Idai and</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>Kenneth. The page covers 47 seasons, from 1979/80 to 2025/26. For the two latest, the US</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>tracks are still provisional and will change when they are made final.</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## From tracks to one small table</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>The page must answer every combination of zone, radius and wind threshold the instant a</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>slider moves. Computing that from the tracks in the browser would be slow. So a script,</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="in">`scripts/showcase_trigger_lab/prepare.py`</span>, does all of it once, and the page only looks the</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>answer up.</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>**Hourly positions.** The US agency fixes are six-hourly, and IBTrACS adds points in</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>between, so the file has a position every three hours; the script fills in every hour by</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>straight lines between them, but never across a gap of more than six hours (from</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="in">`prepare.py`</span>):</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> (t[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> t[i]) <span class="op">/</span> np.timedelta64(<span class="dv">1</span>, <span class="st">"h"</span>)</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="bu">int</span>(h) <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;</span> h <span class="op">&lt;=</span> <span class="dv">6</span> <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>            f <span class="op">=</span> k <span class="op">/</span> n <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">6</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>            rows.append((t[i] <span class="op">+</span> np.timedelta64(k, <span class="st">"h"</span>) <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">6</span> <span class="cf">else</span> t[i], <span class="op">*</span>(v[i] <span class="op">+</span> f <span class="op">*</span> (v[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> v[i]))))</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>**Distance to the country.** For the zone "anywhere in Mozambique, within r km", the script</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>needs the distance from each hourly position to the country's outline (Natural Earth,</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>1:50m). It flattens the Earth locally around each point, measures the distance to every</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>segment of the outline, and keeps the smallest; inside the country the distance is zero.</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>The script's notes put the error of the flat approximation under 1 % for distances up to</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>500 km:</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> np.cos(np.radians(py))</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>        ux, uy <span class="op">=</span> (ax <span class="op">-</span> px) <span class="op">*</span> c <span class="op">*</span> k, (ay <span class="op">-</span> py) <span class="op">*</span> k</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>        vx, vy <span class="op">=</span> (bx <span class="op">-</span> px) <span class="op">*</span> c <span class="op">*</span> k, (by <span class="op">-</span> py) <span class="op">*</span> k</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>        dx, dy <span class="op">=</span> vx <span class="op">-</span> ux, vy <span class="op">-</span> uy</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> np.clip(<span class="op">-</span>(ux <span class="op">*</span> dx <span class="op">+</span> uy <span class="op">*</span> dy) <span class="op">/</span> (dx <span class="op">*</span> dx <span class="op">+</span> dy <span class="op">*</span> dy <span class="op">+</span> <span class="fl">1e-12</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>        qx, qy <span class="op">=</span> ux <span class="op">+</span> t <span class="op">*</span> dx, uy <span class="op">+</span> t <span class="op">*</span> dy</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>        out[s:s <span class="op">+</span> chunk] <span class="op">=</span> np.sqrt(qx <span class="op">*</span> qx <span class="op">+</span> qy <span class="op">*</span> qy).<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a><span class="in">`t`</span> is how far along a segment the nearest point lies, clipped to the segment's ends. For</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>the six cities, the distance is the ordinary great-circle distance.</span>
 <span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>        mw <span class="op">=</span> {<span class="st">"Mozambique"</span>: [<span class="bu">int</span>(wind[dm <span class="op">&lt;=</span> r].<span class="bu">max</span>()) <span class="cf">if</span> (dm <span class="op">&lt;=</span> r).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span> <span class="cf">for</span> r <span class="kw">in</span> RADII]}</span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>**The table.** For every storm and every zone, the script keeps one number per radius step</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>(0 to 500 km in steps of 25): the strongest wind while the centre was inside. That is the</span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>whole trick:</span>
 <span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>97 storms came within 500 km of Mozambique with a US track. For each, seven zones times 21</span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>radii is 147 numbers. Whether a storm triggers a cover is then one comparison: is the number</span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>for this zone and radius at least the threshold? 23 more storms came near but have no US</span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>track; they are counted on the page and left out.</span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## What counts as a disaster</span></span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>The trigger needs a truth to be tested against: which seasons hurt. That is harder to find</span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>than the storms.</span>
-<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>Mozambique's disaster management institute, INGD, publishes a table of the cyclones that</span>
-<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>affected the country since the 2016/17 season, with the number of people affected, on the</span>
-<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>Humanitarian Data Exchange under CC0. The page uses it: a season counts as a disaster if</span>
-<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>INGD lists a storm in it. Each of INGD's 13 storms is matched to a track by name and season,</span>
-<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>and the script stops if a name matches no track or more than one:</span>
-<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> e <span class="kw">in</span> events:</span>
-<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>        cand <span class="op">=</span> [s <span class="cf">for</span> s <span class="kw">in</span> by_name.get(e[<span class="st">"name"</span>], []) <span class="cf">if</span> s[<span class="st">"season"</span>] <span class="kw">in</span> (e[<span class="st">"year"</span>], e[<span class="st">"year"</span>] <span class="op">+</span> <span class="dv">1</span>)]</span>
-<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">len</span>(cand) <span class="op">==</span> <span class="dv">1</span>, (e, [c[<span class="st">"id"</span>] <span class="cf">for</span> c <span class="kw">in</span> cand])</span>
-<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>        impacts.append({<span class="op">**</span>e, <span class="st">"sid"</span>: cand[<span class="dv">0</span>][<span class="st">"id"</span>], <span class="st">"season"</span>: cand[<span class="dv">0</span>][<span class="st">"season"</span>]})</span>
-<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>Before 2016/17 no open record by season was found for the page. Mozambique's national disaster inventory</span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>for 1979 to 2012 is open on the same platform, but only as totals by year or by hazard. The other large disaster databases that were checked do not allow use on a</span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>site like this one. So 37 of the 47 seasons</span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>can show whether the trigger paid, but not whether it should have. The page marks them "no</span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>open record" and says that this is not the same as "nothing happened".</span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## The page</span></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>The page is written in Observable JavaScript, which Quarto runs in the browser. Its cells</span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>work like a spreadsheet: when a slider changes, every cell that uses it is computed again.</span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>The heart of the page is one cell that sorts every season into the four outcomes (from</span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a><span class="in">`showcases/trigger-lab-mozambique.qmd`</span>):</span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> seasons<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> {</span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paying <span class="op">=</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">season</span> <span class="op">===</span> s <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">mw</span>[zone][ri] <span class="op">&gt;=</span> wind)</span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span>((d) <span class="kw">=&gt;</span> ({<span class="dt">id</span><span class="op">:</span> d<span class="op">.</span><span class="at">id</span><span class="op">,</span> <span class="dt">name</span><span class="op">:</span> d<span class="op">.</span><span class="at">name</span><span class="op">,</span> <span class="dt">mw</span><span class="op">:</span> d<span class="op">.</span><span class="at">mw</span>[zone][ri]}))<span class="op">;</span></span>
-<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eventsAll <span class="op">=</span> tl<span class="op">.</span><span class="at">impacts</span><span class="op">.</span><span class="fu">filter</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">season</span> <span class="op">===</span> s)<span class="op">;</span></span>
-<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> events <span class="op">=</span> eventsAll<span class="op">.</span><span class="fu">filter</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">people_affected</span> <span class="op">&gt;=</span> minAffected)<span class="op">;</span></span>
-<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> record <span class="op">=</span> s <span class="op">&gt;=</span> recordSpan[<span class="dv">0</span>] <span class="op">&amp;&amp;</span> s <span class="op">&lt;=</span> recordSpan[<span class="dv">1</span>]<span class="op">;</span></span>
-<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paid <span class="op">=</span> paying<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">,</span> disaster <span class="op">=</span> events<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cat <span class="op">=</span> <span class="op">!</span>record <span class="op">?</span> (paid <span class="op">?</span> <span class="st">"paid-norec"</span> <span class="op">:</span> <span class="st">"none-norec"</span>)</span>
-<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> paid <span class="op">&amp;&amp;</span> disaster <span class="op">?</span> <span class="st">"hit"</span> <span class="op">:</span> paid <span class="op">?</span> <span class="st">"false"</span> <span class="op">:</span> disaster <span class="op">?</span> <span class="st">"miss"</span> <span class="op">:</span> <span class="st">"quiet"</span><span class="op">;</span></span>
-<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">season</span><span class="op">:</span> s<span class="op">,</span> paying<span class="op">,</span> events<span class="op">,</span> eventsAll<span class="op">,</span> record<span class="op">,</span> paid<span class="op">,</span> disaster<span class="op">,</span> cat}<span class="op">;</span></span>
-<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="in">`d.mw[zone][ri]`</span> is the lookup from the table above. The map, the season grid, the 2×2 and</span>
-<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>the sentence "would have paid … about once every n years" all read <span class="in">`rows`</span>. That last number</span>
-<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>is simply the number of seasons divided by the number that paid; it is a rough return</span>
-<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>period, not a model of one. The page needs no server: the data file is about 245 KB, and</span>
-<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>the page carries no other library than the plotting tools that come with Quarto.</span>
-<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## What ten seasons can tell</span></span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>Ten seasons have an open record, 2016/17 to 2025/26. In eight of them INGD lists at least</span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>one storm. Of the other two, 2017/18 had no storm within 500 km of the country, and in</span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>2019/20 Belna never came within 450 km and Diane came within 350 km only at 20 kt.</span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>So the record is mostly disasters, and that shapes</span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>what it can say (@fig-threshold).</span>
-<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>![What moving the wind threshold does, for two zones: how many of the 47 seasons would have</span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>paid, and how many of the 8 disaster seasons in the record it misses. The marked thresholds</span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>are where the Saffir–Simpson categories 1, 3, 4 and 5 begin (64, 96, 113 and 137 kt), and</span>
-<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>34 kt, the lowest value of the page's slider.](fig-threshold.svg){#fig-threshold fig-alt="Two charts against the wind threshold: paying seasons fall from 24 to none for all of Mozambique and from 7 to none around Beira; missed disaster seasons rise from 0 to 8 for Mozambique and from 6 to 8 around Beira"}</span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>**Misses are easy to see.** With the page's starting setting, anywhere in Mozambique within</span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>100 km and 64 kt, the cover pays in 18 of 47 seasons and misses one disaster season,</span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>2023/24 (Filipo). Raise the threshold to 96 kt and it misses four of the eight. Shrink the</span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>zone to 100 km around Beira and it misses at least six of the eight at any threshold: most of the</span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>storms that hurt Mozambique in these years did not come within 100 km of</span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>Beira.</span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>**False alarms are almost invisible.** In the two seasons without a listed disaster, almost</span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>nothing came near. Within 100 km of the country, no setting gives a single false alarm. One</span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>appears only with the widest zones: Belna pays in 2019/20, without a listed disaster, for</span>
-<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>all of Mozambique within 475 km or more, or around Nacala within 500 km, at thresholds up</span>
-<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a>to 100 kt. A record this short cannot tell how often a trigger pays</span>
-<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a>for nothing, which is exactly what decides its price.</span>
-<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a>**And the record itself is a choice.** "INGD lists a storm" counts Gezani in 2025/26, with</span>
-<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>9,040 people affected, the same as Idai in 2018/19, with 1,628,167 (INGD's sheet for Idai</span>
-<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a>may include a tropical storm of the same weeks). The page lets the reader</span>
-<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a>raise the bar to 100,000 or 500,000 people, and the outcomes shift with it.</span>
-<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a>What basis risk costs the people covered is a question of its own. @clarke2016 shows that</span>
-<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>basis risk changes demand at its root: a buyer with infinite risk aversion would rationally buy none</span>
-<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>of an index cover, and demand need not rise with risk aversion, wealth or a lower price.</span>
-<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a>@jensen2016 measured basis risk with eight seasons of household data for a livestock index</span>
-<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a>cover in northern Kenya, and found that insured households were still left with, on average,</span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>69 % of their original risk from high-loss events.</span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the lab leaves out</span></span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>The wind is the storm's peak, wherever it blew, not the wind at a town. Rain, rivers and</span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a>storm surge are not seen at all: Idai in 2019 brought more than 200 mm of rain in a day and</span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>flooded about 3,000 km², as the page quotes from the government-led</span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Post-Disaster Needs Assessment</span><span class="co">](https://www.undp.org/publications/mozambique-cyclone-idai-post-disaster-needs-assessment-pdnadna)</span></span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>(2019). A</span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>season pays all or nothing, once. There is no premium, no cost and no money amount. The</span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>record of disasters covers ten seasons, and a disaster is a line in a table, not a loss.</span>
-<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>The page reproduces no real insurance product.</span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="fu">## From lab to trigger</span></span>
-<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>A cover that people rely on is built differently. Real programmes calibrate on long</span>
-<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>modelled event sets as well as on history, and some trigger on a modelled loss instead of</span>
-<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>the wind, as the page notes with the example of the Caribbean risk pool's technical paper.</span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a>They pay in steps, from an attachment point to an exhaustion point, rather than all or</span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>nothing. A modelled-loss trigger weighs the hazard by where people and buildings</span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>are. And all of them need what the</span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>lab lacks most: a long, open record of losses to test against, at the scale of the zone.</span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and sources</span></span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>As on the <span class="co">[</span><span class="ot">Trigger Lab page</span><span class="co">](../trigger-lab-mozambique.qmd#data-and-licences)</span>:</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>        mw <span class="op">=</span> {<span class="st">"Mozambique"</span>: [<span class="bu">int</span>(wind[dm <span class="op">&lt;=</span> r].<span class="bu">max</span>()) <span class="cf">if</span> (dm <span class="op">&lt;=</span> r).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span> <span class="cf">for</span> r <span class="kw">in</span> RADII]}</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>97 storms came within 500 km of Mozambique with a US track. For each, seven zones times 21</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>radii is 147 numbers. Whether a storm triggers a cover is then one comparison: is the number</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>for this zone and radius at least the threshold? 23 more storms came near but have no US</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>track; they are counted on the page and left out.</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## What counts as a disaster</span></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>The trigger needs a truth to be tested against: which seasons hurt. That is harder to find</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>than the storms.</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>Mozambique's disaster management institute, INGD, publishes a table of the cyclones that</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>affected the country since the 2016/17 season, with the number of people affected, on the</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>Humanitarian Data Exchange under CC0. The page uses it: a season counts as a disaster if</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>INGD lists a storm in it. Each of INGD's 13 storms is matched to a track by name and season,</span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>and the script stops if a name matches no track or more than one:</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> e <span class="kw">in</span> events:</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>        cand <span class="op">=</span> [s <span class="cf">for</span> s <span class="kw">in</span> by_name.get(e[<span class="st">"name"</span>], []) <span class="cf">if</span> s[<span class="st">"season"</span>] <span class="kw">in</span> (e[<span class="st">"year"</span>], e[<span class="st">"year"</span>] <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">len</span>(cand) <span class="op">==</span> <span class="dv">1</span>, (e, [c[<span class="st">"id"</span>] <span class="cf">for</span> c <span class="kw">in</span> cand])</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>        impacts.append({<span class="op">**</span>e, <span class="st">"sid"</span>: cand[<span class="dv">0</span>][<span class="st">"id"</span>], <span class="st">"season"</span>: cand[<span class="dv">0</span>][<span class="st">"season"</span>]})</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>Before 2016/17 no open record by season was found for the page. Mozambique's national disaster inventory</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>for 1979 to 2012 is open on the same platform, but only as totals by year or by hazard. The other large disaster databases that were checked do not allow use on a</span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>site like this one. So 37 of the 47 seasons</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>can show whether the trigger paid, but not whether it should have. The page marks them "no</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>open record" and says that this is not the same as "nothing happened".</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## The page</span></span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>The page is written in Observable JavaScript, which Quarto runs in the browser. Its cells</span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>work like a spreadsheet: when a slider changes, every cell that uses it is computed again.</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>The heart of the page is one cell that sorts every season into the four outcomes (from</span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="in">`showcases/trigger-lab-mozambique.qmd`</span>):</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> seasons<span class="op">.</span><span class="fu">map</span>((s) <span class="kw">=&gt;</span> {</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paying <span class="op">=</span> tl<span class="op">.</span><span class="at">storms</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">season</span> <span class="op">===</span> s <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">mw</span>[zone][ri] <span class="op">&gt;=</span> wind)</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span>((d) <span class="kw">=&gt;</span> ({<span class="dt">id</span><span class="op">:</span> d<span class="op">.</span><span class="at">id</span><span class="op">,</span> <span class="dt">name</span><span class="op">:</span> d<span class="op">.</span><span class="at">name</span><span class="op">,</span> <span class="dt">mw</span><span class="op">:</span> d<span class="op">.</span><span class="at">mw</span>[zone][ri]}))<span class="op">;</span></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> eventsAll <span class="op">=</span> tl<span class="op">.</span><span class="at">impacts</span><span class="op">.</span><span class="fu">filter</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">season</span> <span class="op">===</span> s)<span class="op">;</span></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> events <span class="op">=</span> eventsAll<span class="op">.</span><span class="fu">filter</span>((e) <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">people_affected</span> <span class="op">&gt;=</span> minAffected)<span class="op">;</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> record <span class="op">=</span> s <span class="op">&gt;=</span> recordSpan[<span class="dv">0</span>] <span class="op">&amp;&amp;</span> s <span class="op">&lt;=</span> recordSpan[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> paid <span class="op">=</span> paying<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">,</span> disaster <span class="op">=</span> events<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cat <span class="op">=</span> <span class="op">!</span>record <span class="op">?</span> (paid <span class="op">?</span> <span class="st">"paid-norec"</span> <span class="op">:</span> <span class="st">"none-norec"</span>)</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> paid <span class="op">&amp;&amp;</span> disaster <span class="op">?</span> <span class="st">"hit"</span> <span class="op">:</span> paid <span class="op">?</span> <span class="st">"false"</span> <span class="op">:</span> disaster <span class="op">?</span> <span class="st">"miss"</span> <span class="op">:</span> <span class="st">"quiet"</span><span class="op">;</span></span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">season</span><span class="op">:</span> s<span class="op">,</span> paying<span class="op">,</span> events<span class="op">,</span> eventsAll<span class="op">,</span> record<span class="op">,</span> paid<span class="op">,</span> disaster<span class="op">,</span> cat}<span class="op">;</span></span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="in">`d.mw[zone][ri]`</span> is the lookup from the table above. The map, the season grid, the 2×2 and</span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>the sentence "would have paid … about once every n years" all read <span class="in">`rows`</span>. That last number</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>is simply the number of seasons divided by the number that paid; it is a rough return</span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>period, not a model of one. The page needs no server: the data file is about 245 KB, and</span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>the page carries no other library than the plotting tools that come with Quarto.</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="fu">## What ten seasons can tell</span></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>Ten seasons have an open record, 2016/17 to 2025/26. In eight of them INGD lists at least</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>one storm. Of the other two, 2017/18 had no storm within 500 km of the country, and in</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>2019/20 Belna never came within 450 km and Diane came within 350 km only at 20 kt.</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>So the record is mostly disasters, and that shapes</span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>what it can say (@fig-threshold).</span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>![What moving the wind threshold does, for two zones: how many of the 47 seasons would have</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>paid, and how many of the 8 disaster seasons in the record it misses. The marked thresholds</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>are where the Saffir–Simpson categories 1, 3, 4 and 5 begin (64, 96, 113 and 137 kt), and</span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>34 kt, the lowest value of the page's slider.](fig-threshold.svg){#fig-threshold fig-alt="Two charts against the wind threshold: paying seasons fall from 24 to none for all of Mozambique and from 7 to none around Beira; missed disaster seasons rise from 0 to 8 for Mozambique and from 6 to 8 around Beira"}</span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>**Misses are easy to see.** With the page's starting setting, anywhere in Mozambique within</span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>100 km and 64 kt, the cover pays in 18 of 47 seasons and misses one disaster season,</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>2023/24 (Filipo). Raise the threshold to 96 kt and it misses four of the eight. Shrink the</span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>zone to 100 km around Beira and it misses at least six of the eight at any threshold: most of the</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>storms that hurt Mozambique in these years did not come within 100 km of</span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>Beira.</span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a>**False alarms are almost invisible.** In the two seasons without a listed disaster, almost</span>
+<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a>nothing came near. Within 100 km of the country, no setting gives a single false alarm. One</span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a>appears only with the widest zones: Belna pays in 2019/20, without a listed disaster, for</span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a>all of Mozambique within 475 km or more, or around Nacala within 500 km, at thresholds up</span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>to 100 kt. A record this short cannot tell how often a trigger pays</span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a>for nothing, which is exactly what decides its price.</span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>**And the record itself is a choice.** "INGD lists a storm" counts Gezani in 2025/26, with</span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a>9,040 people affected, the same as Idai in 2018/19, with 1,628,167 (INGD's sheet for Idai</span>
+<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>may include a tropical storm of the same weeks). The page lets the reader</span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>raise the bar to 100,000 or 500,000 people, and the outcomes shift with it.</span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a>What basis risk costs the people covered is a question of its own. @clarke2016 shows that</span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>basis risk changes demand at its root: a buyer with infinite risk aversion would rationally buy none</span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>of an index cover, and demand need not rise with risk aversion, wealth or a lower price.</span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>@jensen2016 measured basis risk with eight seasons of household data for a livestock index</span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>cover in northern Kenya, and found that insured households were still left with, on average,</span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>69 % of their original risk from high-loss events.</span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the lab leaves out</span></span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>The wind is the storm's peak, wherever it blew, not the wind at a town. Rain, rivers and</span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>storm surge are not seen at all: Idai in 2019 brought more than 200 mm of rain in a day and</span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>flooded about 3,000 km², as the page quotes from the government-led</span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Post-Disaster Needs Assessment</span><span class="co">](https://www.undp.org/publications/mozambique-cyclone-idai-post-disaster-needs-assessment-pdnadna)</span></span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>(2019). A</span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a>season pays all or nothing, once. There is no premium, no cost and no money amount. The</span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>record of disasters covers ten seasons, and a disaster is a line in a table, not a loss.</span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>The page reproduces no real insurance product.</span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## From lab to trigger</span></span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>A cover that people rely on is built differently. Real programmes calibrate on long</span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>modelled event sets as well as on history, and some trigger on a modelled loss instead of</span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>the wind, as the page notes with the example of the Caribbean risk pool's technical paper.</span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>They pay in steps, from an attachment point to an exhaustion point, rather than all or</span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>nothing. A modelled-loss trigger weighs the hazard by where people and buildings</span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>are. And all of them need what the</span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>lab lacks most: a long, open record of losses to test against, at the scale of the zone.</span>
 <span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Storm tracks**: NOAA's International Best Track Archive for Climate Stewardship</span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>  (IBTrACS), version 4r01, South Indian basin, US-agency columns only, accessed 19 November</span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>  2026 (<span class="co">[</span><span class="ot">NCEI</span><span class="co">](https://www.ncei.noaa.gov/products/international-best-track-archive)</span>);</span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>  @knapp2010; Gahtan, J., K. R. Knapp, C. J. Schreck, H. J. Diamond, J. P. Kossin and M. C.</span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>  Kruk (2024): IBTrACS Project, Version 4r01, NOAA National Centers for Environmental</span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>  Information, <span class="co">[</span><span class="ot">doi:10.25921/82ty-9e16</span><span class="co">](https://doi.org/10.25921/82ty-9e16)</span>. No endorsement</span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>  by NOAA implied.</span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disaster seasons**: INGD (Instituto Nacional de Gestão e Redução do Risco de Desastres),</span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">"Mozambique: Impact of Cyclones"</span><span class="co">](https://data.humdata.org/dataset/impact-of-cyclones)</span>, via</span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>  the Humanitarian Data Exchange (OCHA), public domain (CC0), accessed 19 November 2026.</span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Map and distances**: made with <span class="co">[</span><span class="ot">Natural Earth</span><span class="co">](https://www.naturalearthdata.com/)</span> (public</span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>  domain), 1:50m countries and 1:10m populated places.</span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="fu">## A reading guide</span></span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>**Index insurance and basis risk.** An overview <span class="co">[</span><span class="ot">@barnett2007</span><span class="co">]</span>, a theory of demand</span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@clarke2016</span><span class="co">]</span>, basis risk measured in the field <span class="co">[</span><span class="ot">@jensen2016</span><span class="co">]</span>, probabilistic triggers</span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@figueiredo2018</span><span class="co">]</span>.</span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and sources</span></span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>As on the <span class="co">[</span><span class="ot">Trigger Lab page</span><span class="co">](../trigger-lab-mozambique.qmd#data-and-licences)</span>:</span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Storm tracks**: NOAA's International Best Track Archive for Climate Stewardship</span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>  (IBTrACS), version 4r01, South Indian basin, US-agency columns only, accessed 19 November</span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>  2026 (<span class="co">[</span><span class="ot">NCEI</span><span class="co">](https://www.ncei.noaa.gov/products/international-best-track-archive)</span>);</span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>  @knapp2010; Gahtan, J., K. R. Knapp, C. J. Schreck, H. J. Diamond, J. P. Kossin and M. C.</span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>  Kruk (2024): IBTrACS Project, Version 4r01, NOAA National Centers for Environmental</span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>  Information, <span class="co">[</span><span class="ot">doi:10.25921/82ty-9e16</span><span class="co">](https://doi.org/10.25921/82ty-9e16)</span>. No endorsement</span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>  by NOAA implied.</span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Disaster seasons**: INGD (Instituto Nacional de Gestão e Redução do Risco de Desastres),</span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">"Mozambique: Impact of Cyclones"</span><span class="co">](https://data.humdata.org/dataset/impact-of-cyclones)</span>, via</span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>  the Humanitarian Data Exchange (OCHA), public domain (CC0), accessed 19 November 2026.</span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Map and distances**: made with <span class="co">[</span><span class="ot">Natural Earth</span><span class="co">](https://www.naturalearthdata.com/)</span> (public</span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>  domain), 1:50m countries and 1:10m populated places.</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="fu">## A reading guide</span></span>
 <span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>**Judging a yes-or-no forecast.** What makes a forecast good <span class="co">[</span><span class="ot">@murphy1993</span><span class="co">]</span>.</span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>**The storms.** The archive <span class="co">[</span><span class="ot">@knapp2010</span><span class="co">]</span> and how storm strength is estimated from space</span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@velden2006</span><span class="co">]</span>.</span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>**Index insurance and basis risk.** An overview <span class="co">[</span><span class="ot">@barnett2007</span><span class="co">]</span>, a theory of demand</span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@clarke2016</span><span class="co">]</span>, basis risk measured in the field <span class="co">[</span><span class="ot">@jensen2016</span><span class="co">]</span>, probabilistic triggers</span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@figueiredo2018</span><span class="co">]</span>.</span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>**Judging a yes-or-no forecast.** What makes a forecast good <span class="co">[</span><span class="ot">@murphy1993</span><span class="co">]</span>.</span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>**The storms.** The archive <span class="co">[</span><span class="ot">@knapp2010</span><span class="co">]</span> and how storm strength is estimated from space</span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@velden2006</span><span class="co">]</span>.</span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

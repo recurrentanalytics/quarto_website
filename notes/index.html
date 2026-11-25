@@ -46,9 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-72fe1072ab46dcb0c5323460b9c2d533.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -432,16 +432,21 @@ ul.task-list li input[type="checkbox"] {
   </style>
   <h2 id="uc-map-title">Beneath the work</h2>
   <p class="uc-lede">The models and tools sit on the surface. The books, films and pictures from these notes run underneath, and where a current feeds a piece of work, it rises to meet it. Tap a current.</p>
-  <svg id="uc-svg" viewbox="0 0 400 600" role="img" aria-label="The under:current notes drawn as currents beneath four pieces of work"></svg>
+  <svg id="uc-svg" viewbox="0 0 400 600" role="img" aria-label="The under:current notes drawn as currents beneath five pieces of work"></svg>
   <div class="uc-detail" id="uc-detail" aria-live="polite"></div>
   <script>
   // Build after Quarto's quarto-nav.js DOMContentLoaded handler: it rewrites every <a> on the
   // page with href.replace() and throws on SVG links (href is an SVGAnimatedString there).
   document.addEventListener('DOMContentLoaded', () => {
+    // x: label centres on the 400-wide viewBox, about 74 apart, so the widest labels (9
+    // characters of 10.5 px mono, about 57 wide) keep a gap at 375 px; the last stays clear of
+    // the "surface" label at the right edge.
     const WORKS = [
-      { id: 'cee', x: 52,  href: '../models/climate-extremes-explorer.html', name: 'Climate Extremes Explorer', lines: ['Climate', 'Extremes', 'Explorer'] },
-      { id: 'hwp', x: 150, href: '../models/heatwave-prices-de-lu.html', name: 'Heatwaves and day-ahead prices', lines: ['Heatwaves', '& prices'] },
-      { id: 'll',  x: 250, href: '../projects/livelines.html', name: 'LiveLines', lines: ['LiveLines'] },
+      { id: 'cee', x: 42,  href: '../models/climate-extremes-explorer.html', name: 'Climate Extremes Explorer', lines: ['Climate', 'Extremes', 'Explorer'] },
+      { id: 'hwp', x: 116, href: '../models/heatwave-prices-de-lu.html', name: 'Heatwaves and day-ahead prices', aria: 'Heatwaves & prices: heatwaves and day-ahead prices', lines: ['Heatwaves', '& prices'] },
+      { id: 'll',  x: 190, href: '../projects/livelines.html', name: 'LiveLines', lines: ['LiveLines'] },
+      { id: 'mk',  x: 264, href: '../showcases/mekong-coast.html', name: 'The vanishing coast of the Mekong Delta', aria: 'Mekong coast: the vanishing coast of the Mekong Delta', lines: ['Mekong', 'coast'] },
+      { id: 'fc',  x: 324, href: '../playground/forecast/', name: 'Forecast, a game', lines: ['Forecast'] },
     ];
     const NOTES = [
       { t: 'A seagull, a butterfly, a flood', f: 'undercurrent-gleick.html', w: 'James Gleick',
@@ -451,13 +456,15 @@ ul.task-list li input[type="checkbox"] {
       { t: 'Eighty-nine papers and a sandpile', f: 'undercurrent-complexity-compendium.html', w: 'SFI complexity compendium',
         touch: [['ll', 'A storm meets a network, and failures travel along it.']] },
       { t: 'Ice, fire, jungle, voice', f: 'undercurrent-herzog.html', w: 'Werner Herzog',
-        touch: [['ll', 'Herzog argues for ecstatic truth; LiveLines traces every number to its source. A good argument to keep having.']] },
+        touch: [['ll', 'Herzog argues for ecstatic truth; LiveLines shows each value's source or marks it a placeholder. A good argument to keep having.']] },
       { t: 'Water, absent', f: 'undercurrent-burtynsky.html', w: 'Edward Burtynsky',
         touch: [['cee', 'Dry land seen from above; hot spells counted from below.']] },
       { t: 'A shelf of strange books', f: 'undercurrent-penguin-science-fiction.html', w: 'Penguin Science Fiction',
-        touch: [] },
-      { t: 'MANIAC, twice', f: 'undercurrent-maniac.html', w: 'Benjamín Labatut', touch: [] },
-      { t: 'Nausicaä, on paper', f: 'undercurrent-nausicaa.html', w: 'Hayao Miyazaki', touch: [] },
+        touch: [['fc', 'Planning for a world that goes wrong: a shelf of books about what people do while it happens, and a game whose forecast may simply be wrong.']] },
+      { t: 'MANIAC, twice', f: 'undercurrent-maniac.html', w: 'Benjamín Labatut',
+        touch: [['ll', 'The method, from the people around the machine: Ulam, von Neumann and Metropolis made Monte Carlo before the MANIAC was built; LiveLines draws its line failures the same way, by sampling many times.']] },
+      { t: 'Nausicaä, on paper', f: 'undercurrent-nausicaa.html', w: 'Hayao Miyazaki',
+        touch: [['mk', "A forest at the edge: Miyazaki's toxic forest, which a princess studies instead of fighting, and the Mekong's mangroves, which hold the coast's mud and are cut or squeezed."]] },
     ];
     const NS = 'http://www.w3.org/2000/svg';
     const svg = document.getElementById('uc-svg');
@@ -474,7 +481,7 @@ ul.task-list li input[type="checkbox"] {
     el('text', { x: 396, y: SURF - 7, 'text-anchor': 'end', class: 'uc-lbl' }).textContent = 'surface';
     el('text', { x: 396, y: SURF + 18, 'text-anchor': 'end', class: 'uc-lbl' }).textContent = 'under:current';
     WORKS.forEach(w => {
-      const a = el('a', { href: w.href, 'aria-label': w.name });
+      const a = el('a', { href: w.href, 'aria-label': w.aria || w.name });
       el('rect', { x: w.x - 5, y: SURF - 10, width: 10, height: 10, fill: 'var(--rac-ink)', rx: 1 }, a);
       w.lines.forEach((ln, i) => {
         el('text', { x: w.x, y: SURF - 18 - (w.lines.length - 1 - i) * 13, 'text-anchor': 'middle', class: 'uc-work' }, a).textContent = ln;
@@ -529,7 +536,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795565930986" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="2" data-listing-word-count-sort="371">
+<div class="g-col-1" data-index="0" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795566646066" data-listing-date-modified-sort="1795566646000" data-listing-reading-time-sort="3" data-listing-word-count-sort="435">
 <a href="../notes/undercurrent-gleick.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -539,7 +546,7 @@ ul.task-list li input[type="checkbox"] {
 <h5 class="no-anchor card-title listing-title">
 A seagull, a butterfly, a flood
 </h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
+<div class="listing-reading-time card-text text-muted">3 min</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('dW5kZXIlM0FjdXJyZW50'); return false;">under:current</div>
@@ -551,7 +558,7 @@ A seagull, a butterfly, a flood
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795565930987" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
+<div class="g-col-1" data-index="1" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795567232548" data-listing-date-modified-sort="1795567232000" data-listing-reading-time-sort="1" data-listing-word-count-sort="177">
 <a href="../notes/undercurrent-burtynsky.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -573,7 +580,7 @@ Water, absent
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795565930987" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="3" data-listing-word-count-sort="409">
+<div class="g-col-1" data-index="2" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795566654965" data-listing-date-modified-sort="1795566654000" data-listing-reading-time-sort="3" data-listing-word-count-sort="477">
 <a href="../notes/undercurrent-statistical-rethinking.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -595,7 +602,7 @@ Haunted DAGs and spurious waffles
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795565930987" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="3" data-listing-word-count-sort="465">
+<div class="g-col-1" data-index="3" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795215600000" data-listing-file-modified-sort="1795567232547" data-listing-date-modified-sort="1795567232000" data-listing-reading-time-sort="3" data-listing-word-count-sort="531">
 <a href="../notes/undercurrent-herzog.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -617,7 +624,7 @@ Ice, fire, jungle, voice
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795565930988" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1278">
+<div class="g-col-1" data-index="4" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795566646067" data-listing-date-modified-sort="1795566646000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1346">
 <a href="../notes/undercurrent-complexity-compendium.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -639,7 +646,7 @@ Eighty-nine papers and a sandpile
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795565930988" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="3" data-listing-word-count-sort="425">
+<div class="g-col-1" data-index="5" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795567239480" data-listing-date-modified-sort="1795567239000" data-listing-reading-time-sort="3" data-listing-word-count-sort="515">
 <a href="../notes/undercurrent-nausicaa.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -661,7 +668,7 @@ Nausicaä, on paper
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795565930988" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="4" data-listing-word-count-sort="663">
+<div class="g-col-1" data-index="6" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795567232547" data-listing-date-modified-sort="1795567232000" data-listing-reading-time-sort="4" data-listing-word-count-sort="717">
 <a href="../notes/undercurrent-penguin-science-fiction.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -683,7 +690,7 @@ A shelf of strange books
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795565930988" data-listing-date-modified-sort="1795565930000" data-listing-reading-time-sort="4" data-listing-word-count-sort="616">
+<div class="g-col-1" data-index="7" data-categories="dW5kZXIlM0FjdXJyZW50" data-listing-date-sort="1795129200000" data-listing-file-modified-sort="1795567232547" data-listing-date-modified-sort="1795567232000" data-listing-reading-time-sort="4" data-listing-word-count-sort="692">
 <a href="../notes/undercurrent-maniac.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">

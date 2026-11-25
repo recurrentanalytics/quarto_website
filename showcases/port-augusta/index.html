@@ -31,6 +31,10 @@ button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px s
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
 .mark a { pointer-events: auto; text-decoration: none; font: 600 14px/1.2 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 .mark span { font-size: 12px; opacity: 0.8; }
+/* The way to the making-of, under the name; the box in the info panel leads there too. */
+.mark a.howto { display: inline-flex; align-self: flex-start; align-items: center; min-height: 24px; font: 600 12px/1.2 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color: var(--amber); }
+.howto-box { padding: 10px 12px; border: 1px solid var(--line); border-left: 3px solid var(--amber); border-radius: 10px; }
 .icon { position: fixed; top: max(10px, env(safe-area-inset-top)); right: 16px; padding: 0; font-weight: 700; font-family: Georgia, serif; font-style: italic; }
 
 .price {
@@ -146,6 +150,10 @@ body.capture .mark, body.capture .icon, body.capture .playbtn, body.capture .pan
   .price-now { font-size: 29px; }
   .clock { width: 84px; height: 84px; }
 }
+/* Below 900 px the price sits under the name and its making-of link. */
+@media (max-width: 899.98px) {
+  .price { top: calc(max(12px, env(safe-area-inset-top)) + 70px); }
+}
 @media (min-width: 900px) {
   .price { top: max(14px, env(safe-area-inset-top)); }
 }
@@ -160,6 +168,7 @@ body.capture .mark, body.capture .icon, body.capture .playbtn, body.capture .pan
 <header class="mark">
   <a href="../../">re:current_analytics</a>
   <span>Showcase 4 of 4 · Port Augusta</span>
+  <a class="howto" href="../port-augusta-how-it-works/">How it's built →</a>
 </header>
 
 <section class="price" aria-live="off">
@@ -210,7 +219,7 @@ body.capture .mark, body.capture .icon, body.capture .playbtn, body.capture .pan
   <p id="info-fx"></p>
   <p>Times are Port Augusta local time (ACDT, UTC+10:30). AEMO stamps its data in NEM time (UTC+10)
     and each value with the end of its 5-minute interval.</p>
-  <p>How it is made, piece by piece, with code and a reading list: <a href="../port-augusta-how-it-works/">Port Augusta, taken apart</a>.</p>
+  <p class="howto-box">How it is made, piece by piece, with code and a reading list: <a href="../port-augusta-how-it-works/">Port Augusta, taken apart</a>.</p>
   <h2>Sources</h2>
   <ul class="src">
     <li>Plant output and price: <a href="https://nemweb.com.au/Reports/">AEMO, NEMweb</a> public market data

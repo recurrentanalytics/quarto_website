@@ -99,9 +99,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-72fe1072ab46dcb0c5323460b9c2d533.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -459,6 +459,9 @@ div.csl-indent {
 /* The stills are pixel art: keep the pixels sharp when the browser scales them. */
 .quarto-figure img { image-rendering: pixelated; }
 </style>
+<div class="rac-backlink">
+<p><a href="../forecast/">← Back to Forecast</a></p>
+</div>
 <p><a href="../forecast/">Forecast</a> is a small game. Three crews look after a riverside town for three years, and before every round the game shows what the weather will do. This article is about the idea behind it, how it is built, and what to read to go further.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How this was made">
 <div class="callout-header d-flex align-content-center">
@@ -1102,214 +1105,218 @@ Milly, P. C. D., Julio Betancourt, Malin Falkenmark, Robert M. Hirsch, Zbigniew 
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Forecast</span><span class="co">](../forecast/)</span> is a small game. Three crews look after a riverside town for three</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>years, and before every round the game shows what the weather will do. This article is about</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>the idea behind it, how it is built, and what to read to go further.</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>::: {.rac-backlink}</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Back to Forecast</span><span class="co">](../forecast/)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>Crossref, the publisher's page or a library record, and what the article says about each source against the</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>source itself or its abstract.</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>![A round in year 2. Blue ground will flood, orange ground will be hot. Speckled ground and a</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>question mark mean the forecast is not sure. The red signs count the people a quarter would</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>lose.](shot-ranges.jpg){#fig-ranges fig-alt="Pixel-art island with a river, groups of small houses, three crew figures, blue and orange tinted tiles, some of them speckled, and red signs reading minus one"}</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Forecast</span><span class="co">](../forecast/)</span> is a small game. Three crews look after a riverside town for three</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>years, and before every round the game shows what the weather will do. This article is about</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>the idea behind it, how it is built, and what to read to go further.</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>Crossref, the publisher's page or a library record, and what the article says about each source against the</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>source itself or its abstract.</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## A game, not a model</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>The town does not exist. Its rules were made up to make a good puzzle, no number in it has a</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>unit, and nothing was fitted to a measurement. A flood in the game takes "one person per</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>quarter" because that is easy to see and to count, not because floods do that.</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>![A round in year 2. Blue ground will flood, orange ground will be hot. Speckled ground and a</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>question mark mean the forecast is not sure. The red signs count the people a quarter would</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>lose.](shot-ranges.jpg){#fig-ranges fig-alt="Pixel-art island with a river, groups of small houses, three crew figures, blue and orange tinted tiles, some of them speckled, and red signs reading minus one"}</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## A game, not a model</span></span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>So the game says nothing about any real place or any real forecast. What it can do is let</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>you feel one situation from the inside: you plan with a forecast, the forecast gets worse,</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>and nobody tells you when.</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>The town does not exist. Its rules were made up to make a good puzzle, no number in it has a</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>unit, and nothing was fitted to a measurement. A flood in the game takes "one person per</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>quarter" because that is easy to see and to count, not because floods do that.</span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you do</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>The town is an 8 by 8 grid with a river. Each house is one person; a quarter holds up to</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>four. A game lasts three years of five rounds.</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>Before each round the map shows the weather that is coming, in the order it will arrive:</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **storm** sweeps half a row. It takes one person in every quarter on its way and knocks</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  down trees and levees (sandbags laid on open ground).</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**heat** covers a square of 2 by 2 tiles. It takes one person per quarter, unless a tree</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  stands on one of the eight tiles around the quarter.</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **flood** spreads from a stretch of the river, one or two tiles inland, and takes one</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  person in every quarter it reaches.</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>You have three crews. Each walks up to three tiles and then works once: one lays sandbags,</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>one plants trees, one shelters a quarter for the round. Then you end the round and the</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>forecast comes true. Between years people move back, one per quarter that still has people.</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>So the game says nothing about any real place or any real forecast. What it can do is let</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>you feel one situation from the inside: you plan with a forecast, the forecast gets worse,</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>and nobody tells you when.</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you do</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>The town is an 8 by 8 grid with a river. Each house is one person; a quarter holds up to</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>four. A game lasts three years of five rounds.</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>Before each round the map shows the weather that is coming, in the order it will arrive:</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **storm** sweeps half a row. It takes one person in every quarter on its way and knocks</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  down trees and levees (sandbags laid on open ground).</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**heat** covers a square of 2 by 2 tiles. It takes one person per quarter, unless a tree</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  stands on one of the eight tiles around the quarter.</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **flood** spreads from a stretch of the river, one or two tiles inland, and takes one</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  person in every quarter it reaches.</span>
 <span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>![Round 1 on a phone. The sandbag crew has walked next to the house the flood would take;</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>the glowing tiles show where it can work, with a faint preview of the</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>sandbags.](shot-round.jpg){#fig-round fig-alt="Phone screenshot of the game: the island map on top, a hint line, a chip reading flood minus one, three crew buttons and a button reading End round minus one" width=320}</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>You have three crews. Each walks up to three tiles and then works once: one lays sandbags,</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>one plants trees, one shelters a quarter for the round. Then you end the round and the</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>forecast comes true. Between years people move back, one per quarter that still has people.</span>
 <span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>The idea of showing every threat one turn ahead comes from turn-based tactics games. A</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>well-known example is Into the Breach (Subset Games, 2018), where every enemy shows its next</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>attack before it lands. Forecast borrows that idea and nothing else: no names, no art, no</span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>text.</span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Three years, three kinds of not knowing</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>The rounds look the same in every year. What changes is how much the forecast is worth.</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>![Round 1 on a phone. The sandbag crew has walked next to the house the flood would take;</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>the glowing tiles show where it can work, with a faint preview of the</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>sandbags.](shot-round.jpg){#fig-round fig-alt="Phone screenshot of the game: the island map on top, a hint line, a chip reading flood minus one, three crew buttons and a button reading End round minus one" width=320}</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>The idea of showing every threat one turn ahead comes from turn-based tactics games. A</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>well-known example is Into the Breach (Subset Games, 2018), where every enemy shows its next</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>attack before it lands. Forecast borrows that idea and nothing else: no names, no art, no</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>text.</span>
 <span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>**Year 1: you know.** The forecast is exact. Every tinted tile will be hit and no other.</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>All that is left is a planning puzzle: three crews, more threats than hands.</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>**Year 2: you know what you do not know.** The forecast now gives ranges: the storm takes</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>row 4 or row 5, the flood runs one or two tiles inland, the heat sits somewhere in a square</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>of 3 by 3. The map shows the sure part as a solid tint and the unsure part speckled, with a</span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>question mark on the losses. The truth is always inside the range. You can still plan: cover</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>the worst case if you have the hands, or decide which loss you can accept.</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>**Year 3: you do not know that you do not know.** One rule of the weather changes, and the</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>game does not say so. The forecast looks as exact as in year 1, because it still runs on the</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>old rules. A flood reaches one tile further than shown, or trees stop helping against heat,</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>or storms take two rows. The first sign is a loss the forecast did not show, or a tile that</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>was hit without being tinted.</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>The three years follow an old distinction. Frank Knight separated risk, where the odds can</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>be measured, from uncertainty, where they cannot <span class="co">[</span><span class="ot">@knight1921</span><span class="co">]</span>. The work on decisions under</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>*deep uncertainty* goes one step further. Lempert, Popper and Bankes use the term for</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>situations in which analysts do not know, or the parties to a decision cannot agree on, the</span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>models that describe how the system works, the probability distributions for its key</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>uncertainties, or how to value the outcomes <span class="co">[</span><span class="ot">@lempert2003</span><span class="co">]</span>. Year 2 of the game sits near</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>Knight's uncertainty: the outcomes are listed, the odds are not. Year 3 is a toy version of</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>the deeper kind: the model itself is no longer right.</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>Water management has a well-known name for the assumption that breaks in year 3. Milly and</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>colleagues describe *stationarity* as the idea that natural systems fluctuate within an</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>unchanging envelope of variability, call it a foundation of training and practice in water</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>engineering, and argue that climate change has undermined it <span class="co">[</span><span class="ot">@milly2008</span><span class="co">]</span>. A forecast that</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>was tuned on the old weather and is still trusted is the game's picture of that.</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## What a player can try, and what the literature calls it</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>In year 3 a plan that covers the forecast exactly is the first to fail: if the flood runs</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>one tile further, the levee stood one tile too close. Two habits are open to a player, and</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>both have names in the literature.</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Three years, three kinds of not knowing</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>The rounds look the same in every year. What changes is how much the forecast is worth.</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>**Year 1: you know.** The forecast is exact. Every tinted tile will be hit and no other.</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>All that is left is a planning puzzle: three crews, more threats than hands.</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>**Year 2: you know what you do not know.** The forecast now gives ranges: the storm takes</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>row 4 or row 5, the flood runs one or two tiles inland, the heat sits somewhere in a square</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>of 3 by 3. The map shows the sure part as a solid tint and the unsure part speckled, with a</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>question mark on the losses. The truth is always inside the range. You can still plan: cover</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>the worst case if you have the hands, or decide which loss you can accept.</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>**Year 3: you do not know that you do not know.** One rule of the weather changes, and the</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>game does not say so. The forecast looks as exact as in year 1, because it still runs on the</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>old rules. A flood reaches one tile further than shown, or trees stop helping against heat,</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>or storms take two rows. The first sign is a loss the forecast did not show, or a tile that</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>was hit without being tinted.</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>The three years follow an old distinction. Frank Knight separated risk, where the odds can</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>be measured, from uncertainty, where they cannot <span class="co">[</span><span class="ot">@knight1921</span><span class="co">]</span>. The work on decisions under</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>*deep uncertainty* goes one step further. Lempert, Popper and Bankes use the term for</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>situations in which analysts do not know, or the parties to a decision cannot agree on, the</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>models that describe how the system works, the probability distributions for its key</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>uncertainties, or how to value the outcomes <span class="co">[</span><span class="ot">@lempert2003</span><span class="co">]</span>. Year 2 of the game sits near</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>Knight's uncertainty: the outcomes are listed, the odds are not. Year 3 is a toy version of</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>the deeper kind: the model itself is no longer right.</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Water management has a well-known name for the assumption that breaks in year 3. Milly and</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>colleagues describe *stationarity* as the idea that natural systems fluctuate within an</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>unchanging envelope of variability, call it a foundation of training and practice in water</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>engineering, and argue that climate change has undermined it <span class="co">[</span><span class="ot">@milly2008</span><span class="co">]</span>. A forecast that</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>was tuned on the old weather and is still trusted is the game's picture of that.</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## What a player can try, and what the literature calls it</span></span>
 <span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>The first is to stop planning for the one forecast future and to look for plans that still</span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>work when it is wrong: a tree where none is needed yet, a crew held back. Lempert, Popper</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>and Bankes call strategies *robust* when they perform reasonably well across a wide range</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>of plausible futures, instead of best in one <span class="co">[</span><span class="ot">@lempert2003</span><span class="co">]</span>.</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>The second is to watch for the sign that the forecast has failed and to change course when</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>it comes. Dynamic adaptive policy pathways build this into a plan from the start: a</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>sequence of actions over time, and signposts to monitor that show when the plan has to</span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>change <span class="co">[</span><span class="ot">@haasnoot2013</span><span class="co">]</span>. In the game the signpost is the dashed red outline around a tile where the</span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>weather did more than the forecast said.</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>The game does not test either method. It only gives a few minutes in which both feel like</span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>the obvious thing to do. For the methods themselves, the open-access book edited by Marchau</span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>and colleagues is a good start <span class="co">[</span><span class="ot">@marchau2019</span><span class="co">]</span>.</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>In year 3 a plan that covers the forecast exactly is the first to fail: if the flood runs</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>one tile further, the levee stood one tile too close. Two habits are open to a player, and</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>both have names in the literature.</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>The first is to stop planning for the one forecast future and to look for plans that still</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>work when it is wrong: a tree where none is needed yet, a crew held back. Lempert, Popper</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>and Bankes call strategies *robust* when they perform reasonably well across a wide range</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>of plausible futures, instead of best in one <span class="co">[</span><span class="ot">@lempert2003</span><span class="co">]</span>.</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>The second is to watch for the sign that the forecast has failed and to change course when</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>it comes. Dynamic adaptive policy pathways build this into a plan from the start: a</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>sequence of actions over time, and signposts to monitor that show when the plan has to</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>change <span class="co">[</span><span class="ot">@haasnoot2013</span><span class="co">]</span>. In the game the signpost is the dashed red outline around a tile where the</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>weather did more than the forecast said.</span>
 <span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## How it is built</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>The game is one HTML file of about 100 KB with no library, no image files and no sound</span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>files. A short Python script puts it together from five JavaScript modules, a page template</span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>and a style sheet, about 1,700 lines in all.</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>The game does not test either method. It only gives a few minutes in which both feel like</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>the obvious thing to do. For the methods themselves, the open-access book edited by Marchau</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>and colleagues is a good start <span class="co">[</span><span class="ot">@marchau2019</span><span class="co">]</span>.</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## How it is built</span></span>
 <span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### One name, one town</span></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>The address of a game carries a short name, such as <span class="in">`?seed=k7m2p9`</span>. The name is hashed into</span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>a number that drives a small random generator, and everything follows from it: where the</span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>river bends, where the quarters lie (until at least 28 people live in town), the two first</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>trees, where the crews start, all the weather of the fifteen rounds, and which rule will</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>change in year 3. The same link gives the same game.</span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>The first round is chosen when the town is made: the game looks for a stretch of river whose</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>flood the sandbag crew can stop alone, if need be from another starting tile. In a few towns</span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>(about 3 in 100) no such stretch exists, and the first round is harder.</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>The game is one HTML file of about 100 KB with no library, no image files and no sound</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>files. A short Python script puts it together from five JavaScript modules, a page template</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>and a style sheet, about 1,700 lines in all.</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### One name, one town</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>The address of a game carries a short name, such as <span class="in">`?seed=k7m2p9`</span>. The name is hashed into</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>a number that drives a small random generator, and everything follows from it: where the</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>river bends, where the quarters lie (until at least 28 people live in town), the two first</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>trees, where the crews start, all the weather of the fifteen rounds, and which rule will</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>change in year 3. The same link gives the same game.</span>
 <span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### The forecast is the rules, run forward</span></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>There is no separate forecast. The red numbers come from running the round's own rules on a</span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>copy of the map. In year 2 the forecast holds several versions of each hazard (two rows, four</span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>squares, two flood depths). A round in year 2 has two hazards, and the game runs every</span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>combination, eight at most.</span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>A tile that is hit in every run is drawn solid, a tile hit in some is speckled, and each</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>quarter shows the most it could lose.</span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>Year 3 needs only one more argument. The forecast runs the rules without the hidden change;</span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>the round itself runs them with it:</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">endRound</span>(g) {</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hz <span class="op">=</span> g<span class="op">.</span><span class="at">rounds</span>[g<span class="op">.</span><span class="at">t</span>]<span class="op">;</span></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> guard <span class="op">=</span> { <span class="dt">shelter</span><span class="op">:</span> g<span class="op">.</span><span class="at">shelter</span><span class="op">,</span> <span class="dt">bags</span><span class="op">:</span> g<span class="op">.</span><span class="at">bags</span> }<span class="op">;</span></span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> said <span class="op">=</span> <span class="fu">predict</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> hz<span class="op">,</span> guard)<span class="op">;</span>          <span class="co">// what the forecast says</span></span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> change <span class="op">=</span> <span class="fu">yearOf</span>(g<span class="op">.</span><span class="at">t</span>) <span class="op">===</span> <span class="dv">2</span> <span class="op">?</span> g<span class="op">.</span><span class="at">change</span> <span class="op">:</span> <span class="kw">null</span><span class="op">;</span>      <span class="co">// year 3: the hidden change</span></span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o <span class="op">=</span> <span class="fu">resolve</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> <span class="fu">actual</span>(hz)<span class="op">,</span> guard<span class="op">,</span> change)<span class="op">;</span></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="vs">The game then compares the two. Tiles that were hit without being named, and quarters that</span></span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="vs">lost more than the forecast allowed, get the dashed outline.</span></span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="vs">### How hard it is</span></span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="vs">A script played 40 towns to set the difficulty (`</span>_tools<span class="op">/</span>balance<span class="op">.</span><span class="fu">js</span><span class="vs">` next to this article's</span></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a><span class="vs">source). With no crews at work, 39 % of the people</span></span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="vs">are still in town after three years, on average. A simple player that moves one crew at a</span></span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="vs">time to wherever the forecast loss drops most keeps 76 % (between 53 % and 107 % in single</span></span>
-<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="vs">towns; more than 100 % is possible because quarters grow back between years). A person who</span></span>
-<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="vs">plans the three crews together may do better. Nobody has measured how people play it yet.</span></span>
-<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="vs">### Pixels and sound from code</span></span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="vs">Every sprite on the map (houses, trees, sandbags, crews) is a few rows of letters, and each</span></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="vs">letter is a colour of the day or night palette. The ground, the tints and the signs are drawn</span></span>
-<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="vs">by code. This is the levee's sandbag:</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>The first round is chosen when the town is made: the game looks for a stretch of river whose</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>flood the sandbag crew can stop alone, if need be from another starting tile. In a few towns</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>(about 3 in 100) no such stretch exists, and the first round is harder.</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### The forecast is the rules, run forward</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>There is no separate forecast. The red numbers come from running the round's own rules on a</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>copy of the map. In year 2 the forecast holds several versions of each hazard (two rows, four</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>squares, two flood depths). A round in year 2 has two hazards, and the game runs every</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>combination, eight at most.</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>A tile that is hit in every run is drawn solid, a tile hit in some is speckled, and each</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>quarter shows the most it could lose.</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>Year 3 needs only one more argument. The forecast runs the rules without the hidden change;</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>the round itself runs them with it:</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">endRound</span>(g) {</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hz <span class="op">=</span> g<span class="op">.</span><span class="at">rounds</span>[g<span class="op">.</span><span class="at">t</span>]<span class="op">;</span></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> guard <span class="op">=</span> { <span class="dt">shelter</span><span class="op">:</span> g<span class="op">.</span><span class="at">shelter</span><span class="op">,</span> <span class="dt">bags</span><span class="op">:</span> g<span class="op">.</span><span class="at">bags</span> }<span class="op">;</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> said <span class="op">=</span> <span class="fu">predict</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> hz<span class="op">,</span> guard)<span class="op">;</span>          <span class="co">// what the forecast says</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> change <span class="op">=</span> <span class="fu">yearOf</span>(g<span class="op">.</span><span class="at">t</span>) <span class="op">===</span> <span class="dv">2</span> <span class="op">?</span> g<span class="op">.</span><span class="at">change</span> <span class="op">:</span> <span class="kw">null</span><span class="op">;</span>      <span class="co">// year 3: the hidden change</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o <span class="op">=</span> <span class="fu">resolve</span>(g<span class="op">.</span><span class="at">terr</span><span class="op">,</span> g<span class="op">.</span><span class="at">pop</span><span class="op">,</span> <span class="fu">actual</span>(hz)<span class="op">,</span> guard<span class="op">,</span> change)<span class="op">;</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="vs">The game then compares the two. Tiles that were hit without being named, and quarters that</span></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="vs">lost more than the forecast allowed, get the dashed outline.</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="vs">### How hard it is</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="vs">A script played 40 towns to set the difficulty (`</span>_tools<span class="op">/</span>balance<span class="op">.</span><span class="fu">js</span><span class="vs">` next to this article's</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="vs">source). With no crews at work, 39 % of the people</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a><span class="vs">are still in town after three years, on average. A simple player that moves one crew at a</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="vs">time to wherever the forecast loss drops most keeps 76 % (between 53 % and 107 % in single</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="vs">towns; more than 100 % is possible because quarters grow back between years). A person who</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="vs">plans the three crews together may do better. Nobody has measured how people play it yet.</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="vs">### Pixels and sound from code</span></span>
 <span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
-<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="dt">bag</span><span class="op">:</span> [<span class="st">'.oooooo.'</span><span class="op">,</span> <span class="st">'osssssSo'</span><span class="op">,</span> <span class="st">'ossssSSo'</span><span class="op">,</span> <span class="st">'oSSSSSSo'</span><span class="op">,</span> <span class="st">'.oooooo.'</span>]<span class="op">,</span></span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="vs">Every sprite on the map (houses, trees, sandbags, crews) is a few rows of letters, and each</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="vs">letter is a colour of the day or night palette. The ground, the tints and the signs are drawn</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="vs">by code. This is the levee's sandbag:</span></span>
 <span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="vs">The map is drawn on a canvas of 344 by 208 pixels and scaled up without smoothing, so the</span></span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="vs">pixels stay sharp. The ground is drawn once per town and year; water, weather, crews and</span></span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="vs">houses are drawn on top in every frame. The grass gets a little drier each year.</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="dt">bag</span><span class="op">:</span> [<span class="st">'.oooooo.'</span><span class="op">,</span> <span class="st">'osssssSo'</span><span class="op">,</span> <span class="st">'ossssSSo'</span><span class="op">,</span> <span class="st">'oSSSSSSo'</span><span class="op">,</span> <span class="st">'.oooooo.'</span>]<span class="op">,</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
 <span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="vs">![Year 3 in another town. The grass has dried, and where people were lost, ruins remain. The</span></span>
-<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="vs">forecast is drawn as sharply as in year 1; the dashed red outlines mark where the round</span></span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="vs">before did more than it said.](shot-year3.jpg){#fig-year3 fig-alt="The island with dry yellow-green grass, ruins between the remaining houses and tinted weather areas"}</span></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="vs">The map is drawn on a canvas of 344 by 208 pixels and scaled up without smoothing, so the</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="vs">pixels stay sharp. The ground is drawn once per town and year; water, weather, crews and</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="vs">houses are drawn on top in every frame. The grass gets a little drier each year.</span></span>
 <span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="vs">![The same game by night, with lit windows.](shot-night.jpg){#fig-night fig-alt="The island at night: dark ground, houses with lit windows, the river and three crews"}</span></span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="vs">The music is made with the Web Audio API and reads the town like a score: a line sweeps the</span></span>
-<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a><span class="vs">eight columns, each quarter with people plays a note (higher on the map, higher note; more</span></span>
-<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="vs">people, louder), trees add a low tone and the river a bass. The coming weather sets the</span></span>
-<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a><span class="vs">sound and the tempo, and each new year shifts the scale. In year 3 the music changes before</span></span>
-<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="vs">the map shows why.</span></span>
-<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a><span class="vs">### Without a mouse, without motion</span></span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="vs">Behind the canvas lie 64 ordinary buttons, one per tile, out of sight. They carry the map</span></span>
-<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="vs">for keyboards and screen readers: each one says what stands on its tile, what weather is</span></span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="vs">coming and what would be lost. With reduced motion switched on, the map is drawn in still</span></span>
-<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="vs">frames.</span></span>
-<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="vs">## What the game leaves out</span></span>
-<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Odds.** Year 2 gives ranges but no probabilities, and the player never learns how often</span></span>
-<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="vs">  the worse end came true.</span></span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Disagreement.** In the definition above, deep uncertainty is also about people who</span></span>
-<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="vs">  cannot agree on what a good outcome is. The game has one goal and one player.</span></span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Cost.** Sandbags, trees and shelter are free; only time is short. Real protection</span></span>
-<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="vs">  competes with everything else a town needs.</span></span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="vs">- **A forecast that learns.** After the first miss, a real forecaster would start to doubt</span></span>
-<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="vs">  the model. The game's forecast never does.</span></span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Slow change.** The rule changes once and at once. Real change is gradual, and that makes</span></span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="vs">  it harder to notice.</span></span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="vs">## References</span></span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {#refs}</span></span>
-<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="vs">![Year 3 in another town. The grass has dried, and where people were lost, ruins remain. The</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a><span class="vs">forecast is drawn as sharply as in year 1; the dashed red outlines mark where the round</span></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="vs">before did more than it said.](shot-year3.jpg){#fig-year3 fig-alt="The island with dry yellow-green grass, ruins between the remaining houses and tinted weather areas"}</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="vs">![The same game by night, with lit windows.](shot-night.jpg){#fig-night fig-alt="The island at night: dark ground, houses with lit windows, the river and three crews"}</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="vs">The music is made with the Web Audio API and reads the town like a score: a line sweeps the</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="vs">eight columns, each quarter with people plays a note (higher on the map, higher note; more</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a><span class="vs">people, louder), trees add a low tone and the river a bass. The coming weather sets the</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="vs">sound and the tempo, and each new year shifts the scale. In year 3 the music changes before</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="vs">the map shows why.</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="vs">### Without a mouse, without motion</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="vs">Behind the canvas lie 64 ordinary buttons, one per tile, out of sight. They carry the map</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="vs">for keyboards and screen readers: each one says what stands on its tile, what weather is</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="vs">coming and what would be lost. With reduced motion switched on, the map is drawn in still</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="vs">frames.</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="vs">## What the game leaves out</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Odds.** Year 2 gives ranges but no probabilities, and the player never learns how often</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="vs">  the worse end came true.</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Disagreement.** In the definition above, deep uncertainty is also about people who</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="vs">  cannot agree on what a good outcome is. The game has one goal and one player.</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Cost.** Sandbags, trees and shelter are free; only time is short. Real protection</span></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="vs">  competes with everything else a town needs.</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="vs">- **A forecast that learns.** After the first miss, a real forecaster would start to doubt</span></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="vs">  the model. The game's forecast never does.</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Slow change.** The rule changes once and at once. Real change is gradual, and that makes</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="vs">  it harder to notice.</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a><span class="vs">## References</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {#refs}</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

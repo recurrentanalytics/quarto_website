@@ -91,6 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   createBreadcrumbs();
 
+  // A making-of's way back to its work (.rac-backlink, first in the body) moves up above the
+  // title, under the breadcrumb, so it is the first thing on the page. Without JS it stays
+  // just below the title block.
+  document.querySelectorAll('.rac-backlink').forEach(el => {
+    const head = document.querySelector('#title-block-header');
+    if (head && head.parentNode) head.parentNode.insertBefore(el, head);
+  });
+
   // Reading progress bar
   const progressBar = document.createElement('div');
   progressBar.className = 'reading-progress';

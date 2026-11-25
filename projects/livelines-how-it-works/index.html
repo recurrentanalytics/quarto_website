@@ -99,9 +99,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-72fe1072ab46dcb0c5323460b9c2d533.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -463,6 +463,9 @@ div.csl-indent {
 /* Long links in the reference list wrap on a narrow screen. */
 #refs a, #data-and-sources a { overflow-wrap: anywhere; }
 </style>
+<div class="rac-backlink">
+<p><a href="../../projects/livelines.html">← Back to LiveLines</a></p>
+</div>
 <p><a href="../../projects/livelines.html">LiveLines</a> asks one question: when this storm passes, which transmission lines are likely to fail, hour by hour, and how much of each substation’s load can the remaining grid still serve? The <a href="../../showcases/maria-how-it-works/">Maria article</a> takes apart the physics of one such run. This one takes apart the instrument: how it is built so that every step can be opened, every number traced, and every comparison kept honest.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How this was made">
 <div class="callout-header d-flex align-content-center">
@@ -1153,320 +1156,324 @@ Parzen, Maximilian, Hazem Abdel-Khalek, Ekaterina Fedotova, Matin Mahmood, Marth
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">LiveLines</span><span class="co">](../livelines.qmd)</span> asks one question: when this storm passes, which</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>transmission lines are likely to fail, hour by hour, and how much of each substation's load</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>can the remaining grid still serve? The <span class="co">[</span><span class="ot">Maria article</span><span class="co">](../../showcases/maria-how-it-works/)</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>takes apart the physics of one such run. This one takes apart the instrument: how it is</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>built so that every step can be opened, every number traced, and every comparison kept</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>honest.</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy.</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## One question, one chain</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>LiveLines runs one calculation in six modules: place, grid, storm, fragility, power flow and</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>outcome. The kernel runs them in the order of their cables: the grid feeds the storm module,</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>which needs to know where the lines are. Where only the power lines are known, as in most of</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>the world from OpenStreetMap, the chain stops after fragility: it shows which lines break,</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>not who loses supply. Where a full grid model exists, with plants and load, it runs to the</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>end. Every result is labelled *transmission level*: the model stops at the substation, and the</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>distribution lines beyond it, where storms do much of their damage, are not in it.</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>@fig-layers shows how the parts fit together.</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>![How LiveLines is put together. Three views show one patch; the patch runs the six modules of the kernel in cable order; the modules read their values</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>from one register.](fig-layers.svg){#fig-layers fig-alt="Diagram: Steps, Rack and Code all point to one patch; the patch runs six modules from place to outcome; place, fragility, the DC power flow and outcome can also run in the browser, storm runs in the kernel in the app, PyPSA only in the kernel; an evidence register feeds the modules"}</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cables that check themselves</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>Modules do not call each other. Each one takes *cables* in and puts cables out: plain arrays</span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>with a fixed meaning and fixed units. The sample axis always comes first, power is in MW,</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>positions are in degrees, hours count from the start of the storm's window. Six cables</span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>carry everything: place, grid, wind, failures, flow and supply.</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>Each cable is a frozen dataclass that checks its own shapes and ranges when it is made, so a</span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>module cannot pass on something malformed. The cable that carries line failures, for</span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>example, refuses failure hours outside the window (and, in the lines cut here, repair hours</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>before the failure) (from</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="in">`src/kritis/chain/contracts.py`</span> at commit b367912, shortened):</span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Failures:</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Failure hour per (sample, line). ``n_hour`` means the line never fails.</span></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co">    …</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    t_fail_hour: IntArray</span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    n_hour: <span class="bu">int</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    seed: <span class="bu">int</span></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    t_repair_hour: IntArray <span class="op">|</span> <span class="va">None</span> <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># …</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> __post_init__(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        _need(<span class="va">self</span>.t_fail_hour.ndim <span class="op">==</span> <span class="dv">2</span>, <span class="st">"t_fail_hour: expected (sample, line)"</span>)</span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>        _need(<span class="va">self</span>.t_fail_hour.dtype.kind <span class="kw">in</span> <span class="st">"iu"</span>, <span class="st">"t_fail_hour: expected integer hours"</span>)</span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>        lo, hi <span class="op">=</span> <span class="dv">0</span>, <span class="va">self</span>.n_hour</span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>        ok <span class="op">=</span> <span class="bu">bool</span>(np.<span class="bu">all</span>((<span class="va">self</span>.t_fail_hour <span class="op">&gt;=</span> lo) <span class="op">&amp;</span> (<span class="va">self</span>.t_fail_hour <span class="op">&lt;=</span> hi)))</span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>        _need(ok, <span class="ss">f"t_fail_hour: values must lie in </span><span class="sc">{</span>lo<span class="sc">}</span><span class="ss">..</span><span class="sc">{</span>hi<span class="sc">}</span><span class="ss"> (n_hour = never)"</span>)</span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>        <span class="co"># … the same checks for the repair hours</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>A failure hour equal to the window's length means "never fails". That one convention lets</span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>every later module treat "out" as a simple comparison of hours.</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## The same code, in the kernel and in the browser</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>The modules that do the arithmetic of the chain, storm, fragility, the DC power flow and</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>outcome, are written in numpy and the standard library. That rule is what lets the same</span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>functions run in the kernel and in a visitor's browser, through Pyodide, a build of Python</span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>for the browser (pinned to version 0.29.5 and loaded on first use). In the app, fragility, the</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>DC power flow and outcome are the modules a visitor can edit and run in the browser; the storm</span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>module is browser-ready too, but the app takes the track and the wind from the kernel, where</span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>the track is built. A first test checks that the chain needs none of the heavy packages: it</span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>hides six of them and checks that the chain still imports (from</span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="in">`tests/chain/test_contracts.py`</span>):</span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_chain_imports_without_heavy_packages() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> (</span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import sys</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>        <span class="st">"for m in ('geopandas', 'pyproj', 'pandas', 'pypsa', 'shapely', 'scipy'):</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>        <span class="st">"    sys.modules[m] = None</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.contracts</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.powerflow_dc</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.geodesy</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.storm</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.fragility</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.outcome</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>        <span class="st">"print('ok')</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>    <span class="co"># … runs this in a fresh Python and asserts that it prints "ok"</span></span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>Setting a module to <span class="in">`None`</span> in <span class="in">`sys.modules`</span> makes any import of it fail, so if one chain</span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>module quietly started to use pandas, this test would break. Two stronger tests go further:</span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>one compares the kernel's results with the browser chain's bit for bit</span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>(<span class="in">`tests/contracts/test_browser_golden.py`</span>), and one runs the chain in a real Pyodide</span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>(<span class="in">`viewer/tests/browser_kernel.pyodide.test.ts`</span>).</span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>Three other engines never reach the browser. PyPSA <span class="co">[</span><span class="ot">@pypsa</span><span class="co">]</span>, with the HiGHS solver, is the</span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>only one the kernel imports, inside one adapter: it reads the grid files and solves the second</span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>power flow, an optimum with a perfect operator. CLIMADA <span class="co">[</span><span class="ot">@climada</span><span class="co">]</span>, an open platform for</span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>weather and climate risk, computes a second wind field as a cross-check; it runs in its own</span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>environment, as a separate process, and the kernel never imports it. PyPSA-Earth</span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@pypsaearth</span><span class="co">]</span> builds the grid models for other parts of the world, offline, also as a</span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>separate program. The rule that follows: code a visitor edits runs in their browser, or in a notebook on their</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>own machine.</span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## One patch, three views</span></span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>Everything a visitor chooses is one *patch*: a small JSON file with the modules, their</span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>knobs, the cables between them, a random seed, the number of samples, and any evidence</span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>values set for this run. The Maria showcase is one such patch (from</span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a><span class="in">`patches/chain_maria_pr.json`</span>, shortened):</span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a><span class="in">```json</span></span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>  <span class="st">"schema_version"</span><span class="op">:</span> <span class="st">"rack_patch.v1"</span><span class="op">,</span></span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>  <span class="st">"id"</span><span class="op">:</span> <span class="st">"chain.maria_pr"</span><span class="op">,</span></span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>  <span class="st">"title"</span><span class="op">:</span> <span class="st">"Maria 2017 over Puerto Rico, PyPSA-Earth with the 2017 plants"</span><span class="op">,</span></span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>  <span class="st">"seed"</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span></span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  <span class="st">"n_samples"</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span></span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>  <span class="st">"nodes"</span><span class="op">:</span> [ … ]<span class="op">,</span></span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cables"</span><span class="op">:</span> [</span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>      <span class="st">"id"</span><span class="op">:</span> <span class="st">"c_grid_storm"</span><span class="op">,</span></span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>      <span class="st">"cable_type"</span><span class="op">:</span> <span class="st">"grid"</span><span class="op">,</span></span>
-<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>      <span class="st">"from_port"</span><span class="op">:</span> { <span class="st">"node"</span><span class="op">:</span> <span class="st">"grid_1"</span><span class="op">,</span> <span class="st">"port"</span><span class="op">:</span> <span class="st">"out"</span> }<span class="op">,</span></span>
-<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>      <span class="st">"to_port"</span><span class="op">:</span> { <span class="st">"node"</span><span class="op">:</span> <span class="st">"storm_1"</span><span class="op">,</span> <span class="st">"port"</span><span class="op">:</span> <span class="st">"grid"</span> }</span>
-<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>    …</span>
-<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>  <span class="st">"refs"</span><span class="op">:</span> []</span>
-<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>The app shows the same patch at three depths. **Steps** puts the six modules as boxes over</span>
-<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>the map, with an hour slider. **Rack** shows every module with its cables, knobs and scopes,</span>
-<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>like a modular synthesiser. **Code** shows the chain as a live notebook (Marimo): change a</span>
-<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>setting in the notebook and the map follows, change it in the app and the notebook follows.</span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>The same patch with the same seed gives the same numbers, bit for bit. A command-line run</span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>writes a result folder with a manifest (the patch, the code version, a hash of the evidence</span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>files, the seed, the data licences), and the same run on the same code and evidence writes</span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>byte-identical files. When the kernel runs a patch, it walks the modules in cable order and</span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>caches each module's output under a hash of its inputs, its knobs and a fingerprint of the</span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>code and evidence, so a changed knob reruns only</span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>that module and the ones after it.</span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## A home for every number</span></span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>No physical or economic number is meant to be typed into the chain's own code, and review</span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>checks that none is. Every one lives in a folder called <span class="in">`evidence/`</span>, with its unit, its source</span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>and a status. For single values the status is *sourced*, *placeholder*, or one of two others</span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>described below. A placeholder is a question, not an answer, and the app marks every result</span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>that read one. Here is one entry, the threshold of the collapse rule that the Maria</span>
-<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>showcase discusses (from <span class="in">`evidence/params.yaml`</span>, the long fields shortened):</span>
-<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
-<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">powerflow.collapse_imbalance</span><span class="kw">:</span></span>
-<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.25</span></span>
-<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">unit</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span>
-<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">distribution</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">kind</span><span class="kw">:</span><span class="at"> deterministic</span><span class="kw">,</span><span class="at"> </span><span class="fu">params</span><span class="kw">:</span><span class="at"> </span><span class="kw">{}}</span></span>
-<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source</span><span class="kw">:</span><span class="at"> </span><span class="st">"nerc_prc006: NERC PRC-006-5, Requirement R3. UFLS programs must meet … up to 25 percent …"</span></span>
-<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">status</span><span class="kw">:</span><span class="at"> placeholder</span></span>
-<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">note</span><span class="kw">:</span><span class="at"> </span><span class="st">"Used by powerflow_dc's collapse rule … Transferred: 25 % is the North American design basis, …"</span></span>
-<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>The value has a source and is still a placeholder, because it was transferred: a North American design rule applied to an island grid that is not bound by it. The note says so.</span>
-<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>The kernel checks these files when it loads them: a value marked sourced without a source, a</span>
-<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>missing unit or an unknown field is an error, not a warning. And every module's result</span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>carries a trace of the values it read, so the Rack can answer "why is this number what it</span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>is?" by pointing to the entry. At this commit, <span class="in">`params.yaml`</span> holds 157 single values: 112 are marked placeholder and 33</span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>sourced; two more are numerical settings chosen by benchmark against an exact computation,</span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>and ten freeze an earlier model so that its old results stay reproducible. That is the honest</span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>state of a young model.</span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparing, not tuning</span></span>
-<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>LiveLines grades each module: *placeholder*, *literature*, or *validated*. Validated means</span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>checked against observations, with the result recorded and judged. None of the six modules is</span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>validated yet.</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>::: {.rac-backlink}</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Back to LiveLines</span><span class="co">](../livelines.qmd)</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">LiveLines</span><span class="co">](../livelines.qmd)</span> asks one question: when this storm passes, which</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>transmission lines are likely to fail, hour by hour, and how much of each substation's load</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>can the remaining grid still serve? The <span class="co">[</span><span class="ot">Maria article</span><span class="co">](../../showcases/maria-how-it-works/)</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>takes apart the physics of one such run. This one takes apart the instrument: how it is</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>built so that every step can be opened, every number traced, and every comparison kept</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>honest.</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy.</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## One question, one chain</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>LiveLines runs one calculation in six modules: place, grid, storm, fragility, power flow and</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>outcome. The kernel runs them in the order of their cables: the grid feeds the storm module,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>which needs to know where the lines are. Where only the power lines are known, as in most of</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>the world from OpenStreetMap, the chain stops after fragility: it shows which lines break,</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>not who loses supply. Where a full grid model exists, with plants and load, it runs to the</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>end. Every result is labelled *transmission level*: the model stops at the substation, and the</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>distribution lines beyond it, where storms do much of their damage, are not in it.</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>@fig-layers shows how the parts fit together.</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>![How LiveLines is put together. Three views show one patch; the patch runs the six modules of the kernel in cable order; the modules read their values</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>from one register.](fig-layers.svg){#fig-layers fig-alt="Diagram: Steps, Rack and Code all point to one patch; the patch runs six modules from place to outcome; place, fragility, the DC power flow and outcome can also run in the browser, storm runs in the kernel in the app, PyPSA only in the kernel; an evidence register feeds the modules"}</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cables that check themselves</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>Modules do not call each other. Each one takes *cables* in and puts cables out: plain arrays</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>with a fixed meaning and fixed units. The sample axis always comes first, power is in MW,</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>positions are in degrees, hours count from the start of the storm's window. Six cables</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>carry everything: place, grid, wind, failures, flow and supply.</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>Each cable is a frozen dataclass that checks its own shapes and ranges when it is made, so a</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>module cannot pass on something malformed. The cable that carries line failures, for</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>example, refuses failure hours outside the window (and, in the lines cut here, repair hours</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>before the failure) (from</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="in">`src/kritis/chain/contracts.py`</span> at commit b367912, shortened):</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Failures:</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Failure hour per (sample, line). ``n_hour`` means the line never fails.</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co">    …</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    t_fail_hour: IntArray</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    n_hour: <span class="bu">int</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>    seed: <span class="bu">int</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>    t_repair_hour: IntArray <span class="op">|</span> <span class="va">None</span> <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># …</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> __post_init__(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>        _need(<span class="va">self</span>.t_fail_hour.ndim <span class="op">==</span> <span class="dv">2</span>, <span class="st">"t_fail_hour: expected (sample, line)"</span>)</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>        _need(<span class="va">self</span>.t_fail_hour.dtype.kind <span class="kw">in</span> <span class="st">"iu"</span>, <span class="st">"t_fail_hour: expected integer hours"</span>)</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>        lo, hi <span class="op">=</span> <span class="dv">0</span>, <span class="va">self</span>.n_hour</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>        ok <span class="op">=</span> <span class="bu">bool</span>(np.<span class="bu">all</span>((<span class="va">self</span>.t_fail_hour <span class="op">&gt;=</span> lo) <span class="op">&amp;</span> (<span class="va">self</span>.t_fail_hour <span class="op">&lt;=</span> hi)))</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>        _need(ok, <span class="ss">f"t_fail_hour: values must lie in </span><span class="sc">{</span>lo<span class="sc">}</span><span class="ss">..</span><span class="sc">{</span>hi<span class="sc">}</span><span class="ss"> (n_hour = never)"</span>)</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>        <span class="co"># … the same checks for the repair hours</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>A failure hour equal to the window's length means "never fails". That one convention lets</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>every later module treat "out" as a simple comparison of hours.</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## The same code, in the kernel and in the browser</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>The modules that do the arithmetic of the chain, storm, fragility, the DC power flow and</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>outcome, are written in numpy and the standard library. That rule is what lets the same</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>functions run in the kernel and in a visitor's browser, through Pyodide, a build of Python</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>for the browser (pinned to version 0.29.5 and loaded on first use). In the app, fragility, the</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>DC power flow and outcome are the modules a visitor can edit and run in the browser; the storm</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>module is browser-ready too, but the app takes the track and the wind from the kernel, where</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>the track is built. A first test checks that the chain needs none of the heavy packages: it</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>hides six of them and checks that the chain still imports (from</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a><span class="in">`tests/chain/test_contracts.py`</span>):</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_chain_imports_without_heavy_packages() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> (</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import sys</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>        <span class="st">"for m in ('geopandas', 'pyproj', 'pandas', 'pypsa', 'shapely', 'scipy'):</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>        <span class="st">"    sys.modules[m] = None</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.contracts</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.powerflow_dc</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.geodesy</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.storm</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.fragility</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>        <span class="st">"import kritis.chain.outcome</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>        <span class="st">"print('ok')</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>    <span class="co"># … runs this in a fresh Python and asserts that it prints "ok"</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>Setting a module to <span class="in">`None`</span> in <span class="in">`sys.modules`</span> makes any import of it fail, so if one chain</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>module quietly started to use pandas, this test would break. Two stronger tests go further:</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>one compares the kernel's results with the browser chain's bit for bit</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>(<span class="in">`tests/contracts/test_browser_golden.py`</span>), and one runs the chain in a real Pyodide</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>(<span class="in">`viewer/tests/browser_kernel.pyodide.test.ts`</span>).</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>Three other engines never reach the browser. PyPSA <span class="co">[</span><span class="ot">@pypsa</span><span class="co">]</span>, with the HiGHS solver, is the</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>only one the kernel imports, inside one adapter: it reads the grid files and solves the second</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>power flow, an optimum with a perfect operator. CLIMADA <span class="co">[</span><span class="ot">@climada</span><span class="co">]</span>, an open platform for</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>weather and climate risk, computes a second wind field as a cross-check; it runs in its own</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>environment, as a separate process, and the kernel never imports it. PyPSA-Earth</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@pypsaearth</span><span class="co">]</span> builds the grid models for other parts of the world, offline, also as a</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>separate program. The rule that follows: code a visitor edits runs in their browser, or in a notebook on their</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>own machine.</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## One patch, three views</span></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>Everything a visitor chooses is one *patch*: a small JSON file with the modules, their</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>knobs, the cables between them, a random seed, the number of samples, and any evidence</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>values set for this run. The Maria showcase is one such patch (from</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="in">`patches/chain_maria_pr.json`</span>, shortened):</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a><span class="in">```json</span></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  <span class="st">"schema_version"</span><span class="op">:</span> <span class="st">"rack_patch.v1"</span><span class="op">,</span></span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>  <span class="st">"id"</span><span class="op">:</span> <span class="st">"chain.maria_pr"</span><span class="op">,</span></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>  <span class="st">"title"</span><span class="op">:</span> <span class="st">"Maria 2017 over Puerto Rico, PyPSA-Earth with the 2017 plants"</span><span class="op">,</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>  <span class="st">"seed"</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>  <span class="st">"n_samples"</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>  <span class="st">"nodes"</span><span class="op">:</span> [ … ]<span class="op">,</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cables"</span><span class="op">:</span> [</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>      <span class="st">"id"</span><span class="op">:</span> <span class="st">"c_grid_storm"</span><span class="op">,</span></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>      <span class="st">"cable_type"</span><span class="op">:</span> <span class="st">"grid"</span><span class="op">,</span></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>      <span class="st">"from_port"</span><span class="op">:</span> { <span class="st">"node"</span><span class="op">:</span> <span class="st">"grid_1"</span><span class="op">,</span> <span class="st">"port"</span><span class="op">:</span> <span class="st">"out"</span> }<span class="op">,</span></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>      <span class="st">"to_port"</span><span class="op">:</span> { <span class="st">"node"</span><span class="op">:</span> <span class="st">"storm_1"</span><span class="op">,</span> <span class="st">"port"</span><span class="op">:</span> <span class="st">"grid"</span> }</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>    …</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>  <span class="st">"refs"</span><span class="op">:</span> []</span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>The app shows the same patch at three depths. **Steps** puts the six modules as boxes over</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>the map, with an hour slider. **Rack** shows every module with its cables, knobs and scopes,</span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>like a modular synthesiser. **Code** shows the chain as a live notebook (Marimo): change a</span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>setting in the notebook and the map follows, change it in the app and the notebook follows.</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>The same patch with the same seed gives the same numbers, bit for bit. A command-line run</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>writes a result folder with a manifest (the patch, the code version, a hash of the evidence</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>files, the seed, the data licences), and the same run on the same code and evidence writes</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>byte-identical files. When the kernel runs a patch, it walks the modules in cable order and</span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>caches each module's output under a hash of its inputs, its knobs and a fingerprint of the</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>code and evidence, so a changed knob reruns only</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>that module and the ones after it.</span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="fu">## A home for every number</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>No physical or economic number is meant to be typed into the chain's own code, and review</span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>checks that none is. Every one lives in a folder called <span class="in">`evidence/`</span>, with its unit, its source</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>and a status. For single values the status is *sourced*, *placeholder*, or one of two others</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>described below. A placeholder is a question, not an answer, and the app marks every result</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>that read one. Here is one entry, the threshold of the collapse rule that the Maria</span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>showcase discusses (from <span class="in">`evidence/params.yaml`</span>, the long fields shortened):</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">powerflow.collapse_imbalance</span><span class="kw">:</span></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">value</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.25</span></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">unit</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">distribution</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">kind</span><span class="kw">:</span><span class="at"> deterministic</span><span class="kw">,</span><span class="at"> </span><span class="fu">params</span><span class="kw">:</span><span class="at"> </span><span class="kw">{}}</span></span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source</span><span class="kw">:</span><span class="at"> </span><span class="st">"nerc_prc006: NERC PRC-006-5, Requirement R3. UFLS programs must meet … up to 25 percent …"</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">status</span><span class="kw">:</span><span class="at"> placeholder</span></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">note</span><span class="kw">:</span><span class="at"> </span><span class="st">"Used by powerflow_dc's collapse rule … Transferred: 25 % is the North American design basis, …"</span></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>The value has a source and is still a placeholder, because it was transferred: a North American design rule applied to an island grid that is not bound by it. The note says so.</span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>The kernel checks these files when it loads them: a value marked sourced without a source, a</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>missing unit or an unknown field is an error, not a warning. And every module's result</span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>carries a trace of the values it read, so the Rack can answer "why is this number what it</span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>is?" by pointing to the entry. At this commit, <span class="in">`params.yaml`</span> holds 157 single values: 112 are marked placeholder and 33</span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>sourced; two more are numerical settings chosen by benchmark against an exact computation,</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>and ten freeze an earlier model so that its old results stay reproducible. That is the honest</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>state of a young model.</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparing, not tuning</span></span>
 <span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>Two kinds of check are kept apart on purpose:</span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Model against model.** The numpy DC power flow against PyPSA on the same inputs; the</span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>  kernel's wind against CLIMADA's on the same track. These are comparisons. They tell how</span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>  much of an answer is the choice of model, not whether the answer is right.</span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Model against observation.** The Maria run against satellite night lights and the U.S.</span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>  Department of Energy's outage reports, recorded as comparison records. Only checks of this</span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>  kind can lead to *validated*.</span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>And a difference is never tuned away. It is investigated, explained if it can be, and written</span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>down. The <span class="co">[</span><span class="ot">Maria article</span><span class="co">](../../showcases/maria-how-it-works/#what-came-later)</span> shows what this</span>
-<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>looks like in practice: the model misses the island-wide blackout; the record says so, and a session note ranks the</span>
-<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a>likely causes.</span>
-<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a>The caution has a long pedigree. @oreskes argue that numerical models of natural systems</span>
-<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a>cannot be verified or validated in a strict sense, because such systems are never closed;</span>
-<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>agreement with observations confirms a model only in part. LiveLines uses "validated" in a</span>
-<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a>narrower, practical sense, and keeps model-to-model agreement out of it.</span>
-<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a><span class="fu">### When the middle hides the answer</span></span>
-<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>One recent change shows why the records matter. With a collapse rule on, the eight samples of the Maria run split into two groups: some end with the island dark at transmission level (below 5 % of the load served), others keep about a third to a half of the load, and the</span>
-<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>median lies in one group only. So the outcome module now also counts how many samples end dark (from <span class="in">`src/kritis/chain/outcome.py`</span>):</span>
-<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> samples_dark(share_end: np.ndarray, below: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""How many samples end with a served share below ``below`` (strictly)."""</span></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="dv">0</span> <span class="op">&lt;=</span> below <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"samples_dark: below must be in [0, 1]"</span>)</span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">int</span>(np.count_nonzero(np.asarray(share_end, dtype<span class="op">=</span><span class="bu">float</span>) <span class="op">&lt;</span> below))</span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a>The threshold for "dark", 5 %, is itself an entry in <span class="in">`evidence/`</span>, marked placeholder: a reporting</span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>definition, not physics.</span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## Starting from the place</span></span>
-<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>Few people know storm names. So LiveLines starts from the place: which storms passed here,</span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a>how strong were they here, how often does this happen, and which would hurt the lines most?</span>
-<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A storm counts as near when its track came within 150 km. That radius is a setting for</span>
-<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>  the list, not physics, and has no source yet.</span>
-<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Each storm carries the Saffir–Simpson category of its peak wind over its whole life, a</span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a>  label for people, not the strength at the place. The model uses the wind itself.</span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Gust here" is the strongest modelled 3-second gust at the place, from the same wind code</span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>  as the chain: a modelled value for sorting, not an observation.</span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How often here" counts storms per decade, and one sentence counts the storms that peaked</span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>  at Category 3 or above since 1980. The start year and the category are settings without a</span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>  source yet. It is a count, not a return period: the record is short and the climate changes.</span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The ranking runs the chain up to fragility for every storm near the place, on today's lines, and sorts by the line length that fails (the median over the samples). A storm from 1926 is run on the lines of</span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>  today.</span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>The storm tracks come from IBTrACS <span class="co">[</span><span class="ot">@knapp</span><span class="co">]</span>; the wind at each line comes from the</span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>profile of @holland.</span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="fu">## How it is built</span></span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>LiveLines is built the same way as this site: with AI coding tools, by an owner who sets the</span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>direction, tests and decides. Three habits carry most of the weight.</span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Decisions are written down** with their reasons, and the work of each session ends in a</span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>short note: what changed, what is</span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>  unverified, what is next.</span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Independent reviewers** check a change before it counts as done: read-only reviews for</span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>  the physics, for the provenance of every number and source, and for determinism (does the same patch still give the same numbers?).</span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Licences come first.** A grid model whose licence is not settled is used for internal</span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>  research only. LiveLines has such a model for the Philippines; nothing from it is shown on</span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>  this site.</span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="fu">## What it cannot tell you</span></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>**Transmission, not streets.** A substation that keeps supply in the model can sit in an area</span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>that is dark.</span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>**Modelled, not observed.** Gusts, failures and supply are modelled. Observations are kept</span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>apart and compared, never mixed in.</span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>**One curve for all lines.** Every line uses one tower fragility curve fitted to one cyclone</span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>in India, applied per piece of line.</span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>**One wind model.** One parametric profile, one surface factor and one gust factor for all</span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>terrain; one best track per storm. A second model (CLIMADA) runs as a cross-check only.</span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>**Two power flows, neither real.** The DC flow has no operator and cascades; PyPSA has a</span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>perfect one. Reality lies between, and the model does not say where.</span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>**Not in the model at all.** Rain, storm surge, flooding and landslides; trees and debris;</span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>substations and generators failing; fuel supply; people's response; costs.</span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and sources</span></span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Storm tracks**: IBTrACS, @knapp; Gahtan, J., K. R. Knapp, C. J. Schreck, H. J. Diamond,</span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>  J. P. Kossin and M. C. Kruk (2024): International Best Track Archive for Climate Stewardship</span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>  (IBTrACS) Project, Version 4r01, NOAA National Centers for Environmental Information,</span>
-<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.25921/82ty-9e16</span><span class="co">](https://doi.org/10.25921/82ty-9e16)</span>. In the Maria example, the</span>
-<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>  subset MARIA 2017 (SID 2017260N12310), US agency columns only, from a local copy dated 30</span>
-<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>  April 2026 (access date not recorded). No endorsement by NOAA implied.</span>
-<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The Puerto Rico grid in the Maria example**: © OpenStreetMap contributors,</span>
-<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">ODbL 1.0</span><span class="co">](https://opendatacommons.org/licenses/odbl/1-0/)</span>, built with PyPSA-Earth; power</span>
-<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>  plants from Global Energy Monitor's trackers</span>
-<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a>  (<span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>) and, for three units, data</span>
-<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a>  obtained from <span class="co">[</span><span class="ot">GlobalEnergyObservatory.org</span><span class="co">](https://GlobalEnergyObservatory.org/)</span></span>
-<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a>  (<span class="co">[</span><span class="ot">CC BY 3.0 US</span><span class="co">](https://creativecommons.org/licenses/by/3.0/us/)</span>), matched with</span>
-<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a>  powerplantmatching (Gotzens et al. 2019,</span>
-<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.1016/j.esr.2018.11.004</span><span class="co">](https://doi.org/10.1016/j.esr.2018.11.004)</span>); hourly demand</span>
-<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a>  from DemandCast, version 1.0.0</span>
-<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a>  (<span class="co">[</span><span class="ot">doi:10.5281/zenodo.18374352</span><span class="co">](https://doi.org/10.5281/zenodo.18374352)</span>, CC BY 4.0), split</span>
-<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>  over the substations by PyPSA-Earth. The split over buses uses GADM 4.1 administrative units (<span class="co">[</span><span class="ot">gadm.org</span><span class="co">](https://gadm.org/)</span>) as weights. GADM allows free academic and other non-commercial use; whether numbers weighted by its units count as redistribution is not settled, and GADM has not been asked. The full</span>
-<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a>  credits, with tracker releases, are on the</span>
-<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">Maria showcase</span><span class="co">](../../showcases/maria-2017-puerto-rico.qmd#mx-sources)</span>.</span>
-<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a><span class="fu">## A reading guide</span></span>
-<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a>**The engines.** PyPSA <span class="co">[</span><span class="ot">@pypsa</span><span class="co">]</span>, PyPSA-Earth <span class="co">[</span><span class="ot">@pypsaearth</span><span class="co">]</span>, CLIMADA <span class="co">[</span><span class="ot">@climada</span><span class="co">]</span>.</span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>LiveLines grades each module: *placeholder*, *literature*, or *validated*. Validated means</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>checked against observations, with the result recorded and judged. None of the six modules is</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>validated yet.</span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>Two kinds of check are kept apart on purpose:</span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Model against model.** The numpy DC power flow against PyPSA on the same inputs; the</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>  kernel's wind against CLIMADA's on the same track. These are comparisons. They tell how</span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>  much of an answer is the choice of model, not whether the answer is right.</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Model against observation.** The Maria run against satellite night lights and the U.S.</span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>  Department of Energy's outage reports, recorded as comparison records. Only checks of this</span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>  kind can lead to *validated*.</span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a>And a difference is never tuned away. It is investigated, explained if it can be, and written</span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a>down. The <span class="co">[</span><span class="ot">Maria article</span><span class="co">](../../showcases/maria-how-it-works/#what-came-later)</span> shows what this</span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a>looks like in practice: the model misses the island-wide blackout; the record says so, and a session note ranks the</span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>likely causes.</span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a>The caution has a long pedigree. @oreskes argue that numerical models of natural systems</span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>cannot be verified or validated in a strict sense, because such systems are never closed;</span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a>agreement with observations confirms a model only in part. LiveLines uses "validated" in a</span>
+<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>narrower, practical sense, and keeps model-to-model agreement out of it.</span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a><span class="fu">### When the middle hides the answer</span></span>
+<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>One recent change shows why the records matter. With a collapse rule on, the eight samples of the Maria run split into two groups: some end with the island dark at transmission level (below 5 % of the load served), others keep about a third to a half of the load, and the</span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>median lies in one group only. So the outcome module now also counts how many samples end dark (from <span class="in">`src/kritis/chain/outcome.py`</span>):</span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> samples_dark(share_end: np.ndarray, below: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""How many samples end with a served share below ``below`` (strictly)."""</span></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="dv">0</span> <span class="op">&lt;=</span> below <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"samples_dark: below must be in [0, 1]"</span>)</span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">int</span>(np.count_nonzero(np.asarray(share_end, dtype<span class="op">=</span><span class="bu">float</span>) <span class="op">&lt;</span> below))</span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>The threshold for "dark", 5 %, is itself an entry in <span class="in">`evidence/`</span>, marked placeholder: a reporting</span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>definition, not physics.</span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a><span class="fu">## Starting from the place</span></span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>Few people know storm names. So LiveLines starts from the place: which storms passed here,</span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>how strong were they here, how often does this happen, and which would hurt the lines most?</span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A storm counts as near when its track came within 150 km. That radius is a setting for</span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>  the list, not physics, and has no source yet.</span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Each storm carries the Saffir–Simpson category of its peak wind over its whole life, a</span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>  label for people, not the strength at the place. The model uses the wind itself.</span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Gust here" is the strongest modelled 3-second gust at the place, from the same wind code</span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>  as the chain: a modelled value for sorting, not an observation.</span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How often here" counts storms per decade, and one sentence counts the storms that peaked</span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>  at Category 3 or above since 1980. The start year and the category are settings without a</span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>  source yet. It is a count, not a return period: the record is short and the climate changes.</span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The ranking runs the chain up to fragility for every storm near the place, on today's lines, and sorts by the line length that fails (the median over the samples). A storm from 1926 is run on the lines of</span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>  today.</span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>The storm tracks come from IBTrACS <span class="co">[</span><span class="ot">@knapp</span><span class="co">]</span>; the wind at each line comes from the</span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>profile of @holland.</span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a><span class="fu">## How it is built</span></span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>LiveLines is built the same way as this site: with AI coding tools, by an owner who sets the</span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>direction, tests and decides. Three habits carry most of the weight.</span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Decisions are written down** with their reasons, and the work of each session ends in a</span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>short note: what changed, what is</span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>  unverified, what is next.</span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Independent reviewers** check a change before it counts as done: read-only reviews for</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>  the physics, for the provenance of every number and source, and for determinism (does the same patch still give the same numbers?).</span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Licences come first.** A grid model whose licence is not settled is used for internal</span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>  research only. LiveLines has such a model for the Philippines; nothing from it is shown on</span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>  this site.</span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="fu">## What it cannot tell you</span></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>**Transmission, not streets.** A substation that keeps supply in the model can sit in an area</span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>that is dark.</span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>**Modelled, not observed.** Gusts, failures and supply are modelled. Observations are kept</span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>apart and compared, never mixed in.</span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>**One curve for all lines.** Every line uses one tower fragility curve fitted to one cyclone</span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>in India, applied per piece of line.</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>**One wind model.** One parametric profile, one surface factor and one gust factor for all</span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>terrain; one best track per storm. A second model (CLIMADA) runs as a cross-check only.</span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>**Two power flows, neither real.** The DC flow has no operator and cascades; PyPSA has a</span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>perfect one. Reality lies between, and the model does not say where.</span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a>**Not in the model at all.** Rain, storm surge, flooding and landslides; trees and debris;</span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a>substations and generators failing; fuel supply; people's response; costs.</span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and sources</span></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Storm tracks**: IBTrACS, @knapp; Gahtan, J., K. R. Knapp, C. J. Schreck, H. J. Diamond,</span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>  J. P. Kossin and M. C. Kruk (2024): International Best Track Archive for Climate Stewardship</span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>  (IBTrACS) Project, Version 4r01, NOAA National Centers for Environmental Information,</span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.25921/82ty-9e16</span><span class="co">](https://doi.org/10.25921/82ty-9e16)</span>. In the Maria example, the</span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>  subset MARIA 2017 (SID 2017260N12310), US agency columns only, from a local copy dated 30</span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a>  April 2026 (access date not recorded). No endorsement by NOAA implied.</span>
+<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The Puerto Rico grid in the Maria example**: © OpenStreetMap contributors,</span>
+<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">ODbL 1.0</span><span class="co">](https://opendatacommons.org/licenses/odbl/1-0/)</span>, built with PyPSA-Earth; power</span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a>  plants from Global Energy Monitor's trackers</span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>  (<span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>) and, for three units, data</span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a>  obtained from <span class="co">[</span><span class="ot">GlobalEnergyObservatory.org</span><span class="co">](https://GlobalEnergyObservatory.org/)</span></span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a>  (<span class="co">[</span><span class="ot">CC BY 3.0 US</span><span class="co">](https://creativecommons.org/licenses/by/3.0/us/)</span>), matched with</span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>  powerplantmatching (Gotzens et al. 2019,</span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">doi:10.1016/j.esr.2018.11.004</span><span class="co">](https://doi.org/10.1016/j.esr.2018.11.004)</span>); hourly demand</span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>  from DemandCast, version 1.0.0</span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>  (<span class="co">[</span><span class="ot">doi:10.5281/zenodo.18374352</span><span class="co">](https://doi.org/10.5281/zenodo.18374352)</span>, CC BY 4.0), split</span>
+<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a>  over the substations by PyPSA-Earth. The split over buses uses GADM 4.1 administrative units (<span class="co">[</span><span class="ot">gadm.org</span><span class="co">](https://gadm.org/)</span>) as weights. GADM allows free academic and other non-commercial use; whether numbers weighted by its units count as redistribution is not settled, and GADM has not been asked. The full</span>
+<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a>  credits, with tracker releases, are on the</span>
+<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">Maria showcase</span><span class="co">](../../showcases/maria-2017-puerto-rico.qmd#mx-sources)</span>.</span>
 <span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a>**Storms.** The tracks <span class="co">[</span><span class="ot">@knapp</span><span class="co">]</span> and the wind profile <span class="co">[</span><span class="ot">@holland</span><span class="co">]</span>.</span>
+<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## A reading guide</span></span>
 <span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a>**Grids under weather.** A framework with fragility curves and sequential Monte Carlo</span>
-<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a>simulation <span class="co">[</span><span class="ot">@panteli2</span><span class="co">]</span>.</span>
-<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a>**What a model can claim.** <span class="co">[</span><span class="ot">@oreskes</span><span class="co">]</span>.</span>
-<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a>LiveLines' own handbook, part of the app (in development), has a chapter per module with its formula, its</span>
-<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a>values and its limits.</span>
-<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
-<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a>**The engines.** PyPSA <span class="co">[</span><span class="ot">@pypsa</span><span class="co">]</span>, PyPSA-Earth <span class="co">[</span><span class="ot">@pypsaearth</span><span class="co">]</span>, CLIMADA <span class="co">[</span><span class="ot">@climada</span><span class="co">]</span>.</span>
+<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a>**Storms.** The tracks <span class="co">[</span><span class="ot">@knapp</span><span class="co">]</span> and the wind profile <span class="co">[</span><span class="ot">@holland</span><span class="co">]</span>.</span>
+<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a>**Grids under weather.** A framework with fragility curves and sequential Monte Carlo</span>
+<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a>simulation <span class="co">[</span><span class="ot">@panteli2</span><span class="co">]</span>.</span>
+<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a>**What a model can claim.** <span class="co">[</span><span class="ot">@oreskes</span><span class="co">]</span>.</span>
+<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a>LiveLines' own handbook, part of the app (in development), has a chapter per module with its formula, its</span>
+<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a>values and its limits.</span>
+<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

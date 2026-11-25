@@ -289,7 +289,19 @@ window.RAC_GRAPH = {
   },
   {
    "source": "index",
+   "target": "playground/eilenriede-how-it-works/index"
+  },
+  {
+   "source": "index",
+   "target": "playground/forecast-how-it-works/index"
+  },
+  {
+   "source": "index",
    "target": "playground/index"
+  },
+  {
+   "source": "index",
+   "target": "playground/mangrove-how-it-works/index"
   },
   {
    "source": "index",
@@ -301,6 +313,10 @@ window.RAC_GRAPH = {
   },
   {
    "source": "index",
+   "target": "projects/livelines-how-it-works/index"
+  },
+  {
+   "source": "index",
    "target": "showcases/index"
   },
   {
@@ -309,7 +325,23 @@ window.RAC_GRAPH = {
   },
   {
    "source": "index",
+   "target": "showcases/maria-how-it-works/index"
+  },
+  {
+   "source": "index",
    "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "index",
+   "target": "showcases/mekong-how-it-works/index"
+  },
+  {
+   "source": "index",
+   "target": "showcases/port-augusta-how-it-works/index"
+  },
+  {
+   "source": "index",
+   "target": "showcases/trigger-lab-how-it-works/index"
   },
   {
    "source": "index",
@@ -356,8 +388,92 @@ window.RAC_GRAPH = {
    "target": "notes/undercurrent-statistical-rethinking"
   },
   {
+   "source": "notes/undercurrent-burtynsky",
+   "target": "models/climate-extremes-explorer"
+  },
+  {
+   "source": "notes/undercurrent-burtynsky",
+   "target": "notes/undercurrent-complexity-compendium"
+  },
+  {
+   "source": "notes/undercurrent-burtynsky",
+   "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "notes/undercurrent-complexity-compendium",
+   "target": "notes/undercurrent-gleick"
+  },
+  {
    "source": "notes/undercurrent-complexity-compendium",
    "target": "playground/mangrove-how-it-works/index"
+  },
+  {
+   "source": "notes/undercurrent-complexity-compendium",
+   "target": "projects/livelines"
+  },
+  {
+   "source": "notes/undercurrent-complexity-compendium",
+   "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "notes/undercurrent-gleick",
+   "target": "models/climate-extremes-explorer"
+  },
+  {
+   "source": "notes/undercurrent-gleick",
+   "target": "notes/undercurrent-complexity-compendium"
+  },
+  {
+   "source": "notes/undercurrent-herzog",
+   "target": "notes/undercurrent-burtynsky"
+  },
+  {
+   "source": "notes/undercurrent-herzog",
+   "target": "notes/undercurrent-nausicaa"
+  },
+  {
+   "source": "notes/undercurrent-herzog",
+   "target": "projects/livelines"
+  },
+  {
+   "source": "notes/undercurrent-maniac",
+   "target": "notes/undercurrent-complexity-compendium"
+  },
+  {
+   "source": "notes/undercurrent-maniac",
+   "target": "projects/livelines"
+  },
+  {
+   "source": "notes/undercurrent-maniac",
+   "target": "showcases/maria-2017-puerto-rico"
+  },
+  {
+   "source": "notes/undercurrent-nausicaa",
+   "target": "notes/undercurrent-herzog"
+  },
+  {
+   "source": "notes/undercurrent-nausicaa",
+   "target": "notes/undercurrent-penguin-science-fiction"
+  },
+  {
+   "source": "notes/undercurrent-nausicaa",
+   "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "notes/undercurrent-penguin-science-fiction",
+   "target": "notes/undercurrent-nausicaa"
+  },
+  {
+   "source": "notes/undercurrent-statistical-rethinking",
+   "target": "models/heatwave-prices-de-lu"
+  },
+  {
+   "source": "notes/undercurrent-statistical-rethinking",
+   "target": "notes/undercurrent-complexity-compendium"
+  },
+  {
+   "source": "notes/undercurrent-statistical-rethinking",
+   "target": "showcases/trigger-lab-mozambique"
   },
   {
    "source": "playground/index",
@@ -390,6 +506,22 @@ window.RAC_GRAPH = {
   {
    "source": "projects/index",
    "target": "projects/livelines"
+  },
+  {
+   "source": "projects/index",
+   "target": "projects/livelines-how-it-works/index"
+  },
+  {
+   "source": "projects/livelines",
+   "target": "notes/undercurrent-complexity-compendium"
+  },
+  {
+   "source": "projects/livelines",
+   "target": "notes/undercurrent-herzog"
+  },
+  {
+   "source": "projects/livelines",
+   "target": "notes/undercurrent-maniac"
   },
   {
    "source": "projects/livelines",
@@ -429,6 +561,10 @@ window.RAC_GRAPH = {
   },
   {
    "source": "showcases/maria-2017-puerto-rico",
+   "target": "notes/undercurrent-maniac"
+  },
+  {
+   "source": "showcases/maria-2017-puerto-rico",
    "target": "projects/livelines"
   },
   {
@@ -441,6 +577,14 @@ window.RAC_GRAPH = {
   },
   {
    "source": "showcases/mekong-coast",
+   "target": "notes/undercurrent-burtynsky"
+  },
+  {
+   "source": "showcases/mekong-coast",
+   "target": "notes/undercurrent-nausicaa"
+  },
+  {
+   "source": "showcases/mekong-coast",
    "target": "showcases/mekong-how-it-works/index"
   },
   {
@@ -450,6 +594,10 @@ window.RAC_GRAPH = {
   {
    "source": "showcases/trigger-lab-how-it-works/index",
    "target": "showcases/trigger-lab-mozambique"
+  },
+  {
+   "source": "showcases/trigger-lab-mozambique",
+   "target": "notes/undercurrent-statistical-rethinking"
   },
   {
    "source": "showcases/trigger-lab-mozambique",
@@ -469,7 +617,19 @@ window.RAC_GRAPH = {
   },
   {
    "source": "work/index",
+   "target": "playground/eilenriede-how-it-works/index"
+  },
+  {
+   "source": "work/index",
+   "target": "playground/forecast-how-it-works/index"
+  },
+  {
+   "source": "work/index",
    "target": "playground/index"
+  },
+  {
+   "source": "work/index",
+   "target": "playground/mangrove-how-it-works/index"
   },
   {
    "source": "work/index",
@@ -481,6 +641,10 @@ window.RAC_GRAPH = {
   },
   {
    "source": "work/index",
+   "target": "projects/livelines-how-it-works/index"
+  },
+  {
+   "source": "work/index",
    "target": "showcases/index"
   },
   {
@@ -489,7 +653,23 @@ window.RAC_GRAPH = {
   },
   {
    "source": "work/index",
+   "target": "showcases/maria-how-it-works/index"
+  },
+  {
+   "source": "work/index",
    "target": "showcases/mekong-coast"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/mekong-how-it-works/index"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/port-augusta-how-it-works/index"
+  },
+  {
+   "source": "work/index",
+   "target": "showcases/trigger-lab-how-it-works/index"
   },
   {
    "source": "work/index",

@@ -79,6 +79,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline
 .cap { font-size: 12.5px; color: var(--dim); margin: 6px 0 10px; }
 .about { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; }
 .about .small { font-size: 12px; color: var(--dim); }
+.about .howto-box { padding: 10px 12px; border: 1px solid var(--line); border-left: 3px solid var(--amber); border-radius: 10px; }
 .nojs { padding: 16px; }
 
 @media (min-aspect-ratio: 1/1) and (min-width: 700px) {
@@ -150,7 +151,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline
 
   <main class="side">
     <p class="toy"><strong>A toy, not a model.</strong> A real map, made-up rules. It says nothing about
-      the real fire risk of the Eilenriede or about the real fire brigade. <a href="#about">More</a></p>
+      the real fire risk of the Eilenriede or about the real fire brigade. <a href="#about">More</a> · <a href="../eilenriede-how-it-works/">How it's built →</a></p>
 
     <section class="readout" aria-live="off">
       <div><b id="r-trees">–</b><span>of the ground that can burn is green</span></div>
@@ -219,8 +220,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline
         available under the <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener">Open Database License</a>.
         Extract of <span id="osm-date"></span>; fire stations as of <span id="st-date"></span>. Outline of Germany in the locator: made with
         <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> (public domain).</p>
-      <p>How it works, with the code, diagrams and a reading list:
+      <p class="howto-box">How it works, with the code, diagrams and a reading list:
         <a href="../eilenriede-how-it-works/">A forest fire in the city forest, taken apart</a>.</p>
+      <p class="small">Underneath: <a href="../../notes/undercurrent-complexity-compendium.html">Eighty-nine papers and a sandpile</a></p>
       <p class="small"><a href="../">Playground</a> · <a href="../../">re:current_analytics</a></p>
     </section>
   </main>

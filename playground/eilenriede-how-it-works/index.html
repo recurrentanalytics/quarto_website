@@ -99,9 +99,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-72fe1072ab46dcb0c5323460b9c2d533.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -460,6 +460,9 @@ div.csl-indent {
 /* Long DOI links in the reference list wrap on a narrow screen. */
 #refs a { overflow-wrap: anywhere; }
 </style>
+<div class="rac-backlink">
+<p><a href="../eilenriede/">← Back to the Eilenriede fire</a></p>
+</div>
 <p>The <a href="../eilenriede/">Eilenriede fire</a> is a forest fire toy on the real map of Hannover’s city forest. You light fires, turn the wind, live through a dry summer, cut firebreaks and watch toy fire crews drive out. This article takes it apart: what each piece does, the code that does it, the idea behind it, and what to read to go further.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How this was made">
 <div class="callout-header d-flex align-content-center">
@@ -1299,489 +1302,493 @@ Wolfram, Stephen. 1983. <span>“Statistical Mechanics of Cellular Automata.”<
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Eilenriede fire</span><span class="co">](../eilenriede/)</span> is a forest fire toy on the real map of Hannover's city</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>forest. You light fires, turn the wind, live through a dry summer, cut firebreaks and watch</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>toy fire crews drive out. This article takes it apart: what each piece does, the code that</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>does it, the idea behind it, and what to read to go further.</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy where one</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>was available.</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>I am not an expert in this field. I am learning it, and this article is my map so far.</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>![A fire in the Eilenriede at night, late in a dry summer. The red lights are fire stations</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>from OpenStreetMap; the small blue lights on the streets are the toy's crews on their</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>way. Map data © <span class="co">[</span><span class="ot">OpenStreetMap contributors</span><span class="co">](https://www.openstreetmap.org/copyright)</span>,</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>ODbL.](shot-fire.jpg){#fig-fire fig-alt="Screenshot: a dark map of Hannover with green forest, an orange fire in the middle of the forest, red station lights and blue crew lights on the streets"}</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## A toy, not a model</span></span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>The map is real. The forest's outline, its paths, roads, streams and clearings, the city</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>around it, the names on it and the fire stations all come from OpenStreetMap. Everything</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>that happens on the map is made up. No rule was fitted to a measurement, and no number the</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>toy shows says anything about the real forest, its fire risk or the real fire brigade. That</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>is the difference to a model. The <span class="co">[</span><span class="ot">last part</span><span class="co">](#from-toy-to-model)</span> is about what it would</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>take to cross it.</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>The toy is still useful to me as a way in. A forest fire on a grid is one of the oldest</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>examples of how simple local rules make large patterns, and the questions it raises</span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>(when does a fire get through, how big do fires get) have a mathematics of their own.</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>::: {.rac-backlink}</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">← Back to the Eilenriede fire</span><span class="co">](../eilenriede/)</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Eilenriede fire</span><span class="co">](../eilenriede/)</span> is a forest fire toy on the real map of Hannover's city</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>forest. You light fires, turn the wind, live through a dry summer, cut firebreaks and watch</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>toy fire crews drive out. This article takes it apart: what each piece does, the code that</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>does it, the idea behind it, and what to read to go further.</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="How this was made"}</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>Built with AI coding tools: I set the direction, tested and decided; the tools wrote the</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>code and the first draft of this article. The reference list was checked against</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>Crossref, and what I say about each source against its abstract or an open copy where one</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>was available.</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>I am not an expert in this field. I am learning it, and this article is my map so far.</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>![A fire in the Eilenriede at night, late in a dry summer. The red lights are fire stations</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>from OpenStreetMap; the small blue lights on the streets are the toy's crews on their</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>way. Map data © <span class="co">[</span><span class="ot">OpenStreetMap contributors</span><span class="co">](https://www.openstreetmap.org/copyright)</span>,</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>ODbL.](shot-fire.jpg){#fig-fire fig-alt="Screenshot: a dark map of Hannover with green forest, an orange fire in the middle of the forest, red station lights and blue crew lights on the streets"}</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## A toy, not a model</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>The map is real. The forest's outline, its paths, roads, streams and clearings, the city</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>around it, the names on it and the fire stations all come from OpenStreetMap. Everything</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>that happens on the map is made up. No rule was fitted to a measurement, and no number the</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>toy shows says anything about the real forest, its fire risk or the real fire brigade. That</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>is the difference to a model. The <span class="co">[</span><span class="ot">last part</span><span class="co">](#from-toy-to-model)</span> is about what it would</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>take to cross it.</span>
 <span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## The shape of the program</span></span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>The toy is one HTML file of about 177 KB with no library. Five small Python scripts,</span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>standard library only, fetch the map once and turn it into data files; <span class="in">`build.py`</span> then</span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>puts the data, twelve JavaScript modules, a page template and a style sheet into that one</span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>file. Drawing is WebGL2 written by hand.</span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>![How the program is put together. The scripts at the top run once, before the build; the</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>modules run in the browser. Every frame the parts take their turn in the order at the</span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>bottom.](fig-program.svg){#fig-program fig-alt="Diagram: fetch_osm.py and rasterise.py, fetch_city.py, fetch_stations.py and fetch_germany.py feed build.py, which writes index.html; below, the JavaScript modules; at the bottom the frame loop clock, sky.step, live.step, crews.step, scene.draw, labels and charts"}</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>The toy is still useful to me as a way in. A forest fire on a grid is one of the oldest</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>examples of how simple local rules make large patterns, and the questions it raises</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>(when does a fire get through, how big do fires get) have a mathematics of their own.</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## The shape of the program</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>The toy is one HTML file of about 177 KB with no library. Five small Python scripts,</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>standard library only, fetch the map once and turn it into data files; <span class="in">`build.py`</span> then</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>puts the data, twelve JavaScript modules, a page template and a style sheet into that one</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>file. Drawing is WebGL2 written by hand.</span>
 <span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>The heart of the frame loop is a clock that turns real time into steps of the fire. At 1×</span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>it runs four steps a second; the speed button gives 4× and 10× (from <span class="in">`main.js`</span>):</span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> STEPS_PER_S <span class="op">=</span> <span class="dv">4</span><span class="op">;</span>   <span class="co">// at 1×; the speed button gives 4× and 10×</span></span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="co">// …</span></span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">+=</span> dt <span class="op">*</span> STEPS_PER_S <span class="op">*</span> speed<span class="op">;</span></span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (clock <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> n <span class="op">&lt;</span> <span class="dv">12</span>) {</span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>      <span class="co">// …</span></span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rules</span>()<span class="op">;</span></span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> lit <span class="op">=</span> sky<span class="op">.</span><span class="fu">step</span>()<span class="op">;</span></span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>      live<span class="op">.</span><span class="fu">step</span>(rnd)<span class="op">;</span></span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (crews) crews<span class="op">.</span><span class="fu">step</span>(rnd)<span class="op">;</span></span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>      <span class="co">// …</span></span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>      clock <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span> n<span class="op">++;</span></span>
-<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="in">`rules()`</span> hands the current dryness and wind to the fire. Then the weather, the fire and</span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>the crews each take one step. Drawing happens every frame, whether a step was due or not,</span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>so flames flicker and lights move smoothly while the cells change only a few times a second.</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>![How the program is put together. The scripts at the top run once, before the build; the</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>modules run in the browser. Every frame the parts take their turn in the order at the</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>bottom.](fig-program.svg){#fig-program fig-alt="Diagram: fetch_osm.py and rasterise.py, fetch_city.py, fetch_stations.py and fetch_germany.py feed build.py, which writes index.html; below, the JavaScript modules; at the bottom the frame loop clock, sky.step, live.step, crews.step, scene.draw, labels and charts"}</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>The heart of the frame loop is a clock that turns real time into steps of the fire. At 1×</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>it runs four steps a second; the speed button gives 4× and 10× (from <span class="in">`main.js`</span>):</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> STEPS_PER_S <span class="op">=</span> <span class="dv">4</span><span class="op">;</span>   <span class="co">// at 1×; the speed button gives 4× and 10×</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="co">// …</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    clock <span class="op">+=</span> dt <span class="op">*</span> STEPS_PER_S <span class="op">*</span> speed<span class="op">;</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (clock <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> n <span class="op">&lt;</span> <span class="dv">12</span>) {</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>      <span class="co">// …</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rules</span>()<span class="op">;</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> lit <span class="op">=</span> sky<span class="op">.</span><span class="fu">step</span>()<span class="op">;</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>      live<span class="op">.</span><span class="fu">step</span>(rnd)<span class="op">;</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (crews) crews<span class="op">.</span><span class="fu">step</span>(rnd)<span class="op">;</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>      <span class="co">// …</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>      clock <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span> n<span class="op">++;</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## From OpenStreetMap to cells</span></span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>The toy needs a grid: one class per square of ground. <span class="in">`fetch_osm.py`</span> asks the</span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Overpass API</span><span class="co">](https://wiki.openstreetmap.org/wiki/Overpass_API)</span>, in one run of a few queries, for the outline of</span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>the Eilenriede, the protected-area relation that OpenStreetMap keeps for it, together with</span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>its parts (among them the Tiergarten, Hermann-Löns-Park and the Seelhorst), and for every</span>
-<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>way and area inside: woods, meadows, paths, roads, streams, buildings. <span class="in">`rasterise.py`</span> turns</span>
-<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>that into cells of 25 by 25 metres.</span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>The core of it is a scanline fill. For each row of cells it finds where the row's centre</span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>line crosses the polygon's edges, sorts the crossings, and fills the cells between every</span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>other pair (from <span class="in">`rasterise.py`</span>):</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="in">`rules()`</span> hands the current dryness and wind to the fire. Then the weather, the fire and</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>the crews each take one step. Drawing happens every frame, whether a step was due or not,</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>so flames flicker and lights move smoothly while the cells change only a few times a second.</span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## From OpenStreetMap to cells</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>The toy needs a grid: one class per square of ground. <span class="in">`fetch_osm.py`</span> asks the</span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Overpass API</span><span class="co">](https://wiki.openstreetmap.org/wiki/Overpass_API)</span>, in one run of a few queries, for the outline of</span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>the Eilenriede, the protected-area relation that OpenStreetMap keeps for it, together with</span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>its parts (among them the Tiergarten, Hermann-Löns-Park and the Seelhorst), and for every</span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>way and area inside: woods, meadows, paths, roads, streams, buildings. <span class="in">`rasterise.py`</span> turns</span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>that into cells of 25 by 25 metres.</span>
 <span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(H):</span>
-<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>            yc <span class="op">=</span> j <span class="op">+</span> <span class="fl">0.5</span></span>
-<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>            xs <span class="op">=</span> []</span>
-<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> poly <span class="kw">in</span> polys:</span>
-<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (x1, y1), (x2, y2) <span class="kw">in</span> <span class="bu">zip</span>(poly, poly[<span class="dv">1</span>:]):</span>
-<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> (y1 <span class="op">&lt;=</span> yc <span class="op">&lt;</span> y2) <span class="kw">or</span> (y2 <span class="op">&lt;=</span> yc <span class="op">&lt;</span> y1):</span>
-<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>                        xs.append(x1 <span class="op">+</span> (yc <span class="op">-</span> y1) <span class="op">*</span> (x2 <span class="op">-</span> x1) <span class="op">/</span> (y2 <span class="op">-</span> y1))</span>
-<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>            xs.sort()</span>
-<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(xs[<span class="dv">0</span>::<span class="dv">2</span>], xs[<span class="dv">1</span>::<span class="dv">2</span>]):</span>
-<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">max</span>(<span class="dv">0</span>, math.ceil(a <span class="op">-</span> <span class="fl">0.5</span>)), <span class="bu">min</span>(W, math.floor(b <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>)):</span>
-<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>This is the even-odd rule: a point is inside if a line from it crosses the outline an odd</span>
-<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>number of times, so holes in the forest come out right without extra work. The layers go</span>
-<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>down in order, later ones winning: the outline as grass, then woods (with OpenStreetMap's</span>
-<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>leaf type where it has one), open land, water and built ground, and last the lines: paths,</span>
-<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>tracks, roads and streams. A line marks every cell whose centre lies within half a cell of</span>
-<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>it, at least, so that a road always closes the gap between diagonal cells. A thinner line</span>
-<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>would let fire slip through at the corners.</span>
-<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>![The Eilenriede as the toy sees it, with the number of cells of each class. The grid is 400</span>
-<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>by 415 cells, ten kilometres on a side; around the forest lies about two kilometres of</span>
-<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>city.](fig-grid.svg){#fig-grid fig-alt="Map of the Eilenriede in cells: shades of green for kinds of wood, light lines for paths and tracks, grey for roads, blue for water, the city in pale grey around it"}</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>The core of it is a scanline fill. For each row of cells it finds where the row's centre</span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>line crosses the polygon's edges, sorts the crossings, and fills the cells between every</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>other pair (from <span class="in">`rasterise.py`</span>):</span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(H):</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>            yc <span class="op">=</span> j <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>            xs <span class="op">=</span> []</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> poly <span class="kw">in</span> polys:</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (x1, y1), (x2, y2) <span class="kw">in</span> <span class="bu">zip</span>(poly, poly[<span class="dv">1</span>:]):</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> (y1 <span class="op">&lt;=</span> yc <span class="op">&lt;</span> y2) <span class="kw">or</span> (y2 <span class="op">&lt;=</span> yc <span class="op">&lt;</span> y1):</span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>                        xs.append(x1 <span class="op">+</span> (yc <span class="op">-</span> y1) <span class="op">*</span> (x2 <span class="op">-</span> x1) <span class="op">/</span> (y2 <span class="op">-</span> y1))</span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>            xs.sort()</span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(xs[<span class="dv">0</span>::<span class="dv">2</span>], xs[<span class="dv">1</span>::<span class="dv">2</span>]):</span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">max</span>(<span class="dv">0</span>, math.ceil(a <span class="op">-</span> <span class="fl">0.5</span>)), <span class="bu">min</span>(W, math.floor(b <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>)):</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>This is the even-odd rule: a point is inside if a line from it crosses the outline an odd</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>number of times, so holes in the forest come out right without extra work. The layers go</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>down in order, later ones winning: the outline as grass, then woods (with OpenStreetMap's</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>leaf type where it has one), open land, water and built ground, and last the lines: paths,</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>tracks, roads and streams. A line marks every cell whose centre lies within half a cell of</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>it, at least, so that a road always closes the gap between diagonal cells. A thinner line</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>would let fire slip through at the corners.</span>
 <span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>The grid is stored as one string of letters and run lengths, a letter per class and a</span>
-<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>number when the class repeats, which keeps the whole grid at about 11 KB. The city around</span>
-<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>it (buildings, main streets, railways, water, a few landmarks and district names) comes from</span>
-<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>a third script, the fire stations from a fourth. All of it is OpenStreetMap data, © OpenStreetMap contributors, under the</span>
-<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Open Database License</span><span class="co">](https://opendatacommons.org/licenses/odbl/)</span>; the toy credits it</span>
-<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>wherever the map shows, and so does every map picture here. A fifth script takes</span>
-<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>the outline of Germany for the small locator map from Natural Earth, which is in the public</span>
-<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>domain.</span>
-<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>OpenStreetMap itself is a map made by volunteers and free to use; @haklay2008 describe the</span>
-<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>project and how it works.</span>
-<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## The cellular automaton</span></span>
-<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>Every cell that can burn is in one of five states: bare, holding a tree (or grass),</span>
-<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>burning, burnt, or cut by hand. Each step, every burning cell tries once to light each of</span>
-<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>its eight neighbours. A burning cell stays alight for a few steps (three for wood, one for</span>
-<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>grass), then is burnt.</span>
-<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>A grid of cells, each changing step by step by a fixed rule from the states of its</span>
-<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>neighbours, is a cellular automaton <span class="co">[</span><span class="ot">@wolfram1983</span><span class="co">]</span>. The toy's rule throws dice, which makes</span>
-<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>it a probabilistic one. Fire is one of the classic uses. Two</span>
-<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>examples of cellular automata built to predict how a forest fire spreads are</span>
-<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>@karafyllidis1997 and @alexandridis2008, the second applied to a wildfire on the Greek</span>
-<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>island of Spetses in 1990.</span>
-<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>The whole rule fits in one function that sets a chance for each of the eight directions</span>
-<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>(from <span class="in">`fire.js`</span>):</span>
-<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
-<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>  f<span class="op">.</span><span class="at">setRules</span> <span class="op">=</span> (dryness<span class="op">,</span> wx<span class="op">,</span> wy<span class="op">,</span> strength) <span class="kw">=&gt;</span> {</span>
-<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> base <span class="op">=</span> <span class="fl">0.04</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> dryness<span class="op">;</span></span>
-<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> d<span class="op">++</span>) {</span>
-<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> [dx<span class="op">,</span> dy] <span class="op">=</span> DIR[d]<span class="op">;</span></span>
-<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> len <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">hypot</span>(dx<span class="op">,</span> dy)<span class="op">;</span></span>
-<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> along <span class="op">=</span> (dx <span class="op">*</span> wx <span class="op">+</span> dy <span class="op">*</span> wy) <span class="op">/</span> len<span class="op">;</span></span>
-<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>      chance[d] <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">1</span><span class="op">,</span> base <span class="op">*</span> (len <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="fl">0.7</span> <span class="op">:</span> <span class="dv">1</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="fl">1.7</span> <span class="op">*</span> strength <span class="op">*</span> along))<span class="op">;</span></span>
-<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Object</span><span class="op">.</span><span class="fu">assign</span>(ember<span class="op">,</span> { <span class="dt">p</span><span class="op">:</span> <span class="fl">0.03</span> <span class="op">*</span> strength <span class="op">*</span> dryness<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> wx<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> wy<span class="op">,</span> <span class="dt">reach</span><span class="op">:</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">*</span> strength })<span class="op">;</span></span>
-<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>Dryness raises the chance everywhere. Corners count less than sides. Wind multiplies the</span>
-<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>chance by a factor that grows with how much a direction points downwind and shrinks</span>
-<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>upwind. @fig-neighbours shows the result.</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>![The Eilenriede as the toy sees it, with the number of cells of each class. The grid is 400</span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>by 415 cells, ten kilometres on a side; around the forest lies about two kilometres of</span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>city.](fig-grid.svg){#fig-grid fig-alt="Map of the Eilenriede in cells: shades of green for kinds of wood, light lines for paths and tracks, grey for roads, blue for water, the city in pale grey around it"}</span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>The grid is stored as one string of letters and run lengths, a letter per class and a</span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>number when the class repeats, which keeps the whole grid at about 11 KB. The city around</span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>it (buildings, main streets, railways, water, a few landmarks and district names) comes from</span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>a third script, the fire stations from a fourth. All of it is OpenStreetMap data, © OpenStreetMap contributors, under the</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Open Database License</span><span class="co">](https://opendatacommons.org/licenses/odbl/)</span>; the toy credits it</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>wherever the map shows, and so does every map picture here. A fifth script takes</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>the outline of Germany for the small locator map from Natural Earth, which is in the public</span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>domain.</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>OpenStreetMap itself is a map made by volunteers and free to use; @haklay2008 describe the</span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>project and how it works.</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a><span class="fu">## The cellular automaton</span></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>Every cell that can burn is in one of five states: bare, holding a tree (or grass),</span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>burning, burnt, or cut by hand. Each step, every burning cell tries once to light each of</span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>its eight neighbours. A burning cell stays alight for a few steps (three for wood, one for</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>grass), then is burnt.</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>A grid of cells, each changing step by step by a fixed rule from the states of its</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>neighbours, is a cellular automaton <span class="co">[</span><span class="ot">@wolfram1983</span><span class="co">]</span>. The toy's rule throws dice, which makes</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a>it a probabilistic one. Fire is one of the classic uses. Two</span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>examples of cellular automata built to predict how a forest fire spreads are</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>@karafyllidis1997 and @alexandridis2008, the second applied to a wildfire on the Greek</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>island of Spetses in 1990.</span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>The whole rule fits in one function that sets a chance for each of the eight directions</span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>(from <span class="in">`fire.js`</span>):</span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>  f<span class="op">.</span><span class="at">setRules</span> <span class="op">=</span> (dryness<span class="op">,</span> wx<span class="op">,</span> wy<span class="op">,</span> strength) <span class="kw">=&gt;</span> {</span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> base <span class="op">=</span> <span class="fl">0.04</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> dryness<span class="op">;</span></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> d<span class="op">++</span>) {</span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> [dx<span class="op">,</span> dy] <span class="op">=</span> DIR[d]<span class="op">;</span></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> len <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">hypot</span>(dx<span class="op">,</span> dy)<span class="op">;</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> along <span class="op">=</span> (dx <span class="op">*</span> wx <span class="op">+</span> dy <span class="op">*</span> wy) <span class="op">/</span> len<span class="op">;</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>      chance[d] <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">1</span><span class="op">,</span> base <span class="op">*</span> (len <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="fl">0.7</span> <span class="op">:</span> <span class="dv">1</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="fl">1.7</span> <span class="op">*</span> strength <span class="op">*</span> along))<span class="op">;</span></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Object</span><span class="op">.</span><span class="fu">assign</span>(ember<span class="op">,</span> { <span class="dt">p</span><span class="op">:</span> <span class="fl">0.03</span> <span class="op">*</span> strength <span class="op">*</span> dryness<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> wx<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> wy<span class="op">,</span> <span class="dt">reach</span><span class="op">:</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">*</span> strength })<span class="op">;</span></span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a>![The chance per step that each neighbour of a burning cell catches, for a wood cell. In</span>
-<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>the toy, broadleaved wood multiplies it by 0.9, grass by 0.8, a path by 0.6, a track by 0.35</span>
-<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>and mixed wood by 1.15.</span>
-<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a>Roads, water and buildings do not burn.](fig-neighbours.svg){#fig-neighbours fig-alt="Three 3 by 3 grids around a burning cell: calm and damp, about 13 to 19 percent; calm and dry, 31 to 44 percent; dry with strong east wind, 100 percent to the east and under 10 percent to the west"}</span>
-<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a>Each step then runs through the burning cells only, never the whole grid (from</span>
-<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a><span class="in">`fire.js`</span>):</span>
-<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
-<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> a <span class="op">&lt;</span> n<span class="op">;</span> a<span class="op">++</span>) {</span>
-<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> front[a]<span class="op">,</span> id <span class="op">=</span> fireOf[k]<span class="op">;</span></span>
-<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (state[k] <span class="op">!==</span> BURNING) <span class="cf">continue</span><span class="op">;</span>          <span class="co">// put out by rain</span></span>
-<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> d<span class="op">++</span>) {</span>
-<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> j <span class="op">=</span> k <span class="op">+</span> STEP[d]<span class="op">;</span></span>
-<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (state[j] <span class="op">===</span> UNBURNT <span class="op">&amp;&amp;</span> wetTill[j] <span class="op">&lt;</span> tick <span class="op">&amp;&amp;</span> <span class="fu">rnd</span>() <span class="op">&lt;</span> chance[d] <span class="op">*</span> fuel[j]) { <span class="fu">catchFire</span>(j<span class="op">,</span> tick<span class="op">,</span> id)<span class="op">;</span> spare[m<span class="op">++</span>] <span class="op">=</span> j<span class="op">;</span> }</span>
-<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a><span class="vs">The burning cells live in a list, `</span><span class="fu">front</span><span class="vs">`. Cells that catch fire, and cells still</span></span>
-<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a><span class="vs">burning, go into a second list, `</span><span class="fu">spare</span><span class="vs">`, and at the end of the step the two lists swap. A</span></span>
-<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a><span class="vs">fire of a hundred cells costs a hundred cells of work, whatever the size of the map.</span></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a>Dryness raises the chance everywhere. Corners count less than sides. Wind multiplies the</span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>chance by a factor that grows with how much a direction points downwind and shrinks</span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>upwind. @fig-neighbours shows the result.</span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a>![The chance per step that each neighbour of a burning cell catches, for a wood cell. In</span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a>the toy, broadleaved wood multiplies it by 0.9, grass by 0.8, a path by 0.6, a track by 0.35</span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a>and mixed wood by 1.15.</span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a>Roads, water and buildings do not burn.](fig-neighbours.svg){#fig-neighbours fig-alt="Three 3 by 3 grids around a burning cell: calm and damp, about 13 to 19 percent; calm and dry, 31 to 44 percent; dry with strong east wind, 100 percent to the east and under 10 percent to the west"}</span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>Each step then runs through the burning cells only, never the whole grid (from</span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a><span class="in">`fire.js`</span>):</span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a><span class="in">```js</span></span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> a <span class="op">&lt;</span> n<span class="op">;</span> a<span class="op">++</span>) {</span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> front[a]<span class="op">,</span> id <span class="op">=</span> fireOf[k]<span class="op">;</span></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (state[k] <span class="op">!==</span> BURNING) <span class="cf">continue</span><span class="op">;</span>          <span class="co">// put out by rain</span></span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> d<span class="op">++</span>) {</span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> j <span class="op">=</span> k <span class="op">+</span> STEP[d]<span class="op">;</span></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (state[j] <span class="op">===</span> UNBURNT <span class="op">&amp;&amp;</span> wetTill[j] <span class="op">&lt;</span> tick <span class="op">&amp;&amp;</span> <span class="fu">rnd</span>() <span class="op">&lt;</span> chance[d] <span class="op">*</span> fuel[j]) { <span class="fu">catchFire</span>(j<span class="op">,</span> tick<span class="op">,</span> id)<span class="op">;</span> spare[m<span class="op">++</span>] <span class="op">=</span> j<span class="op">;</span> }</span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
 <span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a><span class="vs">With wind, a burning cell now and then throws an ember a few cells downwind, with a little</span></span>
-<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a><span class="vs">random turn. If it lands on a tree, the tree may catch (wood always does); if it lands in the city, it goes out.</span></span>
-<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a><span class="vs">That is how a fire in the toy can jump a road. It is also why the city never burns: the</span></span>
-<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a><span class="vs">city has no cells that can.</span></span>
-<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="vs">### The summer</span></span>
-<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="vs">The weather is a second, smaller set of rules (from `</span>weather<span class="op">.</span><span class="fu">js</span><span class="vs">`). Each day, 40 steps long,</span></span>
-<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a><span class="vs">the forest dries a little more, unless it rains:</span></span>
-<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
-<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (raining) { w<span class="op">.</span><span class="at">dry</span> <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="fl">0.05</span><span class="op">,</span> w<span class="op">.</span><span class="at">dry</span> <span class="op">-</span> <span class="fl">0.12</span>)<span class="op">;</span> w<span class="op">.</span><span class="at">sinceRain</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> }</span>
-<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> { w<span class="op">.</span><span class="at">dry</span> <span class="op">+=</span> (<span class="dv">1</span> <span class="op">-</span> w<span class="op">.</span><span class="at">dry</span>) <span class="op">*</span> <span class="fl">0.035</span><span class="op">;</span> w<span class="op">.</span><span class="at">sinceRain</span><span class="op">++;</span> }</span>
-<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a><span class="vs">Dryness creeps towards 1 but never gets there. Every week or so a cloud drifts over with the</span></span>
-<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="vs">wind; tap it and it rains, putting out fires below it with a chance each step. A cloud</span></span>
-<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="vs">that thunders may strike a tree when the forest is dry. Burnt, cut and bare cells grow back</span></span>
-<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a><span class="vs">slowly, burnt ones only after they have cooled. After 100 days the autumn rains come and a</span></span>
-<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="vs">new summer starts, with the forest as it is.</span></span>
-<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a><span class="vs">## When does a fire get through?</span></span>
-<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a><span class="vs">Light one cell in a sparse forest and the fire dies after a few cells: too many of its</span></span>
-<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a><span class="vs">neighbours are empty, and too few of the trees catch. Light it in a dense, dry forest and</span></span>
-<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a><span class="vs">it runs through. Between the two there is no gentle slope but a fairly sharp change.</span></span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a><span class="vs">The burning cells live in a list, `</span><span class="fu">front</span><span class="vs">`. Cells that catch fire, and cells still</span></span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a><span class="vs">burning, go into a second list, `</span><span class="fu">spare</span><span class="vs">`, and at the end of the step the two lists swap. A</span></span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a><span class="vs">fire of a hundred cells costs a hundred cells of work, whatever the size of the map.</span></span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a><span class="vs">With wind, a burning cell now and then throws an ember a few cells downwind, with a little</span></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="vs">random turn. If it lands on a tree, the tree may catch (wood always does); if it lands in the city, it goes out.</span></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="vs">That is how a fire in the toy can jump a road. It is also why the city never burns: the</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="vs">city has no cells that can.</span></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a><span class="vs">### The summer</span></span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a><span class="vs">The weather is a second, smaller set of rules (from `</span>weather<span class="op">.</span><span class="fu">js</span><span class="vs">`). Each day, 40 steps long,</span></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a><span class="vs">the forest dries a little more, unless it rains:</span></span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (raining) { w<span class="op">.</span><span class="at">dry</span> <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="fl">0.05</span><span class="op">,</span> w<span class="op">.</span><span class="at">dry</span> <span class="op">-</span> <span class="fl">0.12</span>)<span class="op">;</span> w<span class="op">.</span><span class="at">sinceRain</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> }</span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> { w<span class="op">.</span><span class="at">dry</span> <span class="op">+=</span> (<span class="dv">1</span> <span class="op">-</span> w<span class="op">.</span><span class="at">dry</span>) <span class="op">*</span> <span class="fl">0.035</span><span class="op">;</span> w<span class="op">.</span><span class="at">sinceRain</span><span class="op">++;</span> }</span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="vs">Dryness creeps towards 1 but never gets there. Every week or so a cloud drifts over with the</span></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a><span class="vs">wind; tap it and it rains, putting out fires below it with a chance each step. A cloud</span></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a><span class="vs">that thunders may strike a tree when the forest is dry. Burnt, cut and bare cells grow back</span></span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a><span class="vs">slowly, burnt ones only after they have cooled. After 100 days the autumn rains come and a</span></span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a><span class="vs">new summer starts, with the forest as it is.</span></span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a><span class="vs">## When does a fire get through?</span></span>
 <span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a><span class="vs">This is percolation, studied in mathematics since @broadbent1957: a medium with random</span></span>
-<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a><span class="vs">gaps, and the question of whether something can get from one side to the other. In the</span></span>
-<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a><span class="vs">toy two kinds of randomness meet. Whether a cell holds a tree at all is the kind called</span></span>
-<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a><span class="vs">site percolation; whether a burning tree lights its neighbour is the kind called bond</span></span>
-<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a><span class="vs">percolation. Dryness moves the second, the density of trees the first.</span></span>
-<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a><span class="vs">@fig-percolation is computed with the toy's own code, on the real map, without wind.</span></span>
-<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a><span class="vs">For each density of trees and each dryness, 100 fires are lit at random trees, and the</span></span>
-<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a><span class="vs">chart shows how much of the trees in the fire's part of the forest one fire burns on</span></span>
-<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a><span class="vs">average.</span></span>
-<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a><span class="vs">![How much of its part of the forest one fire burns, against how many cells hold a tree,</span></span>
-<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a><span class="vs">for three levels of dryness, with no wind. Each point is the average of 100 fires on the</span></span>
-<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a><span class="vs">real map, run with the toy's rules.](fig-percolation.svg){#fig-percolation fig-alt="Line chart: at dryness 0.9 the share burned jumps from about 10 percent to about 50 percent between 55 and 65 percent tree cover; at dryness 0.6 the rise comes later and slower; at dryness 0.3 even a full forest burns only about a quarter"}</span></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a><span class="vs">Light one cell in a sparse forest and the fire dies after a few cells: too many of its</span></span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a><span class="vs">neighbours are empty, and too few of the trees catch. Light it in a dense, dry forest and</span></span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a><span class="vs">it runs through. Between the two there is no gentle slope but a fairly sharp change.</span></span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a><span class="vs">This is percolation, studied in mathematics since @broadbent1957: a medium with random</span></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a><span class="vs">gaps, and the question of whether something can get from one side to the other. In the</span></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a><span class="vs">toy two kinds of randomness meet. Whether a cell holds a tree at all is the kind called</span></span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a><span class="vs">site percolation; whether a burning tree lights its neighbour is the kind called bond</span></span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a><span class="vs">percolation. Dryness moves the second, the density of trees the first.</span></span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a><span class="vs">@fig-percolation is computed with the toy's own code, on the real map, without wind.</span></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a><span class="vs">For each density of trees and each dryness, 100 fires are lit at random trees, and the</span></span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a><span class="vs">chart shows how much of the trees in the fire's part of the forest one fire burns on</span></span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a><span class="vs">average.</span></span>
 <span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="vs">At dryness 0.9 the average jumps from about a tenth of the part at 55 % tree cover to about</span></span>
-<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a><span class="vs">half at 65 %. At dryness 0.6 the rise comes later and is slower. At dryness 0.3 even a full</span></span>
-<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a><span class="vs">forest stops most fires. The toy starts each forest at 80 % cover, so dryness decides</span></span>
-<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a><span class="vs">most of what happens.</span></span>
-<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a><span class="vs">"Its part of the forest" matters here. Roads and broad gaps split the Eilenriede into 20</span></span>
-<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a><span class="vs">parts that touch nowhere, the largest 3,452 cells (about 216 ha). Without embers, a fire</span></span>
-<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a><span class="vs">can never leave its part. That is a fact about the map, not about fire, but it shapes</span></span>
-<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a><span class="vs">everything the toy shows.</span></span>
-<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a><span class="vs">## The storm: 300 strikes</span></span>
-<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a><span class="vs">The Storm button asks the toy's other question: how big do fires get? It copies the forest</span></span>
-<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a><span class="vs">as it is, lets lightning strike a random tree, burns that fire to the end, and does it</span></span>
-<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a><span class="vs">again, 300 times, each time on a fresh copy. Every strike becomes a tiny map; when all are</span></span>
-<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a><span class="vs">done, the maps sort themselves from the smallest fire to the largest, and a chart counts</span></span>
-<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a><span class="vs">how often each size occurred.</span></span>
-<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a><span class="vs">![The storm on a dry day: 300 strikes, sorted from the smallest fire (top left) to the</span></span>
-<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a><span class="vs">largest (bottom right), and below, how often each size occurred, with both axes</span></span>
-<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a><span class="vs">logarithmic. Map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright),</span></span>
-<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a><span class="vs">ODbL.](shot-storm.jpg){#fig-storm fig-alt="Screenshot: a grid of 300 tiny forest maps, the top rows with tiny amber marks, the bottom rows with large amber areas; below, a falling line chart on logarithmic axes"}</span></span>
-<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a><span class="vs">@fig-sizes does the same with 3,000 strikes at each of two levels of dryness, 0.42 (where a</span></span>
-<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a><span class="vs">summer starts) and 0.75 (after a few dry weeks), on one forest with 80 % cover and the</span></span>
-<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a><span class="vs">toy's default breeze.</span></span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="vs">![How much of its part of the forest one fire burns, against how many cells hold a tree,</span></span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a><span class="vs">for three levels of dryness, with no wind. Each point is the average of 100 fires on the</span></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a><span class="vs">real map, run with the toy's rules.](fig-percolation.svg){#fig-percolation fig-alt="Line chart: at dryness 0.9 the share burned jumps from about 10 percent to about 50 percent between 55 and 65 percent tree cover; at dryness 0.6 the rise comes later and slower; at dryness 0.3 even a full forest burns only about a quarter"}</span></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a><span class="vs">At dryness 0.9 the average jumps from about a tenth of the part at 55 % tree cover to about</span></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a><span class="vs">half at 65 %. At dryness 0.6 the rise comes later and is slower. At dryness 0.3 even a full</span></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a><span class="vs">forest stops most fires. The toy starts each forest at 80 % cover, so dryness decides</span></span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a><span class="vs">most of what happens.</span></span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="vs">"Its part of the forest" matters here. Roads and broad gaps split the Eilenriede into 20</span></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a><span class="vs">parts that touch nowhere, the largest 3,452 cells (about 216 ha). Without embers, a fire</span></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a><span class="vs">can never leave its part. That is a fact about the map, not about fire, but it shapes</span></span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a><span class="vs">everything the toy shows.</span></span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a><span class="vs">## The storm: 300 strikes</span></span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a><span class="vs">The Storm button asks the toy's other question: how big do fires get? It copies the forest</span></span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a><span class="vs">as it is, lets lightning strike a random tree, burns that fire to the end, and does it</span></span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a><span class="vs">again, 300 times, each time on a fresh copy. Every strike becomes a tiny map; when all are</span></span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a><span class="vs">done, the maps sort themselves from the smallest fire to the largest, and a chart counts</span></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a><span class="vs">how often each size occurred.</span></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a><span class="vs">![The storm on a dry day: 300 strikes, sorted from the smallest fire (top left) to the</span></span>
+<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a><span class="vs">largest (bottom right), and below, how often each size occurred, with both axes</span></span>
+<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a><span class="vs">logarithmic. Map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright),</span></span>
+<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a><span class="vs">ODbL.](shot-storm.jpg){#fig-storm fig-alt="Screenshot: a grid of 300 tiny forest maps, the top rows with tiny amber marks, the bottom rows with large amber areas; below, a falling line chart on logarithmic axes"}</span></span>
 <span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a><span class="vs">![How often fires of each size occur, from 3,000 strikes on the same forest, early and late</span></span>
-<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a><span class="vs">in a summer. Both axes are logarithmic. The dashed line marks the largest part of the</span></span>
-<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a><span class="vs">forest; embers can carry a fire beyond it.](fig-sizes.svg){#fig-sizes fig-alt="Log-log scatter chart: for both cases, many small fires and fewer large ones; the late-summer points lie lower for small fires and show a hump of fires of one to three thousand cells"}</span></span>
+<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a><span class="vs">@fig-sizes does the same with 3,000 strikes at each of two levels of dryness, 0.42 (where a</span></span>
+<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a><span class="vs">summer starts) and 0.75 (after a few dry weeks), on one forest with 80 % cover and the</span></span>
+<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a><span class="vs">toy's default breeze.</span></span>
 <span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="vs">Early in the summer, about a quarter of the strikes in this run stayed under 10 cells and</span></span>
-<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a><span class="vs">about one in eight reached 1,000 cells or more. Late in the summer, under one in ten stayed</span></span>
-<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a><span class="vs">that small and about two in three reached 1,000 cells. The single most common size is one</span></span>
-<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a><span class="vs">cell, and there are fires at every size in between, which is what the logarithmic axes</span></span>
-<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a><span class="vs">make visible.</span></span>
-<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a><span class="vs">Here the toy touches a real debate. @bak1990 proposed a forest-fire model in the context of</span></span>
-<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a><span class="vs">self-organised criticality: a system that drives itself, without anyone tuning it, to a</span></span>
-<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a><span class="vs">state where events of all sizes occur. @drossel1992 introduced a version with a small</span></span>
-<span id="cb11-279"><a href="#cb11-279" aria-hidden="true" tabindex="-1"></a><span class="vs">chance of lightning and showed that it reaches such a critical state as that chance goes to</span></span>
-<span id="cb11-280"><a href="#cb11-280" aria-hidden="true" tabindex="-1"></a><span class="vs">zero, provided trees grow back much more slowly than forest clusters burn down.</span></span>
-<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a><span class="vs">@malamud1998 found that the areas of real fires follow power laws over many orders of</span></span>
-<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a><span class="vs">magnitude, and that a model of this kind behaves similarly.</span></span>
-<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a><span class="vs">The toy's storm is not that model. It strikes a frozen forest, so what it shows is the size</span></span>
-<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a><span class="vs">of the clusters a fire can reach in one forest at one moment, which is percolation again.</span></span>
-<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a><span class="vs">The summer, with its regrowth and lightning, is closer in spirit to the self-organised</span></span>
-<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a><span class="vs">models, but its days are short, its forest small and split into parts, and nothing in it</span></span>
-<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a><span class="vs">was tested against the theory. The chart's straight-ish stretch is a hint, not a result.</span></span>
-<span id="cb11-289"><a href="#cb11-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-290"><a href="#cb11-290" aria-hidden="true" tabindex="-1"></a><span class="vs">## The fire crews</span></span>
-<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a><span class="vs">Seven fire stations from OpenStreetMap (`</span>amenity<span class="op">=</span><span class="fu">fire_station</span><span class="vs">`) lie inside the map, after</span></span>
-<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a><span class="vs">the faded rim is left out and two entries about 400 m apart in Misburg are taken as one.</span></span>
-<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a><span class="vs">Each gets one toy crew. Once a fire has burned for six steps, the</span></span>
-<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a><span class="vs">nearest free crews leave, more for bigger fires, up to four. You can also tap a station to</span></span>
-<span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a><span class="vs">send its crew. A crew drives to a cell next to the fire, puts out burning cells within six</span></span>
-<span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a><span class="vs">cells of it, wets the trees around it so they do not catch for a while, follows the fire if</span></span>
-<span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a><span class="vs">it gets away, and drives back to fill up when its water runs out.</span></span>
-<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a><span class="vs">None of this is how a real fire brigade works, and the toy shows no minutes, distances or</span></span>
-<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a><span class="vs">arrival times. The speed, reach and water of a crew are made up, in one place (from</span></span>
-<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span>crews<span class="op">.</span><span class="fu">js</span><span class="vs">`):</span></span>
+<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="vs">![How often fires of each size occur, from 3,000 strikes on the same forest, early and late</span></span>
+<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a><span class="vs">in a summer. Both axes are logarithmic. The dashed line marks the largest part of the</span></span>
+<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a><span class="vs">forest; embers can carry a fire beyond it.](fig-sizes.svg){#fig-sizes fig-alt="Log-log scatter chart: for both cases, many small fires and fewer large ones; the late-summer points lie lower for small fires and show a hump of fires of one to three thousand cells"}</span></span>
+<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a><span class="vs">Early in the summer, about a quarter of the strikes in this run stayed under 10 cells and</span></span>
+<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a><span class="vs">about one in eight reached 1,000 cells or more. Late in the summer, under one in ten stayed</span></span>
+<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a><span class="vs">that small and about two in three reached 1,000 cells. The single most common size is one</span></span>
+<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a><span class="vs">cell, and there are fires at every size in between, which is what the logarithmic axes</span></span>
+<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a><span class="vs">make visible.</span></span>
+<span id="cb11-279"><a href="#cb11-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-280"><a href="#cb11-280" aria-hidden="true" tabindex="-1"></a><span class="vs">Here the toy touches a real debate. @bak1990 proposed a forest-fire model in the context of</span></span>
+<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a><span class="vs">self-organised criticality: a system that drives itself, without anyone tuning it, to a</span></span>
+<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a><span class="vs">state where events of all sizes occur. @drossel1992 introduced a version with a small</span></span>
+<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a><span class="vs">chance of lightning and showed that it reaches such a critical state as that chance goes to</span></span>
+<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a><span class="vs">zero, provided trees grow back much more slowly than forest clusters burn down.</span></span>
+<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a><span class="vs">@malamud1998 found that the areas of real fires follow power laws over many orders of</span></span>
+<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a><span class="vs">magnitude, and that a model of this kind behaves similarly.</span></span>
+<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a><span class="vs">The toy's storm is not that model. It strikes a frozen forest, so what it shows is the size</span></span>
+<span id="cb11-289"><a href="#cb11-289" aria-hidden="true" tabindex="-1"></a><span class="vs">of the clusters a fire can reach in one forest at one moment, which is percolation again.</span></span>
+<span id="cb11-290"><a href="#cb11-290" aria-hidden="true" tabindex="-1"></a><span class="vs">The summer, with its regrowth and lightning, is closer in spirit to the self-organised</span></span>
+<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a><span class="vs">models, but its days are short, its forest small and split into parts, and nothing in it</span></span>
+<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a><span class="vs">was tested against the theory. The chart's straight-ish stretch is a hint, not a result.</span></span>
+<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a><span class="vs">## The fire crews</span></span>
+<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a><span class="vs">Seven fire stations from OpenStreetMap (`</span>amenity<span class="op">=</span><span class="fu">fire_station</span><span class="vs">`) lie inside the map, after</span></span>
+<span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a><span class="vs">the faded rim is left out and two entries about 400 m apart in Misburg are taken as one.</span></span>
+<span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a><span class="vs">Each gets one toy crew. Once a fire has burned for six steps, the</span></span>
+<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a><span class="vs">nearest free crews leave, more for bigger fires, up to four. You can also tap a station to</span></span>
+<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a><span class="vs">send its crew. A crew drives to a cell next to the fire, puts out burning cells within six</span></span>
+<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a><span class="vs">cells of it, wets the trees around it so they do not catch for a while, follows the fire if</span></span>
+<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a><span class="vs">it gets away, and drives back to fill up when its water runs out.</span></span>
 <span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
-<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> CREW <span class="op">=</span> {</span>
-<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a>  <span class="dt">speed</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>        <span class="co">// cost units per step (a street cell costs 1)</span></span>
-<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reach</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span>        <span class="co">// cells</span></span>
-<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a>  <span class="dt">douse</span><span class="op">:</span> <span class="fl">0.6</span><span class="op">,</span>     <span class="co">// chance per step that a burning cell in reach goes out</span></span>
-<span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a>  <span class="dt">water</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span>      <span class="co">// cells they can put out before driving back</span></span>
-<span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a>  <span class="dt">refill</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span>      <span class="co">// steps at the station</span></span>
-<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a>  <span class="dt">wet</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span>         <span class="co">// steps the trees they spray stay too wet to catch fire</span></span>
-<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a>  <span class="dt">alarm</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span>        <span class="co">// steps after a fire starts before crews leave on their own</span></span>
-<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb11-315"><a href="#cb11-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-316"><a href="#cb11-316" aria-hidden="true" tabindex="-1"></a><span class="vs">### Finding the road: a cost field</span></span>
-<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a><span class="vs">Each cell has a cost to cross it: 1 for a street, 1.5 for a road, track or path in the</span></span>
-<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a><span class="vs">forest, 3 for built or sports ground there, 4 for the rest of the forest, 5 for other city</span></span>
-<span id="cb11-320"><a href="#cb11-320" aria-hidden="true" tabindex="-1"></a><span class="vs">ground, 8 for a railway; buildings and water cannot be crossed. A diagonal step costs 1.414 times as much.</span></span>
+<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a><span class="vs">None of this is how a real fire brigade works, and the toy shows no minutes, distances or</span></span>
+<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a><span class="vs">arrival times. The speed, reach and water of a crew are made up, in one place (from</span></span>
+<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span>crews<span class="op">.</span><span class="fu">js</span><span class="vs">`):</span></span>
+<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
+<span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> CREW <span class="op">=</span> {</span>
+<span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a>  <span class="dt">speed</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>        <span class="co">// cost units per step (a street cell costs 1)</span></span>
+<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reach</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span>        <span class="co">// cells</span></span>
+<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a>  <span class="dt">douse</span><span class="op">:</span> <span class="fl">0.6</span><span class="op">,</span>     <span class="co">// chance per step that a burning cell in reach goes out</span></span>
+<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a>  <span class="dt">water</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span>      <span class="co">// cells they can put out before driving back</span></span>
+<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a>  <span class="dt">refill</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span>      <span class="co">// steps at the station</span></span>
+<span id="cb11-315"><a href="#cb11-315" aria-hidden="true" tabindex="-1"></a>  <span class="dt">wet</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span>         <span class="co">// steps the trees they spray stay too wet to catch fire</span></span>
+<span id="cb11-316"><a href="#cb11-316" aria-hidden="true" tabindex="-1"></a>  <span class="dt">alarm</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span>        <span class="co">// steps after a fire starts before crews leave on their own</span></span>
+<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-320"><a href="#cb11-320" aria-hidden="true" tabindex="-1"></a><span class="vs">### Finding the road: a cost field</span></span>
 <span id="cb11-321"><a href="#cb11-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a><span class="vs">From each station the toy computes, once, the cheapest cost to reach every cell of the map.</span></span>
-<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a><span class="vs">This is Dijkstra's method [@dijkstra1959]: start with the station at cost 0, always take</span></span>
-<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a><span class="vs">the cheapest cell not yet finished, and offer each of its neighbours its own cost plus the</span></span>
-<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a><span class="vs">step. A binary heap [the structure behind heapsort, @williams1964] hands out the cheapest</span></span>
-<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a><span class="vs">cell quickly. Here it is written on two plain typed arrays, one for cells and one for costs</span></span>
-<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a><span class="vs">(from `</span>crews<span class="op">.</span><span class="fu">js</span><span class="vs">`, shortened):</span></span>
-<span id="cb11-328"><a href="#cb11-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-329"><a href="#cb11-329" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
-<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> push <span class="op">=</span> (k<span class="op">,</span> d) <span class="kw">=&gt;</span> {</span>
-<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> i <span class="op">=</span> n<span class="op">++;</span></span>
-<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> (i <span class="op">&gt;</span> <span class="dv">0</span>) { <span class="kw">const</span> q <span class="op">=</span> (i <span class="op">-</span> <span class="dv">1</span>) <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">;</span> <span class="cf">if</span> (hd[q] <span class="op">&lt;=</span> d) <span class="cf">break</span><span class="op">;</span> hk[i] <span class="op">=</span> hk[q]<span class="op">;</span> hd[i] <span class="op">=</span> hd[q]<span class="op">;</span> i <span class="op">=</span> q<span class="op">;</span> }</span>
-<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a>      hk[i] <span class="op">=</span> k<span class="op">;</span> hd[i] <span class="op">=</span> d<span class="op">;</span></span>
-<span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
-<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a>    dist[<span class="im">from</span>] <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="fu">push</span>(<span class="im">from</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
-<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (n) {</span>
-<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> hk[<span class="dv">0</span>]<span class="op">,</span> d0 <span class="op">=</span> hd[<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a>      <span class="co">// … take the top off the heap …</span></span>
-<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (d0 <span class="op">&gt;</span> dist[k]) <span class="cf">continue</span><span class="op">;</span></span>
-<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> x <span class="op">=</span> k <span class="op">%</span> W<span class="op">,</span> z <span class="op">=</span> (k <span class="op">-</span> x) <span class="op">/</span> W<span class="op">;</span></span>
-<span id="cb11-341"><a href="#cb11-341" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> e <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> e <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> e<span class="op">++</span>) {</span>
-<span id="cb11-342"><a href="#cb11-342" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> ii <span class="op">=</span> x <span class="op">+</span> DX[e]<span class="op">,</span> jj <span class="op">=</span> z <span class="op">+</span> DZ[e]<span class="op">;</span></span>
-<span id="cb11-343"><a href="#cb11-343" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (ii <span class="op">&lt;</span> x0 <span class="op">||</span> jj <span class="op">&lt;</span> z0 <span class="op">||</span> ii <span class="op">&gt;</span> x1 <span class="op">||</span> jj <span class="op">&gt;</span> z1) <span class="cf">continue</span><span class="op">;</span></span>
-<span id="cb11-344"><a href="#cb11-344" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> q <span class="op">=</span> jj <span class="op">*</span> W <span class="op">+</span> ii<span class="op">,</span> d <span class="op">=</span> d0 <span class="op">+</span> cost[q] <span class="op">*</span> DM[e]<span class="op">;</span></span>
-<span id="cb11-345"><a href="#cb11-345" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (d <span class="op">&lt;</span> dist[q] <span class="op">&amp;&amp;</span> n <span class="op">&lt;</span> hk<span class="op">.</span><span class="at">length</span>) { dist[q] <span class="op">=</span> d<span class="op">;</span> <span class="fu">push</span>(q<span class="op">,</span> d)<span class="op">;</span> }</span>
-<span id="cb11-346"><a href="#cb11-346" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb11-347"><a href="#cb11-347" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb11-348"><a href="#cb11-348" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb11-349"><a href="#cb11-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-350"><a href="#cb11-350" aria-hidden="true" tabindex="-1"></a><span class="vs">The result is a field: one number per cell (@fig-field). The road from the station to any</span></span>
-<span id="cb11-351"><a href="#cb11-351" aria-hidden="true" tabindex="-1"></a><span class="vs">cell is then found backwards. Start at the goal and always step to the neighbour with the</span></span>
-<span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a><span class="vs">lowest number, until the number is 0; that is the station. The toy reverses that list and</span></span>
-<span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a><span class="vs">the crew drives it.</span></span>
-<span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a><span class="vs">![The cost field of one station: the cheapest cost to reach every cell, warm where it is</span></span>
-<span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a><span class="vs">cheap, in bands of 40 cost units. Streets carry the warm colour far; the forest slows it.</span></span>
-<span id="cb11-357"><a href="#cb11-357" aria-hidden="true" tabindex="-1"></a><span class="vs">The black line is the road a crew takes to a fire in the forest.](fig-field.svg){#fig-field fig-alt="Map: colour bands spreading out from a fire station along the streets and more slowly into the forest, with a black route from the station into the forest"}</span></span>
+<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a><span class="vs">Each cell has a cost to cross it: 1 for a street, 1.5 for a road, track or path in the</span></span>
+<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a><span class="vs">forest, 3 for built or sports ground there, 4 for the rest of the forest, 5 for other city</span></span>
+<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a><span class="vs">ground, 8 for a railway; buildings and water cannot be crossed. A diagonal step costs 1.414 times as much.</span></span>
+<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a><span class="vs">From each station the toy computes, once, the cheapest cost to reach every cell of the map.</span></span>
+<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a><span class="vs">This is Dijkstra's method [@dijkstra1959]: start with the station at cost 0, always take</span></span>
+<span id="cb11-328"><a href="#cb11-328" aria-hidden="true" tabindex="-1"></a><span class="vs">the cheapest cell not yet finished, and offer each of its neighbours its own cost plus the</span></span>
+<span id="cb11-329"><a href="#cb11-329" aria-hidden="true" tabindex="-1"></a><span class="vs">step. A binary heap [the structure behind heapsort, @williams1964] hands out the cheapest</span></span>
+<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a><span class="vs">cell quickly. Here it is written on two plain typed arrays, one for cells and one for costs</span></span>
+<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a><span class="vs">(from `</span>crews<span class="op">.</span><span class="fu">js</span><span class="vs">`, shortened):</span></span>
+<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>js</span>
+<span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> push <span class="op">=</span> (k<span class="op">,</span> d) <span class="kw">=&gt;</span> {</span>
+<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> i <span class="op">=</span> n<span class="op">++;</span></span>
+<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> (i <span class="op">&gt;</span> <span class="dv">0</span>) { <span class="kw">const</span> q <span class="op">=</span> (i <span class="op">-</span> <span class="dv">1</span>) <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">;</span> <span class="cf">if</span> (hd[q] <span class="op">&lt;=</span> d) <span class="cf">break</span><span class="op">;</span> hk[i] <span class="op">=</span> hk[q]<span class="op">;</span> hd[i] <span class="op">=</span> hd[q]<span class="op">;</span> i <span class="op">=</span> q<span class="op">;</span> }</span>
+<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a>      hk[i] <span class="op">=</span> k<span class="op">;</span> hd[i] <span class="op">=</span> d<span class="op">;</span></span>
+<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a>    dist[<span class="im">from</span>] <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="fu">push</span>(<span class="im">from</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (n) {</span>
+<span id="cb11-341"><a href="#cb11-341" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> hk[<span class="dv">0</span>]<span class="op">,</span> d0 <span class="op">=</span> hd[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb11-342"><a href="#cb11-342" aria-hidden="true" tabindex="-1"></a>      <span class="co">// … take the top off the heap …</span></span>
+<span id="cb11-343"><a href="#cb11-343" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (d0 <span class="op">&gt;</span> dist[k]) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb11-344"><a href="#cb11-344" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> x <span class="op">=</span> k <span class="op">%</span> W<span class="op">,</span> z <span class="op">=</span> (k <span class="op">-</span> x) <span class="op">/</span> W<span class="op">;</span></span>
+<span id="cb11-345"><a href="#cb11-345" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> e <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> e <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> e<span class="op">++</span>) {</span>
+<span id="cb11-346"><a href="#cb11-346" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> ii <span class="op">=</span> x <span class="op">+</span> DX[e]<span class="op">,</span> jj <span class="op">=</span> z <span class="op">+</span> DZ[e]<span class="op">;</span></span>
+<span id="cb11-347"><a href="#cb11-347" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (ii <span class="op">&lt;</span> x0 <span class="op">||</span> jj <span class="op">&lt;</span> z0 <span class="op">||</span> ii <span class="op">&gt;</span> x1 <span class="op">||</span> jj <span class="op">&gt;</span> z1) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb11-348"><a href="#cb11-348" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> q <span class="op">=</span> jj <span class="op">*</span> W <span class="op">+</span> ii<span class="op">,</span> d <span class="op">=</span> d0 <span class="op">+</span> cost[q] <span class="op">*</span> DM[e]<span class="op">;</span></span>
+<span id="cb11-349"><a href="#cb11-349" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (d <span class="op">&lt;</span> dist[q] <span class="op">&amp;&amp;</span> n <span class="op">&lt;</span> hk<span class="op">.</span><span class="at">length</span>) { dist[q] <span class="op">=</span> d<span class="op">;</span> <span class="fu">push</span>(q<span class="op">,</span> d)<span class="op">;</span> }</span>
+<span id="cb11-350"><a href="#cb11-350" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb11-351"><a href="#cb11-351" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a><span class="vs">The result is a field: one number per cell (@fig-field). The road from the station to any</span></span>
+<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a><span class="vs">cell is then found backwards. Start at the goal and always step to the neighbour with the</span></span>
+<span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a><span class="vs">lowest number, until the number is 0; that is the station. The toy reverses that list and</span></span>
+<span id="cb11-357"><a href="#cb11-357" aria-hidden="true" tabindex="-1"></a><span class="vs">the crew drives it.</span></span>
 <span id="cb11-358"><a href="#cb11-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a><span class="vs">One field serves every fire, which is why the toy computes the whole map once instead of</span></span>
-<span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a><span class="vs">searching for one road at a time. A search for one road would use A*, which steers the</span></span>
-<span id="cb11-361"><a href="#cb11-361" aria-hidden="true" tabindex="-1"></a><span class="vs">search towards the goal with an estimate of the remaining cost [@hart1968]. When a crew</span></span>
-<span id="cb11-362"><a href="#cb11-362" aria-hidden="true" tabindex="-1"></a><span class="vs">must chase a fire that got away, the toy computes a small field around the crew instead,</span></span>
-<span id="cb11-363"><a href="#cb11-363" aria-hidden="true" tabindex="-1"></a><span class="vs">only 70 cells in each direction.</span></span>
-<span id="cb11-364"><a href="#cb11-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-365"><a href="#cb11-365" aria-hidden="true" tabindex="-1"></a><span class="vs">A crew moves along its road with a budget of five cost units per step. Whatever it does not</span></span>
-<span id="cb11-366"><a href="#cb11-366" aria-hidden="true" tabindex="-1"></a><span class="vs">spend is carried over, so it can always pay for a costly cell, such as a railway crossed on</span></span>
-<span id="cb11-367"><a href="#cb11-367" aria-hidden="true" tabindex="-1"></a><span class="vs">the diagonal. A burning cell on the road stops it there.</span></span>
+<span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a><span class="vs">![The cost field of one station: the cheapest cost to reach every cell, warm where it is</span></span>
+<span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a><span class="vs">cheap, in bands of 40 cost units. Streets carry the warm colour far; the forest slows it.</span></span>
+<span id="cb11-361"><a href="#cb11-361" aria-hidden="true" tabindex="-1"></a><span class="vs">The black line is the road a crew takes to a fire in the forest.](fig-field.svg){#fig-field fig-alt="Map: colour bands spreading out from a fire station along the streets and more slowly into the forest, with a black route from the station into the forest"}</span></span>
+<span id="cb11-362"><a href="#cb11-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-363"><a href="#cb11-363" aria-hidden="true" tabindex="-1"></a><span class="vs">One field serves every fire, which is why the toy computes the whole map once instead of</span></span>
+<span id="cb11-364"><a href="#cb11-364" aria-hidden="true" tabindex="-1"></a><span class="vs">searching for one road at a time. A search for one road would use A*, which steers the</span></span>
+<span id="cb11-365"><a href="#cb11-365" aria-hidden="true" tabindex="-1"></a><span class="vs">search towards the goal with an estimate of the remaining cost [@hart1968]. When a crew</span></span>
+<span id="cb11-366"><a href="#cb11-366" aria-hidden="true" tabindex="-1"></a><span class="vs">must chase a fire that got away, the toy computes a small field around the crew instead,</span></span>
+<span id="cb11-367"><a href="#cb11-367" aria-hidden="true" tabindex="-1"></a><span class="vs">only 70 cells in each direction.</span></span>
 <span id="cb11-368"><a href="#cb11-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-369"><a href="#cb11-369" aria-hidden="true" tabindex="-1"></a><span class="vs">In one test (six fires, 250 steps each, at dryness 0.6 and wind 0.4, three runs with crews</span></span>
-<span id="cb11-370"><a href="#cb11-370" aria-hidden="true" tabindex="-1"></a><span class="vs">and three without, on a version just before a small fix to how crews are sent) about 28 %</span></span>
-<span id="cb11-371"><a href="#cb11-371" aria-hidden="true" tabindex="-1"></a><span class="vs">fewer cells burned in all with crews, but one run with crews burned more than two without. Large fires in a strong wind still got away. Like every other number</span></span>
-<span id="cb11-372"><a href="#cb11-372" aria-hidden="true" tabindex="-1"></a><span class="vs">here, that describes the toy.</span></span>
-<span id="cb11-373"><a href="#cb11-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-374"><a href="#cb11-374" aria-hidden="true" tabindex="-1"></a><span class="vs">## Drawing the night</span></span>
-<span id="cb11-375"><a href="#cb11-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-376"><a href="#cb11-376" aria-hidden="true" tabindex="-1"></a><span class="vs">The view is a tilted map at night, drawn with WebGL2. Three ideas carry it.</span></span>
+<span id="cb11-369"><a href="#cb11-369" aria-hidden="true" tabindex="-1"></a><span class="vs">A crew moves along its road with a budget of five cost units per step. Whatever it does not</span></span>
+<span id="cb11-370"><a href="#cb11-370" aria-hidden="true" tabindex="-1"></a><span class="vs">spend is carried over, so it can always pay for a costly cell, such as a railway crossed on</span></span>
+<span id="cb11-371"><a href="#cb11-371" aria-hidden="true" tabindex="-1"></a><span class="vs">the diagonal. A burning cell on the road stops it there.</span></span>
+<span id="cb11-372"><a href="#cb11-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-373"><a href="#cb11-373" aria-hidden="true" tabindex="-1"></a><span class="vs">In one test (six fires, 250 steps each, at dryness 0.6 and wind 0.4, three runs with crews</span></span>
+<span id="cb11-374"><a href="#cb11-374" aria-hidden="true" tabindex="-1"></a><span class="vs">and three without, on a version just before a small fix to how crews are sent) about 28 %</span></span>
+<span id="cb11-375"><a href="#cb11-375" aria-hidden="true" tabindex="-1"></a><span class="vs">fewer cells burned in all with crews, but one run with crews burned more than two without. Large fires in a strong wind still got away. Like every other number</span></span>
+<span id="cb11-376"><a href="#cb11-376" aria-hidden="true" tabindex="-1"></a><span class="vs">here, that describes the toy.</span></span>
 <span id="cb11-377"><a href="#cb11-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-378"><a href="#cb11-378" aria-hidden="true" tabindex="-1"></a><span class="vs">**The state of the forest is a texture.** Each cell of the grid is one pixel of a texture:</span></span>
-<span id="cb11-379"><a href="#cb11-379" aria-hidden="true" tabindex="-1"></a><span class="vs">its kind, its state, how long it has burned or how far it has grown back, and a random</span></span>
-<span id="cb11-380"><a href="#cb11-380" aria-hidden="true" tabindex="-1"></a><span class="vs">number. The ground's shader reads that pixel for every point on the screen and picks the</span></span>
-<span id="cb11-381"><a href="#cb11-381" aria-hidden="true" tabindex="-1"></a><span class="vs">colour. When cells change, only the forest's rectangle of the texture is sent to the</span></span>
-<span id="cb11-382"><a href="#cb11-382" aria-hidden="true" tabindex="-1"></a><span class="vs">graphics card again. A second, small texture holds where fire burns, blurred, so that</span></span>
-<span id="cb11-383"><a href="#cb11-383" aria-hidden="true" tabindex="-1"></a><span class="vs">firelight spills orange onto the ground and the trees nearby. The trees are one small cone</span></span>
-<span id="cb11-384"><a href="#cb11-384" aria-hidden="true" tabindex="-1"></a><span class="vs">with five sides, drawn for every cell that can hold a tree (on phones, the small trees</span></span>
-<span id="cb11-385"><a href="#cb11-385" aria-hidden="true" tabindex="-1"></a><span class="vs">along paths are left out) in a single call (instancing),</span></span>
-<span id="cb11-386"><a href="#cb11-386" aria-hidden="true" tabindex="-1"></a><span class="vs">sized and coloured from the same texture.</span></span>
-<span id="cb11-387"><a href="#cb11-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-388"><a href="#cb11-388" aria-hidden="true" tabindex="-1"></a><span class="vs">**The city is a filtered texture, not geometry.** An earlier version raised the city's buildings as 3D</span></span>
-<span id="cb11-389"><a href="#cb11-389" aria-hidden="true" tabindex="-1"></a><span class="vs">blocks, and from afar their thin walls and window patterns flickered. Several things were</span></span>
-<span id="cb11-390"><a href="#cb11-390" aria-hidden="true" tabindex="-1"></a><span class="vs">changed against that; the texture is the main one. Now the city is a second texture: buildings,</span></span>
-<span id="cb11-391"><a href="#cb11-391" aria-hidden="true" tabindex="-1"></a><span class="vs">streets and water in its colour channels, with mipmaps, the smaller, pre-filtered copies of</span></span>
-<span id="cb11-392"><a href="#cb11-392" aria-hidden="true" tabindex="-1"></a><span class="vs">a texture described by @williams1983. From afar, the shader reads a small copy in which a</span></span>
-<span id="cb11-393"><a href="#cb11-393" aria-hidden="true" tabindex="-1"></a><span class="vs">street has already been averaged into its surroundings, so nothing flickers. Near, it draws</span></span>
-<span id="cb11-394"><a href="#cb11-394" aria-hidden="true" tabindex="-1"></a><span class="vs">a soft edge about one pixel wide (from `</span>shaders<span class="op">.</span><span class="fu">js</span><span class="vs">`):</span></span>
-<span id="cb11-395"><a href="#cb11-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-396"><a href="#cb11-396" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>glsl</span>
-<span id="cb11-397"><a href="#cb11-397" aria-hidden="true" tabindex="-1"></a>float <span class="fu">soft</span>(float v<span class="op">,</span> float px) { float w <span class="op">=</span> <span class="fu">clamp</span>(px <span class="op">*</span> <span class="fl">0.3</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="fl">0.5</span>)<span class="op">;</span> <span class="cf">return</span> <span class="fu">smoothstep</span>(<span class="fl">0.5</span> <span class="op">-</span> w<span class="op">,</span> <span class="fl">0.5</span> <span class="op">+</span> w<span class="op">,</span> v)<span class="op">;</span> }</span>
-<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb11-378"><a href="#cb11-378" aria-hidden="true" tabindex="-1"></a><span class="vs">## Drawing the night</span></span>
+<span id="cb11-379"><a href="#cb11-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-380"><a href="#cb11-380" aria-hidden="true" tabindex="-1"></a><span class="vs">The view is a tilted map at night, drawn with WebGL2. Three ideas carry it.</span></span>
+<span id="cb11-381"><a href="#cb11-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-382"><a href="#cb11-382" aria-hidden="true" tabindex="-1"></a><span class="vs">**The state of the forest is a texture.** Each cell of the grid is one pixel of a texture:</span></span>
+<span id="cb11-383"><a href="#cb11-383" aria-hidden="true" tabindex="-1"></a><span class="vs">its kind, its state, how long it has burned or how far it has grown back, and a random</span></span>
+<span id="cb11-384"><a href="#cb11-384" aria-hidden="true" tabindex="-1"></a><span class="vs">number. The ground's shader reads that pixel for every point on the screen and picks the</span></span>
+<span id="cb11-385"><a href="#cb11-385" aria-hidden="true" tabindex="-1"></a><span class="vs">colour. When cells change, only the forest's rectangle of the texture is sent to the</span></span>
+<span id="cb11-386"><a href="#cb11-386" aria-hidden="true" tabindex="-1"></a><span class="vs">graphics card again. A second, small texture holds where fire burns, blurred, so that</span></span>
+<span id="cb11-387"><a href="#cb11-387" aria-hidden="true" tabindex="-1"></a><span class="vs">firelight spills orange onto the ground and the trees nearby. The trees are one small cone</span></span>
+<span id="cb11-388"><a href="#cb11-388" aria-hidden="true" tabindex="-1"></a><span class="vs">with five sides, drawn for every cell that can hold a tree (on phones, the small trees</span></span>
+<span id="cb11-389"><a href="#cb11-389" aria-hidden="true" tabindex="-1"></a><span class="vs">along paths are left out) in a single call (instancing),</span></span>
+<span id="cb11-390"><a href="#cb11-390" aria-hidden="true" tabindex="-1"></a><span class="vs">sized and coloured from the same texture.</span></span>
+<span id="cb11-391"><a href="#cb11-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-392"><a href="#cb11-392" aria-hidden="true" tabindex="-1"></a><span class="vs">**The city is a filtered texture, not geometry.** An earlier version raised the city's buildings as 3D</span></span>
+<span id="cb11-393"><a href="#cb11-393" aria-hidden="true" tabindex="-1"></a><span class="vs">blocks, and from afar their thin walls and window patterns flickered. Several things were</span></span>
+<span id="cb11-394"><a href="#cb11-394" aria-hidden="true" tabindex="-1"></a><span class="vs">changed against that; the texture is the main one. Now the city is a second texture: buildings,</span></span>
+<span id="cb11-395"><a href="#cb11-395" aria-hidden="true" tabindex="-1"></a><span class="vs">streets and water in its colour channels, with mipmaps, the smaller, pre-filtered copies of</span></span>
+<span id="cb11-396"><a href="#cb11-396" aria-hidden="true" tabindex="-1"></a><span class="vs">a texture described by @williams1983. From afar, the shader reads a small copy in which a</span></span>
+<span id="cb11-397"><a href="#cb11-397" aria-hidden="true" tabindex="-1"></a><span class="vs">street has already been averaged into its surroundings, so nothing flickers. Near, it draws</span></span>
+<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a><span class="vs">a soft edge about one pixel wide (from `</span>shaders<span class="op">.</span><span class="fu">js</span><span class="vs">`):</span></span>
 <span id="cb11-399"><a href="#cb11-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-400"><a href="#cb11-400" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="fu">px</span><span class="vs">` is how many cells one pixel covers, which the shader gets from the screen-space</span></span>
-<span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a><span class="vs">derivatives of the grid position. Close up the step is sharp; far away it widens into a</span></span>
-<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a><span class="vs">blend.</span></span>
+<span id="cb11-400"><a href="#cb11-400" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>glsl</span>
+<span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a>float <span class="fu">soft</span>(float v<span class="op">,</span> float px) { float w <span class="op">=</span> <span class="fu">clamp</span>(px <span class="op">*</span> <span class="fl">0.3</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="fl">0.5</span>)<span class="op">;</span> <span class="cf">return</span> <span class="fu">smoothstep</span>(<span class="fl">0.5</span> <span class="op">-</span> w<span class="op">,</span> <span class="fl">0.5</span> <span class="op">+</span> w<span class="op">,</span> v)<span class="op">;</span> }</span>
+<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
 <span id="cb11-403"><a href="#cb11-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-404"><a href="#cb11-404" aria-hidden="true" tabindex="-1"></a><span class="vs">**Glow is a few passes over the finished frame.** The frame is drawn off screen, with four</span></span>
-<span id="cb11-405"><a href="#cb11-405" aria-hidden="true" tabindex="-1"></a><span class="vs">samples per pixel where the device allows (multisampling, against jagged edges), then</span></span>
-<span id="cb11-406"><a href="#cb11-406" aria-hidden="true" tabindex="-1"></a><span class="vs">resolved into a plain texture. A small shader keeps only the bright parts, at a quarter of</span></span>
-<span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a><span class="vs">the size, a blur spreads them, and a last pass adds them back (@fig-render). The bright pass</span></span>
-<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a><span class="vs">fades in from a threshold, so only fire, lights and lightning glow (from `</span>shaders<span class="op">.</span><span class="fu">js</span><span class="vs">`):</span></span>
-<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-410"><a href="#cb11-410" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>glsl</span>
-<span id="cb11-411"><a href="#cb11-411" aria-hidden="true" tabindex="-1"></a>vec3 <span class="fu">pick</span>(vec2 d) {</span>
-<span id="cb11-412"><a href="#cb11-412" aria-hidden="true" tabindex="-1"></a>  vec3 c <span class="op">=</span> <span class="fu">texture</span>(uSrc<span class="op">,</span> vUv <span class="op">+</span> d <span class="op">*</span> uTexel)<span class="op">.</span><span class="at">rgb</span><span class="op">;</span></span>
-<span id="cb11-413"><a href="#cb11-413" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> c <span class="op">*</span> <span class="fu">smoothstep</span>(<span class="fl">0.42</span><span class="op">,</span> <span class="fl">0.95</span><span class="op">,</span> <span class="fu">max</span>(c<span class="op">.</span><span class="at">r</span><span class="op">,</span> <span class="fu">max</span>(c<span class="op">.</span><span class="at">g</span><span class="op">,</span> c<span class="op">.</span><span class="at">b</span>)))<span class="op">;</span></span>
-<span id="cb11-414"><a href="#cb11-414" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-415"><a href="#cb11-415" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb11-416"><a href="#cb11-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-417"><a href="#cb11-417" aria-hidden="true" tabindex="-1"></a><span class="vs">![One frame on the graphics card. The scene is drawn off screen, its bright parts are blurred</span></span>
-<span id="cb11-418"><a href="#cb11-418" aria-hidden="true" tabindex="-1"></a><span class="vs">at a quarter of the size and mixed back in, with a little more colour and darker</span></span>
-<span id="cb11-419"><a href="#cb11-419" aria-hidden="true" tabindex="-1"></a><span class="vs">corners.](fig-render.svg){#fig-render fig-alt="Diagram: draw the scene, resolve, bright parts, blur, mix, screen; below, the three textures the scene reads: cell states, city, heat"}</span></span>
+<span id="cb11-404"><a href="#cb11-404" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="fu">px</span><span class="vs">` is how many cells one pixel covers, which the shader gets from the screen-space</span></span>
+<span id="cb11-405"><a href="#cb11-405" aria-hidden="true" tabindex="-1"></a><span class="vs">derivatives of the grid position. Close up the step is sharp; far away it widens into a</span></span>
+<span id="cb11-406"><a href="#cb11-406" aria-hidden="true" tabindex="-1"></a><span class="vs">blend.</span></span>
+<span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a><span class="vs">**Glow is a few passes over the finished frame.** The frame is drawn off screen, with four</span></span>
+<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a><span class="vs">samples per pixel where the device allows (multisampling, against jagged edges), then</span></span>
+<span id="cb11-410"><a href="#cb11-410" aria-hidden="true" tabindex="-1"></a><span class="vs">resolved into a plain texture. A small shader keeps only the bright parts, at a quarter of</span></span>
+<span id="cb11-411"><a href="#cb11-411" aria-hidden="true" tabindex="-1"></a><span class="vs">the size, a blur spreads them, and a last pass adds them back (@fig-render). The bright pass</span></span>
+<span id="cb11-412"><a href="#cb11-412" aria-hidden="true" tabindex="-1"></a><span class="vs">fades in from a threshold, so only fire, lights and lightning glow (from `</span>shaders<span class="op">.</span><span class="fu">js</span><span class="vs">`):</span></span>
+<span id="cb11-413"><a href="#cb11-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-414"><a href="#cb11-414" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>glsl</span>
+<span id="cb11-415"><a href="#cb11-415" aria-hidden="true" tabindex="-1"></a>vec3 <span class="fu">pick</span>(vec2 d) {</span>
+<span id="cb11-416"><a href="#cb11-416" aria-hidden="true" tabindex="-1"></a>  vec3 c <span class="op">=</span> <span class="fu">texture</span>(uSrc<span class="op">,</span> vUv <span class="op">+</span> d <span class="op">*</span> uTexel)<span class="op">.</span><span class="at">rgb</span><span class="op">;</span></span>
+<span id="cb11-417"><a href="#cb11-417" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> c <span class="op">*</span> <span class="fu">smoothstep</span>(<span class="fl">0.42</span><span class="op">,</span> <span class="fl">0.95</span><span class="op">,</span> <span class="fu">max</span>(c<span class="op">.</span><span class="at">r</span><span class="op">,</span> <span class="fu">max</span>(c<span class="op">.</span><span class="at">g</span><span class="op">,</span> c<span class="op">.</span><span class="at">b</span>)))<span class="op">;</span></span>
+<span id="cb11-418"><a href="#cb11-418" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-419"><a href="#cb11-419" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
 <span id="cb11-420"><a href="#cb11-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-421"><a href="#cb11-421" aria-hidden="true" tabindex="-1"></a><span class="vs">The last pass also lifts the colour a little and darkens the corners:</span></span>
-<span id="cb11-422"><a href="#cb11-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-423"><a href="#cb11-423" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>glsl</span>
-<span id="cb11-424"><a href="#cb11-424" aria-hidden="true" tabindex="-1"></a>  vec3 c <span class="op">=</span> <span class="fu">texture</span>(uBase<span class="op">,</span> vUv)<span class="op">.</span><span class="at">rgb</span> <span class="op">+</span> <span class="fu">texture</span>(uGlow<span class="op">,</span> vUv)<span class="op">.</span><span class="at">rgb</span> <span class="op">*</span> uGlowK<span class="op">;</span></span>
-<span id="cb11-425"><a href="#cb11-425" aria-hidden="true" tabindex="-1"></a>  float l <span class="op">=</span> <span class="fu">dot</span>(c<span class="op">,</span> <span class="fu">vec3</span>(<span class="fl">0.299</span><span class="op">,</span> <span class="fl">0.587</span><span class="op">,</span> <span class="fl">0.114</span>))<span class="op">;</span></span>
-<span id="cb11-426"><a href="#cb11-426" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> <span class="fu">max</span>(<span class="fu">mix</span>(<span class="fu">vec3</span>(l)<span class="op">,</span> c<span class="op">,</span> <span class="fl">1.2</span>)<span class="op">,</span> <span class="fl">0.0</span>)<span class="op">;</span>                  <span class="co">// a little more colour</span></span>
-<span id="cb11-427"><a href="#cb11-427" aria-hidden="true" tabindex="-1"></a>  vec2 q <span class="op">=</span> vUv <span class="op">-</span> <span class="fl">0.5</span><span class="op">;</span></span>
-<span id="cb11-428"><a href="#cb11-428" aria-hidden="true" tabindex="-1"></a>  q<span class="op">.</span><span class="at">x</span> <span class="op">*=</span> uAspect<span class="op">;</span></span>
-<span id="cb11-429"><a href="#cb11-429" aria-hidden="true" tabindex="-1"></a>  c <span class="op">*=</span> <span class="fl">1.0</span> <span class="op">-</span> <span class="fl">0.6</span> <span class="op">*</span> <span class="fu">dot</span>(q<span class="op">,</span> q)<span class="op">;</span>                          <span class="co">// darker towards the corners</span></span>
-<span id="cb11-430"><a href="#cb11-430" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb11-431"><a href="#cb11-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-432"><a href="#cb11-432" aria-hidden="true" tabindex="-1"></a><span class="vs">The names on the map, the station labels and the touch rings are drawn on a second, plain</span></span>
-<span id="cb11-433"><a href="#cb11-433" aria-hidden="true" tabindex="-1"></a><span class="vs">2D canvas on top, so text stays sharp.</span></span>
-<span id="cb11-434"><a href="#cb11-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-435"><a href="#cb11-435" aria-hidden="true" tabindex="-1"></a><span class="vs">## Staying fast on a phone</span></span>
-<span id="cb11-436"><a href="#cb11-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-437"><a href="#cb11-437" aria-hidden="true" tabindex="-1"></a><span class="vs">Most of the work is small enough not to matter. Two places needed care.</span></span>
+<span id="cb11-421"><a href="#cb11-421" aria-hidden="true" tabindex="-1"></a><span class="vs">![One frame on the graphics card. The scene is drawn off screen, its bright parts are blurred</span></span>
+<span id="cb11-422"><a href="#cb11-422" aria-hidden="true" tabindex="-1"></a><span class="vs">at a quarter of the size and mixed back in, with a little more colour and darker</span></span>
+<span id="cb11-423"><a href="#cb11-423" aria-hidden="true" tabindex="-1"></a><span class="vs">corners.](fig-render.svg){#fig-render fig-alt="Diagram: draw the scene, resolve, bright parts, blur, mix, screen; below, the three textures the scene reads: cell states, city, heat"}</span></span>
+<span id="cb11-424"><a href="#cb11-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-425"><a href="#cb11-425" aria-hidden="true" tabindex="-1"></a><span class="vs">The last pass also lifts the colour a little and darkens the corners:</span></span>
+<span id="cb11-426"><a href="#cb11-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-427"><a href="#cb11-427" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>glsl</span>
+<span id="cb11-428"><a href="#cb11-428" aria-hidden="true" tabindex="-1"></a>  vec3 c <span class="op">=</span> <span class="fu">texture</span>(uBase<span class="op">,</span> vUv)<span class="op">.</span><span class="at">rgb</span> <span class="op">+</span> <span class="fu">texture</span>(uGlow<span class="op">,</span> vUv)<span class="op">.</span><span class="at">rgb</span> <span class="op">*</span> uGlowK<span class="op">;</span></span>
+<span id="cb11-429"><a href="#cb11-429" aria-hidden="true" tabindex="-1"></a>  float l <span class="op">=</span> <span class="fu">dot</span>(c<span class="op">,</span> <span class="fu">vec3</span>(<span class="fl">0.299</span><span class="op">,</span> <span class="fl">0.587</span><span class="op">,</span> <span class="fl">0.114</span>))<span class="op">;</span></span>
+<span id="cb11-430"><a href="#cb11-430" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> <span class="fu">max</span>(<span class="fu">mix</span>(<span class="fu">vec3</span>(l)<span class="op">,</span> c<span class="op">,</span> <span class="fl">1.2</span>)<span class="op">,</span> <span class="fl">0.0</span>)<span class="op">;</span>                  <span class="co">// a little more colour</span></span>
+<span id="cb11-431"><a href="#cb11-431" aria-hidden="true" tabindex="-1"></a>  vec2 q <span class="op">=</span> vUv <span class="op">-</span> <span class="fl">0.5</span><span class="op">;</span></span>
+<span id="cb11-432"><a href="#cb11-432" aria-hidden="true" tabindex="-1"></a>  q<span class="op">.</span><span class="at">x</span> <span class="op">*=</span> uAspect<span class="op">;</span></span>
+<span id="cb11-433"><a href="#cb11-433" aria-hidden="true" tabindex="-1"></a>  c <span class="op">*=</span> <span class="fl">1.0</span> <span class="op">-</span> <span class="fl">0.6</span> <span class="op">*</span> <span class="fu">dot</span>(q<span class="op">,</span> q)<span class="op">;</span>                          <span class="co">// darker towards the corners</span></span>
+<span id="cb11-434"><a href="#cb11-434" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb11-435"><a href="#cb11-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-436"><a href="#cb11-436" aria-hidden="true" tabindex="-1"></a><span class="vs">The names on the map, the station labels and the touch rings are drawn on a second, plain</span></span>
+<span id="cb11-437"><a href="#cb11-437" aria-hidden="true" tabindex="-1"></a><span class="vs">2D canvas on top, so text stays sharp.</span></span>
 <span id="cb11-438"><a href="#cb11-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-439"><a href="#cb11-439" aria-hidden="true" tabindex="-1"></a><span class="vs">**The roads.** In the first version of the crews, a step in which crews left could take long</span></span>
-<span id="cb11-440"><a href="#cb11-440" aria-hidden="true" tabindex="-1"></a><span class="vs">enough to make the picture stutter. After a rewrite (the heap</span></span>
-<span id="cb11-441"><a href="#cb11-441" aria-hidden="true" tabindex="-1"></a><span class="vs">written out on flat typed arrays, every station's full field computed ahead, one by one, in</span></span>
-<span id="cb11-442"><a href="#cb11-442" aria-hidden="true" tabindex="-1"></a><span class="vs">quiet moments after the page has loaded, and at most one small field per step while fires</span></span>
-<span id="cb11-443"><a href="#cb11-443" aria-hidden="true" tabindex="-1"></a><span class="vs">burn) a full field of the 166,000 cells of the map takes about 16 ms on a desktop computer</span></span>
-<span id="cb11-444"><a href="#cb11-444" aria-hidden="true" tabindex="-1"></a><span class="vs">and a crew's small field about 2 ms.</span></span>
-<span id="cb11-445"><a href="#cb11-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-446"><a href="#cb11-446" aria-hidden="true" tabindex="-1"></a><span class="vs">**The resolution.** Phones get a lower pixel density from the start and fewer points for</span></span>
-<span id="cb11-447"><a href="#cb11-447" aria-hidden="true" tabindex="-1"></a><span class="vs">embers, smoke and flames. If frames keep taking longer than about 1/28 of a second, the toy</span></span>
-<span id="cb11-448"><a href="#cb11-448" aria-hidden="true" tabindex="-1"></a><span class="vs">lowers the resolution a little, and again if needed. It stops when the tab is hidden, and</span></span>
-<span id="cb11-449"><a href="#cb11-449" aria-hidden="true" tabindex="-1"></a><span class="vs">visitors who ask their device for less motion get a still picture with a play button.</span></span>
-<span id="cb11-450"><a href="#cb11-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-451"><a href="#cb11-451" aria-hidden="true" tabindex="-1"></a><span class="vs">## From toy to model</span></span>
-<span id="cb11-452"><a href="#cb11-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-453"><a href="#cb11-453" aria-hidden="true" tabindex="-1"></a><span class="vs">What would have to change before any of this could say something about a real forest?</span></span>
+<span id="cb11-439"><a href="#cb11-439" aria-hidden="true" tabindex="-1"></a><span class="vs">## Staying fast on a phone</span></span>
+<span id="cb11-440"><a href="#cb11-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-441"><a href="#cb11-441" aria-hidden="true" tabindex="-1"></a><span class="vs">Most of the work is small enough not to matter. Two places needed care.</span></span>
+<span id="cb11-442"><a href="#cb11-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-443"><a href="#cb11-443" aria-hidden="true" tabindex="-1"></a><span class="vs">**The roads.** In the first version of the crews, a step in which crews left could take long</span></span>
+<span id="cb11-444"><a href="#cb11-444" aria-hidden="true" tabindex="-1"></a><span class="vs">enough to make the picture stutter. After a rewrite (the heap</span></span>
+<span id="cb11-445"><a href="#cb11-445" aria-hidden="true" tabindex="-1"></a><span class="vs">written out on flat typed arrays, every station's full field computed ahead, one by one, in</span></span>
+<span id="cb11-446"><a href="#cb11-446" aria-hidden="true" tabindex="-1"></a><span class="vs">quiet moments after the page has loaded, and at most one small field per step while fires</span></span>
+<span id="cb11-447"><a href="#cb11-447" aria-hidden="true" tabindex="-1"></a><span class="vs">burn) a full field of the 166,000 cells of the map takes about 16 ms on a desktop computer</span></span>
+<span id="cb11-448"><a href="#cb11-448" aria-hidden="true" tabindex="-1"></a><span class="vs">and a crew's small field about 2 ms.</span></span>
+<span id="cb11-449"><a href="#cb11-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-450"><a href="#cb11-450" aria-hidden="true" tabindex="-1"></a><span class="vs">**The resolution.** Phones get a lower pixel density from the start and fewer points for</span></span>
+<span id="cb11-451"><a href="#cb11-451" aria-hidden="true" tabindex="-1"></a><span class="vs">embers, smoke and flames. If frames keep taking longer than about 1/28 of a second, the toy</span></span>
+<span id="cb11-452"><a href="#cb11-452" aria-hidden="true" tabindex="-1"></a><span class="vs">lowers the resolution a little, and again if needed. It stops when the tab is hidden, and</span></span>
+<span id="cb11-453"><a href="#cb11-453" aria-hidden="true" tabindex="-1"></a><span class="vs">visitors who ask their device for less motion get a still picture with a play button.</span></span>
 <span id="cb11-454"><a href="#cb11-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-455"><a href="#cb11-455" aria-hidden="true" tabindex="-1"></a><span class="vs">**Use what is known about fire.** Real fire spread is modelled from fuel, moisture, wind</span></span>
-<span id="cb11-456"><a href="#cb11-456" aria-hidden="true" tabindex="-1"></a><span class="vs">and slope. A widely used example is the surface fire spread model of @rothermel1972, built</span></span>
-<span id="cb11-457"><a href="#cb11-457" aria-hidden="true" tabindex="-1"></a><span class="vs">on laboratory fires, with standard fuel models to go with it [@scott2005]. FARSITE</span></span>
-<span id="cb11-458"><a href="#cb11-458" aria-hidden="true" tabindex="-1"></a><span class="vs">[@finney1998] combines models of this kind to simulate how a fire grows in two dimensions.</span></span>
-<span id="cb11-459"><a href="#cb11-459" aria-hidden="true" tabindex="-1"></a><span class="vs">@sullivan2009a, @sullivan2009b and @sullivan2009c survey the field from 1990 to 2007, from</span></span>
-<span id="cb11-460"><a href="#cb11-460" aria-hidden="true" tabindex="-1"></a><span class="vs">physical models to simulation and "mathematical analogue" models, the family the toy</span></span>
-<span id="cb11-461"><a href="#cb11-461" aria-hidden="true" tabindex="-1"></a><span class="vs">belongs to: models based on a mathematical idea rather than the physics of fire.</span></span>
-<span id="cb11-462"><a href="#cb11-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-463"><a href="#cb11-463" aria-hidden="true" tabindex="-1"></a><span class="vs">**Use the right data.** The toy's classes come from map tags, not from fuel surveys. Its</span></span>
-<span id="cb11-464"><a href="#cb11-464" aria-hidden="true" tabindex="-1"></a><span class="vs">cell size is fixed at 25 m. It has no terrain and no fuel moisture, only one number for</span></span>
-<span id="cb11-465"><a href="#cb11-465" aria-hidden="true" tabindex="-1"></a><span class="vs">dryness. Its wind is the same everywhere.</span></span>
+<span id="cb11-455"><a href="#cb11-455" aria-hidden="true" tabindex="-1"></a><span class="vs">## From toy to model</span></span>
+<span id="cb11-456"><a href="#cb11-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-457"><a href="#cb11-457" aria-hidden="true" tabindex="-1"></a><span class="vs">What would have to change before any of this could say something about a real forest?</span></span>
+<span id="cb11-458"><a href="#cb11-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-459"><a href="#cb11-459" aria-hidden="true" tabindex="-1"></a><span class="vs">**Use what is known about fire.** Real fire spread is modelled from fuel, moisture, wind</span></span>
+<span id="cb11-460"><a href="#cb11-460" aria-hidden="true" tabindex="-1"></a><span class="vs">and slope. A widely used example is the surface fire spread model of @rothermel1972, built</span></span>
+<span id="cb11-461"><a href="#cb11-461" aria-hidden="true" tabindex="-1"></a><span class="vs">on laboratory fires, with standard fuel models to go with it [@scott2005]. FARSITE</span></span>
+<span id="cb11-462"><a href="#cb11-462" aria-hidden="true" tabindex="-1"></a><span class="vs">[@finney1998] combines models of this kind to simulate how a fire grows in two dimensions.</span></span>
+<span id="cb11-463"><a href="#cb11-463" aria-hidden="true" tabindex="-1"></a><span class="vs">@sullivan2009a, @sullivan2009b and @sullivan2009c survey the field from 1990 to 2007, from</span></span>
+<span id="cb11-464"><a href="#cb11-464" aria-hidden="true" tabindex="-1"></a><span class="vs">physical models to simulation and "mathematical analogue" models, the family the toy</span></span>
+<span id="cb11-465"><a href="#cb11-465" aria-hidden="true" tabindex="-1"></a><span class="vs">belongs to: models based on a mathematical idea rather than the physics of fire.</span></span>
 <span id="cb11-466"><a href="#cb11-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-467"><a href="#cb11-467" aria-hidden="true" tabindex="-1"></a><span class="vs">**Tie the rules to observations, and write them down.** A model is only as good as its</span></span>
-<span id="cb11-468"><a href="#cb11-468" aria-hidden="true" tabindex="-1"></a><span class="vs">test against real fires. A standard way to describe such a model so that others can</span></span>
-<span id="cb11-469"><a href="#cb11-469" aria-hidden="true" tabindex="-1"></a><span class="vs">rebuild it is the ODD protocol [@grimm2006; @grimm2020].</span></span>
+<span id="cb11-467"><a href="#cb11-467" aria-hidden="true" tabindex="-1"></a><span class="vs">**Use the right data.** The toy's classes come from map tags, not from fuel surveys. Its</span></span>
+<span id="cb11-468"><a href="#cb11-468" aria-hidden="true" tabindex="-1"></a><span class="vs">cell size is fixed at 25 m. It has no terrain and no fuel moisture, only one number for</span></span>
+<span id="cb11-469"><a href="#cb11-469" aria-hidden="true" tabindex="-1"></a><span class="vs">dryness. Its wind is the same everywhere.</span></span>
 <span id="cb11-470"><a href="#cb11-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-471"><a href="#cb11-471" aria-hidden="true" tabindex="-1"></a><span class="vs">The toy's rules were not derived from any of these. They are where I would start reading</span></span>
-<span id="cb11-472"><a href="#cb11-472" aria-hidden="true" tabindex="-1"></a><span class="vs">before writing a rule that claims anything.</span></span>
-<span id="cb11-473"><a href="#cb11-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-474"><a href="#cb11-474" aria-hidden="true" tabindex="-1"></a><span class="vs">## What the toy leaves out</span></span>
-<span id="cb11-475"><a href="#cb11-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-476"><a href="#cb11-476" aria-hidden="true" tabindex="-1"></a><span class="vs">No terrain, no fuel load, no fuel moisture by place, no crown fire, no smoke that matters.</span></span>
-<span id="cb11-477"><a href="#cb11-477" aria-hidden="true" tabindex="-1"></a><span class="vs">Time has no unit: a step is not a minute and a day is not a day. The crews have nothing to</span></span>
-<span id="cb11-478"><a href="#cb11-478" aria-hidden="true" tabindex="-1"></a><span class="vs">do with how a real fire brigade works, arrives or fights a fire, and the toy says nothing</span></span>
-<span id="cb11-479"><a href="#cb11-479" aria-hidden="true" tabindex="-1"></a><span class="vs">about any real station. The city never burns because the toy gives it no cells that can.</span></span>
-<span id="cb11-480"><a href="#cb11-480" aria-hidden="true" tabindex="-1"></a><span class="vs">All rates and thresholds were set by hand, to play well.</span></span>
-<span id="cb11-481"><a href="#cb11-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-482"><a href="#cb11-482" aria-hidden="true" tabindex="-1"></a><span class="vs">For the real fire danger on a given day, look to the weather services, not to a toy.</span></span>
-<span id="cb11-483"><a href="#cb11-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-484"><a href="#cb11-484" aria-hidden="true" tabindex="-1"></a><span class="vs">## A reading guide</span></span>
+<span id="cb11-471"><a href="#cb11-471" aria-hidden="true" tabindex="-1"></a><span class="vs">**Tie the rules to observations, and write them down.** A model is only as good as its</span></span>
+<span id="cb11-472"><a href="#cb11-472" aria-hidden="true" tabindex="-1"></a><span class="vs">test against real fires. A standard way to describe such a model so that others can</span></span>
+<span id="cb11-473"><a href="#cb11-473" aria-hidden="true" tabindex="-1"></a><span class="vs">rebuild it is the ODD protocol [@grimm2006; @grimm2020].</span></span>
+<span id="cb11-474"><a href="#cb11-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-475"><a href="#cb11-475" aria-hidden="true" tabindex="-1"></a><span class="vs">The toy's rules were not derived from any of these. They are where I would start reading</span></span>
+<span id="cb11-476"><a href="#cb11-476" aria-hidden="true" tabindex="-1"></a><span class="vs">before writing a rule that claims anything.</span></span>
+<span id="cb11-477"><a href="#cb11-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-478"><a href="#cb11-478" aria-hidden="true" tabindex="-1"></a><span class="vs">## What the toy leaves out</span></span>
+<span id="cb11-479"><a href="#cb11-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-480"><a href="#cb11-480" aria-hidden="true" tabindex="-1"></a><span class="vs">No terrain, no fuel load, no fuel moisture by place, no crown fire, no smoke that matters.</span></span>
+<span id="cb11-481"><a href="#cb11-481" aria-hidden="true" tabindex="-1"></a><span class="vs">Time has no unit: a step is not a minute and a day is not a day. The crews have nothing to</span></span>
+<span id="cb11-482"><a href="#cb11-482" aria-hidden="true" tabindex="-1"></a><span class="vs">do with how a real fire brigade works, arrives or fights a fire, and the toy says nothing</span></span>
+<span id="cb11-483"><a href="#cb11-483" aria-hidden="true" tabindex="-1"></a><span class="vs">about any real station. The city never burns because the toy gives it no cells that can.</span></span>
+<span id="cb11-484"><a href="#cb11-484" aria-hidden="true" tabindex="-1"></a><span class="vs">All rates and thresholds were set by hand, to play well.</span></span>
 <span id="cb11-485"><a href="#cb11-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-486"><a href="#cb11-486" aria-hidden="true" tabindex="-1"></a><span class="vs">**Cellular automata and percolation.** Percolation [@broadbent1957] and cellular automata</span></span>
-<span id="cb11-487"><a href="#cb11-487" aria-hidden="true" tabindex="-1"></a><span class="vs">[@wolfram1983].</span></span>
-<span id="cb11-488"><a href="#cb11-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-489"><a href="#cb11-489" aria-hidden="true" tabindex="-1"></a><span class="vs">**Fires as a puzzle of physics.** The forest-fire model [@bak1990], lightning and</span></span>
-<span id="cb11-490"><a href="#cb11-490" aria-hidden="true" tabindex="-1"></a><span class="vs">self-organised criticality [@drossel1992], and real fires against the model</span></span>
-<span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a><span class="vs">[@malamud1998].</span></span>
+<span id="cb11-486"><a href="#cb11-486" aria-hidden="true" tabindex="-1"></a><span class="vs">For the real fire danger on a given day, look to the weather services, not to a toy.</span></span>
+<span id="cb11-487"><a href="#cb11-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-488"><a href="#cb11-488" aria-hidden="true" tabindex="-1"></a><span class="vs">## A reading guide</span></span>
+<span id="cb11-489"><a href="#cb11-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-490"><a href="#cb11-490" aria-hidden="true" tabindex="-1"></a><span class="vs">**Cellular automata and percolation.** Percolation [@broadbent1957] and cellular automata</span></span>
+<span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a><span class="vs">[@wolfram1983].</span></span>
 <span id="cb11-492"><a href="#cb11-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a><span class="vs">**Fire spread on real ground.** Cellular automata for real fires [@karafyllidis1997;</span></span>
-<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a><span class="vs">@alexandridis2008]; the surface fire spread model and its fuel models [@rothermel1972;</span></span>
-<span id="cb11-495"><a href="#cb11-495" aria-hidden="true" tabindex="-1"></a><span class="vs">@scott2005]; a fire area simulator [@finney1998]; a survey in three parts</span></span>
-<span id="cb11-496"><a href="#cb11-496" aria-hidden="true" tabindex="-1"></a><span class="vs">[@sullivan2009a; @sullivan2009b; @sullivan2009c].</span></span>
-<span id="cb11-497"><a href="#cb11-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-498"><a href="#cb11-498" aria-hidden="true" tabindex="-1"></a><span class="vs">**Roads and maps.** Shortest paths [@dijkstra1959], heaps [@williams1964], A* [@hart1968],</span></span>
-<span id="cb11-499"><a href="#cb11-499" aria-hidden="true" tabindex="-1"></a><span class="vs">OpenStreetMap [@haklay2008].</span></span>
-<span id="cb11-500"><a href="#cb11-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-501"><a href="#cb11-501" aria-hidden="true" tabindex="-1"></a><span class="vs">**Drawing.** Mipmaps [@williams1983].</span></span>
-<span id="cb11-502"><a href="#cb11-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-503"><a href="#cb11-503" aria-hidden="true" tabindex="-1"></a><span class="vs">**Describing a model.** The ODD protocol [@grimm2006; @grimm2020].</span></span>
+<span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a><span class="vs">**Fires as a puzzle of physics.** The forest-fire model [@bak1990], lightning and</span></span>
+<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a><span class="vs">self-organised criticality [@drossel1992], and real fires against the model</span></span>
+<span id="cb11-495"><a href="#cb11-495" aria-hidden="true" tabindex="-1"></a><span class="vs">[@malamud1998].</span></span>
+<span id="cb11-496"><a href="#cb11-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-497"><a href="#cb11-497" aria-hidden="true" tabindex="-1"></a><span class="vs">**Fire spread on real ground.** Cellular automata for real fires [@karafyllidis1997;</span></span>
+<span id="cb11-498"><a href="#cb11-498" aria-hidden="true" tabindex="-1"></a><span class="vs">@alexandridis2008]; the surface fire spread model and its fuel models [@rothermel1972;</span></span>
+<span id="cb11-499"><a href="#cb11-499" aria-hidden="true" tabindex="-1"></a><span class="vs">@scott2005]; a fire area simulator [@finney1998]; a survey in three parts</span></span>
+<span id="cb11-500"><a href="#cb11-500" aria-hidden="true" tabindex="-1"></a><span class="vs">[@sullivan2009a; @sullivan2009b; @sullivan2009c].</span></span>
+<span id="cb11-501"><a href="#cb11-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-502"><a href="#cb11-502" aria-hidden="true" tabindex="-1"></a><span class="vs">**Roads and maps.** Shortest paths [@dijkstra1959], heaps [@williams1964], A* [@hart1968],</span></span>
+<span id="cb11-503"><a href="#cb11-503" aria-hidden="true" tabindex="-1"></a><span class="vs">OpenStreetMap [@haklay2008].</span></span>
 <span id="cb11-504"><a href="#cb11-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-505"><a href="#cb11-505" aria-hidden="true" tabindex="-1"></a><span class="vs">## References</span></span>
+<span id="cb11-505"><a href="#cb11-505" aria-hidden="true" tabindex="-1"></a><span class="vs">**Drawing.** Mipmaps [@williams1983].</span></span>
 <span id="cb11-506"><a href="#cb11-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-507"><a href="#cb11-507" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {#refs}</span></span>
-<span id="cb11-508"><a href="#cb11-508" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb11-507"><a href="#cb11-507" aria-hidden="true" tabindex="-1"></a><span class="vs">**Describing a model.** The ODD protocol [@grimm2006; @grimm2020].</span></span>
+<span id="cb11-508"><a href="#cb11-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-509"><a href="#cb11-509" aria-hidden="true" tabindex="-1"></a><span class="vs">## References</span></span>
+<span id="cb11-510"><a href="#cb11-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-511"><a href="#cb11-511" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {#refs}</span></span>
+<span id="cb11-512"><a href="#cb11-512" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

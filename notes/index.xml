@@ -29,7 +29,7 @@
 <section id="chaos" class="level2">
 <h2 data-anchor-id="chaos">Chaos</h2>
 <p><em>Chaos: Making a New Science</em> came out with Viking in 1987 and was a <a href="https://www.nationalbook.org/people/james-gleick/">National Book Award finalist</a>. Its material is nonlinearity, strange attractors and fractals, and the people who took them seriously early: Edward Lorenz, Mitchell Feigenbaum, Benoit Mandelbrot.</p>
-<p>Lorenz is the one I keep coming back to. He was a meteorologist at MIT, and his 1963 paper <em>Deterministic Nonperiodic Flow</em> showed that a tiny, fully deterministic model of a fluid could still be <a href="https://www.technologyreview.com/2011/02/22/196987/when-the-butterfly-effect-took-flight/">unpredictable in the long run</a>. The butterfly came later, in the title of a talk he gave in Washington in December 1972. Before that, his image had been <a href="https://www.sciencenews.org/article/born-half-century-ago-chaos-theory-languished-years">a seagull</a>.</p>
+<p>Lorenz is the one I keep coming back to. He was a meteorologist at MIT, and his 1963 paper <a href="../notes/undercurrent-complexity-compendium.html"><em>Deterministic Nonperiodic Flow</em></a> showed that a tiny, fully deterministic model of a fluid could still be <a href="https://www.technologyreview.com/2011/02/22/196987/when-the-butterfly-effect-took-flight/">unpredictable in the long run</a>. The butterfly came later, in the title of a talk he gave in Washington in December 1972. Before that, his image had been <a href="https://www.sciencenews.org/article/born-half-century-ago-chaos-theory-languished-years">a seagull</a>.</p>
 <p>For anyone who works with weather this is the founding paradox: the equations are known, and the forecast still has a horizon. I like that Gleick tells it as a story about attention, about people who looked twice at a result others would have rounded away.</p>
 <p>The book had a second life on stage. Tom Stoppard’s <em>Arcadia</em> (1993) was <a href="https://lithub.com/this-week-in-literary-history-tom-stoppards-arcadia-premieres-in-london">inspired by it</a>: one English country house, two centuries, a girl with a question about rice pudding. Read the book, then see the play, and leave the rest of the premise alone.</p>
 </section>
@@ -39,9 +39,17 @@
 <p><em>The Information</em> (2011) is the big one: a history that runs from African talking drums through Babbage, Ada Byron and Morse to Shannon and Turing. It won the <a href="https://royalsociety.org/news/2012/science-book-winner-2012">Royal Society Winton Prize</a> in 2012. Pair it with Jorge Luis Borges’s <em>The Library of Babel</em> (1941), a story set in a library that holds every possible book, which is a joke about information and a nightmare about it at the same time.</p>
 <p><em>Time Travel</em> (2016) follows an idea rather than a science, from H. G. Wells’s <em>The Time Machine</em> to Gödel and <em>Doctor Who</em>. Its film partner is Chris Marker’s <em>La Jetée</em> (1962), a short told almost entirely in still photographs.</p>
 <p>The newest, <a href="https://around.com/about/"><em>The Telephone: A New History</em></a>, came out in the US this month.</p>
-
-
 </section>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../models/climate-extremes-explorer.html">Climate Extremes Explorer</a>: Weather as a system with a horizon, and seventy-eight years of what it actually did in Berlin.</li>
+<li><a href="../playground/forecast/">Forecast</a>: The founding paradox as a game: the forecast has a horizon, and in year 3 it may simply be wrong.</li>
+<li><a href="../notes/undercurrent-complexity-compendium.html">Eighty-nine papers and a sandpile</a>: Lorenz’s 1963 paper in its original form, next to Mandelbrot’s coast and Budyko’s ice.</li>
+</ul>
+</section>
+
+
 
  ]]></description>
   <category>under:current</category>
@@ -81,9 +89,17 @@
 <h2 data-anchor-id="the-voice">The voice</h2>
 <p>In 1999 Herzog read out his twelve-point <a href="https://designmanifestos.org/werner-herzog-the-minnesota-declaration/">Minnesota Declaration</a>, a short polemic against the documentary that only records facts. Its central claim is that “there is such a thing as poetic, ecstatic truth”. You can disagree with it, and I sometimes do. But it explains the films better than any review.</p>
 <p>He also writes. <em>The Twilight World</em>, his first novel (German 2021, English 2022), is about Hiroo Onoda on the island of Lubang. His memoir came out in German in 2022 as <em>Jeder für sich und Gott gegen alle</em> and in English in 2023. Both read like the films sound.</p>
-
-
 </section>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../projects/livelines.html">LiveLines</a>: Herzog argues for ecstatic truth; LiveLines shows each value’s source or marks it a placeholder. A good argument to keep having.</li>
+<li><a href="../notes/undercurrent-nausicaa.html">Nausicaä, on paper</a>: A landscape at its limit and a person who goes there anyway: a princess walks into the toxic forest to study it.</li>
+<li><a href="../notes/undercurrent-burtynsky.html">Water, absent</a>: Landscapes at their limit again, seen from far above, with the water absent.</li>
+</ul>
+</section>
+
+
 
  ]]></description>
   <category>under:current</category>
@@ -102,6 +118,14 @@
 
 <p>Edward Burtynsky, <em>Water</em> (Steidl, 2013). Dams, irrigation circles, a dry lake bed, seen from far above. In many of the pictures, as the curator Russell Lord wrote of the series, the water is absent. From that height a farm looks like a painting. Only the scale tells you it was a decision.</p>
 <p>Two companions. Godfrey Reggio’s film <em>Koyaanisqatsi</em> (1982): no dialogue, cities and landscapes often seen from the air or sped up, Philip Glass’s music doing the talking. And Robert Smithson’s <em>Spiral Jetty</em> (1970), a coil of rock built out into the Great Salt Lake. Within a few years the water covered it; drought brought it back for good in 2002, and today the shore lies far from it. A sculpture that turned into a gauge.</p>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../models/climate-extremes-explorer.html">Climate Extremes Explorer</a>: Dry land seen from above; hot spells counted from below.</li>
+<li><a href="../showcases/mekong-coast.html">The vanishing coast of the Mekong Delta</a>: Dams seen from above in the book; on the Mekong coast, what dams upstream do to the mud the coast is made of.</li>
+<li><a href="../notes/undercurrent-complexity-compendium.html">Eighty-nine papers and a sandpile</a>: Irrigation as a system: Lansing and Kremer’s Balinese water temples.</li>
+</ul>
+</section>
 
 
 
@@ -126,6 +150,14 @@
 <p>My favourite example is the spurious waffles of chapter five. US states with more Waffle House restaurants per person have higher divorce rates. Nobody believes the waffles cause it, and the chapter uses it to show how to look for what is really going on. The extra joke for anyone in disaster risk: the chapter opens by noting that Waffle House is known for staying open after hurricanes, so reliably that its closures are read as a sign of how bad a storm was.</p>
 <p>One thing I would argue with. The causal graphs in the book are DAGs, directed acyclic graphs: no loops allowed. Climate risk is made of loops. Losses change behaviour, behaviour changes exposure, exposure changes the next loss. You can unroll a loop in time, and chapter sixteen does go into population dynamics, but the acyclic picture still nudges you to think in one direction. I would keep the discipline of drawing the graph and be suspicious of the arrows that only point one way.</p>
 <p>Three companions. Paul Wegener and Carl Boese’s silent film <em>Der Golem, wie er in die Welt kam</em> (1920), for the clay creature itself, in a Prague of crooked expressionist streets. Jorge Luis Borges’ story “The Garden of Forking Paths” (1941), which lent its title to one of the most useful ideas in applied statistics: Andrew Gelman and Eric Loken’s “garden of forking paths” (2013), the many small choices in an analysis that could have gone otherwise and can quietly turn noise into a finding. Read the story first; it is a spy story, and better than it needs to be. And Tyler Vigen’s <em>Spurious Correlations</em>, a website and then a book (2015), where the waffles would feel at home: chart after chart of unrelated things rising and falling together.</p>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../models/heatwave-prices-de-lu.html">Heatwaves and day-ahead prices</a>: Does heat raise prices, or does something else drive both? The haunted-DAG question, asked of seven summers.</li>
+<li><a href="../showcases/trigger-lab-mozambique.html">Trigger Lab</a>: Reading a storm’s damage off a sign: Waffle House closures in the joke, a wind trigger agreed in advance in the Trigger Lab.</li>
+<li><a href="../notes/undercurrent-complexity-compendium.html">Eighty-nine papers and a sandpile</a>: A loop a DAG leaves out, in its original form: Budyko’s ice feedback, in the compendium.</li>
+</ul>
+</section>
 
 
 
@@ -155,8 +187,8 @@
 <h2 data-anchor-id="the-climate-book-hidden-inside">The climate book hidden inside</h2>
 <p>Nobody would sell this as a climate book. Read the contents with climate in mind, though, and one appears.</p>
 <ul>
-<li><strong>Lorenz, “Deterministic Nonperiodic Flow” (1963).</strong> Three equations for convection whose solutions never settle and never repeat. Two almost identical starting points drift apart until they have nothing in common. This is why a weather forecast has a horizon, and why climate has to be asked about in a different way from weather.</li>
-<li><strong>Mandelbrot, “How Long is the Coast of Britain?” (1967).</strong> The measured length of a coast depends on the length of the ruler. Every dataset of exposed coastline should carry that sentence on its first page, and almost none does.</li>
+<li><strong>Lorenz, “Deterministic Nonperiodic Flow” (1963).</strong> Three equations for convection whose solutions never settle and never repeat. Two almost identical starting points drift apart until they have nothing in common. This is why <a href="../notes/undercurrent-gleick.html">a weather forecast has a horizon</a>, and why climate has to be asked about in a different way from weather.</li>
+<li><strong>Mandelbrot, “How Long is the Coast of Britain?” (1967).</strong> The measured length of a coast depends on the length of the ruler. Every dataset of exposed <a href="../showcases/mekong-coast.html">coastline</a> should carry that sentence on its first page, and almost none does.</li>
 <li><strong>Budyko, “The Effect of Solar Radiation Variations on the Climate of the Earth” (1969).</strong> An energy balance model with ice in it. Ice reflects sunlight, the cooling grows more ice, and past a point the feedback runs away towards a frozen planet. Tipping points, decades before the phrase became common.</li>
 <li><strong>May, “Will a Large Complex System Be Stable?” (1972).</strong> Two pages in <em>Nature</em>. Make a system larger and more richly connected at random, and beyond a threshold it becomes almost certainly unstable. The intuition that more connections mean more safety is not a law.</li>
 <li><strong>Holling, “Resilience and Stability of Ecological Systems” (1973).</strong> Holling separates stability, how quickly a system returns to where it was, from resilience, how much disturbance it can take and still persist as the same kind of system. Much of today’s talk of resilience in adaptation plans quietly blurs the two.</li>
@@ -170,13 +202,13 @@
 <h2 data-anchor-id="two-favourites">Two favourites</h2>
 <p><strong>The sandpile.</strong> Bak, Tang and Wiesenfeld, “Self-Organized Criticality: An Explanation of the 1/f Noise” (1987). Drop grains of sand onto a pile one at a time. The pile builds itself to a critical slope and then stays there, shedding avalanches of every size: many small ones, a few huge ones, with nobody tuning anything. What I love in it is the image, and one uncomfortable consequence: the grain that starts a catastrophe is an ordinary grain. The size of the trigger says nothing about the size of what follows. How much of the real world works like that is still argued about, and I do not think the argument is over. As a picture for risk it is hard to beat.</p>
 <p><strong>The best title.</strong> Conant and Ashby, “Every Good Regulator of a System Must Be a Model of That System” (1970). I have nothing to add to the title except that it should hang above every desk where someone manages a risk with a model they do not understand.</p>
-<p>A smaller pleasure: Craig Reynolds’ “Flocks, Herds, and Schools: A Distributed Behavioral Model” (1987) is in volume three, three rules that make a flock without a leader. The fish in the mangrove toy swim by those rules, as its <a href="../playground/mangrove-how-it-works/index.html">taken-apart page</a> explains.</p>
+<p>A smaller pleasure: Craig Reynolds’ “Flocks, Herds, and Schools: A Distributed Behavioral Model” (1987) is in volume three, three rules that make a flock without a leader. The fish in <a href="../playground/mangrove/">the mangrove toy</a> swim by those rules, as its <a href="../playground/mangrove-how-it-works/index.html">taken-apart page</a> explains.</p>
 </section>
 <section id="neighbours-outside-the-books" class="level2">
 <h2 data-anchor-id="neighbours-outside-the-books">Neighbours outside the books</h2>
 <p>The set has no music in it, but complexity has a soundtrack. Steve Reich’s <em>Music for 18 Musicians</em> (1976): pulses and short repeated patterns for many players, and a large shape that changes so slowly you hear it arrive rather than watch it being built. Brian Eno’s <em>Ambient 1: Music for Airports</em> from the end of the 1970s, built from tape loops of different lengths that drift in and out of step, so the music keeps making combinations no one wrote down.</p>
 <p>Then a game with no players: John Conway’s Game of Life, introduced to the world in Martin Gardner’s “Mathematical Games” column in <em>Scientific American</em> in October 1970. A grid, a handful of rules that fit on a napkin, and behaviour people are still cataloguing.</p>
-<p>And on stage, Tom Stoppard’s <em>Arcadia</em> (1993), a country-house comedy whose scenes move between two centuries in the same room, with iterated equations, heat and the second law of thermodynamics in among the gossip. It is the only play I know in which an algorithm gets a laugh.</p>
+<p>And on stage, <a href="../notes/undercurrent-gleick.html">Tom Stoppard’s <em>Arcadia</em></a> (1993), a country-house comedy whose scenes move between two centuries in the same room, with iterated equations, heat and the second law of thermodynamics in among the gossip. It is the only play I know in which an algorithm gets a laugh.</p>
 </section>
 <section id="an-argument-with-it" class="level2">
 <h2 data-anchor-id="an-argument-with-it">An argument with it</h2>
@@ -186,9 +218,18 @@
 <section id="what-i-take-from-it" class="level2">
 <h2 data-anchor-id="what-i-take-from-it">What I take from it</h2>
 <p>Complexity is not a method. It is a set of warnings, each with a name and a year attached, and the most useful ones are about where our models stop. Reading the warnings in their original form, one paper at a time, is a better use of an evening than most new papers.</p>
-
-
 </section>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../projects/livelines.html">LiveLines</a>: A storm meets a network, and failures travel along it.</li>
+<li><a href="../playground/mangrove/">Mangrove coast</a>: Its fish school by Reynolds’ three rules, with no leader.</li>
+<li><a href="../playground/eilenriede/">Eilenriede fire</a>: A grid of cells, a few made-up rules, and a chart of how often each fire size occurs: the sandpile’s question, asked of a toy.</li>
+<li><a href="../notes/undercurrent-gleick.html">A seagull, a butterfly, a flood</a>: Lorenz and <em>Arcadia</em> again, told through the people.</li>
+</ul>
+</section>
+
+
 
  ]]></description>
   <category>under:current</category>
@@ -214,6 +255,15 @@
 <p>Some neighbours. The heroine has two sources Miyazaki named himself: the princess Nausicaa of the <em>Odyssey</em>, as he met her in Bernard Evslin’s small dictionary of Greek mythology, and <em>The Lady Who Loved Insects</em>, a Heian-period Japanese tale about a young noblewoman who would rather keep caterpillars than behave as expected. The tale is short, and worth finding.</p>
 <p>For the drawing, the natural companion is Moebius, the French artist Jean Giraud. He and Miyazaki shared an exhibition at the Monnaie de Paris from December 2004 to March 2005, and the pairing makes sense on the page. For the forest, a much later relative: Jeff VanderMeer’s <em>Annihilation</em> (2014), in which a small expedition walks into Area X, a stretch of coast that nature has taken back and nobody understands. Both books ask how to look at a living place that will not behave like scenery.</p>
 <p>Read it slowly. It rewards looking at each page longer than you need to follow the story.</p>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../showcases/mekong-coast.html">The vanishing coast of the Mekong Delta</a>: A forest at the edge: Miyazaki’s toxic forest, which a princess studies instead of fighting, and the Mekong’s mangroves, which hold the coast’s mud and are cut or squeezed.</li>
+<li><a href="../playground/mangrove/">Mangrove coast</a>: A made-up coast where you plant mangroves, build a dyke or take sand, and watch what the rules do.</li>
+<li><a href="../notes/undercurrent-herzog.html">Ice, fire, jungle, voice</a>: A landscape at its limit and a person who goes there anyway.</li>
+<li><a href="../notes/undercurrent-penguin-science-fiction.html">A shelf of strange books</a>: Other worlds gone wrong slowly, and what people do in them.</li>
+</ul>
+</section>
 
 
 
@@ -262,9 +312,16 @@
 <section id="where-to-go-next" class="level2">
 <h2 data-anchor-id="where-to-go-next">Where to go next</h2>
 <p>The rest of the list rewards wandering: Tiptree’s two collections, Gorodischer’s <em>Trafalgar</em>, Eschbach’s <em>The Hair Carpet Weavers</em>, Schuyler’s <em>Black No More</em>. Pick by title. That is what a series like this is for.</p>
-
-
 </section>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../playground/forecast/">Forecast</a>: Planning for a world that goes wrong: a shelf of books about what people do while it happens, and a game whose forecast may simply be wrong.</li>
+<li><a href="../notes/undercurrent-nausicaa.html">Nausicaä, on paper</a>: Another world gone wrong slowly: a poisoned world, and the people who live at the edge of its forest.</li>
+</ul>
+</section>
+
+
 
  ]]></description>
   <category>under:current</category>
@@ -299,10 +356,18 @@
 <section id="the-machine-and-a-tangent" class="level2">
 <h2 data-anchor-id="the-machine-and-a-tangent">The machine, and a tangent</h2>
 <p>The MANIAC itself was a computer built at Los Alamos in the early 1950s under Nicholas Metropolis, modelled on the machine von Neumann was building at Princeton. It sits in a line of work that matters to anyone who models risk. In 1946 Stanislaw Ulam, recovering from an illness and playing solitaire, wondered whether he could estimate the odds of winning by simply playing many random games instead of doing the combinatorics. With von Neumann, Metropolis and Robert Richtmyer that became the Monte Carlo method, named by Metropolis partly after an uncle of Ulam’s who liked the casino. Its first runs, on ENIAC in 1948, were bomb physics.</p>
-<p>Every catastrophe model that simulates ten thousand years of storms, every probabilistic loss curve, every basis risk estimate on a synthetic event set, descends from that idea: when the equations are too hard, roll the dice many times and count. The book is not about Monte Carlo. But it is about the people in whose rooms it was born, what they built, and what they thought they were doing. That makes it, to me, an uncomfortable family history of the tools risk modelling still uses.</p>
-
-
+<p>Every catastrophe model that simulates ten thousand years of storms, every probabilistic loss curve, every basis risk estimate on a synthetic event set, descends from that idea: when the equations are too hard, <a href="../projects/livelines.html">roll the dice many times and count</a>. The book is not about Monte Carlo. But it is about the people in whose rooms it was born, what they built, and what they thought they were doing. That makes it, to me, an uncomfortable family history of the tools risk modelling still uses.</p>
 </section>
+<section id="connected" class="level2 unnumbered unlisted rac-connected">
+<h2 class="unnumbered unlisted" data-anchor-id="connected">Connected</h2>
+<ul>
+<li><a href="../projects/livelines.html">LiveLines</a>: The method, from the people around the machine: Ulam, von Neumann and Metropolis made Monte Carlo before the MANIAC was built; LiveLines draws its line failures the same way, by sampling many times.</li>
+<li><a href="../showcases/maria-2017-puerto-rico.html">Hurricane Maria 2017</a>: Random runs of one storm over Puerto Rico’s grid, and how far apart they land.</li>
+<li><a href="../notes/undercurrent-complexity-compendium.html">Eighty-nine papers and a sandpile</a>: Shannon, Turing and Nash in their own papers, from the same years as the MANIAC.</li>
+</ul>
+</section>
+
+
 
  ]]></description>
   <category>under:current</category>

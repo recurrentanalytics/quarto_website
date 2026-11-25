@@ -117,6 +117,9 @@ body.ended #play { display: none; }
 .score { font-size: 16px; }
 .story { font-family: inherit; font-size: 12.5px; line-height: 1.15; margin: 8px 0; white-space: pre; overflow-x: auto; }
 .fine { font-size: 12px; color: var(--dim); }
+.howto { font-size: 13px; margin: 4px 0 10px; }
+.howto a, .howto-box a { text-decoration-color: var(--amber); text-underline-offset: 3px; }
+.howto-box { padding: 10px 12px; border: 1px solid var(--line); border-left: 3px solid var(--amber); border-radius: 6px; }
 @media (prefers-reduced-motion: reduce) { .people.drop { animation: none; } }
 
 </style>
@@ -145,6 +148,7 @@ body.ended #play { display: none; }
   <section id="intro" class="intro" aria-labelledby="intro-h">
     <h1 id="intro-h">Forecast</h1>
     <p class="tag">Three crews, one small town, and weather you can see coming. Until you can't.</p>
+    <p class="howto"><a href="../forecast-how-it-works/">How it's built →</a></p>
     <ul class="how">
       <li><span class="ic" data-ic="home"></span><span>Keep the town alive for <strong>3 years</strong>. One house is one person.</span></li>
       <li><span class="ic" data-ic="drop"></span><span><strong>Tinted ground</strong> is next round's weather. <strong>Flashing houses</strong> will be lost.</span></li>
@@ -198,6 +202,8 @@ body.ended #play { display: none; }
       <button id="b-link" type="button">Copy link</button>
     </div>
     <p class="fine">An invented town with invented rules: a game, not a model.</p>
+    <p class="howto-box">The idea behind it and how it is built, with a short reading list on deep uncertainty: <a href="../forecast-how-it-works/">A forecast you can trust, until you can't</a>.</p>
+    <p class="fine">Underneath: <a href="../../notes/undercurrent-penguin-science-fiction.html">A shelf of strange books</a> · <a href="../../notes/undercurrent-gleick.html">A seagull, a butterfly, a flood</a></p>
   </section>
   <noscript><p>This game needs JavaScript.</p></noscript>
 </main>

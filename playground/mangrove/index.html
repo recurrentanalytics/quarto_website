@@ -24,6 +24,9 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; t
 .mark { position: fixed; top: max(12px, env(safe-area-inset-top)); left: 16px; display: flex; flex-direction: column; gap: 2px; pointer-events: none; }
 .mark a { pointer-events: auto; color: inherit; text-decoration: none; font: 600 14px/1.2 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 .mark span { font-size: 12px; opacity: 0.7; }
+.mark a.howto { display: inline-flex; align-self: flex-start; align-items: center; min-height: 24px; font-size: 12px; text-decoration: underline; text-decoration-color: var(--amber); text-underline-offset: 3px; }
+.panel .howto-box { padding: 10px 12px; border: 1px solid var(--line); border-left: 3px solid var(--amber); border-radius: 10px; }
+.panel .under { font-size: 13px; opacity: 0.8; }
 .mark .year { margin-top: 6px; opacity: 1; font: 600 13px/1.2 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 
 button {
@@ -101,6 +104,7 @@ body.capture .mark, body.capture .icon, body.capture .bar, body.capture .panel, 
 <header class="mark">
   <a href="../../">re:current_analytics</a>
   <span>Playground · Mangrove</span>
+  <a class="howto" href="../mangrove-how-it-works/">How it's built →</a>
   <span id="year" class="year" hidden></span>
 </header>
 
@@ -116,6 +120,8 @@ body.capture .mark, body.capture .icon, body.capture .bar, body.capture .panel, 
   <p>The sound is made in code too, and starts with your first touch.</p>
   <p>This world: <code id="world-name"></code>. The link carries this coast and what you did to it.</p>
   <p>For a real coast, see <a href="../../showcases/mekong-coast.html">the vanishing coast of the Mekong Delta</a>.</p>
+  <p class="howto-box">How it is built, with code, diagrams and a reading list: <a href="../mangrove-how-it-works/">A mangrove coast from code, taken apart</a>.</p>
+  <p class="under">Underneath: <a href="../../notes/undercurrent-complexity-compendium.html">Eighty-nine papers and a sandpile</a> · <a href="../../notes/undercurrent-nausicaa.html">Nausicaä, on paper</a></p>
 </section>
 
 <nav class="bar" aria-label="Controls">

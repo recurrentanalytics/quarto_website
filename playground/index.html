@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d5a2b7889c7752e2c8b2113ec74fc57a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-ea8e601a705a5606fbc46da9361322ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-72fe1072ab46dcb0c5323460b9c2d533.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-065b430d430a71a074adac40d8661681.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -403,42 +403,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Small worlds made from code, for play. They are toys, not models: they follow simple rules made up for fun. The mangrove coast uses no measured data and shows no real place; the fire plays on a real map with made-up rules. For a real coast, see <a href="../showcases/mekong-coast.html">the vanishing coast of the Mekong Delta</a>.</p>
 </div>
 <div class="rac-paper rac-grid rac-cards" style="background:transparent">
-  <a class="rac-card" href="mangrove/">
-    <img class="rac-card-img" src="previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
-    <h3>Mangrove coast</h3>
-    <p>A muddy shore with a tide, mangroves that grow by rules, and animals that each follow a simple rule. Plant trees, build a dyke, take sand, send a storm or let the years run, and see what the made-up rules do to the shore. Day is drawn in ink on paper, dusk in low-poly fog, night as glowing lines. With sound, made in code.</p>
-    <p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p>
-  </a>
-  <a class="rac-card" href="mangrove-how-it-works/">
-    <img class="rac-card-img" src="mangrove-how-it-works/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
-    <p class="rac-card-kicker">How it works</p>
-    <h3>A mangrove coast from code, taken apart</h3>
-    <p>The mangrove toy in the playground, taken apart: seeded worlds, rule-grown trees, a fish school, fireflies that fall into step, mud that comes and goes, with code, diagrams and a reading list.</p>
-  </a>
-  <a class="rac-card" href="eilenriede/">
-    <img class="rac-card-img" src="previews/eilenriede.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
-    <h3>Eilenriede fire</h3>
-    <p>Hannover's city forest at night, with all its parts, set in about two kilometres of the city around it, all from OpenStreetMap; the city never burns. Live through a dry summer: tap to light a fire, swipe to turn the wind, cut firebreaks, plant trees, tap a cloud for rain, or send a storm of 300 lightning strikes. Toy fire crews drive out from the real fire stations on the map. Charts fill up as you play. The rules are made up; it says nothing about the real forest or the real fire brigade.</p>
-    <p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p>
-  </a>
-  <a class="rac-card" href="eilenriede-how-it-works/">
-    <img class="rac-card-img" src="eilenriede-how-it-works/preview.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async">
-    <p class="rac-card-kicker">How it works</p>
-    <h3>A forest fire in the city forest, taken apart</h3>
-    <p>The Eilenriede fire toy in the playground, taken apart: a real map turned into cells, a cellular automaton with wind and embers, percolation, a storm of 300 strikes, toy fire crews on a cost field, and a WebGL2 night view, with code, diagrams and a reading list. Map data © OpenStreetMap contributors.</p>
-  </a>
-  <a class="rac-card" href="forecast/">
-    <img class="rac-card-img" src="previews/forecast.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
-    <h3>Forecast</h3>
-    <p>Three crews look after an invented riverside town on a small pixel island. You see the weather one round ahead: floods, heat and storms, and the houses they would take. Walk the crews, lay sandbags, plant trees, shelter a quarter, then end the round. In year 2 the forecast gets less sure. In year 3 it may simply be wrong. With music made in code.</p>
-    <p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p>
-  </a>
-  <a class="rac-card" href="forecast-how-it-works/">
-    <img class="rac-card-img" src="forecast-how-it-works/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
-    <p class="rac-card-kicker">Background</p>
-    <h3>A forecast you can trust, until you can't</h3>
-    <p>The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game's own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty.</p>
-  </a>
+  <div class="rac-pair">
+    <a class="rac-card" href="mangrove/">
+      <img class="rac-card-img" src="previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
+      <h3>Mangrove coast</h3>
+      <p>A muddy shore with a tide, mangroves that grow by rules, and animals that each follow a simple rule. Plant trees, build a dyke, take sand, send a storm or let the years run, and see what the made-up rules do to the shore. Day is drawn in ink on paper, dusk in low-poly fog, night as glowing lines. With sound, made in code.</p>
+      <p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p>
+    </a>
+    <p class="rac-howto"><a href="mangrove-how-it-works/" aria-label="How it's built: Mangrove coast">How it's built →</a></p>
+  </div>
+  <div class="rac-pair">
+    <a class="rac-card" href="eilenriede/">
+      <img class="rac-card-img" src="previews/eilenriede.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
+      <h3>Eilenriede fire</h3>
+      <p>Hannover's city forest at night, with all its parts, set in about two kilometres of the city around it, all from OpenStreetMap; the city never burns. Live through a dry summer: tap to light a fire, swipe to turn the wind, cut firebreaks, plant trees, tap a cloud for rain, or send a storm of 300 lightning strikes. Toy fire crews drive out from the real fire stations on the map. Charts fill up as you play. The rules are made up; it says nothing about the real forest or the real fire brigade.</p>
+      <p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p>
+    </a>
+    <p class="rac-howto"><a href="eilenriede-how-it-works/" aria-label="How it's built: Eilenriede fire">How it's built →</a></p>
+  </div>
+  <div class="rac-pair">
+    <a class="rac-card" href="forecast/">
+      <img class="rac-card-img" src="previews/forecast.jpg" alt="" width="800" height="420" loading="lazy" decoding="async">
+      <h3>Forecast</h3>
+      <p>Three crews look after an invented riverside town on a small pixel island. You see the weather one round ahead: floods, heat and storms, and the houses they would take. Walk the crews, lay sandbags, plant trees, shelter a quarter, then end the round. In year 2 the forecast gets less sure. In year 3 it may simply be wrong. With music made in code.</p>
+      <p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p>
+    </a>
+    <p class="rac-howto"><a href="forecast-how-it-works/" aria-label="How it's built: Forecast">How it's built →</a></p>
+  </div>
 </div>
 
 
@@ -921,44 +912,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="rac-paper rac-grid rac-cards" style="background:transparent"&gt;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="mangrove/"&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Mangrove coast&lt;/h3&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;A muddy shore with a tide, mangroves that grow by rules, and animals that each follow a simple rule. Plant trees, build a dyke, take sand, send a storm or let the years run, and see what the made-up rules do to the shore. Day is drawn in ink on paper, dusk in low-poly fog, night as glowing lines. With sound, made in code.&lt;/p&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="toy"&gt;Toy&lt;/p&gt;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="mangrove-how-it-works/"&gt;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="mangrove-how-it-works/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A mangrove coast from code, taken apart&lt;/h3&gt;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The mangrove toy in the playground, taken apart: seeded worlds, rule-grown trees, a fish school, fireflies that fall into step, mud that comes and goes, with code, diagrams and a reading list.&lt;/p&gt;</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="eilenriede/"&gt;</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/eilenriede.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Eilenriede fire&lt;/h3&gt;</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;Hannover's city forest at night, with all its parts, set in about two kilometres of the city around it, all from OpenStreetMap; the city never burns. Live through a dry summer: tap to light a fire, swipe to turn the wind, cut firebreaks, plant trees, tap a cloud for rain, or send a storm of 300 lightning strikes. Toy fire crews drive out from the real fire stations on the map. Charts fill up as you play. The rules are made up; it says nothing about the real forest or the real fire brigade.&lt;/p&gt;</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="toy"&gt;Toy&lt;/p&gt;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="eilenriede-how-it-works/"&gt;</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="eilenriede-how-it-works/preview.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;How it works&lt;/p&gt;</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A forest fire in the city forest, taken apart&lt;/h3&gt;</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The Eilenriede fire toy in the playground, taken apart: a real map turned into cells, a cellular automaton with wind and embers, percolation, a storm of 300 strikes, toy fire crews on a cost field, and a WebGL2 night view, with code, diagrams and a reading list. Map data © OpenStreetMap contributors.&lt;/p&gt;</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="forecast/"&gt;</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="previews/forecast.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;Forecast&lt;/h3&gt;</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;Three crews look after an invented riverside town on a small pixel island. You see the weather one round ahead: floods, heat and storms, and the houses they would take. Walk the crews, lay sandbags, plant trees, shelter a quarter, then end the round. In year 2 the forecast gets less sure. In year 3 it may simply be wrong. With music made in code.&lt;/p&gt;</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker rac-card-status" data-status="toy"&gt;Toy&lt;/p&gt;</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;a class="rac-card" href="forecast-how-it-works/"&gt;</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;img class="rac-card-img" src="forecast-how-it-works/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"&gt;</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-card-kicker"&gt;Background&lt;/p&gt;</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;h3&gt;A forecast you can trust, until you can't&lt;/h3&gt;</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p&gt;The idea behind the Forecast game and how it is built: three years that stand for three kinds of not knowing, a forecast that is the game's own rules run forward, pixel art and music made in code, and a short reading list on deep uncertainty.&lt;/p&gt;</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/a&gt;</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="rac-pair"&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;a class="rac-card" href="mangrove/"&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;img class="rac-card-img" src="previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;h3&gt;Mangrove coast&lt;/h3&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;p&gt;A muddy shore with a tide, mangroves that grow by rules, and animals that each follow a simple rule. Plant trees, build a dyke, take sand, send a storm or let the years run, and see what the made-up rules do to the shore. Day is drawn in ink on paper, dusk in low-poly fog, night as glowing lines. With sound, made in code.&lt;/p&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;p class="rac-card-kicker rac-card-status" data-status="toy"&gt;Toy&lt;/p&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/a&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-howto"&gt;&lt;a href="mangrove-how-it-works/" aria-label="How it's built: Mangrove coast"&gt;How it's built →&lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="rac-pair"&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;a class="rac-card" href="eilenriede/"&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;img class="rac-card-img" src="previews/eilenriede.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;h3&gt;Eilenriede fire&lt;/h3&gt;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;p&gt;Hannover's city forest at night, with all its parts, set in about two kilometres of the city around it, all from OpenStreetMap; the city never burns. Live through a dry summer: tap to light a fire, swipe to turn the wind, cut firebreaks, plant trees, tap a cloud for rain, or send a storm of 300 lightning strikes. Toy fire crews drive out from the real fire stations on the map. Charts fill up as you play. The rules are made up; it says nothing about the real forest or the real fire brigade.&lt;/p&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;p class="rac-card-kicker rac-card-status" data-status="toy"&gt;Toy&lt;/p&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/a&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-howto"&gt;&lt;a href="eilenriede-how-it-works/" aria-label="How it's built: Eilenriede fire"&gt;How it's built →&lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="rac-pair"&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;a class="rac-card" href="forecast/"&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;img class="rac-card-img" src="previews/forecast.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"&gt;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;h3&gt;Forecast&lt;/h3&gt;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;p&gt;Three crews look after an invented riverside town on a small pixel island. You see the weather one round ahead: floods, heat and storms, and the houses they would take. Walk the crews, lay sandbags, plant trees, shelter a quarter, then end the round. In year 2 the forecast gets less sure. In year 3 it may simply be wrong. With music made in code.&lt;/p&gt;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;p class="rac-card-kicker rac-card-status" data-status="toy"&gt;Toy&lt;/p&gt;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/a&gt;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;p class="rac-howto"&gt;&lt;a href="forecast-how-it-works/" aria-label="How it's built: Forecast"&gt;How it's built →&lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
