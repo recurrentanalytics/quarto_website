@@ -210,6 +210,13 @@
       tBtn.innerHTML =
         '<svg class="rac-sun" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2.2M10 16v2.2M1.8 10H4M16 10h2.2M4.2 4.2l1.6 1.6M14.2 14.2l1.6 1.6M4.2 15.8l1.6-1.6M14.2 5.8l1.6-1.6"/></svg>' +
         '<svg class="rac-moon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1Z"/></svg>';
+      var labelTheme = function () {
+        var dark = document.body.classList.contains('quarto-dark');
+        var l = dark ? 'Switch to light mode' : 'Switch to dark mode';
+        tBtn.setAttribute('aria-label', l); tBtn.title = l;
+      };
+      labelTheme();
+      new MutationObserver(labelTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
       tBtn.addEventListener('click', function () { window.quartoToggleColorScheme(); syncTheme(); });
       toggler.parentNode.insertBefore(tBtn, toggler);
     }
