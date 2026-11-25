@@ -625,15 +625,7 @@ window.RAC_GRAPH = {
   },
   {
    "source": "work/index",
-   "target": "playground/index"
-  },
-  {
-   "source": "work/index",
    "target": "playground/mangrove-how-it-works/index"
-  },
-  {
-   "source": "work/index",
-   "target": "projects/index"
   },
   {
    "source": "work/index",
@@ -642,10 +634,6 @@ window.RAC_GRAPH = {
   {
    "source": "work/index",
    "target": "projects/livelines-how-it-works/index"
-  },
-  {
-   "source": "work/index",
-   "target": "showcases/index"
   },
   {
    "source": "work/index",
