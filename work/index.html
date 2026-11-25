@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-24b0758b90a224f57df60ff6fa6feda5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7ed8d6e7d324deef35c350089b7e9cbb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4deafbb801c9e09f878bb6678aad22a2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-7ed8d6e7d324deef35c350089b7e9cbb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-3d4c5b1a8f14c66d923f15e56714c1a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4d942cd2135f24a21bd3faeb9d2216ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3d4c5b1a8f14c66d923f15e56714c1a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -96,6 +96,8 @@ ul.task-list li input[type="checkbox"] {
 <script defer="" src="../assets/js/motion.js"></script>
 <script defer="" src="../assets/js/menu.js"></script>
 <script defer="" src="../assets/js/previews.js"></script>
+<script defer="" src="../assets/js/shelf.js"></script>
+<script defer="" src="../assets/js/makingof.js"></script>
 
 
 <meta property="og:title" content="Work – re:current_analytics">
@@ -367,60 +369,40 @@ ul.task-list li input[type="checkbox"] {
 <div class="rac-lead">
 <p>Each card says how far the work is checked: against what really happened, built on measured data, or a toy.</p>
 </div>
-<!-- Filter chips: plain JS below; without JS they stay hidden and every card shows. The
-     hash (#showcases, #models, #tools, #toys) keeps the filter in the link. -->
-<div class="rac-chips" role="group" aria-label="Filter the work" hidden="">
-  <button type="button" data-filter="all" aria-pressed="true">All</button>
-  <button type="button" data-filter="showcase" aria-pressed="false">Showcases</button>
-  <button type="button" data-filter="model" aria-pressed="false">Models</button>
-  <button type="button" data-filter="tool" aria-pressed="false">Tools</button>
-  <button type="button" data-filter="toy" aria-pressed="false">Toys</button>
-</div>
-<ul class="rac-paper rac-grid rac-work-all-list" role="list" aria-label="All work" style="background:transparent">
-  <li data-kind="tool"><a class="rac-card" href="../projects/livelines.html"><img class="rac-card-img" src="../projects/previews/livelines.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Flagship · tool</p><h3>LiveLines</h3><p>What a storm does to a power grid, hour by hour, line by line. An open method: every value shows its source or says it is a placeholder.</p><p class="rac-card-kicker rac-card-status" data-status="dev">In development · checked against observations</p></a><p class="rac-howto"><a href="../projects/livelines-how-it-works/" aria-label="How it's built: LiveLines">How it's built →</a></p></li>
-  <li data-kind="showcase"><a class="rac-card" href="../showcases/maria-2017-puerto-rico.html"><img class="rac-card-img" src="../showcases/data/maria/og.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Hurricane Maria 2017 over Puerto Rico's power grid</h3><p>A storm crosses the grid hour by hour, lines fail. Then the model meets the satellite: what it gets right, what it misses, and why.</p><p class="rac-card-kicker rac-card-status" data-status="checked">Checked against observations</p></a><p class="rac-howto"><a href="../showcases/maria-how-it-works/" aria-label="How it's built: Hurricane Maria 2017">How it's built →</a></p></li>
-  <li data-kind="showcase"><a class="rac-card" href="../showcases/trigger-lab-mozambique.html"><img class="rac-card-img" src="../showcases/previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Trigger Lab</h3><p>Design a parametric cyclone trigger for Mozambique over the historical tracks, and see its basis risk.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a><p class="rac-howto"><a href="../showcases/trigger-lab-how-it-works/" aria-label="How it's built: Trigger Lab">How it's built →</a></p></li>
-  <li data-kind="showcase"><a class="rac-card" href="../showcases/mekong-coast.html"><img class="rac-card-img" src="../showcases/previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>The vanishing coast of the Mekong Delta</h3><p>A coastline in retreat seen from space, what drives it, and the choice between dykes and mangroves.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a><p class="rac-howto"><a href="../showcases/mekong-how-it-works/" aria-label="How it's built: the Mekong coast">How it's built →</a></p></li>
-  <li data-kind="showcase"><a class="rac-card" href="../showcases/port-augusta/"><img class="rac-card-img" src="../showcases/port-augusta/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Port Augusta energy diorama</h3><p>A small 3D Port Augusta in South Australia: two solar farms, two wind farms and a battery follow one real day of AEMO 5-minute data.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a><p class="rac-howto"><a href="../showcases/port-augusta-how-it-works/" aria-label="How it's built: Port Augusta">How it's built →</a></p></li>
-  <li data-kind="model"><a class="rac-card" href="../models/how-rare/"><img class="rac-card-img" src="../models/how-rare/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>How rare was that?</h3><p>Pick a place and a day. See how often a day like it came around 1961 to 1990, and how often in the last 30 years.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a></li>
-  <li data-kind="model"><a class="rac-card" href="../models/climate-extremes-explorer.html"><img class="rac-card-img" src="../models/previews/climate-extremes-explorer.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Climate Extremes Explorer</h3><p>78 years of measured heat and rain in Berlin: set your own heatwave and see what changed.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a></li>
-  <li data-kind="model"><a class="rac-card" href="../models/heatwave-prices-de-lu.html"><img class="rac-card-img" src="../models/previews/heatwave-prices-de-lu.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Heatwaves and day-ahead prices</h3><p>Seven summers of measured heat against day-ahead electricity prices in Germany and Luxembourg.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a></li>
-  <li data-kind="tool"><a class="rac-card" href="https://recurrentanalytics.github.io/wal.funk_891/"><img class="rac-card-img" src="../projects/previews/walfunk-891.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Experiment · ongoing</p><h3>wal.funk_891</h3><p>A Raspberry Pi listens to open hydrophone archives (Monterey Canyon, 891 m; Salish Sea) and tests whale detectors in public, with every pass mark fixed in advance.</p><p class="rac-card-kicker rac-card-status" data-status="dev">In development</p></a></li>
-  <li data-kind="toy"><a class="rac-card" href="../playground/mangrove/"><img class="rac-card-img" src="../playground/previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Mangrove coast</h3><p>A muddy shore with a tide, mangroves that grow by rules, and animals that each follow a simple rule. Plant trees, build a dyke, take sand, send a storm or let the years run, and see what the made-up rules do to the shore.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a><p class="rac-howto"><a href="../playground/mangrove-how-it-works/" aria-label="How it's built: Mangrove coast">How it's built →</a></p></li>
-  <li data-kind="toy"><a class="rac-card" href="../playground/eilenriede/"><img class="rac-card-img" src="../playground/previews/eilenriede.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Eilenriede fire</h3><p>Hannover's city forest at night, with all its parts, set in about two kilometres of the city around it, all from OpenStreetMap; the city never burns. The rules are made up; it says nothing about the real forest or the real fire brigade.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a><p class="rac-howto"><a href="../playground/eilenriede-how-it-works/" aria-label="How it's built: Eilenriede fire">How it's built →</a></p></li>
-  <li data-kind="toy"><a class="rac-card" href="../playground/forecast/"><img class="rac-card-img" src="../playground/previews/forecast.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Forecast</h3><p>Three crews look after an invented riverside town on a small pixel island. You see the weather one round ahead: floods, heat and storms, and the houses they would take. In year 2 the forecast gets less sure. In year 3 it may simply be wrong.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a><p class="rac-howto"><a href="../playground/forecast-how-it-works/" aria-label="How it's built: Forecast">How it's built →</a></p></li>
+<!-- Three shelves (2026-11-25): a swipe strip on phones, a grid from 768 px (styles.scss,
+     .rac-shelf; assets/js/shelf.js lights the dots). The old chips are gone; #showcases,
+     #models and #tools (and #toys, the first toy) still land on the right shelf. -->
+<section class="rac-shelf-sec" aria-labelledby="showcases">
+<h2 id="showcases" class="rac-shelf-title">Showcases</h2>
+<ul class="rac-paper rac-shelf rac-shelf-grid rac-shelf-four" style="background:transparent" role="list" aria-label="Showcases" tabindex="0">
+  <li class="rac-pair"><a class="rac-card" href="../showcases/maria-2017-puerto-rico.html"><img class="rac-card-img" src="../showcases/data/maria/og.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Hurricane Maria 2017 over Puerto Rico's power grid</h3><p>A storm crosses the grid hour by hour, lines fail. Then the model meets the satellite: what it gets right, what it misses, and why.</p><p class="rac-card-kicker rac-card-status" data-status="checked">Checked against observations</p></a><p class="rac-howto"><a href="../showcases/maria-how-it-works/" aria-label="How it's built: Hurricane Maria 2017">How it's built →</a></p></li>
+  <li class="rac-pair"><a class="rac-card" href="../showcases/trigger-lab-mozambique.html"><img class="rac-card-img" src="../showcases/previews/trigger-lab-mozambique.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Trigger Lab</h3><p>Design a parametric cyclone trigger for Mozambique over the historical tracks, and see its basis risk.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a><p class="rac-howto"><a href="../showcases/trigger-lab-how-it-works/" aria-label="How it's built: Trigger Lab">How it's built →</a></p></li>
+  <li class="rac-pair"><a class="rac-card" href="../showcases/mekong-coast.html"><img class="rac-card-img" src="../showcases/previews/mekong-coast.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>The vanishing coast of the Mekong Delta</h3><p>A coastline in retreat seen from space, what drives it, and the choice between dykes and mangroves.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a><p class="rac-howto"><a href="../showcases/mekong-how-it-works/" aria-label="How it's built: the Mekong coast">How it's built →</a></p></li>
+  <li class="rac-pair"><a class="rac-card" href="../showcases/port-augusta/"><img class="rac-card-img" src="../showcases/port-augusta/preview.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Showcase</p><h3>Port Augusta energy diorama</h3><p>A small 3D Port Augusta in South Australia: two solar farms, two wind farms and a battery follow one real day of AEMO 5-minute data.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a><p class="rac-howto"><a href="../showcases/port-augusta-how-it-works/" aria-label="How it's built: Port Augusta">How it's built →</a></p></li>
 </ul>
+<p class="rac-shelf-dots" aria-hidden="true"></p>
+</section>
+<section class="rac-shelf-sec" aria-labelledby="models">
+<h2 id="models" class="rac-shelf-title">Models</h2>
+<ul class="rac-paper rac-shelf rac-shelf-grid" style="background:transparent" role="list" aria-label="Models" tabindex="0">
+  <li class="rac-pair"><a class="rac-card" href="../models/how-rare/"><img class="rac-card-img" src="../models/how-rare/preview.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>How rare was that?</h3><p>Pick a place and a day. See how often a day like it came around 1961 to 1990, and how often in the last 30 years.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a></li>
+  <li class="rac-pair"><a class="rac-card" href="../models/climate-extremes-explorer.html"><img class="rac-card-img" src="../models/previews/climate-extremes-explorer.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Climate Extremes Explorer</h3><p>78 years of measured heat and rain in Berlin: set your own heatwave and see what changed.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a></li>
+  <li class="rac-pair"><a class="rac-card" href="../models/heatwave-prices-de-lu.html"><img class="rac-card-img" src="../models/previews/heatwave-prices-de-lu.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Model</p><h3>Heatwaves and day-ahead prices</h3><p>Seven summers of measured heat against day-ahead electricity prices in Germany and Luxembourg.</p><p class="rac-card-kicker rac-card-status" data-status="measured">Measured data</p></a></li>
+</ul>
+<p class="rac-shelf-dots" aria-hidden="true"></p>
+</section>
+<section class="rac-shelf-sec" aria-labelledby="tools">
+<h2 id="tools" class="rac-shelf-title">Tools &amp; Toys</h2>
+<ul class="rac-paper rac-shelf rac-shelf-grid" style="background:transparent" role="list" aria-label="Tools &amp; Toys" tabindex="0">
+  <li class="rac-pair"><a class="rac-card" href="../projects/livelines.html"><img class="rac-card-img" src="../projects/previews/livelines.png" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Flagship · tool</p><h3>LiveLines</h3><p>What a storm does to a power grid, hour by hour, line by line. An open method: every value shows its source or says it is a placeholder.</p><p class="rac-card-kicker rac-card-status" data-status="dev">In development · checked against observations</p></a><p class="rac-howto"><a href="../projects/livelines-how-it-works/" aria-label="How it's built: LiveLines">How it's built →</a></p></li>
+  <li class="rac-pair"><a class="rac-card" href="https://recurrentanalytics.github.io/wal.funk_891/"><img class="rac-card-img" src="../projects/previews/walfunk-891.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async"><p class="rac-card-kicker">Experiment · ongoing</p><h3>wal.funk_891</h3><p>A Raspberry Pi listens to open hydrophone archives (Monterey Canyon, 891 m; Salish Sea) and tests whale detectors in public, with every pass mark fixed in advance.</p><p class="rac-card-kicker rac-card-status" data-status="dev">In development</p></a></li>
+  <li class="rac-pair" id="toys"><a class="rac-card" href="../playground/mangrove/"><img class="rac-card-img" src="../playground/previews/mangrove.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Mangrove coast</h3><p>A muddy shore with a tide, mangroves that grow by rules, and animals that each follow a simple rule. Plant trees, build a dyke, take sand, send a storm or let the years run, and see what the made-up rules do to the shore.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a><p class="rac-howto"><a href="../playground/mangrove-how-it-works/" aria-label="How it's built: Mangrove coast">How it's built →</a></p></li>
+  <li class="rac-pair"><a class="rac-card" href="../playground/eilenriede/"><img class="rac-card-img" src="../playground/previews/eilenriede.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Eilenriede fire</h3><p>Hannover's city forest at night, with all its parts, set in about two kilometres of the city around it, all from OpenStreetMap; the city never burns. The rules are made up; it says nothing about the real forest or the real fire brigade.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a><p class="rac-howto"><a href="../playground/eilenriede-how-it-works/" aria-label="How it's built: Eilenriede fire">How it's built →</a></p></li>
+  <li class="rac-pair"><a class="rac-card" href="../playground/forecast/"><img class="rac-card-img" src="../playground/previews/forecast.jpg" alt="" width="800" height="420" loading="lazy" decoding="async"><p class="rac-card-kicker">Playground</p><h3>Forecast</h3><p>Three crews look after an invented riverside town on a small pixel island. You see the weather one round ahead: floods, heat and storms, and the houses they would take. In year 2 the forecast gets less sure. In year 3 it may simply be wrong.</p><p class="rac-card-kicker rac-card-status" data-status="toy">Toy</p></a><p class="rac-howto"><a href="../playground/forecast-how-it-works/" aria-label="How it's built: Forecast">How it's built →</a></p></li>
+</ul>
+<p class="rac-shelf-dots" aria-hidden="true"></p>
+</section>
 <p class="rac-work-sections">By section: <a href="../showcases/">Showcases</a> · <a href="../projects/">Projects</a> · <a href="../playground/">Playground</a></p>
-<script>
-(function () {
-  var chips = document.querySelector('.rac-chips');
-  var list = document.querySelector('.rac-work-all-list');
-  if (!chips || !list) return;
-  var hashFor = { showcase: '#showcases', model: '#models', tool: '#tools', toy: '#toys' };
-  var kindFor = { '#showcases': 'showcase', '#models': 'model', '#tools': 'tool', '#toys': 'toy' };
-  var buttons = chips.querySelectorAll('button');
-  function apply(kind) {
-    Array.prototype.forEach.call(list.children, function (li) {
-      li.hidden = kind !== 'all' && li.getAttribute('data-kind') !== kind;
-    });
-    Array.prototype.forEach.call(buttons, function (b) {
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === kind));
-    });
-  }
-  function fromHash() { apply(kindFor[location.hash] || 'all'); }
-  chips.addEventListener('click', function (ev) {
-    var b = ev.target.closest('button[data-filter]');
-    if (!b) return;
-    var kind = b.getAttribute('data-filter');
-    apply(kind);
-    var url = location.pathname + location.search + (hashFor[kind] || '');
-    if (history.replaceState) history.replaceState(null, '', url);
-  });
-  window.addEventListener('hashchange', fromHash);
-  chips.hidden = false;
-  fromHash();
-})();
-</script>
 
 
 
